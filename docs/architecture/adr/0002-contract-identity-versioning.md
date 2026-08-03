@@ -12,7 +12,7 @@ This is documentation-only work. It must not select technology or introduce exec
 
 ## Decision
 
-CNTX separates logical identity, Artifact Revision, Contract Definition Version, Schema Version, Document Status, Implementation Version, Content Digest, and Provenance Reference as defined in the proposed [contract identity and versioning contract](../contract-identity-versioning.md). It applies `MAJOR.MINOR.PATCH` semantics to accepted contract definitions and future executable schema definitions: MAJOR is breaking, MINOR is a backward-compatible addition or expansion, and PATCH is only a non-semantic correction or clarification that changes neither required behavior nor accepted meaning.
+CNTX separates logical identity, Artifact Revision, Contract Definition Version, Schema Version, Document Status, Implementation Version, Content Digest, and Provenance Reference as defined in the accepted [contract identity and versioning contract](../contract-identity-versioning.md). It applies `MAJOR.MINOR.PATCH` semantics to accepted contract definitions and future executable schema definitions: MAJOR is breaking, MINOR is a backward-compatible addition or expansion, and PATCH is only a non-semantic correction or clarification that changes neither required behavior nor accepted meaning.
 
 Identifiers are stable, namespaced, opaque, non-authoritative references. CNTX forbids silent mutation or reuse of accepted identities and versions. Consequential normative changes require explicit version assessment and an accepted Decision Record. Exact identifier encodings, generation algorithms, and executable schema fields remain deferred.
 
