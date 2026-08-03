@@ -1,0 +1,31 @@
+name: Bug report
+description: Report an observed problem in CNTX.
+title: "bug: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not include secrets, credentials, personal data, private context, production configuration, or exploitable security details. Security concerns belong in the private reporting path described in SECURITY.md.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction or evidence
+      description: Provide safe, minimal steps and relevant public evidence.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Public context
+      description: Include only non-sensitive version, environment, or revision information.
+    validations:
+      required: true
