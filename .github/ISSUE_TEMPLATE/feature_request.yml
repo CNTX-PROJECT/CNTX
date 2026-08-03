@@ -1,0 +1,31 @@
+name: Feature request
+description: Propose a scoped public improvement.
+title: "feature: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not include secrets, credentials, personal data, private context, production configuration, or copied private material.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or opportunity
+      description: Describe the public problem to address.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed scope
+      description: State a bounded proposal, intended outcome, and non-goals.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and alternatives
+      description: Provide public evidence, assumptions, alternatives, and risks.
+    validations:
+      required: true
