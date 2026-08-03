@@ -18,6 +18,10 @@ CNTX public core is a model-, vendor-, runtime-, transport-, storage-, and domai
 
 This phase MUST NOT provide an executable runtime, orchestration engine, routing algorithm, prompt library, field-level data schema, validator implementation, CLI, API, provider SDK integration, domain-specific or private project logic, or autonomous approval or merge.
 
+## Identity and versioning foundation
+
+The accepted [contract identity and versioning contract](contract-identity-versioning.md) defines the conceptual separation of artifact identity, artifact revision, contract definition identity and version, schema identity and version, document status, implementation version, content digest, and provenance reference. Future field-level schemas MUST conform to that contract. Its acceptance does not alter the existing ARCH-001 roles, artifacts, authority, lifecycle, invariants, or boundaries.
+
 ## Canonical roles
 
 The following are the primary definitions of CNTX canonical roles. Owner / Final Authority MUST be a human or an explicitly human-governed authority. An autonomous system or AI agent MUST NOT be the final consequential authority. Humans and systems MAY occupy multiple other operational roles, but authority separation and self-review restrictions MUST still apply to consequential decisions. A system that executes or reviews work MUST NOT make itself the final approval authority.
@@ -121,4 +125,4 @@ Future replaceable extension points include model/provider adapters, runtime/exe
 
 ## Deferred decisions
 
-This contract does not decide identifiers and versioning; field-level schemas; lifecycle state-machine details; validation rules; trust levels and risk classes; context-packet selection algorithms; storage and serialization formats; adapter interfaces; policy evaluation; or conformance testing. Future work MUST NOT preselect technologies or providers without an approved decision.
+This contract does not decide identifier encoding or generation; namespace registry format and governance; executable field-level schemas; lifecycle state-machine details; validation rules; trust levels and risk classes; context-packet selection algorithms; canonical serialization and storage formats; revision encoding and concurrency semantics; migration contracts and tooling; detailed compatibility rules; adapter interfaces; policy evaluation; supported-version negotiation; deprecation and retention timeframes; or conformance testing. Future work MUST NOT preselect technologies or providers without an approved decision.
