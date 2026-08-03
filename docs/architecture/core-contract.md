@@ -22,6 +22,10 @@ This phase MUST NOT provide an executable runtime, orchestration engine, routing
 
 The accepted [contract identity and versioning contract](contract-identity-versioning.md) defines the conceptual separation of artifact identity, artifact revision, contract definition identity and version, schema identity and version, document status, implementation version, content digest, and provenance reference. Future field-level schemas MUST conform to that contract. Its acceptance does not alter the existing ARCH-001 roles, artifacts, authority, lifecycle, invariants, or boundaries.
 
+## Artifact contract and schema architecture
+
+The accepted [artifact-contract and schema-layering contract](artifact-contract-schema-architecture.md) defines the conceptual dependency direction that future artifact contracts and schemas MUST follow. Each canonical artifact MUST receive a bounded artifact-specific normative contract before an executable schema for that artifact is introduced. All lower layers MUST conform to applicable accepted higher layers from executable schemas and serialization bindings through artifact-specific contracts and common envelope semantics to the accepted architecture, identity/versioning, and provenance baselines; they MUST NOT redefine those higher-layer semantics. Its acceptance does not alter the existing ARCH-001 and ARCH-002 roles, artifact definitions, authority, lifecycle, invariants, identity/versioning, provenance, or boundaries. Concrete fields, schema language, serialization, validator behavior, migration, and runtime choices remain deferred.
+
 ## Canonical roles
 
 The following are the primary definitions of CNTX canonical roles. Owner / Final Authority MUST be a human or an explicitly human-governed authority. An autonomous system or AI agent MUST NOT be the final consequential authority. Humans and systems MAY occupy multiple other operational roles, but authority separation and self-review restrictions MUST still apply to consequential decisions. A system that executes or reviews work MUST NOT make itself the final approval authority.
