@@ -2,7 +2,7 @@
 
 ## Status
 
-**Proposed.** This decision requires final human approval under [GOVERNANCE.md](../../../GOVERNANCE.md) before it can become accepted.
+**Accepted.** Final human approval has been granted under [GOVERNANCE.md](../../../GOVERNANCE.md). On merge and publication to `main`, ADR-0003 is published as an accepted architecture decision.
 
 ## Context
 
