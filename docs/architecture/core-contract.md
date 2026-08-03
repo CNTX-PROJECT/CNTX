@@ -2,7 +2,7 @@
 
 ## Status and authority
 
-**Status: Proposed.** This contract remains Proposed until its pull request receives final human approval and is merged. It is subordinate to the source precedence and execution boundaries in [AGENTS.md](../../AGENTS.md) and to the authority model in [GOVERNANCE.md](../../GOVERNANCE.md). It defines the normative conceptual architecture baseline for the public core; field-level schemas and executable behavior remain future work.
+**Status: Accepted.** The Owner / Final Authority has granted final human approval, and this contract is accepted under [GOVERNANCE.md](../../GOVERNANCE.md). On merge and publication to `main`, it becomes the binding conceptual architecture baseline for the CNTX public core. It is subordinate to the source precedence and execution boundaries in [AGENTS.md](../../AGENTS.md) and to the authority model in [GOVERNANCE.md](../../GOVERNANCE.md). Field-level schemas and executable behavior remain future work.
 
 Within this document, **MUST** and **MUST NOT** express mandatory requirements, **SHOULD** and **SHOULD NOT** express strong recommendations, and **MAY** expresses permission. These terms express requirement strength only within this document.
 

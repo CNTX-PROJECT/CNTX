@@ -2,7 +2,7 @@
 
 ## Status
 
-**Proposed.** This ADR becomes Accepted only after final human approval and merge under [GOVERNANCE.md](../../../GOVERNANCE.md).
+**Accepted.** Final human approval has been granted under [GOVERNANCE.md](../../../GOVERNANCE.md). On merge and publication to `main`, ADR-0001 is published as an accepted architecture decision.
 
 ## Context
 

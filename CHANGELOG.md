@@ -12,4 +12,4 @@ CNTX is currently unreleased and pre-alpha.
 
 - Public repository foundation, governance, security, contribution, conduct, and agent-instruction documents.
 - Issue and pull-request templates for scoped, evidence-based collaboration.
-- Proposed CNTX core architecture contract and ADR-0001 on public-core boundaries.
+- Accepted CNTX core architecture contract and ADR-0001 on public-core boundaries.
