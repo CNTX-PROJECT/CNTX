@@ -2,7 +2,7 @@
 
 ## Status and authority
 
-**Status: Proposed.** This document is submitted for review under [GOVERNANCE.md](../../GOVERNANCE.md). It has no accepted authority and does not alter the accepted [CNTX Core Architecture Contract](core-contract.md) unless final human approval is granted and it is merged to `main`.
+**Status: Accepted.** The Owner / Final Authority has granted final human approval, and this contract is accepted under [GOVERNANCE.md](../../GOVERNANCE.md). On merge and publication to `main`, it becomes the binding identity and versioning baseline for future CNTX contracts and schemas. It refines the accepted [CNTX Core Architecture Contract](core-contract.md) without altering its existing ARCH-001 roles, artifacts, authority, lifecycle, invariants, or boundaries.
 
 Within this document, **MUST** and **MUST NOT** express mandatory requirements, **SHOULD** and **SHOULD NOT** express strong recommendations, and **MAY** expresses permission. These terms express requirement strength only within this document.
 

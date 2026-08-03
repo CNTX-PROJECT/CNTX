@@ -20,7 +20,7 @@ This phase MUST NOT provide an executable runtime, orchestration engine, routing
 
 ## Identity and versioning foundation
 
-The [contract identity and versioning contract](contract-identity-versioning.md) defines the proposed conceptual separation of artifact identity, artifact revision, contract definition identity and version, schema identity and version, document status, implementation version, content digest, and provenance reference. Future field-level schemas MUST conform to that contract after it is accepted under applicable governance. Its proposed status does not alter this accepted baseline or grant approval.
+The accepted [contract identity and versioning contract](contract-identity-versioning.md) defines the conceptual separation of artifact identity, artifact revision, contract definition identity and version, schema identity and version, document status, implementation version, content digest, and provenance reference. Future field-level schemas MUST conform to that contract. Its acceptance does not alter the existing ARCH-001 roles, artifacts, authority, lifecycle, invariants, or boundaries.
 
 ## Canonical roles
 

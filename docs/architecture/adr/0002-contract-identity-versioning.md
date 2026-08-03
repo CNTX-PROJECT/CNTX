@@ -2,7 +2,7 @@
 
 ## Status
 
-**Proposed.** This decision is submitted for review under [GOVERNANCE.md](../../../GOVERNANCE.md). It becomes an accepted architecture decision only after final human approval and merge to `main`.
+**Accepted.** Final human approval has been granted under [GOVERNANCE.md](../../../GOVERNANCE.md). On merge and publication to `main`, ADR-0002 is published as an accepted architecture decision.
 
 ## Context
 
@@ -22,7 +22,7 @@ CNTX remains independent of providers, models, runtimes, transports, storage sys
 
 Future conforming schema and implementation proposals must distinguish the identity and version dimensions identified here, state their supported contract or schema versions, and preserve traceable provenance. Compatibility cannot be inferred from a shared name or file path, and validation success does not itself prove compatibility or grant approval.
 
-The separation supports bounded review and evidence without preselecting serialization, storage, registry, digest, or migration technology. ARCH-001 remains the accepted baseline while this ADR is Proposed.
+The separation supports bounded review and evidence without preselecting serialization, storage, registry, digest, or migration technology. ARCH-001 remains the accepted core baseline, and ARCH-002 is an accepted extension of that baseline.
 
 ## Rejected alternatives
 
