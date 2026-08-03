@@ -8,7 +8,7 @@ Within this document, **MUST** and **MUST NOT** express mandatory requirements, 
 
 ## Problem statement and central design law
 
-Context overload is the central architectural problem. Broad, accumulated context degrades focus, reliability, reviewability, privacy, and cost control. No single agent SHOULD act as architect, specialist, implementer, reviewer, and final approver for unrestricted work. CNTX exists to divide work intelligently while preserving traceability and human authority.
+Context overload is the central architectural problem. Broad, accumulated context degrades focus, reliability, reviewability, privacy, and cost control. An agent MUST NOT act simultaneously as architect, specialist, implementer, reviewer, and final approver for unrestricted consequential work. CNTX exists to divide work intelligently while preserving traceability and human authority.
 
 The central design law is: work MUST be decomposed into bounded tasks, each task MUST receive only relevant context and explicit authority, and consequential decisions MUST remain subject to final human approval.
 
@@ -20,11 +20,11 @@ This phase MUST NOT provide an executable runtime, orchestration engine, routing
 
 ## Canonical roles
 
-The following are the primary definitions of CNTX canonical roles. A human or system MAY occupy multiple roles operationally, but authority separation and self-review restrictions MUST still apply to consequential decisions.
+The following are the primary definitions of CNTX canonical roles. Owner / Final Authority MUST be a human or an explicitly human-governed authority. An autonomous system or AI agent MUST NOT be the final consequential authority. Humans and systems MAY occupy multiple other operational roles, but authority separation and self-review restrictions MUST still apply to consequential decisions. A system that executes or reviews work MUST NOT make itself the final approval authority.
 
 | Role | Primary definition |
 | --- | --- |
-| **Owner / Final Authority** | Defines intent and retains final consequential approval. |
+| **Owner / Final Authority** | A human or explicitly human-governed authority that defines intent and retains final consequential approval. |
 | **Lead Architect** | Decomposes work, identifies dependencies, defines contracts, and integrates reviewed results. |
 | **Bounded Implementer** | Executes one explicitly authorized task within scope. |
 | **Specialist Reviewer** | Reviews within a declared specialty and does not silently broaden scope. |
@@ -111,7 +111,7 @@ Completion claims MUST be supported by evidence appropriate to the task, includi
 7. Execution, review, and approval MUST be separated appropriate to risk.
 8. Scope MUST NOT expand silently.
 9. Private data MUST NOT leak into public artifacts.
-10. The public core MUST remain provider-, model-, runtime-, and domain-independent.
+10. The CNTX public core MUST remain independent of models, providers/vendors, runtimes, transports, storage systems, and domains.
 11. Authoritative sources MUST NOT be silently replaced by summaries.
 12. Architecture changes MUST require an accepted Decision Record.
 
