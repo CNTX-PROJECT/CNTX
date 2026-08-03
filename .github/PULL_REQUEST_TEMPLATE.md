@@ -6,7 +6,10 @@
 
 - Linked issue or approved task:
 - Changed paths:
-- Forbidden-path confirmation: [ ] No paths outside the approved scope changed.
+
+### Scope confirmation
+
+- [ ] No paths outside the approved scope changed.
 
 ## Validation and evidence
 
@@ -14,8 +17,18 @@
 - Results:
 - Evidence or relevant output:
 
-## Risks and review
+## Risks and limitations
 
 - Risks, assumptions, or limitations:
-- Security/privacy check: [ ] No secrets, private context, personal data, credentials, or production configuration included.
-- Reviewer checklist: [ ] Scope is authorized. [ ] Validation evidence is sufficient. [ ] Human approval is recorded before merge.
+
+## Security and privacy
+
+- [ ] No secrets, private context, personal data, credentials, or production configuration are included.
+
+## Reviewer checklist
+
+- [ ] The scope is authorized.
+- [ ] The changed paths match the approved scope.
+- [ ] Validation evidence is sufficient.
+- [ ] Security and privacy implications were reviewed.
+- [ ] Human approval is recorded before merge.
