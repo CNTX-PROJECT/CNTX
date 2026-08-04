@@ -10,7 +10,7 @@ CNTX is currently unreleased and pre-alpha.
 
 ### Added
 
-- Proposed Task Contract artifact contract (CONTRACT-003).
+- Accepted Task Contract artifact contract (CONTRACT-003).
 - Accepted Workstream artifact contract (CONTRACT-002).
 - Public repository foundation, governance, security, contribution, conduct, and agent-instruction documents.
 - Issue and pull-request templates for scoped, evidence-based collaboration.

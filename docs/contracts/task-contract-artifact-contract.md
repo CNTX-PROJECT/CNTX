@@ -2,7 +2,7 @@
 
 ## Status and authority
 
-**Status: Proposed.** This contract is submitted under [GOVERNANCE.md](../../GOVERNANCE.md) and is not binding until final human approval and merge. Within this document, **MUST** and **MUST NOT** express mandatory requirements, **SHOULD** and **SHOULD NOT** strong recommendations, and **MAY** permission; these terms express requirement strength only within this proposed contract.
+**Status: Accepted.** Final human approval by the Owner / Final Authority has been granted, and this contract is accepted under [GOVERNANCE.md](../../GOVERNANCE.md). On merge and publication to `main`, it becomes the binding, subordinate artifact-specific contract basis for the canonical Task Contract. Within this document, **MUST** and **MUST NOT** express mandatory requirements, **SHOULD** and **SHOULD NOT** strong recommendations, and **MAY** permission; these terms express requirement strength only within this contract.
 
 This contract is subordinate to accepted ARCH-001, ARCH-002, ARCH-003, CONTRACT-001, and CONTRACT-002. It specializes, without redefining, the accepted canonical Task Contract meaning, authoritative classification, authority and lifecycle models, identity/versioning and provenance semantics, privacy boundaries, governing Project Charter and Workstream contracts, or final human authority. Executable schemas, validators, permission engines, and implementations remain subordinate future work.
 
