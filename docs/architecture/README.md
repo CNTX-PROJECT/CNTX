@@ -6,6 +6,8 @@
 
 CONTRACT-004, the [Context Packet artifact contract](../contracts/context-packet-contract.md), is **Accepted**, binding, and subordinate, and is governed by ARCH-001, ARCH-002, ARCH-003, and accepted CONTRACT-001, CONTRACT-002, and CONTRACT-003. It does not alter or redefine accepted architecture, Project Charter, Workstream, or Task Contract.
 
+CONTRACT-005, the [Execution Result artifact contract](../contracts/execution-result-contract.md), is **Accepted**, binding, and subordinate, and is governed by ARCH-001, ARCH-002, ARCH-003, and accepted CONTRACT-001, CONTRACT-002, CONTRACT-003, and CONTRACT-004. It does not alter or redefine accepted architecture, Project Charter, Workstream, Task Contract, or Context Packet.
+
 This architecture documentation is read with the repository [README](../../README.md), [agent instructions](../../AGENTS.md), [governance](../../GOVERNANCE.md), and [security policy](../../SECURITY.md). The README describes the project and its current status. `AGENTS.md` sets execution constraints and source precedence. `GOVERNANCE.md` assigns decision authority and approval. Normative architecture states what the public core requires conceptually; governance assigns who may approve it; implementation is future conforming work; and non-binding discussion is neither an approved decision nor an authority source.
 
 No executable architecture, schema, selector, retrieval system, runtime, provider integration, validator, or product functionality is implemented here.

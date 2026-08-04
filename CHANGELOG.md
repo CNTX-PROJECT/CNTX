@@ -10,6 +10,7 @@ CNTX is currently unreleased and pre-alpha.
 
 ### Added
 
+- Accepted Execution Result artifact contract (CONTRACT-005).
 - Accepted Context Packet artifact contract (CONTRACT-004).
 - Accepted governance and agent-instruction requirement for concise task and phase handoff summaries (GOV-001).
 - Accepted Task Contract artifact contract (CONTRACT-003).
