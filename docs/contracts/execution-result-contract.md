@@ -24,7 +24,7 @@ An Execution Result MUST NOT modify, broaden, replace, or reinterpret its govern
 
 ## Governing Task Contract and Context Packet boundary
 
-An exact approved Task Contract revision MUST exist before an authoritative Execution Result claim is made. Its objective, scope, authority, permitted resources, forbidden zones, constraints, acceptance criteria, expected evidence, security/privacy requirements, stop conditions, and integration boundaries remain controlling. A result cannot fill missing Task Contract authority or retroactively authorize out-of-scope work.
+An exact approved Task Contract revision MUST exist before a conforming Execution Result is authored. Its objective, scope, authority, permitted resources, forbidden zones, constraints, acceptance criteria, expected evidence, security/privacy requirements, stop conditions, and integration boundaries remain controlling. A result cannot fill missing Task Contract authority or retroactively authorize out-of-scope work.
 
 Context Packet remains Derived and may supply the minimum task-relevant source material used for permitted execution. Packet content is not permission, contextual relevance is not authorization, and an Execution Result cannot treat a packet as authority. Relevant Context Packet identity, revision, limitations, missing context, and provenance MUST remain traceable where material.
 
