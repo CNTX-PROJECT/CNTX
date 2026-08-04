@@ -20,7 +20,7 @@ This contract references, without competing with, the accepted primary definitio
 
 Context Packet is a **Derived** canonical artifact. The Lead Architect or authorized selector conceptually prepares it, and the exact approved Task Contract revision governs selection. It is not an independent authority source. Existence, possession, receipt, technical access, schema validity, generated status, retrieval result, or executor capability grants no authority.
 
-A packet MUST NOT modify, broaden, replace, or reinterpret the Task Contract; replace authoritative Project Charter, Workstream, or Task Contract sources; contain or grant final approval, review decision, integration authority, release authority, or merge authority; or silently share context or authority between different Task Contracts.
+A packet MUST NOT modify, broaden, replace, or reinterpret the Task Contract; replace authoritative Project Charter, Workstream, or Task Contract sources; constitute, replace, or grant final approval, a review decision, integration authority, release authority, or merge authority; or silently share context or authority between different Task Contracts. When task-relevant, it MAY carry provenance-preserving references to or derived selections from applicable approval, review, or decision sources, but those sources remain controlling.
 
 ## Governing Task Contract boundary
 
@@ -88,7 +88,7 @@ Evidence supports claims about relevance, minimum selection, sufficiency, proven
 
 ## Public/private, security, and confidentiality boundaries
 
-Public packets, examples, tests, and documentation MUST NOT expose secrets, credentials, personal data, production configuration, private paths, hostnames, private project content, or private domain-specific implementation. Restricted authoritative content SHOULD be safely referenced rather than copied. Redaction and sanitization preserve provenance and identify information loss. Access to restricted content is not authority to disclose it; minimization applies within private implementations too; and public CONTRACT-004 never makes private material mandatory. Security/privacy uncertainty requires stop and escalation. Private Home Assistant, housing, NanoPC, OneDrive, and production context are forbidden.
+Public packets, examples, tests, and documentation MUST NOT expose secrets, credentials, personal data, production configuration, private paths, hostnames, private project content, or private domain-specific implementation. Restricted authoritative content SHOULD be safely referenced rather than copied. Redaction and sanitization preserve provenance and identify information loss. Access to restricted content is not authority to disclose it; minimization applies within private implementations too; and public CONTRACT-004 never makes private material mandatory. Security/privacy uncertainty requires stop and escalation. Private project, deployment, infrastructure, production, and domain-specific implementation context are forbidden.
 
 ## Extensions and profiles
 
