@@ -2,9 +2,9 @@
 
 ## Status and authority
 
-**Status: Proposed.** This contract is submitted under [GOVERNANCE.md](../../GOVERNANCE.md). It is not binding until final human approval and merge. Accepted ARCH-001, ARCH-002, ARCH-003, and CONTRACT-001 remain higher-authority sources. This proposed contract specializes them and MUST NOT modify, replace, broaden, or silently reinterpret the governing Project Charter contract. Future executable schemas, validators, and implementations remain subordinate work.
+**Status: Accepted.** Final human approval has been granted by the Owner / Final Authority under [GOVERNANCE.md](../../GOVERNANCE.md). On merge and publication to `main`, this contract becomes the binding, subordinate artifact-specific contract basis for Workstream. It specializes the accepted Workstream meaning and authoritative classification but MUST NOT modify, replace, broaden, or silently reinterpret the governing Project Charter contract. Accepted ARCH-001, ARCH-002, ARCH-003, and CONTRACT-001 remain higher-authority sources. Future executable schemas, validators, and implementations remain subordinate work.
 
-Within this document, **MUST** and **MUST NOT** express mandatory requirements, **SHOULD** and **SHOULD NOT** express strong recommendations, and **MAY** expresses permission. These terms express requirement strength only within this proposed document.
+Within this document, **MUST** and **MUST NOT** express mandatory requirements, **SHOULD** and **SHOULD NOT** express strong recommendations, and **MAY** expresses permission. These terms express requirement strength only within this document.
 
 ## Purpose and scope
 
