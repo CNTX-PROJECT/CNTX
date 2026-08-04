@@ -13,7 +13,7 @@ The following order follows the accepted dependency direction. Project Charter i
 | Order | Canonical artifact | Artifact-contract status |
 | --- | --- | --- |
 | 1 | [Project Charter](project-charter-contract.md) | **Accepted** — CONTRACT-001 |
-| 2 | [Workstream](workstream-contract.md) | **Proposed** â€” CONTRACT-002 |
+| 2 | [Workstream](workstream-contract.md) | **Proposed** — CONTRACT-002 |
 | 3 | Task Contract | Future work |
 | 4 | Context Packet | Future work |
 | 5 | Execution Result | Future work |
