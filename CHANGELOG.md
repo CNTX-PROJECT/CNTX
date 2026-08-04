@@ -15,3 +15,4 @@ CNTX is currently unreleased and pre-alpha.
 - Accepted CNTX core architecture contract and ADR-0001 on public-core boundaries.
 - Accepted contract identity and versioning contract and ADR-0002.
 - Accepted artifact-contract and schema-layering contract and ADR-0003.
+- Proposed artifact-contract index and Project Charter artifact contract (CONTRACT-001).
