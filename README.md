@@ -20,6 +20,8 @@ CNTX is model-, vendor-, runtime-, and domain-agnostic. It does not prescribe a 
 
 CNTX is in an early foundation phase. The repository has an accepted public governance and collaboration foundation. Its first conceptual architecture contract is accepted in the [architecture documentation](docs/architecture/README.md); it does not claim implemented runtime or product functionality.
 
+The [artifact-contract index](docs/contracts/README.md) includes the first accepted artifact-specific contract, for the Project Charter; it does not introduce an executable schema or runtime.
+
 The high-level roadmap is to define public concepts and documentation, invite review under the project governance, and only then consider scoped, approved implementation work. Private reference implementations may exist later outside this public repository.
 
 ## Participate
