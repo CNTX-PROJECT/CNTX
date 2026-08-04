@@ -2,7 +2,7 @@
 
 ## Status and authority
 
-**Status: Proposed.** This contract is submitted under [GOVERNANCE.md](../../GOVERNANCE.md) and is not binding before final human acceptance and publication on `main`. Within this document, **MUST** and **MUST NOT** express mandatory requirements, **SHOULD** and **SHOULD NOT** strong recommendations, and **MAY** permission; these terms express requirement strength only within this proposed contract.
+**Status: Accepted.** Final human approval by the Owner / Final Authority has been granted, and this contract is accepted under [GOVERNANCE.md](../../GOVERNANCE.md). On merge and publication to `main`, it becomes the binding, subordinate artifact-specific contract basis for the canonical Execution Result. Within this document, **MUST** and **MUST NOT** express mandatory requirements, **SHOULD** and **SHOULD NOT** strong recommendations, and **MAY** permission; these terms express requirement strength only within this contract.
 
 ARCH-001, ARCH-002, ARCH-003, and accepted CONTRACT-001 through CONTRACT-004 remain higher Accepted authority sources. This contract specializes, without redefining, the accepted Execution Result primary definition and Evidentiary classification. Executable schemas, validators, templates, runtimes, and implementations remain subordinate future work.
 
