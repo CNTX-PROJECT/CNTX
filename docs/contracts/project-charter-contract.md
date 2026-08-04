@@ -2,7 +2,7 @@
 
 ## Status and authority
 
-**Status: Proposed.** CONTRACT-001 is submitted for review under [GOVERNANCE.md](../../GOVERNANCE.md). It is not binding until final human approval and merge. The accepted [core architecture contract](../architecture/core-contract.md), [contract identity and versioning contract](../architecture/contract-identity-versioning.md), and [artifact-contract and schema-layering contract](../architecture/artifact-contract-schema-architecture.md) remain higher-authority sources. Any executable schema or implementation is subordinate future work.
+**Status: Accepted.** The Owner / Final Authority has granted final human approval, and CONTRACT-001 is accepted under [GOVERNANCE.md](../../GOVERNANCE.md). On merge and publication to `main`, it becomes the binding, subordinate artifact-specific contract baseline for Project Charter. It specializes, without redefining, the accepted Project Charter meaning and authoritative classification. The accepted [core architecture contract](../architecture/core-contract.md), [contract identity and versioning contract](../architecture/contract-identity-versioning.md), and [artifact-contract and schema-layering contract](../architecture/artifact-contract-schema-architecture.md) remain higher-authority sources. Future executable schemas, validators, and implementations remain subordinate.
 
 This contract uses **MUST** and **MUST NOT** for mandatory requirements, **SHOULD** and **SHOULD NOT** for strong recommendations, and **MAY** for permission. It specializes, and does not redefine, the accepted primary Project Charter definition, authoritative classification, authority model, lifecycle, identity/versioning semantics, provenance model, privacy boundaries, or final human authority.
 
