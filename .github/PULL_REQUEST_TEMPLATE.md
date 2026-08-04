@@ -32,3 +32,14 @@
 - [ ] Validation evidence is sufficient.
 - [ ] Security and privacy implications were reviewed.
 - [ ] Human approval is recorded before merge.
+
+## Handoff summary
+
+- Authoritative baseline or current revision:
+- Completed scope:
+- Validation and evidence state:
+- Open work or limitations:
+- Next candidate task:
+- Prohibited scope:
+- Provenance or uncertainty for continuation:
+- [ ] This summary is derived orientation information only; it does not grant authority or replace authoritative sources.

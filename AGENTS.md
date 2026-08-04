@@ -24,6 +24,8 @@ Higher-authority safety and platform instructions remain controlling. If instruc
 - Change only explicitly allowed paths; do not silently broaden scope or perform broad refactors.
 - Follow the approved branch, commit, validation, and evidence requirements.
 - Record validation commands, results, assumptions, risks, and incomplete work in the final report or pull request.
+- Provide a concise handoff summary at the end of every completed bounded task, before transferring work to a new task or materially distinct phase, and when stopping for a blocking condition that a future continuation may address. Identify, as applicable: the repository or authoritative project scope; exact authoritative baseline or revision; issue, task, branch, and pull-request state; completed work; validation and evidence; open work, limitations, uncertainty, or stopped conditions; next candidate task; explicit prohibited or unauthorized scope; and provenance or authoritative sources needed for continuation.
+- State that the handoff is derived orientation information that does not replace authoritative sources or authorize further work. Keep it concise and limited to minimum continuation-relevant context; do not copy complete prior conversations or unrelated workstream history, silently resolve uncertainty, or claim approval, acceptance, integration, release, deployment, or merge unless an authoritative source records that state. Do not include private or restricted information in public work, and state `none` explicitly where no open work or next task exists. This rule remains model-, provider-, runtime-, transport-, storage-, product-, and domain-independent.
 
 ## Safety and privacy
 
