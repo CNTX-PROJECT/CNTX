@@ -10,6 +10,7 @@ CNTX is currently unreleased and pre-alpha.
 
 ### Added
 
+- Proposed governance and agent-instruction requirement for concise task and phase handoff summaries (GOV-001).
 - Accepted Task Contract artifact contract (CONTRACT-003).
 - Accepted Workstream artifact contract (CONTRACT-002).
 - Public repository foundation, governance, security, contribution, conduct, and agent-instruction documents.
