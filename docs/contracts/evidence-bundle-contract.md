@@ -1,8 +1,8 @@
 # CNTX Evidence Bundle Artifact Contract
 
-**Status: Proposed.** This contract is submitted under [GOVERNANCE.md](../../GOVERNANCE.md). It is not binding before separate final human acceptance and publication on `main`. Within this document, **MUST** and **MUST NOT** express mandatory requirements, **SHOULD** and **SHOULD NOT** strong recommendations, and **MAY** permission; these terms express requirement strength only within this Proposed contract and grant no authority.
+**Status: Accepted.** Final human approval by the Owner / Final Authority has been granted, and this contract is accepted under [GOVERNANCE.md](../../GOVERNANCE.md). On merge and publication to `main`, it becomes the binding, subordinate artifact-specific contract basis for the canonical Evidence Bundle. Within this document, **MUST** and **MUST NOT** express mandatory requirements, **SHOULD** and **SHOULD NOT** strong recommendations, and **MAY** permission; these terms express requirement strength only within this contract and grant no authority.
 
-ARCH-001, ARCH-002, ARCH-003, and accepted CONTRACT-001 through CONTRACT-005 remain higher authority sources. This Proposed contract specializes only the canonical Evidence Bundle semantics; it does not redefine the accepted primary definition or Evidentiary classification. Executable schemas, validators, formats, collection systems, and implementations remain subordinate future work.
+ARCH-001, ARCH-002, ARCH-003, and accepted CONTRACT-001 through CONTRACT-005 remain higher authority sources. This accepted contract specializes only the canonical Evidence Bundle semantics; it does not redefine the accepted primary definition or Evidentiary classification. Executable schemas, validators, formats, collection systems, and implementations remain subordinate future work.
 
 ## Accepted governing meaning and classification
 
