@@ -10,7 +10,7 @@ CNTX is currently unreleased and pre-alpha.
 
 ### Added
 
-- Proposed Review Record artifact contract (CONTRACT-007).
+- Accepted Review Record artifact contract (CONTRACT-007).
 - Accepted Evidence Bundle artifact contract (CONTRACT-006).
 - Accepted Execution Result artifact contract (CONTRACT-005).
 - Accepted Context Packet artifact contract (CONTRACT-004).

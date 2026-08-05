@@ -1,8 +1,8 @@
 # CNTX Review Record Artifact Contract
 
-**Status: Proposed.** This contract is submitted under [GOVERNANCE.md](../../GOVERNANCE.md). It is not binding before separate final human acceptance and publication on `main`. **MUST**, **MUST NOT**, **SHOULD**, **SHOULD NOT**, and **MAY** express requirement strength only within this Proposed contract and grant no authority.
+**Status: Accepted.** Final human approval by the Owner / Final Authority has been granted, and this contract is accepted under [GOVERNANCE.md](../../GOVERNANCE.md). On merge and publication to `main`, it becomes the binding, subordinate artifact-specific contract basis for the canonical Review Record. **MUST**, **MUST NOT**, **SHOULD**, **SHOULD NOT**, and **MAY** express requirement strength only within this contract and grant no authority.
 
-ARCH-001, ARCH-002, ARCH-003, and accepted CONTRACT-001 through CONTRACT-006 remain higher authority sources. This contract specializes only Review Record semantics; it does not redefine its primary definition, canonical responsibility, or Evidentiary classification. Schemas, validators, scoring systems, workflows, and implementations remain future work.
+ARCH-001, ARCH-002, ARCH-003, and accepted CONTRACT-001 through CONTRACT-006 remain higher authority sources. This accepted contract specializes only Review Record semantics; it does not redefine its primary definition, canonical responsibility, or Evidentiary classification. Schemas, validators, scoring systems, workflows, and implementations remain future work.
 
 ## Accepted governing meaning and classification
 

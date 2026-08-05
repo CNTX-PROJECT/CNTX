@@ -8,7 +8,7 @@ Every artifact-specific contract MUST be Accepted before an executable schema fo
 
 ## Canonical artifact contracts
 
-The following order follows the accepted dependency direction. Project Charter is the first accepted artifact-specific contract. Workstream is the second accepted subordinate contract. Task Contract is the third accepted subordinate contract. Context Packet is the fourth accepted, binding subordinate contract. Execution Result is the fifth accepted, binding subordinate contract. Evidence Bundle is the sixth accepted, binding subordinate contract. Review Record is the seventh Proposed subordinate contract, governed by ARCH-001, ARCH-002, ARCH-003, and accepted CONTRACT-001 through CONTRACT-006. The remaining two contracts are future work and have no placeholder files.
+The following order follows the accepted dependency direction. Project Charter is the first accepted artifact-specific contract. Workstream is the second accepted subordinate contract. Task Contract is the third accepted subordinate contract. Context Packet is the fourth accepted, binding subordinate contract. Execution Result is the fifth accepted, binding subordinate contract. Evidence Bundle is the sixth accepted, binding subordinate contract. Review Record is the seventh accepted, binding subordinate contract, governed by ARCH-001, ARCH-002, ARCH-003, and accepted CONTRACT-001 through CONTRACT-006. The remaining two contracts are future work and have no placeholder files.
 
 | Order | Canonical artifact | Artifact-contract status |
 | --- | --- | --- |
@@ -18,7 +18,7 @@ The following order follows the accepted dependency direction. Project Charter i
 | 4 | [Context Packet](context-packet-contract.md) | **Accepted** — CONTRACT-004 |
 | 5 | [Execution Result](execution-result-contract.md) | **Accepted** — CONTRACT-005 |
 | 6 | [Evidence Bundle](evidence-bundle-contract.md) | **Accepted** — CONTRACT-006 |
-| 7 | [Review Record](review-record-contract.md) | **Proposed** — CONTRACT-007 |
+| 7 | [Review Record](review-record-contract.md) | **Accepted** — CONTRACT-007 |
 | 8 | Decision Record | Future work |
 | 9 | State Snapshot | Future work |
 
