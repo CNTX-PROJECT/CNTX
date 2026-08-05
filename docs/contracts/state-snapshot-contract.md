@@ -26,7 +26,7 @@ State Snapshot is a **Derived** canonical artifact. Derived means that it provid
 
 A State Snapshot summarizes the compact current state that a reader needs for orientation or a bounded handoff. It SHOULD select relevant minimum context while preserving material provenance, uncertainty, limitations, conflicts, omissions, and unresolved work. Compactness is not permission to erase a material boundary merely to make the snapshot appear self-contained.
 
-A State Snapshot MUST NOT replace, amend, supersede, reinterpret, or silently become a controlling source. It MUST NOT copy unrelated history, duplicate source material without need, conceal an ambiguity or stopped condition, or claim completeness, correctness, conformance, freshness, or currentness merely because it exists. It is not a substitute for opening the applicable authoritative sources and exact revisions.
+A State Snapshot MUST NOT replace, amend, supersede, reinterpret, combine authoritative sources into a new apparently controlling source, or silently become a controlling source. It MUST NOT copy unrelated history, duplicate source material without need, conceal an ambiguity or stopped condition, or claim completeness, correctness, conformance, freshness, or currentness merely because it exists. It is not a substitute for opening the applicable authoritative sources and exact revisions.
 
 ## Authorized derivation and controlling sources
 
@@ -90,15 +90,15 @@ A snapshot may support handoff, but the handoff is not task authority. Future wo
 
 ## Public, privacy, and security boundary
 
-Public State Snapshots MUST NOT expose secrets, credentials, personal data, production configuration, private paths, restricted source material, private project data, or other protected information. A public snapshot may state a limitation or refer to an authorized public-safe source without reproducing protected content.
+Public State Snapshots MUST NOT expose secrets, credentials, personal data, production configuration, private paths, restricted source material, private project data, private implementation logic, sensitive operational details, or other protected information. A public snapshot may state a limitation or refer to an authorized public-safe source without reproducing protected content.
 
 This proposed contract remains model-independent, vendor-independent, runtime-independent, transport-independent, storage-independent, serialization-independent, schema-language-independent, and domain-independent. It establishes no provider-specific behavior, private implementation, or product assumption.
 
 ## Extensions and profiles
 
-Future extensions or profiles MAY add explicitly named, bounded conventions only when they remain subordinate to applicable accepted higher-authority sources. They MUST identify their governing contract and governing contract version, and state their own identity, scope, compatibility, and limitations. They MUST preserve the canonical definition, Derived classification, source precedence, final human authority, and public/private boundary.
+Future extensions or profiles MAY add explicitly named, bounded conventions only when they remain subordinate to applicable accepted higher-authority sources. They MUST identify their governing contract and governing contract version, and state their own identity, scope, compatibility, and limitations. They MUST preserve the canonical definition, Derived classification, source precedence, provenance, final human authority, and public/private boundary.
 
-An extension or profile MUST NOT silently redefine canonical meaning, introduce a new authority source, create an implicit replacement rule, or make a lower implementation layer controlling. It does not replace this contract unless separately accepted under governance.
+An extension or profile MUST NOT silently redefine canonical meaning, introduce a new authority source, create an implicit replacement rule, make a lower implementation layer controlling, or require private implementation behavior in the public core. It does not replace this contract unless separately accepted under governance.
 
 ## Deferred schema and implementation decisions
 
