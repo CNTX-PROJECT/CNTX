@@ -12,6 +12,8 @@ CONTRACT-006, the [Evidence Bundle artifact contract](../contracts/evidence-bund
 
 CONTRACT-007, the [Review Record artifact contract](../contracts/review-record-contract.md), is **Accepted**, binding, and subordinate, and is governed by ARCH-001, ARCH-002, ARCH-003, and accepted CONTRACT-001 through CONTRACT-006. It does not alter or redefine accepted architecture, Project Charter, Workstream, Task Contract, Context Packet, Execution Result, or Evidence Bundle.
 
+CONTRACT-008, the [Decision Record artifact contract](../contracts/decision-record-contract.md), is **Accepted**, binding, and subordinate, and is governed by ARCH-001, ARCH-002, ARCH-003, and accepted CONTRACT-001 through CONTRACT-007. It does not alter or redefine accepted architecture, Project Charter, Workstream, Task Contract, Context Packet, Execution Result, Evidence Bundle, or Review Record.
+
 This architecture documentation is read with the repository [README](../../README.md), [agent instructions](../../AGENTS.md), [governance](../../GOVERNANCE.md), and [security policy](../../SECURITY.md). The README describes the project and its current status. `AGENTS.md` sets execution constraints and source precedence. `GOVERNANCE.md` assigns decision authority and approval. Normative architecture states what the public core requires conceptually; governance assigns who may approve it; implementation is future conforming work; and non-binding discussion is neither an approved decision nor an authority source.
 
 No executable architecture, schema, selector, retrieval system, runtime, provider integration, validator, or product functionality is implemented here.
