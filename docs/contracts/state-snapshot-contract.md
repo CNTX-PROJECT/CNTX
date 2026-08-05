@@ -1,12 +1,12 @@
-**Status: Proposed**
+**Status: Accepted**
 
 # CNTX State Snapshot Artifact Contract
 
-This proposed, documentation-only contract is a bounded subordinate specialization for the canonical State Snapshot. It is subordinate to accepted ARCH-001, ARCH-002, ARCH-003, and accepted CONTRACT-001 through CONTRACT-008. It specializes State Snapshot semantics only; it does not redefine accepted architecture, any accepted artifact contract, final human authority, or the accepted public/private boundary.
+This accepted, documentation-only contract is a binding subordinate specialization for the canonical State Snapshot. It is subordinate to accepted ARCH-001, ARCH-002, ARCH-003, and accepted CONTRACT-001 through CONTRACT-008. It specializes State Snapshot semantics only; it does not redefine accepted architecture, any accepted artifact contract, final human authority, or the accepted public/private boundary.
 
 ## Requirement language and authority boundary
 
-Within this proposed contract, **MUST** and **MUST NOT** express mandatory conceptual requirements, **SHOULD** and **SHOULD NOT** express strong recommendations, and **MAY** expresses permission. These terms do not authorize a task, approval, acceptance, human decision, integration, publication, merge, release, or deployment. This document cannot replace final human authority or any applicable governing source.
+Within this accepted contract, **MUST** and **MUST NOT** express mandatory conceptual requirements, **SHOULD** and **SHOULD NOT** express strong recommendations, and **MAY** expresses permission. These terms do not authorize a task, approval, acceptance, human decision, integration, publication, merge, release, or deployment. This document cannot replace final human authority or any applicable governing source.
 
 The contract is read with [AGENTS.md](../../AGENTS.md), [GOVERNANCE.md](../../GOVERNANCE.md), [SECURITY.md](../../SECURITY.md), accepted [core architecture](../architecture/core-contract.md), accepted [identity and versioning](../architecture/contract-identity-versioning.md), accepted [artifact-contract and schema layering](../architecture/artifact-contract-schema-architecture.md), and accepted CONTRACT-001 through CONTRACT-008. Where sources differ, the applicable higher-authority source controls.
 
@@ -92,7 +92,7 @@ A snapshot may support handoff, but the handoff is not task authority. Future wo
 
 Public State Snapshots MUST NOT expose secrets, credentials, personal data, production configuration, private paths, restricted source material, private project data, private implementation logic, sensitive operational details, or other protected information. A public snapshot may state a limitation or refer to an authorized public-safe source without reproducing protected content.
 
-This proposed contract remains model-independent, vendor-independent, runtime-independent, transport-independent, storage-independent, serialization-independent, schema-language-independent, and domain-independent. It establishes no provider-specific behavior, private implementation, or product assumption.
+This accepted contract remains model-independent, vendor-independent, runtime-independent, transport-independent, storage-independent, serialization-independent, schema-language-independent, and domain-independent. It establishes no provider-specific behavior, private implementation, or product assumption.
 
 ## Extensions and profiles
 
@@ -104,8 +104,8 @@ An extension or profile MUST NOT silently redefine canonical meaning, introduce 
 
 The following remain expressly deferred: concrete fields and their requiredness; identifier syntax; revision encoding; timestamps and freshness algorithms; serialization; file format; template or payload design; content-digest algorithm; registry; selector or retrieval system; validator; state engine; synchronization engine; workflow or automation; storage and transport; API or CLI; runtime; provider integration; user interface; domain-specific implementation; private reference implementation; migration and conformance tooling.
 
-This proposed contract creates no schema or implementation authority. Any later concrete work requires an accepted applicable artifact contract and a separately authorized bounded task, and remains subordinate to the accepted architecture and governance.
+This accepted contract creates no schema or implementation authority. Any later concrete work requires an accepted applicable artifact contract and a separately authorized bounded task, and remains subordinate to the accepted architecture and governance.
 
 ## Status and change boundary
 
-This document is **Proposed**. It is a candidate for review only, is not an accepted artifact revision, and does not alter accepted ARCH-001 through ARCH-003 or accepted CONTRACT-001 through CONTRACT-008. The applicable authoritative sources remain controlling.
+As **Accepted**, this document records a binding subordinate artifact-specific contract. It does not alter accepted ARCH-001 through ARCH-003 or accepted CONTRACT-001 through CONTRACT-008. The applicable authoritative sources remain controlling.
