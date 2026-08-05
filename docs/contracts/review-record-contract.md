@@ -22,6 +22,14 @@ Consequential review work MUST have one exact approved Task Contract revision or
 
 Declared specialty, reviewed subject identity and revision, claims, evidence, criteria, concerns, methods, conditions, coverage, depth, and unreviewed areas remain explicit and reviewable. Partial review is not complete review; absence of a finding is not absence of a defect; “no issues found” is meaningful only within actual scope. Mutable labels, branch names, paths, and unversioned summaries do not replace pinned references. Material subject, evidence, method, scope, specialty, or uncertainty change may require reassessment.
 
+## Review and execution authority traceability
+
+Consequential review authority and the authority that governed the reviewed execution remain distinct where they arise from different Task Contracts or approved authority sources. A Review Record MUST preserve the identity and exact applicable revision of its review-authorizing Task Contract or other approved review authority. When reviewed claims, results, or evidence originate under a different execution-authorizing Task Contract, the identity and exact applicable revision of that execution authority MUST also remain traceable.
+
+Review authority does not replace, amend, broaden, reinterpret, or supersede execution authority. Execution authority does not automatically authorize specialist review beyond its approved boundary. Review completion, a review finding, or a recommendation MUST NOT complete, accept, close, revoke, supersede, or otherwise transition either Task Contract. A Review Record MUST NOT retroactively authorize execution, evidence collection, access, disclosure, or review activity that lacked applicable authority when performed.
+
+Where the relationship between review authority and execution authority is missing, conflicting, materially ambiguous, or affected by security or privacy risk, review MUST stop or escalate rather than infer authority. Exact authority-link encoding, delegation representation, review-assignment mechanisms, and lifecycle automation remain deferred.
+
 ## Execution Result, Evidence Bundle, and findings
 
 An exact Execution Result Artifact Revision MAY be assessed. Result claims and findings remain separate; Review Record cannot modify, correct, supersede, accept, reject, approve, or replace the result. An exact Evidence Bundle revision MAY be assessed for relevance, provenance, integrity, authenticity, freshness, completeness, coverage, independence, reproducibility, uncertainty, limitations, conflict, bias, and sufficiency. Evidence assembly and review authorship remain distinguishable; overlap, conflict of interest, prior involvement, and material dependency remain visible. Required independence is controlled by governing authority and appropriate to risk.
@@ -33,6 +41,46 @@ Observation, interpretation, finding, supporting rationale, contradictory inform
 A recommendation is specialist and Evidentiary, not authoritative. It is not final approval, rejection, acceptance, integration, release, deployment, or merge. It MAY advise further evidence, correction, reassessment, acceptance, rejection, escalation, or deferral without a fixed enum. An Owner / Final Authority or authorized decision-maker may follow or reject it; any consequential decision remains separately authorized and, where required, recorded in a Decision Record. Review count, majority, score, tool, or automatic conflict resolution creates no decision. Self-approval and cyclic authority are prohibited.
 
 Methods, checks, tools, and procedures are used only within authorized scope. Their outputs are bounded evidence: validation, schema validity, conformance, and tests do not automatically establish correctness, completeness, safety, acceptance, or approval. Procedures, toolchains, checklists, tests, and validator behavior remain deferred.
+
+## Revision-aware correction and historical traceability
+
+A material correction, supplementation, qualification, or replacement of a Review Record MUST produce a new Review Record Artifact Revision when consequential traceability requires it. The Review Record revision actually used for a review, decision, approval, rejection, integration, release, deployment, or merge assessment MUST remain historically traceable and MUST NOT be silently overwritten or replaced.
+
+Evidence or information obtained after Review Record authoring remains recognizably later evidence. Later evidence MAY require reassessment or supplementation but MUST NOT be represented as having been available to the earlier reviewer. A later Review Record or correction MUST NOT retroactively authorize earlier unauthorized work or silently erase the uncertainty, limitations, dissent, or evidence gaps recorded in an earlier revision.
+
+Stale, withdrawn, corrected, superseded, or otherwise non-current Review Record revisions MUST NOT be presented as current. Their prior use, provenance, applicable subject revisions, evidence revisions, findings, uncertainty, recommendation, and relationship to later revisions remain traceable subject to applicable retention, privacy, and security boundaries. Exact revision sequencing, correction markers, supersession encoding, freshness rules, and retention mechanisms remain deferred.
+
+## Peer reviews, conflicting reviews, and synthesis
+
+Each peer Review Record retains its own Artifact Instance Identifier, Artifact Revision, declared specialty, authority boundary, reviewed subjects, evidence basis, methods, findings, uncertainty, limitations, dissent, and recommendation. Peer Review Records MUST NOT be silently merged, collapsed, rewritten, or represented as one shared review.
+
+Agreement between reviews does not constitute final approval. Disagreement does not constitute an authorized rejection. Review count, majority, reviewer ranking, confidence score, severity score, tool output, or apparent consensus grants no authority and does not resolve a consequential decision.
+
+A review synthesis MAY be produced only under explicit bounded authority. It MUST provenance-preservingly identify every Review Record revision and other source used, preserve material agreement, disagreement, uncertainty, dissent, limitations, specialty boundaries, conflicts of interest, and unreviewed scope, and MUST NOT replace or erase the source Review Records. A synthesis remains Evidentiary and is not a Decision Record or final human decision.
+
+Unresolved conflicting findings or recommendations remain explicit. Majority voting, weighting, automatic reviewer ranking, automatic synthesis, conflict resolution, and consensus algorithms remain deferred.
+
+## Conformance, review outcome, and decision boundaries
+
+Schema-valid does not automatically mean contract-conformant. Contract-conformant does not automatically mean correct, complete, safe, sufficient, current, accepted, integrated, released, deployed, or merged. Validation success, conformance claims, test results, reviewer credentials, review completion, or tool output grant neither task authority nor final approval.
+
+A review-pass, favorable finding, or positive recommendation does not automatically constitute acceptance, integration authority, release authority, deployment authority, or merge authority. A review-fail, adverse finding, or negative recommendation does not automatically constitute an authorized rejection, revocation, rollback, or prohibition. Each consequential outcome requires the separate authority and decision required by applicable governance.
+
+Satisfaction of acceptance criteria is evidence for an authorized acceptance decision, not the decision itself. Reviewer confidence, uncertainty assessment, severity assessment, recommendation, review status, or consensus is not approval state or Decision Record status. A Decision Record, where required, separately records the authorized consequential decision and its rationale. Final consequential authority remains human or explicitly human-governed.
+
+Review Record, Evidence Bundle, Conformance Claim, Decision Record, final human approval, integration, release, deployment, and merge remain distinct. Exact conformance vocabularies, review outcomes, verdicts, scores, thresholds, decision matrices, and automated policy evaluation remain deferred.
+
+## Roles, restricted evidence, and escalation
+
+Owner / Final Authority remains human or explicitly human-governed. Specialist Reviewer remains the canonical author of a Review Record and acts only within declared specialty and explicit bounded authority. Lead Architect, Bounded Implementer, Execution Result author, Evidence Bundle assembler, Specialist Reviewer, peer reviewer, authorized decision-maker, approver, integrator, and Owner / Final Authority remain distinguishable responsibilities.
+
+Participation in architecture, implementation, result authoring, evidence assembly, review, validation, or repository administration grants no automatic review, approval, acceptance, integration, release, deployment, or merge authority. Role overlap remains explicit and traceable, MUST NOT be represented as independence when it is not independent, and MUST NOT create self-approval, cyclic authority, or authority laundering.
+
+This contract introduces no canonical Review Owner, Review Manager, Review Approver, Auditor Agent, Quality Gatekeeper, Review Bot, or Approval Agent role. Titles, credentials, repository rights, tools, assignments, automation, reviewer status, or organizational position do not create canonical authority.
+
+Access to restricted evidence or source material is not authority to review, copy, transform, retain, disclose, publish, transmit, or redistribute it. Restricted evidence SHOULD be safely referenced rather than copied when provenance and reviewability can be preserved. Redaction and sanitization MUST keep provenance, material information loss, uncertainty, and limitations visible and MUST NOT silently change findings, dissent, recommendation, or apparent review outcome.
+
+Missing or uncertain authority, access, provenance, scope, specialty, evidence integrity, privacy handling, security handling, conflict-of-interest handling, or redaction effects require bounded stop or escalation. Creating a Review Record does not legitimize unauthorized access, evidence handling, review activity, or disclosure. Exact access-control, redaction, secure-reference, escalation-level, and retention mechanisms remain deferred.
 
 ## Required artifact relationships
 
