@@ -19,7 +19,7 @@ The following order follows the accepted dependency direction. Project Charter i
 | 5 | [Execution Result](execution-result-contract.md) | **Accepted** — CONTRACT-005 |
 | 6 | [Evidence Bundle](evidence-bundle-contract.md) | **Accepted** — CONTRACT-006 |
 | 7 | [Review Record](review-record-contract.md) | **Accepted** — CONTRACT-007 |
-| 8 | [Decision Record](decision-record-contract.md) | **Proposed** â€” CONTRACT-008 |
+| 8 | [Decision Record](decision-record-contract.md) | **Proposed** — CONTRACT-008 |
 | 9 | State Snapshot | Future work |
 
 ## Public-core boundary

@@ -20,7 +20,7 @@ Decision Record is an **Authoritative** canonical artifact. An authoritative cla
 
 ## Purpose and scope
 
-A Decision Record provides a bounded, traceable public record of an approved consequential decision and the rationale for it. It makes the decision intelligible without converting the record into a work request, an execution report, a body of evidence, a review, a registry, or an automation mechanism. It records the decision within the authority, scope, and conditions that made it valid.
+A Decision Record provides a bounded, traceable record of an approved consequential decision and the rationale for it. It makes the decision intelligible without converting the record into a work request, an execution report, a body of evidence, a review, a registry, or an automation mechanism. It records the decision within the authority, scope, and conditions that made it valid. Disclosure of a concrete Decision Record instance remains subject to valid authority, confidentiality, applicable public/private boundaries, and repository or project governance; a conforming instance need not be public.
 
 A conforming Decision Record MUST identify, at a conceptual level:
 
@@ -32,6 +32,8 @@ A conforming Decision Record MUST identify, at a conceptual level:
 - any explicit amendment, correction, revocation, supersession, dependency, or conflict relationship.
 
 The record MUST remain sufficiently bounded that a reader can distinguish what was decided from the work that was proposed, performed, reviewed, evidenced, or later integrated.
+
+One Decision Record governs exactly one coherent consequential decision boundary. It MUST NOT bundle unrelated decisions, and independently approvable decisions MUST be recorded separately. This is a semantic artifact boundary and does not prescribe a schema or cardinality decision.
 
 ## Non-goals and prohibited interpretations
 
@@ -72,6 +74,8 @@ If a decision is conditional, deferred, time-bounded, or effective only on a lat
 The rationale MUST explain why the authorized decision-maker reached the documented outcome within the available scope. It SHOULD identify material trade-offs, constraints, alternatives, risks, and the governing sources that materially informed the decision, without exposing restricted deliberation or creating a private record in the public repository.
 
 Rationale is explanatory, not a substitute for approval provenance. A concise rationale may be sufficient when it preserves the consequential basis; exhaustive narrative is not required. The decision basis MAY reference accepted architecture, applicable charter/workstream/task boundaries, evidence, review findings, prior decisions, or public external sources, provided that references remain attributable and do not silently elevate a non-authoritative source.
+
+Material uncertainty and material dissent MUST remain visible in the record or traceable through an exact revision-pinned reference, and the record MUST show how the authorized decision-maker handled them. Approval MUST NOT retrospectively erase them. This does not require rewriting or duplicating Evidence Bundles or Review Records and MUST respect restricted deliberation, confidentiality, and applicable public/private boundaries.
 
 ## Evidence, review, and recommendation boundaries
 
