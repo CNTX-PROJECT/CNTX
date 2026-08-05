@@ -70,6 +70,8 @@ The conceptual lifecycle is evidence identification; authorized collection or re
 
 Owner / Final Authority remains human or explicitly human-governed. A Bounded Implementer may normally assemble evidence for its own bounded execution; another contributor may collect or add evidence only under explicit bounded authority. This contract introduces no canonical Evidence Collector, Evidence Curator, Auditor, or Approver role.
 
+A Bounded Implementer or Specialist Reviewer MAY assemble an Evidence Bundle under explicit, bounded, and traceable authority. Other contributors MAY collect or contribute evidence only under explicit bounded authority, but such contribution does not assign them the canonical bundle-assembler responsibility or create a new canonical role. Bundle assembly grants no review, approval, or final authority.
+
 Authorship, collection, assembly, execution, review, approval, and final authority remain distinct. An assembler does not approve its bundle, and a Bounded Implementer MUST NOT conceal contradictory evidence. Specialist Review may assess quality, relevance, sufficiency, provenance, and limitations within declared expertise, but remains Evidentiary. Review Record grants no final approval; Decision Record records a separately authorized consequential decision where governance requires it. Evidence Bundle grants no integration, release, deployment, or merge authority. Self-approval, cyclic authority, and authority laundering are prohibited.
 
 ## Required artifact relationships
