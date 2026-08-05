@@ -1,10 +1,10 @@
 # CNTX Decision Record Artifact Contract
 
-**Status: Proposed.** This document is submitted for review under [GOVERNANCE.md](../../GOVERNANCE.md). It is not an accepted repository decision, does not itself grant approval, and is not binding until final human acceptance under governance and publication on `main`. It is subordinate to accepted ARCH-001, ARCH-002, ARCH-003, and accepted CONTRACT-001 through CONTRACT-007. It specializes Decision Record semantics only and does not redefine the accepted architecture, identity/versioning, schema-layering, Project Charter, Workstream, Task Contract, Context Packet, Execution Result, Evidence Bundle, Review Record, or final human authority. Executable schemas, validators, decision engines, approval systems, voting systems, workflows, runtimes, and implementations remain future work.
+**Status: Accepted.** This contract is accepted under [GOVERNANCE.md](../../GOVERNANCE.md) and is a binding subordinate artifact-specific contract for the canonical Decision Record. It is subordinate to accepted ARCH-001, ARCH-002, ARCH-003, and accepted CONTRACT-001 through CONTRACT-007. It specializes Decision Record semantics only and does not redefine the accepted architecture, identity/versioning, schema-layering, Project Charter, Workstream, Task Contract, Context Packet, Execution Result, Evidence Bundle, Review Record, or final human authority. Executable schemas, validators, decision engines, approval systems, voting systems, workflows, runtimes, and implementations remain future work.
 
 ## Requirement language and authority
 
-Within this proposed contract, **MUST** and **MUST NOT** express mandatory conceptual requirements, **SHOULD** and **SHOULD NOT** express strong recommendations, and **MAY** expresses permission. These terms grant no authority. This contract is read with [AGENTS.md](../../AGENTS.md), [GOVERNANCE.md](../../GOVERNANCE.md), [SECURITY.md](../../SECURITY.md), the accepted [core architecture contract](../architecture/core-contract.md), [contract identity and versioning contract](../architecture/contract-identity-versioning.md), and [artifact-contract and schema-layering contract](../architecture/artifact-contract-schema-architecture.md). Where sources differ, the applicable higher-authority source controls.
+Within this accepted contract, **MUST** and **MUST NOT** express mandatory conceptual requirements, **SHOULD** and **SHOULD NOT** express strong recommendations, and **MAY** expresses permission. These terms grant no authority. This contract is read with [AGENTS.md](../../AGENTS.md), [GOVERNANCE.md](../../GOVERNANCE.md), [SECURITY.md](../../SECURITY.md), the accepted [core architecture contract](../architecture/core-contract.md), [contract identity and versioning contract](../architecture/contract-identity-versioning.md), and [artifact-contract and schema-layering contract](../architecture/artifact-contract-schema-architecture.md). Where sources differ, the applicable higher-authority source controls.
 
 ## Accepted governing meaning and classification
 
@@ -200,4 +200,4 @@ Any future executable schema, profile, validator, binding, implementation, or pu
 
 ## Status and change boundary
 
-As **Proposed**, this document records a candidate subordinate contract for review. It does not change the accepted architecture or accepted CONTRACT-001 through CONTRACT-007. Final human acceptance and publication on `main` are required before it can become binding. Until then, all existing accepted governing sources remain controlling.
+As **Accepted**, this document records a binding subordinate contract. It does not change the accepted architecture or accepted CONTRACT-001 through CONTRACT-007. All existing accepted governing sources remain controlling.
