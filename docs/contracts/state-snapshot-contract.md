@@ -38,29 +38,29 @@ Authoritative sources and their applicable exact revisions remain controlling at
 
 A State Snapshot MUST make its relevant source identity and applicable exact revision, or the limitation preventing that identification, traceable at a conceptual level. It MUST preserve the relevant derivation context: source scope, provenance, dependencies, and temporal context. An optional content digest may assist identification, but does not establish authority, approval, or correctness.
 
-Mutable labels, branch names, publication order, or an unspecified notion of “current” or “latest” are not substitutes for an applicable exact revision. A snapshot MUST NOT treat a newer source, later timestamp, or repository position as automatically controlling. When a source cannot be pinned, the snapshot MUST say so and state the resulting uncertainty.
+Mutable labels, branch names, mutable file paths, publication order, unversioned summaries, or an unspecified notion of “current” or “latest” are not substitutes for an applicable exact revision. A snapshot MUST NOT treat a newer source, later timestamp, or repository position as automatically controlling. When a source cannot be pinned, the snapshot MUST say so and state the resulting uncertainty.
 
 ## Freshness, staleness, and relevance
 
-Freshness, derivation time, source time, publication time, and observation time are distinct concepts. A State Snapshot SHOULD state the temporal limitation relevant to its purpose and MUST identify known staleness or a missing temporal boundary when it materially affects interpretation. No inferred recency rule decides a conflict or makes a snapshot authoritative.
+Freshness, derivation time, source time, publication time, observation time, and any known-valid-through boundary are distinct concepts. A State Snapshot SHOULD state the temporal limitation relevant to its purpose, including the time or period to which reported state applies and the derivation time, and MUST distinguish information known to be current, possibly stale, demonstrably stale, or of unknown freshness when material. Its existence or recent generation does not prove freshness; a later snapshot does not automatically control, and absence of newer information does not prove that reported state remains current. A State Snapshot MUST identify known staleness, freshness uncertainty, or a missing temporal boundary when it materially affects interpretation. No inferred recency rule decides a conflict or makes a snapshot authoritative. This contract defines no concrete timestamp field or expiry algorithm.
 
 Selection MUST remain relevant to the declared orientation or handoff scope. It MUST exclude unrelated context, private material, and excessive duplication, but it MUST NOT hide material source uncertainty, provenance, dependencies, limitations, omissions, conflicts, incomplete work, stopped conditions, unresolved decisions, or verification gaps.
 
 ## Reported state, claims, evidence, review, decisions, and integration
 
-Reported state is an orientation summary, not proof of the underlying claim. An [Execution Result](execution-result-contract.md) may report an output and limitations, but neither it nor a snapshot proves completion or correctness. An [Evidence Bundle](evidence-bundle-contract.md) may provide evidence and provenance, but a snapshot is not evidence itself. A [Review Record](review-record-contract.md) may contain findings or recommendations, but a snapshot does not replace review.
+Reported state is an orientation summary, not proof of the underlying claim. An [Execution Result](execution-result-contract.md) may report an output and limitations, but neither it nor a snapshot proves completion or correctness. An [Evidence Bundle](evidence-bundle-contract.md) may provide evidence and provenance, but a snapshot is not evidence itself and cannot create evidence by referring to itself. A [Review Record](review-record-contract.md) may contain findings or recommendations, but a snapshot does not replace review.
 
 A [Decision Record](decision-record-contract.md) records an approved consequential decision and its rationale at an exact applicable revision; its scoped decision authority remains authoritative. A State Snapshot may report a traceable relationship to that decision, but cannot cite itself as authority, convert reported status into acceptance or integration, or equate a commit, pull request, merge, publication, or public visibility with current authoritative state.
 
 ## Uncertainty and limitations
 
-A State Snapshot MUST explicitly preserve material uncertainty and limitations, including missing or unavailable sources, unpinned revisions, omissions, conflicts, incomplete work, stopped conditions, unresolved decisions, and verification gaps. It MAY state that an assessment is unknown or incomplete. It MUST NOT imply that silence resolves a conflict, that absence proves a negative, or that a compact handoff proves its source state.
+A State Snapshot MUST explicitly preserve material uncertainty and limitations, including missing or unavailable sources, unpinned revisions, omissions, conflicts, incomplete work, stopped conditions, unresolved decisions, and verification gaps. It SHOULD state the reason for a material omission when needed to avoid misleading interpretation. It MAY state that an assessment is unknown or incomplete. It MUST NOT imply that silence resolves a conflict, that absence proves a negative, or that a compact handoff proves its source state.
 
 ## Identity, revision, and replacement
 
-Artifact identity identifies the continuing State Snapshot concept; Artifact Revision identifies one exact derived instance. Contract definition identity and version identify this governing specification, document status identifies governance state, implementation version is distinct, and provenance identifies derivation context. These concepts MUST NOT be collapsed.
+Artifact identity identifies the continuing State Snapshot concept; Artifact Revision identifies one exact derived instance. Contract definition identity and version identify this governing specification, document status identifies governance state, implementation version is distinct, and provenance identifies derivation context. These concepts MUST NOT be collapsed. A substantive content change MAY require a new Artifact Revision under applicable governing rules and MUST NOT be silently folded into an existing revision.
 
-A later State Snapshot does not silently replace an earlier one. Any dependency, replacement, correction, supersession, or conflict relation to a peer snapshot MUST be explicit, revision-specific, scoped, and traceable. No implicit `latest-wins` rule applies.
+A later State Snapshot does not silently replace an earlier one. Any dependency, replacement, correction, supersession, or conflict relation to a peer snapshot MUST be explicit, attributable, revision-specific, scoped, and traceable. Historical provenance MUST NOT be silently overwritten. No implicit `latest-wins` rule applies.
 
 ## Required artifact relationships
 
@@ -96,13 +96,13 @@ This proposed contract remains model-independent, vendor-independent, runtime-in
 
 ## Extensions and profiles
 
-Future extensions or profiles MAY add explicitly named, bounded conventions only when they remain subordinate to applicable accepted higher-authority sources. They MUST state identity, version, scope, compatibility, and limitations, and MUST preserve the canonical definition, Derived classification, source precedence, final human authority, and public/private boundary.
+Future extensions or profiles MAY add explicitly named, bounded conventions only when they remain subordinate to applicable accepted higher-authority sources. They MUST identify their governing contract and governing contract version, and state their own identity, scope, compatibility, and limitations. They MUST preserve the canonical definition, Derived classification, source precedence, final human authority, and public/private boundary.
 
 An extension or profile MUST NOT silently redefine canonical meaning, introduce a new authority source, create an implicit replacement rule, or make a lower implementation layer controlling. It does not replace this contract unless separately accepted under governance.
 
 ## Deferred schema and implementation decisions
 
-The following remain expressly deferred: concrete fields and their requiredness; identifier syntax; revision encoding; timestamp and freshness algorithms; serialization format; template or payload design; content-digest algorithm; registry, selector, and retrieval behavior; validator; state or synchronization engine; workflow or automation; storage, transport, API, CLI, runtime, provider integration, user interface, domain binding, private references, migrations, and conformance mechanism.
+The following remain expressly deferred: concrete fields and their requiredness; identifier syntax; revision encoding; timestamps and freshness algorithms; serialization; file format; template or payload design; content-digest algorithm; registry; selector or retrieval system; validator; state engine; synchronization engine; workflow or automation; storage and transport; API or CLI; runtime; provider integration; user interface; domain-specific implementation; private reference implementation; migration and conformance tooling.
 
 This proposed contract creates no schema or implementation authority. Any later concrete work requires an accepted applicable artifact contract and a separately authorized bounded task, and remains subordinate to the accepted architecture and governance.
 
