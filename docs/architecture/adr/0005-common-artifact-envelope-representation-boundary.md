@@ -2,9 +2,9 @@
 
 ## Status
 
-Proposed.
+Accepted.
 
-This ADR is a documentation-only candidate prepared under issue #34. It does not become an accepted architecture decision unless the Owner / Final Authority accepts the exact reviewed revision and that revision is integrated under repository governance.
+This ADR records the accepted, documentation-only architecture decision approved under issue #34. Owner / Final Authority acceptance of the exact reviewed candidate head is recorded in issue comment `5207587298`. On merge and publication to `main`, ADR-0005 becomes an accepted repository decision under repository governance.
 
 ## Context
 
@@ -12,9 +12,9 @@ Accepted ARCH-004 classifies Common Artifact Envelope concepts as universal, con
 
 Before selecting schema identity, schema language, executable structure, or serialization, CNTX needs an independently reviewable boundary for what a future common definition must be capable of expressing. Without that boundary, a later schema could make conditional concepts universal, omit required common capabilities, conflate identity with version, absorb artifact-specific payload, encode authority in metadata, or hide unresolved design decisions inside technology choices.
 
-## Proposed decision
+## Decision
 
-CNTX proposes [the Common Artifact Envelope Representation Boundary](../common-artifact-envelope-representation-boundary.md) as ARCH-005 with these constraints:
+CNTX adopts [the Common Artifact Envelope Representation Boundary](../common-artifact-envelope-representation-boundary.md) as ARCH-005 with these constraints:
 
 1. A representation obligation requires the future common definition to preserve an accepted concept without choosing its lexical or executable form.
 2. The common definition provides universal capability for Artifact Type, Artifact Instance Identifier, Artifact Revision, governing Contract Definition Identifier and Version, and provenance-reference mechanics.
@@ -25,9 +25,9 @@ CNTX proposes [the Common Artifact Envelope Representation Boundary](../common-a
 7. Authority, approval, trust, classification, lifecycle, Document Status, Implementation Version, contract conformance, schema validity, and integration authority remain outside common-envelope ownership.
 8. Schema identity/versioning, schema language/dialect, executable definitions, bindings, and validation remain separate later decisions in an explicit dependency order.
 
-This proposal does not select field names, types, nesting, requiredness, cardinality, identifiers, syntax, schema language or dialect, serialization, packaging, validation, or runtime technology.
+This decision does not select field names, types, nesting, requiredness, cardinality, identifiers, syntax, schema language or dialect, serialization, packaging, validation, or runtime technology.
 
-## Consequences if accepted
+## Consequences
 
 - A future executable common definition will have a stable checklist of semantic capabilities and activation conditions.
 - Conditional metadata cannot silently become universally required merely because it has a common representation.
@@ -64,6 +64,6 @@ Rejected because issue #34 permits transparent operational role combination but 
 
 ## Follow-up decisions
 
-If accepted, the next candidate decision should address schema identity and initial version policy for the Common Artifact Envelope as a separate, documentation-only task. Later decisions may address schema language and dialect, composition and packaging, an executable common definition, artifact-specific schemas, Serialization Bindings, and validation evidence.
+The next candidate decision should address schema identity and initial version policy for the Common Artifact Envelope as a separate, documentation-only task. Later decisions may address schema language and dialect, composition and packaging, an executable common definition, artifact-specific schemas, Serialization Bindings, and validation evidence.
 
 No follow-up task, identifier, version, schema technology, implementation, merge, release, or deployment is authorized by this ADR.

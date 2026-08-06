@@ -10,7 +10,7 @@ CNTX is currently unreleased and pre-alpha.
 
 ### Added
 
-- Proposed Common Artifact Envelope representation boundary (ARCH-005 and ADR-0005); documentation only, with no field names, executable schema, schema-language selection, serialization, validator, Layer 5 mechanism, runtime, or implementation authority.
+- Accepted Common Artifact Envelope representation boundary (ARCH-005 and ADR-0005); documentation only, with no field names, executable schema, schema-language selection, serialization, validator, Layer 5 mechanism, runtime, follow-on task, or implementation authority.
 - Accepted Common Artifact Envelope schema boundary (ARCH-004 and ADR-0004); documentation only, with no concrete fields, executable schema, serialization, validator, Layer 5 mechanism, runtime, or follow-on implementation authority.
 - Accepted State Snapshot artifact contract (CONTRACT-009); documentation only, with no executable schema or runtime.
 - Accepted Decision Record artifact contract (CONTRACT-008).

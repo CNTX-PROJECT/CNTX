@@ -2,30 +2,30 @@
 
 ## Status and authority
 
-Status: **Proposed**.
+Status: **Accepted**.
 
-This document is a documentation-only architecture candidate prepared under issue #34 and [ADR-0005](adr/0005-common-artifact-envelope-representation-boundary.md). It is not binding unless the Owner / Final Authority accepts the exact reviewed revision and that revision is integrated under [GOVERNANCE.md](../../GOVERNANCE.md).
+This document is an accepted, documentation-only architecture boundary approved under issue #34 and [ADR-0005](adr/0005-common-artifact-envelope-representation-boundary.md). Owner / Final Authority acceptance of the exact reviewed candidate head is recorded in issue comment `5207587298`. On merge and publication to `main`, this document becomes binding within its exact representation-boundary scope under [GOVERNANCE.md](../../GOVERNANCE.md).
 
-This candidate refines only the representation boundary established by accepted [ARCH-001](core-contract.md), [ARCH-002](contract-identity-versioning.md), [ARCH-003](artifact-contract-schema-architecture.md), and [ARCH-004](common-artifact-envelope-schema-boundary.md). It does not alter those sources, any accepted artifact contract, or final human authority.
+This decision refines only the representation boundary established by accepted [ARCH-001](core-contract.md), [ARCH-002](contract-identity-versioning.md), [ARCH-003](artifact-contract-schema-architecture.md), and [ARCH-004](common-artifact-envelope-schema-boundary.md). It does not alter those sources, any accepted artifact contract, or final human authority.
 
-Within this document, **MUST** and **MUST NOT** express mandatory requirements, **SHOULD** and **SHOULD NOT** express strong recommendations, and **MAY** expresses permission. These terms describe the proposed boundary only while this document remains Proposed.
+Within this document, **MUST** and **MUST NOT** express mandatory requirements, **SHOULD** and **SHOULD NOT** express strong recommendations, and **MAY** expresses permission. These terms express requirement strength only within this document.
 
 ## Purpose and decision boundary
 
 ARCH-004 decides which accepted concepts belong to common-envelope ownership. Before an executable Common Artifact Envelope can be proposed, CNTX also needs a stable answer to a narrower representation question: which owned concepts must a future common definition be capable of expressing, and under which activation conditions, without yet deciding their lexical or executable form?
 
-This candidate defines **representation obligations**. A representation obligation means that a future executable common definition must preserve and expose the identified accepted meaning. It does not select a field name, key, alias, data type, nesting model, cardinality, ordering rule, default, identifier syntax, timestamp format, digest algorithm, schema language, dialect, serialization format, or validator behavior.
+This decision defines **representation obligations**. A representation obligation means that a future executable common definition must preserve and expose the identified accepted meaning. It does not select a field name, key, alias, data type, nesting model, cardinality, ordering rule, default, identifier syntax, timestamp format, digest algorithm, schema language, dialect, serialization format, or validator behavior.
 
 ## Governing traceability
 
-| Governing source | Constraint preserved by this candidate |
+| Governing source | Constraint preserved by this decision |
 | --- | --- |
 | [ARCH-001](core-contract.md) and [ADR-0001](adr/0001-public-core-boundaries.md) | Human final authority, bounded tasks, evidence-before-claims, minimal context, canonical artifact responsibilities, and the public/private boundary remain unchanged. |
 | [ARCH-002](contract-identity-versioning.md) and [ADR-0002](adr/0002-contract-identity-versioning.md) | Artifact, contract, schema, status, implementation, digest, and provenance dimensions remain distinct; identifiers and versions do not grant authority or approval. |
 | [ARCH-003](artifact-contract-schema-architecture.md) and [ADR-0003](adr/0003-artifact-contract-schema-layering.md) | The Common Artifact Envelope remains one shared Layer 3 definition above artifact-specific contracts and below accepted identity/versioning semantics; lower layers conform upward. |
 | [ARCH-004](common-artifact-envelope-schema-boundary.md) and [ADR-0004](adr/0004-common-artifact-envelope-schema-boundary.md) | Universal, conditional, artifact-specific, and explicitly excluded ownership categories remain intact; common reference mechanics do not absorb artifact-specific relationship meaning. |
 | [CONTRACT-001 through CONTRACT-009](../contracts/README.md) | Every canonical artifact retains its accepted purpose, classification, lifecycle participation, authority limits, relationships, and payload semantics. |
-| Issue #34 | Work remains documentation-only and limited to the five-path ARCH-005 candidate; executable schemas and lower-layer mechanisms remain outside scope. |
+| Issue #34 | Work remains documentation-only and limited to the five-path ARCH-005 decision; executable schemas and lower-layer mechanisms remain outside scope. |
 
 ## Representation model
 
@@ -40,7 +40,7 @@ A capability requirement does not make every value present in every instance. A 
 
 The common definition must provide one shared representation capability for each universal-envelope concept below.
 
-| Accepted concept | Proposed common representation obligation | Boundary retained |
+| Accepted concept | Common representation obligation | Boundary retained |
 | --- | --- | --- |
 | **Artifact Type** | Represent which one of the accepted canonical artifact kinds the Artifact Instance instantiates. | The represented value identifies a kind; it does not define that kind, change its classification, or grant authority. |
 | **Artifact Instance Identifier** | Represent the stable identity of one logical Artifact Instance across its revisions. | The identifier is distinct from path, title, revision, contract identity, schema identity, and implementation identity. |
@@ -55,7 +55,7 @@ The definition capability for these concepts is universal. Exact instance-level 
 
 Conditional concepts use the common definition only when their accepted activation condition is true.
 
-| Accepted concept | Activation condition | Proposed representation obligation | Still deferred |
+| Accepted concept | Activation condition | Representation obligation | Still deferred |
 | --- | --- | --- | --- |
 | **Schema Identifier and Schema Version** | An executable schema governs the represented Artifact Instance. | Represent the schema identity and exact schema version as one semantically coupled pin. | Initial schema identity/version assignment, lexical form, resolver behavior, and compatibility enforcement. |
 | **Content Digest evidence** | A digest is deliberately asserted as integrity evidence. | Represent enough conceptual information to associate the digest evidence with its identified subject and declared digest method. | Algorithms, encoding, canonicalization, byte scope, requiredness, and verification behavior. |
@@ -87,7 +87,7 @@ A future executable definition must not collapse these conceptual states when th
 - **unresolved** — the concept should be known for the intended claim but cannot currently be established; and
 - **known and represented** — the concept is asserted with the applicable identity, revision, version, or evidence context.
 
-This candidate does not select null values, sentinels, omission rules, error objects, status fields, or another encoding for those states. Artifact-specific contracts and later schema decisions determine whether a distinction is required for a particular claim. The common envelope must not turn missing information into implied approval, trust, validity, freshness, or authority.
+This decision does not select null values, sentinels, omission rules, error objects, status fields, or another encoding for those states. Artifact-specific contracts and later schema decisions determine whether a distinction is required for a particular claim. The common envelope must not turn missing information into implied approval, trust, validity, freshness, or authority.
 
 ## Common envelope and artifact-specific payload
 
@@ -136,7 +136,7 @@ This check introduces no new artifact responsibility, relationship, field, or cl
 
 ## Minimum schema-foundation decision order
 
-Acceptance of this representation boundary would establish prerequisites, not implementation authority. Later work must remain separately bounded and should proceed in this order:
+Acceptance of this representation boundary establishes prerequisites, not implementation authority. Later work must remain separately bounded and should proceed in this order:
 
 1. assign a stable Schema Identifier and initial Schema Version policy for the future common definition, consistent with ARCH-002;
 2. select and govern the schema language and exact dialect, including how normative and implementation-specific capabilities are separated;
@@ -154,18 +154,18 @@ A future public common definition must be usable without requiring secrets, cred
 
 Reference and provenance capabilities identify sources; they do not grant retrieval permission or require copying the referenced content. A public Artifact Instance may record a privacy-safe opaque reference only when the governing contract and applicable policy permit it. Digest evidence must not be treated as anonymization, access control, or permission to publish its subject.
 
-This candidate defines no registry, resolver, discovery mechanism, access-control system, transport, storage, network behavior, or threat-response workflow.
+This decision defines no registry, resolver, discovery mechanism, access-control system, transport, storage, network behavior, or threat-response workflow.
 
 ## Review, approval, and conformance boundary
 
-The same operational agent may prepare and architecturally review this candidate only under the disclosed role arrangement in issue #34. That combined operational role is not an independent third-party review and cannot provide final human approval.
+The same operational agent prepared and architecturally reviewed the candidate under the disclosed role arrangement in issue #34. That combined operational review was not an independent third-party review and did not provide final human approval. The human Owner / Final Authority separately accepted the exact reviewed head in issue comment `5207587298`.
 
 Schema validity, contract conformance, evidence quality, review findings, acceptance, integration, release, and deployment remain distinct. Only the human Owner / Final Authority may accept the exact reviewed architecture revision under the applicable governance.
 
-## Deferred and prohibited by this candidate
+## Deferred and prohibited by this decision
 
-This candidate does not define or authorize concrete field names, aliases, keys, types, nesting, cardinalities, ordering, defaults, identifier syntax, revision syntax, timestamps, digest algorithms, canonicalization, schema identifiers or initial versions, schema language or dialect, executable schemas, serialization formats or bindings, templates, examples, payloads, fixtures, validators, conformance tooling, registries, discovery, negotiation, extension or profile mechanics, code generation, migrations, APIs, CLIs, workflows, engines, runtimes, providers, products, private implementations, or reference implementations.
+This decision does not define or authorize concrete field names, aliases, keys, types, nesting, cardinalities, ordering, defaults, identifier syntax, revision syntax, timestamps, digest algorithms, canonicalization, schema identifiers or initial versions, schema language or dialect, executable schemas, serialization formats or bindings, templates, examples, payloads, fixtures, validators, conformance tooling, registries, discovery, negotiation, extension or profile mechanics, code generation, migrations, APIs, CLIs, workflows, engines, runtimes, providers, products, private implementations, or reference implementations.
 
 ## Continuing gate
 
-While Proposed, this document is review material only. If accepted, it establishes only the concrete semantic representation boundary and decision order described above. It does not authorize the next task, assign ARCH-006, or permit executable schema work. Every later phase requires its own approved issue or Task Contract, explicit path allowlist, evidence, review, security/privacy assessment, and human decision.
+Acceptance establishes only the concrete semantic representation boundary and decision order described above. It does not authorize the next task, assign ARCH-006, or permit executable schema work. Every later phase requires its own approved issue or Task Contract, explicit path allowlist, evidence, review, security/privacy assessment, and human decision.
