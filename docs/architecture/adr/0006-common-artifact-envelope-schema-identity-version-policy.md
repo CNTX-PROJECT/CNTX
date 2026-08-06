@@ -2,9 +2,9 @@
 
 ## Status
 
-Proposed.
+Accepted.
 
-This ADR records the proposed, documentation-only architecture decision prepared under issue #36. It does not become an accepted repository decision unless the human Owner / Final Authority accepts the exact reviewed candidate revision and the result is integrated under repository governance.
+This ADR records the accepted, documentation-only architecture decision approved under issue #36. Owner / Final Authority acceptance of the exact reviewed candidate head is recorded in issue comment `5207779116`. On merge and publication to `main`, ADR-0006 becomes an accepted repository decision under repository governance.
 
 ## Context
 
@@ -16,7 +16,7 @@ No executable Common Artifact Envelope schema currently exists. The decision the
 
 ## Decision
 
-CNTX proposes [the Common Artifact Envelope Schema Identity and Initial Version Policy](../common-artifact-envelope-schema-identity-version-policy.md) as ARCH-006 with these constraints:
+CNTX adopts [the Common Artifact Envelope Schema Identity and Initial Version Policy](../common-artifact-envelope-schema-identity-version-policy.md) as ARCH-006 with these constraints:
 
 1. The future Common Artifact Envelope executable definition receives exactly one technology-neutral logical identity allocation: logical namespace **CNTX Public Core Schema Family** and logical local identity **Common Artifact Envelope**.
 2. The allocation identifies the one future common definition governed by accepted Layer 3 boundaries. It is not a concrete lexical Schema Identifier, URI, URN, URL, path, filename, schema keyword value, registry key, or resolver address.

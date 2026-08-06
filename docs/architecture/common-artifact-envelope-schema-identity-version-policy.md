@@ -2,11 +2,11 @@
 
 ## Status and authority
 
-Status: **Proposed**.
+Status: **Accepted**.
 
-This document is a proposed, documentation-only architecture decision prepared under issue #36 and recorded by [ADR-0006](adr/0006-common-artifact-envelope-schema-identity-version-policy.md). It does not become binding unless the human Owner / Final Authority accepts the exact reviewed candidate revision and the resulting decision is integrated under [GOVERNANCE.md](../../GOVERNANCE.md).
+This document is an accepted, documentation-only architecture decision approved under issue #36 and recorded by [ADR-0006](adr/0006-common-artifact-envelope-schema-identity-version-policy.md). Owner / Final Authority acceptance of the exact reviewed candidate head is recorded in issue comment `5207779116`. On merge and publication to `main`, this document becomes binding within its exact identity-and-version-policy scope under [GOVERNANCE.md](../../GOVERNANCE.md).
 
-This proposal refines only the schema-identity and initial-version decision left open by accepted [ARCH-001](core-contract.md), [ARCH-002](contract-identity-versioning.md), [ARCH-003](artifact-contract-schema-architecture.md), [ARCH-004](common-artifact-envelope-schema-boundary.md), and [ARCH-005](common-artifact-envelope-representation-boundary.md). It does not alter those sources, any accepted artifact contract, or final human authority.
+This decision refines only the schema-identity and initial-version decision left open by accepted [ARCH-001](core-contract.md), [ARCH-002](contract-identity-versioning.md), [ARCH-003](artifact-contract-schema-architecture.md), [ARCH-004](common-artifact-envelope-schema-boundary.md), and [ARCH-005](common-artifact-envelope-representation-boundary.md). It does not alter those sources, any accepted artifact contract, or final human authority.
 
 Within this document, **MUST** and **MUST NOT** express mandatory requirements, **SHOULD** and **SHOULD NOT** express strong recommendations, and **MAY** expresses permission. These terms express requirement strength only within this document.
 
@@ -109,7 +109,7 @@ Whether multiple concrete dialect encodings are equivalent representations of on
 
 Once an accepted executable schema exists, a consequential schema reference MUST identify the logical schema through its future concrete Schema Identifier and pin the exact Schema Version. A mutable path, filename, title, branch, tag, unversioned summary, or `latest` label MUST NOT silently replace that pin. A Content Digest MAY strengthen exact-content evidence but MUST NOT replace logical identity, Schema Version, provenance, acceptance, or authority.
 
-Before an executable schema exists, references to this proposal MUST identify ARCH-006 and its applicable repository revision or governance state. They MUST NOT claim that a Common Artifact Envelope Schema Identifier or Schema Version is already active.
+Before an executable schema exists, references to this decision MUST identify ARCH-006 and its applicable repository revision or governance state. They MUST NOT claim that a Common Artifact Envelope Schema Identifier or Schema Version is already active.
 
 ## Language, dialect, and publication handoff
 
@@ -139,4 +139,4 @@ This decision does not define or authorize a concrete or lexical Schema Identifi
 
 ## Continuing gate
 
-Acceptance would establish only the technology-neutral logical schema identity and initial version policy described above. It would not create an executable schema or authorize the next task. Schema language and dialect remain the next candidate decision in the ARCH-005 order; composition and packaging remain a later separate gate before executable-definition work. Every later phase requires its own approved issue or Task Contract, authoritative baseline, explicit path allowlist, evidence, review, security/privacy assessment, and human decision.
+Acceptance establishes only the technology-neutral logical schema identity and initial version policy described above. It does not create an executable schema or authorize the next task. Schema language and dialect remain the next candidate decision in the ARCH-005 order; composition and packaging remain a later separate gate before executable-definition work. Every later phase requires its own approved issue or Task Contract, authoritative baseline, explicit path allowlist, evidence, review, security/privacy assessment, and human decision.
