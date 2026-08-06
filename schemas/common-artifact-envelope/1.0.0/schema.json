@@ -1,0 +1,228 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/CNTX-PROJECT/CNTX/schemas/common-artifact-envelope/1.0.0",
+  "$comment": "Accepted ARCH-009 Schema Version 1.0.0 under issue #42 and Owner / Final Authority acceptance comment 5208715683. Schema validity grants no contract conformance, approval, authority, trust, acceptance, release, deployment, merge permission, or access permission.",
+  "title": "CNTX Common Artifact Envelope",
+  "description": "The common identity, governing-definition, provenance-reference, and optional digest-evidence boundary for one CNTX Artifact Instance. This schema evaluates the envelope object only; artifact-specific payload and relationship semantics remain outside this resource.",
+  "type": "object",
+  "properties": {
+    "artifactType": {
+      "$ref": "#/$defs/artifactType"
+    },
+    "artifactInstance": {
+      "$ref": "#/$defs/artifactInstancePin"
+    },
+    "governingContract": {
+      "$ref": "#/$defs/contractDefinitionPin"
+    },
+    "governingSchema": {
+      "$ref": "#/$defs/schemaDefinitionPin"
+    },
+    "provenanceReferences": {
+      "description": "Optional source pins. Their presence identifies sources but does not assign artifact-specific relationship meaning or authority.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/referenceTarget"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "contentDigests": {
+      "description": "Optional digest evidence. A digest does not grant identity, provenance, authority, approval, trust, or conformance.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/contentDigest"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "artifactType",
+    "artifactInstance",
+    "governingContract",
+    "governingSchema"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "opaqueString": {
+      "description": "A non-empty opaque string containing at least one non-whitespace character. Its lexical form grants no authority or semantics beyond the governing contract.",
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "semanticVersion": {
+      "description": "An exact MAJOR.MINOR.PATCH version without leading zeroes, prerelease text, build metadata, or an implicit component.",
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+    },
+    "artifactType": {
+      "description": "The canonical CNTX Artifact Type. This token does not encode authority, classification, lifecycle, status, or governing-definition identity.",
+      "type": "string",
+      "enum": [
+        "project-charter",
+        "workstream",
+        "task-contract",
+        "context-packet",
+        "execution-result",
+        "evidence-bundle",
+        "review-record",
+        "decision-record",
+        "state-snapshot"
+      ]
+    },
+    "artifactInstancePin": {
+      "description": "The stable identifier and exact revision of one logical Artifact Instance.",
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "$ref": "#/$defs/opaqueString"
+        },
+        "revision": {
+          "$ref": "#/$defs/opaqueString"
+        }
+      },
+      "required": [
+        "identifier",
+        "revision"
+      ],
+      "additionalProperties": false
+    },
+    "contractDefinitionPin": {
+      "description": "The stable Contract Definition Identifier and exact Contract Definition Version governing the Artifact Instance.",
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "$ref": "#/$defs/opaqueString"
+        },
+        "version": {
+          "$ref": "#/$defs/semanticVersion"
+        }
+      },
+      "required": [
+        "identifier",
+        "version"
+      ],
+      "additionalProperties": false
+    },
+    "schemaDefinitionPin": {
+      "description": "The stable Schema Identifier and exact Schema Version governing the represented Artifact Instance.",
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "$ref": "#/$defs/opaqueString"
+        },
+        "version": {
+          "$ref": "#/$defs/semanticVersion"
+        }
+      },
+      "required": [
+        "identifier",
+        "version"
+      ],
+      "additionalProperties": false
+    },
+    "artifactReference": {
+      "description": "A revision-pinned Artifact Instance source reference without relationship or authority semantics.",
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "artifact"
+        },
+        "artifactType": {
+          "$ref": "#/$defs/artifactType"
+        },
+        "identifier": {
+          "$ref": "#/$defs/opaqueString"
+        },
+        "revision": {
+          "$ref": "#/$defs/opaqueString"
+        }
+      },
+      "required": [
+        "kind",
+        "artifactType",
+        "identifier",
+        "revision"
+      ],
+      "additionalProperties": false
+    },
+    "contractDefinitionReference": {
+      "description": "An exact Contract Definition source reference without authority semantics.",
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "contract-definition"
+        },
+        "identifier": {
+          "$ref": "#/$defs/opaqueString"
+        },
+        "version": {
+          "$ref": "#/$defs/semanticVersion"
+        }
+      },
+      "required": [
+        "kind",
+        "identifier",
+        "version"
+      ],
+      "additionalProperties": false
+    },
+    "schemaDefinitionReference": {
+      "description": "An exact Schema Definition source reference without authority semantics.",
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "schema-definition"
+        },
+        "identifier": {
+          "$ref": "#/$defs/opaqueString"
+        },
+        "version": {
+          "$ref": "#/$defs/semanticVersion"
+        }
+      },
+      "required": [
+        "kind",
+        "identifier",
+        "version"
+      ],
+      "additionalProperties": false
+    },
+    "referenceTarget": {
+      "description": "Exactly one artifact, contract-definition, or schema-definition source pin.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/artifactReference"
+        },
+        {
+          "$ref": "#/$defs/contractDefinitionReference"
+        },
+        {
+          "$ref": "#/$defs/schemaDefinitionReference"
+        }
+      ]
+    },
+    "contentDigest": {
+      "description": "Digest evidence associated with an exact subject pin and an explicitly declared opaque method.",
+      "type": "object",
+      "properties": {
+        "subject": {
+          "$ref": "#/$defs/referenceTarget"
+        },
+        "method": {
+          "$ref": "#/$defs/opaqueString"
+        },
+        "value": {
+          "$ref": "#/$defs/opaqueString"
+        }
+      },
+      "required": [
+        "subject",
+        "method",
+        "value"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

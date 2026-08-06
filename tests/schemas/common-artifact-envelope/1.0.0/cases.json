@@ -1,0 +1,393 @@
+{
+  "schemaId": "https://github.com/CNTX-PROJECT/CNTX/schemas/common-artifact-envelope/1.0.0",
+  "candidateSchemaVersion": "1.0.0",
+  "documentStatus": "Accepted",
+  "nonNormative": true,
+  "description": "Synthetic validation cases for Accepted ARCH-009 Schema Version 1.0.0. Expected validity is evidence only and grants no conformance, approval, authority, trust, acceptance, release, deployment, or merge permission.",
+  "cases": [
+    {
+      "name": "valid project charter envelope",
+      "valid": true,
+      "instance": {
+        "artifactType": "project-charter",
+        "artifactInstance": {
+          "identifier": "synthetic-artifact-001",
+          "revision": "revision-001"
+        },
+        "governingContract": {
+          "identifier": "synthetic-contract-001",
+          "version": "1.0.0"
+        },
+        "governingSchema": {
+          "identifier": "synthetic-schema-001",
+          "version": "1.0.0"
+        }
+      }
+    },
+    {
+      "name": "valid workstream envelope",
+      "valid": true,
+      "instance": {
+        "artifactType": "workstream",
+        "artifactInstance": { "identifier": "synthetic-artifact-002", "revision": "revision-001" },
+        "governingContract": { "identifier": "synthetic-contract-002", "version": "1.0.0" },
+        "governingSchema": { "identifier": "synthetic-schema-002", "version": "1.0.0" }
+      }
+    },
+    {
+      "name": "valid task contract envelope",
+      "valid": true,
+      "instance": {
+        "artifactType": "task-contract",
+        "artifactInstance": { "identifier": "synthetic-artifact-003", "revision": "revision-001" },
+        "governingContract": { "identifier": "synthetic-contract-003", "version": "1.0.0" },
+        "governingSchema": { "identifier": "synthetic-schema-003", "version": "1.0.0" }
+      }
+    },
+    {
+      "name": "valid context packet envelope",
+      "valid": true,
+      "instance": {
+        "artifactType": "context-packet",
+        "artifactInstance": { "identifier": "synthetic-artifact-004", "revision": "revision-001" },
+        "governingContract": { "identifier": "synthetic-contract-004", "version": "1.0.0" },
+        "governingSchema": { "identifier": "synthetic-schema-004", "version": "1.0.0" }
+      }
+    },
+    {
+      "name": "valid execution result envelope",
+      "valid": true,
+      "instance": {
+        "artifactType": "execution-result",
+        "artifactInstance": { "identifier": "synthetic-artifact-005", "revision": "revision-001" },
+        "governingContract": { "identifier": "synthetic-contract-005", "version": "1.0.0" },
+        "governingSchema": { "identifier": "synthetic-schema-005", "version": "1.0.0" }
+      }
+    },
+    {
+      "name": "valid evidence bundle envelope",
+      "valid": true,
+      "instance": {
+        "artifactType": "evidence-bundle",
+        "artifactInstance": { "identifier": "synthetic-artifact-006", "revision": "revision-001" },
+        "governingContract": { "identifier": "synthetic-contract-006", "version": "1.0.0" },
+        "governingSchema": { "identifier": "synthetic-schema-006", "version": "1.0.0" }
+      }
+    },
+    {
+      "name": "valid review record envelope",
+      "valid": true,
+      "instance": {
+        "artifactType": "review-record",
+        "artifactInstance": { "identifier": "synthetic-artifact-007", "revision": "revision-001" },
+        "governingContract": { "identifier": "synthetic-contract-007", "version": "1.0.0" },
+        "governingSchema": { "identifier": "synthetic-schema-007", "version": "1.0.0" }
+      }
+    },
+    {
+      "name": "valid decision record envelope",
+      "valid": true,
+      "instance": {
+        "artifactType": "decision-record",
+        "artifactInstance": { "identifier": "synthetic-artifact-008", "revision": "revision-001" },
+        "governingContract": { "identifier": "synthetic-contract-008", "version": "1.0.0" },
+        "governingSchema": { "identifier": "synthetic-schema-008", "version": "1.0.0" }
+      }
+    },
+    {
+      "name": "valid state snapshot envelope",
+      "valid": true,
+      "instance": {
+        "artifactType": "state-snapshot",
+        "artifactInstance": { "identifier": "synthetic-artifact-009", "revision": "revision-001" },
+        "governingContract": { "identifier": "synthetic-contract-009", "version": "1.0.0" },
+        "governingSchema": { "identifier": "synthetic-schema-009", "version": "1.0.0" }
+      }
+    },
+    {
+      "name": "valid complete evidence capabilities",
+      "valid": true,
+      "instance": {
+        "artifactType": "execution-result",
+        "artifactInstance": {
+          "identifier": "synthetic-result-010",
+          "revision": "revision-002"
+        },
+        "governingContract": {
+          "identifier": "synthetic-execution-result-contract",
+          "version": "2.3.4"
+        },
+        "governingSchema": {
+          "identifier": "synthetic-execution-result-schema",
+          "version": "3.2.1"
+        },
+        "provenanceReferences": [
+          {
+            "kind": "artifact",
+            "artifactType": "task-contract",
+            "identifier": "synthetic-task-010",
+            "revision": "revision-004"
+          },
+          {
+            "kind": "contract-definition",
+            "identifier": "synthetic-contract-definition",
+            "version": "5.0.0"
+          },
+          {
+            "kind": "schema-definition",
+            "identifier": "synthetic-schema-definition",
+            "version": "6.1.0"
+          }
+        ],
+        "contentDigests": [
+          {
+            "subject": {
+              "kind": "artifact",
+              "artifactType": "execution-result",
+              "identifier": "synthetic-result-010",
+              "revision": "revision-002"
+            },
+            "method": "synthetic-digest-method",
+            "value": "synthetic-digest-value"
+          }
+        ]
+      }
+    },
+    {
+      "name": "valid zero components semantic versions",
+      "valid": true,
+      "instance": {
+        "artifactType": "state-snapshot",
+        "artifactInstance": { "identifier": "synthetic-artifact-011", "revision": "0" },
+        "governingContract": { "identifier": "synthetic-contract-011", "version": "0.0.0" },
+        "governingSchema": { "identifier": "synthetic-schema-011", "version": "10.20.30" }
+      }
+    },
+    {
+      "name": "invalid missing artifact type",
+      "valid": false,
+      "instance": {
+        "artifactInstance": { "identifier": "synthetic-artifact-012", "revision": "revision-001" },
+        "governingContract": { "identifier": "synthetic-contract-012", "version": "1.0.0" },
+        "governingSchema": { "identifier": "synthetic-schema-012", "version": "1.0.0" }
+      }
+    },
+    {
+      "name": "invalid unknown artifact type",
+      "valid": false,
+      "instance": {
+        "artifactType": "unknown-artifact",
+        "artifactInstance": { "identifier": "synthetic-artifact-013", "revision": "revision-001" },
+        "governingContract": { "identifier": "synthetic-contract-013", "version": "1.0.0" },
+        "governingSchema": { "identifier": "synthetic-schema-013", "version": "1.0.0" }
+      }
+    },
+    {
+      "name": "invalid blank artifact identifier",
+      "valid": false,
+      "instance": {
+        "artifactType": "task-contract",
+        "artifactInstance": { "identifier": "   ", "revision": "revision-001" },
+        "governingContract": { "identifier": "synthetic-contract-014", "version": "1.0.0" },
+        "governingSchema": { "identifier": "synthetic-schema-014", "version": "1.0.0" }
+      }
+    },
+    {
+      "name": "invalid artifact pin missing revision",
+      "valid": false,
+      "instance": {
+        "artifactType": "task-contract",
+        "artifactInstance": { "identifier": "synthetic-artifact-015" },
+        "governingContract": { "identifier": "synthetic-contract-015", "version": "1.0.0" },
+        "governingSchema": { "identifier": "synthetic-schema-015", "version": "1.0.0" }
+      }
+    },
+    {
+      "name": "invalid contract pin missing version",
+      "valid": false,
+      "instance": {
+        "artifactType": "task-contract",
+        "artifactInstance": { "identifier": "synthetic-artifact-016", "revision": "revision-001" },
+        "governingContract": { "identifier": "synthetic-contract-016" },
+        "governingSchema": { "identifier": "synthetic-schema-016", "version": "1.0.0" }
+      }
+    },
+    {
+      "name": "invalid semantic version with leading zero",
+      "valid": false,
+      "instance": {
+        "artifactType": "task-contract",
+        "artifactInstance": { "identifier": "synthetic-artifact-017", "revision": "revision-001" },
+        "governingContract": { "identifier": "synthetic-contract-017", "version": "01.0.0" },
+        "governingSchema": { "identifier": "synthetic-schema-017", "version": "1.0.0" }
+      }
+    },
+    {
+      "name": "invalid semantic version with prerelease",
+      "valid": false,
+      "instance": {
+        "artifactType": "task-contract",
+        "artifactInstance": { "identifier": "synthetic-artifact-018", "revision": "revision-001" },
+        "governingContract": { "identifier": "synthetic-contract-018", "version": "1.0.0" },
+        "governingSchema": { "identifier": "synthetic-schema-018", "version": "1.0.0-alpha" }
+      }
+    },
+    {
+      "name": "invalid null provenance placeholder",
+      "valid": false,
+      "instance": {
+        "artifactType": "execution-result",
+        "artifactInstance": { "identifier": "synthetic-artifact-019", "revision": "revision-001" },
+        "governingContract": { "identifier": "synthetic-contract-019", "version": "1.0.0" },
+        "governingSchema": { "identifier": "synthetic-schema-019", "version": "1.0.0" },
+        "provenanceReferences": null
+      }
+    },
+    {
+      "name": "invalid empty provenance array",
+      "valid": false,
+      "instance": {
+        "artifactType": "execution-result",
+        "artifactInstance": { "identifier": "synthetic-artifact-020", "revision": "revision-001" },
+        "governingContract": { "identifier": "synthetic-contract-020", "version": "1.0.0" },
+        "governingSchema": { "identifier": "synthetic-schema-020", "version": "1.0.0" },
+        "provenanceReferences": []
+      }
+    },
+    {
+      "name": "invalid incomplete artifact reference",
+      "valid": false,
+      "instance": {
+        "artifactType": "evidence-bundle",
+        "artifactInstance": { "identifier": "synthetic-artifact-021", "revision": "revision-001" },
+        "governingContract": { "identifier": "synthetic-contract-021", "version": "1.0.0" },
+        "governingSchema": { "identifier": "synthetic-schema-021", "version": "1.0.0" },
+        "provenanceReferences": [
+          { "kind": "artifact", "identifier": "synthetic-source-021", "revision": "revision-001" }
+        ]
+      }
+    },
+    {
+      "name": "invalid unknown reference kind",
+      "valid": false,
+      "instance": {
+        "artifactType": "context-packet",
+        "artifactInstance": { "identifier": "synthetic-artifact-022", "revision": "revision-001" },
+        "governingContract": { "identifier": "synthetic-contract-022", "version": "1.0.0" },
+        "governingSchema": { "identifier": "synthetic-schema-022", "version": "1.0.0" },
+        "provenanceReferences": [
+          { "kind": "unknown", "identifier": "synthetic-source-022", "version": "1.0.0" }
+        ]
+      }
+    },
+    {
+      "name": "invalid duplicate provenance entries",
+      "valid": false,
+      "instance": {
+        "artifactType": "context-packet",
+        "artifactInstance": { "identifier": "synthetic-artifact-023", "revision": "revision-001" },
+        "governingContract": { "identifier": "synthetic-contract-023", "version": "1.0.0" },
+        "governingSchema": { "identifier": "synthetic-schema-023", "version": "1.0.0" },
+        "provenanceReferences": [
+          { "kind": "artifact", "artifactType": "task-contract", "identifier": "synthetic-source-023", "revision": "revision-001" },
+          { "kind": "artifact", "artifactType": "task-contract", "identifier": "synthetic-source-023", "revision": "revision-001" }
+        ]
+      }
+    },
+    {
+      "name": "invalid empty digest array",
+      "valid": false,
+      "instance": {
+        "artifactType": "evidence-bundle",
+        "artifactInstance": { "identifier": "synthetic-artifact-024", "revision": "revision-001" },
+        "governingContract": { "identifier": "synthetic-contract-024", "version": "1.0.0" },
+        "governingSchema": { "identifier": "synthetic-schema-024", "version": "1.0.0" },
+        "contentDigests": []
+      }
+    },
+    {
+      "name": "invalid digest blank method",
+      "valid": false,
+      "instance": {
+        "artifactType": "evidence-bundle",
+        "artifactInstance": { "identifier": "synthetic-artifact-025", "revision": "revision-001" },
+        "governingContract": { "identifier": "synthetic-contract-025", "version": "1.0.0" },
+        "governingSchema": { "identifier": "synthetic-schema-025", "version": "1.0.0" },
+        "contentDigests": [
+          {
+            "subject": { "kind": "artifact", "artifactType": "evidence-bundle", "identifier": "synthetic-artifact-025", "revision": "revision-001" },
+            "method": " ",
+            "value": "synthetic-digest-value"
+          }
+        ]
+      }
+    },
+    {
+      "name": "invalid digest missing subject",
+      "valid": false,
+      "instance": {
+        "artifactType": "evidence-bundle",
+        "artifactInstance": { "identifier": "synthetic-artifact-026", "revision": "revision-001" },
+        "governingContract": { "identifier": "synthetic-contract-026", "version": "1.0.0" },
+        "governingSchema": { "identifier": "synthetic-schema-026", "version": "1.0.0" },
+        "contentDigests": [
+          { "method": "synthetic-digest-method", "value": "synthetic-digest-value" }
+        ]
+      }
+    },
+    {
+      "name": "invalid unknown root property",
+      "valid": false,
+      "instance": {
+        "artifactType": "task-contract",
+        "artifactInstance": { "identifier": "synthetic-artifact-027", "revision": "revision-001" },
+        "governingContract": { "identifier": "synthetic-contract-027", "version": "1.0.0" },
+        "governingSchema": { "identifier": "synthetic-schema-027", "version": "1.0.0" },
+        "unknownProperty": "not-permitted"
+      }
+    },
+    {
+      "name": "invalid authority field",
+      "valid": false,
+      "instance": {
+        "artifactType": "decision-record",
+        "artifactInstance": { "identifier": "synthetic-artifact-028", "revision": "revision-001" },
+        "governingContract": { "identifier": "synthetic-contract-028", "version": "1.0.0" },
+        "governingSchema": { "identifier": "synthetic-schema-028", "version": "1.0.0" },
+        "authority": true
+      }
+    },
+    {
+      "name": "invalid lifecycle field",
+      "valid": false,
+      "instance": {
+        "artifactType": "workstream",
+        "artifactInstance": { "identifier": "synthetic-artifact-029", "revision": "revision-001" },
+        "governingContract": { "identifier": "synthetic-contract-029", "version": "1.0.0" },
+        "governingSchema": { "identifier": "synthetic-schema-029", "version": "1.0.0" },
+        "lifecycleState": "synthetic-state"
+      }
+    },
+    {
+      "name": "invalid extension field",
+      "valid": false,
+      "instance": {
+        "artifactType": "project-charter",
+        "artifactInstance": { "identifier": "synthetic-artifact-030", "revision": "revision-001" },
+        "governingContract": { "identifier": "synthetic-contract-030", "version": "1.0.0" },
+        "governingSchema": { "identifier": "synthetic-schema-030", "version": "1.0.0" },
+        "extensions": []
+      }
+    },
+    {
+      "name": "invalid nested unknown pin property",
+      "valid": false,
+      "instance": {
+        "artifactType": "task-contract",
+        "artifactInstance": { "identifier": "synthetic-artifact-031", "revision": "revision-001", "title": "not-permitted" },
+        "governingContract": { "identifier": "synthetic-contract-031", "version": "1.0.0" },
+        "governingSchema": { "identifier": "synthetic-schema-031", "version": "1.0.0" }
+      }
+    }
+  ]
+}
