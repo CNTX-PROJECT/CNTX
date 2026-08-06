@@ -2,9 +2,9 @@
 
 ## Status
 
-Proposed.
+Accepted.
 
-This ADR records the proposed, documentation-only architecture decision prepared under issue #40. It does not become an accepted repository decision unless the human Owner / Final Authority accepts the exact reviewed candidate revision and the result is integrated under repository governance.
+This ADR records the accepted, documentation-only architecture decision approved under issue #40. Owner / Final Authority acceptance of the exact reviewed candidate head is recorded in issue comment `5208326630`. On merge and publication to `main`, ADR-0008 becomes an accepted repository decision under repository governance.
 
 ## Context
 

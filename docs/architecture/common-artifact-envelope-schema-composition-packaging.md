@@ -2,11 +2,11 @@
 
 ## Status and authority
 
-Status: **Proposed**.
+Status: **Accepted**.
 
-This document is a proposed, documentation-only architecture decision prepared under issue #40 and recorded by [ADR-0008](adr/0008-common-artifact-envelope-schema-composition-packaging.md). It does not become binding unless the human Owner / Final Authority accepts the exact reviewed candidate revision and the resulting decision is integrated under [GOVERNANCE.md](../../GOVERNANCE.md).
+This document is an accepted, documentation-only architecture decision approved under issue #40 and recorded by [ADR-0008](adr/0008-common-artifact-envelope-schema-composition-packaging.md). Owner / Final Authority acceptance of the exact reviewed candidate head is recorded in issue comment `5208326630`. On merge and publication to `main`, this document becomes binding within its exact schema-composition-and-packaging scope under [GOVERNANCE.md](../../GOVERNANCE.md).
 
-This proposal refines only the composition and packaging decision left open by accepted [ARCH-001](core-contract.md), [ARCH-002](contract-identity-versioning.md), [ARCH-003](artifact-contract-schema-architecture.md), [ARCH-004](common-artifact-envelope-schema-boundary.md), [ARCH-005](common-artifact-envelope-representation-boundary.md), [ARCH-006](common-artifact-envelope-schema-identity-version-policy.md), and [ARCH-007](common-artifact-envelope-schema-language-dialect.md). It does not alter those sources, any accepted artifact contract, or final human authority.
+This decision refines only the composition and packaging decision left open by accepted [ARCH-001](core-contract.md), [ARCH-002](contract-identity-versioning.md), [ARCH-003](artifact-contract-schema-architecture.md), [ARCH-004](common-artifact-envelope-schema-boundary.md), [ARCH-005](common-artifact-envelope-representation-boundary.md), [ARCH-006](common-artifact-envelope-schema-identity-version-policy.md), and [ARCH-007](common-artifact-envelope-schema-language-dialect.md). It does not alter those sources, any accepted artifact contract, or final human authority.
 
 Within this document, **MUST** and **MUST NOT** express mandatory requirements, **SHOULD** and **SHOULD NOT** express strong recommendations, and **MAY** expresses permission. These terms express requirement strength only within this document.
 
@@ -62,7 +62,7 @@ JSON Schema permits broader topologies than CNTX selects here. The restrictions 
 
 ## Composition and packaging selection
 
-| Selection dimension | Proposed decision |
+| Selection dimension | Accepted decision |
 | --- | --- |
 | Common Envelope resource cardinality | Exactly one canonical root Schema Resource per accepted Schema Version |
 | Canonical authoring form | One standalone JSON Schema document for that resource |
@@ -241,7 +241,7 @@ This decision defines no bundle manifest fields, digest algorithm, signature sys
 | Derived packaging | Compound Schema Document with identity-preserving embedding | Bundler, manifest, archive, digest, or signature implementation |
 | Resolution | Offline-first, exact URI mapping, no automatic network | Resolver technology, catalog, cache, trust, and diagnostics |
 | Media type | `application/schema+json` for schema resources | Artifact instance Serialization Binding |
-| Document Status | ARCH-008 remains `Proposed` until exact-revision human acceptance and integration | Schema validity, publication, or bundle status |
+| Document Status | ARCH-008 is `Accepted` through exact-revision human acceptance and governed integration | Schema validity, publication, or bundle status |
 
 ## Security and privacy boundary
 
