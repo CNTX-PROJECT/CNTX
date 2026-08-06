@@ -2,15 +2,17 @@
 
 ## Status and authority
 
-**Document Status:** Proposed.
+**Document Status:** Accepted.
 
-This document is a documentation-only architecture candidate governed by
+This document is a documentation-only accepted architecture decision governed by
 [issue #44](https://github.com/CNTX-PROJECT/CNTX/issues/44) and recorded by
 [ADR-0010](adr/0010-artifact-specific-schema-family-container-boundary.md).
 Owner / Final Authority creation authority is recorded in issue comment
-`5209318215`. Acceptance of the exact reviewed candidate head remains pending.
+`5209318215`. The Owner / Final Authority separately accepted exact reviewed
+candidate head `5e8d003ffd6d6f27cfb53201a6d55c570a7b99e4`.
 
-This Proposed decision does not alter Accepted architecture. It creates no
+This Accepted decision adds only the documented boundary to Accepted
+architecture. It creates no
 artifact-specific executable Schema Resource, concrete artifact-specific
 `$id`, repository schema file, active artifact-specific Schema Version,
 payload definition, Serialization Binding, validator, runtime, product,
@@ -378,10 +380,10 @@ offline-first boundary.
 
 ## Review, approval, and validation boundary
 
-The same operational agent may prepare and review the Proposed exact head
-under issue #44 only with a disclosed non-independent Architect/Implementer
-arrangement. Review findings and PASS/FAIL recommendations are evidence, not
-acceptance. Only the Owner / Final Authority may accept the exact reviewed
+The same operational agent prepared and reviewed the exact candidate head
+under issue #44 with a disclosed non-independent Architect/Implementer
+arrangement. Review findings and the PASS recommendation were evidence, not
+acceptance. The Owner / Final Authority separately accepted the exact reviewed
 candidate revision.
 
 Markdown validity, link resolution, standards-source availability, internal
@@ -463,13 +465,14 @@ reference implementations, releases, tags, hosted publication, or deployment.
 
 ## Continuing gate
 
-ARCH-010 and ADR-0010 remain Proposed. No artifact-specific executable Schema
+ARCH-010 and ADR-0010 are Accepted. No artifact-specific executable Schema
 Resource or active artifact-specific Schema Version exists under this
-candidate. The exact reviewed head requires separate attributable Owner / Final
-Authority acceptance before any status promotion or integration action.
+decision; all nine `1.0.0` values remain inactive initial accepted targets.
+The Owner / Final Authority accepted exact reviewed head
+`5e8d003ffd6d6f27cfb53201a6d55c570a7b99e4`, authorizing only the separately
+enumerated status-promotion and governed-integration sequence.
 
-Even after later acceptance and integration, Project Charter executable-schema
-work is only the next candidate. It requires a separate approved task and must
-stop if concrete Contract Definition identity/version or another prerequisite
-remains unresolved. No follow-on phase is implied or authorized by this
-document.
+Project Charter executable-schema work is only the next candidate. It requires
+a separate approved task and must stop if concrete Contract Definition
+identity/version or another prerequisite remains unresolved. No follow-on
+phase is implied or authorized by this document.

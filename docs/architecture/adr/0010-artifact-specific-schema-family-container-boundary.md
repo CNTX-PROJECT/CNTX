@@ -2,11 +2,12 @@
 
 ## Status
 
-Proposed.
+Accepted.
 
-This ADR records a documentation-only candidate governed by
-[issue #44](https://github.com/CNTX-PROJECT/CNTX/issues/44). Owner / Final
-Authority acceptance of the exact reviewed candidate head remains pending.
+This ADR records a documentation-only accepted decision governed by
+[issue #44](https://github.com/CNTX-PROJECT/CNTX/issues/44). The Owner / Final
+Authority separately accepted exact reviewed candidate head
+`5e8d003ffd6d6f27cfb53201a6d55c570a7b99e4`.
 
 ## Context
 
@@ -19,16 +20,17 @@ static exact-version references, and offline-first resolution. ARCH-009 creates
 the Accepted Common Artifact Envelope Schema Version `1.0.0` but intentionally
 evaluates only the envelope object and defers the complete artifact root.
 
-All nine artifact-specific contracts are Accepted, but no artifact-specific
-logical Schema Identity, executable resource, active Schema Version, full
-artifact container, or payload schema exists. Without a shared pre-executable
-boundary, later artifact schema tasks could choose incompatible root shapes,
-copy the common envelope, use moving references, conflate schema and contract
-identity, or create an accidental monolithic family.
+All nine artifact-specific contracts were Accepted, but before this decision
+no artifact-specific logical Schema Identity, executable resource, active
+Schema Version, full artifact container, or payload schema existed. Without a
+shared pre-executable boundary, later artifact schema tasks could choose
+incompatible root shapes, copy the common envelope, use moving references,
+conflate schema and contract identity, or create an accidental monolithic
+family.
 
 ## Decision
 
-Adopt the following Proposed architecture:
+Adopt the following Accepted architecture:
 
 1. Organize the CNTX Public Core Schema Family as one Accepted Common Artifact
    Envelope identity plus nine separately governed artifact-specific logical
@@ -132,14 +134,14 @@ default.
 
 ## Validation and authority boundary
 
-The candidate must preserve the exact five-path scope, Proposed status, nine
-identity/token allocations, inactive `1.0.0` targets, two-member closed root,
-exact common `$ref`, independent versions, payload ownership, rollout order,
-UTF-8, links, public/private constraints, and all Accepted governing sources.
+The accepted decision preserves the exact five-path scope, nine identity/token
+allocations, inactive `1.0.0` targets, two-member closed root, exact common
+`$ref`, independent versions, payload ownership, rollout order, UTF-8, links,
+public/private constraints, and all Accepted governing sources.
 
-DE ARCHITECT and the Bounded Implementer may be the same operational agent only
-under the disclosed non-independent review arrangement in issue #44. A review
-PASS is evidence, not acceptance. Only the Owner / Final Authority may accept
+DE ARCHITECT and the Bounded Implementer were the same operational agent under
+the disclosed non-independent review arrangement in issue #44. The review PASS
+was evidence, not acceptance. The Owner / Final Authority separately accepted
 the exact reviewed candidate head.
 
 ## Deferred scope
@@ -158,7 +160,8 @@ releases, tags, hosted publication, and deployment.
 
 ## Continuing gate
 
-This ADR remains Proposed. It creates no executable resource or active Schema
-Version. Exact-head Owner / Final Authority acceptance is required before any
-status promotion or integration. Project Charter executable-schema work would
-remain a separately authorized candidate even after later ARCH-010 acceptance.
+This ADR is Accepted. It creates no executable resource or active Schema
+Version; all nine `1.0.0` values remain inactive initial accepted targets. The
+exact-head Owner / Final Authority acceptance authorizes only the separately
+enumerated status-promotion and governed-integration sequence. Project Charter
+executable-schema work remains a separately authorized candidate.
