@@ -20,6 +20,8 @@ This architecture documentation is read with the repository [README](../../READM
 
 No executable runtime, selector, retrieval system, provider integration, validator, or product functionality is implemented here. ARCH-009 introduces one Accepted executable Common Artifact Envelope Schema Resource only; it is not an artifact-specific schema, a complete artifact definition, a Serialization Binding, or an implementation.
 
+The [Artifact-Specific Schema Family and Canonical Artifact Container Boundary](artifact-specific-schema-family-container-boundary.md) and [ADR-0010](adr/0010-artifact-specific-schema-family-container-boundary.md) are **Proposed**, documentation-only candidate material. They allocate nine technology-neutral artifact-specific logical Schema Identities and inactive `1.0.0` targets, propose one closed full-artifact root with mandatory `envelope` and `payload`, and pin the envelope location to the exact Accepted Common Artifact Envelope Schema Version `1.0.0`. They create no executable artifact-specific schema or payload, concrete artifact-specific `$id`, active Schema Version, binding, validator, runtime, implementation, release, or deployment and do not alter Accepted architecture before exact-head human acceptance and governed integration.
+
 ## Document status
 
 - **Proposed** — submitted for review and not yet an accepted repository decision.
