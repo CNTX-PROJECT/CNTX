@@ -2,14 +2,15 @@
 
 ## Status
 
-Proposed.
+Accepted.
 
-This ADR records the proposed, documentation-only decision governed by
+This ADR records the accepted, documentation-only decision governed by
 [issue #46](https://github.com/CNTX-PROJECT/CNTX/issues/46). Owner / Final
 Authority creation authority is recorded in issue comment `5209713761`. The
-proposal remains non-binding until the exact reviewed revision receives
-separate human acceptance and any later authorized promotion and integration
-succeeds.
+Owner / Final Authority separately accepted exact reviewed candidate head
+`74594b39d81c79991d0a8ac5ddb15dc517905a8b` in issue comment `5209812463`.
+On governed integration to `main`, the exact nine allocations become Accepted
+and active.
 
 ## Context
 
@@ -29,7 +30,7 @@ location, or Schema Identifier with normative Contract Definition identity.
 
 ## Decision
 
-CNTX adopts the proposed
+CNTX adopts the accepted
 [Canonical Contract Definition Identity, Initial Version, and Source Binding](../contract-definition-identity-version-binding.md)
 as ARCH-011 with these constraints:
 
@@ -46,7 +47,7 @@ as ARCH-011 with these constraints:
    `d9d188f279b8ff5391a15ece2e4a8147b7bc8386`.
 5. Treat repository identity, commit, and path as provenance coordinates, not
    substitutes for stable Contract Definition identity or semantic version.
-6. Keep every allocation Proposed until separate exact-head human acceptance,
+6. Activate the exact nine allocations only after exact-head human acceptance,
    status-only promotion, and governed integration.
 7. After activation, keep each version's normative meaning immutable and apply
    ARCH-002 MAJOR, MINOR, and PATCH rules to later Accepted changes.
@@ -127,15 +128,16 @@ trust, authorization, endorsement, safety, or permission to access data.
 
 ## Validation and authority boundary
 
-The exact candidate must prove the five-path allowlist, unchanged contract and
+The exact candidate proved the five-path allowlist, unchanged contract and
 schema sources, exact nine unique identifier/version/source mappings, valid
-local links, Proposed status, clean diff, baseline parentage, and local, remote,
-and Draft PR head equality. Those results are evidence only.
+local links, Proposed candidate status, clean diff, baseline parentage, and
+local, remote, and Draft PR head equality. Those results were evidence only.
 
-The same operational agent may prepare and review the candidate under issue
-#46. The review is non-independent and cannot grant acceptance. Only the Owner
-/ Final Authority may accept the exact reviewed head. Acceptance, promotion,
-integration, issue closure, and branch cleanup remain separate actions.
+The same operational agent prepared and reviewed the candidate under issue
+#46. The review was non-independent and did not grant acceptance. The Owner /
+Final Authority separately accepted the exact reviewed head in issue comment
+`5209812463`. Promotion, integration, issue closure, and branch cleanup remain
+separately bounded actions.
 
 ## Deferred scope
 
@@ -151,8 +153,7 @@ products, private or reference implementations, releases, tags, and deployment.
 
 ## Continuing gate
 
-This ADR remains Proposed and authorizes no follow-on phase. Only after the
-exact reviewed ARCH-011 candidate is separately accepted, promoted, and
-integrated may Project Charter executable-schema work become a separately
-authorized candidate using the exact allocated Project Charter Contract
-Definition Identifier and Version.
+This ADR is Accepted and authorizes no follow-on phase. On governed integration,
+the nine exact allocations become Accepted and active. Only then may Project
+Charter executable-schema work become a separately authorized candidate using
+the exact allocated Project Charter Contract Definition Identifier and Version.

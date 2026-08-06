@@ -2,24 +2,26 @@
 
 ## Status and authority
 
-**Document Status:** Proposed.
+**Document Status:** Accepted.
 
-This document is a proposed, documentation-only architecture decision governed
+This document is an accepted, documentation-only architecture decision governed
 by [issue #46](https://github.com/CNTX-PROJECT/CNTX/issues/46) and recorded by
 [ADR-0011](adr/0011-contract-definition-identity-version-binding.md). Owner /
 Final Authority creation authority is recorded in issue comment `5209713761`.
-Creation authority, candidate provenance, review, mergeability, or publication
-to a branch does not make this proposal Accepted or activate any allocation.
+The Owner / Final Authority separately accepted exact reviewed candidate head
+`74594b39d81c79991d0a8ac5ddb15dc517905a8b` in issue comment `5209812463`.
+On merge and publication to `main`, the nine identifier/version/source-binding
+pairs in this decision become Accepted and active.
 
-The same operational agent may prepare and review the exact candidate only
-under the transparent role arrangement authorized in issue #46. That review is
-not independent third-party review and cannot provide final human approval.
-Only the human Owner / Final Authority may accept the exact reviewed revision.
+The same operational agent prepared and reviewed the exact candidate under the
+transparent role arrangement authorized in issue #46. That review was not
+independent third-party review and did not provide final human approval. The
+human Owner / Final Authority accepted the exact reviewed revision separately.
 
 Within this document, **MUST** and **MUST NOT** express mandatory requirements,
 **SHOULD** and **SHOULD NOT** express strong recommendations, and **MAY**
 expresses permission. These terms express requirement strength only within the
-scope of this proposed decision.
+scope of this accepted decision.
 
 ## Purpose and decision boundary
 
@@ -31,7 +33,7 @@ from inventing those coordinates. Accepted
 [ARCH-002](contract-identity-versioning.md) defines the conceptual dimensions
 but intentionally defers exact identifier syntax and allocation.
 
-This proposal closes that prerequisite for the nine existing Accepted artifact
+This accepted decision closes that prerequisite for the nine existing Accepted artifact
 contract definitions. It allocates exactly one stable Contract Definition
 Identifier and one initial Contract Definition Version for each, and binds each
 pair to its exact Accepted public source at the authoritative baseline.
@@ -43,7 +45,7 @@ release, hosted publication, or deployment.
 
 ## Governing traceability
 
-| Governing source | Constraint preserved by this proposal |
+| Governing source | Constraint preserved by this decision |
 | --- | --- |
 | [ARCH-001](core-contract.md) and [ADR-0001](adr/0001-public-core-boundaries.md) | Human final authority, bounded work, evidence-before-claims, canonical artifact responsibilities, and the public/private boundary remain unchanged. |
 | [ARCH-002](contract-identity-versioning.md) and [ADR-0002](adr/0002-contract-identity-versioning.md) | Contract Definition Identifier and Version remain distinct from artifact, schema, revision, status, implementation, digest, and provenance dimensions; identifiers remain stable, namespaced, non-authoritative, and reusable only for the same logical definition. |
@@ -51,7 +53,7 @@ release, hosted publication, or deployment.
 | [ARCH-009](common-artifact-envelope-executable-schema.md), [ADR-0009](adr/0009-common-artifact-envelope-executable-schema.md), and [Common Artifact Envelope Schema Version `1.0.0`](../../schemas/common-artifact-envelope/1.0.0/schema.json) | `governingContract` remains a coupled stable identifier and exact semantic version pin. Its lexical validity does not prove existence, applicability, conformance, acceptance, or authority. |
 | [ARCH-010](artifact-specific-schema-family-container-boundary.md) and [ADR-0010](adr/0010-artifact-specific-schema-family-container-boundary.md) | Nine artifact-specific schema identities, independent version lines, the closed `envelope`/`payload` root, the exact common-envelope dependency, and the payload ownership boundary remain unchanged. |
 | [CONTRACT-001 through CONTRACT-009](../contracts/README.md) | All nine existing definitions retain their Accepted purpose, classification, responsibilities, relationships, lifecycle, provenance, privacy, payload meaning, dependency direction, and authority limits. |
-| [Issue #46](https://github.com/CNTX-PROJECT/CNTX/issues/46) | Work remains Proposed, documentation-only, limited to five public paths, and stops after one transparently non-independent exact-head COMMENT review. |
+| [Issue #46](https://github.com/CNTX-PROJECT/CNTX/issues/46) | The exact documentation-only five-path candidate received transparent non-independent exact-head review and separate Owner / Final Authority acceptance before promotion and governed integration. |
 
 ## Canonical Contract Definition Family
 
@@ -78,10 +80,11 @@ another or reverse the Accepted dependency direction.
 | CONTRACT-008 | Decision Record | `https://github.com/CNTX-PROJECT/CNTX/contract-definitions/decision-record` | `1.0.0` | [`docs/contracts/decision-record-contract.md`](../contracts/decision-record-contract.md) |
 | CONTRACT-009 | State Snapshot | `https://github.com/CNTX-PROJECT/CNTX/contract-definitions/state-snapshot` | `1.0.0` | [`docs/contracts/state-snapshot-contract.md`](../contracts/state-snapshot-contract.md) |
 
-While this document is Proposed, the table records proposed coordinates only.
-The nine pairs become Accepted and active only if the exact reviewed candidate
-receives separate Owner / Final Authority acceptance, status-only promotion,
-and governed integration to `main`.
+The exact table was reviewed at candidate head
+`74594b39d81c79991d0a8ac5ddb15dc517905a8b` and separately accepted by the
+Owner / Final Authority in issue comment `5209812463`. The nine pairs become
+Accepted and active on governed integration of this promoted decision to
+`main`.
 
 ## Identifier namespace and lexical binding
 
@@ -137,9 +140,9 @@ Candidate drafting, review corrections, replacement commits, and review before
 first exact-revision acceptance are provenance events. They do not create an
 Accepted Contract Definition Version and do not consume PATCH numbers.
 
-If this exact proposal is later Accepted, promoted, and integrated, each
-existing Accepted source identified in the allocation table becomes the active
-initial Contract Definition Version `1.0.0` under its own stable identifier.
+On governed integration of this accepted decision, each existing Accepted
+source identified in the allocation table becomes the active initial Contract
+Definition Version `1.0.0` under its own stable identifier.
 Activation changes neither the previously Accepted contract meaning nor its
 authority classification.
 
@@ -227,16 +230,18 @@ access or disclose referenced material.
 
 ## Review, acceptance, and activation boundary
 
-The exact candidate must be validated and reviewed under issue #46. The
-combined Architect/Implementer review is transparently non-independent and may
-identify whether the candidate conforms to the approved task contract; it
-cannot grant final acceptance.
+The exact candidate was validated and reviewed under issue #46. The combined
+Architect/Implementer review was transparently non-independent and identified
+whether the candidate conformed to the approved task contract; it did not
+grant final acceptance.
 
-Only attributable Owner / Final Authority acceptance of the exact reviewed
-head may authorize a later status-only promotion. Promotion, integration,
-activation, issue completion, closure, synchronization, and branch cleanup are
-separate governed actions. No identifier, version, test, review, PR state,
-mergeability result, or public visibility silently authorizes them.
+Attributable Owner / Final Authority acceptance of the exact reviewed head is
+recorded in issue comment `5209812463` and authorized the separately bounded
+status-only promotion and governed-integration sequence. Promotion,
+integration, activation, issue completion, closure, synchronization, and
+branch cleanup remain separate governed actions. No identifier, version, test,
+review, PR state, mergeability result, or public visibility silently
+authorizes them.
 
 ## Rejected alternatives
 
@@ -306,10 +311,10 @@ or reference implementation, release, tag, or deployment.
 
 ## Continuing gate
 
-ARCH-011 remains Proposed until the exact reviewed candidate receives separate
-attributable Owner / Final Authority acceptance and any later authorized
-status-promotion and integration sequence succeeds. This proposal authorizes no
-such later phase.
+ARCH-011 is Accepted. The exact nine identifier/version/source-binding pairs
+become Accepted and active on governed integration to `main`. The exact-head
+acceptance authorizes only the separately bounded promotion and integration
+sequence and no follow-on schema or implementation phase.
 
 Only after these nine identifier/version/source bindings are Accepted and
 active may a Project Charter artifact-specific executable Schema Version
