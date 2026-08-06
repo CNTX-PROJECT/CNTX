@@ -22,6 +22,8 @@ No executable runtime, selector, retrieval system, provider integration, validat
 
 The [Artifact-Specific Schema Family and Canonical Artifact Container Boundary](artifact-specific-schema-family-container-boundary.md) and [ADR-0010](adr/0010-artifact-specific-schema-family-container-boundary.md) are **Accepted**, documentation-only architecture. They allocate nine technology-neutral artifact-specific logical Schema Identities and inactive `1.0.0` targets, select one closed full-artifact root with mandatory `envelope` and `payload`, and pin the envelope location to the exact Accepted Common Artifact Envelope Schema Version `1.0.0`. They create no executable artifact-specific schema or payload, concrete artifact-specific `$id`, active Schema Version, binding, validator, runtime, implementation, release, or deployment; their acceptance authorizes no follow-on phase.
 
+The [Canonical Contract Definition Identity, Initial Version, and Source Binding](contract-definition-identity-version-binding.md) and [ADR-0011](adr/0011-contract-definition-identity-version-binding.md) are **Proposed**, documentation-only architecture. They propose exactly nine stable Contract Definition Identifiers, independent initial Contract Definition Version `1.0.0` allocations, and exact Accepted-source bindings for CONTRACT-001 through CONTRACT-009. They change no accepted contract meaning, activate no allocation, create no executable artifact-specific schema, binding, resolver, validator, runtime, implementation, release, or deployment, and authorize no follow-on phase.
+
 ## Document status
 
 - **Proposed** — submitted for review and not yet an accepted repository decision.
