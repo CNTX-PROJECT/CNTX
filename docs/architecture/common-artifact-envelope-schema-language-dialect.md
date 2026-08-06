@@ -2,11 +2,11 @@
 
 ## Status and authority
 
-Status: **Proposed**.
+Status: **Accepted**.
 
-This document is a proposed, documentation-only architecture decision prepared under issue #38 and recorded by [ADR-0007](adr/0007-common-artifact-envelope-schema-language-dialect.md). It does not become binding unless the human Owner / Final Authority accepts the exact reviewed candidate revision and the resulting decision is integrated under [GOVERNANCE.md](../../GOVERNANCE.md).
+This document is an accepted, documentation-only architecture decision approved under issue #38 and recorded by [ADR-0007](adr/0007-common-artifact-envelope-schema-language-dialect.md). Owner / Final Authority acceptance of the exact reviewed candidate head is recorded in issue comment `5208113396`. On merge and publication to `main`, this document becomes binding within its exact schema-language-and-dialect scope under [GOVERNANCE.md](../../GOVERNANCE.md).
 
-This proposal refines only the schema-language and dialect decision left open by accepted [ARCH-001](core-contract.md), [ARCH-002](contract-identity-versioning.md), [ARCH-003](artifact-contract-schema-architecture.md), [ARCH-004](common-artifact-envelope-schema-boundary.md), [ARCH-005](common-artifact-envelope-representation-boundary.md), and [ARCH-006](common-artifact-envelope-schema-identity-version-policy.md). It does not alter those sources, any accepted artifact contract, or final human authority.
+This decision refines only the schema-language and dialect decision left open by accepted [ARCH-001](core-contract.md), [ARCH-002](contract-identity-versioning.md), [ARCH-003](artifact-contract-schema-architecture.md), [ARCH-004](common-artifact-envelope-schema-boundary.md), [ARCH-005](common-artifact-envelope-representation-boundary.md), and [ARCH-006](common-artifact-envelope-schema-identity-version-policy.md). It does not alter those sources, any accepted artifact contract, or final human authority.
 
 Within this document, **MUST** and **MUST NOT** express mandatory requirements, **SHOULD** and **SHOULD NOT** express strong recommendations, and **MAY** expresses permission. These terms express requirement strength only within this document.
 
@@ -37,7 +37,7 @@ The normative dialect pin is the exact published 2020-12 meta-schema URI. Later 
 
 ## Language and dialect selection
 
-| Selection dimension | Proposed decision |
+| Selection dimension | Accepted decision |
 | --- | --- |
 | Schema language | **JSON Schema** |
 | Fixed dialect | **JSON Schema Draft 2020-12 Core and Validation dialect** |

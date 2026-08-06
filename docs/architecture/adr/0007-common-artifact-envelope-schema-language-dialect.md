@@ -2,9 +2,9 @@
 
 ## Status
 
-Proposed.
+Accepted.
 
-This ADR records the proposed, documentation-only architecture decision prepared under issue #38. It does not become an accepted repository decision unless the human Owner / Final Authority accepts the exact reviewed candidate revision and the result is integrated under repository governance.
+This ADR records the accepted, documentation-only architecture decision approved under issue #38. Owner / Final Authority acceptance of the exact reviewed candidate head is recorded in issue comment `5208113396`. On merge and publication to `main`, ADR-0007 becomes an accepted repository decision under repository governance.
 
 ## Context
 
@@ -16,7 +16,7 @@ At the issue #38 baseline, the official [JSON Schema specification index](https:
 
 ## Decision
 
-CNTX proposes [the Common Artifact Envelope Schema Language and Dialect](../common-artifact-envelope-schema-language-dialect.md) as ARCH-007 with these constraints:
+CNTX adopts [the Common Artifact Envelope Schema Language and Dialect](../common-artifact-envelope-schema-language-dialect.md) as ARCH-007 with these constraints:
 
 1. The future executable Common Artifact Envelope definition will use **JSON Schema**.
 2. Its fixed dialect will be the **JSON Schema Draft 2020-12 Core and Validation dialect** identified by `https://json-schema.org/draft/2020-12/schema`.
