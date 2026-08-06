@@ -2,11 +2,11 @@
 
 ## Status and authority
 
-Status: **Proposed**.
+Status: **Accepted**.
 
-This document is a proposed executable-schema architecture decision prepared under issue #42 and recorded by [ADR-0009](adr/0009-common-artifact-envelope-executable-schema.md). The accompanying [Schema Resource](../../schemas/common-artifact-envelope/1.0.0/schema.json) is a machine-evaluable candidate, but neither its existence nor its validity makes this decision Accepted or activates Schema Version `1.0.0`. Binding status requires human Owner / Final Authority acceptance of the exact reviewed candidate and governed integration.
+This document is an accepted executable-schema architecture decision approved under issue #42 and recorded by [ADR-0009](adr/0009-common-artifact-envelope-executable-schema.md). Owner / Final Authority acceptance of the exact reviewed candidate head is recorded in issue comment `5208715683`. On merge and publication to `main`, the accompanying [Schema Resource](../../schemas/common-artifact-envelope/1.0.0/schema.json) becomes the active Accepted Common Artifact Envelope Schema Version `1.0.0` within this exact scope.
 
-The same operational agent acts transparently as DE ARCHITECT and Bounded Implementer for this candidate. That review arrangement is not independent third-party review and cannot provide final human approval.
+The same operational agent acted transparently as DE ARCHITECT and Bounded Implementer for the accepted candidate. That review arrangement was not independent third-party review and did not provide final human approval; acceptance was given separately by the Owner / Final Authority.
 
 ## Purpose and decision boundary
 
@@ -14,7 +14,7 @@ ARCH-009 proposes the first concrete, standalone Common Artifact Envelope Schema
 
 The resource evaluates one Common Artifact Envelope object. It does not define a full canonical artifact, an artifact-specific payload, a relationship role, an authority record, a lifecycle state, an Extension Module, a Profile, a Serialization Binding, a validator, a resolver, a bundle, a transport, a runtime, or a product.
 
-Within this document, **MUST** and **MUST NOT** state candidate requirements. They become binding only if the exact candidate is accepted and integrated. Schema assertions determine instance validity only; they do not create normative authority beyond the accepted architecture and applicable artifact contracts.
+Within this document, **MUST** and **MUST NOT** state mandatory requirements within this accepted decision. Schema assertions determine instance validity only; they do not create normative authority beyond the accepted architecture and applicable artifact contracts.
 
 ## Governing traceability
 
@@ -25,7 +25,7 @@ Within this document, **MUST** and **MUST NOT** state candidate requirements. Th
 | [ARCH-003](artifact-contract-schema-architecture.md) | The executable schema is Layer 6, implements higher accepted meaning, remains separate from artifact-specific payloads, and grants no authority. |
 | [ARCH-004](common-artifact-envelope-schema-boundary.md) | Universal, conditional, artifact-specific, and outside-envelope ownership categories are preserved. |
 | [ARCH-005](common-artifact-envelope-representation-boundary.md) | Universal capabilities, conditional activation, semantic coupling, absence, payload separation, and non-authority boundaries become concrete without absorbing artifact-specific meaning. |
-| [ARCH-006](common-artifact-envelope-schema-identity-version-policy.md) | The one allocated logical identity is bound to a concrete candidate `$id`; `1.0.0` remains the proposed initial version until exact-revision acceptance. |
+| [ARCH-006](common-artifact-envelope-schema-identity-version-policy.md) | The one allocated logical identity is bound to the concrete accepted `$id`; `1.0.0` is the accepted initial Schema Version and becomes active on governed integration. |
 | [ARCH-007](common-artifact-envelope-schema-language-dialect.md) | The root declares the exact JSON Schema Draft 2020-12 default dialect; no custom vocabulary or Format-Assertion behavior is added. |
 | [ARCH-008](common-artifact-envelope-schema-composition-packaging.md) | One standalone root resource, no nested `$id`, internal `$defs`, static fragment references, closed canonical identity, and offline-first processing are implemented. |
 | [CONTRACT-001 through CONTRACT-009](../contracts/README.md) | Canonical artifact responsibilities, classifications, payloads, relationships, lifecycles, authority, review, decision, and state semantics remain artifact-specific. |
@@ -33,7 +33,7 @@ Within this document, **MUST** and **MUST NOT** state candidate requirements. Th
 
 ## Primary standards basis
 
-The candidate uses only the standard language surface of:
+The accepted resource uses only the standard language surface of:
 
 - [JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-12);
 - [JSON Schema Core 2020-12](https://json-schema.org/draft/2020-12/json-schema-core);
@@ -45,14 +45,14 @@ JSON Schema permits broader choices than this resource uses. The one-resource to
 
 ## Selected executable definition
 
-| Dimension | Proposed decision |
+| Dimension | Accepted decision |
 | --- | --- |
 | Logical identity | CNTX Public Core Schema Family / Common Artifact Envelope |
 | Schema language | JSON Schema |
 | Dialect | JSON Schema Draft 2020-12 default dialect |
 | Root `$schema` | `https://json-schema.org/draft/2020-12/schema` |
 | Root `$id` | `https://github.com/CNTX-PROJECT/CNTX/schemas/common-artifact-envelope/1.0.0` |
-| Proposed Schema Version | `1.0.0` |
+| Accepted Schema Version | `1.0.0` |
 | Canonical repository path | `schemas/common-artifact-envelope/1.0.0/schema.json` |
 | Schema-resource media type | `application/schema+json` |
 | Root instance type | Object |
@@ -68,19 +68,19 @@ JSON Schema permits broader choices than this resource uses. The one-resource to
 | External Schema Resource dependencies | None |
 | Artifact payload | Not represented |
 | Extension Module or Profile fields | None |
-| Document Status | Proposed until exact-revision human acceptance and integration |
+| Document Status | Accepted under issue #42 and Owner acceptance comment `5208715683` |
 
 ## Canonical identity, version, and repository path
 
-The candidate binds the one ARCH-006 logical identity to this concrete root identifier:
+The accepted decision binds the one ARCH-006 logical identity to this concrete root identifier:
 
 `https://github.com/CNTX-PROJECT/CNTX/schemas/common-artifact-envelope/1.0.0`
 
-The identifier is an absolute HTTPS URI without a fragment. It contains the exact proposed Schema Version and no moving alias. The `github.com/CNTX-PROJECT/CNTX` namespace is attributable to the public repository controlled by the Owner and requires no private namespace or deployment.
+The identifier is an absolute HTTPS URI without a fragment. It contains the exact accepted Schema Version and no moving alias. The `github.com/CNTX-PROJECT/CNTX` namespace is attributable to the public repository controlled by the Owner and requires no private namespace or deployment.
 
 The `$id` is not an instruction to fetch the schema from the network. It is also not a branch, tag, release, repository file path, mirror, redirect, registry key, artifact identifier, Contract Definition Identifier, approval, or trust assertion. The canonical repository file is [separately identified](../../schemas/common-artifact-envelope/1.0.0/schema.json); identity and repository coordinate remain distinct even though they use corresponding human-readable path components.
 
-The schema document is a Proposed `1.0.0` candidate. Candidate commits do not consume or activate a Schema Version. If the exact candidate is later accepted and integrated, it becomes the first Accepted Common Artifact Envelope Schema Version `1.0.0` and its canonical standalone content becomes immutable. Any later accepted structural or semantic change requires a new version assessment under ARCH-002 and ARCH-006.
+The schema document is the accepted initial Common Artifact Envelope Schema Version `1.0.0`. On governed integration to `main`, it becomes active and its canonical standalone content becomes immutable. Any later accepted structural or semantic change requires a new version assessment under ARCH-002 and ARCH-006.
 
 ## Root evaluation scope and composition
 
@@ -212,7 +212,7 @@ The [non-normative test manifest](../../tests/schemas/common-artifact-envelope/1
 
 The manifest records expected validity only. It is synthetic evidence, not a Serialization Binding, accepted Artifact Instance, artifact contract, validator, validation-output contract, conformance claim, approval, or authority source.
 
-Candidate validation must reject duplicate JSON object member names, validate the schema under the official Draft 2020-12 meta-schema, and execute every test case with a standards-conformant Draft 2020-12 validator isolated outside the repository. No validator dependency or implementation is part of this decision.
+Validation of the accepted resource must reject duplicate JSON object member names, validate the schema under the official Draft 2020-12 meta-schema, and execute every test case with a standards-conformant Draft 2020-12 validator isolated outside the repository. No validator dependency or implementation is part of this decision.
 
 ## Serialization and instance-data boundary
 
@@ -240,11 +240,11 @@ Schema validity is narrower than normative-contract conformance. The schema chec
 - an approval was validly given; or
 - a release, deployment, merge, or action is authorized.
 
-The exact candidate needs human Owner / Final Authority acceptance after the disclosed exact-head Architect review. Until that decision and governed integration, the resource and Schema Version remain Proposed.
+The exact reviewed candidate received human Owner / Final Authority acceptance in issue comment `5208715683`. Governed integration makes the accepted resource and Schema Version `1.0.0` active without changing the non-authority boundary of schema validity.
 
 ## Consequences and tradeoffs
 
-The candidate provides a small executable foundation:
+The accepted decision provides a small executable foundation:
 
 - common identity and version pins are machine-checkable;
 - incomplete semantic pairs fail closed;
@@ -318,6 +318,4 @@ ARCH-009 does not define or authorize artifact-specific schemas or payloads; ful
 
 ## Continuing gate
 
-This Proposed candidate completes only when one validated draft PR and a disclosed exact-head Architect review exist. It must then stop for the human Owner / Final Authority.
-
-Acceptance of the exact candidate may later authorize a status-only promotion and explicitly enumerated integration actions. It must not silently authorize the first artifact-specific executable schema, a Serialization Binding, validator, resolver, bundle, release, deployment, or any other Schema Family layer.
+The exact candidate was validated and reviewed at commit `e589f465f55195ff512de84a524f2812e49fc197`, then accepted by the human Owner / Final Authority in issue comment `5208715683`. The authorized status-only promotion and governed integration do not authorize the first artifact-specific executable schema, a Serialization Binding, validator, resolver, bundle, release, deployment, or any other Schema Family layer.

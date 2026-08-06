@@ -4,20 +4,20 @@
 
 This directory contains machine-evaluable schema-resource candidates and, after exact-revision human acceptance and governed integration, accepted schema resources. A file's existence, JSON Schema validity, `$id`, Schema Version, test result, repository location, or publication does not grant Document Status, contract conformance, authority, trust, approval, release, deployment, merge permission, or access permission.
 
-The only current resource is the **Proposed** ARCH-009 [Common Artifact Envelope `1.0.0` candidate](common-artifact-envelope/1.0.0/schema.json). Candidate drafting does not activate Accepted Schema Version `1.0.0`. The applicable architecture document and ADR remain the status sources.
+The only current resource is the **Accepted** ARCH-009 [Common Artifact Envelope Schema Version `1.0.0`](common-artifact-envelope/1.0.0/schema.json), approved by the Owner / Final Authority in issue comment `5208715683`. Governed integration to `main` activates the exact accepted resource. The applicable architecture document and ADR remain the status sources.
 
-## Common Artifact Envelope candidate
+## Common Artifact Envelope Schema Version 1.0.0
 
-| Dimension | Proposed value |
+| Dimension | Accepted value |
 | --- | --- |
 | Logical schema identity | CNTX Public Core Schema Family / Common Artifact Envelope |
 | Schema language and dialect | JSON Schema Draft 2020-12 |
 | Dialect declaration | `https://json-schema.org/draft/2020-12/schema` |
 | Canonical `$id` | `https://github.com/CNTX-PROJECT/CNTX/schemas/common-artifact-envelope/1.0.0` |
-| Proposed Schema Version | `1.0.0` |
+| Schema Version | `1.0.0` |
 | Canonical repository path | `schemas/common-artifact-envelope/1.0.0/schema.json` |
 | Schema-resource media type | `application/schema+json` |
-| Document Status | Proposed under issue #42 |
+| Document Status | Accepted under issue #42 and Owner acceptance comment `5208715683` |
 
 The `$id` is the canonical identity of the Schema Resource, not a branch, mutable retrieval coordinate, automatic network instruction, hosted-publication claim, release, tag, artifact Serialization Binding, or authority source. Processors are expected to receive the exact resource explicitly; an HTTPS-shaped identifier does not authorize network access.
 
@@ -31,4 +31,4 @@ The non-normative [test-case manifest](../tests/schemas/common-artifact-envelope
 
 ## Change boundary
 
-Once an exact `1.0.0` resource is accepted, its canonical standalone content is immutable. Any accepted structural or semantic change requires the ARCH-002 and ARCH-006 version assessment, attributable review and approval, traceable provenance, and a separately authorized change. Schema validity alone cannot approve such a change.
+Upon governed integration, the exact accepted `1.0.0` canonical standalone content is immutable. Any accepted structural or semantic change requires the ARCH-002 and ARCH-006 version assessment, attributable review and approval, traceable provenance, and a separately authorized change. Schema validity alone cannot approve such a change.

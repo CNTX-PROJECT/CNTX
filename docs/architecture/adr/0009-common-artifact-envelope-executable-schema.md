@@ -2,9 +2,9 @@
 
 ## Status
 
-Proposed.
+Accepted.
 
-This ADR records the proposed first executable Common Artifact Envelope Schema Resource prepared under issue #42. The candidate does not become an Accepted architecture decision or activate Schema Version `1.0.0` unless the human Owner / Final Authority accepts the exact reviewed revision and the result is integrated under repository governance.
+This ADR records the accepted first executable Common Artifact Envelope Schema Resource approved under issue #42. Owner / Final Authority acceptance of the exact reviewed candidate is recorded in issue comment `5208715683`. On governed integration to `main`, Schema Version `1.0.0` becomes active under repository governance.
 
 ## Context
 
@@ -14,11 +14,11 @@ No executable Common Artifact Envelope exists at the baseline. Without one, arti
 
 ## Decision
 
-Adopt the following Proposed executable definition:
+Adopt the following Accepted executable definition:
 
 1. Create one standalone JSON Schema Draft 2020-12 resource at `schemas/common-artifact-envelope/1.0.0/schema.json`.
 2. Bind the ARCH-006 logical identity to `$id` `https://github.com/CNTX-PROJECT/CNTX/schemas/common-artifact-envelope/1.0.0`.
-3. Use `1.0.0` as the Proposed initial Schema Version; it remains inactive until exact-revision acceptance and integration.
+3. Use `1.0.0` as the Accepted initial Schema Version; it becomes active on governed integration.
 4. Evaluate exactly one Common Artifact Envelope object, not a complete artifact or payload.
 5. Define exactly six root properties: `artifactType`, `artifactInstance`, `governingContract`, `governingSchema`, optional `provenanceReferences`, and optional `contentDigests`.
 6. Require Artifact Type, the coupled artifact identifier/revision pin, the coupled Contract Definition identifier/version pin, and the coupled Schema identifier/version pin.
@@ -49,7 +49,7 @@ Positive consequences:
 - later artifact-specific resources can statically depend on one exact common identity;
 - no external resource or automatic network access is required;
 - unknown properties cannot silently expand common meaning; and
-- repeatable positive and negative evidence accompanies the candidate.
+- repeatable positive and negative evidence accompanies the accepted resource.
 
 Costs and limitations:
 
@@ -83,9 +83,9 @@ Automatic network retrieval, resolver security, resource limits, validator harde
 
 ## Validation and authority boundary
 
-The candidate must be strictly parsed with duplicate-key rejection, checked against the official Draft 2020-12 meta-schema, and evaluated against every committed expected-valid and expected-invalid case using an isolated standards-conformant validator. Those results are evidence only.
+The accepted resource must be strictly parsed with duplicate-key rejection, checked against the official Draft 2020-12 meta-schema, and evaluated against every committed expected-valid and expected-invalid case using an isolated standards-conformant validator. Those results are evidence only.
 
-The same operational agent prepares and reviews the exact candidate under the transparent issue #42 arrangement. The review is non-independent and cannot provide final approval. `$id`, `1.0.0`, meta-schema validity, instance-test success, mergeability, or publication-shaped coordinates grant no acceptance or integration authority.
+The same operational agent prepared and reviewed the exact candidate under the transparent issue #42 arrangement. The review was non-independent and did not provide final approval; the Owner / Final Authority accepted the exact reviewed head separately in issue comment `5208715683`. `$id`, `1.0.0`, meta-schema validity, instance-test success, mergeability, or publication-shaped coordinates do not independently grant acceptance or integration authority.
 
 ## Deferred scope
 
@@ -93,4 +93,4 @@ Deferred and unauthorized work includes artifact-specific schemas and payloads; 
 
 ## Continuing gate
 
-The candidate remains Proposed after the exact-head Architect review. Only an attributable Owner / Final Authority acceptance of that exact revision may authorize status promotion or any separately enumerated integration action. No follow-on Schema Family phase is implied or authorized.
+The exact-head candidate was accepted by the Owner / Final Authority in issue comment `5208715683`, authorizing only the recorded status promotion and integration sequence. No follow-on Schema Family phase is implied or authorized.

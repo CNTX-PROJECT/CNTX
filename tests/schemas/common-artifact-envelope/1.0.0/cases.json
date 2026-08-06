@@ -1,9 +1,9 @@
 {
   "schemaId": "https://github.com/CNTX-PROJECT/CNTX/schemas/common-artifact-envelope/1.0.0",
   "candidateSchemaVersion": "1.0.0",
-  "documentStatus": "Proposed",
+  "documentStatus": "Accepted",
   "nonNormative": true,
-  "description": "Synthetic validation cases for the Proposed ARCH-009 candidate. Expected validity is evidence only and grants no conformance, approval, authority, trust, acceptance, release, deployment, or merge permission.",
+  "description": "Synthetic validation cases for Accepted ARCH-009 Schema Version 1.0.0. Expected validity is evidence only and grants no conformance, approval, authority, trust, acceptance, release, deployment, or merge permission.",
   "cases": [
     {
       "name": "valid project charter envelope",
