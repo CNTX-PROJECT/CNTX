@@ -6,6 +6,8 @@ This directory contains machine-evaluable schema-resource candidates and, after 
 
 The current Accepted resources are the ARCH-009 [Common Artifact Envelope Schema Version `1.0.0`](common-artifact-envelope/1.0.0/schema.json), approved by the Owner / Final Authority in issue comment `5208715683`; the ARCH-012 [Project Charter Schema Version `1.0.0`](project-charter/1.0.0/schema.json), accepted in issue comment `5210242651`; the ARCH-013 [Workstream Schema Version `1.0.0`](workstream/1.0.0/schema.json), accepted in issue comment `5215029431`; the ARCH-014 [Task Contract Schema Version `1.0.0`](task-contract/1.0.0/schema.json), accepted in issue comment `5215700352`; the ARCH-015 [Context Packet Schema Version `1.0.0`](context-packet/1.0.0/schema.json), accepted in issue comment `5216466742`; the ARCH-016 [Execution Result Schema Version `1.0.0`](execution-result/1.0.0/schema.json), accepted in issue comment `5217275706`; and the ARCH-017 [Evidence Bundle Schema Version `1.0.0`](evidence-bundle/1.0.0/schema.json), accepted in issue comment `5217888146`. Governed integration to `main` activates each exact resource. The applicable architecture documents and ADRs remain the status sources.
 
+The ARCH-018 [Review Record Schema Version `1.0.0` candidate](review-record/1.0.0/schema.json) is **Proposed** under issue #62 and remains inactive. Creation-contract approval, repository presence, validation, and review do not accept or activate it.
+
 ## Common Artifact Envelope Schema Version 1.0.0
 
 | Dimension | Accepted value |
@@ -248,6 +250,49 @@ Owner / Final Authority acceptance is recorded in issue comment `5217888146`,
 and governed integration to `main` activates Schema Version `1.0.0`. Schema validity grants no contract
 conformance, source truth, relevance, sufficiency, correctness, acceptance,
 integration, release, deployment, merge permission, Review Record schema
+authority, or follow-on authority.
+
+## Review Record Schema Version 1.0.0 candidate
+
+| Dimension | Proposed value |
+| --- | --- |
+| Logical schema identity | CNTX Public Core Schema Family / Review Record Artifact |
+| Schema language and dialect | JSON Schema Draft 2020-12 |
+| Dialect declaration | `https://json-schema.org/draft/2020-12/schema` |
+| Canonical `$id` | `https://github.com/CNTX-PROJECT/CNTX/schemas/review-record/1.0.0` |
+| Candidate Schema Version | `1.0.0` |
+| Canonical repository path | `schemas/review-record/1.0.0/schema.json` |
+| Exact external dependency | Accepted Common Artifact Envelope Schema Version `1.0.0` |
+| Governing Contract Definition | `https://github.com/CNTX-PROJECT/CNTX/contract-definitions/review-record` at `1.0.0` |
+| Schema-resource media type | `application/schema+json` |
+| Document Status | Proposed under issue #62; inactive pending separate exact-head acceptance and governed integration |
+
+The candidate evaluates one complete closed Review Record artifact with
+mandatory `envelope` and `payload`. Its envelope statically references the
+exact Accepted Common Artifact Envelope and constrains only the Review Record
+Artifact Type and governing Contract and Schema coordinates. Its closed
+sixteen-property payload separates Review Authority from Execution Authority,
+requires exact reviewable subjects and nine opaque artifact-relationship
+categories, preserves distinct observations, interpretations, findings,
+rationale, evidence use, uncertainty, dissent, and recommendations, and records
+bounded peer-review, correction, security/privacy, escalation, stop, and
+lifecycle traceability.
+
+The candidate contains no Project Charter, Workstream, Task Contract, Context
+Packet, Execution Result, Evidence Bundle, peer Review Record, Decision Record,
+State Snapshot, or other artifact-specific schema `$ref`. It defines no
+reviewer identity or specialty system, review execution, retrieval, scoring,
+severity, confidence, verdict, approval, synthesis, voting, decision, workflow,
+runtime, access, disclosure, retention, release, deployment, or merge
+mechanism.
+
+The Proposed [ARCH-018 architecture decision](../docs/architecture/review-record-executable-schema.md),
+[ADR-0018](../docs/architecture/adr/0018-review-record-executable-schema.md),
+and [non-normative test manifest](../tests/schemas/review-record/1.0.0/cases.json)
+define and evidence the candidate boundary. Creation, validation, review,
+repository presence, or `1.0.0` grants no contract conformance, specialist
+authority, review quality, recommendation authority, final acceptance,
+integration, release, deployment, merge permission, Decision Record schema
 authority, or follow-on authority.
 
 ## Change boundary
