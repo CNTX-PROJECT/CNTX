@@ -1,0 +1,1161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/CNTX-PROJECT/CNTX/schemas/decision-record/1.0.0",
+  "$comment": "Proposed ARCH-019 Decision Record Schema Version 1.0.0 candidate under issue #64. Creation, validation, review, schema validity, or repository presence grants no decision authority, approval, acceptance, integration, release, deployment, merge permission, State Snapshot schema authority, or follow-on authority.",
+  "title": "CNTX Decision Record Artifact",
+  "description": "A complete Decision Record artifact with the exact Accepted Common Artifact Envelope and a closed CONTRACT-008 payload. This Proposed schema evaluates structure only, preserves final human authority and non-automatic effects, and is inactive unless separately accepted and integrated under final human authority.",
+  "type": "object",
+  "properties": {
+    "envelope": {
+      "description": "The exact Accepted Common Artifact Envelope specialized for the Decision Record Artifact Type, Contract Definition, and Schema Definition.",
+      "allOf": [
+        {
+          "$ref": "https://github.com/CNTX-PROJECT/CNTX/schemas/common-artifact-envelope/1.0.0"
+        },
+        {
+          "properties": {
+            "artifactType": {
+              "const": "decision-record"
+            },
+            "governingContract": {
+              "properties": {
+                "identifier": {
+                  "const": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/decision-record"
+                },
+                "version": {
+                  "const": "1.0.0"
+                }
+              }
+            },
+            "governingSchema": {
+              "properties": {
+                "identifier": {
+                  "const": "https://github.com/CNTX-PROJECT/CNTX/schemas/decision-record/1.0.0"
+                },
+                "version": {
+                  "const": "1.0.0"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "payload": {
+      "$ref": "#/$defs/decisionRecordPayload"
+    }
+  },
+  "required": [
+    "envelope",
+    "payload"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "nonBlankString": {
+      "description": "A string containing at least one non-whitespace character. Its value remains opaque or declarative and grants no authority, approval, decision, or implementation effect.",
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "nonEmptyUniqueStatementArray": {
+      "description": "One or more distinct non-blank declarative statements.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/nonBlankString"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "specifiedDeclaration": {
+      "description": "An explicitly specified non-empty set of declarative statements.",
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "specified"
+        },
+        "items": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        }
+      },
+      "required": [
+        "disposition",
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "noneDeclaration": {
+      "description": "An explicitly assessed absence for this artifact revision.",
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "none"
+        }
+      },
+      "required": [
+        "disposition"
+      ],
+      "additionalProperties": false
+    },
+    "declarationSet": {
+      "description": "An assessed category with specified statements or assessed absence. Neither disposition proves completeness, correctness, sufficiency, safety, authority, approval, or implementation.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/specifiedDeclaration"
+        },
+        {
+          "$ref": "#/$defs/noneDeclaration"
+        }
+      ]
+    },
+    "specifiedOpaqueValue": {
+      "description": "One explicitly specified opaque value.",
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "specified"
+        },
+        "value": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "disposition",
+        "value"
+      ],
+      "additionalProperties": false
+    },
+    "noneOpaqueValue": {
+      "description": "An explicitly assessed absence of an opaque value for this artifact revision.",
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "none"
+        }
+      },
+      "required": [
+        "disposition"
+      ],
+      "additionalProperties": false
+    },
+    "opaqueValueDeclaration": {
+      "description": "An assessed category with one specified opaque value or assessed absence. The schema assigns no grammar, chronology, truth, authority, or lifecycle effect.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/specifiedOpaqueValue"
+        },
+        {
+          "$ref": "#/$defs/noneOpaqueValue"
+        }
+      ]
+    },
+    "artifactRevisionPin": {
+      "description": "An opaque Artifact Instance Identifier and exact Artifact Revision pin. It performs no retrieval, resolution, embedding, validation, authority transfer, approval, or lifecycle operation.",
+      "type": "object",
+      "properties": {
+        "artifactInstanceIdentifier": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "artifactRevision": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "artifactInstanceIdentifier",
+        "artifactRevision"
+      ],
+      "additionalProperties": false
+    },
+    "specifiedArtifactPins": {
+      "description": "One or more distinct opaque Artifact Instance Identifier/Revision pins.",
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "specified"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/artifactRevisionPin"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "disposition",
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "noneArtifactPins": {
+      "description": "An explicitly assessed absence of artifact pins for this category.",
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "none"
+        }
+      },
+      "required": [
+        "disposition"
+      ],
+      "additionalProperties": false
+    },
+    "artifactPinDeclaration": {
+      "description": "An assessed artifact relationship with specified opaque revision pins or assessed absence. It creates no schema dependency, retrieval, validation, authority, approval, or lifecycle effect.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/specifiedArtifactPins"
+        },
+        {
+          "$ref": "#/$defs/noneArtifactPins"
+        }
+      ]
+    },
+    "governingSource": {
+      "description": "One governing-source reference whose identity and revision remain opaque. It is not retrieved, embedded, interpreted, or validated by this schema.",
+      "type": "object",
+      "properties": {
+        "localSourceReference": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "sourceKind": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "sourceIdentifier": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "sourceRevision": {
+          "$ref": "#/$defs/opaqueValueDeclaration"
+        },
+        "applicability": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "limitations": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "localSourceReference",
+        "sourceKind",
+        "sourceIdentifier",
+        "sourceRevision",
+        "applicability",
+        "limitations"
+      ],
+      "additionalProperties": false
+    },
+    "artifactRelationships": {
+      "description": "Nine explicit artifact-relationship categories represented only by opaque pins or assessed absence.",
+      "type": "object",
+      "properties": {
+        "projectCharters": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "workstreams": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "taskContracts": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "contextPackets": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "executionResults": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "evidenceBundles": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "reviewRecords": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "peerDecisionRecords": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "stateSnapshots": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        }
+      },
+      "required": [
+        "projectCharters",
+        "workstreams",
+        "taskContracts",
+        "contextPackets",
+        "executionResults",
+        "evidenceBundles",
+        "reviewRecords",
+        "peerDecisionRecords",
+        "stateSnapshots"
+      ],
+      "additionalProperties": false
+    },
+    "downstreamBoundary": {
+      "description": "A bounded declared relation to a separately governed consequential action. It does not authorize or perform that action.",
+      "type": "object",
+      "properties": {
+        "intendedRelation": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "separateAuthority": {
+          "$ref": "#/$defs/artifactRevisionPin"
+        },
+        "conditionsAndLimits": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "nonAutomaticEffect": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "intendedRelation",
+        "separateAuthority",
+        "conditionsAndLimits",
+        "nonAutomaticEffect"
+      ],
+      "additionalProperties": false
+    },
+    "specifiedDownstreamBoundaries": {
+      "description": "One or more distinct bounded downstream relations.",
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "specified"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/downstreamBoundary"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "disposition",
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "noneDownstreamBoundaries": {
+      "description": "An explicitly assessed absence of a downstream relation for this category.",
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "none"
+        }
+      },
+      "required": [
+        "disposition"
+      ],
+      "additionalProperties": false
+    },
+    "downstreamBoundaryDeclaration": {
+      "description": "A specified bounded downstream relation or assessed absence. Neither disposition creates an automatic effect.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/specifiedDownstreamBoundaries"
+        },
+        {
+          "$ref": "#/$defs/noneDownstreamBoundaries"
+        }
+      ]
+    },
+    "peerDecisionRelation": {
+      "description": "One exact peer Decision Record pin with an explicit relationship boundary and preserved history.",
+      "type": "object",
+      "properties": {
+        "decisionRecord": {
+          "$ref": "#/$defs/artifactRevisionPin"
+        },
+        "relationshipScope": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "reason": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "affectedBoundary": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "historicalPreservation": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "decisionRecord",
+        "relationshipScope",
+        "reason",
+        "affectedBoundary",
+        "historicalPreservation"
+      ],
+      "additionalProperties": false
+    },
+    "specifiedPeerDecisionRelations": {
+      "description": "One or more distinct exact peer Decision Record relations.",
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "specified"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/peerDecisionRelation"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "disposition",
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "nonePeerDecisionRelations": {
+      "description": "An explicitly assessed absence of peer Decision Record relations for this category.",
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "none"
+        }
+      },
+      "required": [
+        "disposition"
+      ],
+      "additionalProperties": false
+    },
+    "peerDecisionRelationDeclaration": {
+      "description": "Specified exact peer Decision Record relations or assessed absence, without automatic amendment, correction, revocation, supersession, conflict resolution, or precedence.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/specifiedPeerDecisionRelations"
+        },
+        {
+          "$ref": "#/$defs/nonePeerDecisionRelations"
+        }
+      ]
+    },
+    "externalRecord": {
+      "description": "An opaque external record reference with provenance and limitations. It is not retrieved, resolved, published, or validated by this schema.",
+      "type": "object",
+      "properties": {
+        "recordReference": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "recordIdentifier": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "recordRevision": {
+          "$ref": "#/$defs/opaqueValueDeclaration"
+        },
+        "provenance": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "limitations": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "recordReference",
+        "recordIdentifier",
+        "recordRevision",
+        "provenance",
+        "limitations"
+      ],
+      "additionalProperties": false
+    },
+    "specifiedExternalRecords": {
+      "description": "One or more distinct external record references.",
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "specified"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/externalRecord"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "disposition",
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "noneExternalRecords": {
+      "description": "An explicitly assessed absence of external record references for this category.",
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "none"
+        }
+      },
+      "required": [
+        "disposition"
+      ],
+      "additionalProperties": false
+    },
+    "externalRecordDeclaration": {
+      "description": "Specified external record references or assessed absence, without retrieval, resolution, publication, or authority effect.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/specifiedExternalRecords"
+        },
+        {
+          "$ref": "#/$defs/noneExternalRecords"
+        }
+      ]
+    },
+    "decisionAuthorityAndDecisionMaker": {
+      "description": "Exact authority provenance, an opaque human decision-maker reference, scope and limitations, and explicit authority-role separation. It allocates, verifies, or broadens no authority.",
+      "type": "object",
+      "properties": {
+        "decisionAuthority": {
+          "$ref": "#/$defs/artifactRevisionPin"
+        },
+        "decisionMakerReference": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "authorityScope": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "authorityLimitations": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "authoritySeparation": {
+          "type": "object",
+          "properties": {
+            "decisionAuthorityBoundary": {
+              "$ref": "#/$defs/nonBlankString"
+            },
+            "preparationAuthorityBoundary": {
+              "$ref": "#/$defs/nonBlankString"
+            },
+            "reviewAuthorityBoundary": {
+              "$ref": "#/$defs/nonBlankString"
+            },
+            "publicationAuthorityBoundary": {
+              "$ref": "#/$defs/nonBlankString"
+            },
+            "administrationAuthorityBoundary": {
+              "$ref": "#/$defs/nonBlankString"
+            },
+            "executionAuthorityBoundary": {
+              "$ref": "#/$defs/nonBlankString"
+            }
+          },
+          "required": [
+            "decisionAuthorityBoundary",
+            "preparationAuthorityBoundary",
+            "reviewAuthorityBoundary",
+            "publicationAuthorityBoundary",
+            "administrationAuthorityBoundary",
+            "executionAuthorityBoundary"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "decisionAuthority",
+        "decisionMakerReference",
+        "authorityScope",
+        "authorityLimitations",
+        "authoritySeparation"
+      ],
+      "additionalProperties": false
+    },
+    "approvedRevisionAndApprovalProvenance": {
+      "description": "The exact Decision Record revision represented as approved plus attributable approval and authority provenance. The schema cannot prove pin self-equality, approval validity, attribution, or effectiveness.",
+      "type": "object",
+      "properties": {
+        "approvedDecisionRecord": {
+          "$ref": "#/$defs/artifactRevisionPin"
+        },
+        "attributableApprovalReferences": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "governingAuthorityTraceability": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "approvalStatement": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "effectiveConditions": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "approvedDecisionRecord",
+        "attributableApprovalReferences",
+        "governingAuthorityTraceability",
+        "approvalStatement",
+        "effectiveConditions"
+      ],
+      "additionalProperties": false
+    },
+    "decisionBoundaryQuestionAndOutcome": {
+      "description": "One locally referenced bounded decision question and its opaque declared outcome. It does not impose a universal outcome taxonomy or bundle unrelated decisions.",
+      "type": "object",
+      "properties": {
+        "localDecisionReference": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "coherentDecisionBoundary": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "decisionQuestion": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "outcomeDisposition": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "outcomeStatement": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "excludedOrSeparatelyApprovableDecisions": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "localDecisionReference",
+        "coherentDecisionBoundary",
+        "decisionQuestion",
+        "outcomeDisposition",
+        "outcomeStatement",
+        "excludedOrSeparatelyApprovableDecisions"
+      ],
+      "additionalProperties": false
+    },
+    "rationaleDecisionBasisTradeoffsAlternativesConstraintsAndRisks": {
+      "description": "Declared rationale and basis with explicit tradeoffs, alternatives, constraints, and risks. It performs no scoring, ranking, optimization, recommendation, or reasoning.",
+      "type": "object",
+      "properties": {
+        "rationale": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "decisionBasisReferences": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "tradeoffs": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "alternatives": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "constraints": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "risks": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "rationale",
+        "decisionBasisReferences",
+        "tradeoffs",
+        "alternatives",
+        "constraints",
+        "risks"
+      ],
+      "additionalProperties": false
+    },
+    "governingSourcesAndWorkBoundaryTraceability": {
+      "description": "Exact governing-source declarations and bounded Project Charter, Workstream, and Task Contract traceability without retrieval or schema coupling.",
+      "type": "object",
+      "properties": {
+        "governingSources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/governingSource"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "projectCharterBoundaries": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "workstreamBoundaries": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "taskContractBoundaries": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "governingSources",
+        "projectCharterBoundaries",
+        "workstreamBoundaries",
+        "taskContractBoundaries"
+      ],
+      "additionalProperties": false
+    },
+    "evidenceReviewRecommendationsUncertaintyDissentAndHandling": {
+      "description": "Separated evidentiary, review, recommendation, uncertainty, dissent, unresolved-question, and handling declarations. Inputs are not approval and cannot make or execute a decision.",
+      "type": "object",
+      "properties": {
+        "evidenceReferences": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "reviewReferences": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "recommendations": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "uncertainty": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "dissent": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "unresolvedQuestions": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "authorizedHandling": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "inputIsNotApproval": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "evidenceReferences",
+        "reviewReferences",
+        "recommendations",
+        "uncertainty",
+        "dissent",
+        "unresolvedQuestions",
+        "authorizedHandling",
+        "inputIsNotApproval"
+      ],
+      "additionalProperties": false
+    },
+    "authorshipReviewApprovalDecisionEffectivePublicationAndImplementationTiming": {
+      "description": "Seven separately declared opaque temporal coordinates. The schema assigns no format, clock, timestamp, chronology, causal order, or temporal truth.",
+      "type": "object",
+      "properties": {
+        "authorshipTiming": {
+          "$ref": "#/$defs/opaqueValueDeclaration"
+        },
+        "reviewTiming": {
+          "$ref": "#/$defs/opaqueValueDeclaration"
+        },
+        "approvalTiming": {
+          "$ref": "#/$defs/opaqueValueDeclaration"
+        },
+        "decisionTiming": {
+          "$ref": "#/$defs/opaqueValueDeclaration"
+        },
+        "effectiveTiming": {
+          "$ref": "#/$defs/opaqueValueDeclaration"
+        },
+        "publicationTiming": {
+          "$ref": "#/$defs/opaqueValueDeclaration"
+        },
+        "implementationTiming": {
+          "$ref": "#/$defs/opaqueValueDeclaration"
+        }
+      },
+      "required": [
+        "authorshipTiming",
+        "reviewTiming",
+        "approvalTiming",
+        "decisionTiming",
+        "effectiveTiming",
+        "publicationTiming",
+        "implementationTiming"
+      ],
+      "additionalProperties": false
+    },
+    "scopeConditionsAndTemporalApplicability": {
+      "description": "Declared scope, exclusions, conditions, prerequisites, temporal applicability, affected audiences and environments, and non-generalization limits.",
+      "type": "object",
+      "properties": {
+        "applicableScope": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "excludedScope": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "conditions": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "prerequisites": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "temporalApplicability": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "affectedAudiences": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "affectedEnvironments": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "nonGeneralizationLimits": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        }
+      },
+      "required": [
+        "applicableScope",
+        "excludedScope",
+        "conditions",
+        "prerequisites",
+        "temporalApplicability",
+        "affectedAudiences",
+        "affectedEnvironments",
+        "nonGeneralizationLimits"
+      ],
+      "additionalProperties": false
+    },
+    "consequencesPermittedNextActionsConstraintsDependenciesAndObligations": {
+      "description": "Declared consequences and bounded possible follow-on work. These declarations grant no authority and perform no action.",
+      "type": "object",
+      "properties": {
+        "consequences": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "permittedNextActions": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "constraints": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "dependencies": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "obligations": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "unresolvedConsequences": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "consequences",
+        "permittedNextActions",
+        "constraints",
+        "dependencies",
+        "obligations",
+        "unresolvedConsequences"
+      ],
+      "additionalProperties": false
+    },
+    "acceptanceIntegrationReleaseDeploymentPublicationMergeAndExecutionBoundary": {
+      "description": "Seven separately governed consequential-action categories. Every specified relation identifies separate authority and remains non-automatic.",
+      "type": "object",
+      "properties": {
+        "acceptance": {
+          "$ref": "#/$defs/downstreamBoundaryDeclaration"
+        },
+        "integration": {
+          "$ref": "#/$defs/downstreamBoundaryDeclaration"
+        },
+        "release": {
+          "$ref": "#/$defs/downstreamBoundaryDeclaration"
+        },
+        "deployment": {
+          "$ref": "#/$defs/downstreamBoundaryDeclaration"
+        },
+        "publication": {
+          "$ref": "#/$defs/downstreamBoundaryDeclaration"
+        },
+        "merge": {
+          "$ref": "#/$defs/downstreamBoundaryDeclaration"
+        },
+        "execution": {
+          "$ref": "#/$defs/downstreamBoundaryDeclaration"
+        }
+      },
+      "required": [
+        "acceptance",
+        "integration",
+        "release",
+        "deployment",
+        "publication",
+        "merge",
+        "execution"
+      ],
+      "additionalProperties": false
+    },
+    "amendmentCorrectionRevocationAndSupersession": {
+      "description": "Four separate exact peer-decision relationship categories. No relation mutates history or creates an automatic lifecycle effect.",
+      "type": "object",
+      "properties": {
+        "amendments": {
+          "$ref": "#/$defs/peerDecisionRelationDeclaration"
+        },
+        "corrections": {
+          "$ref": "#/$defs/peerDecisionRelationDeclaration"
+        },
+        "revocations": {
+          "$ref": "#/$defs/peerDecisionRelationDeclaration"
+        },
+        "supersessions": {
+          "$ref": "#/$defs/peerDecisionRelationDeclaration"
+        }
+      },
+      "required": [
+        "amendments",
+        "corrections",
+        "revocations",
+        "supersessions"
+      ],
+      "additionalProperties": false
+    },
+    "peerDecisionDependenciesConflictsAndAuthorizedResolution": {
+      "description": "Peer-decision dependencies, conflicts, unresolved conflicts, and attributable resolution references. No latest-wins, automatic resolution, ranking, voting, majority, or consensus rule exists.",
+      "type": "object",
+      "properties": {
+        "dependencies": {
+          "$ref": "#/$defs/peerDecisionRelationDeclaration"
+        },
+        "conflicts": {
+          "$ref": "#/$defs/peerDecisionRelationDeclaration"
+        },
+        "unresolvedConflicts": {
+          "$ref": "#/$defs/peerDecisionRelationDeclaration"
+        },
+        "authorizedResolutions": {
+          "$ref": "#/$defs/peerDecisionRelationDeclaration"
+        }
+      },
+      "required": [
+        "dependencies",
+        "conflicts",
+        "unresolvedConflicts",
+        "authorizedResolutions"
+      ],
+      "additionalProperties": false
+    },
+    "rolesDelegationAccountabilityAndTechnicalAccessBoundary": {
+      "description": "Declared roles, accountability, delegation provenance, overlap, and technical-access boundary. It allocates, resolves, credentials, assigns, or enforces no identity or authority.",
+      "type": "object",
+      "properties": {
+        "authors": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "reviewers": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "evidenceProviders": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "operators": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "accountableDecisionMakerReference": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "delegationSource": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "roleOverlap": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "technicalAccessBoundary": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        }
+      },
+      "required": [
+        "authors",
+        "reviewers",
+        "evidenceProviders",
+        "operators",
+        "accountableDecisionMakerReference",
+        "delegationSource",
+        "roleOverlap",
+        "technicalAccessBoundary"
+      ],
+      "additionalProperties": false
+    },
+    "externalRecordAndPublicationTraceability": {
+      "description": "Five separately declared external-record categories. References remain opaque and create no retrieval, publication, merge, or authority effect.",
+      "type": "object",
+      "properties": {
+        "architectureDecisionRecords": {
+          "$ref": "#/$defs/externalRecordDeclaration"
+        },
+        "issues": {
+          "$ref": "#/$defs/externalRecordDeclaration"
+        },
+        "comments": {
+          "$ref": "#/$defs/externalRecordDeclaration"
+        },
+        "pullRequests": {
+          "$ref": "#/$defs/externalRecordDeclaration"
+        },
+        "commits": {
+          "$ref": "#/$defs/externalRecordDeclaration"
+        }
+      },
+      "required": [
+        "architectureDecisionRecords",
+        "issues",
+        "comments",
+        "pullRequests",
+        "commits"
+      ],
+      "additionalProperties": false
+    },
+    "securityPrivacyAccessDisclosureAndRestrictedBasis": {
+      "description": "Security, privacy, access, confidentiality, restricted-basis, disclosure, information-loss, and residual-risk declarations. It implements no permission, access, disclosure, redaction, sanitization, encryption, retention, or enforcement mechanism.",
+      "type": "object",
+      "properties": {
+        "security": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "privacy": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "access": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "confidentiality": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "restrictedBasis": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "disclosure": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "redactionInformationLoss": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "residualRisk": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "security",
+        "privacy",
+        "access",
+        "confidentiality",
+        "restrictedBasis",
+        "disclosure",
+        "redactionInformationLoss",
+        "residualRisk"
+      ],
+      "additionalProperties": false
+    },
+    "lifecycleHistoricalProvenanceAndFollowOnAuthority": {
+      "description": "Historical lifecycle and follow-on authority traceability without state, transition, sequencing, workflow, execution, or automatic effect.",
+      "type": "object",
+      "properties": {
+        "lifecycleNarrative": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "priorRevisionTraceability": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "laterRevisionTraceability": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "historicalPreservation": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "followOnAuthorityReferences": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "nonAutomaticEffects": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "remainingActionsRequiringSeparateAuthority": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "lifecycleNarrative",
+        "priorRevisionTraceability",
+        "laterRevisionTraceability",
+        "historicalPreservation",
+        "followOnAuthorityReferences",
+        "nonAutomaticEffects",
+        "remainingActionsRequiringSeparateAuthority"
+      ],
+      "additionalProperties": false
+    },
+    "decisionRecordPayload": {
+      "description": "The closed seventeen-property CONTRACT-008 payload. It records a bounded attributable consequential decision and provenance but cannot allocate authority, verify approval, execute the decision, or create downstream effects.",
+      "type": "object",
+      "properties": {
+        "decisionAuthorityAndDecisionMaker": {
+          "$ref": "#/$defs/decisionAuthorityAndDecisionMaker"
+        },
+        "approvedRevisionAndApprovalProvenance": {
+          "$ref": "#/$defs/approvedRevisionAndApprovalProvenance"
+        },
+        "decisionBoundaryQuestionAndOutcome": {
+          "$ref": "#/$defs/decisionBoundaryQuestionAndOutcome"
+        },
+        "rationaleDecisionBasisTradeoffsAlternativesConstraintsAndRisks": {
+          "$ref": "#/$defs/rationaleDecisionBasisTradeoffsAlternativesConstraintsAndRisks"
+        },
+        "governingSourcesAndWorkBoundaryTraceability": {
+          "$ref": "#/$defs/governingSourcesAndWorkBoundaryTraceability"
+        },
+        "artifactRelationships": {
+          "$ref": "#/$defs/artifactRelationships"
+        },
+        "evidenceReviewRecommendationsUncertaintyDissentAndHandling": {
+          "$ref": "#/$defs/evidenceReviewRecommendationsUncertaintyDissentAndHandling"
+        },
+        "authorshipReviewApprovalDecisionEffectivePublicationAndImplementationTiming": {
+          "$ref": "#/$defs/authorshipReviewApprovalDecisionEffectivePublicationAndImplementationTiming"
+        },
+        "scopeConditionsAndTemporalApplicability": {
+          "$ref": "#/$defs/scopeConditionsAndTemporalApplicability"
+        },
+        "consequencesPermittedNextActionsConstraintsDependenciesAndObligations": {
+          "$ref": "#/$defs/consequencesPermittedNextActionsConstraintsDependenciesAndObligations"
+        },
+        "acceptanceIntegrationReleaseDeploymentPublicationMergeAndExecutionBoundary": {
+          "$ref": "#/$defs/acceptanceIntegrationReleaseDeploymentPublicationMergeAndExecutionBoundary"
+        },
+        "amendmentCorrectionRevocationAndSupersession": {
+          "$ref": "#/$defs/amendmentCorrectionRevocationAndSupersession"
+        },
+        "peerDecisionDependenciesConflictsAndAuthorizedResolution": {
+          "$ref": "#/$defs/peerDecisionDependenciesConflictsAndAuthorizedResolution"
+        },
+        "rolesDelegationAccountabilityAndTechnicalAccessBoundary": {
+          "$ref": "#/$defs/rolesDelegationAccountabilityAndTechnicalAccessBoundary"
+        },
+        "externalRecordAndPublicationTraceability": {
+          "$ref": "#/$defs/externalRecordAndPublicationTraceability"
+        },
+        "securityPrivacyAccessDisclosureAndRestrictedBasis": {
+          "$ref": "#/$defs/securityPrivacyAccessDisclosureAndRestrictedBasis"
+        },
+        "lifecycleHistoricalProvenanceAndFollowOnAuthority": {
+          "$ref": "#/$defs/lifecycleHistoricalProvenanceAndFollowOnAuthority"
+        }
+      },
+      "required": [
+        "decisionAuthorityAndDecisionMaker",
+        "approvedRevisionAndApprovalProvenance",
+        "decisionBoundaryQuestionAndOutcome",
+        "rationaleDecisionBasisTradeoffsAlternativesConstraintsAndRisks",
+        "governingSourcesAndWorkBoundaryTraceability",
+        "artifactRelationships",
+        "evidenceReviewRecommendationsUncertaintyDissentAndHandling",
+        "authorshipReviewApprovalDecisionEffectivePublicationAndImplementationTiming",
+        "scopeConditionsAndTemporalApplicability",
+        "consequencesPermittedNextActionsConstraintsDependenciesAndObligations",
+        "acceptanceIntegrationReleaseDeploymentPublicationMergeAndExecutionBoundary",
+        "amendmentCorrectionRevocationAndSupersession",
+        "peerDecisionDependenciesConflictsAndAuthorizedResolution",
+        "rolesDelegationAccountabilityAndTechnicalAccessBoundary",
+        "externalRecordAndPublicationTraceability",
+        "securityPrivacyAccessDisclosureAndRestrictedBasis",
+        "lifecycleHistoricalProvenanceAndFollowOnAuthority"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
