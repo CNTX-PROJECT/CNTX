@@ -1,0 +1,578 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/CNTX-PROJECT/CNTX/schemas/context-packet/1.0.0",
+  "$comment": "Proposed ARCH-015 Context Packet Schema Version 1.0.0 under issue #56 and attributable Owner / Final Authority creation-authority comment 5216129981. This candidate is inactive. Schema validity grants no contract conformance, approval, task authority, source access, retrieval or disclosure permission, trust, acceptance, release, deployment, merge permission, or Execution Result authority.",
+  "title": "CNTX Context Packet Artifact",
+  "description": "A complete Context Packet artifact with the exact Accepted Common Artifact Envelope and a closed CONTRACT-004 payload. This schema evaluates structure only and neither selects nor retrieves context.",
+  "type": "object",
+  "properties": {
+    "envelope": {
+      "description": "The exact Accepted Common Artifact Envelope specialized for the Context Packet Artifact Type, Contract Definition, and Schema Definition.",
+      "allOf": [
+        {
+          "$ref": "https://github.com/CNTX-PROJECT/CNTX/schemas/common-artifact-envelope/1.0.0"
+        },
+        {
+          "properties": {
+            "artifactType": {
+              "const": "context-packet"
+            },
+            "governingContract": {
+              "properties": {
+                "identifier": {
+                  "const": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/context-packet"
+                },
+                "version": {
+                  "const": "1.0.0"
+                }
+              }
+            },
+            "governingSchema": {
+              "properties": {
+                "identifier": {
+                  "const": "https://github.com/CNTX-PROJECT/CNTX/schemas/context-packet/1.0.0"
+                },
+                "version": {
+                  "const": "1.0.0"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "payload": {
+      "$ref": "#/$defs/contextPacketPayload"
+    }
+  },
+  "required": [
+    "envelope",
+    "payload"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "nonBlankString": {
+      "description": "A string containing at least one non-whitespace character. Its content remains declarative and subject to governing authority and human review.",
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "nonEmptyUniqueStatementArray": {
+      "description": "One or more distinct non-blank declarative statements.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/nonBlankString"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "specifiedDeclaration": {
+      "description": "The category was assessed and one or more items are specified.",
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "specified"
+        },
+        "items": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        }
+      },
+      "required": [
+        "disposition",
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "noneDeclaration": {
+      "description": "The category was assessed for this Artifact Revision and no item is declared. This is not approval, completeness, authority, or permanent absence.",
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "none"
+        }
+      },
+      "required": [
+        "disposition"
+      ],
+      "additionalProperties": false
+    },
+    "declarationSet": {
+      "description": "Exactly one explicit specified-items or assessed-none declaration.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/specifiedDeclaration"
+        },
+        {
+          "$ref": "#/$defs/noneDeclaration"
+        }
+      ]
+    },
+    "artifactRevisionPin": {
+      "description": "An opaque pin to one governing Task Contract Artifact Instance and Revision. The schema does not retrieve, resolve, embed, validate, approve, or prove it.",
+      "type": "object",
+      "properties": {
+        "artifactInstanceIdentifier": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "artifactRevision": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "artifactInstanceIdentifier",
+        "artifactRevision"
+      ],
+      "additionalProperties": false
+    },
+    "selectionPurpose": {
+      "description": "The bounded purpose and intended use of this context selection. These declarations prove no relevance, sufficiency, authority, access, or capability.",
+      "type": "object",
+      "properties": {
+        "taskObjective": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "packetPurpose": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "intendedUse": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "intendedExecutorClass": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "taskObjective",
+        "packetPurpose",
+        "intendedUse",
+        "intendedExecutorClass"
+      ],
+      "additionalProperties": false
+    },
+    "applicableGoverningContext": {
+      "description": "Explicit assessments of applicable Project Charter, Workstream, approval, review, and decision context; no embedded artifact or authority.",
+      "type": "object",
+      "properties": {
+        "projectCharterContext": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "workstreamContext": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "approvalContext": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "reviewContext": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "decisionContext": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "projectCharterContext",
+        "workstreamContext",
+        "approvalContext",
+        "reviewContext",
+        "decisionContext"
+      ],
+      "additionalProperties": false
+    },
+    "selectedSourceEntry": {
+      "description": "One provenance-bearing selected-source declaration. References remain opaque; treatments describe representation and activate no algorithm or permission.",
+      "type": "object",
+      "properties": {
+        "sourceReference": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "sourceType": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "relevanceRationale": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "revisionOrVersionContext": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "includedMaterial": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "contentTreatments": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "direct",
+              "summarized",
+              "extracted",
+              "redacted",
+              "transformed",
+              "reference-only"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "authorityAndApplicabilityContext": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "knownLossAndLimitations": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "sourceReference",
+        "sourceType",
+        "relevanceRationale",
+        "revisionOrVersionContext",
+        "includedMaterial",
+        "contentTreatments",
+        "authorityAndApplicabilityContext",
+        "knownLossAndLimitations"
+      ],
+      "additionalProperties": false
+    },
+    "selectedSources": {
+      "description": "One or more distinct selected-source declarations. JSON-value uniqueness proves no semantic deduplication.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/selectedSourceEntry"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "exclusionsAndForbiddenContext": {
+      "description": "Explicit context exclusions, forbidden context, inaccessible sources, omissions, and redaction boundaries; declarations are not enforcement.",
+      "type": "object",
+      "properties": {
+        "excludedContext": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "forbiddenContext": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "inaccessibleSources": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "deliberateOmissions": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "redactionBoundaries": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "excludedContext",
+        "forbiddenContext",
+        "inaccessibleSources",
+        "deliberateOmissions",
+        "redactionBoundaries"
+      ],
+      "additionalProperties": false
+    },
+    "provenanceAndPinning": {
+      "description": "Provenance, pinning, and derivation requirements without digest, signature, trust, registry, or resolver behavior.",
+      "type": "object",
+      "properties": {
+        "provenanceRequirements": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "pinningRequirements": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "derivationTraceability": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "provenanceLimitations": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "provenanceRequirements",
+        "pinningRequirements",
+        "derivationTraceability",
+        "provenanceLimitations"
+      ],
+      "additionalProperties": false
+    },
+    "freshnessAndApplicability": {
+      "description": "Freshness, applicability, staleness-risk, and reassessment declarations without clocks, timers, scoring, or automatic state.",
+      "type": "object",
+      "properties": {
+        "freshnessAssessment": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "applicabilityAssessment": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "reassessmentTriggers": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "stalenessRisks": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "freshnessAssessment",
+        "applicabilityAssessment",
+        "reassessmentTriggers",
+        "stalenessRisks"
+      ],
+      "additionalProperties": false
+    },
+    "assumptionsDependenciesAndUncertainty": {
+      "description": "Explicit assumptions, dependencies, uncertainty, conflicts, missing sources, and inaccessible-source impact; declarations resolve none of them.",
+      "type": "object",
+      "properties": {
+        "assumptions": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "dependencies": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "uncertainty": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "conflicts": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "missingSources": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "inaccessibleSourceImpact": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "assumptions",
+        "dependencies",
+        "uncertainty",
+        "conflicts",
+        "missingSources",
+        "inaccessibleSourceImpact"
+      ],
+      "additionalProperties": false
+    },
+    "transformationAndRedaction": {
+      "description": "Limits and information-loss declarations; no summarization, extraction, transformation, redaction, or sanitization algorithm.",
+      "type": "object",
+      "properties": {
+        "summaryLimits": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "extractionLimits": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "transformationLimits": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "redactionLimits": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "sanitizationLimits": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "informationLoss": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "summaryLimits",
+        "extractionLimits",
+        "transformationLimits",
+        "redactionLimits",
+        "sanitizationLimits",
+        "informationLoss"
+      ],
+      "additionalProperties": false
+    },
+    "securityPrivacyAndAccess": {
+      "description": "Security, privacy, confidentiality, public/private, access, and least-disclosure constraints; they grant no access or disclosure permission.",
+      "type": "object",
+      "properties": {
+        "securityConstraints": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "privacyConstraints": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "confidentialityConstraints": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "publicPrivateBoundaries": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "accessConstraints": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "leastDisclosureConstraints": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        }
+      },
+      "required": [
+        "securityConstraints",
+        "privacyConstraints",
+        "confidentialityConstraints",
+        "publicPrivateBoundaries",
+        "accessConstraints",
+        "leastDisclosureConstraints"
+      ],
+      "additionalProperties": false
+    },
+    "sufficiencyAndMinimization": {
+      "description": "Evidence and rationale for relevance, sufficiency, minimization, and validation, plus explicit limitations; no property proves those qualities.",
+      "type": "object",
+      "properties": {
+        "relevanceEvidence": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "sufficiencyRationale": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "minimizationRationale": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "validationObligations": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "knownLimitations": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "specialistReviewBoundaries": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "relevanceEvidence",
+        "sufficiencyRationale",
+        "minimizationRationale",
+        "validationObligations",
+        "knownLimitations",
+        "specialistReviewBoundaries"
+      ],
+      "additionalProperties": false
+    },
+    "stopAndEscalation": {
+      "description": "Stop and escalation declarations without workflow, notification, queue, state, timer, scheduler, or orchestration.",
+      "type": "object",
+      "properties": {
+        "stopConditions": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "escalationConditions": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        }
+      },
+      "required": [
+        "stopConditions",
+        "escalationConditions"
+      ],
+      "additionalProperties": false
+    },
+    "lifecycleAndExecutionTraceability": {
+      "description": "Lifecycle assessments and execution-traceability requirements without lifecycle state, timestamps, automation, or an Execution Result dependency.",
+      "type": "object",
+      "properties": {
+        "executionTraceabilityRequirements": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "validity": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "amendment": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "refresh": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "withdrawal": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "expiration": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "supersession": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "retirement": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "retention": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "executionTraceabilityRequirements",
+        "validity",
+        "amendment",
+        "refresh",
+        "withdrawal",
+        "expiration",
+        "supersession",
+        "retirement",
+        "retention"
+      ],
+      "additionalProperties": false
+    },
+    "contextPacketPayload": {
+      "description": "The closed payload implementing only the thirteen direct structural responsibilities selected from Accepted CONTRACT-004.",
+      "type": "object",
+      "properties": {
+        "governingTaskContract": {
+          "$ref": "#/$defs/artifactRevisionPin"
+        },
+        "selectionPurpose": {
+          "$ref": "#/$defs/selectionPurpose"
+        },
+        "applicableGoverningContext": {
+          "$ref": "#/$defs/applicableGoverningContext"
+        },
+        "selectedSources": {
+          "$ref": "#/$defs/selectedSources"
+        },
+        "exclusionsAndForbiddenContext": {
+          "$ref": "#/$defs/exclusionsAndForbiddenContext"
+        },
+        "provenanceAndPinning": {
+          "$ref": "#/$defs/provenanceAndPinning"
+        },
+        "freshnessAndApplicability": {
+          "$ref": "#/$defs/freshnessAndApplicability"
+        },
+        "assumptionsDependenciesAndUncertainty": {
+          "$ref": "#/$defs/assumptionsDependenciesAndUncertainty"
+        },
+        "transformationAndRedaction": {
+          "$ref": "#/$defs/transformationAndRedaction"
+        },
+        "securityPrivacyAndAccess": {
+          "$ref": "#/$defs/securityPrivacyAndAccess"
+        },
+        "sufficiencyAndMinimization": {
+          "$ref": "#/$defs/sufficiencyAndMinimization"
+        },
+        "stopAndEscalation": {
+          "$ref": "#/$defs/stopAndEscalation"
+        },
+        "lifecycleAndExecutionTraceability": {
+          "$ref": "#/$defs/lifecycleAndExecutionTraceability"
+        }
+      },
+      "required": [
+        "governingTaskContract",
+        "selectionPurpose",
+        "applicableGoverningContext",
+        "selectedSources",
+        "exclusionsAndForbiddenContext",
+        "provenanceAndPinning",
+        "freshnessAndApplicability",
+        "assumptionsDependenciesAndUncertainty",
+        "transformationAndRedaction",
+        "securityPrivacyAndAccess",
+        "sufficiencyAndMinimization",
+        "stopAndEscalation",
+        "lifecycleAndExecutionTraceability"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

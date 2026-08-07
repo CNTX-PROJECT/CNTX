@@ -1,0 +1,4872 @@
+{
+  "schemaId": "https://github.com/CNTX-PROJECT/CNTX/schemas/context-packet/1.0.0",
+  "candidateSchemaVersion": "1.0.0",
+  "documentStatus": "Proposed",
+  "nonNormative": true,
+  "issue": "https://github.com/CNTX-PROJECT/CNTX/issues/56",
+  "ownerCreationAuthorityComment": "5216129981",
+  "description": "Public-safe synthetic validation cases for Proposed inactive ARCH-015 Schema Version 1.0.0. Expected validity is structural evidence only and grants no contract conformance, approval, task authority, source access, retrieval or disclosure permission, trust, acceptance, release, deployment, merge permission, or Execution Result authority.",
+  "cases": [
+    {
+      "name": "valid minimal assessed reference-only packet",
+      "valid": true,
+      "instance": {
+        "envelope": {
+          "artifactType": "context-packet",
+          "artifactInstance": {
+            "identifier": "synthetic-context-packet-001",
+            "revision": "revision-001"
+          },
+          "governingContract": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/context-packet",
+            "version": "1.0.0"
+          },
+          "governingSchema": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/context-packet/1.0.0",
+            "version": "1.0.0"
+          }
+        },
+        "payload": {
+          "governingTaskContract": {
+            "artifactInstanceIdentifier": "synthetic-task-contract-001",
+            "artifactRevision": "revision-001"
+          },
+          "selectionPurpose": {
+            "taskObjective": "Prepare one bounded public-safe result.",
+            "packetPurpose": "Provide only the minimum relevant context.",
+            "intendedUse": "Human-reviewed bounded execution support.",
+            "intendedExecutorClass": "Bounded implementer"
+          },
+          "applicableGoverningContext": {
+            "projectCharterContext": {
+              "disposition": "none"
+            },
+            "workstreamContext": {
+              "disposition": "none"
+            },
+            "approvalContext": {
+              "disposition": "none"
+            },
+            "reviewContext": {
+              "disposition": "none"
+            },
+            "decisionContext": {
+              "disposition": "none"
+            }
+          },
+          "selectedSources": [
+            {
+              "sourceReference": "public-source-001",
+              "sourceType": "public synthetic source",
+              "relevanceRationale": "The source is directly relevant to the bounded task objective.",
+              "revisionOrVersionContext": {
+                "disposition": "specified",
+                "items": [
+                  "Synthetic revision 1."
+                ]
+              },
+              "includedMaterial": {
+                "disposition": "none"
+              },
+              "contentTreatments": [
+                "reference-only"
+              ],
+              "authorityAndApplicabilityContext": {
+                "disposition": "none"
+              },
+              "knownLossAndLimitations": {
+                "disposition": "none"
+              }
+            }
+          ],
+          "exclusionsAndForbiddenContext": {
+            "excludedContext": {
+              "disposition": "specified",
+              "items": [
+                "Unrelated project history."
+              ]
+            },
+            "forbiddenContext": {
+              "disposition": "specified",
+              "items": [
+                "Secrets, credentials, and private project data."
+              ]
+            },
+            "inaccessibleSources": {
+              "disposition": "none"
+            },
+            "deliberateOmissions": {
+              "disposition": "none"
+            },
+            "redactionBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "provenanceAndPinning": {
+            "provenanceRequirements": [
+              "Preserve exact source provenance."
+            ],
+            "pinningRequirements": [
+              "Record the assessed source revision context."
+            ],
+            "derivationTraceability": [
+              "Record material derivation limits."
+            ],
+            "provenanceLimitations": {
+              "disposition": "none"
+            }
+          },
+          "freshnessAndApplicability": {
+            "freshnessAssessment": [
+              "Freshness was assessed for the bounded task."
+            ],
+            "applicabilityAssessment": [
+              "Applicability was assessed against the task objective."
+            ],
+            "reassessmentTriggers": [
+              "Reassess on a material source or task change."
+            ],
+            "stalenessRisks": {
+              "disposition": "none"
+            }
+          },
+          "assumptionsDependenciesAndUncertainty": {
+            "assumptions": {
+              "disposition": "none"
+            },
+            "dependencies": {
+              "disposition": "none"
+            },
+            "uncertainty": {
+              "disposition": "none"
+            },
+            "conflicts": {
+              "disposition": "none"
+            },
+            "missingSources": {
+              "disposition": "none"
+            },
+            "inaccessibleSourceImpact": {
+              "disposition": "none"
+            }
+          },
+          "transformationAndRedaction": {
+            "summaryLimits": {
+              "disposition": "none"
+            },
+            "extractionLimits": {
+              "disposition": "none"
+            },
+            "transformationLimits": {
+              "disposition": "none"
+            },
+            "redactionLimits": {
+              "disposition": "none"
+            },
+            "sanitizationLimits": {
+              "disposition": "none"
+            },
+            "informationLoss": {
+              "disposition": "none"
+            }
+          },
+          "securityPrivacyAndAccess": {
+            "securityConstraints": [
+              "Exclude credentials and exploitable operational detail."
+            ],
+            "privacyConstraints": [
+              "Exclude personal and private project data."
+            ],
+            "confidentialityConstraints": [
+              "Use public-safe synthetic content only."
+            ],
+            "publicPrivateBoundaries": [
+              "Keep private context outside public artifacts."
+            ],
+            "accessConstraints": [
+              "A reference grants no source access."
+            ],
+            "leastDisclosureConstraints": [
+              "Disclose only minimum task-relevant material."
+            ]
+          },
+          "sufficiencyAndMinimization": {
+            "relevanceEvidence": [
+              "Each source has an explicit relevance rationale."
+            ],
+            "sufficiencyRationale": [
+              "The selected sources cover the declared task purpose."
+            ],
+            "minimizationRationale": [
+              "Unrelated context is explicitly excluded."
+            ],
+            "validationObligations": [
+              "Validate structure and review semantic sufficiency separately."
+            ],
+            "knownLimitations": {
+              "disposition": "none"
+            },
+            "specialistReviewBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "stopAndEscalation": {
+            "stopConditions": [
+              "Stop on authority, scope, provenance, security, or privacy uncertainty."
+            ],
+            "escalationConditions": [
+              "Escalate any material mismatch to final human authority."
+            ]
+          },
+          "lifecycleAndExecutionTraceability": {
+            "validity": {
+              "disposition": "specified",
+              "items": [
+                "Valid only for the pinned governing Task Contract revision."
+              ]
+            },
+            "amendment": {
+              "disposition": "specified",
+              "items": [
+                "Material change requires a new reviewed Artifact Revision."
+              ]
+            },
+            "refresh": {
+              "disposition": "specified",
+              "items": [
+                "Refresh after a material source change."
+              ]
+            },
+            "withdrawal": {
+              "disposition": "none"
+            },
+            "expiration": {
+              "disposition": "none"
+            },
+            "supersession": {
+              "disposition": "none"
+            },
+            "retirement": {
+              "disposition": "none"
+            },
+            "retention": {
+              "disposition": "specified",
+              "items": [
+                "Preserve provenance and decision history."
+              ]
+            },
+            "executionTraceabilityRequirements": [
+              "A later Execution Result must preserve independent traceability without embedding here."
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "valid fully specified Unicode packet with mixed included and reference-only sources",
+      "valid": true,
+      "instance": {
+        "envelope": {
+          "artifactType": "context-packet",
+          "artifactInstance": {
+            "identifier": "synthetic-context-packet-unicode",
+            "revision": "revision-001"
+          },
+          "governingContract": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/context-packet",
+            "version": "1.0.0"
+          },
+          "governingSchema": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/context-packet/1.0.0",
+            "version": "1.0.0"
+          }
+        },
+        "payload": {
+          "governingTaskContract": {
+            "artifactInstanceIdentifier": "synthetic-task-contract-001",
+            "artifactRevision": "revision-001"
+          },
+          "selectionPurpose": {
+            "taskObjective": "Prepare one bounded public-safe result.",
+            "packetPurpose": "Provide minimale context voor een begrensde taak — gecontroleerd.",
+            "intendedUse": "Human-reviewed bounded execution support.",
+            "intendedExecutorClass": "Bounded implementer"
+          },
+          "applicableGoverningContext": {
+            "projectCharterContext": {
+              "disposition": "specified",
+              "items": [
+                "Applicable synthetic charter context."
+              ]
+            },
+            "workstreamContext": {
+              "disposition": "none"
+            },
+            "approvalContext": {
+              "disposition": "none"
+            },
+            "reviewContext": {
+              "disposition": "none"
+            },
+            "decisionContext": {
+              "disposition": "none"
+            }
+          },
+          "selectedSources": [
+            {
+              "sourceReference": "public-source-direct-α",
+              "sourceType": "public synthetic source",
+              "relevanceRationale": "The source is directly relevant to the bounded task objective.",
+              "revisionOrVersionContext": {
+                "disposition": "specified",
+                "items": [
+                  "Synthetic revision 1."
+                ]
+              },
+              "includedMaterial": {
+                "disposition": "specified",
+                "items": [
+                  "Synthetische openbare passage."
+                ]
+              },
+              "contentTreatments": [
+                "direct",
+                "extracted"
+              ],
+              "authorityAndApplicabilityContext": {
+                "disposition": "none"
+              },
+              "knownLossAndLimitations": {
+                "disposition": "none"
+              }
+            },
+            {
+              "sourceReference": "public-source-reference-β",
+              "sourceType": "public synthetic source",
+              "relevanceRationale": "The source is directly relevant to the bounded task objective.",
+              "revisionOrVersionContext": {
+                "disposition": "specified",
+                "items": [
+                  "Synthetic revision 1."
+                ]
+              },
+              "includedMaterial": {
+                "disposition": "none"
+              },
+              "contentTreatments": [
+                "reference-only"
+              ],
+              "authorityAndApplicabilityContext": {
+                "disposition": "none"
+              },
+              "knownLossAndLimitations": {
+                "disposition": "none"
+              }
+            }
+          ],
+          "exclusionsAndForbiddenContext": {
+            "excludedContext": {
+              "disposition": "specified",
+              "items": [
+                "Unrelated project history."
+              ]
+            },
+            "forbiddenContext": {
+              "disposition": "specified",
+              "items": [
+                "Secrets, credentials, and private project data."
+              ]
+            },
+            "inaccessibleSources": {
+              "disposition": "none"
+            },
+            "deliberateOmissions": {
+              "disposition": "none"
+            },
+            "redactionBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "provenanceAndPinning": {
+            "provenanceRequirements": [
+              "Preserve exact source provenance."
+            ],
+            "pinningRequirements": [
+              "Record the assessed source revision context."
+            ],
+            "derivationTraceability": [
+              "Record material derivation limits."
+            ],
+            "provenanceLimitations": {
+              "disposition": "none"
+            }
+          },
+          "freshnessAndApplicability": {
+            "freshnessAssessment": [
+              "Freshness was assessed for the bounded task."
+            ],
+            "applicabilityAssessment": [
+              "Applicability was assessed against the task objective."
+            ],
+            "reassessmentTriggers": [
+              "Reassess on a material source or task change."
+            ],
+            "stalenessRisks": {
+              "disposition": "none"
+            }
+          },
+          "assumptionsDependenciesAndUncertainty": {
+            "assumptions": {
+              "disposition": "none"
+            },
+            "dependencies": {
+              "disposition": "none"
+            },
+            "uncertainty": {
+              "disposition": "none"
+            },
+            "conflicts": {
+              "disposition": "none"
+            },
+            "missingSources": {
+              "disposition": "none"
+            },
+            "inaccessibleSourceImpact": {
+              "disposition": "none"
+            }
+          },
+          "transformationAndRedaction": {
+            "summaryLimits": {
+              "disposition": "none"
+            },
+            "extractionLimits": {
+              "disposition": "specified",
+              "items": [
+                "Only the declared public-safe passage was extracted."
+              ]
+            },
+            "transformationLimits": {
+              "disposition": "none"
+            },
+            "redactionLimits": {
+              "disposition": "none"
+            },
+            "sanitizationLimits": {
+              "disposition": "none"
+            },
+            "informationLoss": {
+              "disposition": "none"
+            }
+          },
+          "securityPrivacyAndAccess": {
+            "securityConstraints": [
+              "Exclude credentials and exploitable operational detail."
+            ],
+            "privacyConstraints": [
+              "Exclude personal and private project data."
+            ],
+            "confidentialityConstraints": [
+              "Use public-safe synthetic content only."
+            ],
+            "publicPrivateBoundaries": [
+              "Keep private context outside public artifacts."
+            ],
+            "accessConstraints": [
+              "A reference grants no source access."
+            ],
+            "leastDisclosureConstraints": [
+              "Disclose only minimum task-relevant material."
+            ]
+          },
+          "sufficiencyAndMinimization": {
+            "relevanceEvidence": [
+              "Each source has an explicit relevance rationale."
+            ],
+            "sufficiencyRationale": [
+              "The selected sources cover the declared task purpose."
+            ],
+            "minimizationRationale": [
+              "Unrelated context is explicitly excluded."
+            ],
+            "validationObligations": [
+              "Validate structure and review semantic sufficiency separately."
+            ],
+            "knownLimitations": {
+              "disposition": "none"
+            },
+            "specialistReviewBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "stopAndEscalation": {
+            "stopConditions": [
+              "Stop on authority, scope, provenance, security, or privacy uncertainty."
+            ],
+            "escalationConditions": [
+              "Escalate any material mismatch to final human authority."
+            ]
+          },
+          "lifecycleAndExecutionTraceability": {
+            "validity": {
+              "disposition": "specified",
+              "items": [
+                "Valid only for the pinned governing Task Contract revision."
+              ]
+            },
+            "amendment": {
+              "disposition": "specified",
+              "items": [
+                "Material change requires a new reviewed Artifact Revision."
+              ]
+            },
+            "refresh": {
+              "disposition": "specified",
+              "items": [
+                "Refresh after a material source change."
+              ]
+            },
+            "withdrawal": {
+              "disposition": "none"
+            },
+            "expiration": {
+              "disposition": "none"
+            },
+            "supersession": {
+              "disposition": "none"
+            },
+            "retirement": {
+              "disposition": "none"
+            },
+            "retention": {
+              "disposition": "specified",
+              "items": [
+                "Preserve provenance and decision history."
+              ]
+            },
+            "executionTraceabilityRequirements": [
+              "A later Execution Result must preserve independent traceability without embedding here."
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "valid packet with optional common provenance and digest evidence",
+      "valid": true,
+      "instance": {
+        "envelope": {
+          "artifactType": "context-packet",
+          "artifactInstance": {
+            "identifier": "synthetic-context-packet-001",
+            "revision": "revision-001"
+          },
+          "governingContract": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/context-packet",
+            "version": "1.0.0"
+          },
+          "governingSchema": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/context-packet/1.0.0",
+            "version": "1.0.0"
+          },
+          "provenanceReferences": [
+            {
+              "kind": "contract-definition",
+              "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/context-packet",
+              "version": "1.0.0"
+            }
+          ],
+          "contentDigests": [
+            {
+              "subject": {
+                "kind": "artifact",
+                "artifactType": "context-packet",
+                "identifier": "synthetic-context-packet-001",
+                "revision": "revision-001"
+              },
+              "method": "synthetic-example-method",
+              "value": "synthetic-example-value"
+            }
+          ]
+        },
+        "payload": {
+          "governingTaskContract": {
+            "artifactInstanceIdentifier": "synthetic-task-contract-001",
+            "artifactRevision": "revision-001"
+          },
+          "selectionPurpose": {
+            "taskObjective": "Prepare one bounded public-safe result.",
+            "packetPurpose": "Provide only the minimum relevant context.",
+            "intendedUse": "Human-reviewed bounded execution support.",
+            "intendedExecutorClass": "Bounded implementer"
+          },
+          "applicableGoverningContext": {
+            "projectCharterContext": {
+              "disposition": "none"
+            },
+            "workstreamContext": {
+              "disposition": "none"
+            },
+            "approvalContext": {
+              "disposition": "none"
+            },
+            "reviewContext": {
+              "disposition": "none"
+            },
+            "decisionContext": {
+              "disposition": "none"
+            }
+          },
+          "selectedSources": [
+            {
+              "sourceReference": "public-source-001",
+              "sourceType": "public synthetic source",
+              "relevanceRationale": "The source is directly relevant to the bounded task objective.",
+              "revisionOrVersionContext": {
+                "disposition": "specified",
+                "items": [
+                  "Synthetic revision 1."
+                ]
+              },
+              "includedMaterial": {
+                "disposition": "none"
+              },
+              "contentTreatments": [
+                "reference-only"
+              ],
+              "authorityAndApplicabilityContext": {
+                "disposition": "none"
+              },
+              "knownLossAndLimitations": {
+                "disposition": "none"
+              }
+            }
+          ],
+          "exclusionsAndForbiddenContext": {
+            "excludedContext": {
+              "disposition": "specified",
+              "items": [
+                "Unrelated project history."
+              ]
+            },
+            "forbiddenContext": {
+              "disposition": "specified",
+              "items": [
+                "Secrets, credentials, and private project data."
+              ]
+            },
+            "inaccessibleSources": {
+              "disposition": "none"
+            },
+            "deliberateOmissions": {
+              "disposition": "none"
+            },
+            "redactionBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "provenanceAndPinning": {
+            "provenanceRequirements": [
+              "Preserve exact source provenance."
+            ],
+            "pinningRequirements": [
+              "Record the assessed source revision context."
+            ],
+            "derivationTraceability": [
+              "Record material derivation limits."
+            ],
+            "provenanceLimitations": {
+              "disposition": "none"
+            }
+          },
+          "freshnessAndApplicability": {
+            "freshnessAssessment": [
+              "Freshness was assessed for the bounded task."
+            ],
+            "applicabilityAssessment": [
+              "Applicability was assessed against the task objective."
+            ],
+            "reassessmentTriggers": [
+              "Reassess on a material source or task change."
+            ],
+            "stalenessRisks": {
+              "disposition": "none"
+            }
+          },
+          "assumptionsDependenciesAndUncertainty": {
+            "assumptions": {
+              "disposition": "none"
+            },
+            "dependencies": {
+              "disposition": "none"
+            },
+            "uncertainty": {
+              "disposition": "none"
+            },
+            "conflicts": {
+              "disposition": "none"
+            },
+            "missingSources": {
+              "disposition": "none"
+            },
+            "inaccessibleSourceImpact": {
+              "disposition": "none"
+            }
+          },
+          "transformationAndRedaction": {
+            "summaryLimits": {
+              "disposition": "none"
+            },
+            "extractionLimits": {
+              "disposition": "none"
+            },
+            "transformationLimits": {
+              "disposition": "none"
+            },
+            "redactionLimits": {
+              "disposition": "none"
+            },
+            "sanitizationLimits": {
+              "disposition": "none"
+            },
+            "informationLoss": {
+              "disposition": "none"
+            }
+          },
+          "securityPrivacyAndAccess": {
+            "securityConstraints": [
+              "Exclude credentials and exploitable operational detail."
+            ],
+            "privacyConstraints": [
+              "Exclude personal and private project data."
+            ],
+            "confidentialityConstraints": [
+              "Use public-safe synthetic content only."
+            ],
+            "publicPrivateBoundaries": [
+              "Keep private context outside public artifacts."
+            ],
+            "accessConstraints": [
+              "A reference grants no source access."
+            ],
+            "leastDisclosureConstraints": [
+              "Disclose only minimum task-relevant material."
+            ]
+          },
+          "sufficiencyAndMinimization": {
+            "relevanceEvidence": [
+              "Each source has an explicit relevance rationale."
+            ],
+            "sufficiencyRationale": [
+              "The selected sources cover the declared task purpose."
+            ],
+            "minimizationRationale": [
+              "Unrelated context is explicitly excluded."
+            ],
+            "validationObligations": [
+              "Validate structure and review semantic sufficiency separately."
+            ],
+            "knownLimitations": {
+              "disposition": "none"
+            },
+            "specialistReviewBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "stopAndEscalation": {
+            "stopConditions": [
+              "Stop on authority, scope, provenance, security, or privacy uncertainty."
+            ],
+            "escalationConditions": [
+              "Escalate any material mismatch to final human authority."
+            ]
+          },
+          "lifecycleAndExecutionTraceability": {
+            "validity": {
+              "disposition": "specified",
+              "items": [
+                "Valid only for the pinned governing Task Contract revision."
+              ]
+            },
+            "amendment": {
+              "disposition": "specified",
+              "items": [
+                "Material change requires a new reviewed Artifact Revision."
+              ]
+            },
+            "refresh": {
+              "disposition": "specified",
+              "items": [
+                "Refresh after a material source change."
+              ]
+            },
+            "withdrawal": {
+              "disposition": "none"
+            },
+            "expiration": {
+              "disposition": "none"
+            },
+            "supersession": {
+              "disposition": "none"
+            },
+            "retirement": {
+              "disposition": "none"
+            },
+            "retention": {
+              "disposition": "specified",
+              "items": [
+                "Preserve provenance and decision history."
+              ]
+            },
+            "executionTraceabilityRequirements": [
+              "A later Execution Result must preserve independent traceability without embedding here."
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "invalid missing envelope",
+      "valid": false,
+      "instance": {
+        "payload": {
+          "governingTaskContract": {
+            "artifactInstanceIdentifier": "synthetic-task-contract-001",
+            "artifactRevision": "revision-001"
+          },
+          "selectionPurpose": {
+            "taskObjective": "Prepare one bounded public-safe result.",
+            "packetPurpose": "Provide only the minimum relevant context.",
+            "intendedUse": "Human-reviewed bounded execution support.",
+            "intendedExecutorClass": "Bounded implementer"
+          },
+          "applicableGoverningContext": {
+            "projectCharterContext": {
+              "disposition": "none"
+            },
+            "workstreamContext": {
+              "disposition": "none"
+            },
+            "approvalContext": {
+              "disposition": "none"
+            },
+            "reviewContext": {
+              "disposition": "none"
+            },
+            "decisionContext": {
+              "disposition": "none"
+            }
+          },
+          "selectedSources": [
+            {
+              "sourceReference": "public-source-001",
+              "sourceType": "public synthetic source",
+              "relevanceRationale": "The source is directly relevant to the bounded task objective.",
+              "revisionOrVersionContext": {
+                "disposition": "specified",
+                "items": [
+                  "Synthetic revision 1."
+                ]
+              },
+              "includedMaterial": {
+                "disposition": "none"
+              },
+              "contentTreatments": [
+                "reference-only"
+              ],
+              "authorityAndApplicabilityContext": {
+                "disposition": "none"
+              },
+              "knownLossAndLimitations": {
+                "disposition": "none"
+              }
+            }
+          ],
+          "exclusionsAndForbiddenContext": {
+            "excludedContext": {
+              "disposition": "specified",
+              "items": [
+                "Unrelated project history."
+              ]
+            },
+            "forbiddenContext": {
+              "disposition": "specified",
+              "items": [
+                "Secrets, credentials, and private project data."
+              ]
+            },
+            "inaccessibleSources": {
+              "disposition": "none"
+            },
+            "deliberateOmissions": {
+              "disposition": "none"
+            },
+            "redactionBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "provenanceAndPinning": {
+            "provenanceRequirements": [
+              "Preserve exact source provenance."
+            ],
+            "pinningRequirements": [
+              "Record the assessed source revision context."
+            ],
+            "derivationTraceability": [
+              "Record material derivation limits."
+            ],
+            "provenanceLimitations": {
+              "disposition": "none"
+            }
+          },
+          "freshnessAndApplicability": {
+            "freshnessAssessment": [
+              "Freshness was assessed for the bounded task."
+            ],
+            "applicabilityAssessment": [
+              "Applicability was assessed against the task objective."
+            ],
+            "reassessmentTriggers": [
+              "Reassess on a material source or task change."
+            ],
+            "stalenessRisks": {
+              "disposition": "none"
+            }
+          },
+          "assumptionsDependenciesAndUncertainty": {
+            "assumptions": {
+              "disposition": "none"
+            },
+            "dependencies": {
+              "disposition": "none"
+            },
+            "uncertainty": {
+              "disposition": "none"
+            },
+            "conflicts": {
+              "disposition": "none"
+            },
+            "missingSources": {
+              "disposition": "none"
+            },
+            "inaccessibleSourceImpact": {
+              "disposition": "none"
+            }
+          },
+          "transformationAndRedaction": {
+            "summaryLimits": {
+              "disposition": "none"
+            },
+            "extractionLimits": {
+              "disposition": "none"
+            },
+            "transformationLimits": {
+              "disposition": "none"
+            },
+            "redactionLimits": {
+              "disposition": "none"
+            },
+            "sanitizationLimits": {
+              "disposition": "none"
+            },
+            "informationLoss": {
+              "disposition": "none"
+            }
+          },
+          "securityPrivacyAndAccess": {
+            "securityConstraints": [
+              "Exclude credentials and exploitable operational detail."
+            ],
+            "privacyConstraints": [
+              "Exclude personal and private project data."
+            ],
+            "confidentialityConstraints": [
+              "Use public-safe synthetic content only."
+            ],
+            "publicPrivateBoundaries": [
+              "Keep private context outside public artifacts."
+            ],
+            "accessConstraints": [
+              "A reference grants no source access."
+            ],
+            "leastDisclosureConstraints": [
+              "Disclose only minimum task-relevant material."
+            ]
+          },
+          "sufficiencyAndMinimization": {
+            "relevanceEvidence": [
+              "Each source has an explicit relevance rationale."
+            ],
+            "sufficiencyRationale": [
+              "The selected sources cover the declared task purpose."
+            ],
+            "minimizationRationale": [
+              "Unrelated context is explicitly excluded."
+            ],
+            "validationObligations": [
+              "Validate structure and review semantic sufficiency separately."
+            ],
+            "knownLimitations": {
+              "disposition": "none"
+            },
+            "specialistReviewBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "stopAndEscalation": {
+            "stopConditions": [
+              "Stop on authority, scope, provenance, security, or privacy uncertainty."
+            ],
+            "escalationConditions": [
+              "Escalate any material mismatch to final human authority."
+            ]
+          },
+          "lifecycleAndExecutionTraceability": {
+            "validity": {
+              "disposition": "specified",
+              "items": [
+                "Valid only for the pinned governing Task Contract revision."
+              ]
+            },
+            "amendment": {
+              "disposition": "specified",
+              "items": [
+                "Material change requires a new reviewed Artifact Revision."
+              ]
+            },
+            "refresh": {
+              "disposition": "specified",
+              "items": [
+                "Refresh after a material source change."
+              ]
+            },
+            "withdrawal": {
+              "disposition": "none"
+            },
+            "expiration": {
+              "disposition": "none"
+            },
+            "supersession": {
+              "disposition": "none"
+            },
+            "retirement": {
+              "disposition": "none"
+            },
+            "retention": {
+              "disposition": "specified",
+              "items": [
+                "Preserve provenance and decision history."
+              ]
+            },
+            "executionTraceabilityRequirements": [
+              "A later Execution Result must preserve independent traceability without embedding here."
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "invalid missing payload",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "context-packet",
+          "artifactInstance": {
+            "identifier": "synthetic-context-packet-001",
+            "revision": "revision-001"
+          },
+          "governingContract": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/context-packet",
+            "version": "1.0.0"
+          },
+          "governingSchema": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/context-packet/1.0.0",
+            "version": "1.0.0"
+          }
+        }
+      }
+    },
+    {
+      "name": "invalid unknown root property",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "context-packet",
+          "artifactInstance": {
+            "identifier": "synthetic-context-packet-001",
+            "revision": "revision-001"
+          },
+          "governingContract": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/context-packet",
+            "version": "1.0.0"
+          },
+          "governingSchema": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/context-packet/1.0.0",
+            "version": "1.0.0"
+          }
+        },
+        "payload": {
+          "governingTaskContract": {
+            "artifactInstanceIdentifier": "synthetic-task-contract-001",
+            "artifactRevision": "revision-001"
+          },
+          "selectionPurpose": {
+            "taskObjective": "Prepare one bounded public-safe result.",
+            "packetPurpose": "Provide only the minimum relevant context.",
+            "intendedUse": "Human-reviewed bounded execution support.",
+            "intendedExecutorClass": "Bounded implementer"
+          },
+          "applicableGoverningContext": {
+            "projectCharterContext": {
+              "disposition": "none"
+            },
+            "workstreamContext": {
+              "disposition": "none"
+            },
+            "approvalContext": {
+              "disposition": "none"
+            },
+            "reviewContext": {
+              "disposition": "none"
+            },
+            "decisionContext": {
+              "disposition": "none"
+            }
+          },
+          "selectedSources": [
+            {
+              "sourceReference": "public-source-001",
+              "sourceType": "public synthetic source",
+              "relevanceRationale": "The source is directly relevant to the bounded task objective.",
+              "revisionOrVersionContext": {
+                "disposition": "specified",
+                "items": [
+                  "Synthetic revision 1."
+                ]
+              },
+              "includedMaterial": {
+                "disposition": "none"
+              },
+              "contentTreatments": [
+                "reference-only"
+              ],
+              "authorityAndApplicabilityContext": {
+                "disposition": "none"
+              },
+              "knownLossAndLimitations": {
+                "disposition": "none"
+              }
+            }
+          ],
+          "exclusionsAndForbiddenContext": {
+            "excludedContext": {
+              "disposition": "specified",
+              "items": [
+                "Unrelated project history."
+              ]
+            },
+            "forbiddenContext": {
+              "disposition": "specified",
+              "items": [
+                "Secrets, credentials, and private project data."
+              ]
+            },
+            "inaccessibleSources": {
+              "disposition": "none"
+            },
+            "deliberateOmissions": {
+              "disposition": "none"
+            },
+            "redactionBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "provenanceAndPinning": {
+            "provenanceRequirements": [
+              "Preserve exact source provenance."
+            ],
+            "pinningRequirements": [
+              "Record the assessed source revision context."
+            ],
+            "derivationTraceability": [
+              "Record material derivation limits."
+            ],
+            "provenanceLimitations": {
+              "disposition": "none"
+            }
+          },
+          "freshnessAndApplicability": {
+            "freshnessAssessment": [
+              "Freshness was assessed for the bounded task."
+            ],
+            "applicabilityAssessment": [
+              "Applicability was assessed against the task objective."
+            ],
+            "reassessmentTriggers": [
+              "Reassess on a material source or task change."
+            ],
+            "stalenessRisks": {
+              "disposition": "none"
+            }
+          },
+          "assumptionsDependenciesAndUncertainty": {
+            "assumptions": {
+              "disposition": "none"
+            },
+            "dependencies": {
+              "disposition": "none"
+            },
+            "uncertainty": {
+              "disposition": "none"
+            },
+            "conflicts": {
+              "disposition": "none"
+            },
+            "missingSources": {
+              "disposition": "none"
+            },
+            "inaccessibleSourceImpact": {
+              "disposition": "none"
+            }
+          },
+          "transformationAndRedaction": {
+            "summaryLimits": {
+              "disposition": "none"
+            },
+            "extractionLimits": {
+              "disposition": "none"
+            },
+            "transformationLimits": {
+              "disposition": "none"
+            },
+            "redactionLimits": {
+              "disposition": "none"
+            },
+            "sanitizationLimits": {
+              "disposition": "none"
+            },
+            "informationLoss": {
+              "disposition": "none"
+            }
+          },
+          "securityPrivacyAndAccess": {
+            "securityConstraints": [
+              "Exclude credentials and exploitable operational detail."
+            ],
+            "privacyConstraints": [
+              "Exclude personal and private project data."
+            ],
+            "confidentialityConstraints": [
+              "Use public-safe synthetic content only."
+            ],
+            "publicPrivateBoundaries": [
+              "Keep private context outside public artifacts."
+            ],
+            "accessConstraints": [
+              "A reference grants no source access."
+            ],
+            "leastDisclosureConstraints": [
+              "Disclose only minimum task-relevant material."
+            ]
+          },
+          "sufficiencyAndMinimization": {
+            "relevanceEvidence": [
+              "Each source has an explicit relevance rationale."
+            ],
+            "sufficiencyRationale": [
+              "The selected sources cover the declared task purpose."
+            ],
+            "minimizationRationale": [
+              "Unrelated context is explicitly excluded."
+            ],
+            "validationObligations": [
+              "Validate structure and review semantic sufficiency separately."
+            ],
+            "knownLimitations": {
+              "disposition": "none"
+            },
+            "specialistReviewBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "stopAndEscalation": {
+            "stopConditions": [
+              "Stop on authority, scope, provenance, security, or privacy uncertainty."
+            ],
+            "escalationConditions": [
+              "Escalate any material mismatch to final human authority."
+            ]
+          },
+          "lifecycleAndExecutionTraceability": {
+            "validity": {
+              "disposition": "specified",
+              "items": [
+                "Valid only for the pinned governing Task Contract revision."
+              ]
+            },
+            "amendment": {
+              "disposition": "specified",
+              "items": [
+                "Material change requires a new reviewed Artifact Revision."
+              ]
+            },
+            "refresh": {
+              "disposition": "specified",
+              "items": [
+                "Refresh after a material source change."
+              ]
+            },
+            "withdrawal": {
+              "disposition": "none"
+            },
+            "expiration": {
+              "disposition": "none"
+            },
+            "supersession": {
+              "disposition": "none"
+            },
+            "retirement": {
+              "disposition": "none"
+            },
+            "retention": {
+              "disposition": "specified",
+              "items": [
+                "Preserve provenance and decision history."
+              ]
+            },
+            "executionTraceabilityRequirements": [
+              "A later Execution Result must preserve independent traceability without embedding here."
+            ]
+          }
+        },
+        "extension": {
+          "enabled": true
+        }
+      }
+    },
+    {
+      "name": "invalid Artifact Type and governing Contract and Schema coordinates",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "task-contract",
+          "artifactInstance": {
+            "identifier": "synthetic-context-packet-001",
+            "revision": "revision-001"
+          },
+          "governingContract": {
+            "identifier": "https://example.invalid/contract",
+            "version": "1.0.0"
+          },
+          "governingSchema": {
+            "identifier": "https://example.invalid/schema",
+            "version": "1.0.0"
+          }
+        },
+        "payload": {
+          "governingTaskContract": {
+            "artifactInstanceIdentifier": "synthetic-task-contract-001",
+            "artifactRevision": "revision-001"
+          },
+          "selectionPurpose": {
+            "taskObjective": "Prepare one bounded public-safe result.",
+            "packetPurpose": "Provide only the minimum relevant context.",
+            "intendedUse": "Human-reviewed bounded execution support.",
+            "intendedExecutorClass": "Bounded implementer"
+          },
+          "applicableGoverningContext": {
+            "projectCharterContext": {
+              "disposition": "none"
+            },
+            "workstreamContext": {
+              "disposition": "none"
+            },
+            "approvalContext": {
+              "disposition": "none"
+            },
+            "reviewContext": {
+              "disposition": "none"
+            },
+            "decisionContext": {
+              "disposition": "none"
+            }
+          },
+          "selectedSources": [
+            {
+              "sourceReference": "public-source-001",
+              "sourceType": "public synthetic source",
+              "relevanceRationale": "The source is directly relevant to the bounded task objective.",
+              "revisionOrVersionContext": {
+                "disposition": "specified",
+                "items": [
+                  "Synthetic revision 1."
+                ]
+              },
+              "includedMaterial": {
+                "disposition": "none"
+              },
+              "contentTreatments": [
+                "reference-only"
+              ],
+              "authorityAndApplicabilityContext": {
+                "disposition": "none"
+              },
+              "knownLossAndLimitations": {
+                "disposition": "none"
+              }
+            }
+          ],
+          "exclusionsAndForbiddenContext": {
+            "excludedContext": {
+              "disposition": "specified",
+              "items": [
+                "Unrelated project history."
+              ]
+            },
+            "forbiddenContext": {
+              "disposition": "specified",
+              "items": [
+                "Secrets, credentials, and private project data."
+              ]
+            },
+            "inaccessibleSources": {
+              "disposition": "none"
+            },
+            "deliberateOmissions": {
+              "disposition": "none"
+            },
+            "redactionBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "provenanceAndPinning": {
+            "provenanceRequirements": [
+              "Preserve exact source provenance."
+            ],
+            "pinningRequirements": [
+              "Record the assessed source revision context."
+            ],
+            "derivationTraceability": [
+              "Record material derivation limits."
+            ],
+            "provenanceLimitations": {
+              "disposition": "none"
+            }
+          },
+          "freshnessAndApplicability": {
+            "freshnessAssessment": [
+              "Freshness was assessed for the bounded task."
+            ],
+            "applicabilityAssessment": [
+              "Applicability was assessed against the task objective."
+            ],
+            "reassessmentTriggers": [
+              "Reassess on a material source or task change."
+            ],
+            "stalenessRisks": {
+              "disposition": "none"
+            }
+          },
+          "assumptionsDependenciesAndUncertainty": {
+            "assumptions": {
+              "disposition": "none"
+            },
+            "dependencies": {
+              "disposition": "none"
+            },
+            "uncertainty": {
+              "disposition": "none"
+            },
+            "conflicts": {
+              "disposition": "none"
+            },
+            "missingSources": {
+              "disposition": "none"
+            },
+            "inaccessibleSourceImpact": {
+              "disposition": "none"
+            }
+          },
+          "transformationAndRedaction": {
+            "summaryLimits": {
+              "disposition": "none"
+            },
+            "extractionLimits": {
+              "disposition": "none"
+            },
+            "transformationLimits": {
+              "disposition": "none"
+            },
+            "redactionLimits": {
+              "disposition": "none"
+            },
+            "sanitizationLimits": {
+              "disposition": "none"
+            },
+            "informationLoss": {
+              "disposition": "none"
+            }
+          },
+          "securityPrivacyAndAccess": {
+            "securityConstraints": [
+              "Exclude credentials and exploitable operational detail."
+            ],
+            "privacyConstraints": [
+              "Exclude personal and private project data."
+            ],
+            "confidentialityConstraints": [
+              "Use public-safe synthetic content only."
+            ],
+            "publicPrivateBoundaries": [
+              "Keep private context outside public artifacts."
+            ],
+            "accessConstraints": [
+              "A reference grants no source access."
+            ],
+            "leastDisclosureConstraints": [
+              "Disclose only minimum task-relevant material."
+            ]
+          },
+          "sufficiencyAndMinimization": {
+            "relevanceEvidence": [
+              "Each source has an explicit relevance rationale."
+            ],
+            "sufficiencyRationale": [
+              "The selected sources cover the declared task purpose."
+            ],
+            "minimizationRationale": [
+              "Unrelated context is explicitly excluded."
+            ],
+            "validationObligations": [
+              "Validate structure and review semantic sufficiency separately."
+            ],
+            "knownLimitations": {
+              "disposition": "none"
+            },
+            "specialistReviewBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "stopAndEscalation": {
+            "stopConditions": [
+              "Stop on authority, scope, provenance, security, or privacy uncertainty."
+            ],
+            "escalationConditions": [
+              "Escalate any material mismatch to final human authority."
+            ]
+          },
+          "lifecycleAndExecutionTraceability": {
+            "validity": {
+              "disposition": "specified",
+              "items": [
+                "Valid only for the pinned governing Task Contract revision."
+              ]
+            },
+            "amendment": {
+              "disposition": "specified",
+              "items": [
+                "Material change requires a new reviewed Artifact Revision."
+              ]
+            },
+            "refresh": {
+              "disposition": "specified",
+              "items": [
+                "Refresh after a material source change."
+              ]
+            },
+            "withdrawal": {
+              "disposition": "none"
+            },
+            "expiration": {
+              "disposition": "none"
+            },
+            "supersession": {
+              "disposition": "none"
+            },
+            "retirement": {
+              "disposition": "none"
+            },
+            "retention": {
+              "disposition": "specified",
+              "items": [
+                "Preserve provenance and decision history."
+              ]
+            },
+            "executionTraceabilityRequirements": [
+              "A later Execution Result must preserve independent traceability without embedding here."
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "invalid incomplete Common Artifact Envelope",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "context-packet",
+          "artifactInstance": {
+            "identifier": "synthetic-context-packet-001"
+          },
+          "governingContract": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/context-packet",
+            "version": "1.0.0"
+          },
+          "governingSchema": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/context-packet/1.0.0",
+            "version": "1.0.0"
+          }
+        },
+        "payload": {
+          "governingTaskContract": {
+            "artifactInstanceIdentifier": "synthetic-task-contract-001",
+            "artifactRevision": "revision-001"
+          },
+          "selectionPurpose": {
+            "taskObjective": "Prepare one bounded public-safe result.",
+            "packetPurpose": "Provide only the minimum relevant context.",
+            "intendedUse": "Human-reviewed bounded execution support.",
+            "intendedExecutorClass": "Bounded implementer"
+          },
+          "applicableGoverningContext": {
+            "projectCharterContext": {
+              "disposition": "none"
+            },
+            "workstreamContext": {
+              "disposition": "none"
+            },
+            "approvalContext": {
+              "disposition": "none"
+            },
+            "reviewContext": {
+              "disposition": "none"
+            },
+            "decisionContext": {
+              "disposition": "none"
+            }
+          },
+          "selectedSources": [
+            {
+              "sourceReference": "public-source-001",
+              "sourceType": "public synthetic source",
+              "relevanceRationale": "The source is directly relevant to the bounded task objective.",
+              "revisionOrVersionContext": {
+                "disposition": "specified",
+                "items": [
+                  "Synthetic revision 1."
+                ]
+              },
+              "includedMaterial": {
+                "disposition": "none"
+              },
+              "contentTreatments": [
+                "reference-only"
+              ],
+              "authorityAndApplicabilityContext": {
+                "disposition": "none"
+              },
+              "knownLossAndLimitations": {
+                "disposition": "none"
+              }
+            }
+          ],
+          "exclusionsAndForbiddenContext": {
+            "excludedContext": {
+              "disposition": "specified",
+              "items": [
+                "Unrelated project history."
+              ]
+            },
+            "forbiddenContext": {
+              "disposition": "specified",
+              "items": [
+                "Secrets, credentials, and private project data."
+              ]
+            },
+            "inaccessibleSources": {
+              "disposition": "none"
+            },
+            "deliberateOmissions": {
+              "disposition": "none"
+            },
+            "redactionBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "provenanceAndPinning": {
+            "provenanceRequirements": [
+              "Preserve exact source provenance."
+            ],
+            "pinningRequirements": [
+              "Record the assessed source revision context."
+            ],
+            "derivationTraceability": [
+              "Record material derivation limits."
+            ],
+            "provenanceLimitations": {
+              "disposition": "none"
+            }
+          },
+          "freshnessAndApplicability": {
+            "freshnessAssessment": [
+              "Freshness was assessed for the bounded task."
+            ],
+            "applicabilityAssessment": [
+              "Applicability was assessed against the task objective."
+            ],
+            "reassessmentTriggers": [
+              "Reassess on a material source or task change."
+            ],
+            "stalenessRisks": {
+              "disposition": "none"
+            }
+          },
+          "assumptionsDependenciesAndUncertainty": {
+            "assumptions": {
+              "disposition": "none"
+            },
+            "dependencies": {
+              "disposition": "none"
+            },
+            "uncertainty": {
+              "disposition": "none"
+            },
+            "conflicts": {
+              "disposition": "none"
+            },
+            "missingSources": {
+              "disposition": "none"
+            },
+            "inaccessibleSourceImpact": {
+              "disposition": "none"
+            }
+          },
+          "transformationAndRedaction": {
+            "summaryLimits": {
+              "disposition": "none"
+            },
+            "extractionLimits": {
+              "disposition": "none"
+            },
+            "transformationLimits": {
+              "disposition": "none"
+            },
+            "redactionLimits": {
+              "disposition": "none"
+            },
+            "sanitizationLimits": {
+              "disposition": "none"
+            },
+            "informationLoss": {
+              "disposition": "none"
+            }
+          },
+          "securityPrivacyAndAccess": {
+            "securityConstraints": [
+              "Exclude credentials and exploitable operational detail."
+            ],
+            "privacyConstraints": [
+              "Exclude personal and private project data."
+            ],
+            "confidentialityConstraints": [
+              "Use public-safe synthetic content only."
+            ],
+            "publicPrivateBoundaries": [
+              "Keep private context outside public artifacts."
+            ],
+            "accessConstraints": [
+              "A reference grants no source access."
+            ],
+            "leastDisclosureConstraints": [
+              "Disclose only minimum task-relevant material."
+            ]
+          },
+          "sufficiencyAndMinimization": {
+            "relevanceEvidence": [
+              "Each source has an explicit relevance rationale."
+            ],
+            "sufficiencyRationale": [
+              "The selected sources cover the declared task purpose."
+            ],
+            "minimizationRationale": [
+              "Unrelated context is explicitly excluded."
+            ],
+            "validationObligations": [
+              "Validate structure and review semantic sufficiency separately."
+            ],
+            "knownLimitations": {
+              "disposition": "none"
+            },
+            "specialistReviewBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "stopAndEscalation": {
+            "stopConditions": [
+              "Stop on authority, scope, provenance, security, or privacy uncertainty."
+            ],
+            "escalationConditions": [
+              "Escalate any material mismatch to final human authority."
+            ]
+          },
+          "lifecycleAndExecutionTraceability": {
+            "validity": {
+              "disposition": "specified",
+              "items": [
+                "Valid only for the pinned governing Task Contract revision."
+              ]
+            },
+            "amendment": {
+              "disposition": "specified",
+              "items": [
+                "Material change requires a new reviewed Artifact Revision."
+              ]
+            },
+            "refresh": {
+              "disposition": "specified",
+              "items": [
+                "Refresh after a material source change."
+              ]
+            },
+            "withdrawal": {
+              "disposition": "none"
+            },
+            "expiration": {
+              "disposition": "none"
+            },
+            "supersession": {
+              "disposition": "none"
+            },
+            "retirement": {
+              "disposition": "none"
+            },
+            "retention": {
+              "disposition": "specified",
+              "items": [
+                "Preserve provenance and decision history."
+              ]
+            },
+            "executionTraceabilityRequirements": [
+              "A later Execution Result must preserve independent traceability without embedding here."
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "invalid missing governing Task Contract pin",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "context-packet",
+          "artifactInstance": {
+            "identifier": "synthetic-context-packet-001",
+            "revision": "revision-001"
+          },
+          "governingContract": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/context-packet",
+            "version": "1.0.0"
+          },
+          "governingSchema": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/context-packet/1.0.0",
+            "version": "1.0.0"
+          }
+        },
+        "payload": {
+          "selectionPurpose": {
+            "taskObjective": "Prepare one bounded public-safe result.",
+            "packetPurpose": "Provide only the minimum relevant context.",
+            "intendedUse": "Human-reviewed bounded execution support.",
+            "intendedExecutorClass": "Bounded implementer"
+          },
+          "applicableGoverningContext": {
+            "projectCharterContext": {
+              "disposition": "none"
+            },
+            "workstreamContext": {
+              "disposition": "none"
+            },
+            "approvalContext": {
+              "disposition": "none"
+            },
+            "reviewContext": {
+              "disposition": "none"
+            },
+            "decisionContext": {
+              "disposition": "none"
+            }
+          },
+          "selectedSources": [
+            {
+              "sourceReference": "public-source-001",
+              "sourceType": "public synthetic source",
+              "relevanceRationale": "The source is directly relevant to the bounded task objective.",
+              "revisionOrVersionContext": {
+                "disposition": "specified",
+                "items": [
+                  "Synthetic revision 1."
+                ]
+              },
+              "includedMaterial": {
+                "disposition": "none"
+              },
+              "contentTreatments": [
+                "reference-only"
+              ],
+              "authorityAndApplicabilityContext": {
+                "disposition": "none"
+              },
+              "knownLossAndLimitations": {
+                "disposition": "none"
+              }
+            }
+          ],
+          "exclusionsAndForbiddenContext": {
+            "excludedContext": {
+              "disposition": "specified",
+              "items": [
+                "Unrelated project history."
+              ]
+            },
+            "forbiddenContext": {
+              "disposition": "specified",
+              "items": [
+                "Secrets, credentials, and private project data."
+              ]
+            },
+            "inaccessibleSources": {
+              "disposition": "none"
+            },
+            "deliberateOmissions": {
+              "disposition": "none"
+            },
+            "redactionBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "provenanceAndPinning": {
+            "provenanceRequirements": [
+              "Preserve exact source provenance."
+            ],
+            "pinningRequirements": [
+              "Record the assessed source revision context."
+            ],
+            "derivationTraceability": [
+              "Record material derivation limits."
+            ],
+            "provenanceLimitations": {
+              "disposition": "none"
+            }
+          },
+          "freshnessAndApplicability": {
+            "freshnessAssessment": [
+              "Freshness was assessed for the bounded task."
+            ],
+            "applicabilityAssessment": [
+              "Applicability was assessed against the task objective."
+            ],
+            "reassessmentTriggers": [
+              "Reassess on a material source or task change."
+            ],
+            "stalenessRisks": {
+              "disposition": "none"
+            }
+          },
+          "assumptionsDependenciesAndUncertainty": {
+            "assumptions": {
+              "disposition": "none"
+            },
+            "dependencies": {
+              "disposition": "none"
+            },
+            "uncertainty": {
+              "disposition": "none"
+            },
+            "conflicts": {
+              "disposition": "none"
+            },
+            "missingSources": {
+              "disposition": "none"
+            },
+            "inaccessibleSourceImpact": {
+              "disposition": "none"
+            }
+          },
+          "transformationAndRedaction": {
+            "summaryLimits": {
+              "disposition": "none"
+            },
+            "extractionLimits": {
+              "disposition": "none"
+            },
+            "transformationLimits": {
+              "disposition": "none"
+            },
+            "redactionLimits": {
+              "disposition": "none"
+            },
+            "sanitizationLimits": {
+              "disposition": "none"
+            },
+            "informationLoss": {
+              "disposition": "none"
+            }
+          },
+          "securityPrivacyAndAccess": {
+            "securityConstraints": [
+              "Exclude credentials and exploitable operational detail."
+            ],
+            "privacyConstraints": [
+              "Exclude personal and private project data."
+            ],
+            "confidentialityConstraints": [
+              "Use public-safe synthetic content only."
+            ],
+            "publicPrivateBoundaries": [
+              "Keep private context outside public artifacts."
+            ],
+            "accessConstraints": [
+              "A reference grants no source access."
+            ],
+            "leastDisclosureConstraints": [
+              "Disclose only minimum task-relevant material."
+            ]
+          },
+          "sufficiencyAndMinimization": {
+            "relevanceEvidence": [
+              "Each source has an explicit relevance rationale."
+            ],
+            "sufficiencyRationale": [
+              "The selected sources cover the declared task purpose."
+            ],
+            "minimizationRationale": [
+              "Unrelated context is explicitly excluded."
+            ],
+            "validationObligations": [
+              "Validate structure and review semantic sufficiency separately."
+            ],
+            "knownLimitations": {
+              "disposition": "none"
+            },
+            "specialistReviewBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "stopAndEscalation": {
+            "stopConditions": [
+              "Stop on authority, scope, provenance, security, or privacy uncertainty."
+            ],
+            "escalationConditions": [
+              "Escalate any material mismatch to final human authority."
+            ]
+          },
+          "lifecycleAndExecutionTraceability": {
+            "validity": {
+              "disposition": "specified",
+              "items": [
+                "Valid only for the pinned governing Task Contract revision."
+              ]
+            },
+            "amendment": {
+              "disposition": "specified",
+              "items": [
+                "Material change requires a new reviewed Artifact Revision."
+              ]
+            },
+            "refresh": {
+              "disposition": "specified",
+              "items": [
+                "Refresh after a material source change."
+              ]
+            },
+            "withdrawal": {
+              "disposition": "none"
+            },
+            "expiration": {
+              "disposition": "none"
+            },
+            "supersession": {
+              "disposition": "none"
+            },
+            "retirement": {
+              "disposition": "none"
+            },
+            "retention": {
+              "disposition": "specified",
+              "items": [
+                "Preserve provenance and decision history."
+              ]
+            },
+            "executionTraceabilityRequirements": [
+              "A later Execution Result must preserve independent traceability without embedding here."
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "invalid embedded governing Task Contract",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "context-packet",
+          "artifactInstance": {
+            "identifier": "synthetic-context-packet-001",
+            "revision": "revision-001"
+          },
+          "governingContract": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/context-packet",
+            "version": "1.0.0"
+          },
+          "governingSchema": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/context-packet/1.0.0",
+            "version": "1.0.0"
+          }
+        },
+        "payload": {
+          "governingTaskContract": {
+            "artifactInstanceIdentifier": "synthetic-task-contract-001",
+            "artifactRevision": "revision-001",
+            "embeddedTaskContract": {
+              "envelope": {},
+              "payload": {}
+            }
+          },
+          "selectionPurpose": {
+            "taskObjective": "Prepare one bounded public-safe result.",
+            "packetPurpose": "Provide only the minimum relevant context.",
+            "intendedUse": "Human-reviewed bounded execution support.",
+            "intendedExecutorClass": "Bounded implementer"
+          },
+          "applicableGoverningContext": {
+            "projectCharterContext": {
+              "disposition": "none"
+            },
+            "workstreamContext": {
+              "disposition": "none"
+            },
+            "approvalContext": {
+              "disposition": "none"
+            },
+            "reviewContext": {
+              "disposition": "none"
+            },
+            "decisionContext": {
+              "disposition": "none"
+            }
+          },
+          "selectedSources": [
+            {
+              "sourceReference": "public-source-001",
+              "sourceType": "public synthetic source",
+              "relevanceRationale": "The source is directly relevant to the bounded task objective.",
+              "revisionOrVersionContext": {
+                "disposition": "specified",
+                "items": [
+                  "Synthetic revision 1."
+                ]
+              },
+              "includedMaterial": {
+                "disposition": "none"
+              },
+              "contentTreatments": [
+                "reference-only"
+              ],
+              "authorityAndApplicabilityContext": {
+                "disposition": "none"
+              },
+              "knownLossAndLimitations": {
+                "disposition": "none"
+              }
+            }
+          ],
+          "exclusionsAndForbiddenContext": {
+            "excludedContext": {
+              "disposition": "specified",
+              "items": [
+                "Unrelated project history."
+              ]
+            },
+            "forbiddenContext": {
+              "disposition": "specified",
+              "items": [
+                "Secrets, credentials, and private project data."
+              ]
+            },
+            "inaccessibleSources": {
+              "disposition": "none"
+            },
+            "deliberateOmissions": {
+              "disposition": "none"
+            },
+            "redactionBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "provenanceAndPinning": {
+            "provenanceRequirements": [
+              "Preserve exact source provenance."
+            ],
+            "pinningRequirements": [
+              "Record the assessed source revision context."
+            ],
+            "derivationTraceability": [
+              "Record material derivation limits."
+            ],
+            "provenanceLimitations": {
+              "disposition": "none"
+            }
+          },
+          "freshnessAndApplicability": {
+            "freshnessAssessment": [
+              "Freshness was assessed for the bounded task."
+            ],
+            "applicabilityAssessment": [
+              "Applicability was assessed against the task objective."
+            ],
+            "reassessmentTriggers": [
+              "Reassess on a material source or task change."
+            ],
+            "stalenessRisks": {
+              "disposition": "none"
+            }
+          },
+          "assumptionsDependenciesAndUncertainty": {
+            "assumptions": {
+              "disposition": "none"
+            },
+            "dependencies": {
+              "disposition": "none"
+            },
+            "uncertainty": {
+              "disposition": "none"
+            },
+            "conflicts": {
+              "disposition": "none"
+            },
+            "missingSources": {
+              "disposition": "none"
+            },
+            "inaccessibleSourceImpact": {
+              "disposition": "none"
+            }
+          },
+          "transformationAndRedaction": {
+            "summaryLimits": {
+              "disposition": "none"
+            },
+            "extractionLimits": {
+              "disposition": "none"
+            },
+            "transformationLimits": {
+              "disposition": "none"
+            },
+            "redactionLimits": {
+              "disposition": "none"
+            },
+            "sanitizationLimits": {
+              "disposition": "none"
+            },
+            "informationLoss": {
+              "disposition": "none"
+            }
+          },
+          "securityPrivacyAndAccess": {
+            "securityConstraints": [
+              "Exclude credentials and exploitable operational detail."
+            ],
+            "privacyConstraints": [
+              "Exclude personal and private project data."
+            ],
+            "confidentialityConstraints": [
+              "Use public-safe synthetic content only."
+            ],
+            "publicPrivateBoundaries": [
+              "Keep private context outside public artifacts."
+            ],
+            "accessConstraints": [
+              "A reference grants no source access."
+            ],
+            "leastDisclosureConstraints": [
+              "Disclose only minimum task-relevant material."
+            ]
+          },
+          "sufficiencyAndMinimization": {
+            "relevanceEvidence": [
+              "Each source has an explicit relevance rationale."
+            ],
+            "sufficiencyRationale": [
+              "The selected sources cover the declared task purpose."
+            ],
+            "minimizationRationale": [
+              "Unrelated context is explicitly excluded."
+            ],
+            "validationObligations": [
+              "Validate structure and review semantic sufficiency separately."
+            ],
+            "knownLimitations": {
+              "disposition": "none"
+            },
+            "specialistReviewBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "stopAndEscalation": {
+            "stopConditions": [
+              "Stop on authority, scope, provenance, security, or privacy uncertainty."
+            ],
+            "escalationConditions": [
+              "Escalate any material mismatch to final human authority."
+            ]
+          },
+          "lifecycleAndExecutionTraceability": {
+            "validity": {
+              "disposition": "specified",
+              "items": [
+                "Valid only for the pinned governing Task Contract revision."
+              ]
+            },
+            "amendment": {
+              "disposition": "specified",
+              "items": [
+                "Material change requires a new reviewed Artifact Revision."
+              ]
+            },
+            "refresh": {
+              "disposition": "specified",
+              "items": [
+                "Refresh after a material source change."
+              ]
+            },
+            "withdrawal": {
+              "disposition": "none"
+            },
+            "expiration": {
+              "disposition": "none"
+            },
+            "supersession": {
+              "disposition": "none"
+            },
+            "retirement": {
+              "disposition": "none"
+            },
+            "retention": {
+              "disposition": "specified",
+              "items": [
+                "Preserve provenance and decision history."
+              ]
+            },
+            "executionTraceabilityRequirements": [
+              "A later Execution Result must preserve independent traceability without embedding here."
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "invalid missing payload responsibility",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "context-packet",
+          "artifactInstance": {
+            "identifier": "synthetic-context-packet-001",
+            "revision": "revision-001"
+          },
+          "governingContract": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/context-packet",
+            "version": "1.0.0"
+          },
+          "governingSchema": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/context-packet/1.0.0",
+            "version": "1.0.0"
+          }
+        },
+        "payload": {
+          "governingTaskContract": {
+            "artifactInstanceIdentifier": "synthetic-task-contract-001",
+            "artifactRevision": "revision-001"
+          },
+          "selectionPurpose": {
+            "taskObjective": "Prepare one bounded public-safe result.",
+            "packetPurpose": "Provide only the minimum relevant context.",
+            "intendedUse": "Human-reviewed bounded execution support.",
+            "intendedExecutorClass": "Bounded implementer"
+          },
+          "applicableGoverningContext": {
+            "projectCharterContext": {
+              "disposition": "none"
+            },
+            "workstreamContext": {
+              "disposition": "none"
+            },
+            "approvalContext": {
+              "disposition": "none"
+            },
+            "reviewContext": {
+              "disposition": "none"
+            },
+            "decisionContext": {
+              "disposition": "none"
+            }
+          },
+          "selectedSources": [
+            {
+              "sourceReference": "public-source-001",
+              "sourceType": "public synthetic source",
+              "relevanceRationale": "The source is directly relevant to the bounded task objective.",
+              "revisionOrVersionContext": {
+                "disposition": "specified",
+                "items": [
+                  "Synthetic revision 1."
+                ]
+              },
+              "includedMaterial": {
+                "disposition": "none"
+              },
+              "contentTreatments": [
+                "reference-only"
+              ],
+              "authorityAndApplicabilityContext": {
+                "disposition": "none"
+              },
+              "knownLossAndLimitations": {
+                "disposition": "none"
+              }
+            }
+          ],
+          "exclusionsAndForbiddenContext": {
+            "excludedContext": {
+              "disposition": "specified",
+              "items": [
+                "Unrelated project history."
+              ]
+            },
+            "forbiddenContext": {
+              "disposition": "specified",
+              "items": [
+                "Secrets, credentials, and private project data."
+              ]
+            },
+            "inaccessibleSources": {
+              "disposition": "none"
+            },
+            "deliberateOmissions": {
+              "disposition": "none"
+            },
+            "redactionBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "provenanceAndPinning": {
+            "provenanceRequirements": [
+              "Preserve exact source provenance."
+            ],
+            "pinningRequirements": [
+              "Record the assessed source revision context."
+            ],
+            "derivationTraceability": [
+              "Record material derivation limits."
+            ],
+            "provenanceLimitations": {
+              "disposition": "none"
+            }
+          },
+          "freshnessAndApplicability": {
+            "freshnessAssessment": [
+              "Freshness was assessed for the bounded task."
+            ],
+            "applicabilityAssessment": [
+              "Applicability was assessed against the task objective."
+            ],
+            "reassessmentTriggers": [
+              "Reassess on a material source or task change."
+            ],
+            "stalenessRisks": {
+              "disposition": "none"
+            }
+          },
+          "assumptionsDependenciesAndUncertainty": {
+            "assumptions": {
+              "disposition": "none"
+            },
+            "dependencies": {
+              "disposition": "none"
+            },
+            "uncertainty": {
+              "disposition": "none"
+            },
+            "conflicts": {
+              "disposition": "none"
+            },
+            "missingSources": {
+              "disposition": "none"
+            },
+            "inaccessibleSourceImpact": {
+              "disposition": "none"
+            }
+          },
+          "transformationAndRedaction": {
+            "summaryLimits": {
+              "disposition": "none"
+            },
+            "extractionLimits": {
+              "disposition": "none"
+            },
+            "transformationLimits": {
+              "disposition": "none"
+            },
+            "redactionLimits": {
+              "disposition": "none"
+            },
+            "sanitizationLimits": {
+              "disposition": "none"
+            },
+            "informationLoss": {
+              "disposition": "none"
+            }
+          },
+          "securityPrivacyAndAccess": {
+            "securityConstraints": [
+              "Exclude credentials and exploitable operational detail."
+            ],
+            "privacyConstraints": [
+              "Exclude personal and private project data."
+            ],
+            "confidentialityConstraints": [
+              "Use public-safe synthetic content only."
+            ],
+            "publicPrivateBoundaries": [
+              "Keep private context outside public artifacts."
+            ],
+            "accessConstraints": [
+              "A reference grants no source access."
+            ],
+            "leastDisclosureConstraints": [
+              "Disclose only minimum task-relevant material."
+            ]
+          },
+          "stopAndEscalation": {
+            "stopConditions": [
+              "Stop on authority, scope, provenance, security, or privacy uncertainty."
+            ],
+            "escalationConditions": [
+              "Escalate any material mismatch to final human authority."
+            ]
+          },
+          "lifecycleAndExecutionTraceability": {
+            "validity": {
+              "disposition": "specified",
+              "items": [
+                "Valid only for the pinned governing Task Contract revision."
+              ]
+            },
+            "amendment": {
+              "disposition": "specified",
+              "items": [
+                "Material change requires a new reviewed Artifact Revision."
+              ]
+            },
+            "refresh": {
+              "disposition": "specified",
+              "items": [
+                "Refresh after a material source change."
+              ]
+            },
+            "withdrawal": {
+              "disposition": "none"
+            },
+            "expiration": {
+              "disposition": "none"
+            },
+            "supersession": {
+              "disposition": "none"
+            },
+            "retirement": {
+              "disposition": "none"
+            },
+            "retention": {
+              "disposition": "specified",
+              "items": [
+                "Preserve provenance and decision history."
+              ]
+            },
+            "executionTraceabilityRequirements": [
+              "A later Execution Result must preserve independent traceability without embedding here."
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "invalid unknown payload and nested property",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "context-packet",
+          "artifactInstance": {
+            "identifier": "synthetic-context-packet-001",
+            "revision": "revision-001"
+          },
+          "governingContract": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/context-packet",
+            "version": "1.0.0"
+          },
+          "governingSchema": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/context-packet/1.0.0",
+            "version": "1.0.0"
+          }
+        },
+        "payload": {
+          "governingTaskContract": {
+            "artifactInstanceIdentifier": "synthetic-task-contract-001",
+            "artifactRevision": "revision-001"
+          },
+          "selectionPurpose": {
+            "taskObjective": "Prepare one bounded public-safe result.",
+            "packetPurpose": "Provide only the minimum relevant context.",
+            "intendedUse": "Human-reviewed bounded execution support.",
+            "intendedExecutorClass": "Bounded implementer",
+            "priority": 1
+          },
+          "applicableGoverningContext": {
+            "projectCharterContext": {
+              "disposition": "none"
+            },
+            "workstreamContext": {
+              "disposition": "none"
+            },
+            "approvalContext": {
+              "disposition": "none"
+            },
+            "reviewContext": {
+              "disposition": "none"
+            },
+            "decisionContext": {
+              "disposition": "none"
+            }
+          },
+          "selectedSources": [
+            {
+              "sourceReference": "public-source-001",
+              "sourceType": "public synthetic source",
+              "relevanceRationale": "The source is directly relevant to the bounded task objective.",
+              "revisionOrVersionContext": {
+                "disposition": "specified",
+                "items": [
+                  "Synthetic revision 1."
+                ]
+              },
+              "includedMaterial": {
+                "disposition": "none"
+              },
+              "contentTreatments": [
+                "reference-only"
+              ],
+              "authorityAndApplicabilityContext": {
+                "disposition": "none"
+              },
+              "knownLossAndLimitations": {
+                "disposition": "none"
+              }
+            }
+          ],
+          "exclusionsAndForbiddenContext": {
+            "excludedContext": {
+              "disposition": "specified",
+              "items": [
+                "Unrelated project history."
+              ]
+            },
+            "forbiddenContext": {
+              "disposition": "specified",
+              "items": [
+                "Secrets, credentials, and private project data."
+              ]
+            },
+            "inaccessibleSources": {
+              "disposition": "none"
+            },
+            "deliberateOmissions": {
+              "disposition": "none"
+            },
+            "redactionBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "provenanceAndPinning": {
+            "provenanceRequirements": [
+              "Preserve exact source provenance."
+            ],
+            "pinningRequirements": [
+              "Record the assessed source revision context."
+            ],
+            "derivationTraceability": [
+              "Record material derivation limits."
+            ],
+            "provenanceLimitations": {
+              "disposition": "none"
+            }
+          },
+          "freshnessAndApplicability": {
+            "freshnessAssessment": [
+              "Freshness was assessed for the bounded task."
+            ],
+            "applicabilityAssessment": [
+              "Applicability was assessed against the task objective."
+            ],
+            "reassessmentTriggers": [
+              "Reassess on a material source or task change."
+            ],
+            "stalenessRisks": {
+              "disposition": "none"
+            }
+          },
+          "assumptionsDependenciesAndUncertainty": {
+            "assumptions": {
+              "disposition": "none"
+            },
+            "dependencies": {
+              "disposition": "none"
+            },
+            "uncertainty": {
+              "disposition": "none"
+            },
+            "conflicts": {
+              "disposition": "none"
+            },
+            "missingSources": {
+              "disposition": "none"
+            },
+            "inaccessibleSourceImpact": {
+              "disposition": "none"
+            }
+          },
+          "transformationAndRedaction": {
+            "summaryLimits": {
+              "disposition": "none"
+            },
+            "extractionLimits": {
+              "disposition": "none"
+            },
+            "transformationLimits": {
+              "disposition": "none"
+            },
+            "redactionLimits": {
+              "disposition": "none"
+            },
+            "sanitizationLimits": {
+              "disposition": "none"
+            },
+            "informationLoss": {
+              "disposition": "none"
+            }
+          },
+          "securityPrivacyAndAccess": {
+            "securityConstraints": [
+              "Exclude credentials and exploitable operational detail."
+            ],
+            "privacyConstraints": [
+              "Exclude personal and private project data."
+            ],
+            "confidentialityConstraints": [
+              "Use public-safe synthetic content only."
+            ],
+            "publicPrivateBoundaries": [
+              "Keep private context outside public artifacts."
+            ],
+            "accessConstraints": [
+              "A reference grants no source access."
+            ],
+            "leastDisclosureConstraints": [
+              "Disclose only minimum task-relevant material."
+            ]
+          },
+          "sufficiencyAndMinimization": {
+            "relevanceEvidence": [
+              "Each source has an explicit relevance rationale."
+            ],
+            "sufficiencyRationale": [
+              "The selected sources cover the declared task purpose."
+            ],
+            "minimizationRationale": [
+              "Unrelated context is explicitly excluded."
+            ],
+            "validationObligations": [
+              "Validate structure and review semantic sufficiency separately."
+            ],
+            "knownLimitations": {
+              "disposition": "none"
+            },
+            "specialistReviewBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "stopAndEscalation": {
+            "stopConditions": [
+              "Stop on authority, scope, provenance, security, or privacy uncertainty."
+            ],
+            "escalationConditions": [
+              "Escalate any material mismatch to final human authority."
+            ]
+          },
+          "lifecycleAndExecutionTraceability": {
+            "validity": {
+              "disposition": "specified",
+              "items": [
+                "Valid only for the pinned governing Task Contract revision."
+              ]
+            },
+            "amendment": {
+              "disposition": "specified",
+              "items": [
+                "Material change requires a new reviewed Artifact Revision."
+              ]
+            },
+            "refresh": {
+              "disposition": "specified",
+              "items": [
+                "Refresh after a material source change."
+              ]
+            },
+            "withdrawal": {
+              "disposition": "none"
+            },
+            "expiration": {
+              "disposition": "none"
+            },
+            "supersession": {
+              "disposition": "none"
+            },
+            "retirement": {
+              "disposition": "none"
+            },
+            "retention": {
+              "disposition": "specified",
+              "items": [
+                "Preserve provenance and decision history."
+              ]
+            },
+            "executionTraceabilityRequirements": [
+              "A later Execution Result must preserve independent traceability without embedding here."
+            ]
+          },
+          "automaticSelection": true
+        }
+      }
+    },
+    {
+      "name": "invalid selected source missing reference relevance and revision context",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "context-packet",
+          "artifactInstance": {
+            "identifier": "synthetic-context-packet-001",
+            "revision": "revision-001"
+          },
+          "governingContract": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/context-packet",
+            "version": "1.0.0"
+          },
+          "governingSchema": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/context-packet/1.0.0",
+            "version": "1.0.0"
+          }
+        },
+        "payload": {
+          "governingTaskContract": {
+            "artifactInstanceIdentifier": "synthetic-task-contract-001",
+            "artifactRevision": "revision-001"
+          },
+          "selectionPurpose": {
+            "taskObjective": "Prepare one bounded public-safe result.",
+            "packetPurpose": "Provide only the minimum relevant context.",
+            "intendedUse": "Human-reviewed bounded execution support.",
+            "intendedExecutorClass": "Bounded implementer"
+          },
+          "applicableGoverningContext": {
+            "projectCharterContext": {
+              "disposition": "none"
+            },
+            "workstreamContext": {
+              "disposition": "none"
+            },
+            "approvalContext": {
+              "disposition": "none"
+            },
+            "reviewContext": {
+              "disposition": "none"
+            },
+            "decisionContext": {
+              "disposition": "none"
+            }
+          },
+          "selectedSources": [
+            {
+              "sourceType": "public synthetic source",
+              "includedMaterial": {
+                "disposition": "none"
+              },
+              "contentTreatments": [
+                "reference-only"
+              ],
+              "authorityAndApplicabilityContext": {
+                "disposition": "none"
+              },
+              "knownLossAndLimitations": {
+                "disposition": "none"
+              }
+            }
+          ],
+          "exclusionsAndForbiddenContext": {
+            "excludedContext": {
+              "disposition": "specified",
+              "items": [
+                "Unrelated project history."
+              ]
+            },
+            "forbiddenContext": {
+              "disposition": "specified",
+              "items": [
+                "Secrets, credentials, and private project data."
+              ]
+            },
+            "inaccessibleSources": {
+              "disposition": "none"
+            },
+            "deliberateOmissions": {
+              "disposition": "none"
+            },
+            "redactionBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "provenanceAndPinning": {
+            "provenanceRequirements": [
+              "Preserve exact source provenance."
+            ],
+            "pinningRequirements": [
+              "Record the assessed source revision context."
+            ],
+            "derivationTraceability": [
+              "Record material derivation limits."
+            ],
+            "provenanceLimitations": {
+              "disposition": "none"
+            }
+          },
+          "freshnessAndApplicability": {
+            "freshnessAssessment": [
+              "Freshness was assessed for the bounded task."
+            ],
+            "applicabilityAssessment": [
+              "Applicability was assessed against the task objective."
+            ],
+            "reassessmentTriggers": [
+              "Reassess on a material source or task change."
+            ],
+            "stalenessRisks": {
+              "disposition": "none"
+            }
+          },
+          "assumptionsDependenciesAndUncertainty": {
+            "assumptions": {
+              "disposition": "none"
+            },
+            "dependencies": {
+              "disposition": "none"
+            },
+            "uncertainty": {
+              "disposition": "none"
+            },
+            "conflicts": {
+              "disposition": "none"
+            },
+            "missingSources": {
+              "disposition": "none"
+            },
+            "inaccessibleSourceImpact": {
+              "disposition": "none"
+            }
+          },
+          "transformationAndRedaction": {
+            "summaryLimits": {
+              "disposition": "none"
+            },
+            "extractionLimits": {
+              "disposition": "none"
+            },
+            "transformationLimits": {
+              "disposition": "none"
+            },
+            "redactionLimits": {
+              "disposition": "none"
+            },
+            "sanitizationLimits": {
+              "disposition": "none"
+            },
+            "informationLoss": {
+              "disposition": "none"
+            }
+          },
+          "securityPrivacyAndAccess": {
+            "securityConstraints": [
+              "Exclude credentials and exploitable operational detail."
+            ],
+            "privacyConstraints": [
+              "Exclude personal and private project data."
+            ],
+            "confidentialityConstraints": [
+              "Use public-safe synthetic content only."
+            ],
+            "publicPrivateBoundaries": [
+              "Keep private context outside public artifacts."
+            ],
+            "accessConstraints": [
+              "A reference grants no source access."
+            ],
+            "leastDisclosureConstraints": [
+              "Disclose only minimum task-relevant material."
+            ]
+          },
+          "sufficiencyAndMinimization": {
+            "relevanceEvidence": [
+              "Each source has an explicit relevance rationale."
+            ],
+            "sufficiencyRationale": [
+              "The selected sources cover the declared task purpose."
+            ],
+            "minimizationRationale": [
+              "Unrelated context is explicitly excluded."
+            ],
+            "validationObligations": [
+              "Validate structure and review semantic sufficiency separately."
+            ],
+            "knownLimitations": {
+              "disposition": "none"
+            },
+            "specialistReviewBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "stopAndEscalation": {
+            "stopConditions": [
+              "Stop on authority, scope, provenance, security, or privacy uncertainty."
+            ],
+            "escalationConditions": [
+              "Escalate any material mismatch to final human authority."
+            ]
+          },
+          "lifecycleAndExecutionTraceability": {
+            "validity": {
+              "disposition": "specified",
+              "items": [
+                "Valid only for the pinned governing Task Contract revision."
+              ]
+            },
+            "amendment": {
+              "disposition": "specified",
+              "items": [
+                "Material change requires a new reviewed Artifact Revision."
+              ]
+            },
+            "refresh": {
+              "disposition": "specified",
+              "items": [
+                "Refresh after a material source change."
+              ]
+            },
+            "withdrawal": {
+              "disposition": "none"
+            },
+            "expiration": {
+              "disposition": "none"
+            },
+            "supersession": {
+              "disposition": "none"
+            },
+            "retirement": {
+              "disposition": "none"
+            },
+            "retention": {
+              "disposition": "specified",
+              "items": [
+                "Preserve provenance and decision history."
+              ]
+            },
+            "executionTraceabilityRequirements": [
+              "A later Execution Result must preserve independent traceability without embedding here."
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "invalid unknown content treatment token",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "context-packet",
+          "artifactInstance": {
+            "identifier": "synthetic-context-packet-001",
+            "revision": "revision-001"
+          },
+          "governingContract": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/context-packet",
+            "version": "1.0.0"
+          },
+          "governingSchema": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/context-packet/1.0.0",
+            "version": "1.0.0"
+          }
+        },
+        "payload": {
+          "governingTaskContract": {
+            "artifactInstanceIdentifier": "synthetic-task-contract-001",
+            "artifactRevision": "revision-001"
+          },
+          "selectionPurpose": {
+            "taskObjective": "Prepare one bounded public-safe result.",
+            "packetPurpose": "Provide only the minimum relevant context.",
+            "intendedUse": "Human-reviewed bounded execution support.",
+            "intendedExecutorClass": "Bounded implementer"
+          },
+          "applicableGoverningContext": {
+            "projectCharterContext": {
+              "disposition": "none"
+            },
+            "workstreamContext": {
+              "disposition": "none"
+            },
+            "approvalContext": {
+              "disposition": "none"
+            },
+            "reviewContext": {
+              "disposition": "none"
+            },
+            "decisionContext": {
+              "disposition": "none"
+            }
+          },
+          "selectedSources": [
+            {
+              "sourceReference": "public-source-001",
+              "sourceType": "public synthetic source",
+              "relevanceRationale": "The source is directly relevant to the bounded task objective.",
+              "revisionOrVersionContext": {
+                "disposition": "specified",
+                "items": [
+                  "Synthetic revision 1."
+                ]
+              },
+              "includedMaterial": {
+                "disposition": "none"
+              },
+              "contentTreatments": [
+                "ranked"
+              ],
+              "authorityAndApplicabilityContext": {
+                "disposition": "none"
+              },
+              "knownLossAndLimitations": {
+                "disposition": "none"
+              }
+            }
+          ],
+          "exclusionsAndForbiddenContext": {
+            "excludedContext": {
+              "disposition": "specified",
+              "items": [
+                "Unrelated project history."
+              ]
+            },
+            "forbiddenContext": {
+              "disposition": "specified",
+              "items": [
+                "Secrets, credentials, and private project data."
+              ]
+            },
+            "inaccessibleSources": {
+              "disposition": "none"
+            },
+            "deliberateOmissions": {
+              "disposition": "none"
+            },
+            "redactionBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "provenanceAndPinning": {
+            "provenanceRequirements": [
+              "Preserve exact source provenance."
+            ],
+            "pinningRequirements": [
+              "Record the assessed source revision context."
+            ],
+            "derivationTraceability": [
+              "Record material derivation limits."
+            ],
+            "provenanceLimitations": {
+              "disposition": "none"
+            }
+          },
+          "freshnessAndApplicability": {
+            "freshnessAssessment": [
+              "Freshness was assessed for the bounded task."
+            ],
+            "applicabilityAssessment": [
+              "Applicability was assessed against the task objective."
+            ],
+            "reassessmentTriggers": [
+              "Reassess on a material source or task change."
+            ],
+            "stalenessRisks": {
+              "disposition": "none"
+            }
+          },
+          "assumptionsDependenciesAndUncertainty": {
+            "assumptions": {
+              "disposition": "none"
+            },
+            "dependencies": {
+              "disposition": "none"
+            },
+            "uncertainty": {
+              "disposition": "none"
+            },
+            "conflicts": {
+              "disposition": "none"
+            },
+            "missingSources": {
+              "disposition": "none"
+            },
+            "inaccessibleSourceImpact": {
+              "disposition": "none"
+            }
+          },
+          "transformationAndRedaction": {
+            "summaryLimits": {
+              "disposition": "none"
+            },
+            "extractionLimits": {
+              "disposition": "none"
+            },
+            "transformationLimits": {
+              "disposition": "none"
+            },
+            "redactionLimits": {
+              "disposition": "none"
+            },
+            "sanitizationLimits": {
+              "disposition": "none"
+            },
+            "informationLoss": {
+              "disposition": "none"
+            }
+          },
+          "securityPrivacyAndAccess": {
+            "securityConstraints": [
+              "Exclude credentials and exploitable operational detail."
+            ],
+            "privacyConstraints": [
+              "Exclude personal and private project data."
+            ],
+            "confidentialityConstraints": [
+              "Use public-safe synthetic content only."
+            ],
+            "publicPrivateBoundaries": [
+              "Keep private context outside public artifacts."
+            ],
+            "accessConstraints": [
+              "A reference grants no source access."
+            ],
+            "leastDisclosureConstraints": [
+              "Disclose only minimum task-relevant material."
+            ]
+          },
+          "sufficiencyAndMinimization": {
+            "relevanceEvidence": [
+              "Each source has an explicit relevance rationale."
+            ],
+            "sufficiencyRationale": [
+              "The selected sources cover the declared task purpose."
+            ],
+            "minimizationRationale": [
+              "Unrelated context is explicitly excluded."
+            ],
+            "validationObligations": [
+              "Validate structure and review semantic sufficiency separately."
+            ],
+            "knownLimitations": {
+              "disposition": "none"
+            },
+            "specialistReviewBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "stopAndEscalation": {
+            "stopConditions": [
+              "Stop on authority, scope, provenance, security, or privacy uncertainty."
+            ],
+            "escalationConditions": [
+              "Escalate any material mismatch to final human authority."
+            ]
+          },
+          "lifecycleAndExecutionTraceability": {
+            "validity": {
+              "disposition": "specified",
+              "items": [
+                "Valid only for the pinned governing Task Contract revision."
+              ]
+            },
+            "amendment": {
+              "disposition": "specified",
+              "items": [
+                "Material change requires a new reviewed Artifact Revision."
+              ]
+            },
+            "refresh": {
+              "disposition": "specified",
+              "items": [
+                "Refresh after a material source change."
+              ]
+            },
+            "withdrawal": {
+              "disposition": "none"
+            },
+            "expiration": {
+              "disposition": "none"
+            },
+            "supersession": {
+              "disposition": "none"
+            },
+            "retirement": {
+              "disposition": "none"
+            },
+            "retention": {
+              "disposition": "specified",
+              "items": [
+                "Preserve provenance and decision history."
+              ]
+            },
+            "executionTraceabilityRequirements": [
+              "A later Execution Result must preserve independent traceability without embedding here."
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "invalid blank ordinary string",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "context-packet",
+          "artifactInstance": {
+            "identifier": "synthetic-context-packet-001",
+            "revision": "revision-001"
+          },
+          "governingContract": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/context-packet",
+            "version": "1.0.0"
+          },
+          "governingSchema": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/context-packet/1.0.0",
+            "version": "1.0.0"
+          }
+        },
+        "payload": {
+          "governingTaskContract": {
+            "artifactInstanceIdentifier": "synthetic-task-contract-001",
+            "artifactRevision": "revision-001"
+          },
+          "selectionPurpose": {
+            "taskObjective": "   ",
+            "packetPurpose": "Provide only the minimum relevant context.",
+            "intendedUse": "Human-reviewed bounded execution support.",
+            "intendedExecutorClass": "Bounded implementer"
+          },
+          "applicableGoverningContext": {
+            "projectCharterContext": {
+              "disposition": "none"
+            },
+            "workstreamContext": {
+              "disposition": "none"
+            },
+            "approvalContext": {
+              "disposition": "none"
+            },
+            "reviewContext": {
+              "disposition": "none"
+            },
+            "decisionContext": {
+              "disposition": "none"
+            }
+          },
+          "selectedSources": [
+            {
+              "sourceReference": "public-source-001",
+              "sourceType": "public synthetic source",
+              "relevanceRationale": "The source is directly relevant to the bounded task objective.",
+              "revisionOrVersionContext": {
+                "disposition": "specified",
+                "items": [
+                  "Synthetic revision 1."
+                ]
+              },
+              "includedMaterial": {
+                "disposition": "none"
+              },
+              "contentTreatments": [
+                "reference-only"
+              ],
+              "authorityAndApplicabilityContext": {
+                "disposition": "none"
+              },
+              "knownLossAndLimitations": {
+                "disposition": "none"
+              }
+            }
+          ],
+          "exclusionsAndForbiddenContext": {
+            "excludedContext": {
+              "disposition": "specified",
+              "items": [
+                "Unrelated project history."
+              ]
+            },
+            "forbiddenContext": {
+              "disposition": "specified",
+              "items": [
+                "Secrets, credentials, and private project data."
+              ]
+            },
+            "inaccessibleSources": {
+              "disposition": "none"
+            },
+            "deliberateOmissions": {
+              "disposition": "none"
+            },
+            "redactionBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "provenanceAndPinning": {
+            "provenanceRequirements": [
+              "Preserve exact source provenance."
+            ],
+            "pinningRequirements": [
+              "Record the assessed source revision context."
+            ],
+            "derivationTraceability": [
+              "Record material derivation limits."
+            ],
+            "provenanceLimitations": {
+              "disposition": "none"
+            }
+          },
+          "freshnessAndApplicability": {
+            "freshnessAssessment": [
+              "Freshness was assessed for the bounded task."
+            ],
+            "applicabilityAssessment": [
+              "Applicability was assessed against the task objective."
+            ],
+            "reassessmentTriggers": [
+              "Reassess on a material source or task change."
+            ],
+            "stalenessRisks": {
+              "disposition": "none"
+            }
+          },
+          "assumptionsDependenciesAndUncertainty": {
+            "assumptions": {
+              "disposition": "none"
+            },
+            "dependencies": {
+              "disposition": "none"
+            },
+            "uncertainty": {
+              "disposition": "none"
+            },
+            "conflicts": {
+              "disposition": "none"
+            },
+            "missingSources": {
+              "disposition": "none"
+            },
+            "inaccessibleSourceImpact": {
+              "disposition": "none"
+            }
+          },
+          "transformationAndRedaction": {
+            "summaryLimits": {
+              "disposition": "none"
+            },
+            "extractionLimits": {
+              "disposition": "none"
+            },
+            "transformationLimits": {
+              "disposition": "none"
+            },
+            "redactionLimits": {
+              "disposition": "none"
+            },
+            "sanitizationLimits": {
+              "disposition": "none"
+            },
+            "informationLoss": {
+              "disposition": "none"
+            }
+          },
+          "securityPrivacyAndAccess": {
+            "securityConstraints": [
+              "Exclude credentials and exploitable operational detail."
+            ],
+            "privacyConstraints": [
+              "Exclude personal and private project data."
+            ],
+            "confidentialityConstraints": [
+              "Use public-safe synthetic content only."
+            ],
+            "publicPrivateBoundaries": [
+              "Keep private context outside public artifacts."
+            ],
+            "accessConstraints": [
+              "A reference grants no source access."
+            ],
+            "leastDisclosureConstraints": [
+              "Disclose only minimum task-relevant material."
+            ]
+          },
+          "sufficiencyAndMinimization": {
+            "relevanceEvidence": [
+              "Each source has an explicit relevance rationale."
+            ],
+            "sufficiencyRationale": [
+              "The selected sources cover the declared task purpose."
+            ],
+            "minimizationRationale": [
+              "Unrelated context is explicitly excluded."
+            ],
+            "validationObligations": [
+              "Validate structure and review semantic sufficiency separately."
+            ],
+            "knownLimitations": {
+              "disposition": "none"
+            },
+            "specialistReviewBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "stopAndEscalation": {
+            "stopConditions": [
+              "Stop on authority, scope, provenance, security, or privacy uncertainty."
+            ],
+            "escalationConditions": [
+              "Escalate any material mismatch to final human authority."
+            ]
+          },
+          "lifecycleAndExecutionTraceability": {
+            "validity": {
+              "disposition": "specified",
+              "items": [
+                "Valid only for the pinned governing Task Contract revision."
+              ]
+            },
+            "amendment": {
+              "disposition": "specified",
+              "items": [
+                "Material change requires a new reviewed Artifact Revision."
+              ]
+            },
+            "refresh": {
+              "disposition": "specified",
+              "items": [
+                "Refresh after a material source change."
+              ]
+            },
+            "withdrawal": {
+              "disposition": "none"
+            },
+            "expiration": {
+              "disposition": "none"
+            },
+            "supersession": {
+              "disposition": "none"
+            },
+            "retirement": {
+              "disposition": "none"
+            },
+            "retention": {
+              "disposition": "specified",
+              "items": [
+                "Preserve provenance and decision history."
+              ]
+            },
+            "executionTraceabilityRequirements": [
+              "A later Execution Result must preserve independent traceability without embedding here."
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "invalid empty and duplicate required collections",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "context-packet",
+          "artifactInstance": {
+            "identifier": "synthetic-context-packet-001",
+            "revision": "revision-001"
+          },
+          "governingContract": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/context-packet",
+            "version": "1.0.0"
+          },
+          "governingSchema": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/context-packet/1.0.0",
+            "version": "1.0.0"
+          }
+        },
+        "payload": {
+          "governingTaskContract": {
+            "artifactInstanceIdentifier": "synthetic-task-contract-001",
+            "artifactRevision": "revision-001"
+          },
+          "selectionPurpose": {
+            "taskObjective": "Prepare one bounded public-safe result.",
+            "packetPurpose": "Provide only the minimum relevant context.",
+            "intendedUse": "Human-reviewed bounded execution support.",
+            "intendedExecutorClass": "Bounded implementer"
+          },
+          "applicableGoverningContext": {
+            "projectCharterContext": {
+              "disposition": "none"
+            },
+            "workstreamContext": {
+              "disposition": "none"
+            },
+            "approvalContext": {
+              "disposition": "none"
+            },
+            "reviewContext": {
+              "disposition": "none"
+            },
+            "decisionContext": {
+              "disposition": "none"
+            }
+          },
+          "selectedSources": [
+            {
+              "sourceReference": "public-source-001",
+              "sourceType": "public synthetic source",
+              "relevanceRationale": "The source is directly relevant to the bounded task objective.",
+              "revisionOrVersionContext": {
+                "disposition": "specified",
+                "items": [
+                  "Synthetic revision 1."
+                ]
+              },
+              "includedMaterial": {
+                "disposition": "none"
+              },
+              "contentTreatments": [
+                "reference-only"
+              ],
+              "authorityAndApplicabilityContext": {
+                "disposition": "none"
+              },
+              "knownLossAndLimitations": {
+                "disposition": "none"
+              }
+            }
+          ],
+          "exclusionsAndForbiddenContext": {
+            "excludedContext": {
+              "disposition": "specified",
+              "items": [
+                "Unrelated project history."
+              ]
+            },
+            "forbiddenContext": {
+              "disposition": "specified",
+              "items": [
+                "Secrets, credentials, and private project data."
+              ]
+            },
+            "inaccessibleSources": {
+              "disposition": "none"
+            },
+            "deliberateOmissions": {
+              "disposition": "none"
+            },
+            "redactionBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "provenanceAndPinning": {
+            "provenanceRequirements": [],
+            "pinningRequirements": [
+              "Record the assessed source revision context."
+            ],
+            "derivationTraceability": [
+              "Record material derivation limits."
+            ],
+            "provenanceLimitations": {
+              "disposition": "none"
+            }
+          },
+          "freshnessAndApplicability": {
+            "freshnessAssessment": [
+              "Freshness was assessed for the bounded task."
+            ],
+            "applicabilityAssessment": [
+              "Applicability was assessed against the task objective."
+            ],
+            "reassessmentTriggers": [
+              "Reassess on a material source or task change."
+            ],
+            "stalenessRisks": {
+              "disposition": "none"
+            }
+          },
+          "assumptionsDependenciesAndUncertainty": {
+            "assumptions": {
+              "disposition": "none"
+            },
+            "dependencies": {
+              "disposition": "none"
+            },
+            "uncertainty": {
+              "disposition": "none"
+            },
+            "conflicts": {
+              "disposition": "none"
+            },
+            "missingSources": {
+              "disposition": "none"
+            },
+            "inaccessibleSourceImpact": {
+              "disposition": "none"
+            }
+          },
+          "transformationAndRedaction": {
+            "summaryLimits": {
+              "disposition": "none"
+            },
+            "extractionLimits": {
+              "disposition": "none"
+            },
+            "transformationLimits": {
+              "disposition": "none"
+            },
+            "redactionLimits": {
+              "disposition": "none"
+            },
+            "sanitizationLimits": {
+              "disposition": "none"
+            },
+            "informationLoss": {
+              "disposition": "none"
+            }
+          },
+          "securityPrivacyAndAccess": {
+            "securityConstraints": [
+              "Exclude credentials and exploitable operational detail."
+            ],
+            "privacyConstraints": [
+              "Exclude personal and private project data."
+            ],
+            "confidentialityConstraints": [
+              "Use public-safe synthetic content only."
+            ],
+            "publicPrivateBoundaries": [
+              "Keep private context outside public artifacts."
+            ],
+            "accessConstraints": [
+              "A reference grants no source access."
+            ],
+            "leastDisclosureConstraints": [
+              "Disclose only minimum task-relevant material."
+            ]
+          },
+          "sufficiencyAndMinimization": {
+            "relevanceEvidence": [
+              "Each source has an explicit relevance rationale."
+            ],
+            "sufficiencyRationale": [
+              "The selected sources cover the declared task purpose."
+            ],
+            "minimizationRationale": [
+              "Unrelated context is explicitly excluded."
+            ],
+            "validationObligations": [
+              "Validate structure and review semantic sufficiency separately."
+            ],
+            "knownLimitations": {
+              "disposition": "none"
+            },
+            "specialistReviewBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "stopAndEscalation": {
+            "stopConditions": [
+              "same",
+              "same"
+            ],
+            "escalationConditions": [
+              "Escalate any material mismatch to final human authority."
+            ]
+          },
+          "lifecycleAndExecutionTraceability": {
+            "validity": {
+              "disposition": "specified",
+              "items": [
+                "Valid only for the pinned governing Task Contract revision."
+              ]
+            },
+            "amendment": {
+              "disposition": "specified",
+              "items": [
+                "Material change requires a new reviewed Artifact Revision."
+              ]
+            },
+            "refresh": {
+              "disposition": "specified",
+              "items": [
+                "Refresh after a material source change."
+              ]
+            },
+            "withdrawal": {
+              "disposition": "none"
+            },
+            "expiration": {
+              "disposition": "none"
+            },
+            "supersession": {
+              "disposition": "none"
+            },
+            "retirement": {
+              "disposition": "none"
+            },
+            "retention": {
+              "disposition": "specified",
+              "items": [
+                "Preserve provenance and decision history."
+              ]
+            },
+            "executionTraceabilityRequirements": [
+              "A later Execution Result must preserve independent traceability without embedding here."
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "invalid declaration set",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "context-packet",
+          "artifactInstance": {
+            "identifier": "synthetic-context-packet-001",
+            "revision": "revision-001"
+          },
+          "governingContract": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/context-packet",
+            "version": "1.0.0"
+          },
+          "governingSchema": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/context-packet/1.0.0",
+            "version": "1.0.0"
+          }
+        },
+        "payload": {
+          "governingTaskContract": {
+            "artifactInstanceIdentifier": "synthetic-task-contract-001",
+            "artifactRevision": "revision-001"
+          },
+          "selectionPurpose": {
+            "taskObjective": "Prepare one bounded public-safe result.",
+            "packetPurpose": "Provide only the minimum relevant context.",
+            "intendedUse": "Human-reviewed bounded execution support.",
+            "intendedExecutorClass": "Bounded implementer"
+          },
+          "applicableGoverningContext": {
+            "projectCharterContext": {
+              "disposition": "none"
+            },
+            "workstreamContext": {
+              "disposition": "none"
+            },
+            "approvalContext": {
+              "disposition": "none",
+              "items": [
+                "Not allowed."
+              ]
+            },
+            "reviewContext": {
+              "disposition": "none"
+            },
+            "decisionContext": {
+              "disposition": "none"
+            }
+          },
+          "selectedSources": [
+            {
+              "sourceReference": "public-source-001",
+              "sourceType": "public synthetic source",
+              "relevanceRationale": "The source is directly relevant to the bounded task objective.",
+              "revisionOrVersionContext": {
+                "disposition": "specified",
+                "items": [
+                  "Synthetic revision 1."
+                ]
+              },
+              "includedMaterial": {
+                "disposition": "none"
+              },
+              "contentTreatments": [
+                "reference-only"
+              ],
+              "authorityAndApplicabilityContext": {
+                "disposition": "none"
+              },
+              "knownLossAndLimitations": {
+                "disposition": "none"
+              }
+            }
+          ],
+          "exclusionsAndForbiddenContext": {
+            "excludedContext": {
+              "disposition": "specified",
+              "items": [
+                "Unrelated project history."
+              ]
+            },
+            "forbiddenContext": {
+              "disposition": "specified",
+              "items": [
+                "Secrets, credentials, and private project data."
+              ]
+            },
+            "inaccessibleSources": {
+              "disposition": "none"
+            },
+            "deliberateOmissions": {
+              "disposition": "none"
+            },
+            "redactionBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "provenanceAndPinning": {
+            "provenanceRequirements": [
+              "Preserve exact source provenance."
+            ],
+            "pinningRequirements": [
+              "Record the assessed source revision context."
+            ],
+            "derivationTraceability": [
+              "Record material derivation limits."
+            ],
+            "provenanceLimitations": {
+              "disposition": "none"
+            }
+          },
+          "freshnessAndApplicability": {
+            "freshnessAssessment": [
+              "Freshness was assessed for the bounded task."
+            ],
+            "applicabilityAssessment": [
+              "Applicability was assessed against the task objective."
+            ],
+            "reassessmentTriggers": [
+              "Reassess on a material source or task change."
+            ],
+            "stalenessRisks": {
+              "disposition": "none"
+            }
+          },
+          "assumptionsDependenciesAndUncertainty": {
+            "assumptions": {
+              "disposition": "none"
+            },
+            "dependencies": {
+              "disposition": "none"
+            },
+            "uncertainty": {
+              "disposition": "none"
+            },
+            "conflicts": {
+              "disposition": "none"
+            },
+            "missingSources": {
+              "disposition": "none"
+            },
+            "inaccessibleSourceImpact": {
+              "disposition": "none"
+            }
+          },
+          "transformationAndRedaction": {
+            "summaryLimits": {
+              "disposition": "none"
+            },
+            "extractionLimits": {
+              "disposition": "none"
+            },
+            "transformationLimits": {
+              "disposition": "none"
+            },
+            "redactionLimits": {
+              "disposition": "none"
+            },
+            "sanitizationLimits": {
+              "disposition": "none"
+            },
+            "informationLoss": {
+              "disposition": "none"
+            }
+          },
+          "securityPrivacyAndAccess": {
+            "securityConstraints": [
+              "Exclude credentials and exploitable operational detail."
+            ],
+            "privacyConstraints": [
+              "Exclude personal and private project data."
+            ],
+            "confidentialityConstraints": [
+              "Use public-safe synthetic content only."
+            ],
+            "publicPrivateBoundaries": [
+              "Keep private context outside public artifacts."
+            ],
+            "accessConstraints": [
+              "A reference grants no source access."
+            ],
+            "leastDisclosureConstraints": [
+              "Disclose only minimum task-relevant material."
+            ]
+          },
+          "sufficiencyAndMinimization": {
+            "relevanceEvidence": [
+              "Each source has an explicit relevance rationale."
+            ],
+            "sufficiencyRationale": [
+              "The selected sources cover the declared task purpose."
+            ],
+            "minimizationRationale": [
+              "Unrelated context is explicitly excluded."
+            ],
+            "validationObligations": [
+              "Validate structure and review semantic sufficiency separately."
+            ],
+            "knownLimitations": {
+              "disposition": "none"
+            },
+            "specialistReviewBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "stopAndEscalation": {
+            "stopConditions": [
+              "Stop on authority, scope, provenance, security, or privacy uncertainty."
+            ],
+            "escalationConditions": [
+              "Escalate any material mismatch to final human authority."
+            ]
+          },
+          "lifecycleAndExecutionTraceability": {
+            "validity": {
+              "disposition": "specified",
+              "items": [
+                "Valid only for the pinned governing Task Contract revision."
+              ]
+            },
+            "amendment": {
+              "disposition": "specified",
+              "items": [
+                "Material change requires a new reviewed Artifact Revision."
+              ]
+            },
+            "refresh": {
+              "disposition": "specified",
+              "items": [
+                "Refresh after a material source change."
+              ]
+            },
+            "withdrawal": {
+              "disposition": "none"
+            },
+            "expiration": {
+              "disposition": "none"
+            },
+            "supersession": {
+              "disposition": "none"
+            },
+            "retirement": {
+              "disposition": "none"
+            },
+            "retention": {
+              "disposition": "specified",
+              "items": [
+                "Preserve provenance and decision history."
+              ]
+            },
+            "executionTraceabilityRequirements": [
+              "A later Execution Result must preserve independent traceability without embedding here."
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "invalid null and wrong type",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "context-packet",
+          "artifactInstance": {
+            "identifier": "synthetic-context-packet-001",
+            "revision": "revision-001"
+          },
+          "governingContract": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/context-packet",
+            "version": "1.0.0"
+          },
+          "governingSchema": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/context-packet/1.0.0",
+            "version": "1.0.0"
+          }
+        },
+        "payload": {
+          "governingTaskContract": {
+            "artifactInstanceIdentifier": "synthetic-task-contract-001",
+            "artifactRevision": "revision-001"
+          },
+          "selectionPurpose": {
+            "taskObjective": "Prepare one bounded public-safe result.",
+            "packetPurpose": "Provide only the minimum relevant context.",
+            "intendedUse": "Human-reviewed bounded execution support.",
+            "intendedExecutorClass": "Bounded implementer"
+          },
+          "applicableGoverningContext": {
+            "projectCharterContext": {
+              "disposition": "none"
+            },
+            "workstreamContext": {
+              "disposition": "none"
+            },
+            "approvalContext": {
+              "disposition": "none"
+            },
+            "reviewContext": {
+              "disposition": "none"
+            },
+            "decisionContext": {
+              "disposition": "none"
+            }
+          },
+          "selectedSources": {},
+          "exclusionsAndForbiddenContext": {
+            "excludedContext": {
+              "disposition": "specified",
+              "items": [
+                "Unrelated project history."
+              ]
+            },
+            "forbiddenContext": {
+              "disposition": "specified",
+              "items": [
+                "Secrets, credentials, and private project data."
+              ]
+            },
+            "inaccessibleSources": {
+              "disposition": "none"
+            },
+            "deliberateOmissions": {
+              "disposition": "none"
+            },
+            "redactionBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "provenanceAndPinning": {
+            "provenanceRequirements": [
+              "Preserve exact source provenance."
+            ],
+            "pinningRequirements": [
+              "Record the assessed source revision context."
+            ],
+            "derivationTraceability": [
+              "Record material derivation limits."
+            ],
+            "provenanceLimitations": {
+              "disposition": "none"
+            }
+          },
+          "freshnessAndApplicability": {
+            "freshnessAssessment": [
+              "Freshness was assessed for the bounded task."
+            ],
+            "applicabilityAssessment": [
+              "Applicability was assessed against the task objective."
+            ],
+            "reassessmentTriggers": [
+              "Reassess on a material source or task change."
+            ],
+            "stalenessRisks": {
+              "disposition": "none"
+            }
+          },
+          "assumptionsDependenciesAndUncertainty": {
+            "assumptions": {
+              "disposition": "none"
+            },
+            "dependencies": {
+              "disposition": "none"
+            },
+            "uncertainty": {
+              "disposition": "none"
+            },
+            "conflicts": {
+              "disposition": "none"
+            },
+            "missingSources": {
+              "disposition": "none"
+            },
+            "inaccessibleSourceImpact": {
+              "disposition": "none"
+            }
+          },
+          "transformationAndRedaction": null,
+          "securityPrivacyAndAccess": {
+            "securityConstraints": [
+              "Exclude credentials and exploitable operational detail."
+            ],
+            "privacyConstraints": [
+              "Exclude personal and private project data."
+            ],
+            "confidentialityConstraints": [
+              "Use public-safe synthetic content only."
+            ],
+            "publicPrivateBoundaries": [
+              "Keep private context outside public artifacts."
+            ],
+            "accessConstraints": [
+              "A reference grants no source access."
+            ],
+            "leastDisclosureConstraints": [
+              "Disclose only minimum task-relevant material."
+            ]
+          },
+          "sufficiencyAndMinimization": {
+            "relevanceEvidence": [
+              "Each source has an explicit relevance rationale."
+            ],
+            "sufficiencyRationale": [
+              "The selected sources cover the declared task purpose."
+            ],
+            "minimizationRationale": [
+              "Unrelated context is explicitly excluded."
+            ],
+            "validationObligations": [
+              "Validate structure and review semantic sufficiency separately."
+            ],
+            "knownLimitations": {
+              "disposition": "none"
+            },
+            "specialistReviewBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "stopAndEscalation": {
+            "stopConditions": [
+              "Stop on authority, scope, provenance, security, or privacy uncertainty."
+            ],
+            "escalationConditions": [
+              "Escalate any material mismatch to final human authority."
+            ]
+          },
+          "lifecycleAndExecutionTraceability": {
+            "validity": {
+              "disposition": "specified",
+              "items": [
+                "Valid only for the pinned governing Task Contract revision."
+              ]
+            },
+            "amendment": {
+              "disposition": "specified",
+              "items": [
+                "Material change requires a new reviewed Artifact Revision."
+              ]
+            },
+            "refresh": {
+              "disposition": "specified",
+              "items": [
+                "Refresh after a material source change."
+              ]
+            },
+            "withdrawal": {
+              "disposition": "none"
+            },
+            "expiration": {
+              "disposition": "none"
+            },
+            "supersession": {
+              "disposition": "none"
+            },
+            "retirement": {
+              "disposition": "none"
+            },
+            "retention": {
+              "disposition": "specified",
+              "items": [
+                "Preserve provenance and decision history."
+              ]
+            },
+            "executionTraceabilityRequirements": [
+              "A later Execution Result must preserve independent traceability without embedding here."
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "invalid approval access retrieval ranking prompt workflow execution configuration extension and runtime fields",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "context-packet",
+          "artifactInstance": {
+            "identifier": "synthetic-context-packet-001",
+            "revision": "revision-001"
+          },
+          "governingContract": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/context-packet",
+            "version": "1.0.0"
+          },
+          "governingSchema": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/context-packet/1.0.0",
+            "version": "1.0.0"
+          }
+        },
+        "payload": {
+          "governingTaskContract": {
+            "artifactInstanceIdentifier": "synthetic-task-contract-001",
+            "artifactRevision": "revision-001"
+          },
+          "selectionPurpose": {
+            "taskObjective": "Prepare one bounded public-safe result.",
+            "packetPurpose": "Provide only the minimum relevant context.",
+            "intendedUse": "Human-reviewed bounded execution support.",
+            "intendedExecutorClass": "Bounded implementer"
+          },
+          "applicableGoverningContext": {
+            "projectCharterContext": {
+              "disposition": "none"
+            },
+            "workstreamContext": {
+              "disposition": "none"
+            },
+            "approvalContext": {
+              "disposition": "none"
+            },
+            "reviewContext": {
+              "disposition": "none"
+            },
+            "decisionContext": {
+              "disposition": "none"
+            }
+          },
+          "selectedSources": [
+            {
+              "sourceReference": "public-source-001",
+              "sourceType": "public synthetic source",
+              "relevanceRationale": "The source is directly relevant to the bounded task objective.",
+              "revisionOrVersionContext": {
+                "disposition": "specified",
+                "items": [
+                  "Synthetic revision 1."
+                ]
+              },
+              "includedMaterial": {
+                "disposition": "none"
+              },
+              "contentTreatments": [
+                "reference-only"
+              ],
+              "authorityAndApplicabilityContext": {
+                "disposition": "none"
+              },
+              "knownLossAndLimitations": {
+                "disposition": "none"
+              }
+            }
+          ],
+          "exclusionsAndForbiddenContext": {
+            "excludedContext": {
+              "disposition": "specified",
+              "items": [
+                "Unrelated project history."
+              ]
+            },
+            "forbiddenContext": {
+              "disposition": "specified",
+              "items": [
+                "Secrets, credentials, and private project data."
+              ]
+            },
+            "inaccessibleSources": {
+              "disposition": "none"
+            },
+            "deliberateOmissions": {
+              "disposition": "none"
+            },
+            "redactionBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "provenanceAndPinning": {
+            "provenanceRequirements": [
+              "Preserve exact source provenance."
+            ],
+            "pinningRequirements": [
+              "Record the assessed source revision context."
+            ],
+            "derivationTraceability": [
+              "Record material derivation limits."
+            ],
+            "provenanceLimitations": {
+              "disposition": "none"
+            }
+          },
+          "freshnessAndApplicability": {
+            "freshnessAssessment": [
+              "Freshness was assessed for the bounded task."
+            ],
+            "applicabilityAssessment": [
+              "Applicability was assessed against the task objective."
+            ],
+            "reassessmentTriggers": [
+              "Reassess on a material source or task change."
+            ],
+            "stalenessRisks": {
+              "disposition": "none"
+            }
+          },
+          "assumptionsDependenciesAndUncertainty": {
+            "assumptions": {
+              "disposition": "none"
+            },
+            "dependencies": {
+              "disposition": "none"
+            },
+            "uncertainty": {
+              "disposition": "none"
+            },
+            "conflicts": {
+              "disposition": "none"
+            },
+            "missingSources": {
+              "disposition": "none"
+            },
+            "inaccessibleSourceImpact": {
+              "disposition": "none"
+            }
+          },
+          "transformationAndRedaction": {
+            "summaryLimits": {
+              "disposition": "none"
+            },
+            "extractionLimits": {
+              "disposition": "none"
+            },
+            "transformationLimits": {
+              "disposition": "none"
+            },
+            "redactionLimits": {
+              "disposition": "none"
+            },
+            "sanitizationLimits": {
+              "disposition": "none"
+            },
+            "informationLoss": {
+              "disposition": "none"
+            }
+          },
+          "securityPrivacyAndAccess": {
+            "securityConstraints": [
+              "Exclude credentials and exploitable operational detail."
+            ],
+            "privacyConstraints": [
+              "Exclude personal and private project data."
+            ],
+            "confidentialityConstraints": [
+              "Use public-safe synthetic content only."
+            ],
+            "publicPrivateBoundaries": [
+              "Keep private context outside public artifacts."
+            ],
+            "accessConstraints": [
+              "A reference grants no source access."
+            ],
+            "leastDisclosureConstraints": [
+              "Disclose only minimum task-relevant material."
+            ],
+            "accessGranted": true
+          },
+          "sufficiencyAndMinimization": {
+            "relevanceEvidence": [
+              "Each source has an explicit relevance rationale."
+            ],
+            "sufficiencyRationale": [
+              "The selected sources cover the declared task purpose."
+            ],
+            "minimizationRationale": [
+              "Unrelated context is explicitly excluded."
+            ],
+            "validationObligations": [
+              "Validate structure and review semantic sufficiency separately."
+            ],
+            "knownLimitations": {
+              "disposition": "none"
+            },
+            "specialistReviewBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "stopAndEscalation": {
+            "stopConditions": [
+              "Stop on authority, scope, provenance, security, or privacy uncertainty."
+            ],
+            "escalationConditions": [
+              "Escalate any material mismatch to final human authority."
+            ]
+          },
+          "lifecycleAndExecutionTraceability": {
+            "validity": {
+              "disposition": "specified",
+              "items": [
+                "Valid only for the pinned governing Task Contract revision."
+              ]
+            },
+            "amendment": {
+              "disposition": "specified",
+              "items": [
+                "Material change requires a new reviewed Artifact Revision."
+              ]
+            },
+            "refresh": {
+              "disposition": "specified",
+              "items": [
+                "Refresh after a material source change."
+              ]
+            },
+            "withdrawal": {
+              "disposition": "none"
+            },
+            "expiration": {
+              "disposition": "none"
+            },
+            "supersession": {
+              "disposition": "none"
+            },
+            "retirement": {
+              "disposition": "none"
+            },
+            "retention": {
+              "disposition": "specified",
+              "items": [
+                "Preserve provenance and decision history."
+              ]
+            },
+            "executionTraceabilityRequirements": [
+              "A later Execution Result must preserve independent traceability without embedding here."
+            ]
+          },
+          "retrieval": {
+            "query": "*"
+          },
+          "ranking": {
+            "score": 1
+          },
+          "prompt": "execute",
+          "workflow": {
+            "automatic": true
+          },
+          "execution": {
+            "run": true
+          },
+          "configuration": {
+            "provider": "example"
+          },
+          "extension": {},
+          "runtime": {}
+        }
+      }
+    },
+    {
+      "name": "invalid embedded Project Charter Workstream Execution Result and peer artifact",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "context-packet",
+          "artifactInstance": {
+            "identifier": "synthetic-context-packet-001",
+            "revision": "revision-001"
+          },
+          "governingContract": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/context-packet",
+            "version": "1.0.0"
+          },
+          "governingSchema": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/context-packet/1.0.0",
+            "version": "1.0.0"
+          }
+        },
+        "payload": {
+          "governingTaskContract": {
+            "artifactInstanceIdentifier": "synthetic-task-contract-001",
+            "artifactRevision": "revision-001"
+          },
+          "selectionPurpose": {
+            "taskObjective": "Prepare one bounded public-safe result.",
+            "packetPurpose": "Provide only the minimum relevant context.",
+            "intendedUse": "Human-reviewed bounded execution support.",
+            "intendedExecutorClass": "Bounded implementer"
+          },
+          "applicableGoverningContext": {
+            "projectCharterContext": {
+              "disposition": "none"
+            },
+            "workstreamContext": {
+              "disposition": "none"
+            },
+            "approvalContext": {
+              "disposition": "none"
+            },
+            "reviewContext": {
+              "disposition": "none"
+            },
+            "decisionContext": {
+              "disposition": "none"
+            },
+            "projectCharterArtifact": {},
+            "workstreamArtifact": {}
+          },
+          "selectedSources": [
+            {
+              "sourceReference": "public-source-001",
+              "sourceType": "public synthetic source",
+              "relevanceRationale": "The source is directly relevant to the bounded task objective.",
+              "revisionOrVersionContext": {
+                "disposition": "specified",
+                "items": [
+                  "Synthetic revision 1."
+                ]
+              },
+              "includedMaterial": {
+                "disposition": "none"
+              },
+              "contentTreatments": [
+                "reference-only"
+              ],
+              "authorityAndApplicabilityContext": {
+                "disposition": "none"
+              },
+              "knownLossAndLimitations": {
+                "disposition": "none"
+              },
+              "peerContextPacket": {}
+            }
+          ],
+          "exclusionsAndForbiddenContext": {
+            "excludedContext": {
+              "disposition": "specified",
+              "items": [
+                "Unrelated project history."
+              ]
+            },
+            "forbiddenContext": {
+              "disposition": "specified",
+              "items": [
+                "Secrets, credentials, and private project data."
+              ]
+            },
+            "inaccessibleSources": {
+              "disposition": "none"
+            },
+            "deliberateOmissions": {
+              "disposition": "none"
+            },
+            "redactionBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "provenanceAndPinning": {
+            "provenanceRequirements": [
+              "Preserve exact source provenance."
+            ],
+            "pinningRequirements": [
+              "Record the assessed source revision context."
+            ],
+            "derivationTraceability": [
+              "Record material derivation limits."
+            ],
+            "provenanceLimitations": {
+              "disposition": "none"
+            }
+          },
+          "freshnessAndApplicability": {
+            "freshnessAssessment": [
+              "Freshness was assessed for the bounded task."
+            ],
+            "applicabilityAssessment": [
+              "Applicability was assessed against the task objective."
+            ],
+            "reassessmentTriggers": [
+              "Reassess on a material source or task change."
+            ],
+            "stalenessRisks": {
+              "disposition": "none"
+            }
+          },
+          "assumptionsDependenciesAndUncertainty": {
+            "assumptions": {
+              "disposition": "none"
+            },
+            "dependencies": {
+              "disposition": "none"
+            },
+            "uncertainty": {
+              "disposition": "none"
+            },
+            "conflicts": {
+              "disposition": "none"
+            },
+            "missingSources": {
+              "disposition": "none"
+            },
+            "inaccessibleSourceImpact": {
+              "disposition": "none"
+            }
+          },
+          "transformationAndRedaction": {
+            "summaryLimits": {
+              "disposition": "none"
+            },
+            "extractionLimits": {
+              "disposition": "none"
+            },
+            "transformationLimits": {
+              "disposition": "none"
+            },
+            "redactionLimits": {
+              "disposition": "none"
+            },
+            "sanitizationLimits": {
+              "disposition": "none"
+            },
+            "informationLoss": {
+              "disposition": "none"
+            }
+          },
+          "securityPrivacyAndAccess": {
+            "securityConstraints": [
+              "Exclude credentials and exploitable operational detail."
+            ],
+            "privacyConstraints": [
+              "Exclude personal and private project data."
+            ],
+            "confidentialityConstraints": [
+              "Use public-safe synthetic content only."
+            ],
+            "publicPrivateBoundaries": [
+              "Keep private context outside public artifacts."
+            ],
+            "accessConstraints": [
+              "A reference grants no source access."
+            ],
+            "leastDisclosureConstraints": [
+              "Disclose only minimum task-relevant material."
+            ]
+          },
+          "sufficiencyAndMinimization": {
+            "relevanceEvidence": [
+              "Each source has an explicit relevance rationale."
+            ],
+            "sufficiencyRationale": [
+              "The selected sources cover the declared task purpose."
+            ],
+            "minimizationRationale": [
+              "Unrelated context is explicitly excluded."
+            ],
+            "validationObligations": [
+              "Validate structure and review semantic sufficiency separately."
+            ],
+            "knownLimitations": {
+              "disposition": "none"
+            },
+            "specialistReviewBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "stopAndEscalation": {
+            "stopConditions": [
+              "Stop on authority, scope, provenance, security, or privacy uncertainty."
+            ],
+            "escalationConditions": [
+              "Escalate any material mismatch to final human authority."
+            ]
+          },
+          "lifecycleAndExecutionTraceability": {
+            "validity": {
+              "disposition": "specified",
+              "items": [
+                "Valid only for the pinned governing Task Contract revision."
+              ]
+            },
+            "amendment": {
+              "disposition": "specified",
+              "items": [
+                "Material change requires a new reviewed Artifact Revision."
+              ]
+            },
+            "refresh": {
+              "disposition": "specified",
+              "items": [
+                "Refresh after a material source change."
+              ]
+            },
+            "withdrawal": {
+              "disposition": "none"
+            },
+            "expiration": {
+              "disposition": "none"
+            },
+            "supersession": {
+              "disposition": "none"
+            },
+            "retirement": {
+              "disposition": "none"
+            },
+            "retention": {
+              "disposition": "specified",
+              "items": [
+                "Preserve provenance and decision history."
+              ]
+            },
+            "executionTraceabilityRequirements": [
+              "A later Execution Result must preserve independent traceability without embedding here."
+            ],
+            "executionResultArtifact": {}
+          }
+        }
+      }
+    }
+  ]
+}
