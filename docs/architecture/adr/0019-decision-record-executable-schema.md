@@ -1,8 +1,9 @@
 # ADR-0019: Decision Record executable schema definition
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-08-07
 - **Issue:** [#64](https://github.com/CNTX-PROJECT/CNTX/issues/64)
+- **EIGENAAR acceptance:** issue comment `5219310944`
 - **Decision:** ARCH-019 — Decision Record Executable Schema Definition
 
 ## Context
@@ -15,14 +16,14 @@ consequential Decision Record under final human authority.
 
 After Accepted Review Record Schema Version `1.0.0`, the dependency-first
 rollout permits a separately governed Decision Record executable-schema
-proposal. The proposal must translate only CONTRACT-008 responsibilities,
+decision. The decision translates only CONTRACT-008 responsibilities,
 preserve authority and approval provenance without claiming to verify them,
 preserve source and historical traceability through opaque pins, and introduce
 no artifact-specific schema dependency or implementation mechanism.
 
 ## Decision
 
-Propose one JSON Schema Draft 2020-12 Schema Resource at
+Adopt one JSON Schema Draft 2020-12 Schema Resource at
 `schemas/decision-record/1.0.0/schema.json` with canonical `$id`
 `https://github.com/CNTX-PROJECT/CNTX/schemas/decision-record/1.0.0`.
 
@@ -53,11 +54,11 @@ The resource:
 - uses only closed statement, opaque-value, artifact-pin, downstream-boundary,
   peer-decision, external-record, and responsibility structures;
 - keeps all internal references fragment-local; and
-- remains Proposed and inactive unless separately accepted and integrated.
+- is Accepted; governed integration to `main` activates the exact resource.
 
 ## Rationale
 
-The proposal makes a complete Decision Record structurally evaluable while
+The decision makes a complete Decision Record structurally evaluable while
 preserving the boundary between evidentiary input, preparation, review, and an
 attributable consequential decision. Exact opaque authority and approval pins
 retain provenance without turning the schema into an identity, credential,
@@ -72,7 +73,7 @@ deterministic offline validation.
 ## Consequences and tradeoffs
 
 - Seventeen CONTRACT-008 responsibility groups are mandatory structural
-  coordinates in the candidate.
+  coordinates in the Accepted schema.
 - The Decision Authority pin, human decision-maker reference, approved-revision
   pin, approval references, and authority traceability remain declarative and
   require external human-governed verification.
@@ -128,17 +129,18 @@ remain forbidden.
 
 ## Authority and conformance boundary
 
-The Proposed resource is non-self-approving. Schema validity proves only
-structural satisfaction of this exact candidate under the registered common
+The Accepted resource is non-self-approving. Schema validity proves only
+structural satisfaction of this exact resource under the registered common
 resource. It grants no contract conformance, source truth, identity, authority,
 approval, decision correctness, legal effect, acceptance, integration, release,
 deployment, publication, merge permission, execution, or follow-on authority.
 
-Creation, validation, review, repository presence, or a Draft pull request does
-not accept or activate Schema Version `1.0.0`. A separate attributable EIGENAAR
-/ Final Authority acceptance and separately governed integration are mandatory.
+EIGENAAR / Final Authority acceptance of the exact reviewed candidate is
+recorded in issue comment `5219310944`. Governed integration to `main`
+activates exactly Decision Record Schema Version `1.0.0`. No State Snapshot or
+later schema is automatically authorized.
 
-## Deferred scope and continuing gate
+## Deferred scope and continuing authority boundary
 
 Deferred and unauthorized: Artifact Instances and revision mechanisms;
 authority, decision-maker, identity, credential, delegation, approval,
@@ -152,6 +154,7 @@ Extension Module/Profile mechanisms; validator/output implementations;
 conformance tooling; runtime, private or reference implementation, provider,
 product, release, tag, hosted publication, and deployment.
 
-The authorized candidate workflow stops after one transparent non-independent
-exact-head COMMENT review. No status promotion, Ready-for-review transition,
-merge, issue closure, activation, or branch cleanup is authorized by this ADR.
+Acceptance and activation authorize no State Snapshot or later schema, artifact
+instance, binding, validator, resolver, runtime, implementation, product,
+release, publication, or deployment work without separately attributable
+authority.

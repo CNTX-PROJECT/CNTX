@@ -2,20 +2,21 @@
 
 ## Status and authority
 
-**Document Status:** Proposed.
+**Document Status:** Accepted.
 
-This document is a Proposed executable-schema architecture decision governed by
+This document is an Accepted executable-schema architecture decision governed by
 [issue #64](https://github.com/CNTX-PROJECT/CNTX/issues/64) and recorded by
 [ADR-0019](adr/0019-decision-record-executable-schema.md).
 
-The exact [Schema Resource](../../schemas/decision-record/1.0.0/schema.json)
-and [synthetic test evidence](../../tests/schemas/decision-record/1.0.0/cases.json)
-are candidates only. Creation, repository presence, validation, and transparent
-non-independent review do not accept or activate Decision Record Schema Version
-`1.0.0`. Only a separate attributable EIGENAAR / Final Authority acceptance and
-separately governed integration can do so.
+EIGENAAR / Final Authority acceptance of the exact reviewed candidate is
+recorded in issue comment `5219310944`. The exact reviewed
+[Schema Resource](../../schemas/decision-record/1.0.0/schema.json) and
+[synthetic test evidence](../../tests/schemas/decision-record/1.0.0/cases.json)
+are Accepted in that revision. Governed integration to `main` activates
+Decision Record Schema Version `1.0.0`. The transparent non-independent review
+was Evidentiary only and did not grant acceptance.
 
-This proposal remains subordinate to Accepted architecture, Accepted
+This decision remains subordinate to Accepted architecture, Accepted
 [CONTRACT-008](../contracts/decision-record-contract.md), repository governance,
 and final human authority. It modifies no Accepted source and creates no
 Decision Record Artifact Instance, decision authority, decision-maker identity,
@@ -33,7 +34,7 @@ Decision Record Contract Definition Identifier and Version. CONTRACT-008
 controls Decision Record meaning, attributable decision provenance, and final
 human authority.
 
-ARCH-019 proposes one Draft 2020-12 Schema Resource that specializes only the
+Accepted ARCH-019 binds one Draft 2020-12 Schema Resource that specializes only the
 common-envelope constants, represents authority and all artifact relationships
 through opaque exact Artifact Instance Identifier/Revision pins, and translates
 only CONTRACT-008 responsibilities into a closed payload.
@@ -42,24 +43,25 @@ The resource does not allocate authority or identity, prove approval, retrieve
 or interpret a source, reason about alternatives, calculate an outcome, resolve
 a conflict, execute a decision, change state, or create a downstream effect.
 
-## Proposed schema identity
+## Accepted schema identity
 
-| Dimension | Proposed value |
+| Dimension | Accepted value |
 | --- | --- |
 | Logical schema identity | CNTX Public Core Schema Family / Decision Record Artifact |
 | Artifact token | `decision-record` |
 | Schema language and dialect | JSON Schema Draft 2020-12 |
 | Dialect declaration | `https://json-schema.org/draft/2020-12/schema` |
 | Canonical `$id` | `https://github.com/CNTX-PROJECT/CNTX/schemas/decision-record/1.0.0` |
-| Candidate Schema Version | `1.0.0`, inactive |
+| Schema Version | `1.0.0` |
 | Canonical repository path | `schemas/decision-record/1.0.0/schema.json` |
 | Exact external dependency | Accepted Common Artifact Envelope Schema Version `1.0.0` |
 | Governing Contract Definition | `https://github.com/CNTX-PROJECT/CNTX/contract-definitions/decision-record` at `1.0.0` |
 | Schema-resource media type | `application/schema+json` |
-| Document Status | Proposed under issue #64 |
+| Document Status | Accepted under issue #64 and EIGENAAR acceptance comment `5219310944` |
 
-Creation, validation, review, or repository presence does not grant acceptance
-or activation. No acceptance comment exists for this candidate.
+Creation, repository presence, validation, and review did not grant acceptance
+or activation. Exact-head acceptance is recorded in issue comment
+`5219310944`; governed integration to `main` activates this exact version.
 
 ## Root and common-envelope specialization
 
@@ -276,22 +278,22 @@ confidence, priority, voting, majority, consensus, signature-as-approval,
 workflow, runtime, and implementation shapes.
 
 Fixtures are synthetic and non-normative. Expected validity is evidence about
-structure under this exact candidate and the locally registered exact Common
+structure under this exact Accepted resource and the locally registered exact Common
 Artifact Envelope resource only.
 
 ## Conformance and authority boundary
 
 Schema validity establishes only that one JSON value satisfies this exact
-candidate under the explicitly registered Common Artifact Envelope resource.
+Accepted resource under the explicitly registered Common Artifact Envelope resource.
 It does not establish contract conformance, source existence, source truth,
 authority, human identity, approval, attribution, authenticity, integrity,
 correctness, completeness, safety, privacy, outcome quality, legal effect,
 implementation, acceptance, integration, release, deployment, publication,
 merge, execution, or follow-on permission.
 
-The candidate is non-self-approving. Tests, validation, review count, apparent
-consensus, repository presence, Draft PR state, or tool output cannot replace
-separate attributable EIGENAAR / Final Authority acceptance.
+The Accepted resource is non-self-approving. Tests, validation, review count,
+apparent consensus, repository presence, or tool output did not grant
+acceptance and cannot replace attributable EIGENAAR / Final Authority.
 
 ## Security and privacy boundary
 
@@ -323,7 +325,7 @@ canonical JSON assumptions; and schema validity as acceptance.
 
 ## Validation requirements
 
-The governed candidate requires strict duplicate-free JSON and UTF-8 checks,
+The governed resource requires strict duplicate-free JSON and UTF-8 checks,
 official Draft 2020-12 schema checking, isolated `jsonschema 4.25.1`, exact
 offline registration of the Common Artifact Envelope, required missing-resource
 failure, all twenty expected fixture outcomes, exact root/constants/seventeen-
@@ -333,16 +335,14 @@ and reference-graph assertions, thirty-two protected-blob checks, link and
 privacy/security scans, exact eight-path scope, exact one-commit state, GitHub
 read-back, and one transparent non-independent exact-head COMMENT review.
 
-## Activation gate and continuing stop
+## Activation and continuing authority boundary
 
-ARCH-019 remains Proposed. The approved creation workflow stops after the
-transparent non-independent exact-head COMMENT review. A separate attributable
-EIGENAAR / Final Authority acceptance is required before any status promotion,
-promotion commit, Ready-for-review transition, merge, issue closure, activation,
-or branch cleanup may be considered.
-
-No inference from upstream acceptance, a passing schema, the candidate commit,
-the Draft PR, or the review can cross that gate.
+EIGENAAR / Final Authority acceptance of the exact reviewed candidate is
+recorded in issue comment `5219310944`. Governed integration to `main`
+activates exactly Decision Record Schema Version `1.0.0`. Acceptance and
+activation grant no State Snapshot or later schema authority and no artifact
+instance, binding, validator, resolver, runtime, implementation, product,
+release, publication, or deployment authority.
 
 ## Deferred and unauthorized scope
 
@@ -370,5 +370,5 @@ reference implementation; release; tag; hosted publication; or deployment.
 - [Contract Definition identity/version binding](contract-definition-identity-version-binding.md)
 - [Common Artifact Envelope Schema Version 1.0.0](../../schemas/common-artifact-envelope/1.0.0/schema.json)
 - [ADR-0019](adr/0019-decision-record-executable-schema.md)
-- [Proposed Decision Record Schema Version 1.0.0](../../schemas/decision-record/1.0.0/schema.json)
+- [Accepted Decision Record Schema Version 1.0.0](../../schemas/decision-record/1.0.0/schema.json)
 - [Non-normative synthetic cases](../../tests/schemas/decision-record/1.0.0/cases.json)

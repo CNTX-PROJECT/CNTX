@@ -296,22 +296,22 @@ authority, review quality, recommendation authority, final acceptance,
 integration, release, deployment, merge permission, Decision Record schema
 authority, or follow-on authority.
 
-## Proposed Decision Record Schema Version 1.0.0 candidate
+## Accepted Decision Record Schema Version 1.0.0
 
-| Dimension | Proposed value |
+| Dimension | Accepted value |
 | --- | --- |
 | Logical schema identity | CNTX Public Core Schema Family / Decision Record Artifact |
 | Schema language and dialect | JSON Schema Draft 2020-12 |
 | Dialect declaration | `https://json-schema.org/draft/2020-12/schema` |
 | Canonical `$id` | `https://github.com/CNTX-PROJECT/CNTX/schemas/decision-record/1.0.0` |
-| Candidate Schema Version | `1.0.0`, inactive |
+| Schema Version | `1.0.0` |
 | Canonical repository path | `schemas/decision-record/1.0.0/schema.json` |
 | Exact external dependency | Accepted Common Artifact Envelope Schema Version `1.0.0` |
 | Governing Contract Definition | `https://github.com/CNTX-PROJECT/CNTX/contract-definitions/decision-record` at `1.0.0` |
 | Schema-resource media type | `application/schema+json` |
-| Document Status | Proposed under issue #64 |
+| Document Status | Accepted under issue #64 and EIGENAAR acceptance comment `5219310944` |
 
-The candidate evaluates one complete closed Decision Record artifact with
+The Accepted resource evaluates one complete closed Decision Record artifact with
 mandatory `envelope` and `payload`. Its envelope statically references the exact
 Accepted Common Artifact Envelope and constrains only the Decision Record
 Artifact Type and governing Contract and Schema coordinates. Its closed
@@ -331,13 +331,13 @@ executes no decision, resolves no conflict, changes no state, and implements no
 acceptance, integration, release, deployment, publication, merge, workflow,
 runtime, access, disclosure, retention, or verification mechanism.
 
-The Proposed [ARCH-019 architecture decision](../docs/architecture/decision-record-executable-schema.md),
+The Accepted [ARCH-019 architecture decision](../docs/architecture/decision-record-executable-schema.md),
 [ADR-0019](../docs/architecture/adr/0019-decision-record-executable-schema.md),
 and [non-normative test manifest](../tests/schemas/decision-record/1.0.0/cases.json)
-define and evidence only the candidate boundary. Creation, validation, review,
-or repository presence does not accept or activate Schema Version `1.0.0` and
-grants no State Snapshot schema or follow-on authority. Separate attributable
-EIGENAAR / Final Authority acceptance and governed integration remain required.
+define and evidence the Accepted boundary. Governed integration to `main`
+activates exactly Schema Version `1.0.0` under issue #64 and EIGENAAR acceptance
+comment `5219310944`; acceptance and activation grant no State Snapshot schema
+or follow-on authority.
 
 ## Change boundary
 

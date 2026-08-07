@@ -1,9 +1,9 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/CNTX-PROJECT/CNTX/schemas/decision-record/1.0.0",
-  "$comment": "Proposed ARCH-019 Decision Record Schema Version 1.0.0 candidate under issue #64. Creation, validation, review, schema validity, or repository presence grants no decision authority, approval, acceptance, integration, release, deployment, merge permission, State Snapshot schema authority, or follow-on authority.",
+  "$comment": "Accepted ARCH-019 Decision Record Schema Version 1.0.0 under issue #64 and EIGENAAR / Final Authority acceptance comment 5219310944. Schema validity grants no decision authority, approval, acceptance, integration, release, deployment, merge permission, State Snapshot schema authority, or follow-on authority.",
   "title": "CNTX Decision Record Artifact",
-  "description": "A complete Decision Record artifact with the exact Accepted Common Artifact Envelope and a closed CONTRACT-008 payload. This Proposed schema evaluates structure only, preserves final human authority and non-automatic effects, and is inactive unless separately accepted and integrated under final human authority.",
+  "description": "A complete Decision Record artifact with the exact Accepted Common Artifact Envelope and a closed CONTRACT-008 payload. This schema evaluates structure only, preserves final human authority and non-automatic effects, and becomes active only through governed integration under final human authority.",
   "type": "object",
   "properties": {
     "envelope": {

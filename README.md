@@ -146,10 +146,10 @@ to `main` activates the exact Schema Version under issue #62 and EIGENAAR
 acceptance comment `5218629573`; acceptance and activation authorize no
 Decision Record schema or other follow-on work.
 
-The architecture index now also exposes the **Proposed** [Decision Record
+The architecture index now also exposes the **Accepted** [Decision Record
 Executable Schema Definition](docs/architecture/decision-record-executable-schema.md)
 with [ADR-0019](docs/architecture/adr/0019-decision-record-executable-schema.md),
-the inactive [Decision Record Schema Version `1.0.0` candidate](schemas/decision-record/1.0.0/schema.json),
+the Accepted [Decision Record Schema Version `1.0.0`](schemas/decision-record/1.0.0/schema.json),
 and its [synthetic validation cases](tests/schemas/decision-record/1.0.0/cases.json).
 ARCH-019 composes the exact Accepted Common Artifact Envelope with a closed
 seventeen-property CONTRACT-008 payload and preserves exact authority and
@@ -157,14 +157,16 @@ approved-revision provenance, one bounded question and outcome, basis, nine
 opaque artifact relationships, inputs, timing, scope, consequences, downstream
 boundaries, peer changes/conflicts, roles, external records, security/privacy,
 restricted basis, lifecycle, and history without any artifact-specific schema
-`$ref`. The candidate allocates no authority or identity, proves no approval,
+`$ref`. The accepted resource allocates no authority or identity, proves no approval,
 makes or executes no decision, changes no state, and implements no retrieval,
 reasoning, recommendation, voting, conflict-resolution, workflow, runtime,
 access, disclosure, retention, acceptance, integration, release, deployment,
 publication, or merge mechanism. Creation, validation, review, schema validity,
 or repository presence grants no acceptance, activation, State Snapshot schema,
-or follow-on authority. Separate attributable EIGENAAR / Final Authority
-acceptance and governed integration remain required under issue #64.
+or follow-on authority. Governed integration to `main` activates the exact
+Schema Version under issue #64 and EIGENAAR acceptance comment `5219310944`;
+acceptance and activation authorize no State Snapshot schema or other follow-on
+work.
 
 The high-level roadmap is to define public concepts and documentation, invite review under the project governance, and only then consider scoped, approved implementation work. Private reference implementations may exist later outside this public repository.
 
