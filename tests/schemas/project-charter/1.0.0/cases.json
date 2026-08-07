@@ -1,0 +1,488 @@
+{
+  "schemaId": "https://github.com/CNTX-PROJECT/CNTX/schemas/project-charter/1.0.0",
+  "candidateSchemaVersion": "1.0.0",
+  "documentStatus": "Accepted",
+  "nonNormative": true,
+  "description": "Public-safe synthetic validation cases for Accepted ARCH-012 Schema Version 1.0.0. Expected validity is evidence only and grants no contract conformance, approval, authority, trust, acceptance, release, deployment, merge permission, or access permission.",
+  "cases": [
+    {
+      "name": "valid minimal assessed project charter",
+      "valid": true,
+      "instance": {
+        "envelope": {
+          "artifactType": "project-charter",
+          "artifactInstance": { "identifier": "synthetic-charter-001", "revision": "revision-001" },
+          "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/project-charter", "version": "1.0.0" },
+          "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/project-charter/1.0.0", "version": "1.0.0" }
+        },
+        "payload": {
+          "purpose": "Establish a durable public collaboration foundation.",
+          "outcomes": { "desired": ["A bounded and reviewable public foundation."], "successDirection": "Human-governed collaboration remains verifiable." },
+          "scope": { "included": ["Public foundational contracts."], "boundaries": ["No private implementation content."], "nonGoals": { "disposition": "none" } },
+          "governingPrinciples": ["Final authority remains human."],
+          "materialConstraints": { "disposition": "none" },
+          "governance": { "context": ["Repository governance applies."], "finalAuthorityRole": "Owner / Final Authority" },
+          "projectConditions": {
+            "assumptions": { "disposition": "none" },
+            "dependencies": { "disposition": "none" },
+            "risks": { "disposition": "none" },
+            "unresolvedUncertainty": { "disposition": "none" }
+          },
+          "informationBoundaries": { "publicInformation": ["Public-core material only."], "restrictedInformation": { "disposition": "none" } },
+          "downstreamExpectations": {
+            "workstreams": ["Workstreams remain bounded by the charter."],
+            "taskContracts": ["Consequential execution requires an approved Task Contract."],
+            "consequentialDecisions": ["Consequential interpretation remains traceable."],
+            "traceability": ["Downstream artifacts pin applicable governing context."],
+            "changeControl": ["Material charter changes receive explicit review."]
+          },
+          "lifecycleConditions": {
+            "review": ["Review when enduring context may no longer be accurate."],
+            "amendment": ["Amendment requires explicit human approval."],
+            "supersession": ["Supersession preserves provenance."],
+            "retirement": ["Retirement preserves historical traceability."]
+          }
+        }
+      }
+    },
+    {
+      "name": "valid fully specified unicode project charter",
+      "valid": true,
+      "instance": {
+        "envelope": {
+          "artifactType": "project-charter",
+          "artifactInstance": { "identifier": "synthetic-charter-002", "revision": "revision-002" },
+          "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/project-charter", "version": "1.0.0" },
+          "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/project-charter/1.0.0", "version": "1.0.0" }
+        },
+        "payload": {
+          "purpose": "Duurzame samenwerking — menselijk bestuurd en publiek controleerbaar.",
+          "outcomes": { "desired": ["Traceerbare beslissingen.", "Heldere projectgrenzen."], "successDirection": "Samenwerking blijft begrensd, verifieerbaar en menselijk bestuurd." },
+          "scope": {
+            "included": ["Publieke kerncontracten.", "Publieke architectuur."],
+            "boundaries": ["Geen providergebonden productlogica."],
+            "nonGoals": { "disposition": "specified", "items": ["Geen autonome finale goedkeuring."] }
+          },
+          "governingPrinciples": ["Minimale context.", "Bewijs vóór claims."],
+          "materialConstraints": { "disposition": "specified", "items": ["Publieke inhoud bevat geen restricted gegevens."] },
+          "governance": { "context": ["GOVERNANCE.md is van toepassing."], "finalAuthorityRole": "Menselijke Owner / Final Authority" },
+          "projectConditions": {
+            "assumptions": { "disposition": "specified", "items": ["Governing sources blijven publiek beschikbaar."] },
+            "dependencies": { "disposition": "specified", "items": ["Accepted architectuur blijft de hogere bron."] },
+            "risks": { "disposition": "specified", "items": ["Onbegrensde context kan provenance verzwakken."] },
+            "unresolvedUncertainty": { "disposition": "specified", "items": ["Een toekomstige Serialization Binding is nog niet geselecteerd."] }
+          },
+          "informationBoundaries": {
+            "publicInformation": ["Publieke contractspecificaties.", "Publieke synthetische testdata."],
+            "restrictedInformation": { "disposition": "specified", "items": ["Restricted bronnen worden alleen veilig gerefereerd."] }
+          },
+          "downstreamExpectations": {
+            "workstreams": ["Elke Workstream traceert naar de toepasselijke charterrevision."],
+            "taskContracts": ["Elke uitvoering blijft door een afzonderlijk Task Contract begrensd."],
+            "consequentialDecisions": ["Consequente beslissingen behouden rationale en authorityprovenance."],
+            "traceability": ["Afgeleide context bewaart bron- en revisiepins."],
+            "changeControl": ["Materiële wijzigingen gebruiken expliciete review en finale goedkeuring."]
+          },
+          "lifecycleConditions": {
+            "review": ["Review bij materiële contextwijziging."],
+            "amendment": ["Amendment krijgt een nieuwe exact geïdentificeerde revision."],
+            "supersession": ["Supersession identificeert de vervangende revision."],
+            "retirement": ["Retirement bewaart provenance en downstream traceability."]
+          }
+        }
+      }
+    },
+    {
+      "name": "valid project charter with common provenance and digest evidence",
+      "valid": true,
+      "instance": {
+        "envelope": {
+          "artifactType": "project-charter",
+          "artifactInstance": { "identifier": "synthetic-charter-003", "revision": "revision-003" },
+          "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/project-charter", "version": "1.0.0" },
+          "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/project-charter/1.0.0", "version": "1.0.0" },
+          "provenanceReferences": [
+            { "kind": "contract-definition", "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/project-charter", "version": "1.0.0" }
+          ],
+          "contentDigests": [
+            {
+              "subject": { "kind": "artifact", "artifactType": "project-charter", "identifier": "synthetic-charter-003", "revision": "revision-003" },
+              "method": "synthetic-digest-method",
+              "value": "synthetic-digest-value"
+            }
+          ]
+        },
+        "payload": {
+          "purpose": "Provide a synthetic evidence-capable charter.",
+          "outcomes": { "desired": ["Envelope evidence remains separate from payload meaning."], "successDirection": "Evidence is reviewable without becoming authority." },
+          "scope": { "included": ["Synthetic public validation."], "boundaries": ["No digest verification is implied."], "nonGoals": { "disposition": "none" } },
+          "governingPrinciples": ["Evidence does not replace human approval."],
+          "materialConstraints": { "disposition": "none" },
+          "governance": { "context": ["Repository governance applies."], "finalAuthorityRole": "Owner / Final Authority" },
+          "projectConditions": {
+            "assumptions": { "disposition": "none" }, "dependencies": { "disposition": "none" },
+            "risks": { "disposition": "none" }, "unresolvedUncertainty": { "disposition": "none" }
+          },
+          "informationBoundaries": { "publicInformation": ["Synthetic values only."], "restrictedInformation": { "disposition": "none" } },
+          "downstreamExpectations": {
+            "workstreams": ["Workstreams preserve applicable provenance."], "taskContracts": ["Task authority remains separately approved."],
+            "consequentialDecisions": ["Decision provenance remains explicit."], "traceability": ["Pins remain complete."],
+            "changeControl": ["Material changes are separately reviewed."]
+          },
+          "lifecycleConditions": {
+            "review": ["Review remains bounded."], "amendment": ["Amendments preserve provenance."],
+            "supersession": ["Supersession identifies replacement."], "retirement": ["Retirement retains history."]
+          }
+        }
+      }
+    },
+    {
+      "name": "invalid missing envelope",
+      "valid": false,
+      "instance": {
+        "payload": {
+          "purpose": "Synthetic purpose.",
+          "outcomes": { "desired": ["Synthetic outcome."], "successDirection": "Synthetic direction." },
+          "scope": { "included": ["Synthetic scope."], "boundaries": ["Synthetic boundary."], "nonGoals": { "disposition": "none" } },
+          "governingPrinciples": ["Synthetic principle."], "materialConstraints": { "disposition": "none" },
+          "governance": { "context": ["Synthetic governance."], "finalAuthorityRole": "Synthetic human-governed role" },
+          "projectConditions": { "assumptions": { "disposition": "none" }, "dependencies": { "disposition": "none" }, "risks": { "disposition": "none" }, "unresolvedUncertainty": { "disposition": "none" } },
+          "informationBoundaries": { "publicInformation": ["Synthetic public boundary."], "restrictedInformation": { "disposition": "none" } },
+          "downstreamExpectations": { "workstreams": ["Synthetic expectation."], "taskContracts": ["Synthetic expectation."], "consequentialDecisions": ["Synthetic expectation."], "traceability": ["Synthetic expectation."], "changeControl": ["Synthetic expectation."] },
+          "lifecycleConditions": { "review": ["Synthetic condition."], "amendment": ["Synthetic condition."], "supersession": ["Synthetic condition."], "retirement": ["Synthetic condition."] }
+        }
+      }
+    },
+    {
+      "name": "invalid missing payload",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "project-charter",
+          "artifactInstance": { "identifier": "synthetic-invalid-002", "revision": "revision-001" },
+          "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/project-charter", "version": "1.0.0" },
+          "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/project-charter/1.0.0", "version": "1.0.0" }
+        }
+      }
+    },
+    {
+      "name": "invalid unknown root property",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "project-charter", "artifactInstance": { "identifier": "synthetic-invalid-003", "revision": "revision-001" },
+          "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/project-charter", "version": "1.0.0" },
+          "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/project-charter/1.0.0", "version": "1.0.0" }
+        },
+        "payload": {
+          "purpose": "Synthetic purpose.", "outcomes": { "desired": ["Synthetic outcome."], "successDirection": "Synthetic direction." },
+          "scope": { "included": ["Synthetic scope."], "boundaries": ["Synthetic boundary."], "nonGoals": { "disposition": "none" } },
+          "governingPrinciples": ["Synthetic principle."], "materialConstraints": { "disposition": "none" },
+          "governance": { "context": ["Synthetic governance."], "finalAuthorityRole": "Synthetic role" },
+          "projectConditions": { "assumptions": { "disposition": "none" }, "dependencies": { "disposition": "none" }, "risks": { "disposition": "none" }, "unresolvedUncertainty": { "disposition": "none" } },
+          "informationBoundaries": { "publicInformation": ["Synthetic boundary."], "restrictedInformation": { "disposition": "none" } },
+          "downstreamExpectations": { "workstreams": ["Synthetic expectation."], "taskContracts": ["Synthetic expectation."], "consequentialDecisions": ["Synthetic expectation."], "traceability": ["Synthetic expectation."], "changeControl": ["Synthetic expectation."] },
+          "lifecycleConditions": { "review": ["Synthetic condition."], "amendment": ["Synthetic condition."], "supersession": ["Synthetic condition."], "retirement": ["Synthetic condition."] }
+        },
+        "authority": true
+      }
+    },
+    {
+      "name": "invalid wrong artifact type",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "workstream", "artifactInstance": { "identifier": "synthetic-invalid-004", "revision": "revision-001" },
+          "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/project-charter", "version": "1.0.0" },
+          "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/project-charter/1.0.0", "version": "1.0.0" }
+        },
+        "payload": {
+          "purpose": "Synthetic purpose.", "outcomes": { "desired": ["Synthetic outcome."], "successDirection": "Synthetic direction." },
+          "scope": { "included": ["Synthetic scope."], "boundaries": ["Synthetic boundary."], "nonGoals": { "disposition": "none" } },
+          "governingPrinciples": ["Synthetic principle."], "materialConstraints": { "disposition": "none" },
+          "governance": { "context": ["Synthetic governance."], "finalAuthorityRole": "Synthetic role" },
+          "projectConditions": { "assumptions": { "disposition": "none" }, "dependencies": { "disposition": "none" }, "risks": { "disposition": "none" }, "unresolvedUncertainty": { "disposition": "none" } },
+          "informationBoundaries": { "publicInformation": ["Synthetic boundary."], "restrictedInformation": { "disposition": "none" } },
+          "downstreamExpectations": { "workstreams": ["Synthetic expectation."], "taskContracts": ["Synthetic expectation."], "consequentialDecisions": ["Synthetic expectation."], "traceability": ["Synthetic expectation."], "changeControl": ["Synthetic expectation."] },
+          "lifecycleConditions": { "review": ["Synthetic condition."], "amendment": ["Synthetic condition."], "supersession": ["Synthetic condition."], "retirement": ["Synthetic condition."] }
+        }
+      }
+    },
+    {
+      "name": "invalid wrong governing contract identifier and version",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "project-charter", "artifactInstance": { "identifier": "synthetic-invalid-005", "revision": "revision-001" },
+          "governingContract": { "identifier": "synthetic-wrong-contract", "version": "2.0.0" },
+          "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/project-charter/1.0.0", "version": "1.0.0" }
+        },
+        "payload": {
+          "purpose": "Synthetic purpose.", "outcomes": { "desired": ["Synthetic outcome."], "successDirection": "Synthetic direction." },
+          "scope": { "included": ["Synthetic scope."], "boundaries": ["Synthetic boundary."], "nonGoals": { "disposition": "none" } },
+          "governingPrinciples": ["Synthetic principle."], "materialConstraints": { "disposition": "none" },
+          "governance": { "context": ["Synthetic governance."], "finalAuthorityRole": "Synthetic role" },
+          "projectConditions": { "assumptions": { "disposition": "none" }, "dependencies": { "disposition": "none" }, "risks": { "disposition": "none" }, "unresolvedUncertainty": { "disposition": "none" } },
+          "informationBoundaries": { "publicInformation": ["Synthetic boundary."], "restrictedInformation": { "disposition": "none" } },
+          "downstreamExpectations": { "workstreams": ["Synthetic expectation."], "taskContracts": ["Synthetic expectation."], "consequentialDecisions": ["Synthetic expectation."], "traceability": ["Synthetic expectation."], "changeControl": ["Synthetic expectation."] },
+          "lifecycleConditions": { "review": ["Synthetic condition."], "amendment": ["Synthetic condition."], "supersession": ["Synthetic condition."], "retirement": ["Synthetic condition."] }
+        }
+      }
+    },
+    {
+      "name": "invalid wrong governing schema identifier and version",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "project-charter", "artifactInstance": { "identifier": "synthetic-invalid-006", "revision": "revision-001" },
+          "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/project-charter", "version": "1.0.0" },
+          "governingSchema": { "identifier": "synthetic-wrong-schema", "version": "2.0.0" }
+        },
+        "payload": {
+          "purpose": "Synthetic purpose.", "outcomes": { "desired": ["Synthetic outcome."], "successDirection": "Synthetic direction." },
+          "scope": { "included": ["Synthetic scope."], "boundaries": ["Synthetic boundary."], "nonGoals": { "disposition": "none" } },
+          "governingPrinciples": ["Synthetic principle."], "materialConstraints": { "disposition": "none" },
+          "governance": { "context": ["Synthetic governance."], "finalAuthorityRole": "Synthetic role" },
+          "projectConditions": { "assumptions": { "disposition": "none" }, "dependencies": { "disposition": "none" }, "risks": { "disposition": "none" }, "unresolvedUncertainty": { "disposition": "none" } },
+          "informationBoundaries": { "publicInformation": ["Synthetic boundary."], "restrictedInformation": { "disposition": "none" } },
+          "downstreamExpectations": { "workstreams": ["Synthetic expectation."], "taskContracts": ["Synthetic expectation."], "consequentialDecisions": ["Synthetic expectation."], "traceability": ["Synthetic expectation."], "changeControl": ["Synthetic expectation."] },
+          "lifecycleConditions": { "review": ["Synthetic condition."], "amendment": ["Synthetic condition."], "supersession": ["Synthetic condition."], "retirement": ["Synthetic condition."] }
+        }
+      }
+    },
+    {
+      "name": "invalid incomplete common artifact instance pin",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "project-charter", "artifactInstance": { "identifier": "synthetic-invalid-007" },
+          "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/project-charter", "version": "1.0.0" },
+          "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/project-charter/1.0.0", "version": "1.0.0" }
+        },
+        "payload": {
+          "purpose": "Synthetic purpose.", "outcomes": { "desired": ["Synthetic outcome."], "successDirection": "Synthetic direction." },
+          "scope": { "included": ["Synthetic scope."], "boundaries": ["Synthetic boundary."], "nonGoals": { "disposition": "none" } },
+          "governingPrinciples": ["Synthetic principle."], "materialConstraints": { "disposition": "none" },
+          "governance": { "context": ["Synthetic governance."], "finalAuthorityRole": "Synthetic role" },
+          "projectConditions": { "assumptions": { "disposition": "none" }, "dependencies": { "disposition": "none" }, "risks": { "disposition": "none" }, "unresolvedUncertainty": { "disposition": "none" } },
+          "informationBoundaries": { "publicInformation": ["Synthetic boundary."], "restrictedInformation": { "disposition": "none" } },
+          "downstreamExpectations": { "workstreams": ["Synthetic expectation."], "taskContracts": ["Synthetic expectation."], "consequentialDecisions": ["Synthetic expectation."], "traceability": ["Synthetic expectation."], "changeControl": ["Synthetic expectation."] },
+          "lifecycleConditions": { "review": ["Synthetic condition."], "amendment": ["Synthetic condition."], "supersession": ["Synthetic condition."], "retirement": ["Synthetic condition."] }
+        }
+      }
+    },
+    {
+      "name": "invalid missing required purpose",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "project-charter", "artifactInstance": { "identifier": "synthetic-invalid-008", "revision": "revision-001" },
+          "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/project-charter", "version": "1.0.0" },
+          "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/project-charter/1.0.0", "version": "1.0.0" }
+        },
+        "payload": {
+          "outcomes": { "desired": ["Synthetic outcome."], "successDirection": "Synthetic direction." },
+          "scope": { "included": ["Synthetic scope."], "boundaries": ["Synthetic boundary."], "nonGoals": { "disposition": "none" } },
+          "governingPrinciples": ["Synthetic principle."], "materialConstraints": { "disposition": "none" },
+          "governance": { "context": ["Synthetic governance."], "finalAuthorityRole": "Synthetic role" },
+          "projectConditions": { "assumptions": { "disposition": "none" }, "dependencies": { "disposition": "none" }, "risks": { "disposition": "none" }, "unresolvedUncertainty": { "disposition": "none" } },
+          "informationBoundaries": { "publicInformation": ["Synthetic boundary."], "restrictedInformation": { "disposition": "none" } },
+          "downstreamExpectations": { "workstreams": ["Synthetic expectation."], "taskContracts": ["Synthetic expectation."], "consequentialDecisions": ["Synthetic expectation."], "traceability": ["Synthetic expectation."], "changeControl": ["Synthetic expectation."] },
+          "lifecycleConditions": { "review": ["Synthetic condition."], "amendment": ["Synthetic condition."], "supersession": ["Synthetic condition."], "retirement": ["Synthetic condition."] }
+        }
+      }
+    },
+    {
+      "name": "invalid unknown payload and nested properties",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "project-charter", "artifactInstance": { "identifier": "synthetic-invalid-009", "revision": "revision-001" },
+          "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/project-charter", "version": "1.0.0" },
+          "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/project-charter/1.0.0", "version": "1.0.0" }
+        },
+        "payload": {
+          "purpose": "Synthetic purpose.", "outcomes": { "desired": ["Synthetic outcome."], "successDirection": "Synthetic direction.", "score": 1 },
+          "scope": { "included": ["Synthetic scope."], "boundaries": ["Synthetic boundary."], "nonGoals": { "disposition": "none" } },
+          "governingPrinciples": ["Synthetic principle."], "materialConstraints": { "disposition": "none" },
+          "governance": { "context": ["Synthetic governance."], "finalAuthorityRole": "Synthetic role" },
+          "projectConditions": { "assumptions": { "disposition": "none" }, "dependencies": { "disposition": "none" }, "risks": { "disposition": "none" }, "unresolvedUncertainty": { "disposition": "none" } },
+          "informationBoundaries": { "publicInformation": ["Synthetic boundary."], "restrictedInformation": { "disposition": "none" } },
+          "downstreamExpectations": { "workstreams": ["Synthetic expectation."], "taskContracts": ["Synthetic expectation."], "consequentialDecisions": ["Synthetic expectation."], "traceability": ["Synthetic expectation."], "changeControl": ["Synthetic expectation."] },
+          "lifecycleConditions": { "review": ["Synthetic condition."], "amendment": ["Synthetic condition."], "supersession": ["Synthetic condition."], "retirement": ["Synthetic condition."] },
+          "approvalState": "approved"
+        }
+      }
+    },
+    {
+      "name": "invalid blank purpose and empty desired outcomes",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "project-charter", "artifactInstance": { "identifier": "synthetic-invalid-010", "revision": "revision-001" },
+          "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/project-charter", "version": "1.0.0" },
+          "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/project-charter/1.0.0", "version": "1.0.0" }
+        },
+        "payload": {
+          "purpose": "   ", "outcomes": { "desired": [], "successDirection": "Synthetic direction." },
+          "scope": { "included": ["Synthetic scope."], "boundaries": ["Synthetic boundary."], "nonGoals": { "disposition": "none" } },
+          "governingPrinciples": ["Synthetic principle."], "materialConstraints": { "disposition": "none" },
+          "governance": { "context": ["Synthetic governance."], "finalAuthorityRole": "Synthetic role" },
+          "projectConditions": { "assumptions": { "disposition": "none" }, "dependencies": { "disposition": "none" }, "risks": { "disposition": "none" }, "unresolvedUncertainty": { "disposition": "none" } },
+          "informationBoundaries": { "publicInformation": ["Synthetic boundary."], "restrictedInformation": { "disposition": "none" } },
+          "downstreamExpectations": { "workstreams": ["Synthetic expectation."], "taskContracts": ["Synthetic expectation."], "consequentialDecisions": ["Synthetic expectation."], "traceability": ["Synthetic expectation."], "changeControl": ["Synthetic expectation."] },
+          "lifecycleConditions": { "review": ["Synthetic condition."], "amendment": ["Synthetic condition."], "supersession": ["Synthetic condition."], "retirement": ["Synthetic condition."] }
+        }
+      }
+    },
+    {
+      "name": "invalid duplicate principles and wrong purpose type",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "project-charter", "artifactInstance": { "identifier": "synthetic-invalid-011", "revision": "revision-001" },
+          "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/project-charter", "version": "1.0.0" },
+          "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/project-charter/1.0.0", "version": "1.0.0" }
+        },
+        "payload": {
+          "purpose": 42, "outcomes": { "desired": ["Synthetic outcome."], "successDirection": "Synthetic direction." },
+          "scope": { "included": ["Synthetic scope."], "boundaries": ["Synthetic boundary."], "nonGoals": { "disposition": "none" } },
+          "governingPrinciples": ["Duplicate principle.", "Duplicate principle."], "materialConstraints": { "disposition": "none" },
+          "governance": { "context": ["Synthetic governance."], "finalAuthorityRole": "Synthetic role" },
+          "projectConditions": { "assumptions": { "disposition": "none" }, "dependencies": { "disposition": "none" }, "risks": { "disposition": "none" }, "unresolvedUncertainty": { "disposition": "none" } },
+          "informationBoundaries": { "publicInformation": ["Synthetic boundary."], "restrictedInformation": { "disposition": "none" } },
+          "downstreamExpectations": { "workstreams": ["Synthetic expectation."], "taskContracts": ["Synthetic expectation."], "consequentialDecisions": ["Synthetic expectation."], "traceability": ["Synthetic expectation."], "changeControl": ["Synthetic expectation."] },
+          "lifecycleConditions": { "review": ["Synthetic condition."], "amendment": ["Synthetic condition."], "supersession": ["Synthetic condition."], "retirement": ["Synthetic condition."] }
+        }
+      }
+    },
+    {
+      "name": "invalid null declaration and empty declaration object",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "project-charter", "artifactInstance": { "identifier": "synthetic-invalid-012", "revision": "revision-001" },
+          "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/project-charter", "version": "1.0.0" },
+          "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/project-charter/1.0.0", "version": "1.0.0" }
+        },
+        "payload": {
+          "purpose": "Synthetic purpose.", "outcomes": { "desired": ["Synthetic outcome."], "successDirection": "Synthetic direction." },
+          "scope": { "included": ["Synthetic scope."], "boundaries": ["Synthetic boundary."], "nonGoals": {} },
+          "governingPrinciples": ["Synthetic principle."], "materialConstraints": null,
+          "governance": { "context": ["Synthetic governance."], "finalAuthorityRole": "Synthetic role" },
+          "projectConditions": { "assumptions": { "disposition": "none" }, "dependencies": { "disposition": "none" }, "risks": { "disposition": "none" }, "unresolvedUncertainty": { "disposition": "none" } },
+          "informationBoundaries": { "publicInformation": ["Synthetic boundary."], "restrictedInformation": { "disposition": "none" } },
+          "downstreamExpectations": { "workstreams": ["Synthetic expectation."], "taskContracts": ["Synthetic expectation."], "consequentialDecisions": ["Synthetic expectation."], "traceability": ["Synthetic expectation."], "changeControl": ["Synthetic expectation."] },
+          "lifecycleConditions": { "review": ["Synthetic condition."], "amendment": ["Synthetic condition."], "supersession": ["Synthetic condition."], "retirement": ["Synthetic condition."] }
+        }
+      }
+    },
+    {
+      "name": "invalid specified declaration missing items",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "project-charter", "artifactInstance": { "identifier": "synthetic-invalid-013", "revision": "revision-001" },
+          "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/project-charter", "version": "1.0.0" },
+          "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/project-charter/1.0.0", "version": "1.0.0" }
+        },
+        "payload": {
+          "purpose": "Synthetic purpose.", "outcomes": { "desired": ["Synthetic outcome."], "successDirection": "Synthetic direction." },
+          "scope": { "included": ["Synthetic scope."], "boundaries": ["Synthetic boundary."], "nonGoals": { "disposition": "specified" } },
+          "governingPrinciples": ["Synthetic principle."], "materialConstraints": { "disposition": "none" },
+          "governance": { "context": ["Synthetic governance."], "finalAuthorityRole": "Synthetic role" },
+          "projectConditions": { "assumptions": { "disposition": "none" }, "dependencies": { "disposition": "none" }, "risks": { "disposition": "none" }, "unresolvedUncertainty": { "disposition": "none" } },
+          "informationBoundaries": { "publicInformation": ["Synthetic boundary."], "restrictedInformation": { "disposition": "none" } },
+          "downstreamExpectations": { "workstreams": ["Synthetic expectation."], "taskContracts": ["Synthetic expectation."], "consequentialDecisions": ["Synthetic expectation."], "traceability": ["Synthetic expectation."], "changeControl": ["Synthetic expectation."] },
+          "lifecycleConditions": { "review": ["Synthetic condition."], "amendment": ["Synthetic condition."], "supersession": ["Synthetic condition."], "retirement": ["Synthetic condition."] }
+        }
+      }
+    },
+    {
+      "name": "invalid specified declaration with empty items",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "project-charter", "artifactInstance": { "identifier": "synthetic-invalid-014", "revision": "revision-001" },
+          "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/project-charter", "version": "1.0.0" },
+          "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/project-charter/1.0.0", "version": "1.0.0" }
+        },
+        "payload": {
+          "purpose": "Synthetic purpose.", "outcomes": { "desired": ["Synthetic outcome."], "successDirection": "Synthetic direction." },
+          "scope": { "included": ["Synthetic scope."], "boundaries": ["Synthetic boundary."], "nonGoals": { "disposition": "specified", "items": [] } },
+          "governingPrinciples": ["Synthetic principle."], "materialConstraints": { "disposition": "none" },
+          "governance": { "context": ["Synthetic governance."], "finalAuthorityRole": "Synthetic role" },
+          "projectConditions": { "assumptions": { "disposition": "none" }, "dependencies": { "disposition": "none" }, "risks": { "disposition": "none" }, "unresolvedUncertainty": { "disposition": "none" } },
+          "informationBoundaries": { "publicInformation": ["Synthetic boundary."], "restrictedInformation": { "disposition": "none" } },
+          "downstreamExpectations": { "workstreams": ["Synthetic expectation."], "taskContracts": ["Synthetic expectation."], "consequentialDecisions": ["Synthetic expectation."], "traceability": ["Synthetic expectation."], "changeControl": ["Synthetic expectation."] },
+          "lifecycleConditions": { "review": ["Synthetic condition."], "amendment": ["Synthetic condition."], "supersession": ["Synthetic condition."], "retirement": ["Synthetic condition."] }
+        }
+      }
+    },
+    {
+      "name": "invalid none declaration with items",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "project-charter", "artifactInstance": { "identifier": "synthetic-invalid-015", "revision": "revision-001" },
+          "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/project-charter", "version": "1.0.0" },
+          "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/project-charter/1.0.0", "version": "1.0.0" }
+        },
+        "payload": {
+          "purpose": "Synthetic purpose.", "outcomes": { "desired": ["Synthetic outcome."], "successDirection": "Synthetic direction." },
+          "scope": { "included": ["Synthetic scope."], "boundaries": ["Synthetic boundary."], "nonGoals": { "disposition": "none", "items": ["Forbidden item."] } },
+          "governingPrinciples": ["Synthetic principle."], "materialConstraints": { "disposition": "none" },
+          "governance": { "context": ["Synthetic governance."], "finalAuthorityRole": "Synthetic role" },
+          "projectConditions": { "assumptions": { "disposition": "none" }, "dependencies": { "disposition": "none" }, "risks": { "disposition": "none" }, "unresolvedUncertainty": { "disposition": "none" } },
+          "informationBoundaries": { "publicInformation": ["Synthetic boundary."], "restrictedInformation": { "disposition": "none" } },
+          "downstreamExpectations": { "workstreams": ["Synthetic expectation."], "taskContracts": ["Synthetic expectation."], "consequentialDecisions": ["Synthetic expectation."], "traceability": ["Synthetic expectation."], "changeControl": ["Synthetic expectation."] },
+          "lifecycleConditions": { "review": ["Synthetic condition."], "amendment": ["Synthetic condition."], "supersession": ["Synthetic condition."], "retirement": ["Synthetic condition."] }
+        }
+      }
+    },
+    {
+      "name": "invalid unknown declaration disposition",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "project-charter", "artifactInstance": { "identifier": "synthetic-invalid-016", "revision": "revision-001" },
+          "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/project-charter", "version": "1.0.0" },
+          "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/project-charter/1.0.0", "version": "1.0.0" }
+        },
+        "payload": {
+          "purpose": "Synthetic purpose.", "outcomes": { "desired": ["Synthetic outcome."], "successDirection": "Synthetic direction." },
+          "scope": { "included": ["Synthetic scope."], "boundaries": ["Synthetic boundary."], "nonGoals": { "disposition": "unknown" } },
+          "governingPrinciples": ["Synthetic principle."], "materialConstraints": { "disposition": "none" },
+          "governance": { "context": ["Synthetic governance."], "finalAuthorityRole": "Synthetic role" },
+          "projectConditions": { "assumptions": { "disposition": "none" }, "dependencies": { "disposition": "none" }, "risks": { "disposition": "none" }, "unresolvedUncertainty": { "disposition": "none" } },
+          "informationBoundaries": { "publicInformation": ["Synthetic boundary."], "restrictedInformation": { "disposition": "none" } },
+          "downstreamExpectations": { "workstreams": ["Synthetic expectation."], "taskContracts": ["Synthetic expectation."], "consequentialDecisions": ["Synthetic expectation."], "traceability": ["Synthetic expectation."], "changeControl": ["Synthetic expectation."] },
+          "lifecycleConditions": { "review": ["Synthetic condition."], "amendment": ["Synthetic condition."], "supersession": ["Synthetic condition."], "retirement": ["Synthetic condition."] }
+        }
+      }
+    },
+    {
+      "name": "invalid forbidden approval execution and extension fields",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "project-charter", "artifactInstance": { "identifier": "synthetic-invalid-017", "revision": "revision-001" },
+          "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/project-charter", "version": "1.0.0" },
+          "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/project-charter/1.0.0", "version": "1.0.0" }
+        },
+        "payload": {
+          "purpose": "Synthetic purpose.", "outcomes": { "desired": ["Synthetic outcome."], "successDirection": "Synthetic direction." },
+          "scope": { "included": ["Synthetic scope."], "boundaries": ["Synthetic boundary."], "nonGoals": { "disposition": "none" } },
+          "governingPrinciples": ["Synthetic principle."], "materialConstraints": { "disposition": "none" },
+          "governance": { "context": ["Synthetic governance."], "finalAuthorityRole": "Synthetic role", "approved": true },
+          "projectConditions": { "assumptions": { "disposition": "none" }, "dependencies": { "disposition": "none" }, "risks": { "disposition": "none" }, "unresolvedUncertainty": { "disposition": "none" } },
+          "informationBoundaries": { "publicInformation": ["Synthetic boundary."], "restrictedInformation": { "disposition": "none" } },
+          "downstreamExpectations": { "workstreams": ["Synthetic expectation."], "taskContracts": ["Synthetic expectation."], "consequentialDecisions": ["Synthetic expectation."], "traceability": ["Synthetic expectation."], "changeControl": ["Synthetic expectation."] },
+          "lifecycleConditions": { "review": ["Synthetic condition."], "amendment": ["Synthetic condition."], "supersession": ["Synthetic condition."], "retirement": ["Synthetic condition."] },
+          "executionAuthorization": true,
+          "extensions": []
+        }
+      }
+    }
+  ]
+}

@@ -24,6 +24,8 @@ The [Artifact-Specific Schema Family and Canonical Artifact Container Boundary](
 
 The [Canonical Contract Definition Identity, Initial Version, and Source Binding](contract-definition-identity-version-binding.md) and [ADR-0011](adr/0011-contract-definition-identity-version-binding.md) are **Accepted**, documentation-only architecture. They allocate exactly nine stable Contract Definition Identifiers, independent initial Contract Definition Version `1.0.0` values, and exact Accepted-source bindings for CONTRACT-001 through CONTRACT-009. The nine integrated identifier/version/source-binding pairs are Accepted and active. They change no accepted contract meaning, create no executable artifact-specific schema, binding, resolver, validator, runtime, implementation, release, or deployment, and authorize no follow-on phase.
 
+The [Project Charter Executable Schema Definition](project-charter-executable-schema.md) and [ADR-0012](adr/0012-project-charter-executable-schema.md) are **Accepted** under issue #48 and Owner acceptance comment `5210242651`. They bind the logical Project Charter Artifact Schema Identity to a concrete Draft 2020-12 `$id` and Schema Version `1.0.0`, apply the exact Accepted Common Artifact Envelope at mandatory `/envelope`, constrain the exact Project Charter Artifact Type and governing-definition pins, and define a closed CONTRACT-001 payload with synthetic validation evidence. Governed integration to `main` activates that exact Schema Version. Acceptance and schema validity grant no contract conformance, approval, authority, release, deployment, or follow-on schema authority.
+
 ## Document status
 
 - **Proposed** — submitted for review and not yet an accepted repository decision.
