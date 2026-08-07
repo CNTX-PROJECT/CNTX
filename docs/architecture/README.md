@@ -124,6 +124,26 @@ authority, or follow-on authority. Governed integration to `main` activates
 the exact Schema Version; acceptance and activation authorize no Decision
 Record schema or other follow-on work.
 
+The [Decision Record Executable Schema Definition](decision-record-executable-schema.md)
+and [ADR-0019](adr/0019-decision-record-executable-schema.md) are **Accepted**
+under issue #64 and EIGENAAR acceptance comment `5219310944`. They define one
+Accepted Draft 2020-12 Decision Record Schema Version `1.0.0` that composes the exact Accepted Common Artifact
+Envelope with a closed seventeen-property CONTRACT-008 payload. Decision
+Authority, the opaque human decision maker, the exact revision represented as
+approved, approval provenance, the bounded question and outcome, basis, nine
+artifact relationships, inputs, timing, scope, consequences, seven downstream
+boundaries, change/conflict provenance, roles, external records,
+security/privacy, restricted basis, lifecycle, and history remain declarative
+and non-automatic. The resource contains no artifact-specific schema `$ref`
+and implements no identity, authority, approval, retrieval, reasoning,
+recommendation, decision, conflict-resolution, state, workflow, consequential-
+action, runtime, access, disclosure, retention, release, deployment,
+publication, or merge mechanism. Creation, validation, review, schema validity,
+or repository presence grants no acceptance, activation, State Snapshot schema,
+or follow-on authority. Governed integration to `main` activates the exact
+Schema Version; acceptance and activation authorize no State Snapshot schema or
+other follow-on work.
+
 ## Document status
 
 - **Proposed** — submitted for review and not yet an accepted repository decision.

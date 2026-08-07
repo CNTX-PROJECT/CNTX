@@ -296,6 +296,49 @@ authority, review quality, recommendation authority, final acceptance,
 integration, release, deployment, merge permission, Decision Record schema
 authority, or follow-on authority.
 
+## Accepted Decision Record Schema Version 1.0.0
+
+| Dimension | Accepted value |
+| --- | --- |
+| Logical schema identity | CNTX Public Core Schema Family / Decision Record Artifact |
+| Schema language and dialect | JSON Schema Draft 2020-12 |
+| Dialect declaration | `https://json-schema.org/draft/2020-12/schema` |
+| Canonical `$id` | `https://github.com/CNTX-PROJECT/CNTX/schemas/decision-record/1.0.0` |
+| Schema Version | `1.0.0` |
+| Canonical repository path | `schemas/decision-record/1.0.0/schema.json` |
+| Exact external dependency | Accepted Common Artifact Envelope Schema Version `1.0.0` |
+| Governing Contract Definition | `https://github.com/CNTX-PROJECT/CNTX/contract-definitions/decision-record` at `1.0.0` |
+| Schema-resource media type | `application/schema+json` |
+| Document Status | Accepted under issue #64 and EIGENAAR acceptance comment `5219310944` |
+
+The Accepted resource evaluates one complete closed Decision Record artifact with
+mandatory `envelope` and `payload`. Its envelope statically references the exact
+Accepted Common Artifact Envelope and constrains only the Decision Record
+Artifact Type and governing Contract and Schema coordinates. Its closed
+seventeen-property payload records one exact Decision Authority pin, an opaque
+human decision-maker reference, the exact revision represented as approved,
+attributable approval provenance, one bounded question and outcome, decision
+basis, nine artifact-relationship categories, separated input, timing, scope,
+consequences, seven downstream-action boundaries, change/conflict provenance,
+roles, external records, security/privacy, restricted basis, lifecycle, and
+historical traceability.
+
+The resource contains no Project Charter, Workstream, Task Contract, Context
+Packet, Execution Result, Evidence Bundle, Review Record, peer Decision Record,
+State Snapshot, or other artifact-specific schema `$ref`. It allocates no
+authority or identity, proves no approval, retrieves no source, makes or
+executes no decision, resolves no conflict, changes no state, and implements no
+acceptance, integration, release, deployment, publication, merge, workflow,
+runtime, access, disclosure, retention, or verification mechanism.
+
+The Accepted [ARCH-019 architecture decision](../docs/architecture/decision-record-executable-schema.md),
+[ADR-0019](../docs/architecture/adr/0019-decision-record-executable-schema.md),
+and [non-normative test manifest](../tests/schemas/decision-record/1.0.0/cases.json)
+define and evidence the Accepted boundary. Governed integration to `main`
+activates exactly Schema Version `1.0.0` under issue #64 and EIGENAAR acceptance
+comment `5219310944`; acceptance and activation grant no State Snapshot schema
+or follow-on authority.
+
 ## Change boundary
 
 Upon governed integration, exact Accepted versioned canonical standalone content is immutable. Any accepted structural or semantic change requires the applicable identity/version assessment, attributable review and approval, traceable provenance, and a separately authorized change. Schema validity alone cannot approve such a change. The Accepted Project Charter resource does not change the independently Accepted Common Artifact Envelope resource.
