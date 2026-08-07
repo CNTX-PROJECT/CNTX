@@ -4,9 +4,7 @@
 
 This directory contains machine-evaluable schema-resource candidates and, after exact-revision human acceptance and governed integration, accepted schema resources. A file's existence, JSON Schema validity, `$id`, Schema Version, test result, repository location, or publication does not grant Document Status, contract conformance, authority, trust, approval, release, deployment, merge permission, or access permission.
 
-The current Accepted resources are the ARCH-009 [Common Artifact Envelope Schema Version `1.0.0`](common-artifact-envelope/1.0.0/schema.json), approved by the Owner / Final Authority in issue comment `5208715683`; the ARCH-012 [Project Charter Schema Version `1.0.0`](project-charter/1.0.0/schema.json), accepted in issue comment `5210242651`; and the ARCH-013 [Workstream Schema Version `1.0.0`](workstream/1.0.0/schema.json), accepted in issue comment `5215029431`. Governed integration to `main` activates each exact resource. The applicable architecture documents and ADRs remain the status sources.
-
-The ARCH-014 [Task Contract Schema Version `1.0.0` candidate](task-contract/1.0.0/schema.json) is Proposed and inactive under issue #54 and creation-authority comment `5215411581`. Its existence, validation, or review does not accept it, grant task authority, or authorize integration or a Context Packet schema.
+The current Accepted resources are the ARCH-009 [Common Artifact Envelope Schema Version `1.0.0`](common-artifact-envelope/1.0.0/schema.json), approved by the Owner / Final Authority in issue comment `5208715683`; the ARCH-012 [Project Charter Schema Version `1.0.0`](project-charter/1.0.0/schema.json), accepted in issue comment `5210242651`; the ARCH-013 [Workstream Schema Version `1.0.0`](workstream/1.0.0/schema.json), accepted in issue comment `5215029431`; and the ARCH-014 [Task Contract Schema Version `1.0.0`](task-contract/1.0.0/schema.json), accepted in issue comment `5215700352`. Governed integration to `main` activates each exact resource. The applicable architecture documents and ADRs remain the status sources.
 
 ## Common Artifact Envelope Schema Version 1.0.0
 
@@ -85,22 +83,22 @@ exact-head Owner / Final Authority acceptance is recorded in issue comment
 authority, release, deployment, merge permission, or Task Contract schema
 authority.
 
-## Task Contract Schema Version 1.0.0 candidate
+## Task Contract Schema Version 1.0.0
 
-| Dimension | Proposed value |
+| Dimension | Accepted value |
 | --- | --- |
 | Logical schema identity | CNTX Public Core Schema Family / Task Contract Artifact |
 | Schema language and dialect | JSON Schema Draft 2020-12 |
 | Dialect declaration | `https://json-schema.org/draft/2020-12/schema` |
 | Canonical `$id` | `https://github.com/CNTX-PROJECT/CNTX/schemas/task-contract/1.0.0` |
-| Candidate Schema Version | `1.0.0` |
+| Schema Version | `1.0.0` |
 | Canonical repository path | `schemas/task-contract/1.0.0/schema.json` |
 | Exact external dependency | Accepted Common Artifact Envelope Schema Version `1.0.0` |
 | Governing Contract Definition | `https://github.com/CNTX-PROJECT/CNTX/contract-definitions/task-contract` at `1.0.0` |
 | Schema-resource media type | `application/schema+json` |
-| Document Status | Proposed under issue #54 and Owner creation-authority comment `5215411581` |
+| Document Status | Accepted under issue #54 and Owner acceptance comment `5215700352` |
 
-The candidate evaluates one complete closed Task Contract artifact with
+The resource evaluates one complete closed Task Contract artifact with
 mandatory `envelope` and `payload`. Its envelope statically references the
 complete Accepted Common Artifact Envelope and constrains the exact Task
 Contract Artifact Type, governing Contract, and governing Schema pins. Its
@@ -108,19 +106,21 @@ closed payload implements only the Accepted responsibilities of CONTRACT-003,
 including separate opaque governing Project Charter and Workstream Artifact
 Instance/Revision pins.
 
-The candidate contains no Project Charter, Workstream, peer Task Contract, or
+The resource contains no Project Charter, Workstream, peer Task Contract, or
 other artifact-specific schema `$ref`. Scope, action, resource, authority,
 context, evidence, decision, and lifecycle statements remain declarative. The
 schema defines no permission language, approval mechanism, workflow, runtime,
 or Task Contract authority.
 
-The [ARCH-014 architecture candidate](../docs/architecture/task-contract-executable-schema.md),
+The [ARCH-014 architecture decision](../docs/architecture/task-contract-executable-schema.md),
 [ADR-0014](../docs/architecture/adr/0014-task-contract-executable-schema.md),
 and [non-normative test manifest](../tests/schemas/task-contract/1.0.0/cases.json)
-define and evidence the Proposed boundary. Creation, validation, review,
-repository presence, Draft PR status, or `1.0.0` grants no acceptance,
-activation, contract conformance, task authority, merge permission, release,
-deployment, or Context Packet schema authority.
+define and evidence the Accepted boundary. Creation, validation, review,
+repository presence, or `1.0.0` did not grant acceptance or activation;
+exact-head Owner / Final Authority acceptance is recorded in issue comment
+`5215700352`, and governed integration to `main` activates Schema Version
+`1.0.0`. Schema validity still grants no contract conformance, task authority,
+merge permission, release, deployment, or Context Packet schema authority.
 
 ## Change boundary
 

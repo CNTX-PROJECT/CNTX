@@ -1,15 +1,16 @@
 # ADR-0014: Task Contract executable schema definition
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-08-07
 - **Decision owners:** Cintao66, Owner / Final Authority
 - **Issue:** [#54](https://github.com/CNTX-PROJECT/CNTX/issues/54)
 - **Governing architecture:** [ARCH-014](../task-contract-executable-schema.md)
 
-Owner / Final Authority creation authority is recorded in issue comment
-`5215411581`. This candidate remains Proposed and Task Contract Schema Version
-`1.0.0` remains inactive. Exact-head operational review is transparently
-non-independent and cannot grant final acceptance.
+Owner / Final Authority acceptance of the exact reviewed candidate is recorded
+in issue comment `5215700352`. On governed integration to `main`, Task Contract
+Schema Version `1.0.0` becomes active under repository governance. Exact-head
+operational review was transparently non-independent and did not grant final
+acceptance.
 
 ## Context
 
@@ -168,8 +169,7 @@ implementations; releases; tags; hosted publication; and deployment.
 
 ## Continuing gate
 
-ARCH-014 remains Proposed. Task Contract Schema Version `1.0.0` remains
-inactive. Separate attributable Owner / Final Authority acceptance of the
-exact reviewed candidate is required before status promotion or integration.
-No Context Packet or later artifact-specific schema is automatically
-authorized.
+The exact reviewed candidate was accepted by the Owner / Final Authority in
+issue comment `5215700352`. Governed integration to `main` activates exactly
+Task Contract Schema Version `1.0.0`. No Context Packet or later
+artifact-specific schema is automatically authorized.

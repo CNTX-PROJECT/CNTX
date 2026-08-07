@@ -1,9 +1,9 @@
 {
   "schemaId": "https://github.com/CNTX-PROJECT/CNTX/schemas/task-contract/1.0.0",
   "candidateSchemaVersion": "1.0.0",
-  "documentStatus": "Proposed",
+  "documentStatus": "Accepted",
   "nonNormative": true,
-  "description": "Public-safe synthetic validation cases for Proposed ARCH-014 Schema Version 1.0.0. Expected validity is evidence only and grants no contract conformance, approval, task authority, trust, acceptance, release, deployment, merge permission, access permission, or Context Packet authority.",
+  "description": "Public-safe synthetic validation cases for Accepted ARCH-014 Schema Version 1.0.0. Expected validity is evidence only and grants no contract conformance, approval, task authority, trust, acceptance, release, deployment, merge permission, access permission, or Context Packet authority.",
   "cases": [
     {
       "name": "valid minimal assessed task contract",

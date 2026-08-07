@@ -2,18 +2,20 @@
 
 ## Status and authority
 
-**Document Status:** Proposed.
+**Document Status:** Accepted.
 
-This document is a Proposed architecture candidate governed by
+This document is an Accepted executable-schema architecture decision governed by
 [issue #54](https://github.com/CNTX-PROJECT/CNTX/issues/54) and recorded by
 [ADR-0014](adr/0014-task-contract-executable-schema.md). Owner / Final
-Authority creation authority is recorded in issue comment `5215411581`.
+Authority acceptance of the exact reviewed candidate is recorded in issue
+comment `5215700352`.
 
-The candidate defines one inactive Task Contract Schema Version `1.0.0` for
-exact-head review. Creation, schema validity, tests, review, Draft PR status,
-repository presence, or the `1.0.0` string does not accept or activate it. A
-transparent non-independent review is evidentiary only. Separate attributable
-Owner / Final Authority acceptance of the exact reviewed head is required.
+The exact reviewed resource and its
+[synthetic test evidence](../../tests/schemas/task-contract/1.0.0/cases.json)
+are Accepted in the revision recorded by Owner / Final Authority acceptance
+comment `5215700352`. On governed integration to `main`, Task Contract Schema
+Version `1.0.0` becomes active within this exact scope. The transparent
+non-independent review was evidentiary only and did not grant acceptance.
 
 This decision remains subordinate to Accepted architecture, Accepted
 [CONTRACT-003](../contracts/task-contract-artifact-contract.md), repository
@@ -34,9 +36,9 @@ CONTRACT-003 controls Task Contract meaning and authority boundaries.
 
 Accepted ARCH-012 and ARCH-013 activate the Project Charter and Workstream
 schema resources in dependency order. They do not automatically authorize a
-Task Contract resource and are not executable dependencies of this candidate.
+Task Contract resource and are not executable dependencies of this resource.
 
-This Proposed decision binds the Task Contract logical identity to one
+This Accepted decision binds the Task Contract logical identity to one
 concrete Draft 2020-12 Schema Resource, specializes only the common envelope
 constants, represents governing Project Charter and Workstream relationships
 as opaque instance/revision pins, and translates only CONTRACT-003's accepted
@@ -61,17 +63,17 @@ criteria are sufficient.
 
 ## Exact resource identity and version
 
-| Dimension | Proposed value |
+| Dimension | Accepted value |
 | --- | --- |
 | Logical Schema Identity | CNTX Public Core Schema Family / Task Contract Artifact |
 | Schema language | JSON Schema |
 | Dialect | Draft 2020-12 |
 | `$schema` | `https://json-schema.org/draft/2020-12/schema` |
 | Canonical `$id` | `https://github.com/CNTX-PROJECT/CNTX/schemas/task-contract/1.0.0` |
-| Candidate Schema Version | `1.0.0` |
+| Schema Version | `1.0.0` |
 | Canonical repository path | `schemas/task-contract/1.0.0/schema.json` |
 | Schema-resource media type | `application/schema+json` |
-| Document Status | Proposed under issue #54 |
+| Document Status | Accepted under issue #54 and Owner acceptance comment `5215700352` |
 
 The `$id` is the stable identity of this exact Schema Version. Its HTTPS form
 does not require or authorize network access. It is not a branch, tag, release,
@@ -389,11 +391,8 @@ schema authority.
 
 ## Continuing gate
 
-The candidate remains Proposed and Task Contract Schema Version `1.0.0`
-remains inactive. The transparent exact-head review cannot accept it.
-
-Only separate attributable Owner / Final Authority acceptance of the exact
-reviewed candidate may authorize a status-only promotion and governed
-integration. Even after possible future acceptance and activation, no Context
-Packet or later artifact-specific schema, binding, validator, runtime,
-implementation, release, or deployment is automatically authorized.
+The exact reviewed candidate was accepted by the Owner / Final Authority in
+issue comment `5215700352`. Governed integration to `main` activates exactly
+Task Contract Schema Version `1.0.0`. No Context Packet or later
+artifact-specific schema, binding, validator, runtime, implementation,
+release, or deployment is automatically authorized.

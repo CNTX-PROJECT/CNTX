@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/CNTX-PROJECT/CNTX/schemas/task-contract/1.0.0",
-  "$comment": "Proposed ARCH-014 Task Contract Schema Version 1.0.0 under issue #54 and Owner / Final Authority creation-authority comment 5215411581. Schema validity grants no contract conformance, approval, task authority, trust, acceptance, release, deployment, merge permission, access permission, or Context Packet authority.",
+  "$comment": "Accepted ARCH-014 Task Contract Schema Version 1.0.0 under issue #54 and Owner / Final Authority acceptance comment 5215700352. Schema validity grants no contract conformance, approval, task authority, trust, acceptance, release, deployment, merge permission, access permission, or Context Packet authority.",
   "title": "CNTX Task Contract Artifact",
   "description": "A complete Task Contract artifact with the exact Accepted Common Artifact Envelope and a closed CONTRACT-003 payload. This schema evaluates structure only and cannot establish approval or task authority.",
   "type": "object",
