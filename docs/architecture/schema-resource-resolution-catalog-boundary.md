@@ -2,16 +2,19 @@
 
 ## Status and authority
 
-**Document Status:** Proposed.
+**Document Status:** Accepted.
 
-This document is a Proposed, documentation-only architecture decision governed
+This document is an Accepted, documentation-only architecture decision governed
 by [issue #72](https://github.com/CNTX-PROJECT/CNTX/issues/72) and recorded by
 [ADR-0023](adr/0023-schema-resource-resolution-catalog-boundary.md).
 Attributable EIGENAAR / Final Authority creation authority is recorded in
-issue comment `5221792750`. Creation, repository presence, validation, and a
-transparent non-independent review do not grant acceptance.
+issue comment `5221792750`. EIGENAAR / Final Authority acceptance of the exact
+reviewed candidate is recorded in issue comment `5222126273`. Governed
+integration to `main` adopts this exact decision. Creation, repository
+presence, validation, and a transparent non-independent review did not grant
+acceptance.
 
-This proposal remains subordinate to Accepted architecture, artifact
+This decision remains subordinate to Accepted architecture, artifact
 contracts, executable schemas, repository governance, security and privacy
 boundaries, controlling sources, and final human authority. It changes none of
 those sources.
@@ -19,7 +22,7 @@ those sources.
 Within this document, **MUST** and **MUST NOT** express mandatory requirements,
 **SHOULD** and **SHOULD NOT** express strong recommendations, and **MAY**
 express permission. These terms express requirement strength only within this
-Proposed decision.
+Accepted decision.
 
 ## Purpose and decision boundary
 
@@ -356,7 +359,7 @@ was assembled within the supplied context. It does not establish:
 | Determinism | Same entry and frozen context yield the same canonical closure | Byte equality, canonicalization, digest, or reproducible bundling |
 | Provenance | Governing resource and revision remain visible | Acceptance, authenticity, trust, approval, or authority by possession |
 | Network | Automatic access disabled | Network allowlist, retrieval protocol, timeout, or implementation |
-| Document Status | Proposed pending exact-head acceptance | Acceptance through creation, validation, review, or presence |
+| Document Status | Accepted through separate exact-head EIGENAAR acceptance and governed integration | Acceptance through creation, validation, review, or presence |
 
 ## Security and privacy
 
@@ -432,15 +435,16 @@ hosted publication, or deployment.
 
 ## Review, acceptance, and final human authority
 
-This Proposed document cannot approve itself. Creation, repository presence,
+The Proposed candidate did not approve itself. Creation, repository presence,
 validation, Draft PR state, mergeability, and transparent non-independent
-review grant no acceptance, merge permission, issue-closure authority, or
-follow-on authority.
+review did not grant acceptance, merge permission, issue-closure authority, or
+follow-on authority. EIGENAAR / Final Authority separately accepted the exact
+reviewed revision in issue comment `5222126273`; governed integration adopts
+exactly this decision.
 
-Only separate attributable EIGENAAR / Final Authority acceptance of the exact
-reviewed revision can authorize a status-only promotion. Ready transition,
-merge, completion, closure, synchronization, cleanup, validation/output,
-conformance, release, publication, and deployment remain separately governed.
+Acceptance, promotion, and integration authorize no validation/output,
+conformance, later roadmap layer, implementation, release, publication, or
+deployment work.
 
 ## References
 

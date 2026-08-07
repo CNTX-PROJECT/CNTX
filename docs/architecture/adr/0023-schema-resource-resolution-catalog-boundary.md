@@ -1,6 +1,6 @@
 # ADR-0023: Schema Resource resolution and catalog boundary
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-08-07
 - **Issue:** [#72](https://github.com/CNTX-PROJECT/CNTX/issues/72)
 - **Decision:** ARCH-023 — CNTX Schema Resource Resolution and Catalog Boundary
@@ -155,13 +155,15 @@ error vocabulary, conformance tooling, API, CLI, workflow, runtime,
 provider/product work, private/reference implementation, release, tag,
 publication, or deployment.
 
-## Exact-head acceptance gate
+## Acceptance and continuing gate
 
-The candidate receives one transparent non-independent COMMENT review on its
-exact head and then stops. Creation, validation, review, repository presence,
-Draft state, and mergeability grant no acceptance. Ready transition, Accepted
-promotion, merge, completion, closure, synchronization, cleanup, and later
-roadmap work require separate attributable EIGENAAR / Final Authority.
+The candidate received one transparent non-independent COMMENT review on its
+exact head and then stopped. Creation, validation, review, repository presence,
+Draft state, and mergeability did not grant acceptance. EIGENAAR / Final
+Authority separately accepted the exact reviewed revision in issue comment
+`5222126273`; governed integration adopts exactly this decision. Acceptance and
+integration authorize no later roadmap layer, implementation, release,
+publication, or deployment.
 
 ## References
 
