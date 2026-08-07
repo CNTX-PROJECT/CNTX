@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/CNTX-PROJECT/CNTX/schemas/context-packet/1.0.0",
-  "$comment": "Proposed ARCH-015 Context Packet Schema Version 1.0.0 under issue #56 and attributable Owner / Final Authority creation-authority comment 5216129981. This candidate is inactive. Schema validity grants no contract conformance, approval, task authority, source access, retrieval or disclosure permission, trust, acceptance, release, deployment, merge permission, or Execution Result authority.",
+  "$comment": "Accepted ARCH-015 Context Packet Schema Version 1.0.0 under issue #56 and Owner / Final Authority acceptance comment 5216466742. Schema validity grants no contract conformance, approval, task authority, source access, retrieval or disclosure permission, trust, acceptance, release, deployment, merge permission, or Execution Result authority.",
   "title": "CNTX Context Packet Artifact",
   "description": "A complete Context Packet artifact with the exact Accepted Common Artifact Envelope and a closed CONTRACT-004 payload. This schema evaluates structure only and neither selects nor retrieves context.",
   "type": "object",

@@ -1,16 +1,17 @@
 # ADR-0015: Context Packet executable schema definition
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-08-07
 - **Decision owners:** Cintao66, Owner / Final Authority
 - **Issue:** [#56](https://github.com/CNTX-PROJECT/CNTX/issues/56)
-- **Creation authority:** issue comment `5216129981`
+- **Owner acceptance:** issue comment `5216466742`
 - **Governing architecture:** [ARCH-015](../context-packet-executable-schema.md)
 
-Creation, validation, Draft PR publication, and transparently non-independent
-exact-head review do not grant acceptance. Context Packet Schema Version
-`1.0.0` remains Proposed and inactive until separate exact-head Owner /
-Final Authority acceptance and governed integration.
+Owner / Final Authority acceptance of the exact reviewed candidate is recorded
+in issue comment `5216466742`. On governed integration to `main`, Context
+Packet Schema Version `1.0.0` becomes active under repository governance.
+Exact-head operational review was transparently non-independent and did not
+grant final acceptance.
 
 ## Context
 
@@ -26,7 +27,7 @@ candidate nor requires executable schema coupling.
 
 ## Decision
 
-CNTX proposes one JSON Schema Draft 2020-12 resource at
+CNTX adopts one JSON Schema Draft 2020-12 resource at
 `schemas/context-packet/1.0.0/schema.json`, with canonical identity
 `https://github.com/CNTX-PROJECT/CNTX/schemas/context-packet/1.0.0`.
 
@@ -108,7 +109,7 @@ the governing Task Contract or selected sources. A valid reference grants no
 access or disclosure permission. A valid constraint enforces nothing beyond
 shape.
 
-Conformance means only structural validity under this exact Proposed schema
+Conformance means only structural validity under this exact Accepted schema
 and the exact locally supplied common-envelope resource. It does not prove
 CONTRACT-004 semantic conformance, approval, task authority, provenance truth,
 selection quality, review, acceptance, release, deployment, or merge
@@ -159,9 +160,7 @@ provider/product work, release, tag, hosted publication, and deployment.
 
 ## Continuing gate
 
-Issue #56 remains open; the candidate remains Proposed; the PR remains
-Draft/open/unmerged; and the branch remains local and remote after exact-head
-review. Separate attributable Owner / Final Authority acceptance of the exact
-reviewed candidate head is required before status promotion, Ready transition,
-merge, activation, completion, closure, or branch cleanup. This decision
-authorizes no Execution Result or later schema work.
+The exact reviewed candidate was accepted by the Owner / Final Authority in
+issue comment `5216466742`. Governed integration to `main` activates exactly
+Context Packet Schema Version `1.0.0`. No Execution Result or later schema work
+is automatically authorized.

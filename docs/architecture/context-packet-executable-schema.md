@@ -2,22 +2,22 @@
 
 ## Status and authority
 
-**Document Status:** Proposed.
+**Document Status:** Accepted.
 
-This document is a Proposed executable-schema architecture candidate governed
+This document is an Accepted executable-schema architecture decision governed
 by [issue #56](https://github.com/CNTX-PROJECT/CNTX/issues/56) and recorded by
-[ADR-0015](adr/0015-context-packet-executable-schema.md). Attributable Owner /
-Final Authority creation authority is recorded in issue comment
-`5216129981`.
+[ADR-0015](adr/0015-context-packet-executable-schema.md). Owner / Final
+Authority acceptance of the exact reviewed candidate is recorded in issue
+comment `5216466742`.
 
-The candidate [Schema Resource](../../schemas/context-packet/1.0.0/schema.json)
+The exact reviewed [Schema Resource](../../schemas/context-packet/1.0.0/schema.json)
 and [synthetic test evidence](../../tests/schemas/context-packet/1.0.0/cases.json)
-remain Proposed and inactive. Creation, validation, Draft PR publication, or
-the transparent non-independent review cannot grant acceptance. Only separate
-Owner / Final Authority acceptance of the exact reviewed candidate can
-authorize a later status-only promotion.
+are Accepted in the revision recorded by Owner / Final Authority acceptance
+comment `5216466742`. On governed integration to `main`, Context Packet Schema
+Version `1.0.0` becomes active within this exact scope. The transparent
+non-independent review was evidentiary only and did not grant acceptance.
 
-This candidate remains subordinate to Accepted architecture, Accepted
+This decision remains subordinate to Accepted architecture, Accepted
 [CONTRACT-004](../contracts/context-packet-contract.md), repository
 governance, and final human authority. It modifies no Accepted source and
 creates no Context Packet Artifact Instance, task authority, source-access or
@@ -35,7 +35,7 @@ dependency. Accepted
 Context Packet Contract Definition Identifier and Version. CONTRACT-004
 controls Context Packet meaning and authority boundaries.
 
-ARCH-015 proposes one Draft 2020-12 Schema Resource that specializes only the
+Accepted ARCH-015 binds one Draft 2020-12 Schema Resource that specializes only the
 common-envelope constants, represents the governing Task Contract through one
 opaque Artifact Instance/Revision pin, and translates only CONTRACT-004's
 Accepted responsibilities into a closed payload.
@@ -58,19 +58,19 @@ safe to disclose, authoritative, or suitable for execution.
 
 ## Exact resource identity and version
 
-| Dimension | Proposed value |
+| Dimension | Accepted value |
 | --- | --- |
 | Logical Schema Identity | CNTX Public Core Schema Family / Context Packet Artifact |
 | Schema language | JSON Schema |
 | Dialect | Draft 2020-12 |
 | `$schema` | `https://json-schema.org/draft/2020-12/schema` |
 | Canonical `$id` | `https://github.com/CNTX-PROJECT/CNTX/schemas/context-packet/1.0.0` |
-| Candidate Schema Version | `1.0.0` |
+| Schema Version | `1.0.0` |
 | Canonical repository path | `schemas/context-packet/1.0.0/schema.json` |
 | Schema-resource media type | `application/schema+json` |
-| Document Status | Proposed under issue #56 and creation-authority comment `5216129981` |
+| Document Status | Accepted under issue #56 and Owner acceptance comment `5216466742` |
 
-The `$id` is the stable identity proposed for this exact Schema Version. Its
+The `$id` is the stable identity of this exact Schema Version. Its
 HTTPS form neither requires nor authorizes network access. It is not a branch,
 tag, release, resolver mapping, registry entry, hosted-publication guarantee,
 Serialization Binding, trust marker, or authority source.
@@ -274,7 +274,7 @@ resolution; and validation or review as acceptance.
 
 ## Deferred and explicitly unauthorized scope
 
-This candidate defines no Artifact Instance, identifier generation, revision
+This decision defines no Artifact Instance, identifier generation, revision
 sequencing, artifact-specific schema dependency, automatic source selection or
 retrieval, search/ranking/RAG/embedding/vector mechanism, prompt assembly,
 token handling, transformation/redaction/sanitization algorithm, access
@@ -285,17 +285,9 @@ access, conformance tool, code generator, migration, template, form, prompt,
 API, CLI, workflow, scheduler, orchestrator, runtime, implementation, product,
 release, tag, hosted publication, or deployment.
 
-It grants no Ready transition, Accepted promotion, merge, completion, issue
-closure, or branch cleanup.
-
 ## Continuing gate
 
-ARCH-015, ADR-0015, and Context Packet Schema Version `1.0.0` remain
-Proposed and inactive after creation and review. Issue #56 remains open, the
-PR remains Draft/open/unmerged, and the task branch remains local and remote.
-
-Separate attributable Owner / Final Authority acceptance tied to the exact
-reviewed candidate head is required before any status-only promotion,
-Ready-for-review transition, merge, activation, completion, issue closure, or
-public branch cleanup. No Execution Result or other follow-on Schema Resource is
-authorized by this candidate.
+The exact reviewed candidate was accepted by the Owner / Final Authority in
+issue comment `5216466742`. Governed integration to `main` activates exactly
+Context Packet Schema Version `1.0.0`. No Execution Result or other follow-on
+Schema Resource is automatically authorized by this decision.

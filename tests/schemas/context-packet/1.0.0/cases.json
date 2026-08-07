@@ -1,11 +1,11 @@
 {
   "schemaId": "https://github.com/CNTX-PROJECT/CNTX/schemas/context-packet/1.0.0",
   "candidateSchemaVersion": "1.0.0",
-  "documentStatus": "Proposed",
+  "documentStatus": "Accepted",
   "nonNormative": true,
   "issue": "https://github.com/CNTX-PROJECT/CNTX/issues/56",
-  "ownerCreationAuthorityComment": "5216129981",
-  "description": "Public-safe synthetic validation cases for Proposed inactive ARCH-015 Schema Version 1.0.0. Expected validity is structural evidence only and grants no contract conformance, approval, task authority, source access, retrieval or disclosure permission, trust, acceptance, release, deployment, merge permission, or Execution Result authority.",
+  "ownerAcceptanceComment": "5216466742",
+  "description": "Public-safe synthetic validation cases for Accepted ARCH-015 Schema Version 1.0.0. Expected validity is structural evidence only and grants no contract conformance, approval, task authority, source access, retrieval or disclosure permission, trust, acceptance, release, deployment, merge permission, or Execution Result authority.",
   "cases": [
     {
       "name": "valid minimal assessed reference-only packet",
