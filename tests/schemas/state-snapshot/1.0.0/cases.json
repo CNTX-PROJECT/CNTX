@@ -1,0 +1,1043 @@
+{
+  "schemaId": "https://github.com/CNTX-PROJECT/CNTX/schemas/state-snapshot/1.0.0",
+  "candidateSchemaVersion": "1.0.0",
+  "documentStatus": "Proposed",
+  "active": false,
+  "nonNormative": true,
+  "issue": "https://github.com/CNTX-PROJECT/CNTX/issues/66",
+  "description": "Public-safe synthetic validation cases for Proposed and inactive ARCH-020 State Snapshot Schema Version 1.0.0. Expected validity is structural evidence only and grants no source truth, freshness, authority, evidence, approval, decision, task authorization, acceptance, integration, release, deployment, merge permission, or follow-on authority.",
+  "caseConstruction": {
+    "method": "Each ordered case deep-copies baseInstance and applies its operations in order.",
+    "pointerSyntax": "RFC 6901 JSON Pointer; add with a terminal hyphen appends to an array.",
+    "allowedOperations": [
+      "add",
+      "remove",
+      "replace"
+    ],
+    "nonNormativeBoundary": "This mechanical fixture representation is test evidence only. It is not an artifact Serialization Binding, validator, migration, patch protocol, runtime, or implementation contract."
+  },
+  "baseInstance": {
+    "envelope": {
+      "artifactType": "state-snapshot",
+      "artifactInstance": {
+        "identifier": "state-snapshot-001",
+        "revision": "r1"
+      },
+      "governingContract": {
+        "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/state-snapshot",
+        "version": "1.0.0"
+      },
+      "governingSchema": {
+        "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/state-snapshot/1.0.0",
+        "version": "1.0.0"
+      }
+    },
+    "payload": {
+      "derivationAuthorityClassificationAndNonAuthority": {
+        "authorizedDerivationReference": "authorized-process-reference-001",
+        "classification": "Derived",
+        "applicableScope": [
+          "Bounded orientation after the reported integration"
+        ],
+        "derivationLimitations": {
+          "disposition": "none"
+        },
+        "nonAuthorityBoundary": {
+          "authoritativeStatus": "non-authoritative",
+          "evidentiaryStatus": "non-evidentiary",
+          "approvalBoundary": "This snapshot grants no approval or acceptance",
+          "decisionBoundary": "This snapshot makes no decision",
+          "taskAuthorityBoundary": "This snapshot grants no task authority",
+          "technicalCapabilityBoundary": "Technical capability does not establish authority"
+        }
+      },
+      "orientationPurposeScopeAudienceAndExclusions": {
+        "orientationPurpose": "Orient a bounded continuation after reported integration",
+        "applicableScope": [
+          "The exact represented project state"
+        ],
+        "intendedAudiences": [
+          "Authorized continuation participants"
+        ],
+        "exclusions": {
+          "disposition": "none"
+        },
+        "nonSelfContainedBoundary": "The snapshot is not self-contained and does not replace its sources",
+        "controllingSourceConsultationBoundary": "Applicable controlling sources and exact revisions must be consulted"
+      },
+      "governingContextControllingSourcesAndPrecedence": {
+        "governingContext": [
+          "The bounded context identified by source-1"
+        ],
+        "controllingSourceReferences": [
+          "source-1"
+        ],
+        "sourcePrecedence": [
+          "The applicable controlling source governs on conflict"
+        ],
+        "finalHumanAuthorityBoundary": "Final human authority remains unchanged",
+        "sourceControlsOnConflictStatement": "A controlling source controls whenever this snapshot conflicts with it",
+        "silentConflictResolutionProhibitedStatement": "A conflict must remain visible and cannot be silently resolved"
+      },
+      "sourceIdentityRevisionDigestAndPinningLimitations": {
+        "sources": [
+          {
+            "localSourceReference": "source-1",
+            "sourceKind": "governing-public-source",
+            "sourceIdentity": "source-identity-001",
+            "pinning": {
+              "pinningDisposition": "exact-revision",
+              "exactRevision": "source-revision-001"
+            },
+            "applicability": [
+              "Controls the reported bounded state"
+            ],
+            "provenance": [
+              "Observed through the authorized derivation context"
+            ],
+            "interpretiveLimitations": {
+              "disposition": "none"
+            },
+            "contentDigestReference": "opaque-digest-reference-001"
+          }
+        ]
+      },
+      "derivationProvenanceDependenciesAndTemporalCoordinates": {
+        "derivationProvenance": [
+          "Derived by the referenced authorized process from source-1"
+        ],
+        "sourceReferences": [
+          "source-1"
+        ],
+        "dependencyReferences": {
+          "disposition": "none"
+        },
+        "temporalCoordinates": {
+          "stateApplicability": "state-applicability-coordinate-001",
+          "derivation": "derivation-coordinate-001",
+          "source": "source-coordinate-001",
+          "observation": "observation-coordinate-001",
+          "publication": "publication-coordinate-001",
+          "knownValidThrough": "known-valid-through-coordinate-001"
+        }
+      },
+      "freshnessStalenessAndKnownValidThrough": {
+        "assessments": [
+          {
+            "subject": "reported-state-1",
+            "classification": "known-current",
+            "basis": [
+              "The exact pinned source was inspected within the declared applicability boundary"
+            ],
+            "limitations": {
+              "disposition": "none"
+            },
+            "nonProofStatement": "This assessment and schema validity do not prove currentness"
+          }
+        ],
+        "freshnessDoesNotEstablishAuthorityOrTruth": "Freshness classification establishes neither authority nor truth"
+      },
+      "relevanceSelectionMinimizationAndMaterialContext": {
+        "relevanceBasis": [
+          "Only context required for the bounded orientation is selected"
+        ],
+        "selectedMinimumContext": [
+          "The controlling source and the reported state"
+        ],
+        "excludedUnrelatedMaterial": {
+          "disposition": "none"
+        },
+        "nonDuplicationBoundary": "Controlling source material is referenced rather than unnecessarily duplicated",
+        "materialContextPreservation": {
+          "uncertainty": {
+            "disposition": "none"
+          },
+          "dependencies": {
+            "disposition": "none"
+          },
+          "conflicts": {
+            "disposition": "none"
+          },
+          "omissions": {
+            "disposition": "none"
+          },
+          "incompleteWork": {
+            "disposition": "none"
+          },
+          "stoppedConditions": {
+            "disposition": "none"
+          },
+          "verificationGaps": {
+            "disposition": "none"
+          }
+        },
+        "noAutomatedSelectionStatement": "The snapshot does not perform automatic selection, retrieval, ranking, or summarization"
+      },
+      "reportedStateClaimsAndOrientationBoundary": {
+        "reportedStateEntries": [
+          {
+            "localStateReference": "reported-state-1",
+            "subject": "bounded public project state",
+            "statement": "The referenced integration is reported as present in source-1",
+            "applicableScope": [
+              "The exact represented revision and bounded orientation"
+            ],
+            "sourceReferences": [
+              "source-1"
+            ],
+            "limitations": {
+              "disposition": "none"
+            },
+            "orientationNotProofStatement": "Reported state is orientation and is not proof of the underlying claim"
+          }
+        ]
+      },
+      "completionCorrectnessConformanceAndVerificationBoundary": {
+        "reportedCompletionClaims": {
+          "disposition": "none"
+        },
+        "reportedCorrectnessClaims": {
+          "disposition": "none"
+        },
+        "reportedConformanceClaims": {
+          "disposition": "none"
+        },
+        "reportedCurrentnessClaims": {
+          "disposition": "none"
+        },
+        "reportedVerificationClaims": {
+          "disposition": "none"
+        }
+      },
+      "evidenceReviewDecisionAndIntegrationTraceability": {
+        "executionResults": {
+          "disposition": "none"
+        },
+        "evidenceBundles": {
+          "disposition": "none"
+        },
+        "reviewRecords": {
+          "disposition": "none"
+        },
+        "decisionRecords": {
+          "disposition": "none"
+        },
+        "integrationReporting": {
+          "disposition": "specified",
+          "items": [
+            "Source-1 reports one integration within the bounded state"
+          ]
+        },
+        "inputsDoNotBecomeProofOrAuthorityStatement": "References do not become evidence, review, approval, decision, integration proof, or authority"
+      },
+      "artifactRelationships": {
+        "projectCharters": {
+          "disposition": "none"
+        },
+        "workstreams": {
+          "disposition": "none"
+        },
+        "taskContracts": {
+          "disposition": "none"
+        },
+        "contextPackets": {
+          "disposition": "none"
+        },
+        "executionResults": {
+          "disposition": "none"
+        },
+        "evidenceBundles": {
+          "disposition": "none"
+        },
+        "reviewRecords": {
+          "disposition": "none"
+        },
+        "decisionRecords": {
+          "disposition": "none"
+        },
+        "peerStateSnapshots": {
+          "disposition": "none"
+        }
+      },
+      "uncertaintyLimitationsOmissionsAndVerificationGaps": {
+        "missingSources": {
+          "disposition": "none"
+        },
+        "unavailableSources": {
+          "disposition": "none"
+        },
+        "unpinnedSources": {
+          "disposition": "none"
+        },
+        "omissions": {
+          "disposition": "none"
+        },
+        "conflicts": {
+          "disposition": "none"
+        },
+        "verificationGaps": {
+          "disposition": "none"
+        },
+        "otherMaterialLimitations": {
+          "disposition": "none"
+        },
+        "silenceDoesNotResolveOrProveAbsenceStatement": "Silence resolves no conflict and proves no absence"
+      },
+      "incompleteWorkStoppedConditionsUnresolvedDecisionsAndRemainingActions": {
+        "incompleteWork": {
+          "disposition": "none"
+        },
+        "stoppedConditions": {
+          "disposition": "none"
+        },
+        "unresolvedDecisions": {
+          "disposition": "none"
+        },
+        "remainingActions": {
+          "disposition": "none"
+        },
+        "continuationRequiresSeparateAuthorityStatement": "Any continuation requires separate applicable authority"
+      },
+      "snapshotIdentityRevisionAndHistoricalProvenance": {
+        "representedStateSnapshot": {
+          "artifactInstanceIdentifier": "state-snapshot-001",
+          "artifactRevision": "r1"
+        },
+        "derivationNarrative": [
+          "Derived from source-1 for the bounded orientation"
+        ],
+        "revisionNarrative": [
+          "This is the first represented revision"
+        ],
+        "priorRevisions": {
+          "disposition": "none"
+        },
+        "laterRevisions": {
+          "disposition": "none"
+        },
+        "historicalPreservationBoundary": "Historical provenance must not be silently overwritten",
+        "selfPinEqualityNotProvedStatement": "The schema does not prove payload and envelope pin equality"
+      },
+      "peerSnapshotDependenciesReplacementCorrectionSupersessionAndConflicts": {
+        "dependencies": {
+          "disposition": "none"
+        },
+        "replacements": {
+          "disposition": "none"
+        },
+        "corrections": {
+          "disposition": "none"
+        },
+        "supersessions": {
+          "disposition": "none"
+        },
+        "conflicts": {
+          "disposition": "none"
+        },
+        "noLatestWinsOrSilentReplacementStatement": "No latest-wins or silent replacement rule applies"
+      },
+      "handoffRecipientsContinuationNeedsAndAuthorityBoundary": {
+        "handoffScope": [
+          "The exact bounded orientation"
+        ],
+        "intendedRecipients": [
+          "Authorized continuation participants"
+        ],
+        "sourceAccessibility": {
+          "disposition": "specified",
+          "items": [
+            "Source-1 is identified for separate consultation"
+          ]
+        },
+        "continuationNeeds": {
+          "disposition": "none"
+        },
+        "requiredSeparateAuthority": {
+          "disposition": "none"
+        },
+        "nonConversationCopyBoundary": "The handoff does not reproduce a full conversation or unrelated history",
+        "handoffIsNotTaskAuthorityStatement": "The handoff is not a Task Contract and grants no task authority"
+      },
+      "securityPrivacyAccessDisclosureAndRestrictedContext": {
+        "securityConsiderations": {
+          "disposition": "none"
+        },
+        "privacyConsiderations": {
+          "disposition": "none"
+        },
+        "accessLimitations": {
+          "disposition": "none"
+        },
+        "confidentiality": {
+          "disposition": "none"
+        },
+        "restrictedSourceLimitations": {
+          "disposition": "none"
+        },
+        "exclusions": {
+          "disposition": "specified",
+          "items": [
+            "Secrets, credentials, personal data, private paths, and restricted content are excluded"
+          ]
+        },
+        "disclosureLimitations": {
+          "disposition": "none"
+        },
+        "redactionInformationLoss": {
+          "disposition": "none"
+        },
+        "residualRisk": {
+          "disposition": "none"
+        },
+        "declarativeOnlyNoEnforcementOrTransformationStatement": "These declarations implement no control, enforcement, redaction, or transformation"
+      },
+      "conceptualLifecycleNonAutomaticEffectsAndFollowOnAuthority": {
+        "conceptualRelation": "integration → compact state update",
+        "derivationTriggerContext": [
+          "The snapshot was derived after an integration reported by source-1"
+        ],
+        "integrationNotProvedStatement": "The snapshot does not prove that integration occurred",
+        "nonAutomaticEffectsStatement": "The snapshot causes no automatic effect",
+        "historicalPreservationStatement": "Earlier snapshots and sources remain historically preserved",
+        "followOnAuthorityReferences": {
+          "disposition": "none"
+        },
+        "remainingSeparatelyAuthorizedActions": {
+          "disposition": "none"
+        },
+        "stateSynchronizationWorkflowRuntimeBoundary": "No state, synchronization, workflow, scheduler, orchestrator, or runtime behavior is defined"
+      }
+    }
+  },
+  "cases": [
+    {
+      "name": "valid minimal fully pinned bounded orientation after reported integration",
+      "valid": true,
+      "operations": []
+    },
+    {
+      "name": "valid partial stopped state with unpinned source uncertainty and separate continuation authority",
+      "valid": true,
+      "operations": [
+        {
+          "op": "add",
+          "path": "/payload/sourceIdentityRevisionDigestAndPinningLimitations/sources/-",
+          "value": {
+            "localSourceReference": "source-2",
+            "sourceKind": "unavailable-external-source",
+            "sourceIdentity": "source-identity-002",
+            "pinning": {
+              "pinningDisposition": "limitation",
+              "limitation": "An exact revision was not available to the authorized derivation",
+              "uncertaintyEffect": "Claims depending on source-2 remain unverified and of unknown freshness"
+            },
+            "applicability": [
+              "Potentially affects the stopped work boundary"
+            ],
+            "provenance": [
+              "Identified by source-1 but not retrieved"
+            ],
+            "interpretiveLimitations": {
+              "disposition": "specified",
+              "items": [
+                "Source-2 cannot be treated as current or complete"
+              ]
+            }
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/payload/freshnessStalenessAndKnownValidThrough/assessments/0/classification",
+          "value": "unknown-freshness"
+        },
+        {
+          "op": "replace",
+          "path": "/payload/evidenceReviewDecisionAndIntegrationTraceability/evidenceBundles",
+          "value": {
+            "disposition": "specified",
+            "items": [
+              {
+                "artifactInstanceIdentifier": "evidence-bundle-001",
+                "artifactRevision": "r1"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/payload/evidenceReviewDecisionAndIntegrationTraceability/reviewRecords",
+          "value": {
+            "disposition": "specified",
+            "items": [
+              {
+                "artifactInstanceIdentifier": "review-record-001",
+                "artifactRevision": "r1"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/payload/evidenceReviewDecisionAndIntegrationTraceability/decisionRecords",
+          "value": {
+            "disposition": "specified",
+            "items": [
+              {
+                "artifactInstanceIdentifier": "decision-record-001",
+                "artifactRevision": "r1"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/payload/uncertaintyLimitationsOmissionsAndVerificationGaps/conflicts",
+          "value": {
+            "disposition": "specified",
+            "items": [
+              {
+                "subject": "source-1 and source-2",
+                "reason": "Their reported state cannot currently be reconciled",
+                "interpretiveEffect": "The affected work remains stopped",
+                "applicableScope": [
+                  "The stopped work boundary"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/payload/uncertaintyLimitationsOmissionsAndVerificationGaps/verificationGaps",
+          "value": {
+            "disposition": "specified",
+            "items": [
+              {
+                "subject": "source-2 revision",
+                "reason": "No exact revision is available",
+                "interpretiveEffect": "Currentness and completeness are unknown",
+                "applicableScope": [
+                  "Claims depending on source-2"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/payload/incompleteWorkStoppedConditionsUnresolvedDecisionsAndRemainingActions/incompleteWork",
+          "value": {
+            "disposition": "specified",
+            "items": [
+              {
+                "subject": "verification of source-2",
+                "statement": "Verification is incomplete",
+                "applicableScope": [
+                  "The stopped work boundary"
+                ],
+                "limitation": "No completion is implied"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/payload/incompleteWorkStoppedConditionsUnresolvedDecisionsAndRemainingActions/stoppedConditions",
+          "value": {
+            "disposition": "specified",
+            "items": [
+              {
+                "subject": "continuation",
+                "statement": "Work is stopped pending an exact source revision",
+                "applicableScope": [
+                  "The affected work"
+                ],
+                "limitation": "The snapshot cannot lift the stop"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/payload/incompleteWorkStoppedConditionsUnresolvedDecisionsAndRemainingActions/unresolvedDecisions",
+          "value": {
+            "disposition": "specified",
+            "items": [
+              {
+                "subject": "source conflict",
+                "statement": "The conflict remains unresolved",
+                "applicableScope": [
+                  "The affected claim"
+                ],
+                "limitation": "No resolution is inferred"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/payload/incompleteWorkStoppedConditionsUnresolvedDecisionsAndRemainingActions/remainingActions",
+          "value": {
+            "disposition": "specified",
+            "items": [
+              {
+                "subject": "separate source verification",
+                "statement": "Obtain an exact revision under separate authority",
+                "applicableScope": [
+                  "The affected claim"
+                ],
+                "limitation": "This declaration does not authorize the action"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/payload/handoffRecipientsContinuationNeedsAndAuthorityBoundary/continuationNeeds",
+          "value": {
+            "disposition": "specified",
+            "items": [
+              "Resolve the source pinning limitation before continuing"
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/payload/handoffRecipientsContinuationNeedsAndAuthorityBoundary/requiredSeparateAuthority",
+          "value": {
+            "disposition": "specified",
+            "items": [
+              "Separate authority is required to retrieve or verify source-2"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "valid correction and supersession with stale assessments restricted omission and bounded handoff",
+      "valid": true,
+      "operations": [
+        {
+          "op": "replace",
+          "path": "/envelope/artifactInstance/revision",
+          "value": "r3"
+        },
+        {
+          "op": "replace",
+          "path": "/payload/snapshotIdentityRevisionAndHistoricalProvenance/representedStateSnapshot/artifactRevision",
+          "value": "r3"
+        },
+        {
+          "op": "replace",
+          "path": "/payload/freshnessStalenessAndKnownValidThrough/assessments",
+          "value": [
+            {
+              "subject": "prior reported state",
+              "classification": "demonstrably-stale",
+              "basis": [
+                "A correction at an exact peer revision identifies the earlier state as stale"
+              ],
+              "limitations": {
+                "disposition": "none"
+              },
+              "nonProofStatement": "The classification does not prove every affected fact"
+            },
+            {
+              "subject": "restricted-source-dependent state",
+              "classification": "possibly-stale",
+              "basis": [
+                "A restricted source could not be reproduced in the public snapshot"
+              ],
+              "limitations": {
+                "disposition": "specified",
+                "items": [
+                  "Freshness cannot be fully assessed from public-safe material"
+                ]
+              },
+              "nonProofStatement": "Recent derivation does not prove currentness"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/payload/snapshotIdentityRevisionAndHistoricalProvenance/priorRevisions",
+          "value": {
+            "disposition": "specified",
+            "items": [
+              {
+                "artifactInstanceIdentifier": "state-snapshot-001",
+                "artifactRevision": "r2"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/payload/peerSnapshotDependenciesReplacementCorrectionSupersessionAndConflicts/corrections",
+          "value": {
+            "disposition": "specified",
+            "items": [
+              {
+                "peerStateSnapshot": {
+                  "artifactInstanceIdentifier": "state-snapshot-001",
+                  "artifactRevision": "r2"
+                },
+                "scope": [
+                  "The corrected reported-state entry"
+                ],
+                "reason": "The prior statement was demonstrably stale",
+                "affectedBoundary": [
+                  "reported-state-1"
+                ],
+                "history": [
+                  "Revision r2 remains preserved"
+                ],
+                "nonAutomaticEffectStatement": "The correction relation does not erase or mutate r2"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/payload/peerSnapshotDependenciesReplacementCorrectionSupersessionAndConflicts/supersessions",
+          "value": {
+            "disposition": "specified",
+            "items": [
+              {
+                "peerStateSnapshot": {
+                  "artifactInstanceIdentifier": "state-snapshot-001",
+                  "artifactRevision": "r2"
+                },
+                "scope": [
+                  "The bounded orientation only"
+                ],
+                "reason": "Revision r3 carries the corrected bounded orientation",
+                "affectedBoundary": [
+                  "The continuation handoff"
+                ],
+                "history": [
+                  "Revision r2 remains historical provenance"
+                ],
+                "nonAutomaticEffectStatement": "Supersession is explicit and creates no automatic authority or deletion"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/payload/securityPrivacyAccessDisclosureAndRestrictedContext/restrictedSourceLimitations",
+          "value": {
+            "disposition": "specified",
+            "items": [
+              "A restricted source could not be reproduced publicly"
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/payload/securityPrivacyAccessDisclosureAndRestrictedContext/redactionInformationLoss",
+          "value": {
+            "disposition": "specified",
+            "items": [
+              "Public-safe omission limits the independently visible basis"
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/payload/uncertaintyLimitationsOmissionsAndVerificationGaps/omissions",
+          "value": {
+            "disposition": "specified",
+            "items": [
+              {
+                "subject": "restricted source content",
+                "reason": "The content is not authorized for public disclosure",
+                "interpretiveEffect": "The public snapshot preserves only the limitation and not the restricted basis",
+                "applicableScope": [
+                  "The restricted-source-dependent assessment"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/payload/handoffRecipientsContinuationNeedsAndAuthorityBoundary/continuationNeeds",
+          "value": {
+            "disposition": "specified",
+            "items": [
+              "Consult the authorized restricted source if separate access is granted"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "invalid missing envelope",
+      "valid": false,
+      "operations": [
+        {
+          "op": "remove",
+          "path": "/envelope"
+        }
+      ]
+    },
+    {
+      "name": "invalid unknown root property",
+      "valid": false,
+      "operations": [
+        {
+          "op": "add",
+          "path": "/unexpectedRoot",
+          "value": "not permitted"
+        }
+      ]
+    },
+    {
+      "name": "invalid wrong artifact type",
+      "valid": false,
+      "operations": [
+        {
+          "op": "replace",
+          "path": "/envelope/artifactType",
+          "value": "decision-record"
+        }
+      ]
+    },
+    {
+      "name": "invalid wrong governing Contract Definition coordinates",
+      "valid": false,
+      "operations": [
+        {
+          "op": "replace",
+          "path": "/envelope/governingContract/identifier",
+          "value": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/decision-record"
+        }
+      ]
+    },
+    {
+      "name": "invalid wrong governing Schema coordinates",
+      "valid": false,
+      "operations": [
+        {
+          "op": "replace",
+          "path": "/envelope/governingSchema/version",
+          "value": "2.0.0"
+        }
+      ]
+    },
+    {
+      "name": "invalid missing derivation authority classification and non-authority responsibility",
+      "valid": false,
+      "operations": [
+        {
+          "op": "remove",
+          "path": "/payload/derivationAuthorityClassificationAndNonAuthority"
+        }
+      ]
+    },
+    {
+      "name": "invalid authoritative classification and malformed authority boundary",
+      "valid": false,
+      "operations": [
+        {
+          "op": "replace",
+          "path": "/payload/derivationAuthorityClassificationAndNonAuthority/classification",
+          "value": "Authoritative"
+        },
+        {
+          "op": "replace",
+          "path": "/payload/derivationAuthorityClassificationAndNonAuthority/nonAuthorityBoundary/authoritativeStatus",
+          "value": "self-authoritative"
+        }
+      ]
+    },
+    {
+      "name": "invalid missing governing conflict precedence boundary",
+      "valid": false,
+      "operations": [
+        {
+          "op": "remove",
+          "path": "/payload/governingContextControllingSourcesAndPrecedence/sourceControlsOnConflictStatement"
+        }
+      ]
+    },
+    {
+      "name": "invalid source has neither exact revision nor complete pinning limitation",
+      "valid": false,
+      "operations": [
+        {
+          "op": "replace",
+          "path": "/payload/sourceIdentityRevisionDigestAndPinningLimitations/sources/0/pinning",
+          "value": {
+            "pinningDisposition": "exact-revision"
+          }
+        }
+      ]
+    },
+    {
+      "name": "invalid collapsed temporal coordinates and unsupported freshness token",
+      "valid": false,
+      "operations": [
+        {
+          "op": "remove",
+          "path": "/payload/derivationProvenanceDependenciesAndTemporalCoordinates/temporalCoordinates/observation"
+        },
+        {
+          "op": "replace",
+          "path": "/payload/freshnessStalenessAndKnownValidThrough/assessments/0/classification",
+          "value": "latest"
+        }
+      ]
+    },
+    {
+      "name": "invalid empty selected minimum context",
+      "valid": false,
+      "operations": [
+        {
+          "op": "replace",
+          "path": "/payload/relevanceSelectionMinimizationAndMaterialContext/selectedMinimumContext",
+          "value": []
+        }
+      ]
+    },
+    {
+      "name": "invalid malformed reported completion claim separation",
+      "valid": false,
+      "operations": [
+        {
+          "op": "replace",
+          "path": "/payload/completionCorrectnessConformanceAndVerificationBoundary/reportedCompletionClaims",
+          "value": {
+            "disposition": "specified",
+            "items": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "invalid evidence input represented as approval proof",
+      "valid": false,
+      "operations": [
+        {
+          "op": "replace",
+          "path": "/payload/evidenceReviewDecisionAndIntegrationTraceability/evidenceBundles",
+          "value": {
+            "disposition": "proof",
+            "approved": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "invalid missing peer State Snapshot relationship category",
+      "valid": false,
+      "operations": [
+        {
+          "op": "remove",
+          "path": "/payload/artifactRelationships/peerStateSnapshots"
+        }
+      ]
+    },
+    {
+      "name": "invalid malformed verification gap and remaining action declarations",
+      "valid": false,
+      "operations": [
+        {
+          "op": "replace",
+          "path": "/payload/uncertaintyLimitationsOmissionsAndVerificationGaps/verificationGaps",
+          "value": {
+            "disposition": "specified",
+            "items": [
+              {
+                "subject": "missing interpretive effect",
+                "reason": "The entry is incomplete",
+                "applicableScope": [
+                  "bounded scope"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/payload/incompleteWorkStoppedConditionsUnresolvedDecisionsAndRemainingActions/remainingActions",
+          "value": null
+        }
+      ]
+    },
+    {
+      "name": "invalid peer dependency encodes latest-wins and omits non-automatic effect",
+      "valid": false,
+      "operations": [
+        {
+          "op": "replace",
+          "path": "/payload/peerSnapshotDependenciesReplacementCorrectionSupersessionAndConflicts/dependencies",
+          "value": {
+            "disposition": "specified",
+            "items": [
+              {
+                "peerStateSnapshot": {
+                  "artifactInstanceIdentifier": "state-snapshot-002",
+                  "artifactRevision": "r2"
+                },
+                "scope": [
+                  "all state"
+                ],
+                "reason": "newer wins",
+                "affectedBoundary": [
+                  "all history"
+                ],
+                "history": [
+                  "delete prior revision"
+                ],
+                "latestWins": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "invalid composite unknown blank duplicate null embedded and implementation shape",
+      "valid": false,
+      "operations": [
+        {
+          "op": "add",
+          "path": "/payload/handoffRecipientsContinuationNeedsAndAuthorityBoundary/runtime",
+          "value": {
+            "automaticRetrieval": true,
+            "synchronizeState": true
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/payload/handoffRecipientsContinuationNeedsAndAuthorityBoundary/intendedRecipients",
+          "value": [
+            "duplicate-recipient",
+            "duplicate-recipient"
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/payload/reportedStateClaimsAndOrientationBoundary/reportedStateEntries/0/statement",
+          "value": "   "
+        },
+        {
+          "op": "replace",
+          "path": "/payload/artifactRelationships/decisionRecords",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/payload/artifactRelationships/embeddedDecisionRecord",
+          "value": {
+            "schema": "https://github.com/CNTX-PROJECT/CNTX/schemas/decision-record/1.0.0",
+            "approved": true,
+            "score": 1
+          }
+        }
+      ]
+    }
+  ]
+}

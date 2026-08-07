@@ -144,6 +144,25 @@ or follow-on authority. Governed integration to `main` activates the exact
 Schema Version; acceptance and activation authorize no State Snapshot schema or
 other follow-on work.
 
+The [State Snapshot Executable Schema Definition](state-snapshot-executable-schema.md)
+and [ADR-0020](adr/0020-state-snapshot-executable-schema.md) are **Proposed**
+under issue #66. They define one inactive Draft 2020-12 State Snapshot Schema
+Version `1.0.0` candidate that composes the exact Accepted Common Artifact
+Envelope with a closed eighteen-property CONTRACT-009 payload. Authorized
+derivation and Derived/non-authoritative classification, controlling sources
+and exact revisions or pinning limitations, six temporal coordinates, four
+freshness classifications, reported state and separated claims,
+evidence/review/decision/integration traceability, nine artifact relationships,
+uncertainty, stops, history, five peer relations, bounded handoff,
+security/privacy, and non-automatic lifecycle effects remain declarative. The
+resource contains no artifact-specific schema `$ref` and implements no
+authority, retrieval, freshness calculation, conflict resolution, state,
+synchronization, workflow, runtime, access, disclosure, retention,
+verification, release, deployment, publication, or merge mechanism. Creation,
+validation, review, schema validity, or repository presence grants no
+acceptance or activation. After one exact-head review, separate attributable
+EIGENAAR / Final Authority acceptance remains required.
+
 ## Document status
 
 - **Proposed** — submitted for review and not yet an accepted repository decision.
