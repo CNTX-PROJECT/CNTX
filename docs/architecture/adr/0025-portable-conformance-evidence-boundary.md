@@ -1,6 +1,6 @@
 # ADR-0025: Portable conformance evidence boundary
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-08-08
 - **Issue:** [#76](https://github.com/CNTX-PROJECT/CNTX/issues/76)
 - **Decision:** ARCH-025 — CNTX Portable Conformance Evidence Boundary
@@ -182,15 +182,14 @@ private/reference implementation, release, tag, publication, or deployment.
 
 ## Review and continuing gate
 
-The candidate requires one transparent non-independent COMMENT review on its
-exact head and then stops. Creation, validation, review, repository presence,
-Draft state, and mergeability do not grant acceptance.
+The candidate received one transparent non-independent COMMENT review on its
+exact head and then stopped. Creation, validation, review, repository presence,
+Draft state, and mergeability did not grant acceptance.
 
-Only later separate attributable EIGENAAR / Final Authority acceptance of the
-exact reviewed candidate may authorize status-only promotion. This proposal
-authorizes no Ready transition, promotion, merge, issue closure, branch
-cleanup, release-readiness decision, implementation, release, publication,
-deployment, or later roadmap layer.
+EIGENAAR / Final Authority separately accepted the exact reviewed candidate in
+issue comment `5223192303`; governed integration adopts exactly this decision.
+Acceptance and integration authorize no release-readiness decision,
+implementation, release, publication, deployment, or later roadmap layer.
 
 ## References
 

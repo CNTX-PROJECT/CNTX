@@ -2,16 +2,19 @@
 
 ## Status and authority
 
-**Document Status:** Proposed.
+**Document Status:** Accepted.
 
-This document is a Proposed, documentation-only architecture decision governed
+This document is an Accepted, documentation-only architecture decision governed
 by [issue #76](https://github.com/CNTX-PROJECT/CNTX/issues/76) and recorded by
 [ADR-0025](adr/0025-portable-conformance-evidence-boundary.md). Attributable
 EIGENAAR / Final Authority creation authority is recorded in issue comment
-`5223043068`. Creation, repository presence, validation, Draft pull-request
-state, and transparent non-independent review do not grant acceptance.
+`5223043068`. EIGENAAR / Final Authority acceptance of the exact reviewed
+candidate is recorded in issue comment `5223192303`. Governed integration to
+`main` adopts this exact decision. Creation, repository presence, validation,
+Draft pull-request state, and transparent non-independent review did not grant
+acceptance.
 
-This proposal remains subordinate to all Accepted architecture, artifact
+This decision remains subordinate to all Accepted architecture, artifact
 contracts, executable schemas, Core Artifact JSON Binding Version `1.0.0`, the
 Accepted Schema Resource Resolution and Catalog Boundary, the Accepted
 Validation and Validation Output Contract, repository governance, security and
@@ -21,7 +24,7 @@ none of those sources.
 Within this document, **MUST** and **MUST NOT** express mandatory requirements,
 **SHOULD** and **SHOULD NOT** express strong recommendations, and **MAY**
 express permission. These terms express requirement strength only within this
-Proposed decision and grant no authority.
+Accepted decision and grant no authority.
 
 ## Purpose and decision boundary
 
@@ -537,19 +540,19 @@ publication; or deployment.
 
 ## Review, acceptance, and continuing gate
 
-The candidate must receive exactly one transparent non-independent COMMENT
-review on its exact head and then stop. Creation, validation, review,
-repository presence, Draft state, and mergeability do not grant acceptance.
+The candidate received exactly one transparent non-independent COMMENT review
+on its exact head and then stopped. Creation, validation, review, repository
+presence, Draft state, and mergeability did not grant acceptance.
 
 When no finding remains, the review ends exactly:
 
 `PASS — exact-head candidate conforms to the approved ARCH-025 creation contract; review is transparently non-independent and grants no final acceptance.`
 
-Only a later separate attributable EIGENAAR / Final Authority acceptance of
-the exact reviewed candidate may authorize a status-only promotion. This
-proposal grants no Ready transition, promotion, merge, issue closure, public
-branch cleanup, release-readiness decision, implementation, release,
-publication, deployment, or other follow-on authority.
+EIGENAAR / Final Authority separately accepted the exact reviewed candidate in
+issue comment `5223192303`; governed integration adopts exactly this decision.
+Acceptance and integration authorize no release-readiness decision,
+implementation, release, publication, deployment, or other follow-on
+authority.
 
 ## References
 

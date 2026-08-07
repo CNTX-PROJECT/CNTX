@@ -225,8 +225,9 @@ release, publication, deployment, merge permission, or follow-on authority.
 The [CNTX Portable Conformance Evidence
 Boundary](portable-conformance-evidence-boundary.md) and
 [ADR-0025](adr/0025-portable-conformance-evidence-boundary.md) are
-**Proposed** as ARCH-025 under issue #76 and attributable EIGENAAR creation-
-authority comment `5223043068`. They define a logical boundary for exactly
+**Accepted** as ARCH-025 under issue #76, attributable EIGENAAR creation-
+authority comment `5223043068`, and EIGENAAR acceptance comment `5223192303`.
+They define a logical boundary for exactly
 scoped, version-bound, provenance-bearing, offline-first, independently
 reassessable conformance evidence; twelve evidence responsibilities;
 claim/evidence/requirement traceability; validation-output and Evidence Bundle
