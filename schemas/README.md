@@ -339,22 +339,22 @@ activates exactly Schema Version `1.0.0` under issue #64 and EIGENAAR acceptance
 comment `5219310944`; acceptance and activation grant no State Snapshot schema
 or follow-on authority.
 
-## Proposed State Snapshot Schema Version 1.0.0
+## Accepted State Snapshot Schema Version 1.0.0
 
-| Dimension | Proposed value |
+| Dimension | Accepted value |
 | --- | --- |
 | Logical schema identity | CNTX Public Core Schema Family / State Snapshot Artifact |
 | Schema language and dialect | JSON Schema Draft 2020-12 |
 | Dialect declaration | `https://json-schema.org/draft/2020-12/schema` |
 | Canonical `$id` | `https://github.com/CNTX-PROJECT/CNTX/schemas/state-snapshot/1.0.0` |
-| Schema Version | `1.0.0`, inactive |
+| Schema Version | `1.0.0` |
 | Canonical repository path | `schemas/state-snapshot/1.0.0/schema.json` |
 | Exact external dependency | Accepted Common Artifact Envelope Schema Version `1.0.0` |
 | Governing Contract Definition | `https://github.com/CNTX-PROJECT/CNTX/contract-definitions/state-snapshot` at `1.0.0` |
 | Schema-resource media type | `application/schema+json` |
-| Document Status | Proposed under issue #66; exact-head acceptance pending |
+| Document Status | Accepted under issue #66 and EIGENAAR acceptance comment `5219885650` |
 
-The Proposed resource evaluates one complete closed State Snapshot artifact
+The Accepted resource evaluates one complete closed State Snapshot artifact
 with mandatory `envelope` and `payload`. Its envelope statically references the
 exact Accepted Common Artifact Envelope and constrains only the State Snapshot
 Artifact Type and governing Contract and Schema coordinates. Its closed
@@ -375,13 +375,13 @@ calculates no freshness, resolves no conflict, changes or synchronizes no state,
 and implements no workflow, runtime, access, disclosure, retention,
 verification, release, deployment, publication, or merge mechanism.
 
-The Proposed [ARCH-020 architecture candidate](../docs/architecture/state-snapshot-executable-schema.md),
+The Accepted [ARCH-020 architecture decision](../docs/architecture/state-snapshot-executable-schema.md),
 [ADR-0020](../docs/architecture/adr/0020-state-snapshot-executable-schema.md),
 and [non-normative test manifest](../tests/schemas/state-snapshot/1.0.0/cases.json)
-define and evidence the candidate boundary. Creation, validation, review, and
-repository presence grant no acceptance or activation. After one exact-head
-review, separate attributable EIGENAAR / Final Authority acceptance remains
-required before any status promotion or integration.
+define and evidence the Accepted boundary. Governed integration to `main`
+activates exactly Schema Version `1.0.0` under issue #66 and EIGENAAR acceptance
+comment `5219885650`; acceptance and activation grant no artifact instance,
+implementation, release, deployment, publication, or follow-on authority.
 
 ## Change boundary
 

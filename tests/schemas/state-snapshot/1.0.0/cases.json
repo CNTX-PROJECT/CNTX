@@ -1,11 +1,11 @@
 {
   "schemaId": "https://github.com/CNTX-PROJECT/CNTX/schemas/state-snapshot/1.0.0",
   "candidateSchemaVersion": "1.0.0",
-  "documentStatus": "Proposed",
-  "active": false,
+  "documentStatus": "Accepted",
+  "active": true,
   "nonNormative": true,
   "issue": "https://github.com/CNTX-PROJECT/CNTX/issues/66",
-  "description": "Public-safe synthetic validation cases for Proposed and inactive ARCH-020 State Snapshot Schema Version 1.0.0. Expected validity is structural evidence only and grants no source truth, freshness, authority, evidence, approval, decision, task authorization, acceptance, integration, release, deployment, merge permission, or follow-on authority.",
+  "description": "Public-safe synthetic validation cases for Accepted ARCH-020 State Snapshot Schema Version 1.0.0 under issue #66 and EIGENAAR acceptance comment 5219885650. Expected validity is structural evidence only and grants no source truth, freshness, authority, evidence, approval, decision, task authorization, acceptance, integration, release, deployment, merge permission, or follow-on authority.",
   "caseConstruction": {
     "method": "Each ordered case deep-copies baseInstance and applies its operations in order.",
     "pointerSyntax": "RFC 6901 JSON Pointer; add with a terminal hyphen appends to an array.",

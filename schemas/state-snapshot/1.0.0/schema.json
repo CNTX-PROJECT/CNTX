@@ -1,9 +1,9 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/CNTX-PROJECT/CNTX/schemas/state-snapshot/1.0.0",
-  "$comment": "Proposed and inactive ARCH-020 State Snapshot Schema Version 1.0.0 candidate under issue #66. Schema validity grants no source truth, freshness, authority, evidence, approval, decision, task authorization, acceptance, integration, release, deployment, merge permission, or follow-on authority.",
+  "$comment": "Accepted ARCH-020 State Snapshot Schema Version 1.0.0 under issue #66 and EIGENAAR / Final Authority acceptance comment 5219885650. Schema validity grants no source truth, freshness, authority, evidence, approval, decision, task authorization, acceptance, integration, release, deployment, merge permission, or follow-on authority.",
   "title": "CNTX State Snapshot Artifact",
-  "description": "A complete State Snapshot artifact with the exact Accepted Common Artifact Envelope and a closed CONTRACT-009 payload. This Proposed resource evaluates structure only, preserves controlling sources and final human authority, and is inactive unless separately accepted and integrated under governance.",
+  "description": "A complete State Snapshot artifact with the exact Accepted Common Artifact Envelope and a closed CONTRACT-009 payload. This Accepted resource evaluates structure only, preserves controlling sources and final human authority, and becomes active only through governed integration under final human authority.",
   "type": "object",
   "properties": {
     "envelope": {

@@ -1,9 +1,9 @@
 # ADR-0020: State Snapshot executable schema definition
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-08-07
 - **Issue:** [#66](https://github.com/CNTX-PROJECT/CNTX/issues/66)
-- **Exact-head acceptance:** pending separate attributable EIGENAAR / Final Authority action
+- **EIGENAAR acceptance:** issue comment `5219885650`
 - **Decision:** ARCH-020 — State Snapshot Executable Schema Definition
 
 ## Context
@@ -18,14 +18,13 @@ provenance, and final human authority remain visible.
 
 After Accepted Decision Record Schema Version `1.0.0`, the dependency-first
 rollout permits a separately governed State Snapshot executable-schema
-candidate. The candidate must translate only CONTRACT-009 responsibilities,
-must keep authoritative sources controlling, and must introduce no retrieval,
-freshness calculation, state, synchronization, workflow, access, or runtime
-mechanism.
+decision. The decision translates only CONTRACT-009 responsibilities, keeps
+authoritative sources controlling, and introduces no retrieval, freshness
+calculation, state, synchronization, workflow, access, or runtime mechanism.
 
-## Proposed decision
+## Decision
 
-Propose one JSON Schema Draft 2020-12 Schema Resource at
+Adopt one JSON Schema Draft 2020-12 Schema Resource at
 `schemas/state-snapshot/1.0.0/schema.json` with canonical `$id`
 `https://github.com/CNTX-PROJECT/CNTX/schemas/state-snapshot/1.0.0`.
 
@@ -57,12 +56,11 @@ The resource:
 - preserves bounded handoff, security/privacy, restricted-context,
   non-automatic lifecycle, and follow-on-authority boundaries;
 - keeps every internal schema reference fragment-local; and
-- remains Proposed and inactive pending separate exact-head acceptance and a
-  separately authorized status promotion and integration.
+- is Accepted; governed integration to `main` activates the exact resource.
 
 ## Rationale
 
-The candidate makes a complete State Snapshot structurally evaluable while
+The decision makes a complete State Snapshot structurally evaluable while
 preserving the distinction between compact orientation and controlling source
 state. Exact revision pins and explicit pinning limitations make provenance and
 uncertainty visible without converting the schema into a resolver, registry,
@@ -77,7 +75,7 @@ Exact-version static composition supports deterministic offline validation.
 ## Consequences and tradeoffs
 
 - Eighteen CONTRACT-009 responsibility groups are mandatory structural
-  coordinates in the Proposed schema.
+  coordinates in the Accepted schema.
 - Source identity, exact revisions, applicability, provenance, and limitations
   remain declarative and require external human-governed verification.
 - An unpinned source is representable only through an explicit limitation and
@@ -139,16 +137,16 @@ assumptions, and private implementation details remain forbidden.
 
 ## Authority and conformance boundary
 
-The Proposed resource is non-self-approving. Schema validity proves only
+The Accepted resource is non-self-approving. Schema validity proves only
 structural satisfaction of this exact resource under the registered common
 resource. It grants no contract conformance, source identity, source truth,
 freshness, absence, authority, evidence, approval, decision, task authority,
 acceptance, integration, release, deployment, publication, merge permission,
 or follow-on authority.
 
-Creation, Draft PR publication, and a transparent non-independent review do not
-accept or activate the resource. The workflow must stop after the exact-head
-review for separate attributable EIGENAAR / Final Authority acceptance.
+EIGENAAR / Final Authority acceptance of the exact reviewed candidate is
+recorded in issue comment `5219885650`. Governed integration to `main`
+activates exactly State Snapshot Schema Version `1.0.0`.
 
 ## Deferred scope and continuing authority boundary
 
@@ -165,5 +163,6 @@ mechanisms; validator/output implementations; conformance tooling; migration;
 templates; prompts; API; CLI; runtime; private or reference implementation;
 provider; product; release; tag; hosted publication; and deployment.
 
-No Ready transition, Accepted promotion, merge, issue closure, or branch
-cleanup is authorized by this Proposed decision.
+Acceptance and activation authorize no artifact instance, binding, validator,
+resolver, runtime, implementation, product, release, publication, deployment,
+or other follow-on work without separately attributable authority.

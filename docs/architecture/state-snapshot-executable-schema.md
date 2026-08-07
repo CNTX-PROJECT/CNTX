@@ -2,21 +2,21 @@
 
 ## Status and authority
 
-**Document Status:** Proposed.
+**Document Status:** Accepted.
 
-This document is a Proposed executable-schema architecture candidate governed
+This document is an Accepted executable-schema architecture decision governed
 by [issue #66](https://github.com/CNTX-PROJECT/CNTX/issues/66) and recorded by
 [ADR-0020](adr/0020-state-snapshot-executable-schema.md).
 
-The candidate [Schema Resource](../../schemas/state-snapshot/1.0.0/schema.json)
-and [synthetic test evidence](../../tests/schemas/state-snapshot/1.0.0/cases.json)
-are Proposed and inactive. Creation, validation, publication in a Draft pull
-request, and a transparent non-independent review grant no acceptance or
-activation. Only separate attributable EIGENAAR / Final Authority acceptance
-of the exact reviewed head may authorize a status-only promotion; that later
-phase is not authorized by this document or issue.
+EIGENAAR / Final Authority acceptance of the exact reviewed candidate is
+recorded in issue comment `5219885650`. The exact reviewed
+[Schema Resource](../../schemas/state-snapshot/1.0.0/schema.json) and
+[synthetic test evidence](../../tests/schemas/state-snapshot/1.0.0/cases.json)
+are Accepted in that revision. Governed integration to `main` activates State
+Snapshot Schema Version `1.0.0`. The transparent non-independent review was
+Evidentiary only and did not grant acceptance.
 
-This candidate remains subordinate to Accepted architecture, Accepted
+This decision remains subordinate to Accepted architecture, Accepted
 [CONTRACT-009](../contracts/state-snapshot-contract.md), repository governance,
 controlling sources, and final human authority. It modifies no Accepted source
 and creates no State Snapshot Artifact Instance, authority, evidence, approval,
@@ -35,7 +35,7 @@ controls State Snapshot meaning, Derived classification, controlling-source
 precedence, uncertainty preservation, temporal distinctions, historical
 provenance, bounded handoff, and final human authority.
 
-Proposed ARCH-020 binds one Draft 2020-12 Schema Resource that specializes only
+Accepted ARCH-020 binds one Draft 2020-12 Schema Resource that specializes only
 the common-envelope constants, represents sources and artifact relationships
 through opaque identifiers and exact revisions or explicit pinning
 limitations, and translates only CONTRACT-009 responsibilities into a closed
@@ -46,26 +46,27 @@ retrieve or interpret a source, calculate freshness, decide precedence,
 resolve conflict, update state, synchronize repositories, authorize
 continuation, or create a consequential effect.
 
-## Proposed schema identity
+## Accepted schema identity
 
-| Dimension | Proposed value |
+| Dimension | Accepted value |
 | --- | --- |
 | Logical schema identity | CNTX Public Core Schema Family / State Snapshot Artifact |
 | Artifact token | `state-snapshot` |
 | Schema language and dialect | JSON Schema Draft 2020-12 |
 | Dialect declaration | `https://json-schema.org/draft/2020-12/schema` |
 | Canonical `$id` | `https://github.com/CNTX-PROJECT/CNTX/schemas/state-snapshot/1.0.0` |
-| Schema Version | `1.0.0`, inactive |
+| Schema Version | `1.0.0` |
 | Canonical repository path | `schemas/state-snapshot/1.0.0/schema.json` |
 | Exact external dependency | Accepted Common Artifact Envelope Schema Version `1.0.0` |
 | Governing Contract Definition | `https://github.com/CNTX-PROJECT/CNTX/contract-definitions/state-snapshot` at `1.0.0` |
 | Schema-resource media type | `application/schema+json` |
-| Document Status | Proposed under issue #66; exact-head acceptance pending |
+| Document Status | Accepted under issue #66 and EIGENAAR acceptance comment `5219885650` |
 
-Repository presence, `$id`, validation, review, or apparent recency does not
-activate the resource. The canonical `$id` identifies the candidate resource
-but does not promise hosting, registry publication, network retrieval, or
-resolver behavior.
+Creation, repository presence, validation, and review did not grant acceptance
+or activation. Exact-head acceptance is recorded in issue comment
+`5219885650`; governed integration to `main` activates this exact version. The
+canonical `$id` does not promise hosting, registry publication, network
+retrieval, or resolver behavior.
 
 ## Root and common-envelope specialization
 
@@ -281,9 +282,9 @@ tooling; migration; templates; prompts; API; CLI; runtime; private or reference
 implementation; provider; product; release; tag; hosted publication; and
 deployment.
 
-The candidate authorizes no Ready transition, Accepted promotion, merge, issue
-closure, or public branch cleanup. After one exact-head review, the workflow
-must stop for separate attributable EIGENAAR / Final Authority acceptance.
+Acceptance and activation authorize no artifact instance, binding, validator,
+resolver, runtime, implementation, product, release, publication, deployment,
+or other follow-on work without separately attributable authority.
 
 ## References
 
@@ -291,7 +292,7 @@ must stop for separate attributable EIGENAAR / Final Authority acceptance.
 - [Artifact-specific schema family and container boundary](artifact-specific-schema-family-container-boundary.md)
 - [Contract Definition identity/version binding](contract-definition-identity-version-binding.md)
 - [Common Artifact Envelope Schema Version 1.0.0](../../schemas/common-artifact-envelope/1.0.0/schema.json)
-- [Proposed State Snapshot Schema Version 1.0.0](../../schemas/state-snapshot/1.0.0/schema.json)
+- [Accepted State Snapshot Schema Version 1.0.0](../../schemas/state-snapshot/1.0.0/schema.json)
 - [Non-normative synthetic cases](../../tests/schemas/state-snapshot/1.0.0/cases.json)
 - [ADR-0020](adr/0020-state-snapshot-executable-schema.md)
 - [Issue #66](https://github.com/CNTX-PROJECT/CNTX/issues/66)
