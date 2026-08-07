@@ -252,6 +252,25 @@ error/severity vocabulary, universal result, validator, conformance tool,
 Artifact Instance, portable evidence, implementation, release, publication,
 deployment, acceptance, merge permission, or follow-on authority.
 
+The architecture index now also exposes the **Accepted** [CNTX Portable
+Conformance Evidence
+Boundary](docs/architecture/portable-conformance-evidence-boundary.md)
+(ARCH-025) with
+[ADR-0025](docs/architecture/adr/0025-portable-conformance-evidence-boundary.md)
+under issue #76 and attributable EIGENAAR creation-authority comment
+`5223043068`, and EIGENAAR acceptance comment `5223192303`. The
+documentation-only decision defines exactly scoped,
+version-bound, provenance-bearing, offline-first, independently reassessable
+conformance evidence; twelve logical evidence responsibilities;
+claim/evidence/requirement traceability; validation-output and Evidence Bundle
+separation; fail-closed evidence gaps; six conformance-target evidence
+boundaries; reproduction, conflict, security/privacy, disclosure, and non-
+authority limits. It creates no evidence Artifact Instance, Conformance Claim
+artifact, field, schema, manifest, package, serialization, protocol, validator,
+test runner, suite, score, badge, certification, supported-version claim,
+release-readiness decision, implementation, release, publication, deployment,
+acceptance, merge permission, or follow-on authority.
+
 The high-level roadmap is to define public concepts and documentation, invite review under the project governance, and only then consider scoped, approved implementation work. Private reference implementations may exist later outside this public repository.
 
 ## Participate
