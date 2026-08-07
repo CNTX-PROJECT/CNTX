@@ -6,7 +6,7 @@ Status: **Accepted**.
 
 This document is an accepted executable-schema architecture decision approved under issue #42 and recorded by [ADR-0009](adr/0009-common-artifact-envelope-executable-schema.md). Owner / Final Authority acceptance of the exact reviewed candidate head is recorded in issue comment `5208715683`. On merge and publication to `main`, the accompanying [Schema Resource](../../schemas/common-artifact-envelope/1.0.0/schema.json) becomes the active Accepted Common Artifact Envelope Schema Version `1.0.0` within this exact scope.
 
-The same operational agent acted transparently as DE ARCHITECT and Bounded Implementer for the accepted candidate. That review arrangement was not independent third-party review and did not provide final human approval; acceptance was given separately by the Owner / Final Authority.
+The same operational agent acted transparently as ARCHITECT and Bounded Implementer for the accepted candidate. That review arrangement was not independent third-party review and did not provide final human approval; acceptance was given separately by the Owner / Final Authority.
 
 ## Purpose and decision boundary
 
