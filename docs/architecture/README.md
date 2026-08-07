@@ -192,6 +192,20 @@ Artifact Instance, canonical JSON, resolver, validator, conformance tooling,
 implementation, release, publication, deployment, acceptance, merge
 permission, or follow-on authority.
 
+The [CNTX Schema Resource Resolution and Catalog
+Boundary](schema-resource-resolution-catalog-boundary.md) and
+[ADR-0023](adr/0023-schema-resource-resolution-catalog-boundary.md) are
+**Proposed** as ARCH-023 under issue #72 and attributable EIGENAAR authority
+comment `5221792750`. They propose exact Schema Identifier/Version resource
+keys, a frozen caller-supplied context, a non-authoritative catalog view,
+preloaded/caller-mapped/identity-preserving bundled supply, no automatic
+network retrieval, exact transitive static-reference closure, fail-closed
+missing/ambiguous/conflicting/wrong-version handling, determinism, provenance,
+and security/privacy limits. They create no catalog artifact or identity,
+resolver, registry, cache, bundler, mirror, redirect, network mechanism,
+validator, validation output, conformance tooling, implementation, release,
+publication, deployment, acceptance, merge permission, or follow-on authority.
+
 ## Document status
 
 - **Proposed** — submitted for review and not yet an accepted repository decision.
