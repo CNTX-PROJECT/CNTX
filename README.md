@@ -201,6 +201,21 @@ decisions. The Accepted decision does not make CNTX release-ready and authorizes
 implementation, runtime, product, release, publication, deployment, or
 follow-on work.
 
+The architecture index also exposes the **Proposed** [CNTX Core Artifact
+Serialization Binding Architecture](docs/architecture/core-artifact-serialization-binding.md)
+(ARCH-022)
+with [ADR-0022](docs/architecture/adr/0022-core-artifact-serialization-binding.md)
+under issue #70. The documentation-only candidate proposes one logical Core
+Artifact JSON binding identity and inactive initial Binding Version `1.0.0`,
+RFC 8259 `application/json`, UTF-8 without BOM, duplicate-name rejection,
+bounded number and Unicode handling, non-semantic object ordering and
+whitespace, preserved array order, explicit absence of canonicalization,
+one-artifact document boundaries, separated error layers, compatibility, and
+security/privacy limits. It changes no Accepted contract, schema, test,
+identity, or version and creates no Artifact Instance, canonical JSON,
+resolver, validator, conformance tooling, implementation, release,
+publication, deployment, acceptance, merge permission, or follow-on authority.
+
 The high-level roadmap is to define public concepts and documentation, invite review under the project governance, and only then consider scoped, approved implementation work. Private reference implementations may exist later outside this public repository.
 
 ## Participate

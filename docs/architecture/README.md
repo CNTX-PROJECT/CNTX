@@ -176,6 +176,21 @@ and release-readiness decisions. They create no binding, resolver, validator,
 conformance tooling, implementation, release, publication, deployment, or
 follow-on authority.
 
+The [CNTX Core Artifact Serialization Binding
+Architecture](core-artifact-serialization-binding.md) and
+[ADR-0022](adr/0022-core-artifact-serialization-binding.md) are **Proposed**
+as ARCH-022
+under issue #70. They propose one logical Core Artifact JSON binding identity
+with inactive initial Binding Version `1.0.0`, RFC 8259 `application/json`,
+UTF-8 without BOM, duplicate-name rejection, bounded numeric and Unicode
+treatment, non-semantic object order and whitespace, preserved array order,
+explicit absence of canonicalization, one-artifact document boundaries,
+separated error layers, compatibility, and security/privacy limits. They
+change no Accepted contract, schema, test, identity, or version and create no
+Artifact Instance, canonical JSON, resolver, validator, conformance tooling,
+implementation, release, publication, deployment, acceptance, merge
+permission, or follow-on authority.
+
 ## Document status
 
 - **Proposed** — submitted for review and not yet an accepted repository decision.
