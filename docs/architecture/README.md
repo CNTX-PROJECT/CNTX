@@ -178,10 +178,11 @@ follow-on authority.
 
 The [CNTX Core Artifact Serialization Binding
 Architecture](core-artifact-serialization-binding.md) and
-[ADR-0022](adr/0022-core-artifact-serialization-binding.md) are **Proposed**
+[ADR-0022](adr/0022-core-artifact-serialization-binding.md) are **Accepted**
 as ARCH-022
-under issue #70. They propose one logical Core Artifact JSON binding identity
-with inactive initial Binding Version `1.0.0`, RFC 8259 `application/json`,
+under issue #70 and EIGENAAR acceptance comment `5221466569`. They define one
+logical Core Artifact JSON binding identity and initial Binding Version `1.0.0`,
+activated by governed integration, RFC 8259 `application/json`,
 UTF-8 without BOM, duplicate-name rejection, bounded numeric and Unicode
 treatment, non-semantic object order and whitespace, preserved array order,
 explicit absence of canonicalization, one-artifact document boundaries,

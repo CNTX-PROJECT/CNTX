@@ -2,15 +2,17 @@
 
 ## Status and authority
 
-**Document Status:** Proposed.
+**Document Status:** Accepted.
 
-This document is a Proposed, documentation-only architecture decision governed
+This document is an Accepted, documentation-only architecture decision governed
 by [issue #70](https://github.com/CNTX-PROJECT/CNTX/issues/70) and recorded by
-[ADR-0022](adr/0022-core-artifact-serialization-binding.md). It has not been
-accepted by EIGENAAR / Final Authority. Creation, repository presence,
-validation, and transparent non-independent review do not grant acceptance.
+[ADR-0022](adr/0022-core-artifact-serialization-binding.md). EIGENAAR / Final
+Authority acceptance of the exact reviewed candidate is recorded in issue
+comment `5221466569`. Governed integration to `main` adopts this exact decision
+and activates Binding Version `1.0.0`. Creation, repository presence,
+validation, and transparent non-independent review did not grant acceptance.
 
-This proposal remains subordinate to Accepted architecture, Accepted artifact
+This decision remains subordinate to Accepted architecture, Accepted artifact
 contracts, Accepted executable schemas, repository governance, security and
 privacy boundaries, controlling sources, and final human authority. It changes
 none of those sources.
@@ -18,7 +20,7 @@ none of those sources.
 Within this document, **MUST** and **MUST NOT** express mandatory requirements,
 **SHOULD** and **SHOULD NOT** express strong recommendations, and **MAY**
 expresses permission. These terms express requirement strength only within
-this Proposed decision.
+this Accepted decision.
 
 ## Purpose and decision boundary
 
@@ -29,7 +31,7 @@ media type, document boundary, duplicate-name behavior, numeric handling,
 Unicode treatment, ordering, whitespace, or reserialization behavior of a
 complete CNTX Artifact Instance.
 
-This decision proposes the first concrete artifact Serialization Binding. It
+This decision defines the first concrete artifact Serialization Binding. It
 maps one complete artifact-specific executable-schema instance-data model to
 one RFC 8259 JSON text while preserving the exact governing contract meaning,
 Schema Identity, Schema Version, Common Artifact Envelope, and artifact-
@@ -54,17 +56,17 @@ publication, or deployment.
 | ARCH-012 through ARCH-020 and their ADRs | The nine Accepted artifact-specific Schema Versions `1.0.0`, assertions, tests, and independent version lines remain unchanged. |
 | [ARCH-021](public-core-completion-boundary-roadmap.md) and [ADR-0021](adr/0021-public-core-completion-boundary-roadmap.md) | Serialization Binding precedes portable Artifact Instance validation and must decide representation and compatibility boundaries without authorizing later layers. |
 | [CONTRACT-001 through CONTRACT-009](../contracts/README.md) | Every artifact retains its Accepted purpose, classification, authority limits, payload meaning, relationships, provenance, lifecycle, and privacy boundary. |
-| [Issue #70](https://github.com/CNTX-PROJECT/CNTX/issues/70) | Work remains Proposed, documentation-only, limited to five paths, and stopped after exact-head review pending separate final acceptance. |
+| [Issue #70](https://github.com/CNTX-PROJECT/CNTX/issues/70) | Work remained documentation-only and limited to five paths; exact-head acceptance and governed integration grant no authority beyond this decision. |
 
 ## Serialization Binding identity and version
 
-| Coordinate | Proposed value |
+| Coordinate | Accepted value |
 | --- | --- |
 | Logical namespace | **CNTX Public Core Serialization Binding Family** |
 | Logical local identity | **Core Artifact JSON** |
 | Full logical identity | **CNTX Public Core Serialization Binding Family / Core Artifact JSON** |
 | Initial Binding Version | `1.0.0` |
-| Current status | Proposed and inactive |
+| Current status | Accepted; active upon governed integration to `main` |
 
 The version-independent identity identifies one mapping from the CNTX complete-
 artifact JSON-compatible instance model to the representation defined here. It
@@ -75,8 +77,8 @@ trust assertion.
 
 Binding Version remains distinct from Contract Definition Version, Schema
 Version, Artifact Revision, Document Status, and Implementation Version.
-Binding Version `1.0.0` becomes active only after separate exact-revision
-acceptance, status promotion, governed integration, and completion evidence.
+Governed integration after exact-revision acceptance and status promotion
+activates Binding Version `1.0.0`; completion evidence records that lifecycle.
 Matching version numbers across dimensions imply no identity or compatibility.
 
 No artifact field is allocated for Serialization Binding Identity or Binding
@@ -90,7 +92,7 @@ exact artifact-specific Schema Identifier and Schema Version. Its
 representation contains exactly one JSON object subject to that complete-
 artifact schema and its Accepted closed `envelope` and `payload` root model.
 
-Upon separate acceptance and activation, Binding Version `1.0.0` can represent
+Under the Accepted and integrated Binding Version `1.0.0`, this binding can represent
 instances governed by the nine current artifact-specific Schema Versions
 `1.0.0`. It does not alter those schemas. A future schema version or artifact
 kind requires an explicit binding-compatibility assessment.
@@ -314,16 +316,15 @@ supported-version claim; release; tag; hosted publication; or deployment.
 
 ## Lifecycle and final human authority
 
-This Proposed document cannot approve itself. Creation, validation, repository
-presence, issue or PR state, and transparent non-independent review do not
-grant acceptance, activate Binding Version `1.0.0`, authorize merge, or
-authorize a later roadmap layer.
+The Proposed candidate did not approve itself. Creation, validation,
+repository presence, issue or PR state, and transparent non-independent review
+did not grant acceptance. EIGENAAR / Final Authority accepted the exact
+reviewed revision in issue comment `5221466569`; governed integration activates
+exactly Binding Version `1.0.0`.
 
-Only separate attributable EIGENAAR / Final Authority acceptance of the exact
-reviewed revision can authorize status-only promotion. Promotion, merge,
-completion, closure, synchronization, and cleanup remain separately governed.
-Later resolver/catalog, validation/output, conformance, implementation,
-release, publication, and deployment work remains unauthorized.
+Acceptance, promotion, and integration authorize no later roadmap layer.
+Resolver/catalog, validation/output, conformance, implementation, release,
+publication, and deployment work remains unauthorized.
 
 ## References
 

@@ -1,6 +1,6 @@
 # ADR-0022: Core Artifact JSON serialization binding
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-08-07
 - **Issue:** [#70](https://github.com/CNTX-PROJECT/CNTX/issues/70)
 - **Decision:** ARCH-022 — CNTX Core Artifact Serialization Binding Architecture
@@ -22,9 +22,10 @@ implementation, or release layers.
 
 ## Decision
 
-Propose logical identity **CNTX Public Core Serialization Binding Family / Core
-Artifact JSON** with initial Binding Version `1.0.0`, Proposed and inactive
-until separate exact-head acceptance, promotion, and integration.
+Adopt logical identity **CNTX Public Core Serialization Binding Family / Core
+Artifact JSON** with initial Binding Version `1.0.0`. EIGENAAR / Final Authority
+accepted the exact reviewed candidate in issue comment `5221466569`; governed
+integration activates the Binding Version.
 
 The binding maps one complete Artifact Instance governed by one exact artifact-
 specific Schema Identifier and Version to exactly one RFC 8259 JSON text rooted
@@ -131,10 +132,10 @@ assumptions, or private implementation details.
 
 ## Authority and conformance boundary
 
-This ADR and ARCH-022 are Proposed. Creation, repository presence, validation,
-and transparent non-independent review grant no acceptance. Only separate
-EIGENAAR / Final Authority acceptance of the exact reviewed revision may
-authorize status-only promotion.
+This ADR and ARCH-022 are Accepted. Creation, repository presence, validation,
+and transparent non-independent review did not grant acceptance. EIGENAAR /
+Final Authority acceptance of the exact reviewed revision is recorded in issue
+comment `5221466569`; governed integration adopts exactly that decision.
 
 Binding conformance grants no schema validity, contract conformance, truth,
 approval, authority, trust, interoperability, merge permission, release,
@@ -152,12 +153,13 @@ migration; template; form; prompt; API; CLI; workflow; runtime; provider/product
 work; private/reference implementation; release; tag; hosted publication; and
 deployment.
 
-## Exact-head acceptance gate
+## Acceptance and continuing gate
 
-The candidate receives one transparent non-independent COMMENT review on its
-exact head and then stops. No Ready transition, Accepted promotion, merge,
-completion, closure, synchronization, cleanup, or later roadmap layer is
-authorized without a separate attributable EIGENAAR decision.
+The candidate received one transparent non-independent COMMENT review on its
+exact head and then stopped. EIGENAAR / Final Authority separately accepted
+that exact revision in issue comment `5221466569`. Acceptance and governed
+integration authorize no later roadmap layer, implementation, release,
+publication, or deployment.
 
 ## References
 
