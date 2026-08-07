@@ -39,6 +39,21 @@ schema validity, or repository presence grants no contract conformance,
 approval, authority, release, deployment, merge permission, or Task Contract
 schema authority.
 
+The [Task Contract Executable Schema Definition](task-contract-executable-schema.md)
+and [ADR-0014](adr/0014-task-contract-executable-schema.md) are **Proposed**
+under issue #54 and Owner creation-authority comment `5215411581`. The
+candidate defines one inactive Draft 2020-12 Task Contract Schema Version
+`1.0.0` with the exact Accepted Common Artifact Envelope at mandatory
+`/envelope`, exact Task Contract Artifact Type and governing-definition pins,
+separate opaque governing Project Charter and Workstream Artifact
+Instance/Revision pins, and a closed eleven-property CONTRACT-003 payload. It
+contains no Project Charter, Workstream, peer Task Contract, or downstream
+artifact schema `$ref`, permission language, approval mechanism, workflow, or
+runtime. Creation, validation, exact-head review, Draft PR status, or
+repository presence grants no acceptance, activation, contract conformance,
+task authority, integration, release, deployment, merge permission, Context
+Packet schema authority, or follow-on authority.
+
 ## Document status
 
 - **Proposed** — submitted for review and not yet an accepted repository decision.

@@ -54,6 +54,22 @@ schema validity, or repository presence grants no contract conformance,
 approval, authority, release, deployment, implementation, merge permission,
 or Task Contract schema authority.
 
+The architecture index now also exposes the **Proposed** [Task Contract
+Executable Schema Definition](docs/architecture/task-contract-executable-schema.md)
+with [ADR-0014](docs/architecture/adr/0014-task-contract-executable-schema.md),
+the Proposed inactive [Task Contract Schema Version `1.0.0`](schemas/task-contract/1.0.0/schema.json),
+and its [synthetic validation cases](tests/schemas/task-contract/1.0.0/cases.json).
+ARCH-014 composes the exact Accepted Common Artifact Envelope with a closed
+eleven-property CONTRACT-003 payload, exact Task Contract Artifact Type and
+governing-definition pins, and separate opaque governing Project Charter and
+Workstream Artifact Instance/Revision pins without either artifact-specific
+schema `$ref`. Scope, actions, resources, authority, context, evidence,
+decisions, and lifecycle remain declarative. Creation, validation, review,
+Draft PR status, or repository presence grants no acceptance, activation,
+contract conformance, task authority, permission enforcement, integration,
+release, deployment, implementation, merge permission, Context Packet schema
+authority, or follow-on authority.
+
 The high-level roadmap is to define public concepts and documentation, invite review under the project governance, and only then consider scoped, approved implementation work. Private reference implementations may exist later outside this public repository.
 
 ## Participate
