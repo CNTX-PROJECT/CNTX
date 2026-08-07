@@ -217,6 +217,24 @@ identity, or version and creates no Artifact Instance, canonical JSON,
 resolver, validator, conformance tooling, implementation, release,
 publication, deployment, acceptance, merge permission, or follow-on authority.
 
+The architecture index also exposes the **Accepted** [CNTX Schema Resource
+Resolution and Catalog
+Boundary](docs/architecture/schema-resource-resolution-catalog-boundary.md)
+(ARCH-023) with
+[ADR-0023](docs/architecture/adr/0023-schema-resource-resolution-catalog-boundary.md)
+under issue #72, attributable EIGENAAR creation-authority comment `5221792750`,
+and EIGENAAR acceptance comment `5222126273`. The documentation-only decision
+defines exact Schema Identifier/Version keys, a
+frozen caller-supplied context, a non-authoritative catalog view, closed
+offline-first supply, no automatic network retrieval, exact transitive
+resource closure, fail-closed missing/ambiguous/conflicting/wrong-version
+handling, determinism, provenance, and security/privacy boundaries. The
+Accepted decision changes no Accepted contract, architecture, schema, test,
+identity, version, or Core Artifact JSON Binding and creates no executable
+catalog, resolver, registry, cache, bundler, validator, validation output,
+conformance tool, implementation, release, publication, deployment,
+acceptance, merge permission, or follow-on authority.
+
 The high-level roadmap is to define public concepts and documentation, invite review under the project governance, and only then consider scoped, approved implementation work. Private reference implementations may exist later outside this public repository.
 
 ## Participate
