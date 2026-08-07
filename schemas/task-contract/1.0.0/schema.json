@@ -1,0 +1,486 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/CNTX-PROJECT/CNTX/schemas/task-contract/1.0.0",
+  "$comment": "Accepted ARCH-014 Task Contract Schema Version 1.0.0 under issue #54 and Owner / Final Authority acceptance comment 5215700352. Schema validity grants no contract conformance, approval, task authority, trust, acceptance, release, deployment, merge permission, access permission, or Context Packet authority.",
+  "title": "CNTX Task Contract Artifact",
+  "description": "A complete Task Contract artifact with the exact Accepted Common Artifact Envelope and a closed CONTRACT-003 payload. This schema evaluates structure only and cannot establish approval or task authority.",
+  "type": "object",
+  "properties": {
+    "envelope": {
+      "description": "The exact Accepted Common Artifact Envelope specialized for the Task Contract Artifact Type, Contract Definition, and Schema Definition.",
+      "allOf": [
+        {
+          "$ref": "https://github.com/CNTX-PROJECT/CNTX/schemas/common-artifact-envelope/1.0.0"
+        },
+        {
+          "properties": {
+            "artifactType": {
+              "const": "task-contract"
+            },
+            "governingContract": {
+              "properties": {
+                "identifier": {
+                  "const": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/task-contract"
+                },
+                "version": {
+                  "const": "1.0.0"
+                }
+              }
+            },
+            "governingSchema": {
+              "properties": {
+                "identifier": {
+                  "const": "https://github.com/CNTX-PROJECT/CNTX/schemas/task-contract/1.0.0"
+                },
+                "version": {
+                  "const": "1.0.0"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "payload": {
+      "$ref": "#/$defs/taskContractPayload"
+    }
+  },
+  "required": [
+    "envelope",
+    "payload"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "nonBlankString": {
+      "description": "A string containing at least one non-whitespace character. Its content remains subject to the governing contract and human review.",
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "nonEmptyUniqueStringArray": {
+      "description": "One or more distinct non-blank declarative statements.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/nonBlankString"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "specifiedDeclaration": {
+      "description": "The category was assessed and one or more items are specified.",
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "specified"
+        },
+        "items": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        }
+      },
+      "required": [
+        "disposition",
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "noneDeclaration": {
+      "description": "The category was assessed for this revision and no item is declared. This is not an approval, completeness, truth, authority, or permanent-absence claim.",
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "none"
+        }
+      },
+      "required": [
+        "disposition"
+      ],
+      "additionalProperties": false
+    },
+    "declarationSet": {
+      "description": "Exactly one explicit specified-items or assessed-none declaration.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/specifiedDeclaration"
+        },
+        {
+          "$ref": "#/$defs/noneDeclaration"
+        }
+      ]
+    },
+    "artifactRevisionPin": {
+      "description": "An opaque pin to one governing Artifact Instance and Revision. The schema does not retrieve, resolve, embed, validate, approve, or prove the referenced artifact.",
+      "type": "object",
+      "properties": {
+        "artifactInstanceIdentifier": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "artifactRevision": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "artifactInstanceIdentifier",
+        "artifactRevision"
+      ],
+      "additionalProperties": false
+    },
+    "objectiveAndOutcome": {
+      "description": "The one bounded objective, intended outcome, expected deliverables, and result boundary. These declarations do not prove execution or completion.",
+      "type": "object",
+      "properties": {
+        "objective": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "intendedOutcome": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "expectedDeliverables": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "resultBoundary": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        }
+      },
+      "required": [
+        "objective",
+        "intendedOutcome",
+        "expectedDeliverables",
+        "resultBoundary"
+      ],
+      "additionalProperties": false
+    },
+    "scopeAndResources": {
+      "description": "Human-reviewable task scope, action, resource, side-effect, and interaction declarations. They define no permission language or enforcement mechanism.",
+      "type": "object",
+      "properties": {
+        "includedScope": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "nonGoals": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "exclusions": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "permittedActions": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "forbiddenActions": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "permittedResources": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "forbiddenResources": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "sideEffectBoundaries": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "externalInteractions": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "includedScope",
+        "nonGoals",
+        "exclusions",
+        "permittedActions",
+        "forbiddenActions",
+        "permittedResources",
+        "forbiddenResources",
+        "sideEffectBoundaries",
+        "externalInteractions"
+      ],
+      "additionalProperties": false
+    },
+    "authorityAndExecution": {
+      "description": "Declared authority source, approver role, delegation boundary, executor class, responsibilities, preconditions, and stop conditions. This is not approval evidence or executable authorization.",
+      "type": "object",
+      "properties": {
+        "authoritySource": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "approverRole": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "boundedDelegation": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "executorClass": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "executorResponsibilities": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "executionPreconditions": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "stopConditions": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        }
+      },
+      "required": [
+        "authoritySource",
+        "approverRole",
+        "boundedDelegation",
+        "executorClass",
+        "executorResponsibilities",
+        "executionPreconditions",
+        "stopConditions"
+      ],
+      "additionalProperties": false
+    },
+    "dependenciesAndConditions": {
+      "description": "Declarative dependencies, interfaces, peer relationships, assumptions, constraints, risks, uncertainty, and escalation conditions.",
+      "type": "object",
+      "properties": {
+        "materialDependencies": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "interfaces": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "peerTaskContractRelationships": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "assumptions": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "constraints": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "risks": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "unresolvedUncertainty": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "escalationConditions": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "materialDependencies",
+        "interfaces",
+        "peerTaskContractRelationships",
+        "assumptions",
+        "constraints",
+        "risks",
+        "unresolvedUncertainty",
+        "escalationConditions"
+      ],
+      "additionalProperties": false
+    },
+    "contextPacketExpectations": {
+      "description": "Minimum declarative expectations for later bounded Context Packet selection. This does not create, select, retrieve, or authorize context.",
+      "type": "object",
+      "properties": {
+        "minimumContext": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "sourceSelectionConstraints": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "provenanceRequirements": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "contextIsolation": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        }
+      },
+      "required": [
+        "minimumContext",
+        "sourceSelectionConstraints",
+        "provenanceRequirements",
+        "contextIsolation"
+      ],
+      "additionalProperties": false
+    },
+    "securityAndPrivacy": {
+      "description": "Task-specific security, privacy, confidentiality, public/private, and least-privilege constraints.",
+      "type": "object",
+      "properties": {
+        "securityConstraints": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "privacyConstraints": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "confidentialityConstraints": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "publicPrivateBoundaries": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "leastPrivilegeConstraints": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        }
+      },
+      "required": [
+        "securityConstraints",
+        "privacyConstraints",
+        "confidentialityConstraints",
+        "publicPrivateBoundaries",
+        "leastPrivilegeConstraints"
+      ],
+      "additionalProperties": false
+    },
+    "assuranceAndAcceptance": {
+      "description": "Expected evidence, validation, acceptance criteria, limitations, and specialist-review boundaries. These declarations do not prove satisfaction or approval.",
+      "type": "object",
+      "properties": {
+        "expectedEvidence": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "validationObligations": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "acceptanceCriteria": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "knownLimitations": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "specialistReviewBoundaries": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "expectedEvidence",
+        "validationObligations",
+        "acceptanceCriteria",
+        "knownLimitations",
+        "specialistReviewBoundaries"
+      ],
+      "additionalProperties": false
+    },
+    "consequentialDecisionBoundaries": {
+      "description": "Human-decision and integration, release, deployment, and merge boundaries. This does not record or authorize a decision.",
+      "type": "object",
+      "properties": {
+        "humanDecisionBoundaries": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "integrationBoundaries": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "releaseBoundaries": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "deploymentBoundaries": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "mergeBoundaries": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "humanDecisionBoundaries",
+        "integrationBoundaries",
+        "releaseBoundaries",
+        "deploymentBoundaries",
+        "mergeBoundaries"
+      ],
+      "additionalProperties": false
+    },
+    "lifecycleConditions": {
+      "description": "Declarative validity, change, ending, and retention conditions. They define no state vocabulary, transition, timestamp, or automation.",
+      "type": "object",
+      "properties": {
+        "validity": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "amendment": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "revocation": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "expiration": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "reassessment": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "completion": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "closure": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "supersession": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "retention": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "validity",
+        "amendment",
+        "revocation",
+        "expiration",
+        "reassessment",
+        "completion",
+        "closure",
+        "supersession",
+        "retention"
+      ],
+      "additionalProperties": false
+    },
+    "taskContractPayload": {
+      "description": "The closed payload implementing only the eleven direct structural responsibilities selected from Accepted CONTRACT-003.",
+      "type": "object",
+      "properties": {
+        "governingProjectCharter": {
+          "$ref": "#/$defs/artifactRevisionPin"
+        },
+        "governingWorkstream": {
+          "$ref": "#/$defs/artifactRevisionPin"
+        },
+        "objectiveAndOutcome": {
+          "$ref": "#/$defs/objectiveAndOutcome"
+        },
+        "scopeAndResources": {
+          "$ref": "#/$defs/scopeAndResources"
+        },
+        "authorityAndExecution": {
+          "$ref": "#/$defs/authorityAndExecution"
+        },
+        "dependenciesAndConditions": {
+          "$ref": "#/$defs/dependenciesAndConditions"
+        },
+        "contextPacketExpectations": {
+          "$ref": "#/$defs/contextPacketExpectations"
+        },
+        "securityAndPrivacy": {
+          "$ref": "#/$defs/securityAndPrivacy"
+        },
+        "assuranceAndAcceptance": {
+          "$ref": "#/$defs/assuranceAndAcceptance"
+        },
+        "consequentialDecisionBoundaries": {
+          "$ref": "#/$defs/consequentialDecisionBoundaries"
+        },
+        "lifecycleConditions": {
+          "$ref": "#/$defs/lifecycleConditions"
+        }
+      },
+      "required": [
+        "governingProjectCharter",
+        "governingWorkstream",
+        "objectiveAndOutcome",
+        "scopeAndResources",
+        "authorityAndExecution",
+        "dependenciesAndConditions",
+        "contextPacketExpectations",
+        "securityAndPrivacy",
+        "assuranceAndAcceptance",
+        "consequentialDecisionBoundaries",
+        "lifecycleConditions"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,3511 @@
+{
+  "schemaId": "https://github.com/CNTX-PROJECT/CNTX/schemas/task-contract/1.0.0",
+  "candidateSchemaVersion": "1.0.0",
+  "documentStatus": "Accepted",
+  "nonNormative": true,
+  "description": "Public-safe synthetic validation cases for Accepted ARCH-014 Schema Version 1.0.0. Expected validity is evidence only and grants no contract conformance, approval, task authority, trust, acceptance, release, deployment, merge permission, access permission, or Context Packet authority.",
+  "cases": [
+    {
+      "name": "valid minimal assessed task contract",
+      "valid": true,
+      "instance": {
+        "envelope": {
+          "artifactType": "task-contract",
+          "artifactInstance": {
+            "identifier": "synthetic-task-contract-001",
+            "revision": "revision-001"
+          },
+          "governingContract": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/task-contract",
+            "version": "1.0.0"
+          },
+          "governingSchema": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/task-contract/1.0.0",
+            "version": "1.0.0"
+          }
+        },
+        "payload": {
+          "governingProjectCharter": {
+            "artifactInstanceIdentifier": "synthetic-charter-001",
+            "artifactRevision": "revision-001"
+          },
+          "governingWorkstream": {
+            "artifactInstanceIdentifier": "synthetic-workstream-001",
+            "artifactRevision": "revision-001"
+          },
+          "objectiveAndOutcome": {
+            "objective": "Prepare one bounded public-safe result.",
+            "intendedOutcome": "Produce the exact reviewed deliverable.",
+            "expectedDeliverables": [
+              "One bounded deliverable."
+            ],
+            "resultBoundary": [
+              "No integration or release authority."
+            ]
+          },
+          "scopeAndResources": {
+            "includedScope": [
+              "The named bounded task."
+            ],
+            "nonGoals": {
+              "disposition": "none"
+            },
+            "exclusions": {
+              "disposition": "none"
+            },
+            "permittedActions": {
+              "disposition": "specified",
+              "items": [
+                "Prepare the declared deliverable."
+              ]
+            },
+            "forbiddenActions": {
+              "disposition": "specified",
+              "items": [
+                "Do not broaden the approved boundary."
+              ]
+            },
+            "permittedResources": {
+              "disposition": "specified",
+              "items": [
+                "Only explicitly approved public-safe resources."
+              ]
+            },
+            "forbiddenResources": {
+              "disposition": "specified",
+              "items": [
+                "No secrets or private project data."
+              ]
+            },
+            "sideEffectBoundaries": {
+              "disposition": "none"
+            },
+            "externalInteractions": {
+              "disposition": "none"
+            }
+          },
+          "authorityAndExecution": {
+            "authoritySource": "Exact human-approved Task Contract Artifact Revision.",
+            "approverRole": "Owner / Final Authority",
+            "boundedDelegation": {
+              "disposition": "none"
+            },
+            "executorClass": "Bounded Implementer",
+            "executorResponsibilities": [
+              "Operate only within the approved revision."
+            ],
+            "executionPreconditions": [
+              "Exact revision approval and required context are available."
+            ],
+            "stopConditions": [
+              "Stop on authority, scope, context, security, or privacy uncertainty."
+            ]
+          },
+          "dependenciesAndConditions": {
+            "materialDependencies": {
+              "disposition": "none"
+            },
+            "interfaces": {
+              "disposition": "none"
+            },
+            "peerTaskContractRelationships": {
+              "disposition": "none"
+            },
+            "assumptions": {
+              "disposition": "none"
+            },
+            "constraints": {
+              "disposition": "specified",
+              "items": [
+                "Preserve public/private separation."
+              ]
+            },
+            "risks": {
+              "disposition": "none"
+            },
+            "unresolvedUncertainty": {
+              "disposition": "none"
+            },
+            "escalationConditions": {
+              "disposition": "specified",
+              "items": [
+                "Escalate any material mismatch."
+              ]
+            }
+          },
+          "contextPacketExpectations": {
+            "minimumContext": {
+              "disposition": "none"
+            },
+            "sourceSelectionConstraints": [
+              "Select only minimum task-relevant context."
+            ],
+            "provenanceRequirements": [
+              "Preserve exact source and revision provenance."
+            ],
+            "contextIsolation": [
+              "Exclude unrelated task and private context by default."
+            ]
+          },
+          "securityAndPrivacy": {
+            "securityConstraints": [
+              "Do not expose credentials or exploitable operational detail."
+            ],
+            "privacyConstraints": [
+              "Do not include personal or private project data."
+            ],
+            "confidentialityConstraints": [
+              "Use only public-safe synthetic material."
+            ],
+            "publicPrivateBoundaries": [
+              "Keep private context outside public artifacts."
+            ],
+            "leastPrivilegeConstraints": [
+              "Use only explicitly authorized access and actions."
+            ]
+          },
+          "assuranceAndAcceptance": {
+            "expectedEvidence": [
+              "Record the exact changed resources and validation results."
+            ],
+            "validationObligations": [
+              "Run the approved validation before handoff."
+            ],
+            "acceptanceCriteria": [
+              "Present evidence against the exact approved boundary."
+            ],
+            "knownLimitations": {
+              "disposition": "none"
+            },
+            "specialistReviewBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "consequentialDecisionBoundaries": {
+            "humanDecisionBoundaries": [
+              "Final acceptance remains a separate human decision."
+            ],
+            "integrationBoundaries": {
+              "disposition": "none"
+            },
+            "releaseBoundaries": {
+              "disposition": "none"
+            },
+            "deploymentBoundaries": {
+              "disposition": "none"
+            },
+            "mergeBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "lifecycleConditions": {
+            "validity": [
+              "Only the exact approved Artifact Revision can authorize bounded execution."
+            ],
+            "amendment": [
+              "Material change requires a new reviewed and approved revision."
+            ],
+            "revocation": [
+              "Revocation ends future task authority."
+            ],
+            "expiration": {
+              "disposition": "none"
+            },
+            "reassessment": {
+              "disposition": "none"
+            },
+            "completion": [
+              "Completion requires evidence against the declared result boundary."
+            ],
+            "closure": [
+              "Closure is separate from result approval or integration."
+            ],
+            "supersession": {
+              "disposition": "none"
+            },
+            "retention": {
+              "disposition": "specified",
+              "items": [
+                "Preserve provenance and decision history."
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "valid fully specified unicode task contract",
+      "valid": true,
+      "instance": {
+        "envelope": {
+          "artifactType": "task-contract",
+          "artifactInstance": {
+            "identifier": "synthetic-task-contract-unicode-002",
+            "revision": "révision-002"
+          },
+          "governingContract": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/task-contract",
+            "version": "1.0.0"
+          },
+          "governingSchema": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/task-contract/1.0.0",
+            "version": "1.0.0"
+          }
+        },
+        "payload": {
+          "governingProjectCharter": {
+            "artifactInstanceIdentifier": "charte-synthétique-002",
+            "artifactRevision": "révision-002"
+          },
+          "governingWorkstream": {
+            "artifactInstanceIdentifier": "werkstroom-synthetisch-002",
+            "artifactRevision": "revisie-002"
+          },
+          "objectiveAndOutcome": {
+            "objective": "Beoordeel één begrensde taak — zonder stilzwijgende uitbreiding.",
+            "intendedOutcome": "Lever controleerbaar bewijs met Unicode-context.",
+            "expectedDeliverables": [
+              "Eén afgebakend resultaat.",
+              "Herleidbaar validatiebewijs."
+            ],
+            "resultBoundary": [
+              "Geen automatische acceptatie.",
+              "Geen release of deployment."
+            ]
+          },
+          "scopeAndResources": {
+            "includedScope": [
+              "The named bounded task."
+            ],
+            "nonGoals": {
+              "disposition": "specified",
+              "items": [
+                "Beoordeeld item — scopeAndResources.nonGoals"
+              ]
+            },
+            "exclusions": {
+              "disposition": "specified",
+              "items": [
+                "Beoordeeld item — scopeAndResources.exclusions"
+              ]
+            },
+            "permittedActions": {
+              "disposition": "specified",
+              "items": [
+                "Prepare the declared deliverable."
+              ]
+            },
+            "forbiddenActions": {
+              "disposition": "specified",
+              "items": [
+                "Do not broaden the approved boundary."
+              ]
+            },
+            "permittedResources": {
+              "disposition": "specified",
+              "items": [
+                "Only explicitly approved public-safe resources."
+              ]
+            },
+            "forbiddenResources": {
+              "disposition": "specified",
+              "items": [
+                "No secrets or private project data."
+              ]
+            },
+            "sideEffectBoundaries": {
+              "disposition": "specified",
+              "items": [
+                "Beoordeeld item — scopeAndResources.sideEffectBoundaries"
+              ]
+            },
+            "externalInteractions": {
+              "disposition": "specified",
+              "items": [
+                "Beoordeeld item — scopeAndResources.externalInteractions"
+              ]
+            }
+          },
+          "authorityAndExecution": {
+            "authoritySource": "Exact human-approved Task Contract Artifact Revision.",
+            "approverRole": "Owner / Final Authority",
+            "boundedDelegation": {
+              "disposition": "specified",
+              "items": [
+                "Beoordeeld item — authorityAndExecution.boundedDelegation"
+              ]
+            },
+            "executorClass": "Bounded Implementer",
+            "executorResponsibilities": [
+              "Operate only within the approved revision."
+            ],
+            "executionPreconditions": [
+              "Exact revision approval and required context are available."
+            ],
+            "stopConditions": [
+              "Stop on authority, scope, context, security, or privacy uncertainty."
+            ]
+          },
+          "dependenciesAndConditions": {
+            "materialDependencies": {
+              "disposition": "specified",
+              "items": [
+                "Beoordeeld item — dependenciesAndConditions.materialDependencies"
+              ]
+            },
+            "interfaces": {
+              "disposition": "specified",
+              "items": [
+                "Beoordeeld item — dependenciesAndConditions.interfaces"
+              ]
+            },
+            "peerTaskContractRelationships": {
+              "disposition": "specified",
+              "items": [
+                "Beoordeeld item — dependenciesAndConditions.peerTaskContractRelationships"
+              ]
+            },
+            "assumptions": {
+              "disposition": "specified",
+              "items": [
+                "Beoordeeld item — dependenciesAndConditions.assumptions"
+              ]
+            },
+            "constraints": {
+              "disposition": "specified",
+              "items": [
+                "Preserve public/private separation."
+              ]
+            },
+            "risks": {
+              "disposition": "specified",
+              "items": [
+                "Beoordeeld item — dependenciesAndConditions.risks"
+              ]
+            },
+            "unresolvedUncertainty": {
+              "disposition": "specified",
+              "items": [
+                "Beoordeeld item — dependenciesAndConditions.unresolvedUncertainty"
+              ]
+            },
+            "escalationConditions": {
+              "disposition": "specified",
+              "items": [
+                "Escalate any material mismatch."
+              ]
+            }
+          },
+          "contextPacketExpectations": {
+            "minimumContext": {
+              "disposition": "specified",
+              "items": [
+                "Beoordeeld item — contextPacketExpectations.minimumContext"
+              ]
+            },
+            "sourceSelectionConstraints": [
+              "Select only minimum task-relevant context."
+            ],
+            "provenanceRequirements": [
+              "Preserve exact source and revision provenance."
+            ],
+            "contextIsolation": [
+              "Exclude unrelated task and private context by default."
+            ]
+          },
+          "securityAndPrivacy": {
+            "securityConstraints": [
+              "Do not expose credentials or exploitable operational detail."
+            ],
+            "privacyConstraints": [
+              "Do not include personal or private project data."
+            ],
+            "confidentialityConstraints": [
+              "Use only public-safe synthetic material."
+            ],
+            "publicPrivateBoundaries": [
+              "Keep private context outside public artifacts."
+            ],
+            "leastPrivilegeConstraints": [
+              "Use only explicitly authorized access and actions."
+            ]
+          },
+          "assuranceAndAcceptance": {
+            "expectedEvidence": [
+              "Record the exact changed resources and validation results."
+            ],
+            "validationObligations": [
+              "Run the approved validation before handoff."
+            ],
+            "acceptanceCriteria": [
+              "Present evidence against the exact approved boundary."
+            ],
+            "knownLimitations": {
+              "disposition": "specified",
+              "items": [
+                "Beoordeeld item — assuranceAndAcceptance.knownLimitations"
+              ]
+            },
+            "specialistReviewBoundaries": {
+              "disposition": "specified",
+              "items": [
+                "Beoordeeld item — assuranceAndAcceptance.specialistReviewBoundaries"
+              ]
+            }
+          },
+          "consequentialDecisionBoundaries": {
+            "humanDecisionBoundaries": [
+              "Final acceptance remains a separate human decision."
+            ],
+            "integrationBoundaries": {
+              "disposition": "specified",
+              "items": [
+                "Beoordeeld item — consequentialDecisionBoundaries.integrationBoundaries"
+              ]
+            },
+            "releaseBoundaries": {
+              "disposition": "specified",
+              "items": [
+                "Beoordeeld item — consequentialDecisionBoundaries.releaseBoundaries"
+              ]
+            },
+            "deploymentBoundaries": {
+              "disposition": "specified",
+              "items": [
+                "Beoordeeld item — consequentialDecisionBoundaries.deploymentBoundaries"
+              ]
+            },
+            "mergeBoundaries": {
+              "disposition": "specified",
+              "items": [
+                "Beoordeeld item — consequentialDecisionBoundaries.mergeBoundaries"
+              ]
+            }
+          },
+          "lifecycleConditions": {
+            "validity": [
+              "Only the exact approved Artifact Revision can authorize bounded execution."
+            ],
+            "amendment": [
+              "Material change requires a new reviewed and approved revision."
+            ],
+            "revocation": [
+              "Revocation ends future task authority."
+            ],
+            "expiration": {
+              "disposition": "specified",
+              "items": [
+                "Beoordeeld item — lifecycleConditions.expiration"
+              ]
+            },
+            "reassessment": {
+              "disposition": "specified",
+              "items": [
+                "Beoordeeld item — lifecycleConditions.reassessment"
+              ]
+            },
+            "completion": [
+              "Completion requires evidence against the declared result boundary."
+            ],
+            "closure": [
+              "Closure is separate from result approval or integration."
+            ],
+            "supersession": {
+              "disposition": "specified",
+              "items": [
+                "Beoordeeld item — lifecycleConditions.supersession"
+              ]
+            },
+            "retention": {
+              "disposition": "specified",
+              "items": [
+                "Preserve provenance and decision history."
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "valid task contract with common provenance and digest evidence",
+      "valid": true,
+      "instance": {
+        "envelope": {
+          "artifactType": "task-contract",
+          "artifactInstance": {
+            "identifier": "synthetic-task-contract-003",
+            "revision": "revision-003"
+          },
+          "governingContract": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/task-contract",
+            "version": "1.0.0"
+          },
+          "governingSchema": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/task-contract/1.0.0",
+            "version": "1.0.0"
+          },
+          "provenanceReferences": [
+            {
+              "kind": "artifact",
+              "artifactType": "workstream",
+              "identifier": "synthetic-workstream-003",
+              "revision": "revision-003"
+            }
+          ],
+          "contentDigests": [
+            {
+              "subject": {
+                "kind": "artifact",
+                "artifactType": "task-contract",
+                "identifier": "synthetic-task-contract-003",
+                "revision": "revision-003"
+              },
+              "method": "synthetic-method",
+              "value": "synthetic-value"
+            }
+          ]
+        },
+        "payload": {
+          "governingProjectCharter": {
+            "artifactInstanceIdentifier": "synthetic-charter-001",
+            "artifactRevision": "revision-001"
+          },
+          "governingWorkstream": {
+            "artifactInstanceIdentifier": "synthetic-workstream-001",
+            "artifactRevision": "revision-001"
+          },
+          "objectiveAndOutcome": {
+            "objective": "Prepare one bounded public-safe result.",
+            "intendedOutcome": "Produce the exact reviewed deliverable.",
+            "expectedDeliverables": [
+              "One bounded deliverable."
+            ],
+            "resultBoundary": [
+              "No integration or release authority."
+            ]
+          },
+          "scopeAndResources": {
+            "includedScope": [
+              "The named bounded task."
+            ],
+            "nonGoals": {
+              "disposition": "none"
+            },
+            "exclusions": {
+              "disposition": "none"
+            },
+            "permittedActions": {
+              "disposition": "specified",
+              "items": [
+                "Prepare the declared deliverable."
+              ]
+            },
+            "forbiddenActions": {
+              "disposition": "specified",
+              "items": [
+                "Do not broaden the approved boundary."
+              ]
+            },
+            "permittedResources": {
+              "disposition": "specified",
+              "items": [
+                "Only explicitly approved public-safe resources."
+              ]
+            },
+            "forbiddenResources": {
+              "disposition": "specified",
+              "items": [
+                "No secrets or private project data."
+              ]
+            },
+            "sideEffectBoundaries": {
+              "disposition": "none"
+            },
+            "externalInteractions": {
+              "disposition": "none"
+            }
+          },
+          "authorityAndExecution": {
+            "authoritySource": "Exact human-approved Task Contract Artifact Revision.",
+            "approverRole": "Owner / Final Authority",
+            "boundedDelegation": {
+              "disposition": "none"
+            },
+            "executorClass": "Bounded Implementer",
+            "executorResponsibilities": [
+              "Operate only within the approved revision."
+            ],
+            "executionPreconditions": [
+              "Exact revision approval and required context are available."
+            ],
+            "stopConditions": [
+              "Stop on authority, scope, context, security, or privacy uncertainty."
+            ]
+          },
+          "dependenciesAndConditions": {
+            "materialDependencies": {
+              "disposition": "none"
+            },
+            "interfaces": {
+              "disposition": "none"
+            },
+            "peerTaskContractRelationships": {
+              "disposition": "none"
+            },
+            "assumptions": {
+              "disposition": "none"
+            },
+            "constraints": {
+              "disposition": "specified",
+              "items": [
+                "Preserve public/private separation."
+              ]
+            },
+            "risks": {
+              "disposition": "none"
+            },
+            "unresolvedUncertainty": {
+              "disposition": "none"
+            },
+            "escalationConditions": {
+              "disposition": "specified",
+              "items": [
+                "Escalate any material mismatch."
+              ]
+            }
+          },
+          "contextPacketExpectations": {
+            "minimumContext": {
+              "disposition": "none"
+            },
+            "sourceSelectionConstraints": [
+              "Select only minimum task-relevant context."
+            ],
+            "provenanceRequirements": [
+              "Preserve exact source and revision provenance."
+            ],
+            "contextIsolation": [
+              "Exclude unrelated task and private context by default."
+            ]
+          },
+          "securityAndPrivacy": {
+            "securityConstraints": [
+              "Do not expose credentials or exploitable operational detail."
+            ],
+            "privacyConstraints": [
+              "Do not include personal or private project data."
+            ],
+            "confidentialityConstraints": [
+              "Use only public-safe synthetic material."
+            ],
+            "publicPrivateBoundaries": [
+              "Keep private context outside public artifacts."
+            ],
+            "leastPrivilegeConstraints": [
+              "Use only explicitly authorized access and actions."
+            ]
+          },
+          "assuranceAndAcceptance": {
+            "expectedEvidence": [
+              "Record the exact changed resources and validation results."
+            ],
+            "validationObligations": [
+              "Run the approved validation before handoff."
+            ],
+            "acceptanceCriteria": [
+              "Present evidence against the exact approved boundary."
+            ],
+            "knownLimitations": {
+              "disposition": "none"
+            },
+            "specialistReviewBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "consequentialDecisionBoundaries": {
+            "humanDecisionBoundaries": [
+              "Final acceptance remains a separate human decision."
+            ],
+            "integrationBoundaries": {
+              "disposition": "none"
+            },
+            "releaseBoundaries": {
+              "disposition": "none"
+            },
+            "deploymentBoundaries": {
+              "disposition": "none"
+            },
+            "mergeBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "lifecycleConditions": {
+            "validity": [
+              "Only the exact approved Artifact Revision can authorize bounded execution."
+            ],
+            "amendment": [
+              "Material change requires a new reviewed and approved revision."
+            ],
+            "revocation": [
+              "Revocation ends future task authority."
+            ],
+            "expiration": {
+              "disposition": "none"
+            },
+            "reassessment": {
+              "disposition": "none"
+            },
+            "completion": [
+              "Completion requires evidence against the declared result boundary."
+            ],
+            "closure": [
+              "Closure is separate from result approval or integration."
+            ],
+            "supersession": {
+              "disposition": "none"
+            },
+            "retention": {
+              "disposition": "specified",
+              "items": [
+                "Preserve provenance and decision history."
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "invalid missing envelope",
+      "valid": false,
+      "instance": {
+        "payload": {
+          "governingProjectCharter": {
+            "artifactInstanceIdentifier": "synthetic-charter-001",
+            "artifactRevision": "revision-001"
+          },
+          "governingWorkstream": {
+            "artifactInstanceIdentifier": "synthetic-workstream-001",
+            "artifactRevision": "revision-001"
+          },
+          "objectiveAndOutcome": {
+            "objective": "Prepare one bounded public-safe result.",
+            "intendedOutcome": "Produce the exact reviewed deliverable.",
+            "expectedDeliverables": [
+              "One bounded deliverable."
+            ],
+            "resultBoundary": [
+              "No integration or release authority."
+            ]
+          },
+          "scopeAndResources": {
+            "includedScope": [
+              "The named bounded task."
+            ],
+            "nonGoals": {
+              "disposition": "none"
+            },
+            "exclusions": {
+              "disposition": "none"
+            },
+            "permittedActions": {
+              "disposition": "specified",
+              "items": [
+                "Prepare the declared deliverable."
+              ]
+            },
+            "forbiddenActions": {
+              "disposition": "specified",
+              "items": [
+                "Do not broaden the approved boundary."
+              ]
+            },
+            "permittedResources": {
+              "disposition": "specified",
+              "items": [
+                "Only explicitly approved public-safe resources."
+              ]
+            },
+            "forbiddenResources": {
+              "disposition": "specified",
+              "items": [
+                "No secrets or private project data."
+              ]
+            },
+            "sideEffectBoundaries": {
+              "disposition": "none"
+            },
+            "externalInteractions": {
+              "disposition": "none"
+            }
+          },
+          "authorityAndExecution": {
+            "authoritySource": "Exact human-approved Task Contract Artifact Revision.",
+            "approverRole": "Owner / Final Authority",
+            "boundedDelegation": {
+              "disposition": "none"
+            },
+            "executorClass": "Bounded Implementer",
+            "executorResponsibilities": [
+              "Operate only within the approved revision."
+            ],
+            "executionPreconditions": [
+              "Exact revision approval and required context are available."
+            ],
+            "stopConditions": [
+              "Stop on authority, scope, context, security, or privacy uncertainty."
+            ]
+          },
+          "dependenciesAndConditions": {
+            "materialDependencies": {
+              "disposition": "none"
+            },
+            "interfaces": {
+              "disposition": "none"
+            },
+            "peerTaskContractRelationships": {
+              "disposition": "none"
+            },
+            "assumptions": {
+              "disposition": "none"
+            },
+            "constraints": {
+              "disposition": "specified",
+              "items": [
+                "Preserve public/private separation."
+              ]
+            },
+            "risks": {
+              "disposition": "none"
+            },
+            "unresolvedUncertainty": {
+              "disposition": "none"
+            },
+            "escalationConditions": {
+              "disposition": "specified",
+              "items": [
+                "Escalate any material mismatch."
+              ]
+            }
+          },
+          "contextPacketExpectations": {
+            "minimumContext": {
+              "disposition": "none"
+            },
+            "sourceSelectionConstraints": [
+              "Select only minimum task-relevant context."
+            ],
+            "provenanceRequirements": [
+              "Preserve exact source and revision provenance."
+            ],
+            "contextIsolation": [
+              "Exclude unrelated task and private context by default."
+            ]
+          },
+          "securityAndPrivacy": {
+            "securityConstraints": [
+              "Do not expose credentials or exploitable operational detail."
+            ],
+            "privacyConstraints": [
+              "Do not include personal or private project data."
+            ],
+            "confidentialityConstraints": [
+              "Use only public-safe synthetic material."
+            ],
+            "publicPrivateBoundaries": [
+              "Keep private context outside public artifacts."
+            ],
+            "leastPrivilegeConstraints": [
+              "Use only explicitly authorized access and actions."
+            ]
+          },
+          "assuranceAndAcceptance": {
+            "expectedEvidence": [
+              "Record the exact changed resources and validation results."
+            ],
+            "validationObligations": [
+              "Run the approved validation before handoff."
+            ],
+            "acceptanceCriteria": [
+              "Present evidence against the exact approved boundary."
+            ],
+            "knownLimitations": {
+              "disposition": "none"
+            },
+            "specialistReviewBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "consequentialDecisionBoundaries": {
+            "humanDecisionBoundaries": [
+              "Final acceptance remains a separate human decision."
+            ],
+            "integrationBoundaries": {
+              "disposition": "none"
+            },
+            "releaseBoundaries": {
+              "disposition": "none"
+            },
+            "deploymentBoundaries": {
+              "disposition": "none"
+            },
+            "mergeBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "lifecycleConditions": {
+            "validity": [
+              "Only the exact approved Artifact Revision can authorize bounded execution."
+            ],
+            "amendment": [
+              "Material change requires a new reviewed and approved revision."
+            ],
+            "revocation": [
+              "Revocation ends future task authority."
+            ],
+            "expiration": {
+              "disposition": "none"
+            },
+            "reassessment": {
+              "disposition": "none"
+            },
+            "completion": [
+              "Completion requires evidence against the declared result boundary."
+            ],
+            "closure": [
+              "Closure is separate from result approval or integration."
+            ],
+            "supersession": {
+              "disposition": "none"
+            },
+            "retention": {
+              "disposition": "specified",
+              "items": [
+                "Preserve provenance and decision history."
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "invalid missing payload",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "task-contract",
+          "artifactInstance": {
+            "identifier": "synthetic-task-contract-001",
+            "revision": "revision-001"
+          },
+          "governingContract": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/task-contract",
+            "version": "1.0.0"
+          },
+          "governingSchema": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/task-contract/1.0.0",
+            "version": "1.0.0"
+          }
+        }
+      }
+    },
+    {
+      "name": "invalid unknown root property",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "task-contract",
+          "artifactInstance": {
+            "identifier": "synthetic-task-contract-001",
+            "revision": "revision-001"
+          },
+          "governingContract": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/task-contract",
+            "version": "1.0.0"
+          },
+          "governingSchema": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/task-contract/1.0.0",
+            "version": "1.0.0"
+          }
+        },
+        "payload": {
+          "governingProjectCharter": {
+            "artifactInstanceIdentifier": "synthetic-charter-001",
+            "artifactRevision": "revision-001"
+          },
+          "governingWorkstream": {
+            "artifactInstanceIdentifier": "synthetic-workstream-001",
+            "artifactRevision": "revision-001"
+          },
+          "objectiveAndOutcome": {
+            "objective": "Prepare one bounded public-safe result.",
+            "intendedOutcome": "Produce the exact reviewed deliverable.",
+            "expectedDeliverables": [
+              "One bounded deliverable."
+            ],
+            "resultBoundary": [
+              "No integration or release authority."
+            ]
+          },
+          "scopeAndResources": {
+            "includedScope": [
+              "The named bounded task."
+            ],
+            "nonGoals": {
+              "disposition": "none"
+            },
+            "exclusions": {
+              "disposition": "none"
+            },
+            "permittedActions": {
+              "disposition": "specified",
+              "items": [
+                "Prepare the declared deliverable."
+              ]
+            },
+            "forbiddenActions": {
+              "disposition": "specified",
+              "items": [
+                "Do not broaden the approved boundary."
+              ]
+            },
+            "permittedResources": {
+              "disposition": "specified",
+              "items": [
+                "Only explicitly approved public-safe resources."
+              ]
+            },
+            "forbiddenResources": {
+              "disposition": "specified",
+              "items": [
+                "No secrets or private project data."
+              ]
+            },
+            "sideEffectBoundaries": {
+              "disposition": "none"
+            },
+            "externalInteractions": {
+              "disposition": "none"
+            }
+          },
+          "authorityAndExecution": {
+            "authoritySource": "Exact human-approved Task Contract Artifact Revision.",
+            "approverRole": "Owner / Final Authority",
+            "boundedDelegation": {
+              "disposition": "none"
+            },
+            "executorClass": "Bounded Implementer",
+            "executorResponsibilities": [
+              "Operate only within the approved revision."
+            ],
+            "executionPreconditions": [
+              "Exact revision approval and required context are available."
+            ],
+            "stopConditions": [
+              "Stop on authority, scope, context, security, or privacy uncertainty."
+            ]
+          },
+          "dependenciesAndConditions": {
+            "materialDependencies": {
+              "disposition": "none"
+            },
+            "interfaces": {
+              "disposition": "none"
+            },
+            "peerTaskContractRelationships": {
+              "disposition": "none"
+            },
+            "assumptions": {
+              "disposition": "none"
+            },
+            "constraints": {
+              "disposition": "specified",
+              "items": [
+                "Preserve public/private separation."
+              ]
+            },
+            "risks": {
+              "disposition": "none"
+            },
+            "unresolvedUncertainty": {
+              "disposition": "none"
+            },
+            "escalationConditions": {
+              "disposition": "specified",
+              "items": [
+                "Escalate any material mismatch."
+              ]
+            }
+          },
+          "contextPacketExpectations": {
+            "minimumContext": {
+              "disposition": "none"
+            },
+            "sourceSelectionConstraints": [
+              "Select only minimum task-relevant context."
+            ],
+            "provenanceRequirements": [
+              "Preserve exact source and revision provenance."
+            ],
+            "contextIsolation": [
+              "Exclude unrelated task and private context by default."
+            ]
+          },
+          "securityAndPrivacy": {
+            "securityConstraints": [
+              "Do not expose credentials or exploitable operational detail."
+            ],
+            "privacyConstraints": [
+              "Do not include personal or private project data."
+            ],
+            "confidentialityConstraints": [
+              "Use only public-safe synthetic material."
+            ],
+            "publicPrivateBoundaries": [
+              "Keep private context outside public artifacts."
+            ],
+            "leastPrivilegeConstraints": [
+              "Use only explicitly authorized access and actions."
+            ]
+          },
+          "assuranceAndAcceptance": {
+            "expectedEvidence": [
+              "Record the exact changed resources and validation results."
+            ],
+            "validationObligations": [
+              "Run the approved validation before handoff."
+            ],
+            "acceptanceCriteria": [
+              "Present evidence against the exact approved boundary."
+            ],
+            "knownLimitations": {
+              "disposition": "none"
+            },
+            "specialistReviewBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "consequentialDecisionBoundaries": {
+            "humanDecisionBoundaries": [
+              "Final acceptance remains a separate human decision."
+            ],
+            "integrationBoundaries": {
+              "disposition": "none"
+            },
+            "releaseBoundaries": {
+              "disposition": "none"
+            },
+            "deploymentBoundaries": {
+              "disposition": "none"
+            },
+            "mergeBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "lifecycleConditions": {
+            "validity": [
+              "Only the exact approved Artifact Revision can authorize bounded execution."
+            ],
+            "amendment": [
+              "Material change requires a new reviewed and approved revision."
+            ],
+            "revocation": [
+              "Revocation ends future task authority."
+            ],
+            "expiration": {
+              "disposition": "none"
+            },
+            "reassessment": {
+              "disposition": "none"
+            },
+            "completion": [
+              "Completion requires evidence against the declared result boundary."
+            ],
+            "closure": [
+              "Closure is separate from result approval or integration."
+            ],
+            "supersession": {
+              "disposition": "none"
+            },
+            "retention": {
+              "disposition": "specified",
+              "items": [
+                "Preserve provenance and decision history."
+              ]
+            }
+          }
+        },
+        "unexpectedRoot": "forbidden"
+      }
+    },
+    {
+      "name": "invalid wrong artifact type and governing definition pins",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "workstream",
+          "artifactInstance": {
+            "identifier": "synthetic-task-contract-001",
+            "revision": "revision-001"
+          },
+          "governingContract": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/workstream",
+            "version": "1.0.0"
+          },
+          "governingSchema": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/workstream/1.0.0",
+            "version": "1.0.0"
+          }
+        },
+        "payload": {
+          "governingProjectCharter": {
+            "artifactInstanceIdentifier": "synthetic-charter-001",
+            "artifactRevision": "revision-001"
+          },
+          "governingWorkstream": {
+            "artifactInstanceIdentifier": "synthetic-workstream-001",
+            "artifactRevision": "revision-001"
+          },
+          "objectiveAndOutcome": {
+            "objective": "Prepare one bounded public-safe result.",
+            "intendedOutcome": "Produce the exact reviewed deliverable.",
+            "expectedDeliverables": [
+              "One bounded deliverable."
+            ],
+            "resultBoundary": [
+              "No integration or release authority."
+            ]
+          },
+          "scopeAndResources": {
+            "includedScope": [
+              "The named bounded task."
+            ],
+            "nonGoals": {
+              "disposition": "none"
+            },
+            "exclusions": {
+              "disposition": "none"
+            },
+            "permittedActions": {
+              "disposition": "specified",
+              "items": [
+                "Prepare the declared deliverable."
+              ]
+            },
+            "forbiddenActions": {
+              "disposition": "specified",
+              "items": [
+                "Do not broaden the approved boundary."
+              ]
+            },
+            "permittedResources": {
+              "disposition": "specified",
+              "items": [
+                "Only explicitly approved public-safe resources."
+              ]
+            },
+            "forbiddenResources": {
+              "disposition": "specified",
+              "items": [
+                "No secrets or private project data."
+              ]
+            },
+            "sideEffectBoundaries": {
+              "disposition": "none"
+            },
+            "externalInteractions": {
+              "disposition": "none"
+            }
+          },
+          "authorityAndExecution": {
+            "authoritySource": "Exact human-approved Task Contract Artifact Revision.",
+            "approverRole": "Owner / Final Authority",
+            "boundedDelegation": {
+              "disposition": "none"
+            },
+            "executorClass": "Bounded Implementer",
+            "executorResponsibilities": [
+              "Operate only within the approved revision."
+            ],
+            "executionPreconditions": [
+              "Exact revision approval and required context are available."
+            ],
+            "stopConditions": [
+              "Stop on authority, scope, context, security, or privacy uncertainty."
+            ]
+          },
+          "dependenciesAndConditions": {
+            "materialDependencies": {
+              "disposition": "none"
+            },
+            "interfaces": {
+              "disposition": "none"
+            },
+            "peerTaskContractRelationships": {
+              "disposition": "none"
+            },
+            "assumptions": {
+              "disposition": "none"
+            },
+            "constraints": {
+              "disposition": "specified",
+              "items": [
+                "Preserve public/private separation."
+              ]
+            },
+            "risks": {
+              "disposition": "none"
+            },
+            "unresolvedUncertainty": {
+              "disposition": "none"
+            },
+            "escalationConditions": {
+              "disposition": "specified",
+              "items": [
+                "Escalate any material mismatch."
+              ]
+            }
+          },
+          "contextPacketExpectations": {
+            "minimumContext": {
+              "disposition": "none"
+            },
+            "sourceSelectionConstraints": [
+              "Select only minimum task-relevant context."
+            ],
+            "provenanceRequirements": [
+              "Preserve exact source and revision provenance."
+            ],
+            "contextIsolation": [
+              "Exclude unrelated task and private context by default."
+            ]
+          },
+          "securityAndPrivacy": {
+            "securityConstraints": [
+              "Do not expose credentials or exploitable operational detail."
+            ],
+            "privacyConstraints": [
+              "Do not include personal or private project data."
+            ],
+            "confidentialityConstraints": [
+              "Use only public-safe synthetic material."
+            ],
+            "publicPrivateBoundaries": [
+              "Keep private context outside public artifacts."
+            ],
+            "leastPrivilegeConstraints": [
+              "Use only explicitly authorized access and actions."
+            ]
+          },
+          "assuranceAndAcceptance": {
+            "expectedEvidence": [
+              "Record the exact changed resources and validation results."
+            ],
+            "validationObligations": [
+              "Run the approved validation before handoff."
+            ],
+            "acceptanceCriteria": [
+              "Present evidence against the exact approved boundary."
+            ],
+            "knownLimitations": {
+              "disposition": "none"
+            },
+            "specialistReviewBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "consequentialDecisionBoundaries": {
+            "humanDecisionBoundaries": [
+              "Final acceptance remains a separate human decision."
+            ],
+            "integrationBoundaries": {
+              "disposition": "none"
+            },
+            "releaseBoundaries": {
+              "disposition": "none"
+            },
+            "deploymentBoundaries": {
+              "disposition": "none"
+            },
+            "mergeBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "lifecycleConditions": {
+            "validity": [
+              "Only the exact approved Artifact Revision can authorize bounded execution."
+            ],
+            "amendment": [
+              "Material change requires a new reviewed and approved revision."
+            ],
+            "revocation": [
+              "Revocation ends future task authority."
+            ],
+            "expiration": {
+              "disposition": "none"
+            },
+            "reassessment": {
+              "disposition": "none"
+            },
+            "completion": [
+              "Completion requires evidence against the declared result boundary."
+            ],
+            "closure": [
+              "Closure is separate from result approval or integration."
+            ],
+            "supersession": {
+              "disposition": "none"
+            },
+            "retention": {
+              "disposition": "specified",
+              "items": [
+                "Preserve provenance and decision history."
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "invalid incomplete common artifact instance pin",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "task-contract",
+          "artifactInstance": {
+            "identifier": "synthetic-task-contract-001"
+          },
+          "governingContract": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/task-contract",
+            "version": "1.0.0"
+          },
+          "governingSchema": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/task-contract/1.0.0",
+            "version": "1.0.0"
+          }
+        },
+        "payload": {
+          "governingProjectCharter": {
+            "artifactInstanceIdentifier": "synthetic-charter-001",
+            "artifactRevision": "revision-001"
+          },
+          "governingWorkstream": {
+            "artifactInstanceIdentifier": "synthetic-workstream-001",
+            "artifactRevision": "revision-001"
+          },
+          "objectiveAndOutcome": {
+            "objective": "Prepare one bounded public-safe result.",
+            "intendedOutcome": "Produce the exact reviewed deliverable.",
+            "expectedDeliverables": [
+              "One bounded deliverable."
+            ],
+            "resultBoundary": [
+              "No integration or release authority."
+            ]
+          },
+          "scopeAndResources": {
+            "includedScope": [
+              "The named bounded task."
+            ],
+            "nonGoals": {
+              "disposition": "none"
+            },
+            "exclusions": {
+              "disposition": "none"
+            },
+            "permittedActions": {
+              "disposition": "specified",
+              "items": [
+                "Prepare the declared deliverable."
+              ]
+            },
+            "forbiddenActions": {
+              "disposition": "specified",
+              "items": [
+                "Do not broaden the approved boundary."
+              ]
+            },
+            "permittedResources": {
+              "disposition": "specified",
+              "items": [
+                "Only explicitly approved public-safe resources."
+              ]
+            },
+            "forbiddenResources": {
+              "disposition": "specified",
+              "items": [
+                "No secrets or private project data."
+              ]
+            },
+            "sideEffectBoundaries": {
+              "disposition": "none"
+            },
+            "externalInteractions": {
+              "disposition": "none"
+            }
+          },
+          "authorityAndExecution": {
+            "authoritySource": "Exact human-approved Task Contract Artifact Revision.",
+            "approverRole": "Owner / Final Authority",
+            "boundedDelegation": {
+              "disposition": "none"
+            },
+            "executorClass": "Bounded Implementer",
+            "executorResponsibilities": [
+              "Operate only within the approved revision."
+            ],
+            "executionPreconditions": [
+              "Exact revision approval and required context are available."
+            ],
+            "stopConditions": [
+              "Stop on authority, scope, context, security, or privacy uncertainty."
+            ]
+          },
+          "dependenciesAndConditions": {
+            "materialDependencies": {
+              "disposition": "none"
+            },
+            "interfaces": {
+              "disposition": "none"
+            },
+            "peerTaskContractRelationships": {
+              "disposition": "none"
+            },
+            "assumptions": {
+              "disposition": "none"
+            },
+            "constraints": {
+              "disposition": "specified",
+              "items": [
+                "Preserve public/private separation."
+              ]
+            },
+            "risks": {
+              "disposition": "none"
+            },
+            "unresolvedUncertainty": {
+              "disposition": "none"
+            },
+            "escalationConditions": {
+              "disposition": "specified",
+              "items": [
+                "Escalate any material mismatch."
+              ]
+            }
+          },
+          "contextPacketExpectations": {
+            "minimumContext": {
+              "disposition": "none"
+            },
+            "sourceSelectionConstraints": [
+              "Select only minimum task-relevant context."
+            ],
+            "provenanceRequirements": [
+              "Preserve exact source and revision provenance."
+            ],
+            "contextIsolation": [
+              "Exclude unrelated task and private context by default."
+            ]
+          },
+          "securityAndPrivacy": {
+            "securityConstraints": [
+              "Do not expose credentials or exploitable operational detail."
+            ],
+            "privacyConstraints": [
+              "Do not include personal or private project data."
+            ],
+            "confidentialityConstraints": [
+              "Use only public-safe synthetic material."
+            ],
+            "publicPrivateBoundaries": [
+              "Keep private context outside public artifacts."
+            ],
+            "leastPrivilegeConstraints": [
+              "Use only explicitly authorized access and actions."
+            ]
+          },
+          "assuranceAndAcceptance": {
+            "expectedEvidence": [
+              "Record the exact changed resources and validation results."
+            ],
+            "validationObligations": [
+              "Run the approved validation before handoff."
+            ],
+            "acceptanceCriteria": [
+              "Present evidence against the exact approved boundary."
+            ],
+            "knownLimitations": {
+              "disposition": "none"
+            },
+            "specialistReviewBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "consequentialDecisionBoundaries": {
+            "humanDecisionBoundaries": [
+              "Final acceptance remains a separate human decision."
+            ],
+            "integrationBoundaries": {
+              "disposition": "none"
+            },
+            "releaseBoundaries": {
+              "disposition": "none"
+            },
+            "deploymentBoundaries": {
+              "disposition": "none"
+            },
+            "mergeBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "lifecycleConditions": {
+            "validity": [
+              "Only the exact approved Artifact Revision can authorize bounded execution."
+            ],
+            "amendment": [
+              "Material change requires a new reviewed and approved revision."
+            ],
+            "revocation": [
+              "Revocation ends future task authority."
+            ],
+            "expiration": {
+              "disposition": "none"
+            },
+            "reassessment": {
+              "disposition": "none"
+            },
+            "completion": [
+              "Completion requires evidence against the declared result boundary."
+            ],
+            "closure": [
+              "Closure is separate from result approval or integration."
+            ],
+            "supersession": {
+              "disposition": "none"
+            },
+            "retention": {
+              "disposition": "specified",
+              "items": [
+                "Preserve provenance and decision history."
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "invalid incomplete governing Project Charter and Workstream pins",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "task-contract",
+          "artifactInstance": {
+            "identifier": "synthetic-task-contract-001",
+            "revision": "revision-001"
+          },
+          "governingContract": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/task-contract",
+            "version": "1.0.0"
+          },
+          "governingSchema": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/task-contract/1.0.0",
+            "version": "1.0.0"
+          }
+        },
+        "payload": {
+          "governingProjectCharter": {
+            "artifactInstanceIdentifier": "synthetic-charter-001"
+          },
+          "governingWorkstream": {
+            "artifactRevision": "revision-001"
+          },
+          "objectiveAndOutcome": {
+            "objective": "Prepare one bounded public-safe result.",
+            "intendedOutcome": "Produce the exact reviewed deliverable.",
+            "expectedDeliverables": [
+              "One bounded deliverable."
+            ],
+            "resultBoundary": [
+              "No integration or release authority."
+            ]
+          },
+          "scopeAndResources": {
+            "includedScope": [
+              "The named bounded task."
+            ],
+            "nonGoals": {
+              "disposition": "none"
+            },
+            "exclusions": {
+              "disposition": "none"
+            },
+            "permittedActions": {
+              "disposition": "specified",
+              "items": [
+                "Prepare the declared deliverable."
+              ]
+            },
+            "forbiddenActions": {
+              "disposition": "specified",
+              "items": [
+                "Do not broaden the approved boundary."
+              ]
+            },
+            "permittedResources": {
+              "disposition": "specified",
+              "items": [
+                "Only explicitly approved public-safe resources."
+              ]
+            },
+            "forbiddenResources": {
+              "disposition": "specified",
+              "items": [
+                "No secrets or private project data."
+              ]
+            },
+            "sideEffectBoundaries": {
+              "disposition": "none"
+            },
+            "externalInteractions": {
+              "disposition": "none"
+            }
+          },
+          "authorityAndExecution": {
+            "authoritySource": "Exact human-approved Task Contract Artifact Revision.",
+            "approverRole": "Owner / Final Authority",
+            "boundedDelegation": {
+              "disposition": "none"
+            },
+            "executorClass": "Bounded Implementer",
+            "executorResponsibilities": [
+              "Operate only within the approved revision."
+            ],
+            "executionPreconditions": [
+              "Exact revision approval and required context are available."
+            ],
+            "stopConditions": [
+              "Stop on authority, scope, context, security, or privacy uncertainty."
+            ]
+          },
+          "dependenciesAndConditions": {
+            "materialDependencies": {
+              "disposition": "none"
+            },
+            "interfaces": {
+              "disposition": "none"
+            },
+            "peerTaskContractRelationships": {
+              "disposition": "none"
+            },
+            "assumptions": {
+              "disposition": "none"
+            },
+            "constraints": {
+              "disposition": "specified",
+              "items": [
+                "Preserve public/private separation."
+              ]
+            },
+            "risks": {
+              "disposition": "none"
+            },
+            "unresolvedUncertainty": {
+              "disposition": "none"
+            },
+            "escalationConditions": {
+              "disposition": "specified",
+              "items": [
+                "Escalate any material mismatch."
+              ]
+            }
+          },
+          "contextPacketExpectations": {
+            "minimumContext": {
+              "disposition": "none"
+            },
+            "sourceSelectionConstraints": [
+              "Select only minimum task-relevant context."
+            ],
+            "provenanceRequirements": [
+              "Preserve exact source and revision provenance."
+            ],
+            "contextIsolation": [
+              "Exclude unrelated task and private context by default."
+            ]
+          },
+          "securityAndPrivacy": {
+            "securityConstraints": [
+              "Do not expose credentials or exploitable operational detail."
+            ],
+            "privacyConstraints": [
+              "Do not include personal or private project data."
+            ],
+            "confidentialityConstraints": [
+              "Use only public-safe synthetic material."
+            ],
+            "publicPrivateBoundaries": [
+              "Keep private context outside public artifacts."
+            ],
+            "leastPrivilegeConstraints": [
+              "Use only explicitly authorized access and actions."
+            ]
+          },
+          "assuranceAndAcceptance": {
+            "expectedEvidence": [
+              "Record the exact changed resources and validation results."
+            ],
+            "validationObligations": [
+              "Run the approved validation before handoff."
+            ],
+            "acceptanceCriteria": [
+              "Present evidence against the exact approved boundary."
+            ],
+            "knownLimitations": {
+              "disposition": "none"
+            },
+            "specialistReviewBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "consequentialDecisionBoundaries": {
+            "humanDecisionBoundaries": [
+              "Final acceptance remains a separate human decision."
+            ],
+            "integrationBoundaries": {
+              "disposition": "none"
+            },
+            "releaseBoundaries": {
+              "disposition": "none"
+            },
+            "deploymentBoundaries": {
+              "disposition": "none"
+            },
+            "mergeBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "lifecycleConditions": {
+            "validity": [
+              "Only the exact approved Artifact Revision can authorize bounded execution."
+            ],
+            "amendment": [
+              "Material change requires a new reviewed and approved revision."
+            ],
+            "revocation": [
+              "Revocation ends future task authority."
+            ],
+            "expiration": {
+              "disposition": "none"
+            },
+            "reassessment": {
+              "disposition": "none"
+            },
+            "completion": [
+              "Completion requires evidence against the declared result boundary."
+            ],
+            "closure": [
+              "Closure is separate from result approval or integration."
+            ],
+            "supersession": {
+              "disposition": "none"
+            },
+            "retention": {
+              "disposition": "specified",
+              "items": [
+                "Preserve provenance and decision history."
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "invalid missing required payload member and unknown nested property",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "task-contract",
+          "artifactInstance": {
+            "identifier": "synthetic-task-contract-001",
+            "revision": "revision-001"
+          },
+          "governingContract": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/task-contract",
+            "version": "1.0.0"
+          },
+          "governingSchema": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/task-contract/1.0.0",
+            "version": "1.0.0"
+          }
+        },
+        "payload": {
+          "governingProjectCharter": {
+            "artifactInstanceIdentifier": "synthetic-charter-001",
+            "artifactRevision": "revision-001"
+          },
+          "governingWorkstream": {
+            "artifactInstanceIdentifier": "synthetic-workstream-001",
+            "artifactRevision": "revision-001"
+          },
+          "objectiveAndOutcome": {
+            "objective": "Prepare one bounded public-safe result.",
+            "intendedOutcome": "Produce the exact reviewed deliverable.",
+            "expectedDeliverables": [
+              "One bounded deliverable."
+            ],
+            "resultBoundary": [
+              "No integration or release authority."
+            ],
+            "unexpected": "forbidden"
+          },
+          "scopeAndResources": {
+            "includedScope": [
+              "The named bounded task."
+            ],
+            "nonGoals": {
+              "disposition": "none"
+            },
+            "exclusions": {
+              "disposition": "none"
+            },
+            "permittedActions": {
+              "disposition": "specified",
+              "items": [
+                "Prepare the declared deliverable."
+              ]
+            },
+            "forbiddenActions": {
+              "disposition": "specified",
+              "items": [
+                "Do not broaden the approved boundary."
+              ]
+            },
+            "permittedResources": {
+              "disposition": "specified",
+              "items": [
+                "Only explicitly approved public-safe resources."
+              ]
+            },
+            "forbiddenResources": {
+              "disposition": "specified",
+              "items": [
+                "No secrets or private project data."
+              ]
+            },
+            "sideEffectBoundaries": {
+              "disposition": "none"
+            },
+            "externalInteractions": {
+              "disposition": "none"
+            }
+          },
+          "authorityAndExecution": {
+            "authoritySource": "Exact human-approved Task Contract Artifact Revision.",
+            "approverRole": "Owner / Final Authority",
+            "boundedDelegation": {
+              "disposition": "none"
+            },
+            "executorClass": "Bounded Implementer",
+            "executorResponsibilities": [
+              "Operate only within the approved revision."
+            ],
+            "executionPreconditions": [
+              "Exact revision approval and required context are available."
+            ],
+            "stopConditions": [
+              "Stop on authority, scope, context, security, or privacy uncertainty."
+            ]
+          },
+          "dependenciesAndConditions": {
+            "materialDependencies": {
+              "disposition": "none"
+            },
+            "interfaces": {
+              "disposition": "none"
+            },
+            "peerTaskContractRelationships": {
+              "disposition": "none"
+            },
+            "assumptions": {
+              "disposition": "none"
+            },
+            "constraints": {
+              "disposition": "specified",
+              "items": [
+                "Preserve public/private separation."
+              ]
+            },
+            "risks": {
+              "disposition": "none"
+            },
+            "unresolvedUncertainty": {
+              "disposition": "none"
+            },
+            "escalationConditions": {
+              "disposition": "specified",
+              "items": [
+                "Escalate any material mismatch."
+              ]
+            }
+          },
+          "contextPacketExpectations": {
+            "minimumContext": {
+              "disposition": "none"
+            },
+            "sourceSelectionConstraints": [
+              "Select only minimum task-relevant context."
+            ],
+            "provenanceRequirements": [
+              "Preserve exact source and revision provenance."
+            ],
+            "contextIsolation": [
+              "Exclude unrelated task and private context by default."
+            ]
+          },
+          "securityAndPrivacy": {
+            "securityConstraints": [
+              "Do not expose credentials or exploitable operational detail."
+            ],
+            "privacyConstraints": [
+              "Do not include personal or private project data."
+            ],
+            "confidentialityConstraints": [
+              "Use only public-safe synthetic material."
+            ],
+            "publicPrivateBoundaries": [
+              "Keep private context outside public artifacts."
+            ],
+            "leastPrivilegeConstraints": [
+              "Use only explicitly authorized access and actions."
+            ]
+          },
+          "assuranceAndAcceptance": {
+            "expectedEvidence": [
+              "Record the exact changed resources and validation results."
+            ],
+            "validationObligations": [
+              "Run the approved validation before handoff."
+            ],
+            "acceptanceCriteria": [
+              "Present evidence against the exact approved boundary."
+            ],
+            "knownLimitations": {
+              "disposition": "none"
+            },
+            "specialistReviewBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "consequentialDecisionBoundaries": {
+            "humanDecisionBoundaries": [
+              "Final acceptance remains a separate human decision."
+            ],
+            "integrationBoundaries": {
+              "disposition": "none"
+            },
+            "releaseBoundaries": {
+              "disposition": "none"
+            },
+            "deploymentBoundaries": {
+              "disposition": "none"
+            },
+            "mergeBoundaries": {
+              "disposition": "none"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "invalid blank strings empty arrays duplicate items and wrong type",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "task-contract",
+          "artifactInstance": {
+            "identifier": "synthetic-task-contract-001",
+            "revision": "revision-001"
+          },
+          "governingContract": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/task-contract",
+            "version": "1.0.0"
+          },
+          "governingSchema": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/task-contract/1.0.0",
+            "version": "1.0.0"
+          }
+        },
+        "payload": {
+          "governingProjectCharter": {
+            "artifactInstanceIdentifier": "synthetic-charter-001",
+            "artifactRevision": "revision-001"
+          },
+          "governingWorkstream": {
+            "artifactInstanceIdentifier": "synthetic-workstream-001",
+            "artifactRevision": "revision-001"
+          },
+          "objectiveAndOutcome": {
+            "objective": "   ",
+            "intendedOutcome": "Produce the exact reviewed deliverable.",
+            "expectedDeliverables": [],
+            "resultBoundary": [
+              "No integration or release authority."
+            ]
+          },
+          "scopeAndResources": {
+            "includedScope": [
+              "The named bounded task."
+            ],
+            "nonGoals": {
+              "disposition": "none"
+            },
+            "exclusions": {
+              "disposition": "none"
+            },
+            "permittedActions": {
+              "disposition": "specified",
+              "items": [
+                "Prepare the declared deliverable."
+              ]
+            },
+            "forbiddenActions": {
+              "disposition": "specified",
+              "items": [
+                "Do not broaden the approved boundary."
+              ]
+            },
+            "permittedResources": {
+              "disposition": "specified",
+              "items": [
+                "Only explicitly approved public-safe resources."
+              ]
+            },
+            "forbiddenResources": {
+              "disposition": "specified",
+              "items": [
+                "No secrets or private project data."
+              ]
+            },
+            "sideEffectBoundaries": {
+              "disposition": "none"
+            },
+            "externalInteractions": {
+              "disposition": "none"
+            }
+          },
+          "authorityAndExecution": {
+            "authoritySource": "Exact human-approved Task Contract Artifact Revision.",
+            "approverRole": "Owner / Final Authority",
+            "boundedDelegation": {
+              "disposition": "none"
+            },
+            "executorClass": 7,
+            "executorResponsibilities": [
+              "Operate only within the approved revision."
+            ],
+            "executionPreconditions": [
+              "Exact revision approval and required context are available."
+            ],
+            "stopConditions": [
+              "Stop on authority, scope, context, security, or privacy uncertainty."
+            ]
+          },
+          "dependenciesAndConditions": {
+            "materialDependencies": {
+              "disposition": "none"
+            },
+            "interfaces": {
+              "disposition": "none"
+            },
+            "peerTaskContractRelationships": {
+              "disposition": "none"
+            },
+            "assumptions": {
+              "disposition": "none"
+            },
+            "constraints": {
+              "disposition": "specified",
+              "items": [
+                "Preserve public/private separation."
+              ]
+            },
+            "risks": {
+              "disposition": "none"
+            },
+            "unresolvedUncertainty": {
+              "disposition": "none"
+            },
+            "escalationConditions": {
+              "disposition": "specified",
+              "items": [
+                "Escalate any material mismatch."
+              ]
+            }
+          },
+          "contextPacketExpectations": {
+            "minimumContext": {
+              "disposition": "none"
+            },
+            "sourceSelectionConstraints": [
+              "Select only minimum task-relevant context."
+            ],
+            "provenanceRequirements": [
+              "Preserve exact source and revision provenance."
+            ],
+            "contextIsolation": [
+              "Exclude unrelated task and private context by default."
+            ]
+          },
+          "securityAndPrivacy": {
+            "securityConstraints": [
+              "duplicate",
+              "duplicate"
+            ],
+            "privacyConstraints": [
+              "Do not include personal or private project data."
+            ],
+            "confidentialityConstraints": [
+              "Use only public-safe synthetic material."
+            ],
+            "publicPrivateBoundaries": [
+              "Keep private context outside public artifacts."
+            ],
+            "leastPrivilegeConstraints": [
+              "Use only explicitly authorized access and actions."
+            ]
+          },
+          "assuranceAndAcceptance": {
+            "expectedEvidence": [
+              "Record the exact changed resources and validation results."
+            ],
+            "validationObligations": [
+              "Run the approved validation before handoff."
+            ],
+            "acceptanceCriteria": [
+              "Present evidence against the exact approved boundary."
+            ],
+            "knownLimitations": {
+              "disposition": "none"
+            },
+            "specialistReviewBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "consequentialDecisionBoundaries": {
+            "humanDecisionBoundaries": [
+              "Final acceptance remains a separate human decision."
+            ],
+            "integrationBoundaries": {
+              "disposition": "none"
+            },
+            "releaseBoundaries": {
+              "disposition": "none"
+            },
+            "deploymentBoundaries": {
+              "disposition": "none"
+            },
+            "mergeBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "lifecycleConditions": {
+            "validity": [
+              "Only the exact approved Artifact Revision can authorize bounded execution."
+            ],
+            "amendment": [
+              "Material change requires a new reviewed and approved revision."
+            ],
+            "revocation": [
+              "Revocation ends future task authority."
+            ],
+            "expiration": {
+              "disposition": "none"
+            },
+            "reassessment": {
+              "disposition": "none"
+            },
+            "completion": [
+              "Completion requires evidence against the declared result boundary."
+            ],
+            "closure": [
+              "Closure is separate from result approval or integration."
+            ],
+            "supersession": {
+              "disposition": "none"
+            },
+            "retention": {
+              "disposition": "specified",
+              "items": [
+                "Preserve provenance and decision history."
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "invalid null and empty declaration objects",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "task-contract",
+          "artifactInstance": {
+            "identifier": "synthetic-task-contract-001",
+            "revision": "revision-001"
+          },
+          "governingContract": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/task-contract",
+            "version": "1.0.0"
+          },
+          "governingSchema": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/task-contract/1.0.0",
+            "version": "1.0.0"
+          }
+        },
+        "payload": {
+          "governingProjectCharter": {
+            "artifactInstanceIdentifier": "synthetic-charter-001",
+            "artifactRevision": "revision-001"
+          },
+          "governingWorkstream": {
+            "artifactInstanceIdentifier": "synthetic-workstream-001",
+            "artifactRevision": "revision-001"
+          },
+          "objectiveAndOutcome": {
+            "objective": "Prepare one bounded public-safe result.",
+            "intendedOutcome": "Produce the exact reviewed deliverable.",
+            "expectedDeliverables": [
+              "One bounded deliverable."
+            ],
+            "resultBoundary": [
+              "No integration or release authority."
+            ]
+          },
+          "scopeAndResources": {
+            "includedScope": [
+              "The named bounded task."
+            ],
+            "nonGoals": null,
+            "exclusions": {
+              "disposition": "none"
+            },
+            "permittedActions": {
+              "disposition": "specified",
+              "items": [
+                "Prepare the declared deliverable."
+              ]
+            },
+            "forbiddenActions": {
+              "disposition": "specified",
+              "items": [
+                "Do not broaden the approved boundary."
+              ]
+            },
+            "permittedResources": {
+              "disposition": "specified",
+              "items": [
+                "Only explicitly approved public-safe resources."
+              ]
+            },
+            "forbiddenResources": {
+              "disposition": "specified",
+              "items": [
+                "No secrets or private project data."
+              ]
+            },
+            "sideEffectBoundaries": {
+              "disposition": "none"
+            },
+            "externalInteractions": {
+              "disposition": "none"
+            }
+          },
+          "authorityAndExecution": {
+            "authoritySource": "Exact human-approved Task Contract Artifact Revision.",
+            "approverRole": "Owner / Final Authority",
+            "boundedDelegation": {
+              "disposition": "none"
+            },
+            "executorClass": "Bounded Implementer",
+            "executorResponsibilities": [
+              "Operate only within the approved revision."
+            ],
+            "executionPreconditions": [
+              "Exact revision approval and required context are available."
+            ],
+            "stopConditions": [
+              "Stop on authority, scope, context, security, or privacy uncertainty."
+            ]
+          },
+          "dependenciesAndConditions": {
+            "materialDependencies": {
+              "disposition": "none"
+            },
+            "interfaces": {
+              "disposition": "none"
+            },
+            "peerTaskContractRelationships": {
+              "disposition": "none"
+            },
+            "assumptions": {
+              "disposition": "none"
+            },
+            "constraints": {
+              "disposition": "specified",
+              "items": [
+                "Preserve public/private separation."
+              ]
+            },
+            "risks": {},
+            "unresolvedUncertainty": {
+              "disposition": "none"
+            },
+            "escalationConditions": {
+              "disposition": "specified",
+              "items": [
+                "Escalate any material mismatch."
+              ]
+            }
+          },
+          "contextPacketExpectations": {
+            "minimumContext": {
+              "disposition": "none"
+            },
+            "sourceSelectionConstraints": [
+              "Select only minimum task-relevant context."
+            ],
+            "provenanceRequirements": [
+              "Preserve exact source and revision provenance."
+            ],
+            "contextIsolation": [
+              "Exclude unrelated task and private context by default."
+            ]
+          },
+          "securityAndPrivacy": {
+            "securityConstraints": [
+              "Do not expose credentials or exploitable operational detail."
+            ],
+            "privacyConstraints": [
+              "Do not include personal or private project data."
+            ],
+            "confidentialityConstraints": [
+              "Use only public-safe synthetic material."
+            ],
+            "publicPrivateBoundaries": [
+              "Keep private context outside public artifacts."
+            ],
+            "leastPrivilegeConstraints": [
+              "Use only explicitly authorized access and actions."
+            ]
+          },
+          "assuranceAndAcceptance": {
+            "expectedEvidence": [
+              "Record the exact changed resources and validation results."
+            ],
+            "validationObligations": [
+              "Run the approved validation before handoff."
+            ],
+            "acceptanceCriteria": [
+              "Present evidence against the exact approved boundary."
+            ],
+            "knownLimitations": {
+              "disposition": "none"
+            },
+            "specialistReviewBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "consequentialDecisionBoundaries": {
+            "humanDecisionBoundaries": [
+              "Final acceptance remains a separate human decision."
+            ],
+            "integrationBoundaries": {
+              "disposition": "none"
+            },
+            "releaseBoundaries": {
+              "disposition": "none"
+            },
+            "deploymentBoundaries": {
+              "disposition": "none"
+            },
+            "mergeBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "lifecycleConditions": {
+            "validity": [
+              "Only the exact approved Artifact Revision can authorize bounded execution."
+            ],
+            "amendment": [
+              "Material change requires a new reviewed and approved revision."
+            ],
+            "revocation": [
+              "Revocation ends future task authority."
+            ],
+            "expiration": {
+              "disposition": "none"
+            },
+            "reassessment": {
+              "disposition": "none"
+            },
+            "completion": [
+              "Completion requires evidence against the declared result boundary."
+            ],
+            "closure": [
+              "Closure is separate from result approval or integration."
+            ],
+            "supersession": {
+              "disposition": "none"
+            },
+            "retention": {
+              "disposition": "specified",
+              "items": [
+                "Preserve provenance and decision history."
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "invalid specified declarations missing and empty items",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "task-contract",
+          "artifactInstance": {
+            "identifier": "synthetic-task-contract-001",
+            "revision": "revision-001"
+          },
+          "governingContract": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/task-contract",
+            "version": "1.0.0"
+          },
+          "governingSchema": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/task-contract/1.0.0",
+            "version": "1.0.0"
+          }
+        },
+        "payload": {
+          "governingProjectCharter": {
+            "artifactInstanceIdentifier": "synthetic-charter-001",
+            "artifactRevision": "revision-001"
+          },
+          "governingWorkstream": {
+            "artifactInstanceIdentifier": "synthetic-workstream-001",
+            "artifactRevision": "revision-001"
+          },
+          "objectiveAndOutcome": {
+            "objective": "Prepare one bounded public-safe result.",
+            "intendedOutcome": "Produce the exact reviewed deliverable.",
+            "expectedDeliverables": [
+              "One bounded deliverable."
+            ],
+            "resultBoundary": [
+              "No integration or release authority."
+            ]
+          },
+          "scopeAndResources": {
+            "includedScope": [
+              "The named bounded task."
+            ],
+            "nonGoals": {
+              "disposition": "none"
+            },
+            "exclusions": {
+              "disposition": "specified"
+            },
+            "permittedActions": {
+              "disposition": "specified",
+              "items": [
+                "Prepare the declared deliverable."
+              ]
+            },
+            "forbiddenActions": {
+              "disposition": "specified",
+              "items": [
+                "Do not broaden the approved boundary."
+              ]
+            },
+            "permittedResources": {
+              "disposition": "specified",
+              "items": [
+                "Only explicitly approved public-safe resources."
+              ]
+            },
+            "forbiddenResources": {
+              "disposition": "specified",
+              "items": [
+                "No secrets or private project data."
+              ]
+            },
+            "sideEffectBoundaries": {
+              "disposition": "none"
+            },
+            "externalInteractions": {
+              "disposition": "none"
+            }
+          },
+          "authorityAndExecution": {
+            "authoritySource": "Exact human-approved Task Contract Artifact Revision.",
+            "approverRole": "Owner / Final Authority",
+            "boundedDelegation": {
+              "disposition": "none"
+            },
+            "executorClass": "Bounded Implementer",
+            "executorResponsibilities": [
+              "Operate only within the approved revision."
+            ],
+            "executionPreconditions": [
+              "Exact revision approval and required context are available."
+            ],
+            "stopConditions": [
+              "Stop on authority, scope, context, security, or privacy uncertainty."
+            ]
+          },
+          "dependenciesAndConditions": {
+            "materialDependencies": {
+              "disposition": "none"
+            },
+            "interfaces": {
+              "disposition": "none"
+            },
+            "peerTaskContractRelationships": {
+              "disposition": "none"
+            },
+            "assumptions": {
+              "disposition": "specified",
+              "items": []
+            },
+            "constraints": {
+              "disposition": "specified",
+              "items": [
+                "Preserve public/private separation."
+              ]
+            },
+            "risks": {
+              "disposition": "none"
+            },
+            "unresolvedUncertainty": {
+              "disposition": "none"
+            },
+            "escalationConditions": {
+              "disposition": "specified",
+              "items": [
+                "Escalate any material mismatch."
+              ]
+            }
+          },
+          "contextPacketExpectations": {
+            "minimumContext": {
+              "disposition": "none"
+            },
+            "sourceSelectionConstraints": [
+              "Select only minimum task-relevant context."
+            ],
+            "provenanceRequirements": [
+              "Preserve exact source and revision provenance."
+            ],
+            "contextIsolation": [
+              "Exclude unrelated task and private context by default."
+            ]
+          },
+          "securityAndPrivacy": {
+            "securityConstraints": [
+              "Do not expose credentials or exploitable operational detail."
+            ],
+            "privacyConstraints": [
+              "Do not include personal or private project data."
+            ],
+            "confidentialityConstraints": [
+              "Use only public-safe synthetic material."
+            ],
+            "publicPrivateBoundaries": [
+              "Keep private context outside public artifacts."
+            ],
+            "leastPrivilegeConstraints": [
+              "Use only explicitly authorized access and actions."
+            ]
+          },
+          "assuranceAndAcceptance": {
+            "expectedEvidence": [
+              "Record the exact changed resources and validation results."
+            ],
+            "validationObligations": [
+              "Run the approved validation before handoff."
+            ],
+            "acceptanceCriteria": [
+              "Present evidence against the exact approved boundary."
+            ],
+            "knownLimitations": {
+              "disposition": "none"
+            },
+            "specialistReviewBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "consequentialDecisionBoundaries": {
+            "humanDecisionBoundaries": [
+              "Final acceptance remains a separate human decision."
+            ],
+            "integrationBoundaries": {
+              "disposition": "none"
+            },
+            "releaseBoundaries": {
+              "disposition": "none"
+            },
+            "deploymentBoundaries": {
+              "disposition": "none"
+            },
+            "mergeBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "lifecycleConditions": {
+            "validity": [
+              "Only the exact approved Artifact Revision can authorize bounded execution."
+            ],
+            "amendment": [
+              "Material change requires a new reviewed and approved revision."
+            ],
+            "revocation": [
+              "Revocation ends future task authority."
+            ],
+            "expiration": {
+              "disposition": "none"
+            },
+            "reassessment": {
+              "disposition": "none"
+            },
+            "completion": [
+              "Completion requires evidence against the declared result boundary."
+            ],
+            "closure": [
+              "Closure is separate from result approval or integration."
+            ],
+            "supersession": {
+              "disposition": "none"
+            },
+            "retention": {
+              "disposition": "specified",
+              "items": [
+                "Preserve provenance and decision history."
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "invalid none declaration with items and unknown disposition",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "task-contract",
+          "artifactInstance": {
+            "identifier": "synthetic-task-contract-001",
+            "revision": "revision-001"
+          },
+          "governingContract": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/task-contract",
+            "version": "1.0.0"
+          },
+          "governingSchema": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/task-contract/1.0.0",
+            "version": "1.0.0"
+          }
+        },
+        "payload": {
+          "governingProjectCharter": {
+            "artifactInstanceIdentifier": "synthetic-charter-001",
+            "artifactRevision": "revision-001"
+          },
+          "governingWorkstream": {
+            "artifactInstanceIdentifier": "synthetic-workstream-001",
+            "artifactRevision": "revision-001"
+          },
+          "objectiveAndOutcome": {
+            "objective": "Prepare one bounded public-safe result.",
+            "intendedOutcome": "Produce the exact reviewed deliverable.",
+            "expectedDeliverables": [
+              "One bounded deliverable."
+            ],
+            "resultBoundary": [
+              "No integration or release authority."
+            ]
+          },
+          "scopeAndResources": {
+            "includedScope": [
+              "The named bounded task."
+            ],
+            "nonGoals": {
+              "disposition": "none"
+            },
+            "exclusions": {
+              "disposition": "none"
+            },
+            "permittedActions": {
+              "disposition": "specified",
+              "items": [
+                "Prepare the declared deliverable."
+              ]
+            },
+            "forbiddenActions": {
+              "disposition": "specified",
+              "items": [
+                "Do not broaden the approved boundary."
+              ]
+            },
+            "permittedResources": {
+              "disposition": "specified",
+              "items": [
+                "Only explicitly approved public-safe resources."
+              ]
+            },
+            "forbiddenResources": {
+              "disposition": "specified",
+              "items": [
+                "No secrets or private project data."
+              ]
+            },
+            "sideEffectBoundaries": {
+              "disposition": "none",
+              "items": [
+                "forbidden"
+              ]
+            },
+            "externalInteractions": {
+              "disposition": "none"
+            }
+          },
+          "authorityAndExecution": {
+            "authoritySource": "Exact human-approved Task Contract Artifact Revision.",
+            "approverRole": "Owner / Final Authority",
+            "boundedDelegation": {
+              "disposition": "none"
+            },
+            "executorClass": "Bounded Implementer",
+            "executorResponsibilities": [
+              "Operate only within the approved revision."
+            ],
+            "executionPreconditions": [
+              "Exact revision approval and required context are available."
+            ],
+            "stopConditions": [
+              "Stop on authority, scope, context, security, or privacy uncertainty."
+            ]
+          },
+          "dependenciesAndConditions": {
+            "materialDependencies": {
+              "disposition": "none"
+            },
+            "interfaces": {
+              "disposition": "none"
+            },
+            "peerTaskContractRelationships": {
+              "disposition": "none"
+            },
+            "assumptions": {
+              "disposition": "none"
+            },
+            "constraints": {
+              "disposition": "specified",
+              "items": [
+                "Preserve public/private separation."
+              ]
+            },
+            "risks": {
+              "disposition": "none"
+            },
+            "unresolvedUncertainty": {
+              "disposition": "unknown"
+            },
+            "escalationConditions": {
+              "disposition": "specified",
+              "items": [
+                "Escalate any material mismatch."
+              ]
+            }
+          },
+          "contextPacketExpectations": {
+            "minimumContext": {
+              "disposition": "none"
+            },
+            "sourceSelectionConstraints": [
+              "Select only minimum task-relevant context."
+            ],
+            "provenanceRequirements": [
+              "Preserve exact source and revision provenance."
+            ],
+            "contextIsolation": [
+              "Exclude unrelated task and private context by default."
+            ]
+          },
+          "securityAndPrivacy": {
+            "securityConstraints": [
+              "Do not expose credentials or exploitable operational detail."
+            ],
+            "privacyConstraints": [
+              "Do not include personal or private project data."
+            ],
+            "confidentialityConstraints": [
+              "Use only public-safe synthetic material."
+            ],
+            "publicPrivateBoundaries": [
+              "Keep private context outside public artifacts."
+            ],
+            "leastPrivilegeConstraints": [
+              "Use only explicitly authorized access and actions."
+            ]
+          },
+          "assuranceAndAcceptance": {
+            "expectedEvidence": [
+              "Record the exact changed resources and validation results."
+            ],
+            "validationObligations": [
+              "Run the approved validation before handoff."
+            ],
+            "acceptanceCriteria": [
+              "Present evidence against the exact approved boundary."
+            ],
+            "knownLimitations": {
+              "disposition": "none"
+            },
+            "specialistReviewBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "consequentialDecisionBoundaries": {
+            "humanDecisionBoundaries": [
+              "Final acceptance remains a separate human decision."
+            ],
+            "integrationBoundaries": {
+              "disposition": "none"
+            },
+            "releaseBoundaries": {
+              "disposition": "none"
+            },
+            "deploymentBoundaries": {
+              "disposition": "none"
+            },
+            "mergeBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "lifecycleConditions": {
+            "validity": [
+              "Only the exact approved Artifact Revision can authorize bounded execution."
+            ],
+            "amendment": [
+              "Material change requires a new reviewed and approved revision."
+            ],
+            "revocation": [
+              "Revocation ends future task authority."
+            ],
+            "expiration": {
+              "disposition": "none"
+            },
+            "reassessment": {
+              "disposition": "none"
+            },
+            "completion": [
+              "Completion requires evidence against the declared result boundary."
+            ],
+            "closure": [
+              "Closure is separate from result approval or integration."
+            ],
+            "supersession": {
+              "disposition": "none"
+            },
+            "retention": {
+              "disposition": "specified",
+              "items": [
+                "Preserve provenance and decision history."
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "invalid forbidden approval permission workflow and lifecycle status fields",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "task-contract",
+          "artifactInstance": {
+            "identifier": "synthetic-task-contract-001",
+            "revision": "revision-001"
+          },
+          "governingContract": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/task-contract",
+            "version": "1.0.0"
+          },
+          "governingSchema": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/task-contract/1.0.0",
+            "version": "1.0.0"
+          }
+        },
+        "payload": {
+          "governingProjectCharter": {
+            "artifactInstanceIdentifier": "synthetic-charter-001",
+            "artifactRevision": "revision-001"
+          },
+          "governingWorkstream": {
+            "artifactInstanceIdentifier": "synthetic-workstream-001",
+            "artifactRevision": "revision-001"
+          },
+          "objectiveAndOutcome": {
+            "objective": "Prepare one bounded public-safe result.",
+            "intendedOutcome": "Produce the exact reviewed deliverable.",
+            "expectedDeliverables": [
+              "One bounded deliverable."
+            ],
+            "resultBoundary": [
+              "No integration or release authority."
+            ]
+          },
+          "scopeAndResources": {
+            "includedScope": [
+              "The named bounded task."
+            ],
+            "nonGoals": {
+              "disposition": "none"
+            },
+            "exclusions": {
+              "disposition": "none"
+            },
+            "permittedActions": {
+              "disposition": "specified",
+              "items": [
+                "Prepare the declared deliverable."
+              ]
+            },
+            "forbiddenActions": {
+              "disposition": "specified",
+              "items": [
+                "Do not broaden the approved boundary."
+              ]
+            },
+            "permittedResources": {
+              "disposition": "specified",
+              "items": [
+                "Only explicitly approved public-safe resources."
+              ]
+            },
+            "forbiddenResources": {
+              "disposition": "specified",
+              "items": [
+                "No secrets or private project data."
+              ]
+            },
+            "sideEffectBoundaries": {
+              "disposition": "none"
+            },
+            "externalInteractions": {
+              "disposition": "none"
+            },
+            "permissionEngine": {
+              "allow": [
+                "*"
+              ]
+            }
+          },
+          "authorityAndExecution": {
+            "authoritySource": "Exact human-approved Task Contract Artifact Revision.",
+            "approverRole": "Owner / Final Authority",
+            "boundedDelegation": {
+              "disposition": "none"
+            },
+            "executorClass": "Bounded Implementer",
+            "executorResponsibilities": [
+              "Operate only within the approved revision."
+            ],
+            "executionPreconditions": [
+              "Exact revision approval and required context are available."
+            ],
+            "stopConditions": [
+              "Stop on authority, scope, context, security, or privacy uncertainty."
+            ],
+            "approved": true
+          },
+          "dependenciesAndConditions": {
+            "materialDependencies": {
+              "disposition": "none"
+            },
+            "interfaces": {
+              "disposition": "none"
+            },
+            "peerTaskContractRelationships": {
+              "disposition": "none"
+            },
+            "assumptions": {
+              "disposition": "none"
+            },
+            "constraints": {
+              "disposition": "specified",
+              "items": [
+                "Preserve public/private separation."
+              ]
+            },
+            "risks": {
+              "disposition": "none"
+            },
+            "unresolvedUncertainty": {
+              "disposition": "none"
+            },
+            "escalationConditions": {
+              "disposition": "specified",
+              "items": [
+                "Escalate any material mismatch."
+              ]
+            }
+          },
+          "contextPacketExpectations": {
+            "minimumContext": {
+              "disposition": "none"
+            },
+            "sourceSelectionConstraints": [
+              "Select only minimum task-relevant context."
+            ],
+            "provenanceRequirements": [
+              "Preserve exact source and revision provenance."
+            ],
+            "contextIsolation": [
+              "Exclude unrelated task and private context by default."
+            ]
+          },
+          "securityAndPrivacy": {
+            "securityConstraints": [
+              "Do not expose credentials or exploitable operational detail."
+            ],
+            "privacyConstraints": [
+              "Do not include personal or private project data."
+            ],
+            "confidentialityConstraints": [
+              "Use only public-safe synthetic material."
+            ],
+            "publicPrivateBoundaries": [
+              "Keep private context outside public artifacts."
+            ],
+            "leastPrivilegeConstraints": [
+              "Use only explicitly authorized access and actions."
+            ]
+          },
+          "assuranceAndAcceptance": {
+            "expectedEvidence": [
+              "Record the exact changed resources and validation results."
+            ],
+            "validationObligations": [
+              "Run the approved validation before handoff."
+            ],
+            "acceptanceCriteria": [
+              "Present evidence against the exact approved boundary."
+            ],
+            "knownLimitations": {
+              "disposition": "none"
+            },
+            "specialistReviewBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "consequentialDecisionBoundaries": {
+            "humanDecisionBoundaries": [
+              "Final acceptance remains a separate human decision."
+            ],
+            "integrationBoundaries": {
+              "disposition": "none"
+            },
+            "releaseBoundaries": {
+              "disposition": "none"
+            },
+            "deploymentBoundaries": {
+              "disposition": "none"
+            },
+            "mergeBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "lifecycleConditions": {
+            "validity": [
+              "Only the exact approved Artifact Revision can authorize bounded execution."
+            ],
+            "amendment": [
+              "Material change requires a new reviewed and approved revision."
+            ],
+            "revocation": [
+              "Revocation ends future task authority."
+            ],
+            "expiration": {
+              "disposition": "none"
+            },
+            "reassessment": {
+              "disposition": "none"
+            },
+            "completion": [
+              "Completion requires evidence against the declared result boundary."
+            ],
+            "closure": [
+              "Closure is separate from result approval or integration."
+            ],
+            "supersession": {
+              "disposition": "none"
+            },
+            "retention": {
+              "disposition": "specified",
+              "items": [
+                "Preserve provenance and decision history."
+              ]
+            },
+            "status": "active"
+          },
+          "workflow": {
+            "automatic": true
+          }
+        }
+      }
+    },
+    {
+      "name": "invalid embedded governing peer and downstream artifacts",
+      "valid": false,
+      "instance": {
+        "envelope": {
+          "artifactType": "task-contract",
+          "artifactInstance": {
+            "identifier": "synthetic-task-contract-001",
+            "revision": "revision-001"
+          },
+          "governingContract": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/task-contract",
+            "version": "1.0.0"
+          },
+          "governingSchema": {
+            "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/task-contract/1.0.0",
+            "version": "1.0.0"
+          }
+        },
+        "payload": {
+          "governingProjectCharter": {
+            "artifactInstanceIdentifier": "synthetic-charter-001",
+            "artifactRevision": "revision-001",
+            "embeddedArtifact": {
+              "envelope": {},
+              "payload": {}
+            }
+          },
+          "governingWorkstream": {
+            "artifactInstanceIdentifier": "synthetic-workstream-001",
+            "artifactRevision": "revision-001",
+            "embeddedSchema": {
+              "$ref": "https://github.com/CNTX-PROJECT/CNTX/schemas/workstream/1.0.0"
+            }
+          },
+          "objectiveAndOutcome": {
+            "objective": "Prepare one bounded public-safe result.",
+            "intendedOutcome": "Produce the exact reviewed deliverable.",
+            "expectedDeliverables": [
+              "One bounded deliverable."
+            ],
+            "resultBoundary": [
+              "No integration or release authority."
+            ]
+          },
+          "scopeAndResources": {
+            "includedScope": [
+              "The named bounded task."
+            ],
+            "nonGoals": {
+              "disposition": "none"
+            },
+            "exclusions": {
+              "disposition": "none"
+            },
+            "permittedActions": {
+              "disposition": "specified",
+              "items": [
+                "Prepare the declared deliverable."
+              ]
+            },
+            "forbiddenActions": {
+              "disposition": "specified",
+              "items": [
+                "Do not broaden the approved boundary."
+              ]
+            },
+            "permittedResources": {
+              "disposition": "specified",
+              "items": [
+                "Only explicitly approved public-safe resources."
+              ]
+            },
+            "forbiddenResources": {
+              "disposition": "specified",
+              "items": [
+                "No secrets or private project data."
+              ]
+            },
+            "sideEffectBoundaries": {
+              "disposition": "none"
+            },
+            "externalInteractions": {
+              "disposition": "none"
+            }
+          },
+          "authorityAndExecution": {
+            "authoritySource": "Exact human-approved Task Contract Artifact Revision.",
+            "approverRole": "Owner / Final Authority",
+            "boundedDelegation": {
+              "disposition": "none"
+            },
+            "executorClass": "Bounded Implementer",
+            "executorResponsibilities": [
+              "Operate only within the approved revision."
+            ],
+            "executionPreconditions": [
+              "Exact revision approval and required context are available."
+            ],
+            "stopConditions": [
+              "Stop on authority, scope, context, security, or privacy uncertainty."
+            ]
+          },
+          "dependenciesAndConditions": {
+            "materialDependencies": {
+              "disposition": "none"
+            },
+            "interfaces": {
+              "disposition": "none"
+            },
+            "peerTaskContractRelationships": {
+              "disposition": "none"
+            },
+            "assumptions": {
+              "disposition": "none"
+            },
+            "constraints": {
+              "disposition": "specified",
+              "items": [
+                "Preserve public/private separation."
+              ]
+            },
+            "risks": {
+              "disposition": "none"
+            },
+            "unresolvedUncertainty": {
+              "disposition": "none"
+            },
+            "escalationConditions": {
+              "disposition": "specified",
+              "items": [
+                "Escalate any material mismatch."
+              ]
+            },
+            "peerTaskContractArtifact": {
+              "envelope": {},
+              "payload": {}
+            }
+          },
+          "contextPacketExpectations": {
+            "minimumContext": {
+              "disposition": "none"
+            },
+            "sourceSelectionConstraints": [
+              "Select only minimum task-relevant context."
+            ],
+            "provenanceRequirements": [
+              "Preserve exact source and revision provenance."
+            ],
+            "contextIsolation": [
+              "Exclude unrelated task and private context by default."
+            ],
+            "contextPacketArtifact": {
+              "envelope": {},
+              "payload": {}
+            }
+          },
+          "securityAndPrivacy": {
+            "securityConstraints": [
+              "Do not expose credentials or exploitable operational detail."
+            ],
+            "privacyConstraints": [
+              "Do not include personal or private project data."
+            ],
+            "confidentialityConstraints": [
+              "Use only public-safe synthetic material."
+            ],
+            "publicPrivateBoundaries": [
+              "Keep private context outside public artifacts."
+            ],
+            "leastPrivilegeConstraints": [
+              "Use only explicitly authorized access and actions."
+            ]
+          },
+          "assuranceAndAcceptance": {
+            "expectedEvidence": [
+              "Record the exact changed resources and validation results."
+            ],
+            "validationObligations": [
+              "Run the approved validation before handoff."
+            ],
+            "acceptanceCriteria": [
+              "Present evidence against the exact approved boundary."
+            ],
+            "knownLimitations": {
+              "disposition": "none"
+            },
+            "specialistReviewBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "consequentialDecisionBoundaries": {
+            "humanDecisionBoundaries": [
+              "Final acceptance remains a separate human decision."
+            ],
+            "integrationBoundaries": {
+              "disposition": "none"
+            },
+            "releaseBoundaries": {
+              "disposition": "none"
+            },
+            "deploymentBoundaries": {
+              "disposition": "none"
+            },
+            "mergeBoundaries": {
+              "disposition": "none"
+            }
+          },
+          "lifecycleConditions": {
+            "validity": [
+              "Only the exact approved Artifact Revision can authorize bounded execution."
+            ],
+            "amendment": [
+              "Material change requires a new reviewed and approved revision."
+            ],
+            "revocation": [
+              "Revocation ends future task authority."
+            ],
+            "expiration": {
+              "disposition": "none"
+            },
+            "reassessment": {
+              "disposition": "none"
+            },
+            "completion": [
+              "Completion requires evidence against the declared result boundary."
+            ],
+            "closure": [
+              "Closure is separate from result approval or integration."
+            ],
+            "supersession": {
+              "disposition": "none"
+            },
+            "retention": {
+              "disposition": "specified",
+              "items": [
+                "Preserve provenance and decision history."
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}
