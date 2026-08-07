@@ -139,7 +139,7 @@ allocations, inactive `1.0.0` targets, two-member closed root, exact common
 `$ref`, independent versions, payload ownership, rollout order, UTF-8, links,
 public/private constraints, and all Accepted governing sources.
 
-DE ARCHITECT and the Bounded Implementer were the same operational agent under
+ARCHITECT and the Bounded Implementer were the same operational agent under
 the disclosed non-independent review arrangement in issue #44. The review PASS
 was evidence, not acceptance. The Owner / Final Authority separately accepted
 the exact reviewed candidate head.
