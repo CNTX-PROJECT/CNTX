@@ -1,0 +1,778 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/CNTX-PROJECT/CNTX/schemas/evidence-bundle/1.0.0",
+  "$comment": "Proposed ARCH-017 Evidence Bundle Schema Version 1.0.0 under issue #60 and attributable Owner / Final Authority authority comment 5217659534. Schema validity grants no contract conformance, source truth, relevance, sufficiency, correctness, approval, acceptance, integration, release, deployment, merge permission, or follow-on authority.",
+  "title": "CNTX Evidence Bundle Artifact",
+  "description": "A complete Evidence Bundle artifact with the exact Accepted Common Artifact Envelope and a closed CONTRACT-006 payload. This schema evaluates structure only and records bounded Evidentiary claims without self-approval.",
+  "type": "object",
+  "properties": {
+    "envelope": {
+      "description": "The exact Accepted Common Artifact Envelope specialized for the Evidence Bundle Artifact Type, Contract Definition, and Schema Definition.",
+      "allOf": [
+        {
+          "$ref": "https://github.com/CNTX-PROJECT/CNTX/schemas/common-artifact-envelope/1.0.0"
+        },
+        {
+          "properties": {
+            "artifactType": {
+              "const": "evidence-bundle"
+            },
+            "governingContract": {
+              "properties": {
+                "identifier": {
+                  "const": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/evidence-bundle"
+                },
+                "version": {
+                  "const": "1.0.0"
+                }
+              }
+            },
+            "governingSchema": {
+              "properties": {
+                "identifier": {
+                  "const": "https://github.com/CNTX-PROJECT/CNTX/schemas/evidence-bundle/1.0.0"
+                },
+                "version": {
+                  "const": "1.0.0"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "payload": {
+      "$ref": "#/$defs/evidenceBundlePayload"
+    }
+  },
+  "required": [
+    "envelope",
+    "payload"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "nonBlankString": {
+      "description": "A string containing at least one non-whitespace character. Its content remains an opaque or declarative value subject to governing authority and human review.",
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "nonEmptyUniqueStatementArray": {
+      "description": "One or more distinct non-blank declarative statements.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/nonBlankString"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "specifiedDeclaration": {
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "specified"
+        },
+        "items": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        }
+      },
+      "required": [
+        "disposition",
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "noneDeclaration": {
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "none"
+        }
+      },
+      "required": [
+        "disposition"
+      ],
+      "additionalProperties": false
+    },
+    "declarationSet": {
+      "description": "An explicitly assessed category with specified statements or assessed absence. Neither disposition grants authority or proves completeness, relevance, sufficiency, correctness, or approval.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/specifiedDeclaration"
+        },
+        {
+          "$ref": "#/$defs/noneDeclaration"
+        }
+      ]
+    },
+    "artifactRevisionPin": {
+      "description": "An opaque Artifact Instance Identifier and exact Artifact Revision pin. It performs no retrieval or resolution and proves no existence, applicability, approval, or authority.",
+      "type": "object",
+      "properties": {
+        "artifactInstanceIdentifier": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "artifactRevision": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "artifactInstanceIdentifier",
+        "artifactRevision"
+      ],
+      "additionalProperties": false
+    },
+    "specifiedArtifactPins": {
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "specified"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/artifactRevisionPin"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "disposition",
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "noneArtifactPins": {
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "none"
+        }
+      },
+      "required": [
+        "disposition"
+      ],
+      "additionalProperties": false
+    },
+    "artifactPinDeclaration": {
+      "description": "An assessed relationship with specified opaque Artifact Instance/Revision pins or assessed absence. It grants no retrieval, schema dependency, or authority.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/specifiedArtifactPins"
+        },
+        {
+          "$ref": "#/$defs/noneArtifactPins"
+        }
+      ]
+    },
+    "reviewableSubject": {
+      "description": "An exactly identified revision-aware reviewable subject with bounded claim references. Identifiers remain opaque and are not resolved or type-interpreted.",
+      "type": "object",
+      "properties": {
+        "subjectReference": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "subjectIdentifier": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "subjectRevision": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "boundedClaimReferences": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonBlankString"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "subjectScopeAndContext": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "subjectReference",
+        "subjectIdentifier",
+        "subjectRevision",
+        "boundedClaimReferences",
+        "subjectScopeAndContext"
+      ],
+      "additionalProperties": false
+    },
+    "artifactRelationships": {
+      "description": "Explicit opaque relationships to artifact revisions. No relationship embeds, retrieves, validates, approves, or transfers authority from a related artifact.",
+      "type": "object",
+      "properties": {
+        "projectCharters": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "workstreams": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "contextPackets": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "executionResults": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "peerEvidenceBundles": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "reviewRecords": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "decisionRecords": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "stateSnapshots": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        }
+      },
+      "required": [
+        "projectCharters",
+        "workstreams",
+        "contextPackets",
+        "executionResults",
+        "peerEvidenceBundles",
+        "reviewRecords",
+        "decisionRecords",
+        "stateSnapshots"
+      ],
+      "additionalProperties": false
+    },
+    "evidenceItem": {
+      "description": "A closed, provenance-bearing evidence-item declaration. Its fields record bounded context and claims only; they implement no collection, transformation, verification, access, disclosure, scoring, or decision mechanism.",
+      "type": "object",
+      "properties": {
+        "evidenceItemReference": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "claimReferences": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonBlankString"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "sourceReference": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "sourceRevisionContext": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "observationCollectionAndConditions": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "representationTreatments": {
+          "description": "Representation context only; tokens allocate no algorithm, quality, permission, evidentiary weight, or authority.",
+          "type": "array",
+          "items": {
+            "enum": [
+              "direct",
+              "derived",
+              "summarized",
+              "transformed",
+              "redacted",
+              "copied"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "relevanceRationale": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "provenanceIntegrityAndValidityContext": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "uncertaintyLimitationsAndBias": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "securityPrivacyAccessAndDisclosure": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "evidenceItemReference",
+        "claimReferences",
+        "sourceReference",
+        "sourceRevisionContext",
+        "observationCollectionAndConditions",
+        "representationTreatments",
+        "relevanceRationale",
+        "provenanceIntegrityAndValidityContext",
+        "uncertaintyLimitationsAndBias",
+        "securityPrivacyAccessAndDisclosure"
+      ],
+      "additionalProperties": false
+    },
+    "specifiedEvidenceItems": {
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "specified"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidenceItem"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "disposition",
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "noneEvidenceItems": {
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "none"
+        }
+      },
+      "required": [
+        "disposition"
+      ],
+      "additionalProperties": false
+    },
+    "evidenceItemDeclaration": {
+      "description": "An assessed evidence-item category with specified closed items or assessed absence. Absence proves no completeness, sufficiency, correctness, or approval.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/specifiedEvidenceItems"
+        },
+        {
+          "$ref": "#/$defs/noneEvidenceItems"
+        }
+      ]
+    },
+    "claimEvidenceMapping": {
+      "description": "A bounded claim-to-evidence mapping. References remain opaque and the mapping proves no source existence, referential integrity, support, contradiction, relevance, or sufficiency.",
+      "type": "object",
+      "properties": {
+        "claimReference": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "subjectReference": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "supportingEvidenceReferences": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "qualifyingEvidenceReferences": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "contradictoryEvidenceReferences": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "missingEvidence": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "assessmentAndLimitations": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "claimReference",
+        "subjectReference",
+        "supportingEvidenceReferences",
+        "qualifyingEvidenceReferences",
+        "contradictoryEvidenceReferences",
+        "missingEvidence",
+        "assessmentAndLimitations"
+      ],
+      "additionalProperties": false
+    },
+    "relevanceScopeAndMinimization": {
+      "description": "Task-scope, relevance, inclusion, exclusion, minimization, and least-disclosure claims without automatic selection or sufficiency proof.",
+      "type": "object",
+      "properties": {
+        "taskScopeRelationship": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "claimAndSubjectRelevance": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "inclusionRationale": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "exclusionBoundaries": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "minimizationAndLeastDisclosure": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "taskScopeRelationship",
+        "claimAndSubjectRelevance",
+        "inclusionRationale",
+        "exclusionBoundaries",
+        "minimizationAndLeastDisclosure"
+      ],
+      "additionalProperties": false
+    },
+    "provenanceCollectionAndObservationContext": {
+      "description": "Bundle assembly, collection authority, revision, observation, environment, and provenance-gap claims without a collection or chain-of-custody mechanism.",
+      "type": "object",
+      "properties": {
+        "bundleAssemblyProvenance": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "collectionAuthorityContext": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "sourceRevisionContext": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "collectionObservationAndEnvironmentContext": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "provenanceGaps": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "bundleAssemblyProvenance",
+        "collectionAuthorityContext",
+        "sourceRevisionContext",
+        "collectionObservationAndEnvironmentContext",
+        "provenanceGaps"
+      ],
+      "additionalProperties": false
+    },
+    "derivationTransformationAndInformationLoss": {
+      "description": "Derived inputs, treatment methods, summaries, extracts, normalizations, conversions, aggregations, redactions, and information-loss claims without implementing an algorithm.",
+      "type": "object",
+      "properties": {
+        "derivedSourceInputs": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "transformationsAndMethods": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "summariesExtractsNormalizationsConversionsAndAggregations": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "redactions": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "informationLossAndLimitations": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "derivedSourceInputs",
+        "transformationsAndMethods",
+        "summariesExtractsNormalizationsConversionsAndAggregations",
+        "redactions",
+        "informationLossAndLimitations"
+      ],
+      "additionalProperties": false
+    },
+    "checksAssumptionsConditionsAndDependencies": {
+      "description": "Bounded checks, validation-output, assumption, condition, environment, method, tool, and dependency claims without executing or standardizing them.",
+      "type": "object",
+      "properties": {
+        "checksAndValidationOutputs": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "assumptions": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "conditionsAndEnvironment": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "methodsAndTools": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "dependencies": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "checksAndValidationOutputs",
+        "assumptions",
+        "conditionsAndEnvironment",
+        "methodsAndTools",
+        "dependencies"
+      ],
+      "additionalProperties": false
+    },
+    "integrityAuthenticityFreshnessAndValidity": {
+      "description": "Integrity, authenticity, freshness, validity, and chain-of-custody-context claims without a digest, signature, verification, timestamp, trust, or custody mechanism.",
+      "type": "object",
+      "properties": {
+        "integrityClaims": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "authenticityClaims": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "freshnessContext": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "validityContext": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "chainOfCustodyContext": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "integrityClaims",
+        "authenticityClaims",
+        "freshnessContext",
+        "validityContext",
+        "chainOfCustodyContext"
+      ],
+      "additionalProperties": false
+    },
+    "completenessCoverageIndependenceAndReproducibility": {
+      "description": "Bounded completeness, coverage, independence, reproducibility, and sufficiency claims without proof, scores, grades, thresholds, or approval.",
+      "type": "object",
+      "properties": {
+        "completenessClaims": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "coverageClaims": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "independenceClaims": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "reproducibilityClaims": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "sufficiencyClaims": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "completenessClaims",
+        "coverageClaims",
+        "independenceClaims",
+        "reproducibilityClaims",
+        "sufficiencyClaims"
+      ],
+      "additionalProperties": false
+    },
+    "contradictoryAdverseMissingUnavailableAndExcludedEvidence": {
+      "description": "Explicit contradictory, adverse, missing, unavailable, inaccessible, excluded, and unresolved-conflict declarations without filtering or automatic conflict resolution.",
+      "type": "object",
+      "properties": {
+        "contradictoryEvidence": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "adverseEvidence": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "missingEvidence": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "unavailableOrInaccessibleEvidence": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "excludedEvidenceAndRationale": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "unresolvedConflicts": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "contradictoryEvidence",
+        "adverseEvidence",
+        "missingEvidence",
+        "unavailableOrInaccessibleEvidence",
+        "excludedEvidenceAndRationale",
+        "unresolvedConflicts"
+      ],
+      "additionalProperties": false
+    },
+    "uncertaintyLimitationsBiasAndUnresolvedGaps": {
+      "description": "Explicit uncertainty, limitation, bias, transformation-loss, and unresolved-gap declarations.",
+      "type": "object",
+      "properties": {
+        "uncertainty": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "limitations": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "bias": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "transformationLoss": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "unresolvedGaps": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "uncertainty",
+        "limitations",
+        "bias",
+        "transformationLoss",
+        "unresolvedGaps"
+      ],
+      "additionalProperties": false
+    },
+    "securityPrivacyAccessDisclosureAndRetention": {
+      "description": "Security, privacy, access, collection-authority, disclosure, redaction, restricted-handling, retention, and residual-risk claims without permission or enforcement.",
+      "type": "object",
+      "properties": {
+        "securityObservations": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "privacyObservations": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "accessAndCollectionAuthorityLimitations": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "disclosureAndRedactionLimitations": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "restrictedEvidenceHandling": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "residualRisks": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "securityObservations",
+        "privacyObservations",
+        "accessAndCollectionAuthorityLimitations",
+        "disclosureAndRedactionLimitations",
+        "restrictedEvidenceHandling",
+        "residualRisks"
+      ],
+      "additionalProperties": false
+    },
+    "reviewDecisionAndLifecycleTraceability": {
+      "description": "Opaque review, decision, decision-input, correction, supplementation, supersession, withdrawal, staleness, retention, archival, disposal, and historical-traceability declarations without lifecycle effects.",
+      "type": "object",
+      "properties": {
+        "reviewReferences": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "decisionReferences": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "useAsDecisionInput": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "correctionAndSupplementation": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "supersessionWithdrawalAndStaleness": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "retentionArchivalAndDisposal": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "historicalTraceability": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "reviewReferences",
+        "decisionReferences",
+        "useAsDecisionInput",
+        "correctionAndSupplementation",
+        "supersessionWithdrawalAndStaleness",
+        "retentionArchivalAndDisposal",
+        "historicalTraceability"
+      ],
+      "additionalProperties": false
+    },
+    "evidenceBundlePayload": {
+      "description": "The closed CONTRACT-006 payload. Every property records bounded Evidentiary declarations and grants no authority, approval, execution, collection, access, validation, decision, lifecycle, release, deployment, or merge effect.",
+      "type": "object",
+      "properties": {
+        "governingTaskContract": {
+          "$ref": "#/$defs/artifactRevisionPin"
+        },
+        "reviewableSubjects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/reviewableSubject"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "artifactRelationships": {
+          "$ref": "#/$defs/artifactRelationships"
+        },
+        "evidenceItems": {
+          "$ref": "#/$defs/evidenceItemDeclaration"
+        },
+        "claimEvidenceTraceability": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/claimEvidenceMapping"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "relevanceScopeAndMinimization": {
+          "$ref": "#/$defs/relevanceScopeAndMinimization"
+        },
+        "provenanceCollectionAndObservationContext": {
+          "$ref": "#/$defs/provenanceCollectionAndObservationContext"
+        },
+        "derivationTransformationAndInformationLoss": {
+          "$ref": "#/$defs/derivationTransformationAndInformationLoss"
+        },
+        "checksAssumptionsConditionsAndDependencies": {
+          "$ref": "#/$defs/checksAssumptionsConditionsAndDependencies"
+        },
+        "integrityAuthenticityFreshnessAndValidity": {
+          "$ref": "#/$defs/integrityAuthenticityFreshnessAndValidity"
+        },
+        "completenessCoverageIndependenceAndReproducibility": {
+          "$ref": "#/$defs/completenessCoverageIndependenceAndReproducibility"
+        },
+        "contradictoryAdverseMissingUnavailableAndExcludedEvidence": {
+          "$ref": "#/$defs/contradictoryAdverseMissingUnavailableAndExcludedEvidence"
+        },
+        "uncertaintyLimitationsBiasAndUnresolvedGaps": {
+          "$ref": "#/$defs/uncertaintyLimitationsBiasAndUnresolvedGaps"
+        },
+        "securityPrivacyAccessDisclosureAndRetention": {
+          "$ref": "#/$defs/securityPrivacyAccessDisclosureAndRetention"
+        },
+        "reviewDecisionAndLifecycleTraceability": {
+          "$ref": "#/$defs/reviewDecisionAndLifecycleTraceability"
+        }
+      },
+      "required": [
+        "governingTaskContract",
+        "reviewableSubjects",
+        "artifactRelationships",
+        "evidenceItems",
+        "claimEvidenceTraceability",
+        "relevanceScopeAndMinimization",
+        "provenanceCollectionAndObservationContext",
+        "derivationTransformationAndInformationLoss",
+        "checksAssumptionsConditionsAndDependencies",
+        "integrityAuthenticityFreshnessAndValidity",
+        "completenessCoverageIndependenceAndReproducibility",
+        "contradictoryAdverseMissingUnavailableAndExcludedEvidence",
+        "uncertaintyLimitationsBiasAndUnresolvedGaps",
+        "securityPrivacyAccessDisclosureAndRetention",
+        "reviewDecisionAndLifecycleTraceability"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

@@ -204,6 +204,52 @@ exact-head Owner / Final Authority acceptance is recorded in issue comment
 completion, integration authority, release, deployment, merge permission,
 Evidence Bundle schema authority, or follow-on authority.
 
+## Evidence Bundle Schema Version 1.0.0 candidate
+
+| Dimension | Proposed value |
+| --- | --- |
+| Logical schema identity | CNTX Public Core Schema Family / Evidence Bundle Artifact |
+| Schema language and dialect | JSON Schema Draft 2020-12 |
+| Dialect declaration | `https://json-schema.org/draft/2020-12/schema` |
+| Canonical `$id` | `https://github.com/CNTX-PROJECT/CNTX/schemas/evidence-bundle/1.0.0` |
+| Schema Version | `1.0.0`, Proposed and inactive |
+| Canonical repository path | `schemas/evidence-bundle/1.0.0/schema.json` |
+| Exact external dependency | Accepted Common Artifact Envelope Schema Version `1.0.0` |
+| Governing Contract Definition | `https://github.com/CNTX-PROJECT/CNTX/contract-definitions/evidence-bundle` at `1.0.0` |
+| Schema-resource media type | `application/schema+json` |
+| Document Status | Proposed under issue #60 and creation-authority comment `5217659534` |
+
+The candidate evaluates one complete closed Evidence Bundle artifact with
+mandatory `envelope` and `payload`. Its envelope statically references the
+exact Accepted Common Artifact Envelope and constrains only the Evidence
+Bundle Artifact Type and governing Contract and Schema coordinates. Its closed
+fifteen-property payload translates only CONTRACT-006 and includes one opaque
+governing Task Contract pin, exact reviewable-subject declarations, explicit
+opaque artifact relationships, Evidence Items, claim traceability, and
+bounded provenance, quality, limitation, security/privacy, and lifecycle
+declarations.
+
+The resource contains no Project Charter, Workstream, Task Contract, Context
+Packet, Execution Result, peer Evidence Bundle, Review Record, Decision Record,
+State Snapshot, or other artifact-specific schema `$ref`. Evidence,
+provenance, integrity, relevance, completeness, coverage, independence,
+reproducibility, sufficiency, uncertainty, limitation, bias, security/privacy,
+review, decision, and lifecycle values remain bounded Evidentiary claims. The
+schema defines no collection, retrieval, scoring, verification, access,
+disclosure, approval, acceptance, workflow, release, deployment, or merge
+mechanism.
+
+The Proposed [ARCH-017 architecture candidate](../docs/architecture/evidence-bundle-executable-schema.md),
+[ADR-0017](../docs/architecture/adr/0017-evidence-bundle-executable-schema.md),
+and [non-normative test manifest](../tests/schemas/evidence-bundle/1.0.0/cases.json)
+define and evidence the candidate boundary. Creation, validation, review,
+repository presence, or `1.0.0` grants no acceptance or activation. Separate
+exact-head Owner / Final Authority acceptance and a separately authorized
+governed integration are required. Schema validity grants no contract
+conformance, source truth, relevance, sufficiency, correctness, acceptance,
+integration, release, deployment, merge permission, Review Record schema
+authority, or follow-on authority.
+
 ## Change boundary
 
 Upon governed integration, exact Accepted versioned canonical standalone content is immutable. Any accepted structural or semantic change requires the applicable identity/version assessment, attributable review and approval, traceable provenance, and a separately authorized change. Schema validity alone cannot approve such a change. The Accepted Project Charter resource does not change the independently Accepted Common Artifact Envelope resource.

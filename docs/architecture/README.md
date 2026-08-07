@@ -87,6 +87,24 @@ presence grants no correctness, completion, conformance, integration authority,
 release, deployment, merge permission, Evidence Bundle schema authority, or
 follow-on authority.
 
+The [Evidence Bundle Executable Schema Definition](evidence-bundle-executable-schema.md)
+and [ADR-0017](adr/0017-evidence-bundle-executable-schema.md) are **Proposed**
+under issue #60 and creation-authority comment `5217659534`. They define one
+Proposed and inactive Draft 2020-12 Evidence Bundle Schema Version `1.0.0`
+candidate that composes the exact Accepted Common Artifact Envelope with a
+closed fifteen-property CONTRACT-006 payload, one opaque governing Task
+Contract pin, exact reviewable-subject declarations, explicit opaque artifact
+relationships, Evidence Items, claim traceability, and bounded provenance,
+quality, limitation, security/privacy, and lifecycle declarations. It contains
+no artifact-specific schema `$ref` and implements no collection, retrieval,
+scoring, verification, access, disclosure, approval, acceptance, workflow,
+release, deployment, or merge mechanism. Creation, validation, review, schema
+validity, or repository presence grants no contract conformance, source truth,
+relevance, sufficiency, correctness, acceptance, integration, release,
+deployment, merge permission, Review Record schema authority, or follow-on
+authority. Separate exact-head Owner / Final Authority acceptance is required
+before any status promotion or integration may be considered.
+
 ## Document status
 
 - **Proposed** — submitted for review and not yet an accepted repository decision.
