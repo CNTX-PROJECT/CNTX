@@ -1,0 +1,154 @@
+{
+  "schemaId": "https://github.com/CNTX-PROJECT/CNTX/schemas/workstream/1.0.0",
+  "candidateSchemaVersion": "1.0.0",
+  "documentStatus": "Accepted",
+  "nonNormative": true,
+  "description": "Public-safe synthetic validation cases for Accepted ARCH-013 Schema Version 1.0.0. Expected validity is evidence only and grants no contract conformance, approval, authority, trust, acceptance, release, deployment, merge permission, access permission, or Task Contract authority.",
+  "cases": [
+    {
+      "name": "valid minimal assessed workstream",
+      "valid": true,
+      "instance": {
+        "envelope": {
+          "artifactType": "workstream",
+          "artifactInstance": { "identifier": "synthetic-workstream-001", "revision": "revision-001" },
+          "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/workstream", "version": "1.0.0" },
+          "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/workstream/1.0.0", "version": "1.0.0" }
+        },
+        "payload": {
+          "governingProjectCharter": { "artifactInstanceIdentifier": "synthetic-charter-001", "artifactRevision": "revision-001" },
+          "purposeAndContribution": { "purpose": "Coordinate bounded public-core schema work.", "projectContribution": ["Preserve verifiable project intent."] },
+          "scopeAndGrouping": { "included": ["Workstream-level coordination."], "boundaries": ["No task execution authority."], "nonGoals": { "disposition": "none" }, "exclusions": { "disposition": "none" }, "groupingRationale": "Related bounded work shares one governing coordination context." },
+          "coordinationRelationships": { "materialDependencies": { "disposition": "none" }, "projectCharterInterfaces": { "disposition": "none" }, "peerWorkstreamInterfaces": { "disposition": "none" }, "downstreamTaskContractInterfaces": { "disposition": "none" } },
+          "governingPrinciples": ["Final authority remains human."],
+          "materialConstraints": { "disposition": "none" },
+          "workstreamConditions": { "assumptions": { "disposition": "none" }, "risks": { "disposition": "none" }, "unresolvedUncertainty": { "disposition": "none" }, "escalationConditions": { "disposition": "none" } },
+          "governance": { "context": ["Repository governance applies."], "finalAuthorityRole": "Owner / Final Authority", "boundedDelegation": { "disposition": "none" }, "contextIsolation": ["Unrelated Workstream context is excluded."] },
+          "taskContractDecomposition": { "expectations": ["Consequential execution requires an approved Task Contract."], "constraints": { "disposition": "none" } },
+          "declaredState": { "currentDisposition": "Bounded coordination is active under the approved charter context.", "materialCoordinationConditions": { "disposition": "none" } },
+          "assuranceExpectations": { "consequentialDecisions": ["Material decisions remain traceable."], "evidence": ["Claims identify supporting evidence."], "review": ["Review scope and limits remain explicit."], "provenance": ["Derived context preserves source pins."], "changeControl": ["Material changes require explicit approval."] },
+          "lifecycleConditions": { "review": ["Review when governing context may have changed."], "amendment": ["Amendment requires an identified revision."], "completion": ["Completion conditions require explicit assessment."], "closure": ["Closure requires an authorized decision."], "supersession": ["Supersession identifies the replacement revision."], "retirement": ["Retirement preserves provenance."] }
+        }
+      }
+    },
+    {
+      "name": "valid fully specified unicode workstream",
+      "valid": true,
+      "instance": {
+        "envelope": {
+          "artifactType": "workstream",
+          "artifactInstance": { "identifier": "synthetic-workstream-002", "revision": "revision-002" },
+          "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/workstream", "version": "1.0.0" },
+          "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/workstream/1.0.0", "version": "1.0.0" }
+        },
+        "payload": {
+          "governingProjectCharter": { "artifactInstanceIdentifier": "project-charter-α", "artifactRevision": "revision-β" },
+          "purposeAndContribution": { "purpose": "Coördineer begrensd werk — menselijk bestuurd.", "projectContribution": ["Behoud traceerbaarheid.", "Ondersteun publiek controleerbare samenwerking."] },
+          "scopeAndGrouping": { "included": ["Publieke schema-architectuur."], "boundaries": ["Geen private implementatie."], "nonGoals": { "disposition": "specified", "items": ["Geen autonome finale goedkeuring."] }, "exclusions": { "disposition": "specified", "items": ["Geen providergebonden productlogica."] }, "groupingRationale": "Samenhangende verantwoordelijkheden delen één begrensde context." },
+          "coordinationRelationships": { "materialDependencies": { "disposition": "specified", "items": ["Accepted architectuur blijft hoger gezag."] }, "projectCharterInterfaces": { "disposition": "specified", "items": ["De toepasselijke charterrevision blijft gepind."] }, "peerWorkstreamInterfaces": { "disposition": "specified", "items": ["Materiële interfaces blijven expliciet."] }, "downstreamTaskContractInterfaces": { "disposition": "specified", "items": ["Elke uitvoering vereist afzonderlijke authority."] } },
+          "governingPrinciples": ["Bewijs vóór claims.", "Context blijft minimaal en relevant."],
+          "materialConstraints": { "disposition": "specified", "items": ["Publieke inhoud bevat geen restricted gegevens."] },
+          "workstreamConditions": { "assumptions": { "disposition": "specified", "items": ["Governing sources blijven beschikbaar."] }, "risks": { "disposition": "specified", "items": ["Onbegrensde context kan provenance verzwakken."] }, "unresolvedUncertainty": { "disposition": "specified", "items": ["Een Serialization Binding is niet geselecteerd."] }, "escalationConditions": { "disposition": "specified", "items": ["Materiële scope-onzekerheid gaat naar finale authority."] } },
+          "governance": { "context": ["GOVERNANCE.md is van toepassing."], "finalAuthorityRole": "Menselijke Owner / Final Authority", "boundedDelegation": { "disposition": "specified", "items": ["Voorbereiding binnen exact goedgekeurde scope."] }, "contextIsolation": ["Andere Workstreams worden standaard uitgesloten."] },
+          "taskContractDecomposition": { "expectations": ["Elke taak blijft afzonderlijk begrensd."], "constraints": { "disposition": "specified", "items": ["Geen impliciete uitvoeringsauthority."] } },
+          "declaredState": { "currentDisposition": "Voorbereide coördinatie wacht op de volgende menselijke gate.", "materialCoordinationConditions": { "disposition": "specified", "items": ["Onzekerheid blijft expliciet."] } },
+          "assuranceExpectations": { "consequentialDecisions": ["Consequente beslissingen behouden rationale."], "evidence": ["Bewijs identificeert bron en revision."], "review": ["Review vermeldt scope en onafhankelijkheid."], "provenance": ["Afgeleide context bewaart bronpinnen."], "changeControl": ["Materiële wijziging vereist expliciete finale goedkeuring."] },
+          "lifecycleConditions": { "review": ["Review bij materiële contextwijziging."], "amendment": ["Amendment krijgt een nieuwe revision."], "completion": ["Completion vereist expliciete beoordeling."], "closure": ["Closure vereist een geautoriseerde beslissing."], "supersession": ["Supersession identificeert de vervanger."], "retirement": ["Retirement bewaart provenance."] }
+        }
+      }
+    },
+    {
+      "name": "valid workstream with common provenance and digest evidence",
+      "valid": true,
+      "instance": {
+        "envelope": {
+          "artifactType": "workstream",
+          "artifactInstance": { "identifier": "synthetic-workstream-003", "revision": "revision-003" },
+          "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/workstream", "version": "1.0.0" },
+          "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/workstream/1.0.0", "version": "1.0.0" },
+          "provenanceReferences": [ { "kind": "artifact", "artifactType": "project-charter", "identifier": "synthetic-charter-003", "revision": "revision-003" } ],
+          "contentDigests": [ { "subject": { "kind": "artifact", "artifactType": "workstream", "identifier": "synthetic-workstream-003", "revision": "revision-003" }, "method": "synthetic-method", "value": "synthetic-value" } ]
+        },
+        "payload": {
+          "governingProjectCharter": { "artifactInstanceIdentifier": "synthetic-charter-003", "artifactRevision": "revision-003" },
+          "purposeAndContribution": { "purpose": "Coordinate evidence-aware bounded work.", "projectContribution": ["Preserve governing traceability."] },
+          "scopeAndGrouping": { "included": ["Synthetic public evidence."], "boundaries": ["No trust claim from a digest."], "nonGoals": { "disposition": "none" }, "exclusions": { "disposition": "none" }, "groupingRationale": "Evidence responsibilities share one coordination boundary." },
+          "coordinationRelationships": { "materialDependencies": { "disposition": "none" }, "projectCharterInterfaces": { "disposition": "none" }, "peerWorkstreamInterfaces": { "disposition": "none" }, "downstreamTaskContractInterfaces": { "disposition": "none" } },
+          "governingPrinciples": ["Digest evidence grants no authority."],
+          "materialConstraints": { "disposition": "none" },
+          "workstreamConditions": { "assumptions": { "disposition": "none" }, "risks": { "disposition": "none" }, "unresolvedUncertainty": { "disposition": "none" }, "escalationConditions": { "disposition": "none" } },
+          "governance": { "context": ["Human governance applies."], "finalAuthorityRole": "Owner / Final Authority", "boundedDelegation": { "disposition": "none" }, "contextIsolation": ["Evidence does not import unrestricted context."] },
+          "taskContractDecomposition": { "expectations": ["Task authority remains separate."], "constraints": { "disposition": "none" } },
+          "declaredState": { "currentDisposition": "Evidence is recorded without an authority claim.", "materialCoordinationConditions": { "disposition": "none" } },
+          "assuranceExpectations": { "consequentialDecisions": ["Decisions remain human-governed."], "evidence": ["Evidence preserves exact subject pins."], "review": ["Review remains evidentiary."], "provenance": ["Provenance references remain explicit."], "changeControl": ["Changes retain revision traceability."] },
+          "lifecycleConditions": { "review": ["Review evidence applicability."], "amendment": ["Amendments identify revisions."], "completion": ["Evidence alone cannot complete the Workstream."], "closure": ["Evidence alone cannot close the Workstream."], "supersession": ["Supersession preserves evidence."], "retirement": ["Retirement preserves traceability."] }
+        }
+      }
+    },
+    {
+      "name": "invalid missing envelope",
+      "valid": false,
+      "instance": { "payload": {} }
+    },
+    {
+      "name": "invalid missing payload",
+      "valid": false,
+      "instance": { "envelope": { "artifactType": "workstream", "artifactInstance": { "identifier": "synthetic-workstream-004", "revision": "revision-004" }, "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/workstream", "version": "1.0.0" }, "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/workstream/1.0.0", "version": "1.0.0" } } }
+    },
+    {
+      "name": "invalid unknown root property",
+      "valid": false,
+      "instance": { "envelope": {}, "payload": {}, "approval": "forbidden" }
+    },
+    {
+      "name": "invalid wrong artifact type and governing definition pins",
+      "valid": false,
+      "instance": { "envelope": { "artifactType": "project-charter", "artifactInstance": { "identifier": "synthetic-workstream-005", "revision": "revision-005" }, "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/project-charter", "version": "2.0.0" }, "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/project-charter/1.0.0", "version": "2.0.0" } }, "payload": {} }
+    },
+    {
+      "name": "invalid incomplete common artifact instance pin",
+      "valid": false,
+      "instance": { "envelope": { "artifactType": "workstream", "artifactInstance": { "identifier": "synthetic-workstream-006" }, "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/workstream", "version": "1.0.0" }, "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/workstream/1.0.0", "version": "1.0.0" } }, "payload": {} }
+    },
+    {
+      "name": "invalid incomplete governing Project Charter pin",
+      "valid": false,
+      "instance": { "envelope": { "artifactType": "workstream", "artifactInstance": { "identifier": "synthetic-workstream-007", "revision": "revision-007" }, "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/workstream", "version": "1.0.0" }, "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/workstream/1.0.0", "version": "1.0.0" } }, "payload": { "governingProjectCharter": { "artifactInstanceIdentifier": "synthetic-charter-007" } } }
+    },
+    {
+      "name": "invalid missing required payload member and unknown nested properties",
+      "valid": false,
+      "instance": { "envelope": { "artifactType": "workstream", "artifactInstance": { "identifier": "synthetic-workstream-008", "revision": "revision-008" }, "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/workstream", "version": "1.0.0" }, "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/workstream/1.0.0", "version": "1.0.0" } }, "payload": { "governingProjectCharter": { "artifactInstanceIdentifier": "synthetic-charter-008", "artifactRevision": "revision-008", "embeddedCharter": {} }, "unknownPayload": true } }
+    },
+    {
+      "name": "invalid blank strings empty arrays duplicate items and wrong type",
+      "valid": false,
+      "instance": { "envelope": { "artifactType": "workstream", "artifactInstance": { "identifier": "synthetic-workstream-009", "revision": "revision-009" }, "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/workstream", "version": "1.0.0" }, "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/workstream/1.0.0", "version": "1.0.0" } }, "payload": { "governingProjectCharter": { "artifactInstanceIdentifier": " ", "artifactRevision": 9 }, "purposeAndContribution": { "purpose": "", "projectContribution": [] }, "governingPrinciples": ["duplicate", "duplicate"] } }
+    },
+    {
+      "name": "invalid null and empty declaration objects",
+      "valid": false,
+      "instance": { "envelope": { "artifactType": "workstream", "artifactInstance": { "identifier": "synthetic-workstream-010", "revision": "revision-010" }, "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/workstream", "version": "1.0.0" }, "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/workstream/1.0.0", "version": "1.0.0" } }, "payload": { "materialConstraints": null, "workstreamConditions": { "assumptions": {} } } }
+    },
+    {
+      "name": "invalid specified declarations missing and empty items",
+      "valid": false,
+      "instance": { "envelope": { "artifactType": "workstream", "artifactInstance": { "identifier": "synthetic-workstream-011", "revision": "revision-011" }, "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/workstream", "version": "1.0.0" }, "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/workstream/1.0.0", "version": "1.0.0" } }, "payload": { "materialConstraints": { "disposition": "specified" }, "workstreamConditions": { "assumptions": { "disposition": "specified", "items": [] } } } }
+    },
+    {
+      "name": "invalid none declaration with items and unknown disposition",
+      "valid": false,
+      "instance": { "envelope": { "artifactType": "workstream", "artifactInstance": { "identifier": "synthetic-workstream-012", "revision": "revision-012" }, "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/workstream", "version": "1.0.0" }, "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/workstream/1.0.0", "version": "1.0.0" } }, "payload": { "materialConstraints": { "disposition": "none", "items": ["forbidden"] }, "workstreamConditions": { "risks": { "disposition": "unknown" } } } }
+    },
+    {
+      "name": "invalid blank declared state and forbidden approval execution extension and runtime fields",
+      "valid": false,
+      "instance": { "envelope": { "artifactType": "workstream", "artifactInstance": { "identifier": "synthetic-workstream-013", "revision": "revision-013" }, "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/workstream", "version": "1.0.0" }, "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/workstream/1.0.0", "version": "1.0.0" } }, "payload": { "declaredState": { "currentDisposition": "   ", "materialCoordinationConditions": { "disposition": "none" }, "approvalState": "approved" }, "taskAuthorization": true, "executionPlan": {}, "extensions": {}, "runtimeState": "running" } }
+    },
+    {
+      "name": "invalid embedded Project Charter peer Workstream and Task Contract artifacts",
+      "valid": false,
+      "instance": { "envelope": { "artifactType": "workstream", "artifactInstance": { "identifier": "synthetic-workstream-014", "revision": "revision-014" }, "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/workstream", "version": "1.0.0" }, "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/workstream/1.0.0", "version": "1.0.0" } }, "payload": { "governingProjectCharter": { "artifactInstanceIdentifier": "synthetic-charter-014", "artifactRevision": "revision-014", "artifact": { "payload": {} } }, "coordinationRelationships": { "peerWorkstreams": [ {} ] }, "taskContractDecomposition": { "taskContracts": [ {} ] } } }
+    }
+  ]
+}

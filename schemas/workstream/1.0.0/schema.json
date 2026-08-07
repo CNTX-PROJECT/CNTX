@@ -1,0 +1,398 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/CNTX-PROJECT/CNTX/schemas/workstream/1.0.0",
+  "$comment": "Accepted ARCH-013 Workstream Schema Version 1.0.0 under issue #52 and Owner / Final Authority acceptance comment 5215029431. Schema validity grants no contract conformance, approval, authority, trust, acceptance, release, deployment, merge permission, access permission, or Task Contract authority.",
+  "title": "CNTX Workstream Artifact",
+  "description": "A complete Workstream Artifact Instance with the exact Accepted Common Artifact Envelope and a closed payload implementing only the responsibilities of CONTRACT-002.",
+  "type": "object",
+  "properties": {
+    "envelope": {
+      "description": "The exact Accepted Common Artifact Envelope specialized for the Workstream Artifact Type, Contract Definition, and Schema Definition.",
+      "allOf": [
+        {
+          "$ref": "https://github.com/CNTX-PROJECT/CNTX/schemas/common-artifact-envelope/1.0.0"
+        },
+        {
+          "properties": {
+            "artifactType": {
+              "const": "workstream"
+            },
+            "governingContract": {
+              "properties": {
+                "identifier": {
+                  "const": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/workstream"
+                },
+                "version": {
+                  "const": "1.0.0"
+                }
+              }
+            },
+            "governingSchema": {
+              "properties": {
+                "identifier": {
+                  "const": "https://github.com/CNTX-PROJECT/CNTX/schemas/workstream/1.0.0"
+                },
+                "version": {
+                  "const": "1.0.0"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "payload": {
+      "$ref": "#/$defs/workstreamPayload"
+    }
+  },
+  "required": [
+    "envelope",
+    "payload"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "nonBlankString": {
+      "description": "A string containing at least one non-whitespace character. Its content remains subject to the governing contract and human review.",
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "nonEmptyUniqueStringArray": {
+      "description": "One or more distinct non-blank declarative statements.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/nonBlankString"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "specifiedDeclaration": {
+      "description": "The category was assessed and one or more items are specified.",
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "specified"
+        },
+        "items": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        }
+      },
+      "required": [
+        "disposition",
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "noneDeclaration": {
+      "description": "The category was assessed for this revision and no item is declared. This is not an approval, completeness, truth, or permanent-absence claim.",
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "none"
+        }
+      },
+      "required": [
+        "disposition"
+      ],
+      "additionalProperties": false
+    },
+    "declarationSet": {
+      "description": "Exactly one explicit specified-items or assessed-none declaration.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/specifiedDeclaration"
+        },
+        {
+          "$ref": "#/$defs/noneDeclaration"
+        }
+      ]
+    },
+    "governingProjectCharter": {
+      "description": "An opaque pin to the governing Project Charter Artifact Instance and Revision. The schema does not retrieve, resolve, embed, or prove the referenced artifact.",
+      "type": "object",
+      "properties": {
+        "artifactInstanceIdentifier": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "artifactRevision": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "artifactInstanceIdentifier",
+        "artifactRevision"
+      ],
+      "additionalProperties": false
+    },
+    "purposeAndContribution": {
+      "type": "object",
+      "properties": {
+        "purpose": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "projectContribution": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        }
+      },
+      "required": [
+        "purpose",
+        "projectContribution"
+      ],
+      "additionalProperties": false
+    },
+    "scopeAndGrouping": {
+      "type": "object",
+      "properties": {
+        "included": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "boundaries": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "nonGoals": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "exclusions": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "groupingRationale": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "included",
+        "boundaries",
+        "nonGoals",
+        "exclusions",
+        "groupingRationale"
+      ],
+      "additionalProperties": false
+    },
+    "coordinationRelationships": {
+      "description": "Declarative coordination relationships only. These values do not embed artifacts, resolve dependencies, or grant authority.",
+      "type": "object",
+      "properties": {
+        "materialDependencies": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "projectCharterInterfaces": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "peerWorkstreamInterfaces": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "downstreamTaskContractInterfaces": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "materialDependencies",
+        "projectCharterInterfaces",
+        "peerWorkstreamInterfaces",
+        "downstreamTaskContractInterfaces"
+      ],
+      "additionalProperties": false
+    },
+    "workstreamConditions": {
+      "type": "object",
+      "properties": {
+        "assumptions": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "risks": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "unresolvedUncertainty": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "escalationConditions": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "assumptions",
+        "risks",
+        "unresolvedUncertainty",
+        "escalationConditions"
+      ],
+      "additionalProperties": false
+    },
+    "governance": {
+      "description": "Applicable governance, authority-role, delegation, and isolation declarations. These declarations do not themselves grant approval or authority.",
+      "type": "object",
+      "properties": {
+        "context": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "finalAuthorityRole": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "boundedDelegation": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "contextIsolation": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        }
+      },
+      "required": [
+        "context",
+        "finalAuthorityRole",
+        "boundedDelegation",
+        "contextIsolation"
+      ],
+      "additionalProperties": false
+    },
+    "taskContractDecomposition": {
+      "description": "Declarative expectations for candidate Task Contracts. This object creates no Task Contract and grants no task-execution authority.",
+      "type": "object",
+      "properties": {
+        "expectations": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "constraints": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "expectations",
+        "constraints"
+      ],
+      "additionalProperties": false
+    },
+    "declaredState": {
+      "description": "The declared Workstream disposition and material coordination conditions. This is not an approval state, task-progress model, timestamp, telemetry stream, or executable state machine.",
+      "type": "object",
+      "properties": {
+        "currentDisposition": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "materialCoordinationConditions": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "currentDisposition",
+        "materialCoordinationConditions"
+      ],
+      "additionalProperties": false
+    },
+    "assuranceExpectations": {
+      "type": "object",
+      "properties": {
+        "consequentialDecisions": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "evidence": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "review": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "provenance": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "changeControl": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        }
+      },
+      "required": [
+        "consequentialDecisions",
+        "evidence",
+        "review",
+        "provenance",
+        "changeControl"
+      ],
+      "additionalProperties": false
+    },
+    "lifecycleConditions": {
+      "description": "Declarative lifecycle conditions, not an executable state machine or approval mechanism.",
+      "type": "object",
+      "properties": {
+        "review": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "amendment": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "completion": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "closure": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "supersession": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "retirement": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        }
+      },
+      "required": [
+        "review",
+        "amendment",
+        "completion",
+        "closure",
+        "supersession",
+        "retirement"
+      ],
+      "additionalProperties": false
+    },
+    "workstreamPayload": {
+      "description": "The closed Workstream payload implementing only the Accepted responsibilities of CONTRACT-002.",
+      "type": "object",
+      "properties": {
+        "governingProjectCharter": {
+          "$ref": "#/$defs/governingProjectCharter"
+        },
+        "purposeAndContribution": {
+          "$ref": "#/$defs/purposeAndContribution"
+        },
+        "scopeAndGrouping": {
+          "$ref": "#/$defs/scopeAndGrouping"
+        },
+        "coordinationRelationships": {
+          "$ref": "#/$defs/coordinationRelationships"
+        },
+        "governingPrinciples": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "materialConstraints": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "workstreamConditions": {
+          "$ref": "#/$defs/workstreamConditions"
+        },
+        "governance": {
+          "$ref": "#/$defs/governance"
+        },
+        "taskContractDecomposition": {
+          "$ref": "#/$defs/taskContractDecomposition"
+        },
+        "declaredState": {
+          "$ref": "#/$defs/declaredState"
+        },
+        "assuranceExpectations": {
+          "$ref": "#/$defs/assuranceExpectations"
+        },
+        "lifecycleConditions": {
+          "$ref": "#/$defs/lifecycleConditions"
+        }
+      },
+      "required": [
+        "governingProjectCharter",
+        "purposeAndContribution",
+        "scopeAndGrouping",
+        "coordinationRelationships",
+        "governingPrinciples",
+        "materialConstraints",
+        "workstreamConditions",
+        "governance",
+        "taskContractDecomposition",
+        "declaredState",
+        "assuranceExpectations",
+        "lifecycleConditions"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

@@ -40,6 +40,20 @@ The architecture index now includes the **Accepted**, documentation-only [Canoni
 
 The architecture index now also exposes the **Accepted** [Project Charter Executable Schema Definition](docs/architecture/project-charter-executable-schema.md) with [ADR-0012](docs/architecture/adr/0012-project-charter-executable-schema.md), the Accepted [Project Charter Schema Version `1.0.0`](schemas/project-charter/1.0.0/schema.json), and its [synthetic validation cases](tests/schemas/project-charter/1.0.0/cases.json). ARCH-012 composes the exact Accepted Common Artifact Envelope with a closed CONTRACT-001 payload and exact Project Charter Artifact Type, governing Contract, and governing Schema pins. Governed integration to `main` activates the exact Schema Version. Acceptance, schema validity, or repository presence grants no contract conformance, authority, release, deployment, implementation, or authority for the next artifact-specific schema.
 
+The architecture index now also exposes the **Accepted** [Workstream
+Executable Schema Definition](docs/architecture/workstream-executable-schema.md)
+with [ADR-0013](docs/architecture/adr/0013-workstream-executable-schema.md), the
+Accepted [Workstream Schema Version `1.0.0`](schemas/workstream/1.0.0/schema.json),
+and its [synthetic validation cases](tests/schemas/workstream/1.0.0/cases.json).
+ARCH-013 composes the exact Accepted Common Artifact Envelope with a closed
+twelve-property CONTRACT-002 payload, exact Workstream Artifact Type and
+governing-definition pins, and an opaque governing Project Charter
+Artifact Instance/Revision pin without a Project Charter schema `$ref`.
+Governed integration to `main` activates the exact Schema Version. Acceptance,
+schema validity, or repository presence grants no contract conformance,
+approval, authority, release, deployment, implementation, merge permission,
+or Task Contract schema authority.
+
 The high-level roadmap is to define public concepts and documentation, invite review under the project governance, and only then consider scoped, approved implementation work. Private reference implementations may exist later outside this public repository.
 
 ## Participate
