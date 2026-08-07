@@ -1,0 +1,308 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/CNTX-PROJECT/CNTX/schemas/project-charter/1.0.0",
+  "$comment": "Proposed ARCH-012 Project Charter Schema Version 1.0.0 under issue #48 and Owner / Final Authority creation-authority comment 5210055148. Schema validity grants no contract conformance, approval, authority, trust, acceptance, release, deployment, merge permission, or access permission.",
+  "title": "CNTX Project Charter Artifact",
+  "description": "A complete Project Charter Artifact Instance with the exact Accepted Common Artifact Envelope and a closed payload implementing only the responsibilities of CONTRACT-001.",
+  "type": "object",
+  "properties": {
+    "envelope": {
+      "description": "The exact Accepted Common Artifact Envelope specialized for the Project Charter Artifact Type, Contract Definition, and Schema Definition.",
+      "allOf": [
+        {
+          "$ref": "https://github.com/CNTX-PROJECT/CNTX/schemas/common-artifact-envelope/1.0.0"
+        },
+        {
+          "properties": {
+            "artifactType": {
+              "const": "project-charter"
+            },
+            "governingContract": {
+              "properties": {
+                "identifier": {
+                  "const": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/project-charter"
+                },
+                "version": {
+                  "const": "1.0.0"
+                }
+              }
+            },
+            "governingSchema": {
+              "properties": {
+                "identifier": {
+                  "const": "https://github.com/CNTX-PROJECT/CNTX/schemas/project-charter/1.0.0"
+                },
+                "version": {
+                  "const": "1.0.0"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "payload": {
+      "$ref": "#/$defs/projectCharterPayload"
+    }
+  },
+  "required": [
+    "envelope",
+    "payload"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "nonBlankString": {
+      "description": "A string containing at least one non-whitespace character. Its content remains subject to the governing contract and human review.",
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "nonEmptyUniqueStringArray": {
+      "description": "One or more distinct non-blank declarative statements.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/nonBlankString"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "specifiedDeclaration": {
+      "description": "The category was assessed and one or more items are specified.",
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "specified"
+        },
+        "items": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        }
+      },
+      "required": [
+        "disposition",
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "noneDeclaration": {
+      "description": "The category was assessed for this revision and no item is declared. This is not an approval, completeness, truth, or permanent-absence claim.",
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "none"
+        }
+      },
+      "required": [
+        "disposition"
+      ],
+      "additionalProperties": false
+    },
+    "declarationSet": {
+      "description": "Exactly one explicit specified-items or assessed-none declaration.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/specifiedDeclaration"
+        },
+        {
+          "$ref": "#/$defs/noneDeclaration"
+        }
+      ]
+    },
+    "outcomes": {
+      "type": "object",
+      "properties": {
+        "desired": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "successDirection": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "desired",
+        "successDirection"
+      ],
+      "additionalProperties": false
+    },
+    "scope": {
+      "type": "object",
+      "properties": {
+        "included": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "boundaries": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "nonGoals": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "included",
+        "boundaries",
+        "nonGoals"
+      ],
+      "additionalProperties": false
+    },
+    "governance": {
+      "description": "Applicable governance context and the final-authority role. These declarations do not themselves grant approval or authority.",
+      "type": "object",
+      "properties": {
+        "context": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "finalAuthorityRole": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "context",
+        "finalAuthorityRole"
+      ],
+      "additionalProperties": false
+    },
+    "projectConditions": {
+      "type": "object",
+      "properties": {
+        "assumptions": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "dependencies": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "risks": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "unresolvedUncertainty": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "assumptions",
+        "dependencies",
+        "risks",
+        "unresolvedUncertainty"
+      ],
+      "additionalProperties": false
+    },
+    "informationBoundaries": {
+      "description": "Public and restricted-information boundaries. Restricted content must be referenced safely rather than copied into a public artifact.",
+      "type": "object",
+      "properties": {
+        "publicInformation": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "restrictedInformation": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "publicInformation",
+        "restrictedInformation"
+      ],
+      "additionalProperties": false
+    },
+    "downstreamExpectations": {
+      "description": "Enduring expectations for downstream artifacts and controls. These statements create no task authority, workflow, or embedded downstream artifact.",
+      "type": "object",
+      "properties": {
+        "workstreams": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "taskContracts": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "consequentialDecisions": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "traceability": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "changeControl": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        }
+      },
+      "required": [
+        "workstreams",
+        "taskContracts",
+        "consequentialDecisions",
+        "traceability",
+        "changeControl"
+      ],
+      "additionalProperties": false
+    },
+    "lifecycleConditions": {
+      "description": "Review and change conditions, not an executable lifecycle state machine or approval mechanism.",
+      "type": "object",
+      "properties": {
+        "review": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "amendment": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "supersession": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "retirement": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        }
+      },
+      "required": [
+        "review",
+        "amendment",
+        "supersession",
+        "retirement"
+      ],
+      "additionalProperties": false
+    },
+    "projectCharterPayload": {
+      "description": "The closed Project Charter payload implementing only the Accepted responsibilities of CONTRACT-001.",
+      "type": "object",
+      "properties": {
+        "purpose": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "outcomes": {
+          "$ref": "#/$defs/outcomes"
+        },
+        "scope": {
+          "$ref": "#/$defs/scope"
+        },
+        "governingPrinciples": {
+          "$ref": "#/$defs/nonEmptyUniqueStringArray"
+        },
+        "materialConstraints": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "governance": {
+          "$ref": "#/$defs/governance"
+        },
+        "projectConditions": {
+          "$ref": "#/$defs/projectConditions"
+        },
+        "informationBoundaries": {
+          "$ref": "#/$defs/informationBoundaries"
+        },
+        "downstreamExpectations": {
+          "$ref": "#/$defs/downstreamExpectations"
+        },
+        "lifecycleConditions": {
+          "$ref": "#/$defs/lifecycleConditions"
+        }
+      },
+      "required": [
+        "purpose",
+        "outcomes",
+        "scope",
+        "governingPrinciples",
+        "materialConstraints",
+        "governance",
+        "projectConditions",
+        "informationBoundaries",
+        "downstreamExpectations",
+        "lifecycleConditions"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
