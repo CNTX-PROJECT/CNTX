@@ -88,21 +88,21 @@ validity, or repository presence grants no contract conformance, task
 authority, source access, retrieval or disclosure permission, merge permission,
 release, deployment, Execution Result schema authority, or follow-on authority.
 
-The architecture index now also exposes the **Proposed** [Execution Result
+The architecture index now also exposes the **Accepted** [Execution Result
 Executable Schema Definition](docs/architecture/execution-result-executable-schema.md)
 with [ADR-0016](docs/architecture/adr/0016-execution-result-executable-schema.md),
-the Proposed and inactive [Execution Result Schema Version `1.0.0`](schemas/execution-result/1.0.0/schema.json),
+the Accepted [Execution Result Schema Version `1.0.0`](schemas/execution-result/1.0.0/schema.json),
 and its [synthetic validation cases](tests/schemas/execution-result/1.0.0/cases.json).
 ARCH-016 composes the exact Accepted Common Artifact Envelope with a closed
 fourteen-property CONTRACT-005 payload, one opaque governing Task Contract
 pin, and explicit opaque Context Packet pin declarations without any
 artifact-specific schema `$ref`. Output, action, resource, provenance, check,
 criteria, limitation, stop, security/privacy, and traceability values remain
-bounded evidentiary claims. Candidate creation, validation, repository
-presence, or review grants no correctness, completion, contract conformance,
-acceptance, integration, release, deployment, merge permission, Evidence
-Bundle schema authority, or follow-on authority. Separate exact-head Owner /
-Final Authority acceptance is required before any promotion or integration.
+bounded evidentiary claims. Governed integration to `main` activates the exact
+Schema Version. Acceptance, schema validity, or repository presence grants no
+correctness, completion, contract conformance, integration authority, release,
+deployment, merge permission, Evidence Bundle schema authority, or follow-on
+authority.
 
 The high-level roadmap is to define public concepts and documentation, invite review under the project governance, and only then consider scoped, approved implementation work. Private reference implementations may exist later outside this public repository.
 

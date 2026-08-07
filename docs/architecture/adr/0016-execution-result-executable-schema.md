@@ -1,8 +1,9 @@
 # ADR-0016: Execution Result executable schema definition
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-08-07
 - **Issue:** [#58](https://github.com/CNTX-PROJECT/CNTX/issues/58)
+- **Owner acceptance:** issue comment `5217275706`
 - **Decision:** ARCH-016 — Execution Result Executable Schema Definition
 
 ## Context
@@ -15,13 +16,13 @@ non-self-approving Execution Result meaning.
 
 After Accepted Context Packet Schema Version `1.0.0`, the dependency-first
 rollout permits a separately governed Execution Result executable-schema
-candidate. The candidate must translate only CONTRACT-005 responsibilities,
-remain structurally evaluative, preserve final human authority, and introduce
-no artifact-specific schema dependency or implementation mechanism.
+decision. The decision translates only CONTRACT-005 responsibilities, remains
+structurally evaluative, preserves final human authority, and introduces no
+artifact-specific schema dependency or implementation mechanism.
 
 ## Decision
 
-Propose one JSON Schema Draft 2020-12 Schema Resource at
+Adopt one JSON Schema Draft 2020-12 Schema Resource at
 `schemas/execution-result/1.0.0/schema.json` with canonical `$id`
 `https://github.com/CNTX-PROJECT/CNTX/schemas/execution-result/1.0.0`.
 
@@ -41,7 +42,7 @@ The resource:
 - permits only bounded treatment, check-outcome, and criteria-assessment
   tokens;
 - keeps all internal references fragment-local; and
-- remains Proposed and inactive pending separate exact-head Owner acceptance.
+- is Accepted; governed integration to `main` activates the exact resource.
 
 ## Rationale
 
@@ -79,7 +80,7 @@ JSON assumptions; and review or schema validity as acceptance.
 
 ## Validation
 
-The candidate requires strict duplicate-free JSON and UTF-8 checks, official
+The accepted resource requires strict duplicate-free JSON and UTF-8 checks, official
 Draft 2020-12 schema checking, isolated `jsonschema 4.25.1`, exact local
 registration of the Common Artifact Envelope, required missing-resource
 failure, all twenty expected fixture outcomes, exact root/constants/payload,
@@ -98,7 +99,7 @@ restricted content, and private implementation details remain forbidden.
 ## Authority and conformance boundary
 
 The resource is Evidentiary and non-self-approving. Schema validity proves only
-structural satisfaction of this exact candidate under the registered common
+structural satisfaction of this exact schema under the registered common
 resource. It grants no task authority, correctness, completion, criteria
 satisfaction, acceptance, integration, release, deployment, or merge
 permission.
@@ -113,6 +114,7 @@ registry, cache, bundler, network access, tooling, runtime, implementation,
 product, release, tag, hosted publication, deployment; and Evidence Bundle or
 later schemas.
 
-Separate Owner / Final Authority acceptance of the exact reviewed candidate is
-required before promotion, Ready transition, merge, completion, closure,
-activation, cleanup, or follow-on work.
+Owner / Final Authority acceptance of the exact reviewed candidate is recorded
+in issue comment `5217275706`. Governed integration to `main` activates exactly
+Execution Result Schema Version `1.0.0`. No Evidence Bundle or later schema is
+automatically authorized.

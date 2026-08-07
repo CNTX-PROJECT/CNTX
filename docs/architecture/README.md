@@ -72,20 +72,20 @@ merge permission, release, deployment, Execution Result schema authority, or
 follow-on authority.
 
 The [Execution Result Executable Schema Definition](execution-result-executable-schema.md)
-and [ADR-0016](adr/0016-execution-result-executable-schema.md) are **Proposed**
-under issue #58. The proposed inactive Schema Version `1.0.0` composes the
-exact Accepted Common Artifact Envelope with a closed fourteen-property
-CONTRACT-005 payload, one opaque governing Task Contract pin, and explicit
-opaque Context Packet pin declarations. It contains no artifact-specific
-schema `$ref`. Output, actions, side effects, resources, provenance, checks,
-criteria assessments, assumptions, limitations, failures, deviations, stops,
+and [ADR-0016](adr/0016-execution-result-executable-schema.md) are **Accepted**
+under issue #58 and Owner acceptance comment `5217275706`. They define one
+Draft 2020-12 Execution Result Schema Version `1.0.0` that composes the exact
+Accepted Common Artifact Envelope with a closed fourteen-property CONTRACT-005
+payload, one opaque governing Task Contract pin, and explicit opaque Context
+Packet pin declarations. It contains no artifact-specific schema `$ref`.
+Output, actions, side effects, resources, provenance, checks, criteria
+assessments, assumptions, limitations, failures, deviations, stops,
 escalations, security/privacy, and evidence/review/decision/lifecycle
-traceability remain evidentiary declarations. Candidate creation, validation,
-Draft publication, and transparent non-independent review grant no
-correctness, completion, conformance, acceptance, integration, release,
-deployment, merge permission, Evidence Bundle schema authority, or follow-on
-authority. Separate Owner / Final Authority acceptance of the exact reviewed
-head is required before promotion or integration.
+traceability remain evidentiary declarations. Governed integration to `main`
+activates that exact Schema Version. Acceptance, schema validity, or repository
+presence grants no correctness, completion, conformance, integration authority,
+release, deployment, merge permission, Evidence Bundle schema authority, or
+follow-on authority.
 
 ## Document status
 

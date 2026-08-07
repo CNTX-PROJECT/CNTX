@@ -1,10 +1,11 @@
 {
   "schemaId": "https://github.com/CNTX-PROJECT/CNTX/schemas/execution-result/1.0.0",
   "candidateSchemaVersion": "1.0.0",
-  "documentStatus": "Proposed",
+  "documentStatus": "Accepted",
   "nonNormative": true,
   "issue": "https://github.com/CNTX-PROJECT/CNTX/issues/58",
-  "description": "Public-safe synthetic validation cases for Proposed ARCH-016 Schema Version 1.0.0. Expected validity is structural evidence only and grants no contract conformance, correctness, completion, approval, acceptance, integration, release, deployment, merge permission, or Evidence Bundle authority.",
+  "ownerAcceptanceComment": "5217275706",
+  "description": "Public-safe synthetic validation cases for Accepted ARCH-016 Schema Version 1.0.0. Expected validity is structural evidence only and grants no contract conformance, correctness, completion, approval, acceptance, integration, release, deployment, merge permission, or Evidence Bundle authority.",
   "cases": [
     {
       "name": "valid minimal stopped result with assessed absence",

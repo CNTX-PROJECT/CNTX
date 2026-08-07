@@ -2,21 +2,22 @@
 
 ## Status and authority
 
-**Document Status:** Proposed.
+**Document Status:** Accepted.
 
-This document is a Proposed executable-schema architecture candidate governed
+This document is an Accepted executable-schema architecture decision governed
 by [issue #58](https://github.com/CNTX-PROJECT/CNTX/issues/58) and recorded by
 [ADR-0016](adr/0016-execution-result-executable-schema.md). Owner / Final
-Authority creation authority is recorded in issue comment `5216946200`.
+Authority acceptance of the exact reviewed candidate is recorded in issue
+comment `5217275706`.
 
-The accompanying [Schema Resource](../../schemas/execution-result/1.0.0/schema.json)
+The exact reviewed [Schema Resource](../../schemas/execution-result/1.0.0/schema.json)
 and [synthetic test evidence](../../tests/schemas/execution-result/1.0.0/cases.json)
-are Proposed and inactive. Candidate creation, validation, Draft publication,
-or transparent non-independent review grants no acceptance. Separate Owner /
-Final Authority acceptance of the exact reviewed candidate is required before
-any status promotion or integration.
+are Accepted in the revision recorded by Owner / Final Authority acceptance
+comment `5217275706`. On governed integration to `main`, Execution Result Schema
+Version `1.0.0` becomes active within this exact scope. The transparent
+non-independent review was evidentiary only and did not grant acceptance.
 
-This candidate remains subordinate to Accepted architecture, Accepted
+This decision remains subordinate to Accepted architecture, Accepted
 [CONTRACT-005](../contracts/execution-result-contract.md), repository
 governance, and final human authority. It modifies no Accepted source and
 creates no Execution Result Artifact Instance, task authority, correctness or
@@ -33,7 +34,7 @@ Accepted [ARCH-011](contract-definition-identity-version-binding.md) allocates
 the Execution Result Contract Definition Identifier and Version. CONTRACT-005
 controls Execution Result meaning and authority boundaries.
 
-Proposed ARCH-016 binds one Draft 2020-12 Schema Resource that specializes
+Accepted ARCH-016 binds one Draft 2020-12 Schema Resource that specializes
 only the common-envelope constants, represents the governing Task Contract
 through one opaque Artifact Instance/Revision pin, represents used Context
 Packets through an explicit opaque-pin declaration, and translates only
@@ -57,7 +58,7 @@ accepted, integrated, released, deployed, or permitted to merge.
 
 ## Exact resource identity and version
 
-| Dimension | Proposed value |
+| Dimension | Accepted value |
 | --- | --- |
 | Logical Schema Identity | CNTX Public Core Schema Family / Execution Result Artifact |
 | Schema language | JSON Schema |
@@ -67,9 +68,9 @@ accepted, integrated, released, deployed, or permitted to merge.
 | Schema Version | `1.0.0` |
 | Canonical repository path | `schemas/execution-result/1.0.0/schema.json` |
 | Schema-resource media type | `application/schema+json` |
-| Document Status | Proposed under issue #58 |
+| Document Status | Accepted under issue #58 and Owner acceptance comment `5217275706` |
 
-The `$id` is the stable identity of this proposed exact Schema Version. Its
+The `$id` is the stable identity of this exact Schema Version. Its
 HTTPS form neither requires nor authorizes network access. It is not a branch,
 tag, release, resolver mapping, registry entry, hosted-publication guarantee,
 Serialization Binding, trust marker, or authority source.
@@ -293,7 +294,7 @@ and validation or review as acceptance.
 
 ## Deferred and explicitly unauthorized scope
 
-This candidate defines no Artifact Instance, identifier generation, revision
+This decision defines no Artifact Instance, identifier generation, revision
 sequencing, artifact-specific schema dependency, execution or mutation,
 resource access, validator implementation/output contract, criteria engine,
 approval/acceptance mechanism, lifecycle or workflow, digest method,
@@ -305,10 +306,9 @@ hosted publication, or deployment.
 
 ## Continuing gate
 
-Candidate creation, validation, Draft publication, and exact-head COMMENT
-review do not grant acceptance. Separate Owner / Final Authority acceptance of
-the exact reviewed head is required before status promotion, Ready transition,
-merge, completion, issue closure, activation, or public branch cleanup.
+The exact reviewed candidate was accepted by the Owner / Final Authority in
+issue comment `5217275706`. Governed integration to `main` activates exactly
+Execution Result Schema Version `1.0.0`.
 
 No Evidence Bundle or other follow-on Schema Resource is automatically
-authorized by this candidate.
+authorized by this decision.
