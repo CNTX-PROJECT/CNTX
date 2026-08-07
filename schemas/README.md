@@ -4,7 +4,7 @@
 
 This directory contains machine-evaluable schema-resource candidates and, after exact-revision human acceptance and governed integration, accepted schema resources. A file's existence, JSON Schema validity, `$id`, Schema Version, test result, repository location, or publication does not grant Document Status, contract conformance, authority, trust, approval, release, deployment, merge permission, or access permission.
 
-The current Accepted resources are the ARCH-009 [Common Artifact Envelope Schema Version `1.0.0`](common-artifact-envelope/1.0.0/schema.json), approved by the Owner / Final Authority in issue comment `5208715683`; the ARCH-012 [Project Charter Schema Version `1.0.0`](project-charter/1.0.0/schema.json), accepted in issue comment `5210242651`; the ARCH-013 [Workstream Schema Version `1.0.0`](workstream/1.0.0/schema.json), accepted in issue comment `5215029431`; the ARCH-014 [Task Contract Schema Version `1.0.0`](task-contract/1.0.0/schema.json), accepted in issue comment `5215700352`; the ARCH-015 [Context Packet Schema Version `1.0.0`](context-packet/1.0.0/schema.json), accepted in issue comment `5216466742`; and the ARCH-016 [Execution Result Schema Version `1.0.0`](execution-result/1.0.0/schema.json), accepted in issue comment `5217275706`. Governed integration to `main` activates each exact resource. The applicable architecture documents and ADRs remain the status sources.
+The current Accepted resources are the ARCH-009 [Common Artifact Envelope Schema Version `1.0.0`](common-artifact-envelope/1.0.0/schema.json), approved by the Owner / Final Authority in issue comment `5208715683`; the ARCH-012 [Project Charter Schema Version `1.0.0`](project-charter/1.0.0/schema.json), accepted in issue comment `5210242651`; the ARCH-013 [Workstream Schema Version `1.0.0`](workstream/1.0.0/schema.json), accepted in issue comment `5215029431`; the ARCH-014 [Task Contract Schema Version `1.0.0`](task-contract/1.0.0/schema.json), accepted in issue comment `5215700352`; the ARCH-015 [Context Packet Schema Version `1.0.0`](context-packet/1.0.0/schema.json), accepted in issue comment `5216466742`; the ARCH-016 [Execution Result Schema Version `1.0.0`](execution-result/1.0.0/schema.json), accepted in issue comment `5217275706`; and the ARCH-017 [Evidence Bundle Schema Version `1.0.0`](evidence-bundle/1.0.0/schema.json), accepted in issue comment `5217888146`. Governed integration to `main` activates each exact resource. The applicable architecture documents and ADRs remain the status sources.
 
 ## Common Artifact Envelope Schema Version 1.0.0
 
@@ -204,22 +204,22 @@ exact-head Owner / Final Authority acceptance is recorded in issue comment
 completion, integration authority, release, deployment, merge permission,
 Evidence Bundle schema authority, or follow-on authority.
 
-## Evidence Bundle Schema Version 1.0.0 candidate
+## Evidence Bundle Schema Version 1.0.0
 
-| Dimension | Proposed value |
+| Dimension | Accepted value |
 | --- | --- |
 | Logical schema identity | CNTX Public Core Schema Family / Evidence Bundle Artifact |
 | Schema language and dialect | JSON Schema Draft 2020-12 |
 | Dialect declaration | `https://json-schema.org/draft/2020-12/schema` |
 | Canonical `$id` | `https://github.com/CNTX-PROJECT/CNTX/schemas/evidence-bundle/1.0.0` |
-| Schema Version | `1.0.0`, Proposed and inactive |
+| Schema Version | `1.0.0` |
 | Canonical repository path | `schemas/evidence-bundle/1.0.0/schema.json` |
 | Exact external dependency | Accepted Common Artifact Envelope Schema Version `1.0.0` |
 | Governing Contract Definition | `https://github.com/CNTX-PROJECT/CNTX/contract-definitions/evidence-bundle` at `1.0.0` |
 | Schema-resource media type | `application/schema+json` |
-| Document Status | Proposed under issue #60 and creation-authority comment `5217659534` |
+| Document Status | Accepted under issue #60 and Owner acceptance comment `5217888146` |
 
-The candidate evaluates one complete closed Evidence Bundle artifact with
+The resource evaluates one complete closed Evidence Bundle artifact with
 mandatory `envelope` and `payload`. Its envelope statically references the
 exact Accepted Common Artifact Envelope and constrains only the Evidence
 Bundle Artifact Type and governing Contract and Schema coordinates. Its closed
@@ -239,13 +239,13 @@ schema defines no collection, retrieval, scoring, verification, access,
 disclosure, approval, acceptance, workflow, release, deployment, or merge
 mechanism.
 
-The Proposed [ARCH-017 architecture candidate](../docs/architecture/evidence-bundle-executable-schema.md),
+The Accepted [ARCH-017 architecture decision](../docs/architecture/evidence-bundle-executable-schema.md),
 [ADR-0017](../docs/architecture/adr/0017-evidence-bundle-executable-schema.md),
 and [non-normative test manifest](../tests/schemas/evidence-bundle/1.0.0/cases.json)
-define and evidence the candidate boundary. Creation, validation, review,
-repository presence, or `1.0.0` grants no acceptance or activation. Separate
-exact-head Owner / Final Authority acceptance and a separately authorized
-governed integration are required. Schema validity grants no contract
+define and evidence the Accepted boundary. Creation, validation, review,
+repository presence, or `1.0.0` did not grant acceptance or activation. Exact-head
+Owner / Final Authority acceptance is recorded in issue comment `5217888146`,
+and governed integration to `main` activates Schema Version `1.0.0`. Schema validity grants no contract
 conformance, source truth, relevance, sufficiency, correctness, acceptance,
 integration, release, deployment, merge permission, Review Record schema
 authority, or follow-on authority.

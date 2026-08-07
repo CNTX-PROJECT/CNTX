@@ -2,22 +2,22 @@
 
 ## Status and authority
 
-**Document Status:** Proposed.
+**Document Status:** Accepted.
 
-This document is a Proposed executable-schema architecture candidate governed
+This document is an Accepted executable-schema architecture decision governed
 by [issue #60](https://github.com/CNTX-PROJECT/CNTX/issues/60) and recorded by
-[ADR-0017](adr/0017-evidence-bundle-executable-schema.md). Attributable Owner /
-Final Authority authorization to create and review the candidate is recorded
-in issue comment `5217659534`.
+[ADR-0017](adr/0017-evidence-bundle-executable-schema.md). Owner / Final
+Authority acceptance of the exact reviewed candidate is recorded in issue
+comment `5217888146`.
 
-The [Schema Resource](../../schemas/evidence-bundle/1.0.0/schema.json) and
+The exact reviewed [Schema Resource](../../schemas/evidence-bundle/1.0.0/schema.json) and
 [synthetic test evidence](../../tests/schemas/evidence-bundle/1.0.0/cases.json)
-are Proposed and inactive. Creation, repository presence, validation, or the
-transparent non-independent review does not grant acceptance. The exact
-reviewed candidate requires separate attributable Owner / Final Authority
-acceptance before any status promotion or integration may be considered.
+are Accepted in the revision recorded by Owner / Final Authority acceptance
+comment `5217888146`. On governed integration to `main`, Evidence Bundle Schema
+Version `1.0.0` becomes active within this exact scope. The transparent
+non-independent review was evidentiary only and did not grant acceptance.
 
-This candidate remains subordinate to Accepted architecture, Accepted
+This decision remains subordinate to Accepted architecture, Accepted
 [CONTRACT-006](../contracts/evidence-bundle-contract.md), repository governance,
 and final human authority. It modifies no Accepted source and creates no
 Evidence Bundle Artifact Instance, collection or access authority, evidentiary
@@ -34,7 +34,7 @@ Accepted [ARCH-011](contract-definition-identity-version-binding.md) allocates
 the Evidence Bundle Contract Definition Identifier and Version. CONTRACT-006
 controls Evidence Bundle meaning and authority boundaries.
 
-Proposed ARCH-017 binds one Draft 2020-12 Schema Resource that specializes
+Accepted ARCH-017 binds one Draft 2020-12 Schema Resource that specializes
 only the common-envelope constants, represents the governing Task Contract
 through one opaque Artifact Instance/Revision pin, represents every other
 artifact relationship through explicit opaque-pin declarations, and
@@ -61,19 +61,19 @@ decision, acceptance, integration, release, deployment, or merge.
 
 ## Exact resource identity and version
 
-| Dimension | Proposed value |
+| Dimension | Accepted value |
 | --- | --- |
 | Logical Schema Identity | CNTX Public Core Schema Family / Evidence Bundle Artifact |
 | Schema language | JSON Schema |
 | Dialect | Draft 2020-12 |
 | `$schema` | `https://json-schema.org/draft/2020-12/schema` |
 | Canonical `$id` | `https://github.com/CNTX-PROJECT/CNTX/schemas/evidence-bundle/1.0.0` |
-| Schema Version | `1.0.0`, Proposed and inactive |
+| Schema Version | `1.0.0` |
 | Canonical repository path | `schemas/evidence-bundle/1.0.0/schema.json` |
 | Schema-resource media type | `application/schema+json` |
-| Document Status | Proposed under issue #60 and creation-authority comment `5217659534` |
+| Document Status | Accepted under issue #60 and Owner acceptance comment `5217888146` |
 
-The `$id` is the proposed stable identity of this exact Schema Version. Its
+The `$id` is the stable identity of this exact Schema Version. Its
 HTTPS form neither requires nor authorizes network access. It is not a branch,
 tag, release, resolver mapping, registry entry, hosted-publication guarantee,
 Serialization Binding, trust marker, or authority source.
@@ -339,11 +339,9 @@ product, release, tag, hosted publication, or deployment.
 
 ## Continuing gate
 
-Issue comment `5217659534` authorizes creation and exact-head review only. The
-exact reviewed candidate must be presented for separate attributable Owner /
-Final Authority acceptance. Until that later authority, ARCH-017, ADR-0017,
-and Evidence Bundle Schema Version `1.0.0` remain Proposed and inactive.
+The exact reviewed candidate was accepted by the Owner / Final Authority in
+issue comment `5217888146`. Governed integration to `main` activates exactly
+Evidence Bundle Schema Version `1.0.0`.
 
-No Ready transition, status promotion, merge, completion, issue closure,
-branch cleanup, Review Record schema, or other follow-on work is authorized by
-this candidate.
+No Review Record or other follow-on Schema Resource is automatically
+authorized by this decision.

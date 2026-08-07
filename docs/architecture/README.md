@@ -88,10 +88,10 @@ release, deployment, merge permission, Evidence Bundle schema authority, or
 follow-on authority.
 
 The [Evidence Bundle Executable Schema Definition](evidence-bundle-executable-schema.md)
-and [ADR-0017](adr/0017-evidence-bundle-executable-schema.md) are **Proposed**
-under issue #60 and creation-authority comment `5217659534`. They define one
-Proposed and inactive Draft 2020-12 Evidence Bundle Schema Version `1.0.0`
-candidate that composes the exact Accepted Common Artifact Envelope with a
+and [ADR-0017](adr/0017-evidence-bundle-executable-schema.md) are **Accepted**
+under issue #60 and Owner acceptance comment `5217888146`. They define one
+Accepted Draft 2020-12 Evidence Bundle Schema Version `1.0.0` that composes the
+exact Accepted Common Artifact Envelope with a
 closed fifteen-property CONTRACT-006 payload, one opaque governing Task
 Contract pin, exact reviewable-subject declarations, explicit opaque artifact
 relationships, Evidence Items, claim traceability, and bounded provenance,
@@ -102,8 +102,7 @@ release, deployment, or merge mechanism. Creation, validation, review, schema
 validity, or repository presence grants no contract conformance, source truth,
 relevance, sufficiency, correctness, acceptance, integration, release,
 deployment, merge permission, Review Record schema authority, or follow-on
-authority. Separate exact-head Owner / Final Authority acceptance is required
-before any status promotion or integration may be considered.
+authority. Governed integration to `main` activates the exact Schema Version.
 
 ## Document status
 

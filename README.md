@@ -104,24 +104,25 @@ correctness, completion, contract conformance, integration authority, release,
 deployment, merge permission, Evidence Bundle schema authority, or follow-on
 authority.
 
-The architecture index now also exposes the **Proposed** [Evidence Bundle
+The architecture index now also exposes the **Accepted** [Evidence Bundle
 Executable Schema Definition](docs/architecture/evidence-bundle-executable-schema.md)
 with [ADR-0017](docs/architecture/adr/0017-evidence-bundle-executable-schema.md),
-the Proposed and inactive [Evidence Bundle Schema Version `1.0.0`](schemas/evidence-bundle/1.0.0/schema.json),
+the Accepted [Evidence Bundle Schema Version `1.0.0`](schemas/evidence-bundle/1.0.0/schema.json),
 and its [synthetic validation cases](tests/schemas/evidence-bundle/1.0.0/cases.json).
 ARCH-017 composes the exact Accepted Common Artifact Envelope with a closed
 fifteen-property CONTRACT-006 payload, one opaque governing Task Contract pin,
 exact reviewable-subject declarations, explicit opaque artifact relationships,
 Evidence Items, claim traceability, and bounded provenance, quality,
 limitation, security/privacy, and lifecycle declarations without any
-artifact-specific schema `$ref`. The candidate implements no collection,
+artifact-specific schema `$ref`. The accepted resource implements no collection,
 retrieval, scoring, verification, access, disclosure, approval, acceptance,
 workflow, release, deployment, or merge mechanism. Creation, validation,
 review, schema validity, or repository presence grants no contract conformance,
 source truth, relevance, sufficiency, correctness, acceptance, integration,
 release, deployment, merge permission, Review Record schema authority, or
-follow-on authority. Separate exact-head Owner / Final Authority acceptance is
-required before any status promotion or integration may be considered.
+follow-on authority. Governed integration to `main` activates the exact Schema
+Version; acceptance and activation authorize no Review Record schema or other
+follow-on work.
 
 The high-level roadmap is to define public concepts and documentation, invite review under the project governance, and only then consider scoped, approved implementation work. Private reference implementations may exist later outside this public repository.
 

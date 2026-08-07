@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/CNTX-PROJECT/CNTX/schemas/evidence-bundle/1.0.0",
-  "$comment": "Proposed ARCH-017 Evidence Bundle Schema Version 1.0.0 under issue #60 and attributable Owner / Final Authority authority comment 5217659534. Schema validity grants no contract conformance, source truth, relevance, sufficiency, correctness, approval, acceptance, integration, release, deployment, merge permission, or follow-on authority.",
+  "$comment": "Accepted ARCH-017 Evidence Bundle Schema Version 1.0.0 under issue #60 and Owner / Final Authority acceptance comment 5217888146. Schema validity grants no contract conformance, source truth, relevance, sufficiency, correctness, approval, acceptance, integration, release, deployment, merge permission, or follow-on authority.",
   "title": "CNTX Evidence Bundle Artifact",
   "description": "A complete Evidence Bundle artifact with the exact Accepted Common Artifact Envelope and a closed CONTRACT-006 payload. This schema evaluates structure only and records bounded Evidentiary claims without self-approval.",
   "type": "object",

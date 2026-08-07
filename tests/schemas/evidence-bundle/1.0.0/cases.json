@@ -1,11 +1,11 @@
 {
   "schemaId": "https://github.com/CNTX-PROJECT/CNTX/schemas/evidence-bundle/1.0.0",
   "candidateSchemaVersion": "1.0.0",
-  "documentStatus": "Proposed",
+  "documentStatus": "Accepted",
   "nonNormative": true,
   "issue": "https://github.com/CNTX-PROJECT/CNTX/issues/60",
-  "ownerAuthorityComment": "5217659534",
-  "description": "Public-safe synthetic validation cases for Proposed ARCH-017 Evidence Bundle Schema Version 1.0.0. Expected validity is structural evidence only and grants no contract conformance, source truth, relevance, sufficiency, correctness, approval, acceptance, integration, release, deployment, merge permission, or Review Record authority.",
+  "ownerAcceptanceComment": "5217888146",
+  "description": "Public-safe synthetic validation cases for Accepted ARCH-017 Evidence Bundle Schema Version 1.0.0. Expected validity is structural evidence only and grants no contract conformance, source truth, relevance, sufficiency, correctness, approval, acceptance, integration, release, deployment, merge permission, or Review Record authority.",
   "cases": [
     {
       "name": "valid minimal insufficiency bundle with explicit missing evidence",

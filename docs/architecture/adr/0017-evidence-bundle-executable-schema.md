@@ -1,9 +1,9 @@
 # ADR-0017: Evidence Bundle executable schema definition
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-08-07
 - **Issue:** [#60](https://github.com/CNTX-PROJECT/CNTX/issues/60)
-- **Creation authority:** issue comment `5217659534`
+- **Owner acceptance:** issue comment `5217888146`
 - **Decision:** ARCH-017 — Evidence Bundle Executable Schema Definition
 
 ## Context
@@ -16,18 +16,17 @@ non-self-approving Evidence Bundle meaning.
 
 After Accepted Execution Result Schema Version `1.0.0`, the dependency-first
 rollout permits a separately governed Evidence Bundle executable-schema
-candidate. The candidate translates only CONTRACT-006 responsibilities,
+decision. The decision translates only CONTRACT-006 responsibilities,
 remains structurally evaluative, preserves final human authority, and
 introduces no artifact-specific schema dependency or implementation mechanism.
 
-## Proposed decision
+## Decision
 
-Adopt, only after separate exact-head Owner / Final Authority acceptance and
-governed integration, one JSON Schema Draft 2020-12 Schema Resource at
+Adopt one JSON Schema Draft 2020-12 Schema Resource at
 `schemas/evidence-bundle/1.0.0/schema.json` with canonical `$id`
 `https://github.com/CNTX-PROJECT/CNTX/schemas/evidence-bundle/1.0.0`.
 
-The proposed resource:
+The resource:
 
 - evaluates a closed root with exactly `envelope` and `payload`;
 - references the exact Accepted Common Artifact Envelope once;
@@ -42,11 +41,11 @@ The proposed resource:
   and artifact-pin structures;
 - permits only bounded representation-treatment tokens;
 - keeps all internal references fragment-local; and
-- remains Proposed and inactive pending separate exact-head acceptance.
+- is Accepted; governed integration to `main` activates the exact resource.
 
 ## Rationale
 
-The proposal makes a complete Evidence Bundle structurally evaluable while
+The decision makes a complete Evidence Bundle structurally evaluable while
 preserving the boundary between evidence claims and consequential human
 decisions. Opaque pins and references retain traceability without coupling
 executable artifact schemas. Closed objects and explicit absence expose
@@ -56,7 +55,7 @@ supports offline deterministic validation.
 ## Consequences and tradeoffs
 
 - Fifteen CONTRACT-006 responsibility groups become mandatory structural
-  coordinates if the proposal is later Accepted and integrated.
+  coordinates in the Accepted schema.
 - Evidence treatments remain representation claims and cannot become
   algorithms, quality grades, weights, permissions, or approval protocols.
 - Opaque references preserve technology neutrality but require human semantic
@@ -82,7 +81,7 @@ validity as acceptance.
 
 ## Validation
 
-The proposed resource requires strict duplicate-free JSON and UTF-8 checks,
+The resource requires strict duplicate-free JSON and UTF-8 checks,
 official Draft 2020-12 schema checking, isolated `jsonschema 4.25.1`, exact
 local registration of the Common Artifact Envelope, required missing-resource
 failure, all twenty expected fixture outcomes, exact
@@ -103,7 +102,7 @@ details remain forbidden.
 ## Authority and conformance boundary
 
 The resource is Evidentiary and non-self-approving. Schema validity proves only
-structural satisfaction of this exact proposed schema under the registered
+structural satisfaction of this exact schema under the registered
 common resource. It grants no task authority, source truth, provenance,
 authenticity, relevance, independence, completeness, coverage,
 reproducibility, sufficiency, correctness, acceptance, integration, release,
@@ -120,7 +119,7 @@ resolver, registry, catalog, cache, bundler, network access, tooling, runtime,
 implementation, product, release, tag, hosted publication, deployment; and
 Review Record or later schemas.
 
-Issue comment `5217659534` authorizes the exact Proposed candidate and
-exact-head review only. Separate attributable Owner / Final Authority
-acceptance is required before any status promotion or integration. No
-follow-on work is automatically authorized.
+Owner / Final Authority acceptance of the exact reviewed candidate is recorded
+in issue comment `5217888146`. Governed integration to `main` activates exactly
+Evidence Bundle Schema Version `1.0.0`. No Review Record or later schema is
+automatically authorized.
