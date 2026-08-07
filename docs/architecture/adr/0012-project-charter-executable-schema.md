@@ -2,13 +2,13 @@
 
 ## Status
 
-**Proposed.**
+**Accepted.**
 
-This ADR records the Proposed decision governed by
-[issue #48](https://github.com/CNTX-PROJECT/CNTX/issues/48). Creation authority
-is recorded in issue comment `5210055148`. The candidate requires disclosed
-exact-head review and separate human Owner / Final Authority acceptance before
-it can become Accepted.
+This ADR records the Accepted decision governed by
+[issue #48](https://github.com/CNTX-PROJECT/CNTX/issues/48). Owner / Final
+Authority acceptance of the exact reviewed candidate is recorded in issue
+comment `5210242651`. On governed integration to `main`, Project Charter Schema
+Version `1.0.0` becomes active under repository governance.
 
 ## Context
 
@@ -27,7 +27,7 @@ or downstream-artifact authority.
 
 ## Decision
 
-CNTX proposes one standalone JSON Schema Draft 2020-12 Schema Resource:
+CNTX adopts one standalone JSON Schema Draft 2020-12 Schema Resource:
 
 - logical identity: **CNTX Public Core Schema Family / Project Charter
   Artifact**;
@@ -152,8 +152,7 @@ deployment.
 
 ## Continuing gate
 
-The Proposed candidate must stop after one validated commit, one Draft PR, and
-one disclosed non-independent exact-head COMMENT review. Separate attributable
-Owner / Final Authority acceptance of the exact reviewed head is required
-before status promotion or integration. No later artifact-specific schema is
+The exact reviewed candidate was accepted by the Owner / Final Authority in
+issue comment `5210242651`. Governed integration to `main` activates exactly
+Project Charter Schema Version `1.0.0`. No later artifact-specific schema is
 automatically authorized.

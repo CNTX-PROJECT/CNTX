@@ -1,9 +1,9 @@
 {
   "schemaId": "https://github.com/CNTX-PROJECT/CNTX/schemas/project-charter/1.0.0",
   "candidateSchemaVersion": "1.0.0",
-  "documentStatus": "Proposed",
+  "documentStatus": "Accepted",
   "nonNormative": true,
-  "description": "Public-safe synthetic validation cases for Proposed ARCH-012. Expected validity is evidence only and grants no contract conformance, approval, authority, trust, acceptance, release, deployment, merge permission, or access permission.",
+  "description": "Public-safe synthetic validation cases for Accepted ARCH-012 Schema Version 1.0.0. Expected validity is evidence only and grants no contract conformance, approval, authority, trust, acceptance, release, deployment, merge permission, or access permission.",
   "cases": [
     {
       "name": "valid minimal assessed project charter",

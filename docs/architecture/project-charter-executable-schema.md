@@ -2,21 +2,24 @@
 
 ## Status and authority
 
-**Document Status: Proposed.**
+**Document Status: Accepted.**
 
-This document is a Proposed executable-schema architecture candidate governed
+This document is an Accepted executable-schema architecture decision governed
 by [issue #48](https://github.com/CNTX-PROJECT/CNTX/issues/48) and recorded by
 [ADR-0012](adr/0012-project-charter-executable-schema.md). Owner / Final
-Authority creation authority is recorded in issue comment `5210055148`.
+Authority acceptance of the exact reviewed candidate is recorded in issue
+comment `5210242651`. On governed integration to `main`, the accompanying
+[Schema Resource](../../schemas/project-charter/1.0.0/schema.json) becomes the
+active Accepted Project Charter Schema Version `1.0.0` within this exact scope.
 
-The same operational agent prepares and reviews the exact candidate under the
-transparent role arrangement authorized in issue #48. That review is not
-independent third-party review and cannot provide final human approval. Only
-the human Owner / Final Authority may accept the exact reviewed revision.
+The same operational agent prepared and reviewed the exact candidate under the
+transparent role arrangement authorized in issue #48. That review was not
+independent third-party review and did not provide final human approval;
+acceptance was given separately by the human Owner / Final Authority.
 
 Within this document, **MUST** and **MUST NOT** express mandatory requirements,
 **SHOULD** and **SHOULD NOT** express strong recommendations, and **MAY**
-expresses permission within this Proposed decision.
+expresses permission within this Accepted decision.
 
 ## Purpose and decision boundary
 
@@ -30,7 +33,7 @@ Project Charter Contract Definition Identifier and Version. Accepted
 [CONTRACT-001](../contracts/project-charter-contract.md) controls Project
 Charter payload meaning.
 
-This Proposed decision binds those prerequisites into the first
+This Accepted decision binds those prerequisites into the first
 artifact-specific executable Schema Resource. It defines one complete Project
 Charter instance shape, specializes the Accepted common envelope, and converts
 only CONTRACT-001's semantic responsibilities into closed payload assertions.
@@ -70,7 +73,7 @@ CNTX choices governed by the Accepted architecture and CONTRACT-001.
 
 ## Canonical identity, version, and repository path
 
-| Dimension | Proposed value |
+| Dimension | Accepted value |
 | --- | --- |
 | Logical Schema Identity | CNTX Public Core Schema Family / Project Charter Artifact |
 | Schema language | JSON Schema |
@@ -80,7 +83,7 @@ CNTX choices governed by the Accepted architecture and CONTRACT-001.
 | Schema Version | `1.0.0` |
 | Canonical repository path | `schemas/project-charter/1.0.0/schema.json` |
 | Schema-resource media type | `application/schema+json` |
-| Document Status | Proposed under issue #48 |
+| Document Status | Accepted under issue #48 and Owner acceptance comment `5210242651` |
 
 The `$id` is an absolute, fragment-free, version-qualified HTTPS identity. It
 is not a branch, tag, release, mutable retrieval coordinate, automatic network
@@ -88,9 +91,10 @@ instruction, artifact identifier, Contract Definition Identifier, approval,
 or trust assertion. The corresponding repository path is a source coordinate,
 not the identity itself.
 
-Candidate drafting and validation do not activate Schema Version `1.0.0`.
-Only later exact-head human acceptance, status promotion, and governed
-integration can make the exact resource Accepted and active.
+Drafting and validation did not activate Schema Version `1.0.0`. The Owner /
+Final Authority accepted the exact reviewed revision in issue comment
+`5210242651`; governed integration to `main` makes that exact Accepted resource
+active.
 
 ## Canonical full-artifact root
 
@@ -263,9 +267,10 @@ safe, approved, or authoritative; whether a role is correctly appointed;
 whether an identifier or revision exists; whether provenance is adequate; or
 whether a consequential action is authorized.
 
-The disclosed exact-head Architect review is evidentiary and non-independent.
-It cannot activate Schema Version `1.0.0` or replace attributable human Owner /
-Final Authority acceptance of the exact reviewed revision.
+The disclosed exact-head Architect review remains evidentiary and
+non-independent. It did not activate Schema Version `1.0.0` or replace
+attributable human Owner / Final Authority acceptance of the exact reviewed
+revision, which is recorded separately in issue comment `5210242651`.
 
 ## Security and privacy boundary
 
@@ -281,7 +286,7 @@ permission.
 
 ## Consequences and tradeoffs
 
-The Proposed resource makes a complete Project Charter structurally
+The Accepted resource makes a complete Project Charter structurally
 evaluable, preserves the independently accepted common envelope, pins exact
 governing definitions, closes the payload, and makes every CONTRACT-001
 responsibility explicit.
@@ -359,9 +364,8 @@ schema.
 
 ## Continuing gate
 
-This document, ADR-0012, the Schema Resource, and its tests remain Proposed.
-The creation task stops after validation, one candidate commit, one Draft PR,
-and one disclosed non-independent exact-head review. Only separate attributable
-Owner / Final Authority acceptance of that exact reviewed head may authorize a
-status-only promotion and governed integration. Acceptance or integration of
-ARCH-012 would still not authorize the next artifact-specific schema.
+This document, ADR-0012, the Schema Resource, and its tests are Accepted under
+the exact-revision Owner / Final Authority decision recorded in issue comment
+`5210242651`. Governed integration to `main` activates exactly Project Charter
+Schema Version `1.0.0`. Acceptance and integration of ARCH-012 do not authorize
+the next artifact-specific schema.
