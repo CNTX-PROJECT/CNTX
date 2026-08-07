@@ -4,7 +4,7 @@
 
 This directory contains machine-evaluable schema-resource candidates and, after exact-revision human acceptance and governed integration, accepted schema resources. A file's existence, JSON Schema validity, `$id`, Schema Version, test result, repository location, or publication does not grant Document Status, contract conformance, authority, trust, approval, release, deployment, merge permission, or access permission.
 
-The current Accepted resources are the ARCH-009 [Common Artifact Envelope Schema Version `1.0.0`](common-artifact-envelope/1.0.0/schema.json), approved by the Owner / Final Authority in issue comment `5208715683`; the ARCH-012 [Project Charter Schema Version `1.0.0`](project-charter/1.0.0/schema.json), accepted in issue comment `5210242651`; the ARCH-013 [Workstream Schema Version `1.0.0`](workstream/1.0.0/schema.json), accepted in issue comment `5215029431`; the ARCH-014 [Task Contract Schema Version `1.0.0`](task-contract/1.0.0/schema.json), accepted in issue comment `5215700352`; and the ARCH-015 [Context Packet Schema Version `1.0.0`](context-packet/1.0.0/schema.json), accepted in issue comment `5216466742`. Governed integration to `main` activates each exact resource. The applicable architecture documents and ADRs remain the status sources.
+The current Accepted resources are the ARCH-009 [Common Artifact Envelope Schema Version `1.0.0`](common-artifact-envelope/1.0.0/schema.json), approved by the Owner / Final Authority in issue comment `5208715683`; the ARCH-012 [Project Charter Schema Version `1.0.0`](project-charter/1.0.0/schema.json), accepted in issue comment `5210242651`; the ARCH-013 [Workstream Schema Version `1.0.0`](workstream/1.0.0/schema.json), accepted in issue comment `5215029431`; the ARCH-014 [Task Contract Schema Version `1.0.0`](task-contract/1.0.0/schema.json), accepted in issue comment `5215700352`; the ARCH-015 [Context Packet Schema Version `1.0.0`](context-packet/1.0.0/schema.json), accepted in issue comment `5216466742`; and the ARCH-016 [Execution Result Schema Version `1.0.0`](execution-result/1.0.0/schema.json), accepted in issue comment `5217275706`. Governed integration to `main` activates each exact resource. The applicable architecture documents and ADRs remain the status sources.
 
 ## Common Artifact Envelope Schema Version 1.0.0
 
@@ -160,6 +160,49 @@ exact-head Owner / Final Authority acceptance is recorded in issue comment
 `1.0.0`. Schema validity still grants no contract conformance, task authority,
 source access, retrieval or disclosure permission, merge permission, release,
 deployment, or Execution Result schema authority.
+
+## Execution Result Schema Version 1.0.0
+
+| Dimension | Accepted value |
+| --- | --- |
+| Logical schema identity | CNTX Public Core Schema Family / Execution Result Artifact |
+| Schema language and dialect | JSON Schema Draft 2020-12 |
+| Dialect declaration | `https://json-schema.org/draft/2020-12/schema` |
+| Canonical `$id` | `https://github.com/CNTX-PROJECT/CNTX/schemas/execution-result/1.0.0` |
+| Schema Version | `1.0.0` |
+| Canonical repository path | `schemas/execution-result/1.0.0/schema.json` |
+| Exact external dependency | Accepted Common Artifact Envelope Schema Version `1.0.0` |
+| Governing Contract Definition | `https://github.com/CNTX-PROJECT/CNTX/contract-definitions/execution-result` at `1.0.0` |
+| Schema-resource media type | `application/schema+json` |
+| Document Status | Accepted under issue #58 and Owner acceptance comment `5217275706` |
+
+The resource evaluates one complete closed Execution Result artifact with
+mandatory `envelope` and `payload`. Its envelope statically references the
+exact Accepted Common Artifact Envelope and constrains only the Execution
+Result Artifact Type and governing Contract and Schema coordinates. Its closed
+fourteen-property payload translates only CONTRACT-005 and includes one opaque
+governing Task Contract pin plus a specified-or-none declaration of opaque
+Context Packet pins.
+
+The resource contains no Project Charter, Workstream, Task Contract, Context
+Packet, peer Execution Result, Evidence Bundle, Review Record, Decision Record,
+State Snapshot, or other artifact-specific schema `$ref`. Output, actions,
+resources, provenance, check outcomes, criteria assessments, assumptions,
+limitations, failures, deviations, stops, escalations, unperformed work,
+security/privacy, and traceability remain bounded evidentiary claims. The
+schema defines no execution, mutation, access, validation-output, approval,
+acceptance, workflow, release, deployment, or merge mechanism.
+
+The [ARCH-016 architecture decision](../docs/architecture/execution-result-executable-schema.md),
+[ADR-0016](../docs/architecture/adr/0016-execution-result-executable-schema.md),
+and [non-normative test manifest](../tests/schemas/execution-result/1.0.0/cases.json)
+define and evidence the Accepted boundary. Creation, validation, review,
+repository presence, or `1.0.0` did not grant acceptance or activation;
+exact-head Owner / Final Authority acceptance is recorded in issue comment
+`5217275706`, and governed integration to `main` activates Schema Version
+`1.0.0`. Schema validity still grants no contract conformance, correctness,
+completion, integration authority, release, deployment, merge permission,
+Evidence Bundle schema authority, or follow-on authority.
 
 ## Change boundary
 

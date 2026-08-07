@@ -1,0 +1,608 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/CNTX-PROJECT/CNTX/schemas/execution-result/1.0.0",
+  "$comment": "Accepted ARCH-016 Execution Result Schema Version 1.0.0 under issue #58 and Owner / Final Authority acceptance comment 5217275706. Schema validity grants no contract conformance, correctness, completion, approval, acceptance, integration, release, deployment, merge permission, or follow-on authority.",
+  "title": "CNTX Execution Result Artifact",
+  "description": "A complete Execution Result artifact with the exact Accepted Common Artifact Envelope and a closed CONTRACT-005 payload. This schema evaluates structure only and records bounded evidentiary claims without self-approval.",
+  "type": "object",
+  "properties": {
+    "envelope": {
+      "description": "The exact Accepted Common Artifact Envelope specialized for the Execution Result Artifact Type, Contract Definition, and Schema Definition.",
+      "allOf": [
+        {
+          "$ref": "https://github.com/CNTX-PROJECT/CNTX/schemas/common-artifact-envelope/1.0.0"
+        },
+        {
+          "properties": {
+            "artifactType": {
+              "const": "execution-result"
+            },
+            "governingContract": {
+              "properties": {
+                "identifier": {
+                  "const": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/execution-result"
+                },
+                "version": {
+                  "const": "1.0.0"
+                }
+              }
+            },
+            "governingSchema": {
+              "properties": {
+                "identifier": {
+                  "const": "https://github.com/CNTX-PROJECT/CNTX/schemas/execution-result/1.0.0"
+                },
+                "version": {
+                  "const": "1.0.0"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "payload": {
+      "$ref": "#/$defs/executionResultPayload"
+    }
+  },
+  "required": [
+    "envelope",
+    "payload"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "nonBlankString": {
+      "description": "A string containing at least one non-whitespace character. Its content remains a declarative claim subject to governing authority and human review.",
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "nonEmptyUniqueStatementArray": {
+      "description": "One or more distinct non-blank declarative statements.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/nonBlankString"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "specifiedDeclaration": {
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "specified"
+        },
+        "items": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        }
+      },
+      "required": [
+        "disposition",
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "noneDeclaration": {
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "none"
+        }
+      },
+      "required": [
+        "disposition"
+      ],
+      "additionalProperties": false
+    },
+    "declarationSet": {
+      "description": "An explicitly assessed category with specified statements or assessed absence. Neither disposition grants authority or proves completeness.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/specifiedDeclaration"
+        },
+        {
+          "$ref": "#/$defs/noneDeclaration"
+        }
+      ]
+    },
+    "artifactRevisionPin": {
+      "description": "An opaque Artifact Instance Identifier and exact Artifact Revision pin. It performs no retrieval and proves no authority.",
+      "type": "object",
+      "properties": {
+        "artifactInstanceIdentifier": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "artifactRevision": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "artifactInstanceIdentifier",
+        "artifactRevision"
+      ],
+      "additionalProperties": false
+    },
+    "specifiedArtifactPins": {
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "specified"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/artifactRevisionPin"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "disposition",
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "noneArtifactPins": {
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "none"
+        }
+      },
+      "required": [
+        "disposition"
+      ],
+      "additionalProperties": false
+    },
+    "artifactPinDeclaration": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/specifiedArtifactPins"
+        },
+        {
+          "$ref": "#/$defs/noneArtifactPins"
+        }
+      ]
+    },
+    "claimedOutput": {
+      "type": "object",
+      "properties": {
+        "summary": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "outputClaims": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "producedResources": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "summary",
+        "outputClaims",
+        "producedResources"
+      ],
+      "additionalProperties": false
+    },
+    "actionsAndSideEffects": {
+      "type": "object",
+      "properties": {
+        "performedActions": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "sideEffects": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "actionLimitations": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "performedActions",
+        "sideEffects",
+        "actionLimitations"
+      ],
+      "additionalProperties": false
+    },
+    "accessedAndChangedResources": {
+      "type": "object",
+      "properties": {
+        "accessedResources": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "changedResources": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "resourceLimitations": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "accessedResources",
+        "changedResources",
+        "resourceLimitations"
+      ],
+      "additionalProperties": false
+    },
+    "provenanceEntry": {
+      "type": "object",
+      "properties": {
+        "sourceReference": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "sourceType": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "revisionOrVersionContext": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "contentTreatments": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "direct",
+              "summarized",
+              "extracted",
+              "transformed",
+              "unavailable"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "resultingUncertaintyAndLimitations": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "sourceReference",
+        "sourceType",
+        "revisionOrVersionContext",
+        "contentTreatments",
+        "resultingUncertaintyAndLimitations"
+      ],
+      "additionalProperties": false
+    },
+    "provenanceAndRevisionContext": {
+      "type": "object",
+      "properties": {
+        "provenanceEntries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/provenanceEntry"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "claimTraceability": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "provenanceEntries",
+        "claimTraceability"
+      ],
+      "additionalProperties": false
+    },
+    "checkClaim": {
+      "type": "object",
+      "properties": {
+        "checkReference": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "claimedOutcome": {
+          "enum": [
+            "passed",
+            "failed",
+            "inconclusive",
+            "not-performed"
+          ]
+        },
+        "evidenceAndLimitations": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "checkReference",
+        "claimedOutcome",
+        "evidenceAndLimitations"
+      ],
+      "additionalProperties": false
+    },
+    "specifiedCheckClaims": {
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "specified"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/checkClaim"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "disposition",
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "noneCheckClaims": {
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "none"
+        }
+      },
+      "required": [
+        "disposition"
+      ],
+      "additionalProperties": false
+    },
+    "checkClaimDeclaration": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/specifiedCheckClaims"
+        },
+        {
+          "$ref": "#/$defs/noneCheckClaims"
+        }
+      ]
+    },
+    "criterionAssessment": {
+      "type": "object",
+      "properties": {
+        "criterionReference": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "claimedAssessment": {
+          "enum": [
+            "satisfied",
+            "not-satisfied",
+            "partially-satisfied",
+            "not-assessed"
+          ]
+        },
+        "evidenceAndLimitations": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "criterionReference",
+        "claimedAssessment",
+        "evidenceAndLimitations"
+      ],
+      "additionalProperties": false
+    },
+    "assumptionsDependenciesAndUncertainty": {
+      "type": "object",
+      "properties": {
+        "assumptions": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "dependencies": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "uncertainty": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "conflicts": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "missingContext": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "apparentAuthorityConflicts": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "assumptions",
+        "dependencies",
+        "uncertainty",
+        "conflicts",
+        "missingContext",
+        "apparentAuthorityConflicts"
+      ],
+      "additionalProperties": false
+    },
+    "limitationsFailuresAndDeviations": {
+      "type": "object",
+      "properties": {
+        "limitations": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "failures": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "deviations": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "deviationRationale": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "unresolvedImpact": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "limitations",
+        "failures",
+        "deviations",
+        "deviationRationale",
+        "unresolvedImpact"
+      ],
+      "additionalProperties": false
+    },
+    "stopsAndEscalations": {
+      "type": "object",
+      "properties": {
+        "stops": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "escalations": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "unresolvedConditions": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "stops",
+        "escalations",
+        "unresolvedConditions"
+      ],
+      "additionalProperties": false
+    },
+    "unperformedWork": {
+      "type": "object",
+      "properties": {
+        "deliberatelyUnperformed": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "reasonsAndConsequences": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "deliberatelyUnperformed",
+        "reasonsAndConsequences"
+      ],
+      "additionalProperties": false
+    },
+    "securityPrivacyAndDisclosure": {
+      "type": "object",
+      "properties": {
+        "securityObservations": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "privacyObservations": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "restrictedSourceReferences": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "disclosureLimitations": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "residualRisks": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "securityObservations",
+        "privacyObservations",
+        "restrictedSourceReferences",
+        "disclosureLimitations",
+        "residualRisks"
+      ],
+      "additionalProperties": false
+    },
+    "evidenceReviewDecisionAndLifecycleTraceability": {
+      "type": "object",
+      "properties": {
+        "evidenceReferences": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "reviewReferences": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "decisionReferences": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "peerExecutionResultReferences": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "supersessionAndRetention": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "resultLifecycleContext": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "evidenceReferences",
+        "reviewReferences",
+        "decisionReferences",
+        "peerExecutionResultReferences",
+        "supersessionAndRetention",
+        "resultLifecycleContext"
+      ],
+      "additionalProperties": false
+    },
+    "executionResultPayload": {
+      "description": "The closed CONTRACT-005 structural payload. Every member is evidentiary and non-self-approving.",
+      "type": "object",
+      "properties": {
+        "governingTaskContract": {
+          "$ref": "#/$defs/artifactRevisionPin"
+        },
+        "contextPacketsUsed": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "claimedOutput": {
+          "$ref": "#/$defs/claimedOutput"
+        },
+        "actionsAndSideEffects": {
+          "$ref": "#/$defs/actionsAndSideEffects"
+        },
+        "accessedAndChangedResources": {
+          "$ref": "#/$defs/accessedAndChangedResources"
+        },
+        "provenanceAndRevisionContext": {
+          "$ref": "#/$defs/provenanceAndRevisionContext"
+        },
+        "validationAndCheckClaims": {
+          "$ref": "#/$defs/checkClaimDeclaration"
+        },
+        "acceptanceCriteriaAssessment": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/criterionAssessment"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "assumptionsDependenciesAndUncertainty": {
+          "$ref": "#/$defs/assumptionsDependenciesAndUncertainty"
+        },
+        "limitationsFailuresAndDeviations": {
+          "$ref": "#/$defs/limitationsFailuresAndDeviations"
+        },
+        "stopsAndEscalations": {
+          "$ref": "#/$defs/stopsAndEscalations"
+        },
+        "unperformedWork": {
+          "$ref": "#/$defs/unperformedWork"
+        },
+        "securityPrivacyAndDisclosure": {
+          "$ref": "#/$defs/securityPrivacyAndDisclosure"
+        },
+        "evidenceReviewDecisionAndLifecycleTraceability": {
+          "$ref": "#/$defs/evidenceReviewDecisionAndLifecycleTraceability"
+        }
+      },
+      "required": [
+        "governingTaskContract",
+        "contextPacketsUsed",
+        "claimedOutput",
+        "actionsAndSideEffects",
+        "accessedAndChangedResources",
+        "provenanceAndRevisionContext",
+        "validationAndCheckClaims",
+        "acceptanceCriteriaAssessment",
+        "assumptionsDependenciesAndUncertainty",
+        "limitationsFailuresAndDeviations",
+        "stopsAndEscalations",
+        "unperformedWork",
+        "securityPrivacyAndDisclosure",
+        "evidenceReviewDecisionAndLifecycleTraceability"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
