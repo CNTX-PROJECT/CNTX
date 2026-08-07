@@ -1,0 +1,222 @@
+{
+  "schemaId": "https://github.com/CNTX-PROJECT/CNTX/schemas/execution-result/1.0.0",
+  "candidateSchemaVersion": "1.0.0",
+  "documentStatus": "Proposed",
+  "nonNormative": true,
+  "issue": "https://github.com/CNTX-PROJECT/CNTX/issues/58",
+  "description": "Public-safe synthetic validation cases for Proposed ARCH-016 Schema Version 1.0.0. Expected validity is structural evidence only and grants no contract conformance, correctness, completion, approval, acceptance, integration, release, deployment, merge permission, or Evidence Bundle authority.",
+  "cases": [
+    {
+      "name": "valid minimal stopped result with assessed absence",
+      "valid": true,
+      "instance": {
+        "envelope": {
+          "artifactType": "execution-result",
+          "artifactInstance": { "identifier": "synthetic-execution-result-001", "revision": "revision-001" },
+          "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/execution-result", "version": "1.0.0" },
+          "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/execution-result/1.0.0", "version": "1.0.0" }
+        },
+        "payload": {
+          "governingTaskContract": { "artifactInstanceIdentifier": "synthetic-task-contract-001", "artifactRevision": "revision-001" },
+          "contextPacketsUsed": { "disposition": "none" },
+          "claimedOutput": { "summary": "Execution stopped before a substantive output was produced.", "outputClaims": { "disposition": "none" }, "producedResources": { "disposition": "none" } },
+          "actionsAndSideEffects": { "performedActions": { "disposition": "none" }, "sideEffects": { "disposition": "none" }, "actionLimitations": { "disposition": "specified", "items": ["No execution action was started."] } },
+          "accessedAndChangedResources": { "accessedResources": { "disposition": "none" }, "changedResources": { "disposition": "none" }, "resourceLimitations": { "disposition": "none" } },
+          "provenanceAndRevisionContext": { "provenanceEntries": [{ "sourceReference": "synthetic-task-contract-001", "sourceType": "Task Contract reference", "revisionOrVersionContext": { "disposition": "specified", "items": ["revision-001"] }, "contentTreatments": ["direct"], "resultingUncertaintyAndLimitations": { "disposition": "none" } }], "claimTraceability": { "disposition": "specified", "items": ["The stop claim traces to the governing Task Contract revision."] } },
+          "validationAndCheckClaims": { "disposition": "none" },
+          "acceptanceCriteriaAssessment": [{ "criterionReference": "synthetic-criterion-001", "claimedAssessment": "not-assessed", "evidenceAndLimitations": { "disposition": "specified", "items": ["Execution stopped before assessment."] } }],
+          "assumptionsDependenciesAndUncertainty": { "assumptions": { "disposition": "none" }, "dependencies": { "disposition": "none" }, "uncertainty": { "disposition": "none" }, "conflicts": { "disposition": "none" }, "missingContext": { "disposition": "none" }, "apparentAuthorityConflicts": { "disposition": "none" } },
+          "limitationsFailuresAndDeviations": { "limitations": { "disposition": "specified", "items": ["No substantive output exists."] }, "failures": { "disposition": "none" }, "deviations": { "disposition": "none" }, "deviationRationale": { "disposition": "none" }, "unresolvedImpact": { "disposition": "none" } },
+          "stopsAndEscalations": { "stops": { "disposition": "specified", "items": ["Execution stopped at the governing condition."] }, "escalations": { "disposition": "none" }, "unresolvedConditions": { "disposition": "none" } },
+          "unperformedWork": { "deliberatelyUnperformed": { "disposition": "specified", "items": ["All planned task work remained unperformed."] }, "reasonsAndConsequences": { "disposition": "specified", "items": ["A governing stop condition prevented execution."] } },
+          "securityPrivacyAndDisclosure": { "securityObservations": { "disposition": "none" }, "privacyObservations": { "disposition": "none" }, "restrictedSourceReferences": { "disposition": "none" }, "disclosureLimitations": { "disposition": "none" }, "residualRisks": { "disposition": "none" } },
+          "evidenceReviewDecisionAndLifecycleTraceability": { "evidenceReferences": { "disposition": "none" }, "reviewReferences": { "disposition": "none" }, "decisionReferences": { "disposition": "none" }, "peerExecutionResultReferences": { "disposition": "none" }, "supersessionAndRetention": { "disposition": "none" }, "resultLifecycleContext": { "disposition": "none" } }
+        }
+      }
+    },
+    {
+      "name": "valid fully specified Unicode result with mixed claims",
+      "valid": true,
+      "instance": {
+        "envelope": {
+          "artifactType": "execution-result",
+          "artifactInstance": { "identifier": "synthetic-execution-result-unicode", "revision": "révision-002" },
+          "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/execution-result", "version": "1.0.0" },
+          "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/execution-result/1.0.0", "version": "1.0.0" }
+        },
+        "payload": {
+          "governingTaskContract": { "artifactInstanceIdentifier": "synthetic-task-contract-unicode", "artifactRevision": "révision-002" },
+          "contextPacketsUsed": { "disposition": "specified", "items": [{ "artifactInstanceIdentifier": "synthetic-context-α", "artifactRevision": "révision-001" }, { "artifactInstanceIdentifier": "synthetic-context-β", "artifactRevision": "révision-002" }] },
+          "claimedOutput": { "summary": "Produced a bounded synthetic résumé.", "outputClaims": { "disposition": "specified", "items": ["Claim α was produced.", "Claim β remains limited."] }, "producedResources": { "disposition": "specified", "items": ["synthetic-resource-α"] } },
+          "actionsAndSideEffects": { "performedActions": { "disposition": "specified", "items": ["Prepared synthetic output."] }, "sideEffects": { "disposition": "specified", "items": ["Created one synthetic resource reference."] }, "actionLimitations": { "disposition": "specified", "items": ["No external system was contacted."] } },
+          "accessedAndChangedResources": { "accessedResources": { "disposition": "specified", "items": ["public-synthetic-source-α"] }, "changedResources": { "disposition": "specified", "items": ["synthetic-resource-α"] }, "resourceLimitations": { "disposition": "specified", "items": ["References are opaque."] } },
+          "provenanceAndRevisionContext": { "provenanceEntries": [{ "sourceReference": "public-synthetic-source-α", "sourceType": "synthetic source", "revisionOrVersionContext": { "disposition": "specified", "items": ["version-α"] }, "contentTreatments": ["direct", "summarized"], "resultingUncertaintyAndLimitations": { "disposition": "specified", "items": ["Summary may omit detail."] } }, { "sourceReference": "unavailable-source-β", "sourceType": "synthetic unavailable source", "revisionOrVersionContext": { "disposition": "none" }, "contentTreatments": ["unavailable"], "resultingUncertaintyAndLimitations": { "disposition": "specified", "items": ["The source could not be assessed."] } }], "claimTraceability": { "disposition": "specified", "items": ["Claim α traces to public-synthetic-source-α."] } },
+          "validationAndCheckClaims": { "disposition": "specified", "items": [{ "checkReference": "synthetic-check-pass", "claimedOutcome": "passed", "evidenceAndLimitations": { "disposition": "specified", "items": ["Synthetic output matched the bounded assertion."] } }, { "checkReference": "synthetic-check-inconclusive", "claimedOutcome": "inconclusive", "evidenceAndLimitations": { "disposition": "specified", "items": ["The unavailable source limits the claim."] } }] },
+          "acceptanceCriteriaAssessment": [{ "criterionReference": "criterion-α", "claimedAssessment": "satisfied", "evidenceAndLimitations": { "disposition": "specified", "items": ["Bounded structural evidence exists."] } }, { "criterionReference": "criterion-β", "claimedAssessment": "partially-satisfied", "evidenceAndLimitations": { "disposition": "specified", "items": ["Unavailable context prevents a complete claim."] } }],
+          "assumptionsDependenciesAndUncertainty": { "assumptions": { "disposition": "specified", "items": ["Synthetic references are stable for this fixture."] }, "dependencies": { "disposition": "specified", "items": ["The governing Task Contract remains controlling."] }, "uncertainty": { "disposition": "specified", "items": ["Unavailable context affects Claim β."] }, "conflicts": { "disposition": "none" }, "missingContext": { "disposition": "specified", "items": ["unavailable-source-β"] }, "apparentAuthorityConflicts": { "disposition": "none" } },
+          "limitationsFailuresAndDeviations": { "limitations": { "disposition": "specified", "items": ["The fixture proves structure only."] }, "failures": { "disposition": "none" }, "deviations": { "disposition": "specified", "items": ["One source was unavailable."] }, "deviationRationale": { "disposition": "specified", "items": ["The condition is preserved rather than hidden."] }, "unresolvedImpact": { "disposition": "specified", "items": ["Criterion β remains partial."] } },
+          "stopsAndEscalations": { "stops": { "disposition": "none" }, "escalations": { "disposition": "specified", "items": ["Human review is required for Criterion β."] }, "unresolvedConditions": { "disposition": "specified", "items": ["Unavailable source remains unresolved."] } },
+          "unperformedWork": { "deliberatelyUnperformed": { "disposition": "specified", "items": ["No automatic source retrieval was attempted."] }, "reasonsAndConsequences": { "disposition": "specified", "items": ["Retrieval authority is absent."] } },
+          "securityPrivacyAndDisclosure": { "securityObservations": { "disposition": "specified", "items": ["Only synthetic public-safe content is present."] }, "privacyObservations": { "disposition": "specified", "items": ["No personal data is present."] }, "restrictedSourceReferences": { "disposition": "none" }, "disclosureLimitations": { "disposition": "specified", "items": ["Opaque references grant no disclosure permission."] }, "residualRisks": { "disposition": "specified", "items": ["Claims require human review."] } },
+          "evidenceReviewDecisionAndLifecycleTraceability": { "evidenceReferences": { "disposition": "specified", "items": ["synthetic-evidence-α"] }, "reviewReferences": { "disposition": "specified", "items": ["synthetic-review-α"] }, "decisionReferences": { "disposition": "none" }, "peerExecutionResultReferences": { "disposition": "specified", "items": ["synthetic-peer-result-α@revision-001"] }, "supersessionAndRetention": { "disposition": "specified", "items": ["Retain for synthetic traceability."] }, "resultLifecycleContext": { "disposition": "specified", "items": ["Candidate evidentiary result."] } }
+        }
+      }
+    },
+    {
+      "name": "valid result with optional common provenance and digest evidence",
+      "valid": true,
+      "instance": {
+        "envelope": {
+          "artifactType": "execution-result",
+          "artifactInstance": { "identifier": "synthetic-execution-result-003", "revision": "revision-003" },
+          "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/execution-result", "version": "1.0.0" },
+          "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/execution-result/1.0.0", "version": "1.0.0" },
+          "provenanceReferences": [{ "kind": "contract-definition", "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/execution-result", "version": "1.0.0" }],
+          "contentDigests": [{ "subject": { "kind": "artifact", "artifactType": "execution-result", "identifier": "synthetic-execution-result-003", "revision": "revision-003" }, "method": "synthetic-example-method", "value": "synthetic-example-value" }]
+        },
+        "payload": {
+          "governingTaskContract": { "artifactInstanceIdentifier": "synthetic-task-contract-003", "artifactRevision": "revision-003" },
+          "contextPacketsUsed": { "disposition": "none" },
+          "claimedOutput": { "summary": "Produced one synthetic bounded output.", "outputClaims": { "disposition": "specified", "items": ["One output claim exists."] }, "producedResources": { "disposition": "none" } },
+          "actionsAndSideEffects": { "performedActions": { "disposition": "specified", "items": ["Prepared a synthetic result."] }, "sideEffects": { "disposition": "none" }, "actionLimitations": { "disposition": "none" } },
+          "accessedAndChangedResources": { "accessedResources": { "disposition": "none" }, "changedResources": { "disposition": "none" }, "resourceLimitations": { "disposition": "none" } },
+          "provenanceAndRevisionContext": { "provenanceEntries": [{ "sourceReference": "synthetic-task-contract-003", "sourceType": "Task Contract reference", "revisionOrVersionContext": { "disposition": "specified", "items": ["revision-003"] }, "contentTreatments": ["direct"], "resultingUncertaintyAndLimitations": { "disposition": "none" } }], "claimTraceability": { "disposition": "specified", "items": ["The output claim traces to the governing Task Contract."] } },
+          "validationAndCheckClaims": { "disposition": "specified", "items": [{ "checkReference": "synthetic-check-003", "claimedOutcome": "passed", "evidenceAndLimitations": { "disposition": "specified", "items": ["Structural check only."] } }] },
+          "acceptanceCriteriaAssessment": [{ "criterionReference": "synthetic-criterion-003", "claimedAssessment": "satisfied", "evidenceAndLimitations": { "disposition": "specified", "items": ["Claim only; human decision remains separate."] } }],
+          "assumptionsDependenciesAndUncertainty": { "assumptions": { "disposition": "none" }, "dependencies": { "disposition": "none" }, "uncertainty": { "disposition": "none" }, "conflicts": { "disposition": "none" }, "missingContext": { "disposition": "none" }, "apparentAuthorityConflicts": { "disposition": "none" } },
+          "limitationsFailuresAndDeviations": { "limitations": { "disposition": "specified", "items": ["Digest evidence grants no trust or approval."] }, "failures": { "disposition": "none" }, "deviations": { "disposition": "none" }, "deviationRationale": { "disposition": "none" }, "unresolvedImpact": { "disposition": "none" } },
+          "stopsAndEscalations": { "stops": { "disposition": "none" }, "escalations": { "disposition": "none" }, "unresolvedConditions": { "disposition": "none" } },
+          "unperformedWork": { "deliberatelyUnperformed": { "disposition": "none" }, "reasonsAndConsequences": { "disposition": "none" } },
+          "securityPrivacyAndDisclosure": { "securityObservations": { "disposition": "none" }, "privacyObservations": { "disposition": "none" }, "restrictedSourceReferences": { "disposition": "none" }, "disclosureLimitations": { "disposition": "none" }, "residualRisks": { "disposition": "none" } },
+          "evidenceReviewDecisionAndLifecycleTraceability": { "evidenceReferences": { "disposition": "specified", "items": ["Common envelope digest evidence."] }, "reviewReferences": { "disposition": "none" }, "decisionReferences": { "disposition": "none" }, "peerExecutionResultReferences": { "disposition": "none" }, "supersessionAndRetention": { "disposition": "none" }, "resultLifecycleContext": { "disposition": "none" } }
+        }
+      }
+    },
+    {
+      "name": "invalid missing envelope",
+      "valid": false,
+      "instance": { "payload": {} }
+    },
+    {
+      "name": "invalid missing payload",
+      "valid": false,
+      "instance": {
+        "envelope": { "artifactType": "execution-result", "artifactInstance": { "identifier": "synthetic-result", "revision": "revision-001" }, "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/execution-result", "version": "1.0.0" }, "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/execution-result/1.0.0", "version": "1.0.0" } }
+      }
+    },
+    {
+      "name": "invalid unknown root property",
+      "valid": false,
+      "instance": { "envelope": {}, "payload": {}, "approval": true }
+    },
+    {
+      "name": "invalid Artifact Type and governing Contract and Schema coordinates",
+      "valid": false,
+      "instance": {
+        "envelope": { "artifactType": "context-packet", "artifactInstance": { "identifier": "synthetic-result", "revision": "revision-001" }, "governingContract": { "identifier": "wrong-contract", "version": "2.0.0" }, "governingSchema": { "identifier": "wrong-schema", "version": "2.0.0" } },
+        "payload": {}
+      }
+    },
+    {
+      "name": "invalid incomplete Common Artifact Envelope",
+      "valid": false,
+      "instance": { "envelope": { "artifactType": "execution-result" }, "payload": {} }
+    },
+    {
+      "name": "invalid missing or incomplete governing Task Contract pin",
+      "valid": false,
+      "instance": {
+        "envelope": { "artifactType": "execution-result", "artifactInstance": { "identifier": "synthetic-result", "revision": "revision-001" }, "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/execution-result", "version": "1.0.0" }, "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/execution-result/1.0.0", "version": "1.0.0" } },
+        "payload": { "governingTaskContract": { "artifactInstanceIdentifier": "synthetic-task" } }
+      }
+    },
+    {
+      "name": "invalid Context Packet pin declaration and embedded Context Packet",
+      "valid": false,
+      "instance": {
+        "envelope": { "artifactType": "execution-result", "artifactInstance": { "identifier": "synthetic-result", "revision": "revision-001" }, "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/execution-result", "version": "1.0.0" }, "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/execution-result/1.0.0", "version": "1.0.0" } },
+        "payload": { "governingTaskContract": { "artifactInstanceIdentifier": "synthetic-task", "artifactRevision": "revision-001" }, "contextPacketsUsed": { "disposition": "specified", "items": [{ "artifactInstanceIdentifier": "synthetic-context", "artifactRevision": "revision-001", "embeddedArtifact": { "payload": {} } }] } }
+      }
+    },
+    {
+      "name": "invalid missing payload responsibility",
+      "valid": false,
+      "instance": {
+        "envelope": { "artifactType": "execution-result", "artifactInstance": { "identifier": "synthetic-result", "revision": "revision-001" }, "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/execution-result", "version": "1.0.0" }, "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/execution-result/1.0.0", "version": "1.0.0" } },
+        "payload": { "governingTaskContract": { "artifactInstanceIdentifier": "synthetic-task", "artifactRevision": "revision-001" }, "contextPacketsUsed": { "disposition": "none" } }
+      }
+    },
+    {
+      "name": "invalid unknown payload and nested property",
+      "valid": false,
+      "instance": {
+        "envelope": { "artifactType": "execution-result", "artifactInstance": { "identifier": "synthetic-result", "revision": "revision-001" }, "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/execution-result", "version": "1.0.0" }, "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/execution-result/1.0.0", "version": "1.0.0" } },
+        "payload": { "governingTaskContract": { "artifactInstanceIdentifier": "synthetic-task", "artifactRevision": "revision-001" }, "claimedOutput": { "summary": "Claim", "outputClaims": { "disposition": "none" }, "producedResources": { "disposition": "none" }, "finalApproval": true }, "unknownPayload": true }
+      }
+    },
+    {
+      "name": "invalid malformed provenance entry",
+      "valid": false,
+      "instance": {
+        "envelope": { "artifactType": "execution-result", "artifactInstance": { "identifier": "synthetic-result", "revision": "revision-001" }, "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/execution-result", "version": "1.0.0" }, "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/execution-result/1.0.0", "version": "1.0.0" } },
+        "payload": { "provenanceAndRevisionContext": { "provenanceEntries": [{ "sourceReference": "source", "sourceType": "synthetic" }], "claimTraceability": { "disposition": "none" } } }
+      }
+    },
+    {
+      "name": "invalid treatment check outcome and criteria assessment tokens",
+      "valid": false,
+      "instance": {
+        "envelope": { "artifactType": "execution-result", "artifactInstance": { "identifier": "synthetic-result", "revision": "revision-001" }, "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/execution-result", "version": "1.0.0" }, "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/execution-result/1.0.0", "version": "1.0.0" } },
+        "payload": { "provenanceAndRevisionContext": { "provenanceEntries": [{ "sourceReference": "source", "sourceType": "synthetic", "revisionOrVersionContext": { "disposition": "none" }, "contentTreatments": ["generated"], "resultingUncertaintyAndLimitations": { "disposition": "none" } }], "claimTraceability": { "disposition": "none" } }, "validationAndCheckClaims": { "disposition": "specified", "items": [{ "checkReference": "check", "claimedOutcome": "approved", "evidenceAndLimitations": { "disposition": "none" } }] }, "acceptanceCriteriaAssessment": [{ "criterionReference": "criterion", "claimedAssessment": "accepted", "evidenceAndLimitations": { "disposition": "none" } }] }
+      }
+    },
+    {
+      "name": "invalid blank ordinary string",
+      "valid": false,
+      "instance": {
+        "envelope": { "artifactType": "execution-result", "artifactInstance": { "identifier": "synthetic-result", "revision": "revision-001" }, "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/execution-result", "version": "1.0.0" }, "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/execution-result/1.0.0", "version": "1.0.0" } },
+        "payload": { "governingTaskContract": { "artifactInstanceIdentifier": "   ", "artifactRevision": "revision-001" } }
+      }
+    },
+    {
+      "name": "invalid empty and duplicate required collections",
+      "valid": false,
+      "instance": {
+        "envelope": { "artifactType": "execution-result", "artifactInstance": { "identifier": "synthetic-result", "revision": "revision-001" }, "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/execution-result", "version": "1.0.0" }, "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/execution-result/1.0.0", "version": "1.0.0" } },
+        "payload": { "provenanceAndRevisionContext": { "provenanceEntries": [], "claimTraceability": { "disposition": "specified", "items": ["duplicate", "duplicate"] } }, "acceptanceCriteriaAssessment": [] }
+      }
+    },
+    {
+      "name": "invalid statement artifact pin and check claim declarations",
+      "valid": false,
+      "instance": {
+        "envelope": { "artifactType": "execution-result", "artifactInstance": { "identifier": "synthetic-result", "revision": "revision-001" }, "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/execution-result", "version": "1.0.0" }, "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/execution-result/1.0.0", "version": "1.0.0" } },
+        "payload": { "contextPacketsUsed": { "disposition": "none", "items": [] }, "claimedOutput": { "summary": "Claim", "outputClaims": { "disposition": "specified", "items": [] }, "producedResources": { "disposition": "none" } }, "validationAndCheckClaims": { "disposition": "none", "items": [] } }
+      }
+    },
+    {
+      "name": "invalid null and wrong type",
+      "valid": false,
+      "instance": {
+        "envelope": { "artifactType": "execution-result", "artifactInstance": { "identifier": "synthetic-result", "revision": "revision-001" }, "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/execution-result", "version": "1.0.0" }, "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/execution-result/1.0.0", "version": "1.0.0" } },
+        "payload": { "governingTaskContract": null, "contextPacketsUsed": [], "claimedOutput": "result" }
+      }
+    },
+    {
+      "name": "invalid approval acceptance merge release deployment workflow execution access mutation extension runtime and product fields",
+      "valid": false,
+      "instance": {
+        "envelope": { "artifactType": "execution-result", "artifactInstance": { "identifier": "synthetic-result", "revision": "revision-001" }, "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/execution-result", "version": "1.0.0" }, "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/execution-result/1.0.0", "version": "1.0.0" } },
+        "payload": { "approval": true, "acceptance": "accepted", "mergePermission": true, "release": true, "deployment": true, "workflow": {}, "execute": true, "accessGrant": true, "mutation": {}, "extensions": {}, "runtime": {}, "product": {} }
+      }
+    },
+    {
+      "name": "invalid embedded governing peer and downstream artifacts",
+      "valid": false,
+      "instance": {
+        "envelope": { "artifactType": "execution-result", "artifactInstance": { "identifier": "synthetic-result", "revision": "revision-001" }, "governingContract": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/execution-result", "version": "1.0.0" }, "governingSchema": { "identifier": "https://github.com/CNTX-PROJECT/CNTX/schemas/execution-result/1.0.0", "version": "1.0.0" } },
+        "payload": { "projectCharter": {}, "workstream": {}, "taskContract": {}, "contextPacket": {}, "peerExecutionResult": {}, "evidenceBundle": {}, "reviewRecord": {}, "decisionRecord": {}, "stateSnapshot": {} }
+      }
+    }
+  ]
+}

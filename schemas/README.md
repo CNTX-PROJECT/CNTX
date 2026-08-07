@@ -161,6 +161,49 @@ exact-head Owner / Final Authority acceptance is recorded in issue comment
 source access, retrieval or disclosure permission, merge permission, release,
 deployment, or Execution Result schema authority.
 
+## Execution Result Schema Version 1.0.0 candidate
+
+| Dimension | Proposed value |
+| --- | --- |
+| Logical schema identity | CNTX Public Core Schema Family / Execution Result Artifact |
+| Schema language and dialect | JSON Schema Draft 2020-12 |
+| Dialect declaration | `https://json-schema.org/draft/2020-12/schema` |
+| Canonical `$id` | `https://github.com/CNTX-PROJECT/CNTX/schemas/execution-result/1.0.0` |
+| Candidate Schema Version | `1.0.0` |
+| Canonical repository path | `schemas/execution-result/1.0.0/schema.json` |
+| Exact external dependency | Accepted Common Artifact Envelope Schema Version `1.0.0` |
+| Governing Contract Definition | `https://github.com/CNTX-PROJECT/CNTX/contract-definitions/execution-result` at `1.0.0` |
+| Schema-resource media type | `application/schema+json` |
+| Document Status | Proposed under issue #58; inactive pending separate exact-head Owner acceptance |
+
+The candidate evaluates one complete closed Execution Result artifact with
+mandatory `envelope` and `payload`. Its envelope statically references the
+exact Accepted Common Artifact Envelope and constrains only the Execution
+Result Artifact Type and governing Contract and Schema coordinates. Its closed
+fourteen-property payload translates only CONTRACT-005 and includes one opaque
+governing Task Contract pin plus a specified-or-none declaration of opaque
+Context Packet pins.
+
+The candidate contains no Project Charter, Workstream, Task Contract, Context
+Packet, peer Execution Result, Evidence Bundle, Review Record, Decision Record,
+State Snapshot, or other artifact-specific schema `$ref`. Output, actions,
+resources, provenance, check outcomes, criteria assessments, assumptions,
+limitations, failures, deviations, stops, escalations, unperformed work,
+security/privacy, and traceability remain bounded evidentiary claims. The
+schema defines no execution, mutation, access, validation-output, approval,
+acceptance, workflow, release, deployment, or merge mechanism.
+
+The [Proposed ARCH-016 architecture decision](../docs/architecture/execution-result-executable-schema.md),
+[ADR-0016](../docs/architecture/adr/0016-execution-result-executable-schema.md),
+and [non-normative test manifest](../tests/schemas/execution-result/1.0.0/cases.json)
+define and evidence this candidate boundary. Creation, validation, review,
+repository presence, or `1.0.0` grants no acceptance or activation. Separate
+Owner / Final Authority acceptance of the exact reviewed candidate is required
+before promotion or integration. Schema validity grants no contract
+conformance, correctness, completion, acceptance, integration, release,
+deployment, merge permission, Evidence Bundle schema authority, or follow-on
+authority.
+
 ## Change boundary
 
 Upon governed integration, exact Accepted versioned canonical standalone content is immutable. Any accepted structural or semantic change requires the applicable identity/version assessment, attributable review and approval, traceable provenance, and a separately authorized change. Schema validity alone cannot approve such a change. The Accepted Project Charter resource does not change the independently Accepted Common Artifact Envelope resource.
