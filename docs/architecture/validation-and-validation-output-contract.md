@@ -2,14 +2,17 @@
 
 ## Status and authority
 
-**Document Status:** Proposed.
+**Document Status:** Accepted.
 
-This document is a Proposed, documentation-only architecture decision governed
+This document is an Accepted, documentation-only architecture decision governed
 by [issue #74](https://github.com/CNTX-PROJECT/CNTX/issues/74) and recorded by
 [ADR-0024](adr/0024-validation-and-validation-output-contract.md).
 Attributable EIGENAAR / Final Authority creation authority is recorded in
-issue comment `5222505304`. Creation, repository presence, validation, a Draft
-pull request, and a transparent non-independent review do not grant acceptance.
+issue comment `5222505304`. EIGENAAR / Final Authority acceptance of the exact
+reviewed candidate is recorded in issue comment `5222756874`. Governed
+integration to `main` adopts this exact decision. Creation, repository
+presence, validation, and a transparent non-independent review did not grant
+acceptance.
 
 This decision remains subordinate to Accepted architecture, artifact
 contracts, executable schemas, the Accepted Core Artifact JSON Binding, the
@@ -20,7 +23,7 @@ human authority. It changes none of those sources.
 Within this document, **MUST** and **MUST NOT** express mandatory requirements,
 **SHOULD** and **SHOULD NOT** express strong recommendations, and **MAY**
 express permission. These terms express requirement strength only within this
-Proposed decision and do not make it Accepted.
+Accepted decision.
 
 ## Purpose and decision boundary
 
@@ -496,15 +499,14 @@ deployment.
 
 ## Acceptance and continuing gate
 
-This Proposed candidate must receive one transparent non-independent COMMENT
-review on its exact head and then stop. Creation, validation, review,
-repository presence, Draft state, and mergeability do not grant acceptance.
-
-Only separate attributable EIGENAAR / Final Authority acceptance of the exact
-reviewed candidate may authorize a later status-only promotion and any other
-explicitly named lifecycle actions. Acceptance would not itself authorize
-Portable Conformance Evidence, validator or conformance tooling,
-implementation, release, publication, deployment, or another roadmap layer.
+The candidate received one transparent non-independent COMMENT review on its
+exact head and then stopped. Creation, validation, review, repository presence,
+Draft state, and mergeability did not grant acceptance. EIGENAAR / Final
+Authority separately accepted the exact reviewed candidate in issue comment
+`5222756874`; governed integration adopts exactly this decision. Acceptance and
+integration authorize no Portable Conformance Evidence, validator or
+conformance tooling, implementation, release, publication, deployment, or
+another roadmap layer.
 
 ## References
 

@@ -210,14 +210,15 @@ publication, deployment, acceptance, merge permission, or follow-on authority.
 The [CNTX Validation and Validation Output
 Contract](validation-and-validation-output-contract.md) and
 [ADR-0024](adr/0024-validation-and-validation-output-contract.md) are
-**Proposed** as ARCH-024 under issue #74 and attributable EIGENAAR creation-
-authority comment `5222505304`. They define a frozen validation context, six
+**Accepted** as ARCH-024 under issue #74, attributable EIGENAAR creation-
+authority comment `5222505304`, and EIGENAAR acceptance comment `5222756874`.
+They define a frozen validation context, six
 separate conformance dimensions, logical phases and dependencies, Satisfied /
 Not Satisfied / Unverifiable / Not Evaluated outcomes, fail-closed claim rules,
 diagnostic and limitation boundaries, the relationship to JSON Schema Draft
 2020-12 output, reproducibility responsibilities, and security/privacy/non-
-authority limits. They create no accepted decision, output identity, field,
-schema, portable error/severity vocabulary, universal result, validator,
+authority limits. They create no output identity, field, schema, portable
+error/severity vocabulary, universal result, validator,
 conformance tool, Artifact Instance, portable evidence, implementation,
 release, publication, deployment, merge permission, or follow-on authority.
 

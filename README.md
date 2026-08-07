@@ -235,18 +235,19 @@ catalog, resolver, registry, cache, bundler, validator, validation output,
 conformance tool, implementation, release, publication, deployment,
 acceptance, merge permission, or follow-on authority.
 
-The architecture index also exposes the **Proposed** [CNTX Validation and
+The architecture index also exposes the **Accepted** [CNTX Validation and
 Validation Output
 Contract](docs/architecture/validation-and-validation-output-contract.md)
 (ARCH-024) with
 [ADR-0024](docs/architecture/adr/0024-validation-and-validation-output-contract.md)
-under issue #74 and attributable EIGENAAR creation-authority comment
-`5222505304`. The documentation-only candidate defines a frozen validation
-context, six separate conformance dimensions, logical phases and dependencies,
+under issue #74, attributable EIGENAAR creation-authority comment `5222505304`,
+and EIGENAAR acceptance comment `5222756874`. The documentation-only decision
+defines a frozen validation context, six separate conformance dimensions,
+logical phases and dependencies,
 four conceptual outcomes, fail-closed claim rules, diagnostic and limitation
 boundaries, its relationship to JSON Schema Draft 2020-12 output,
 reproducibility responsibilities, and security/privacy/non-authority limits.
-It remains Proposed and creates no output identity, field, schema, portable
+The Accepted decision creates no output identity, field, schema, portable
 error/severity vocabulary, universal result, validator, conformance tool,
 Artifact Instance, portable evidence, implementation, release, publication,
 deployment, acceptance, merge permission, or follow-on authority.

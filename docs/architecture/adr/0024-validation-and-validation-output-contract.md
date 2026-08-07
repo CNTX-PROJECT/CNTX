@@ -1,6 +1,6 @@
 # ADR-0024: Validation and validation output contract
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-08-08
 - **Issue:** [#74](https://github.com/CNTX-PROJECT/CNTX/issues/74)
 - **Decision:** ARCH-024 — CNTX Validation and Validation Output Contract
@@ -152,13 +152,12 @@ private/reference implementation, release, publication, or deployment.
 
 ## Acceptance and continuing gate
 
-This candidate must receive one transparent non-independent COMMENT review on
-its exact head and then stop. Creation, validation, review, repository
-presence, Draft state, and mergeability do not grant acceptance.
-
-Only separate attributable EIGENAAR / Final Authority acceptance of the exact
-reviewed revision may authorize a later status-only promotion or other
-explicitly named lifecycle action. No follow-on roadmap layer is inferred.
+The candidate received one transparent non-independent COMMENT review on its
+exact head and then stopped. Creation, validation, review, repository presence,
+Draft state, and mergeability did not grant acceptance. EIGENAAR / Final
+Authority separately accepted the exact reviewed revision in issue comment
+`5222756874`; governed integration adopts exactly this decision. Acceptance and
+integration authorize no follow-on roadmap layer.
 
 ## References
 
