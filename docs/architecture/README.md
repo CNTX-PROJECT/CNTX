@@ -105,14 +105,14 @@ deployment, merge permission, Review Record schema authority, or follow-on
 authority. Governed integration to `main` activates the exact Schema Version.
 
 The [Review Record Executable Schema Definition](review-record-executable-schema.md)
-and [ADR-0018](adr/0018-review-record-executable-schema.md) are **Proposed**
-under issue #62. They define one inactive Draft 2020-12 Review Record Schema
-Version `1.0.0` candidate that composes the exact Accepted Common Artifact
+and [ADR-0018](adr/0018-review-record-executable-schema.md) are **Accepted**
+under issue #62 and EIGENAAR acceptance comment `5218629573`. They define one
+Accepted Draft 2020-12 Review Record Schema Version `1.0.0` that composes the exact Accepted Common Artifact
 Envelope with a closed sixteen-property CONTRACT-007 payload. Review Authority
 and Execution Authority remain separate opaque pins; exact reviewable subjects,
 nine artifact-relationship categories, findings, evidence use, uncertainty,
 dissent, recommendations, peer reviews, correction, security/privacy, and
-lifecycle values remain bounded Evidentiary declarations. The candidate
+lifecycle values remain bounded Evidentiary declarations. The resource
 contains no artifact-specific schema `$ref` and implements no reviewer identity
 or specialty system, review, retrieval, scoring, severity, confidence, verdict,
 approval, voting, synthesis, decision, workflow, runtime, access, disclosure,
@@ -120,8 +120,9 @@ retention, release, deployment, or merge mechanism. Creation, validation,
 review, schema validity, or repository presence grants no contract conformance,
 specialist authority, review quality, recommendation authority, acceptance,
 integration, release, deployment, merge permission, Decision Record schema
-authority, or follow-on authority. It remains inactive pending separate
-exact-head EIGENAAR / Final Authority acceptance and governed integration.
+authority, or follow-on authority. Governed integration to `main` activates
+the exact Schema Version; acceptance and activation authorize no Decision
+Record schema or other follow-on work.
 
 ## Document status
 

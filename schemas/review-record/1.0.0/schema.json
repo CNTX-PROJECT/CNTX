@@ -1,9 +1,9 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/CNTX-PROJECT/CNTX/schemas/review-record/1.0.0",
-  "$comment": "Proposed ARCH-018 Review Record Schema Version 1.0.0 candidate under issue #62. Creation, validation, review, schema validity, or repository presence grants no contract conformance, specialist authority, review quality, approval, rejection, acceptance, integration, release, deployment, merge permission, or follow-on authority.",
+  "$comment": "Accepted ARCH-018 Review Record Schema Version 1.0.0 under issue #62 and EIGENAAR / Final Authority acceptance comment 5218629573. Schema validity grants no contract conformance, specialist authority, review quality, approval, rejection, acceptance, integration, release, deployment, merge permission, or follow-on authority.",
   "title": "CNTX Review Record Artifact",
-  "description": "A complete Review Record artifact with the exact Accepted Common Artifact Envelope and a closed CONTRACT-007 payload. This Proposed schema evaluates structure only, preserves bounded Evidentiary specialist assessment, and is inactive unless separately accepted and integrated under final human authority.",
+  "description": "A complete Review Record artifact with the exact Accepted Common Artifact Envelope and a closed CONTRACT-007 payload. This schema evaluates structure only, preserves bounded Evidentiary specialist assessment, and becomes active only through governed integration under final human authority.",
   "type": "object",
   "properties": {
     "envelope": {

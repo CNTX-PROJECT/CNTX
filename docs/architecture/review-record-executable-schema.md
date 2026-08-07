@@ -2,20 +2,21 @@
 
 ## Status and authority
 
-**Document Status:** Proposed.
+**Document Status:** Accepted.
 
-This document is a Proposed executable-schema architecture decision governed by
+This document is an Accepted executable-schema architecture decision governed by
 [issue #62](https://github.com/CNTX-PROJECT/CNTX/issues/62) and recorded by
 [ADR-0018](adr/0018-review-record-executable-schema.md).
 
-EIGENAAR / Final Authority approval of the creation and exact-head-review
-contract authorizes preparation and evidentiary review of this candidate only.
-It does not accept this document, activate Review Record Schema Version
-`1.0.0`, transition a pull request, merge, close the issue, or authorize a
-later phase. The transparent review by ARCHITECT is non-independent and grants
-no final acceptance.
+EIGENAAR / Final Authority acceptance of the exact reviewed candidate is
+recorded in issue comment `5218629573`. The exact reviewed
+[Schema Resource](../../schemas/review-record/1.0.0/schema.json) and
+[synthetic test evidence](../../tests/schemas/review-record/1.0.0/cases.json)
+are Accepted in that revision. Governed integration to `main` activates
+Review Record Schema Version `1.0.0`. The transparent non-independent review
+was Evidentiary only and did not grant acceptance.
 
-This proposal remains subordinate to Accepted architecture, Accepted
+This decision remains subordinate to Accepted architecture, Accepted
 [CONTRACT-007](../contracts/review-record-contract.md), repository governance,
 and final human authority. It modifies no Accepted source and creates no Review
 Record Artifact Instance, review authority, specialist qualification, review
@@ -33,34 +34,35 @@ the Review Record Contract Definition Identifier and Version. CONTRACT-007
 controls Review Record meaning, its Evidentiary classification, Specialist
 Reviewer authorship, and its non-authoritative decision boundary.
 
-ARCH-018 proposes one Draft 2020-12 Schema Resource that specializes only the
+Accepted ARCH-018 binds one Draft 2020-12 Schema Resource that specializes only the
 common-envelope constants, represents review and execution authority through
 separate opaque Artifact Instance/Revision pin declarations, represents all
 other artifact relationships through explicit opaque pins, and translates only
 CONTRACT-007 responsibilities into a closed payload.
 
-The proposal does not perform a review, determine reviewer qualification,
+The resource does not perform a review, determine reviewer qualification,
 resolve a subject or evidence item, classify a finding, calculate confidence
 or severity, issue a verdict, make a recommendation, synthesize peer reviews,
 or record a consequential decision.
 
-## Proposed schema identity
+## Accepted schema identity
 
-| Dimension | Proposed value |
+| Dimension | Accepted value |
 | --- | --- |
 | Logical schema identity | CNTX Public Core Schema Family / Review Record Artifact |
 | Schema language and dialect | JSON Schema Draft 2020-12 |
 | Dialect declaration | `https://json-schema.org/draft/2020-12/schema` |
 | Canonical `$id` | `https://github.com/CNTX-PROJECT/CNTX/schemas/review-record/1.0.0` |
-| Candidate Schema Version | `1.0.0` |
+| Schema Version | `1.0.0` |
 | Canonical repository path | `schemas/review-record/1.0.0/schema.json` |
 | Exact external dependency | Accepted Common Artifact Envelope Schema Version `1.0.0` |
 | Governing Contract Definition | `https://github.com/CNTX-PROJECT/CNTX/contract-definitions/review-record` at `1.0.0` |
 | Schema-resource media type | `application/schema+json` |
-| Document Status | Proposed under issue #62; inactive until separate exact-head acceptance and governed integration |
+| Document Status | Accepted under issue #62 and EIGENAAR acceptance comment `5218629573` |
 
-Repository presence, validation, or review does not make the proposed version
-Accepted or active.
+Creation, repository presence, validation, and review did not grant acceptance
+or activation. Exact-head acceptance is recorded in issue comment
+`5218629573`; governed integration to `main` activates this exact version.
 
 ## Root and common-envelope specialization
 
@@ -255,7 +257,7 @@ acceptance, integration, release, deployment, or merge permission.
 ## Conformance and validation boundary
 
 Conformance to this schema means only that one instance satisfies this exact
-Proposed Schema Resource under the exact locally registered Common Artifact
+Accepted Schema Resource under the exact locally registered Common Artifact
 Envelope resource. The schema does not evaluate full CONTRACT-007 conformance,
 authority validity, specialty appropriateness, referential integrity,
 provenance, authenticity, evidence relevance, independence, completeness,
@@ -306,12 +308,14 @@ ARCH-018 does not authorize:
   rubric, prompt, API, CLI, workflow, engine, scheduler, orchestrator, runtime,
   provider, product, private implementation, reference implementation,
   release, tag, hosted publication, or deployment; or
-- Ready-for-review transition, Proposed-to-Accepted promotion, promotion
-  commit, merge, completion record, issue closure, or branch cleanup.
+- any later architecture, schema, implementation, release, publication, or
+  deployment without its own separately attributable authority.
 
-## Continuing gate
+## Activation and continuing authority boundary
 
-After creation, validation, GitHub read-back, and one transparent
-non-independent exact-head COMMENT review, work stops. Cintao66 as EIGENAAR /
-Final Authority must separately accept the exact reviewed candidate head
-before any status-only promotion or later lifecycle action can be considered.
+EIGENAAR / Final Authority acceptance of the exact reviewed candidate is
+recorded in issue comment `5218629573`. Governed integration to `main`
+activates exactly Review Record Schema Version `1.0.0`. Acceptance and
+activation grant no Decision Record or later schema authority and no artifact
+instance, binding, validator, resolver, runtime, implementation, product,
+release, publication, or deployment authority.

@@ -1,8 +1,9 @@
 # ADR-0018: Review Record executable schema definition
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-08-07
 - **Issue:** [#62](https://github.com/CNTX-PROJECT/CNTX/issues/62)
+- **EIGENAAR acceptance:** issue comment `5218629573`
 - **Decision:** ARCH-018 — Review Record Executable Schema Definition
 
 ## Context
@@ -15,19 +16,18 @@ specialist-authored, bounded, and non-self-approving Review Record meaning.
 
 After Accepted Evidence Bundle Schema Version `1.0.0`, the dependency-first
 rollout permits a separately governed Review Record executable-schema
-candidate. The decision translates only CONTRACT-007 responsibilities, remains
+decision. The decision translates only CONTRACT-007 responsibilities, remains
 structurally evaluative, preserves authority separation and final human
 authority, and introduces no artifact-specific schema dependency or
 implementation mechanism.
 
-## Proposed decision
+## Decision
 
-Adopt, subject to separate exact-head EIGENAAR / Final Authority acceptance,
-one JSON Schema Draft 2020-12 Schema Resource at
+Adopt one JSON Schema Draft 2020-12 Schema Resource at
 `schemas/review-record/1.0.0/schema.json` with canonical `$id`
 `https://github.com/CNTX-PROJECT/CNTX/schemas/review-record/1.0.0`.
 
-The Proposed resource:
+The resource:
 
 - evaluates a closed root with exactly `envelope` and `payload`;
 - references the exact Accepted Common Artifact Envelope once;
@@ -43,8 +43,7 @@ The Proposed resource:
 - uses only closed statement, artifact-pin, recommendation, finding, and
   traceability structures;
 - keeps all internal references fragment-local; and
-- remains Proposed and inactive until separate exact-head acceptance and
-  governed integration.
+- is Accepted; governed integration to `main` activates the exact resource.
 
 ## Rationale
 
@@ -59,8 +58,8 @@ offline validation.
 
 ## Consequences and tradeoffs
 
-- Sixteen CONTRACT-007 responsibility groups become mandatory structural
-  coordinates if the candidate is later accepted.
+- Sixteen CONTRACT-007 responsibility groups are mandatory structural
+  coordinates in the Accepted schema.
 - Specialist findings and recommendations remain Evidentiary and cannot become
   approval, rejection, acceptance, integration, release, deployment, or merge.
 - Specialty, independence, coverage, depth, methods, uncertainty, dissent,
@@ -91,7 +90,7 @@ JSON assumptions; and review or schema validity as acceptance.
 
 ## Validation
 
-The candidate requires strict duplicate-free JSON and UTF-8 checks, official
+The resource requires strict duplicate-free JSON and UTF-8 checks, official
 Draft 2020-12 schema checking, isolated `jsonschema 4.25.1`, exact local
 registration of the Common Artifact Envelope, required missing-resource
 failure, all twenty expected fixture outcomes, exact root/constants/sixteen-
@@ -113,8 +112,8 @@ restricted content, and private implementation details remain forbidden.
 
 ## Authority and conformance boundary
 
-The Proposed resource is Evidentiary and non-self-approving. Schema validity
-proves only structural satisfaction of this exact candidate under the
+The Accepted resource is Evidentiary and non-self-approving. Schema validity
+proves only structural satisfaction of this exact resource under the
 registered common resource. It grants no review or execution authority,
 specialist qualification, source truth, evidence authenticity, finding
 correctness, review quality, recommendation authority, decision authority,
@@ -132,6 +131,7 @@ registry, catalog, cache, bundler, network access; conformance tooling,
 runtime, implementation, provider, product, release, tag, hosted publication,
 deployment; and Decision Record or later schemas.
 
-Creation-contract approval is not candidate acceptance. After the transparent
-non-independent exact-head COMMENT review, work stops for separate attributable
-EIGENAAR / Final Authority acceptance of the exact candidate head.
+EIGENAAR / Final Authority acceptance of the exact reviewed candidate is
+recorded in issue comment `5218629573`. Governed integration to `main`
+activates exactly Review Record Schema Version `1.0.0`. No Decision Record or
+later schema is automatically authorized.
