@@ -1,0 +1,1278 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/CNTX-PROJECT/CNTX/schemas/state-snapshot/1.0.0",
+  "$comment": "Accepted ARCH-020 State Snapshot Schema Version 1.0.0 under issue #66 and EIGENAAR / Final Authority acceptance comment 5219885650. Schema validity grants no source truth, freshness, authority, evidence, approval, decision, task authorization, acceptance, integration, release, deployment, merge permission, or follow-on authority.",
+  "title": "CNTX State Snapshot Artifact",
+  "description": "A complete State Snapshot artifact with the exact Accepted Common Artifact Envelope and a closed CONTRACT-009 payload. This Accepted resource evaluates structure only, preserves controlling sources and final human authority, and becomes active only through governed integration under final human authority.",
+  "type": "object",
+  "properties": {
+    "envelope": {
+      "description": "The exact Accepted Common Artifact Envelope specialized for the State Snapshot Artifact Type, Contract Definition, and Schema Definition.",
+      "allOf": [
+        {
+          "$ref": "https://github.com/CNTX-PROJECT/CNTX/schemas/common-artifact-envelope/1.0.0"
+        },
+        {
+          "properties": {
+            "artifactType": {
+              "const": "state-snapshot"
+            },
+            "governingContract": {
+              "properties": {
+                "identifier": {
+                  "const": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/state-snapshot"
+                },
+                "version": {
+                  "const": "1.0.0"
+                }
+              }
+            },
+            "governingSchema": {
+              "properties": {
+                "identifier": {
+                  "const": "https://github.com/CNTX-PROJECT/CNTX/schemas/state-snapshot/1.0.0"
+                },
+                "version": {
+                  "const": "1.0.0"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "payload": {
+      "$ref": "#/$defs/stateSnapshotPayload"
+    }
+  },
+  "required": [
+    "envelope",
+    "payload"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "nonBlankString": {
+      "description": "A string containing at least one non-whitespace character. Its opaque value grants no authority, truth, freshness, approval, or implementation effect.",
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "nonEmptyUniqueStatementArray": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/nonBlankString"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "noneDeclaration": {
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "none"
+        }
+      },
+      "required": [
+        "disposition"
+      ],
+      "additionalProperties": false
+    },
+    "specifiedStatementDeclaration": {
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "specified"
+        },
+        "items": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        }
+      },
+      "required": [
+        "disposition",
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "statementDeclaration": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/noneDeclaration"
+        },
+        {
+          "$ref": "#/$defs/specifiedStatementDeclaration"
+        }
+      ]
+    },
+    "artifactPin": {
+      "type": "object",
+      "properties": {
+        "artifactInstanceIdentifier": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "artifactRevision": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "artifactInstanceIdentifier",
+        "artifactRevision"
+      ],
+      "additionalProperties": false
+    },
+    "specifiedArtifactPinDeclaration": {
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "specified"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/artifactPin"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "disposition",
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "artifactPinDeclaration": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/noneDeclaration"
+        },
+        {
+          "$ref": "#/$defs/specifiedArtifactPinDeclaration"
+        }
+      ]
+    },
+    "exactRevisionPinning": {
+      "type": "object",
+      "properties": {
+        "pinningDisposition": {
+          "const": "exact-revision"
+        },
+        "exactRevision": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "pinningDisposition",
+        "exactRevision"
+      ],
+      "additionalProperties": false
+    },
+    "pinningLimitation": {
+      "type": "object",
+      "properties": {
+        "pinningDisposition": {
+          "const": "limitation"
+        },
+        "limitation": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "uncertaintyEffect": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "pinningDisposition",
+        "limitation",
+        "uncertaintyEffect"
+      ],
+      "additionalProperties": false
+    },
+    "sourcePinning": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/exactRevisionPinning"
+        },
+        {
+          "$ref": "#/$defs/pinningLimitation"
+        }
+      ]
+    },
+    "sourceEntry": {
+      "type": "object",
+      "properties": {
+        "localSourceReference": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "sourceKind": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "sourceIdentity": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "pinning": {
+          "$ref": "#/$defs/sourcePinning"
+        },
+        "applicability": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "provenance": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "interpretiveLimitations": {
+          "$ref": "#/$defs/statementDeclaration"
+        },
+        "contentDigestReference": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "localSourceReference",
+        "sourceKind",
+        "sourceIdentity",
+        "pinning",
+        "applicability",
+        "provenance",
+        "interpretiveLimitations"
+      ],
+      "additionalProperties": false
+    },
+    "freshnessAssessment": {
+      "type": "object",
+      "properties": {
+        "subject": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "classification": {
+          "enum": [
+            "known-current",
+            "possibly-stale",
+            "demonstrably-stale",
+            "unknown-freshness"
+          ]
+        },
+        "basis": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "limitations": {
+          "$ref": "#/$defs/statementDeclaration"
+        },
+        "nonProofStatement": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "subject",
+        "classification",
+        "basis",
+        "limitations",
+        "nonProofStatement"
+      ],
+      "additionalProperties": false
+    },
+    "reportedStateEntry": {
+      "type": "object",
+      "properties": {
+        "localStateReference": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "subject": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "statement": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "applicableScope": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "sourceReferences": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "limitations": {
+          "$ref": "#/$defs/statementDeclaration"
+        },
+        "orientationNotProofStatement": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "localStateReference",
+        "subject",
+        "statement",
+        "applicableScope",
+        "sourceReferences",
+        "limitations",
+        "orientationNotProofStatement"
+      ],
+      "additionalProperties": false
+    },
+    "claimEntry": {
+      "type": "object",
+      "properties": {
+        "subject": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "claim": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "sourceReferences": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "limitations": {
+          "$ref": "#/$defs/statementDeclaration"
+        },
+        "nonProofStatement": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "subject",
+        "claim",
+        "sourceReferences",
+        "limitations",
+        "nonProofStatement"
+      ],
+      "additionalProperties": false
+    },
+    "specifiedClaimDeclaration": {
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "specified"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/claimEntry"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "disposition",
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "claimDeclaration": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/noneDeclaration"
+        },
+        {
+          "$ref": "#/$defs/specifiedClaimDeclaration"
+        }
+      ]
+    },
+    "limitationEntry": {
+      "type": "object",
+      "properties": {
+        "subject": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "reason": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "interpretiveEffect": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "applicableScope": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        }
+      },
+      "required": [
+        "subject",
+        "reason",
+        "interpretiveEffect",
+        "applicableScope"
+      ],
+      "additionalProperties": false
+    },
+    "specifiedLimitationDeclaration": {
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "specified"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/limitationEntry"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "disposition",
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "limitationDeclaration": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/noneDeclaration"
+        },
+        {
+          "$ref": "#/$defs/specifiedLimitationDeclaration"
+        }
+      ]
+    },
+    "workEntry": {
+      "type": "object",
+      "properties": {
+        "subject": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "statement": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "applicableScope": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "limitation": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "subject",
+        "statement",
+        "applicableScope",
+        "limitation"
+      ],
+      "additionalProperties": false
+    },
+    "specifiedWorkDeclaration": {
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "specified"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/workEntry"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "disposition",
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "workDeclaration": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/noneDeclaration"
+        },
+        {
+          "$ref": "#/$defs/specifiedWorkDeclaration"
+        }
+      ]
+    },
+    "peerSnapshotRelationEntry": {
+      "type": "object",
+      "properties": {
+        "peerStateSnapshot": {
+          "$ref": "#/$defs/artifactPin"
+        },
+        "scope": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "reason": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "affectedBoundary": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "history": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "nonAutomaticEffectStatement": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "peerStateSnapshot",
+        "scope",
+        "reason",
+        "affectedBoundary",
+        "history",
+        "nonAutomaticEffectStatement"
+      ],
+      "additionalProperties": false
+    },
+    "specifiedPeerSnapshotRelationDeclaration": {
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "specified"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/peerSnapshotRelationEntry"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "disposition",
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "peerSnapshotRelationDeclaration": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/noneDeclaration"
+        },
+        {
+          "$ref": "#/$defs/specifiedPeerSnapshotRelationDeclaration"
+        }
+      ]
+    },
+    "derivationAuthorityClassificationAndNonAuthority": {
+      "type": "object",
+      "properties": {
+        "authorizedDerivationReference": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "classification": {
+          "const": "Derived"
+        },
+        "applicableScope": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "derivationLimitations": {
+          "$ref": "#/$defs/statementDeclaration"
+        },
+        "nonAuthorityBoundary": {
+          "type": "object",
+          "properties": {
+            "authoritativeStatus": {
+              "const": "non-authoritative"
+            },
+            "evidentiaryStatus": {
+              "const": "non-evidentiary"
+            },
+            "approvalBoundary": {
+              "$ref": "#/$defs/nonBlankString"
+            },
+            "decisionBoundary": {
+              "$ref": "#/$defs/nonBlankString"
+            },
+            "taskAuthorityBoundary": {
+              "$ref": "#/$defs/nonBlankString"
+            },
+            "technicalCapabilityBoundary": {
+              "$ref": "#/$defs/nonBlankString"
+            }
+          },
+          "required": [
+            "authoritativeStatus",
+            "evidentiaryStatus",
+            "approvalBoundary",
+            "decisionBoundary",
+            "taskAuthorityBoundary",
+            "technicalCapabilityBoundary"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "authorizedDerivationReference",
+        "classification",
+        "applicableScope",
+        "derivationLimitations",
+        "nonAuthorityBoundary"
+      ],
+      "additionalProperties": false
+    },
+    "orientationPurposeScopeAudienceAndExclusions": {
+      "type": "object",
+      "properties": {
+        "orientationPurpose": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "applicableScope": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "intendedAudiences": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "exclusions": {
+          "$ref": "#/$defs/statementDeclaration"
+        },
+        "nonSelfContainedBoundary": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "controllingSourceConsultationBoundary": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "orientationPurpose",
+        "applicableScope",
+        "intendedAudiences",
+        "exclusions",
+        "nonSelfContainedBoundary",
+        "controllingSourceConsultationBoundary"
+      ],
+      "additionalProperties": false
+    },
+    "governingContextControllingSourcesAndPrecedence": {
+      "type": "object",
+      "properties": {
+        "governingContext": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "controllingSourceReferences": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "sourcePrecedence": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "finalHumanAuthorityBoundary": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "sourceControlsOnConflictStatement": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "silentConflictResolutionProhibitedStatement": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "governingContext",
+        "controllingSourceReferences",
+        "sourcePrecedence",
+        "finalHumanAuthorityBoundary",
+        "sourceControlsOnConflictStatement",
+        "silentConflictResolutionProhibitedStatement"
+      ],
+      "additionalProperties": false
+    },
+    "sourceIdentityRevisionDigestAndPinningLimitations": {
+      "type": "object",
+      "properties": {
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/sourceEntry"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "sources"
+      ],
+      "additionalProperties": false
+    },
+    "derivationProvenanceDependenciesAndTemporalCoordinates": {
+      "type": "object",
+      "properties": {
+        "derivationProvenance": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "sourceReferences": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "dependencyReferences": {
+          "$ref": "#/$defs/statementDeclaration"
+        },
+        "temporalCoordinates": {
+          "type": "object",
+          "properties": {
+            "stateApplicability": {
+              "$ref": "#/$defs/nonBlankString"
+            },
+            "derivation": {
+              "$ref": "#/$defs/nonBlankString"
+            },
+            "source": {
+              "$ref": "#/$defs/nonBlankString"
+            },
+            "observation": {
+              "$ref": "#/$defs/nonBlankString"
+            },
+            "publication": {
+              "$ref": "#/$defs/nonBlankString"
+            },
+            "knownValidThrough": {
+              "$ref": "#/$defs/nonBlankString"
+            }
+          },
+          "required": [
+            "stateApplicability",
+            "derivation",
+            "source",
+            "observation",
+            "publication",
+            "knownValidThrough"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "derivationProvenance",
+        "sourceReferences",
+        "dependencyReferences",
+        "temporalCoordinates"
+      ],
+      "additionalProperties": false
+    },
+    "freshnessStalenessAndKnownValidThrough": {
+      "type": "object",
+      "properties": {
+        "assessments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/freshnessAssessment"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "freshnessDoesNotEstablishAuthorityOrTruth": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "assessments",
+        "freshnessDoesNotEstablishAuthorityOrTruth"
+      ],
+      "additionalProperties": false
+    },
+    "relevanceSelectionMinimizationAndMaterialContext": {
+      "type": "object",
+      "properties": {
+        "relevanceBasis": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "selectedMinimumContext": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "excludedUnrelatedMaterial": {
+          "$ref": "#/$defs/statementDeclaration"
+        },
+        "nonDuplicationBoundary": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "materialContextPreservation": {
+          "type": "object",
+          "properties": {
+            "uncertainty": {
+              "$ref": "#/$defs/statementDeclaration"
+            },
+            "dependencies": {
+              "$ref": "#/$defs/statementDeclaration"
+            },
+            "conflicts": {
+              "$ref": "#/$defs/statementDeclaration"
+            },
+            "omissions": {
+              "$ref": "#/$defs/statementDeclaration"
+            },
+            "incompleteWork": {
+              "$ref": "#/$defs/statementDeclaration"
+            },
+            "stoppedConditions": {
+              "$ref": "#/$defs/statementDeclaration"
+            },
+            "verificationGaps": {
+              "$ref": "#/$defs/statementDeclaration"
+            }
+          },
+          "required": [
+            "uncertainty",
+            "dependencies",
+            "conflicts",
+            "omissions",
+            "incompleteWork",
+            "stoppedConditions",
+            "verificationGaps"
+          ],
+          "additionalProperties": false
+        },
+        "noAutomatedSelectionStatement": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "relevanceBasis",
+        "selectedMinimumContext",
+        "excludedUnrelatedMaterial",
+        "nonDuplicationBoundary",
+        "materialContextPreservation",
+        "noAutomatedSelectionStatement"
+      ],
+      "additionalProperties": false
+    },
+    "reportedStateClaimsAndOrientationBoundary": {
+      "type": "object",
+      "properties": {
+        "reportedStateEntries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/reportedStateEntry"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "reportedStateEntries"
+      ],
+      "additionalProperties": false
+    },
+    "completionCorrectnessConformanceAndVerificationBoundary": {
+      "type": "object",
+      "properties": {
+        "reportedCompletionClaims": {
+          "$ref": "#/$defs/claimDeclaration"
+        },
+        "reportedCorrectnessClaims": {
+          "$ref": "#/$defs/claimDeclaration"
+        },
+        "reportedConformanceClaims": {
+          "$ref": "#/$defs/claimDeclaration"
+        },
+        "reportedCurrentnessClaims": {
+          "$ref": "#/$defs/claimDeclaration"
+        },
+        "reportedVerificationClaims": {
+          "$ref": "#/$defs/claimDeclaration"
+        }
+      },
+      "required": [
+        "reportedCompletionClaims",
+        "reportedCorrectnessClaims",
+        "reportedConformanceClaims",
+        "reportedCurrentnessClaims",
+        "reportedVerificationClaims"
+      ],
+      "additionalProperties": false
+    },
+    "evidenceReviewDecisionAndIntegrationTraceability": {
+      "type": "object",
+      "properties": {
+        "executionResults": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "evidenceBundles": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "reviewRecords": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "decisionRecords": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "integrationReporting": {
+          "$ref": "#/$defs/statementDeclaration"
+        },
+        "inputsDoNotBecomeProofOrAuthorityStatement": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "executionResults",
+        "evidenceBundles",
+        "reviewRecords",
+        "decisionRecords",
+        "integrationReporting",
+        "inputsDoNotBecomeProofOrAuthorityStatement"
+      ],
+      "additionalProperties": false
+    },
+    "artifactRelationships": {
+      "type": "object",
+      "properties": {
+        "projectCharters": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "workstreams": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "taskContracts": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "contextPackets": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "executionResults": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "evidenceBundles": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "reviewRecords": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "decisionRecords": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "peerStateSnapshots": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        }
+      },
+      "required": [
+        "projectCharters",
+        "workstreams",
+        "taskContracts",
+        "contextPackets",
+        "executionResults",
+        "evidenceBundles",
+        "reviewRecords",
+        "decisionRecords",
+        "peerStateSnapshots"
+      ],
+      "additionalProperties": false
+    },
+    "uncertaintyLimitationsOmissionsAndVerificationGaps": {
+      "type": "object",
+      "properties": {
+        "missingSources": {
+          "$ref": "#/$defs/limitationDeclaration"
+        },
+        "unavailableSources": {
+          "$ref": "#/$defs/limitationDeclaration"
+        },
+        "unpinnedSources": {
+          "$ref": "#/$defs/limitationDeclaration"
+        },
+        "omissions": {
+          "$ref": "#/$defs/limitationDeclaration"
+        },
+        "conflicts": {
+          "$ref": "#/$defs/limitationDeclaration"
+        },
+        "verificationGaps": {
+          "$ref": "#/$defs/limitationDeclaration"
+        },
+        "otherMaterialLimitations": {
+          "$ref": "#/$defs/limitationDeclaration"
+        },
+        "silenceDoesNotResolveOrProveAbsenceStatement": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "missingSources",
+        "unavailableSources",
+        "unpinnedSources",
+        "omissions",
+        "conflicts",
+        "verificationGaps",
+        "otherMaterialLimitations",
+        "silenceDoesNotResolveOrProveAbsenceStatement"
+      ],
+      "additionalProperties": false
+    },
+    "incompleteWorkStoppedConditionsUnresolvedDecisionsAndRemainingActions": {
+      "type": "object",
+      "properties": {
+        "incompleteWork": {
+          "$ref": "#/$defs/workDeclaration"
+        },
+        "stoppedConditions": {
+          "$ref": "#/$defs/workDeclaration"
+        },
+        "unresolvedDecisions": {
+          "$ref": "#/$defs/workDeclaration"
+        },
+        "remainingActions": {
+          "$ref": "#/$defs/workDeclaration"
+        },
+        "continuationRequiresSeparateAuthorityStatement": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "incompleteWork",
+        "stoppedConditions",
+        "unresolvedDecisions",
+        "remainingActions",
+        "continuationRequiresSeparateAuthorityStatement"
+      ],
+      "additionalProperties": false
+    },
+    "snapshotIdentityRevisionAndHistoricalProvenance": {
+      "type": "object",
+      "properties": {
+        "representedStateSnapshot": {
+          "$ref": "#/$defs/artifactPin"
+        },
+        "derivationNarrative": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "revisionNarrative": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "priorRevisions": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "laterRevisions": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "historicalPreservationBoundary": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "selfPinEqualityNotProvedStatement": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "representedStateSnapshot",
+        "derivationNarrative",
+        "revisionNarrative",
+        "priorRevisions",
+        "laterRevisions",
+        "historicalPreservationBoundary",
+        "selfPinEqualityNotProvedStatement"
+      ],
+      "additionalProperties": false
+    },
+    "peerSnapshotDependenciesReplacementCorrectionSupersessionAndConflicts": {
+      "type": "object",
+      "properties": {
+        "dependencies": {
+          "$ref": "#/$defs/peerSnapshotRelationDeclaration"
+        },
+        "replacements": {
+          "$ref": "#/$defs/peerSnapshotRelationDeclaration"
+        },
+        "corrections": {
+          "$ref": "#/$defs/peerSnapshotRelationDeclaration"
+        },
+        "supersessions": {
+          "$ref": "#/$defs/peerSnapshotRelationDeclaration"
+        },
+        "conflicts": {
+          "$ref": "#/$defs/peerSnapshotRelationDeclaration"
+        },
+        "noLatestWinsOrSilentReplacementStatement": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "dependencies",
+        "replacements",
+        "corrections",
+        "supersessions",
+        "conflicts",
+        "noLatestWinsOrSilentReplacementStatement"
+      ],
+      "additionalProperties": false
+    },
+    "handoffRecipientsContinuationNeedsAndAuthorityBoundary": {
+      "type": "object",
+      "properties": {
+        "handoffScope": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "intendedRecipients": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "sourceAccessibility": {
+          "$ref": "#/$defs/statementDeclaration"
+        },
+        "continuationNeeds": {
+          "$ref": "#/$defs/statementDeclaration"
+        },
+        "requiredSeparateAuthority": {
+          "$ref": "#/$defs/statementDeclaration"
+        },
+        "nonConversationCopyBoundary": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "handoffIsNotTaskAuthorityStatement": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "handoffScope",
+        "intendedRecipients",
+        "sourceAccessibility",
+        "continuationNeeds",
+        "requiredSeparateAuthority",
+        "nonConversationCopyBoundary",
+        "handoffIsNotTaskAuthorityStatement"
+      ],
+      "additionalProperties": false
+    },
+    "securityPrivacyAccessDisclosureAndRestrictedContext": {
+      "type": "object",
+      "properties": {
+        "securityConsiderations": {
+          "$ref": "#/$defs/statementDeclaration"
+        },
+        "privacyConsiderations": {
+          "$ref": "#/$defs/statementDeclaration"
+        },
+        "accessLimitations": {
+          "$ref": "#/$defs/statementDeclaration"
+        },
+        "confidentiality": {
+          "$ref": "#/$defs/statementDeclaration"
+        },
+        "restrictedSourceLimitations": {
+          "$ref": "#/$defs/statementDeclaration"
+        },
+        "exclusions": {
+          "$ref": "#/$defs/statementDeclaration"
+        },
+        "disclosureLimitations": {
+          "$ref": "#/$defs/statementDeclaration"
+        },
+        "redactionInformationLoss": {
+          "$ref": "#/$defs/statementDeclaration"
+        },
+        "residualRisk": {
+          "$ref": "#/$defs/statementDeclaration"
+        },
+        "declarativeOnlyNoEnforcementOrTransformationStatement": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "securityConsiderations",
+        "privacyConsiderations",
+        "accessLimitations",
+        "confidentiality",
+        "restrictedSourceLimitations",
+        "exclusions",
+        "disclosureLimitations",
+        "redactionInformationLoss",
+        "residualRisk",
+        "declarativeOnlyNoEnforcementOrTransformationStatement"
+      ],
+      "additionalProperties": false
+    },
+    "conceptualLifecycleNonAutomaticEffectsAndFollowOnAuthority": {
+      "type": "object",
+      "properties": {
+        "conceptualRelation": {
+          "const": "integration → compact state update"
+        },
+        "derivationTriggerContext": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        },
+        "integrationNotProvedStatement": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "nonAutomaticEffectsStatement": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "historicalPreservationStatement": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "followOnAuthorityReferences": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "remainingSeparatelyAuthorizedActions": {
+          "$ref": "#/$defs/statementDeclaration"
+        },
+        "stateSynchronizationWorkflowRuntimeBoundary": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "conceptualRelation",
+        "derivationTriggerContext",
+        "integrationNotProvedStatement",
+        "nonAutomaticEffectsStatement",
+        "historicalPreservationStatement",
+        "followOnAuthorityReferences",
+        "remainingSeparatelyAuthorizedActions",
+        "stateSynchronizationWorkflowRuntimeBoundary"
+      ],
+      "additionalProperties": false
+    },
+    "stateSnapshotPayload": {
+      "type": "object",
+      "properties": {
+        "derivationAuthorityClassificationAndNonAuthority": {
+          "$ref": "#/$defs/derivationAuthorityClassificationAndNonAuthority"
+        },
+        "orientationPurposeScopeAudienceAndExclusions": {
+          "$ref": "#/$defs/orientationPurposeScopeAudienceAndExclusions"
+        },
+        "governingContextControllingSourcesAndPrecedence": {
+          "$ref": "#/$defs/governingContextControllingSourcesAndPrecedence"
+        },
+        "sourceIdentityRevisionDigestAndPinningLimitations": {
+          "$ref": "#/$defs/sourceIdentityRevisionDigestAndPinningLimitations"
+        },
+        "derivationProvenanceDependenciesAndTemporalCoordinates": {
+          "$ref": "#/$defs/derivationProvenanceDependenciesAndTemporalCoordinates"
+        },
+        "freshnessStalenessAndKnownValidThrough": {
+          "$ref": "#/$defs/freshnessStalenessAndKnownValidThrough"
+        },
+        "relevanceSelectionMinimizationAndMaterialContext": {
+          "$ref": "#/$defs/relevanceSelectionMinimizationAndMaterialContext"
+        },
+        "reportedStateClaimsAndOrientationBoundary": {
+          "$ref": "#/$defs/reportedStateClaimsAndOrientationBoundary"
+        },
+        "completionCorrectnessConformanceAndVerificationBoundary": {
+          "$ref": "#/$defs/completionCorrectnessConformanceAndVerificationBoundary"
+        },
+        "evidenceReviewDecisionAndIntegrationTraceability": {
+          "$ref": "#/$defs/evidenceReviewDecisionAndIntegrationTraceability"
+        },
+        "artifactRelationships": {
+          "$ref": "#/$defs/artifactRelationships"
+        },
+        "uncertaintyLimitationsOmissionsAndVerificationGaps": {
+          "$ref": "#/$defs/uncertaintyLimitationsOmissionsAndVerificationGaps"
+        },
+        "incompleteWorkStoppedConditionsUnresolvedDecisionsAndRemainingActions": {
+          "$ref": "#/$defs/incompleteWorkStoppedConditionsUnresolvedDecisionsAndRemainingActions"
+        },
+        "snapshotIdentityRevisionAndHistoricalProvenance": {
+          "$ref": "#/$defs/snapshotIdentityRevisionAndHistoricalProvenance"
+        },
+        "peerSnapshotDependenciesReplacementCorrectionSupersessionAndConflicts": {
+          "$ref": "#/$defs/peerSnapshotDependenciesReplacementCorrectionSupersessionAndConflicts"
+        },
+        "handoffRecipientsContinuationNeedsAndAuthorityBoundary": {
+          "$ref": "#/$defs/handoffRecipientsContinuationNeedsAndAuthorityBoundary"
+        },
+        "securityPrivacyAccessDisclosureAndRestrictedContext": {
+          "$ref": "#/$defs/securityPrivacyAccessDisclosureAndRestrictedContext"
+        },
+        "conceptualLifecycleNonAutomaticEffectsAndFollowOnAuthority": {
+          "$ref": "#/$defs/conceptualLifecycleNonAutomaticEffectsAndFollowOnAuthority"
+        }
+      },
+      "required": [
+        "derivationAuthorityClassificationAndNonAuthority",
+        "orientationPurposeScopeAudienceAndExclusions",
+        "governingContextControllingSourcesAndPrecedence",
+        "sourceIdentityRevisionDigestAndPinningLimitations",
+        "derivationProvenanceDependenciesAndTemporalCoordinates",
+        "freshnessStalenessAndKnownValidThrough",
+        "relevanceSelectionMinimizationAndMaterialContext",
+        "reportedStateClaimsAndOrientationBoundary",
+        "completionCorrectnessConformanceAndVerificationBoundary",
+        "evidenceReviewDecisionAndIntegrationTraceability",
+        "artifactRelationships",
+        "uncertaintyLimitationsOmissionsAndVerificationGaps",
+        "incompleteWorkStoppedConditionsUnresolvedDecisionsAndRemainingActions",
+        "snapshotIdentityRevisionAndHistoricalProvenance",
+        "peerSnapshotDependenciesReplacementCorrectionSupersessionAndConflicts",
+        "handoffRecipientsContinuationNeedsAndAuthorityBoundary",
+        "securityPrivacyAccessDisclosureAndRestrictedContext",
+        "conceptualLifecycleNonAutomaticEffectsAndFollowOnAuthority"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

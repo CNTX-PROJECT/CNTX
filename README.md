@@ -168,6 +168,28 @@ Schema Version under issue #64 and EIGENAAR acceptance comment `5219310944`;
 acceptance and activation authorize no State Snapshot schema or other follow-on
 work.
 
+The architecture index now also exposes the **Accepted** [State Snapshot
+Executable Schema Definition](docs/architecture/state-snapshot-executable-schema.md)
+with [ADR-0020](docs/architecture/adr/0020-state-snapshot-executable-schema.md),
+the [State Snapshot Schema Version `1.0.0`](schemas/state-snapshot/1.0.0/schema.json),
+and its [synthetic validation cases](tests/schemas/state-snapshot/1.0.0/cases.json).
+ARCH-020 composes the exact Accepted Common Artifact Envelope with a closed
+eighteen-property CONTRACT-009 payload and preserves Derived/non-authoritative
+classification, controlling sources and exact revisions or pinning
+limitations, provenance, temporal/freshness separation, reported state and
+claims, evidence/review/decision/integration traceability, nine artifact
+relationships, uncertainty, incomplete work and stops, snapshot history, five
+peer relations, bounded handoff, security/privacy, and non-automatic lifecycle
+effects without any artifact-specific schema `$ref`. The accepted resource
+allocates no authority or identity, proves no source or claim, retrieves no content,
+calculates no freshness, resolves no conflict, changes or synchronizes no state,
+and implements no workflow, runtime, access, disclosure, retention,
+verification, release, deployment, publication, or merge mechanism. Creation,
+validation, review, schema validity, or repository presence did not grant
+acceptance or activation. Exact-head acceptance is recorded in issue comment
+`5219885650`; governed integration to `main` activates the exact Schema Version.
+Acceptance and activation authorize no further phase automatically.
+
 The high-level roadmap is to define public concepts and documentation, invite review under the project governance, and only then consider scoped, approved implementation work. Private reference implementations may exist later outside this public repository.
 
 ## Participate
