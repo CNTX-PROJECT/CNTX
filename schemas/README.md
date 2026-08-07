@@ -48,6 +48,39 @@ The resource evaluates one complete closed Project Charter artifact with mandato
 
 The [ARCH-012 architecture decision](../docs/architecture/project-charter-executable-schema.md), [ADR-0012](../docs/architecture/adr/0012-project-charter-executable-schema.md), and [non-normative test manifest](../tests/schemas/project-charter/1.0.0/cases.json) define and evidence the Accepted boundary. Validation, repository presence, `$id`, or review did not grant acceptance or activation; exact-head Owner / Final Authority acceptance is recorded in issue comment `5210242651`, and governed integration to `main` activates Schema Version `1.0.0`. Schema validity still grants no conformance, approval, authority, release, or deployment.
 
+## Workstream Schema Version 1.0.0 candidate
+
+| Dimension | Proposed value |
+| --- | --- |
+| Logical schema identity | CNTX Public Core Schema Family / Workstream Artifact |
+| Schema language and dialect | JSON Schema Draft 2020-12 |
+| Dialect declaration | `https://json-schema.org/draft/2020-12/schema` |
+| Canonical `$id` | `https://github.com/CNTX-PROJECT/CNTX/schemas/workstream/1.0.0` |
+| Candidate Schema Version | `1.0.0` (inactive) |
+| Canonical repository path | `schemas/workstream/1.0.0/schema.json` |
+| Exact external dependency | Accepted Common Artifact Envelope Schema Version `1.0.0` |
+| Governing Contract Definition | `https://github.com/CNTX-PROJECT/CNTX/contract-definitions/workstream` at `1.0.0` |
+| Schema-resource media type | `application/schema+json` |
+| Document Status | Proposed under issue #52 |
+
+The candidate evaluates one complete closed Workstream artifact with mandatory
+`envelope` and `payload`. Its envelope statically references the complete
+Accepted Common Artifact Envelope and constrains the exact Workstream Artifact
+Type, governing Contract, and governing Schema pins. Its closed payload
+implements only the Accepted responsibilities of CONTRACT-002, including an
+opaque governing Project Charter Artifact Instance/Revision pin. It contains
+no Project Charter schema `$ref` or other artifact-to-artifact schema
+dependency.
+
+The [ARCH-013 candidate](../docs/architecture/workstream-executable-schema.md),
+[ADR-0013](../docs/architecture/adr/0013-workstream-executable-schema.md), and
+[non-normative test manifest](../tests/schemas/workstream/1.0.0/cases.json)
+define and evidence only the Proposed boundary. Creation, validation, review,
+repository presence, or `1.0.0` does not activate the candidate or grant
+contract conformance, approval, authority, release, deployment, merge
+permission, or Task Contract schema authority. Separate exact-head Owner /
+Final Authority acceptance and governed integration remain required.
+
 ## Change boundary
 
 Upon governed integration, exact Accepted versioned canonical standalone content is immutable. Any accepted structural or semantic change requires the applicable identity/version assessment, attributable review and approval, traceable provenance, and a separately authorized change. Schema validity alone cannot approve such a change. The Accepted Project Charter resource does not change the independently Accepted Common Artifact Envelope resource.
