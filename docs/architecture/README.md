@@ -222,6 +222,23 @@ error/severity vocabulary, universal result, validator,
 conformance tool, Artifact Instance, portable evidence, implementation,
 release, publication, deployment, merge permission, or follow-on authority.
 
+The [CNTX Portable Conformance Evidence
+Boundary](portable-conformance-evidence-boundary.md) and
+[ADR-0025](adr/0025-portable-conformance-evidence-boundary.md) are
+**Proposed** as ARCH-025 under issue #76 and attributable EIGENAAR creation-
+authority comment `5223043068`. They define a logical boundary for exactly
+scoped, version-bound, provenance-bearing, offline-first, independently
+reassessable conformance evidence; twelve evidence responsibilities;
+claim/evidence/requirement traceability; validation-output and Evidence Bundle
+separation; fail-closed missing, restricted, conflicting, or unreproducible
+evidence; six conformance-target evidence boundaries; reproduction, conflict,
+security/privacy, disclosure, and non-authority limits. They create no evidence
+Artifact Instance, Conformance Claim artifact, field, schema, manifest,
+package, serialization, protocol, validator, test runner, suite, score, badge,
+certification, supported-version claim, release-readiness decision,
+implementation, release, publication, deployment, acceptance, merge
+permission, or follow-on authority.
+
 ## Document status
 
 - **Proposed** — submitted for review and not yet an accepted repository decision.
