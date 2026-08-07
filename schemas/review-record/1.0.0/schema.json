@@ -1,0 +1,840 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/CNTX-PROJECT/CNTX/schemas/review-record/1.0.0",
+  "$comment": "Accepted ARCH-018 Review Record Schema Version 1.0.0 under issue #62 and EIGENAAR / Final Authority acceptance comment 5218629573. Schema validity grants no contract conformance, specialist authority, review quality, approval, rejection, acceptance, integration, release, deployment, merge permission, or follow-on authority.",
+  "title": "CNTX Review Record Artifact",
+  "description": "A complete Review Record artifact with the exact Accepted Common Artifact Envelope and a closed CONTRACT-007 payload. This schema evaluates structure only, preserves bounded Evidentiary specialist assessment, and becomes active only through governed integration under final human authority.",
+  "type": "object",
+  "properties": {
+    "envelope": {
+      "description": "The exact Accepted Common Artifact Envelope specialized for the Review Record Artifact Type, Contract Definition, and Schema Definition.",
+      "allOf": [
+        {
+          "$ref": "https://github.com/CNTX-PROJECT/CNTX/schemas/common-artifact-envelope/1.0.0"
+        },
+        {
+          "properties": {
+            "artifactType": {
+              "const": "review-record"
+            },
+            "governingContract": {
+              "properties": {
+                "identifier": {
+                  "const": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/review-record"
+                },
+                "version": {
+                  "const": "1.0.0"
+                }
+              }
+            },
+            "governingSchema": {
+              "properties": {
+                "identifier": {
+                  "const": "https://github.com/CNTX-PROJECT/CNTX/schemas/review-record/1.0.0"
+                },
+                "version": {
+                  "const": "1.0.0"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "payload": {
+      "$ref": "#/$defs/reviewRecordPayload"
+    }
+  },
+  "required": [
+    "envelope",
+    "payload"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "nonBlankString": {
+      "description": "A string containing at least one non-whitespace character. Its value remains opaque or declarative and grants no authority, approval, decision, or implementation effect.",
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "nonEmptyUniqueStatementArray": {
+      "description": "One or more distinct non-blank declarative statements.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/nonBlankString"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "specifiedDeclaration": {
+      "description": "An explicitly specified non-empty set of declarative statements.",
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "specified"
+        },
+        "items": {
+          "$ref": "#/$defs/nonEmptyUniqueStatementArray"
+        }
+      },
+      "required": [
+        "disposition",
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "noneDeclaration": {
+      "description": "An explicitly assessed absence for this artifact revision.",
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "none"
+        }
+      },
+      "required": [
+        "disposition"
+      ],
+      "additionalProperties": false
+    },
+    "declarationSet": {
+      "description": "An assessed category with specified statements or assessed absence. Neither disposition proves completeness, correctness, sufficiency, safety, independence, authority, or approval.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/specifiedDeclaration"
+        },
+        {
+          "$ref": "#/$defs/noneDeclaration"
+        }
+      ]
+    },
+    "artifactRevisionPin": {
+      "description": "An opaque Artifact Instance Identifier and exact Artifact Revision pin. It performs no retrieval, resolution, embedding, validation, authority transfer, or approval.",
+      "type": "object",
+      "properties": {
+        "artifactInstanceIdentifier": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "artifactRevision": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "artifactInstanceIdentifier",
+        "artifactRevision"
+      ],
+      "additionalProperties": false
+    },
+    "specifiedArtifactPins": {
+      "description": "One or more distinct opaque Artifact Instance Identifier/Revision pins.",
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "specified"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/artifactRevisionPin"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "disposition",
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "noneArtifactPins": {
+      "description": "An explicitly assessed absence of artifact pins for this category.",
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "none"
+        }
+      },
+      "required": [
+        "disposition"
+      ],
+      "additionalProperties": false
+    },
+    "artifactPinDeclaration": {
+      "description": "An assessed artifact relationship with specified opaque revision pins or assessed absence. It creates no schema dependency, retrieval, validation, authority, approval, or lifecycle effect.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/specifiedArtifactPins"
+        },
+        {
+          "$ref": "#/$defs/noneArtifactPins"
+        }
+      ]
+    },
+    "reviewAuthoritySpecialtyAndReviewer": {
+      "description": "The exact bounded review authority, reviewer reference, declared specialties, role overlap, and authority limits. It allocates no reviewer identity, specialty taxonomy, credential, rank, assignment, accreditation, or independence certification.",
+      "type": "object",
+      "properties": {
+        "reviewAuthority": {
+          "$ref": "#/$defs/artifactRevisionPin"
+        },
+        "reviewerReference": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "declaredSpecialties": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonBlankString"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "roleOverlapAndPriorInvolvement": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "authorityScope": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "authorityLimitations": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "reviewAuthority",
+        "reviewerReference",
+        "declaredSpecialties",
+        "roleOverlapAndPriorInvolvement",
+        "authorityScope",
+        "authorityLimitations"
+      ],
+      "additionalProperties": false
+    },
+    "reviewableSubject": {
+      "description": "An exactly pinned reviewable subject and bounded claim set. References remain opaque and are not retrieved, resolved, embedded, type-interpreted, or semantically validated.",
+      "type": "object",
+      "properties": {
+        "subjectReference": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "subjectKind": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "artifactInstanceIdentifier": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "artifactRevision": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "boundedClaimReferences": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonBlankString"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "reviewScope": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "reviewCriteria": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "subjectReference",
+        "subjectKind",
+        "artifactInstanceIdentifier",
+        "artifactRevision",
+        "boundedClaimReferences",
+        "reviewScope",
+        "reviewCriteria"
+      ],
+      "additionalProperties": false
+    },
+    "artifactRelationships": {
+      "description": "Exactly nine explicit relationship categories. Every value is a specified-or-none set of opaque Artifact Instance Identifier/Revision pins and transfers no authority.",
+      "type": "object",
+      "properties": {
+        "projectCharters": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "workstreams": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "taskContracts": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "contextPackets": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "executionResults": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "evidenceBundles": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "peerReviewRecords": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "decisionRecords": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "stateSnapshots": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        }
+      },
+      "required": [
+        "projectCharters",
+        "workstreams",
+        "taskContracts",
+        "contextPackets",
+        "executionResults",
+        "evidenceBundles",
+        "peerReviewRecords",
+        "decisionRecords",
+        "stateSnapshots"
+      ],
+      "additionalProperties": false
+    },
+    "scopeCriteriaCoverageDepthAndUnreviewedAreas": {
+      "description": "Separate declarations of review scope, criteria, actual coverage, depth, unreviewed areas, and boundaries. They prove no completeness, quality, sufficiency, or approval.",
+      "type": "object",
+      "properties": {
+        "reviewScope": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "reviewCriteria": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "assessedCoverage": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "reviewDepth": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "unreviewedAreas": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "reviewBoundaries": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "reviewScope",
+        "reviewCriteria",
+        "assessedCoverage",
+        "reviewDepth",
+        "unreviewedAreas",
+        "reviewBoundaries"
+      ],
+      "additionalProperties": false
+    },
+    "finding": {
+      "description": "A closed finding that keeps observation, interpretation, finding statement, subject traceability, and rationale distinct. It assigns no verdict, severity, confidence, score, grade, weight, threshold, or approval state.",
+      "type": "object",
+      "properties": {
+        "findingReference": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "subjectReferences": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonBlankString"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "observation": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "interpretation": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "findingStatement": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "supportingRationale": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "findingReference",
+        "subjectReferences",
+        "observation",
+        "interpretation",
+        "findingStatement",
+        "supportingRationale"
+      ],
+      "additionalProperties": false
+    },
+    "evidenceUseMapping": {
+      "description": "A bounded finding-to-subject, evidence, method, and limitation mapping. References remain opaque and prove no existence, relevance, support, contradiction, completeness, independence, sufficiency, or correctness.",
+      "type": "object",
+      "properties": {
+        "findingReference": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "subjectReferences": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonBlankString"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "supportingEvidenceReferences": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "qualifyingEvidenceReferences": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "contradictoryEvidenceReferences": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "missingEvidence": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "unavailableEvidence": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "methodReferences": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "limitations": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "findingReference",
+        "subjectReferences",
+        "supportingEvidenceReferences",
+        "qualifyingEvidenceReferences",
+        "contradictoryEvidenceReferences",
+        "missingEvidence",
+        "unavailableEvidence",
+        "methodReferences",
+        "limitations"
+      ],
+      "additionalProperties": false
+    },
+    "methodsChecksToolsConditionsAndAssumptions": {
+      "description": "Separate declarations of methods, checks, tools, conditions, assumptions, and their limitations. No method, check, validator, tool, procedure, workflow, or runtime is implemented.",
+      "type": "object",
+      "properties": {
+        "methods": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "checks": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "tools": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "conditions": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "assumptions": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "methodCheckAndToolLimitations": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "methods",
+        "checks",
+        "tools",
+        "conditions",
+        "assumptions",
+        "methodCheckAndToolLimitations"
+      ],
+      "additionalProperties": false
+    },
+    "uncertaintyLimitationsDissentAndUnresolvedQuestions": {
+      "description": "Explicit uncertainty, limitation, dissent, and unresolved-question declarations without automatic resolution or a decision effect.",
+      "type": "object",
+      "properties": {
+        "uncertainties": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "reviewLimitations": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "dissent": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "unresolvedQuestions": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "uncertainties",
+        "reviewLimitations",
+        "dissent",
+        "unresolvedQuestions"
+      ],
+      "additionalProperties": false
+    },
+    "recommendation": {
+      "description": "A bounded specialist recommendation tied to findings. It is Evidentiary and is not approval, rejection, acceptance, integration, release, deployment, merge, or another consequential decision.",
+      "type": "object",
+      "properties": {
+        "findingReferences": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonBlankString"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "recommendationStatement": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "conditions": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "limitations": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "findingReferences",
+        "recommendationStatement",
+        "conditions",
+        "limitations"
+      ],
+      "additionalProperties": false
+    },
+    "specifiedRecommendations": {
+      "description": "One or more distinct bounded recommendations.",
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "specified"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/recommendation"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "disposition",
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "noneRecommendations": {
+      "description": "An explicitly assessed absence of recommendations for this artifact revision.",
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "const": "none"
+        }
+      },
+      "required": [
+        "disposition"
+      ],
+      "additionalProperties": false
+    },
+    "recommendationDeclaration": {
+      "description": "Recommendations are either explicitly specified as a non-empty set or explicitly assessed as none. Neither state is a decision or approval.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/specifiedRecommendations"
+        },
+        {
+          "$ref": "#/$defs/noneRecommendations"
+        }
+      ]
+    },
+    "independenceConflictsPriorInvolvementAndDependencies": {
+      "description": "Declarations about independence limitations, conflicts, prior involvement, and material dependencies. They do not certify independence or reviewer qualification.",
+      "type": "object",
+      "properties": {
+        "independenceLimitations": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "conflictsOfInterest": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "priorInvolvement": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "materialDependencies": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "independenceLimitations",
+        "conflictsOfInterest",
+        "priorInvolvement",
+        "materialDependencies"
+      ],
+      "additionalProperties": false
+    },
+    "adverseContradictoryMissingUnavailableExcludedAndRedactedInformation": {
+      "description": "Separate visibility for adverse, contradictory, missing, unavailable, excluded, and redacted information and its effect on the review.",
+      "type": "object",
+      "properties": {
+        "adverseInformation": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "contradictoryInformation": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "missingInformation": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "unavailableInformation": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "excludedInformation": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "redactedInformation": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "effectOnReview": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "adverseInformation",
+        "contradictoryInformation",
+        "missingInformation",
+        "unavailableInformation",
+        "excludedInformation",
+        "redactedInformation",
+        "effectOnReview"
+      ],
+      "additionalProperties": false
+    },
+    "peerReviewsConflictingReviewsAndSynthesis": {
+      "description": "Opaque peer-review relationships and bounded declarations of agreement, difference, synthesis, and dissent. It implements no voting, majority, consensus, ranking, weighting, or automatic conflict resolution.",
+      "type": "object",
+      "properties": {
+        "peerReviewReferences": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "conflictingReviewReferences": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "agreements": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "differences": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "boundedSynthesis": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "remainingDissent": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "peerReviewReferences",
+        "conflictingReviewReferences",
+        "agreements",
+        "differences",
+        "boundedSynthesis",
+        "remainingDissent"
+      ],
+      "additionalProperties": false
+    },
+    "correctionSupplementationReassessmentAndHistoricalTraceability": {
+      "description": "Declarations of correction, supplementation, reassessment, later evidence, affected conclusions, and history without revision sequencing or silent overwrite.",
+      "type": "object",
+      "properties": {
+        "corrections": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "supplementations": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "reassessments": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "reasons": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "supersededOrSupplementedConclusions": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "laterEvidence": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "historicalTraceability": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "corrections",
+        "supplementations",
+        "reassessments",
+        "reasons",
+        "supersededOrSupplementedConclusions",
+        "laterEvidence",
+        "historicalTraceability"
+      ],
+      "additionalProperties": false
+    },
+    "securityPrivacyAccessDisclosureAndRetention": {
+      "description": "Security, privacy, access, disclosure, retention, redaction-loss, and residual-risk declarations. It grants no permission and implements no control, disclosure, redaction, retention, archival, disposal, or encryption mechanism.",
+      "type": "object",
+      "properties": {
+        "securityConsiderations": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "privacyConsiderations": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "accessLimitations": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "disclosureLimitations": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "retentionConsiderations": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "redactionAndInformationLoss": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "residualRisks": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "securityConsiderations",
+        "privacyConsiderations",
+        "accessLimitations",
+        "disclosureLimitations",
+        "retentionConsiderations",
+        "redactionAndInformationLoss",
+        "residualRisks"
+      ],
+      "additionalProperties": false
+    },
+    "escalationStopAndLifecycleTraceability": {
+      "description": "Escalation, stop, lifecycle, follow-up, and historical-traceability declarations without workflow execution or state transition.",
+      "type": "object",
+      "properties": {
+        "escalationConditions": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "stopConditions": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "lifecycleLimitations": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "openFollowUpItems": {
+          "$ref": "#/$defs/declarationSet"
+        },
+        "provenanceAndHistoricalTraceability": {
+          "$ref": "#/$defs/declarationSet"
+        }
+      },
+      "required": [
+        "escalationConditions",
+        "stopConditions",
+        "lifecycleLimitations",
+        "openFollowUpItems",
+        "provenanceAndHistoricalTraceability"
+      ],
+      "additionalProperties": false
+    },
+    "reviewRecordPayload": {
+      "description": "The closed CONTRACT-007 payload. Every property records bounded Evidentiary declarations and grants no authority, approval, rejection, decision, execution, access, lifecycle transition, integration, release, deployment, or merge effect.",
+      "type": "object",
+      "properties": {
+        "reviewAuthoritySpecialtyAndReviewer": {
+          "$ref": "#/$defs/reviewAuthoritySpecialtyAndReviewer"
+        },
+        "executionAuthorityTraceability": {
+          "$ref": "#/$defs/artifactPinDeclaration"
+        },
+        "reviewableSubjects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/reviewableSubject"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "artifactRelationships": {
+          "$ref": "#/$defs/artifactRelationships"
+        },
+        "scopeCriteriaCoverageDepthAndUnreviewedAreas": {
+          "$ref": "#/$defs/scopeCriteriaCoverageDepthAndUnreviewedAreas"
+        },
+        "observationsInterpretationsFindingsAndRationale": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/finding"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "evidenceUseAndFindingTraceability": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidenceUseMapping"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "methodsChecksToolsConditionsAndAssumptions": {
+          "$ref": "#/$defs/methodsChecksToolsConditionsAndAssumptions"
+        },
+        "uncertaintyLimitationsDissentAndUnresolvedQuestions": {
+          "$ref": "#/$defs/uncertaintyLimitationsDissentAndUnresolvedQuestions"
+        },
+        "recommendationsAndDecisionBoundary": {
+          "$ref": "#/$defs/recommendationDeclaration"
+        },
+        "independenceConflictsPriorInvolvementAndDependencies": {
+          "$ref": "#/$defs/independenceConflictsPriorInvolvementAndDependencies"
+        },
+        "adverseContradictoryMissingUnavailableExcludedAndRedactedInformation": {
+          "$ref": "#/$defs/adverseContradictoryMissingUnavailableExcludedAndRedactedInformation"
+        },
+        "peerReviewsConflictingReviewsAndSynthesis": {
+          "$ref": "#/$defs/peerReviewsConflictingReviewsAndSynthesis"
+        },
+        "correctionSupplementationReassessmentAndHistoricalTraceability": {
+          "$ref": "#/$defs/correctionSupplementationReassessmentAndHistoricalTraceability"
+        },
+        "securityPrivacyAccessDisclosureAndRetention": {
+          "$ref": "#/$defs/securityPrivacyAccessDisclosureAndRetention"
+        },
+        "escalationStopAndLifecycleTraceability": {
+          "$ref": "#/$defs/escalationStopAndLifecycleTraceability"
+        }
+      },
+      "required": [
+        "reviewAuthoritySpecialtyAndReviewer",
+        "executionAuthorityTraceability",
+        "reviewableSubjects",
+        "artifactRelationships",
+        "scopeCriteriaCoverageDepthAndUnreviewedAreas",
+        "observationsInterpretationsFindingsAndRationale",
+        "evidenceUseAndFindingTraceability",
+        "methodsChecksToolsConditionsAndAssumptions",
+        "uncertaintyLimitationsDissentAndUnresolvedQuestions",
+        "recommendationsAndDecisionBoundary",
+        "independenceConflictsPriorInvolvementAndDependencies",
+        "adverseContradictoryMissingUnavailableExcludedAndRedactedInformation",
+        "peerReviewsConflictingReviewsAndSynthesis",
+        "correctionSupplementationReassessmentAndHistoricalTraceability",
+        "securityPrivacyAccessDisclosureAndRetention",
+        "escalationStopAndLifecycleTraceability"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

@@ -124,6 +124,28 @@ follow-on authority. Governed integration to `main` activates the exact Schema
 Version; acceptance and activation authorize no Review Record schema or other
 follow-on work.
 
+The architecture index now also exposes the **Accepted** [Review Record
+Executable Schema Definition](docs/architecture/review-record-executable-schema.md)
+with [ADR-0018](docs/architecture/adr/0018-review-record-executable-schema.md),
+the Accepted [Review Record Schema Version `1.0.0`](schemas/review-record/1.0.0/schema.json),
+and its [synthetic validation cases](tests/schemas/review-record/1.0.0/cases.json).
+ARCH-018 composes the exact Accepted Common Artifact Envelope with a closed
+sixteen-property CONTRACT-007 payload, separates Review Authority and Execution
+Authority, and records exact reviewable subjects, nine opaque artifact
+relationship categories, findings, evidence use, uncertainty, dissent,
+recommendations, peer review, correction, security/privacy, escalation, stop,
+and lifecycle traceability without any artifact-specific schema `$ref`. The
+accepted resource implements no reviewer identity or specialty system, review,
+retrieval, scoring, severity, confidence, verdict, approval, voting, synthesis,
+decision, workflow, runtime, access, disclosure, retention, release,
+deployment, or merge mechanism. Creation, validation, review, schema validity,
+or repository presence grants no contract conformance, specialist authority,
+review quality, acceptance, integration, release, deployment, merge permission,
+Decision Record schema authority, or follow-on authority. Governed integration
+to `main` activates the exact Schema Version under issue #62 and EIGENAAR
+acceptance comment `5218629573`; acceptance and activation authorize no
+Decision Record schema or other follow-on work.
+
 The high-level roadmap is to define public concepts and documentation, invite review under the project governance, and only then consider scoped, approved implementation work. Private reference implementations may exist later outside this public repository.
 
 ## Participate
