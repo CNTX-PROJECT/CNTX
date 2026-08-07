@@ -1,9 +1,9 @@
 {
   "schemaId": "https://github.com/CNTX-PROJECT/CNTX/schemas/workstream/1.0.0",
   "candidateSchemaVersion": "1.0.0",
-  "documentStatus": "Proposed",
+  "documentStatus": "Accepted",
   "nonNormative": true,
-  "description": "Public-safe synthetic validation cases for Proposed ARCH-013 Schema Version 1.0.0. Expected validity is evidence only and grants no contract conformance, approval, authority, trust, acceptance, release, deployment, merge permission, access permission, or Task Contract authority.",
+  "description": "Public-safe synthetic validation cases for Accepted ARCH-013 Schema Version 1.0.0. Expected validity is evidence only and grants no contract conformance, approval, authority, trust, acceptance, release, deployment, merge permission, access permission, or Task Contract authority.",
   "cases": [
     {
       "name": "valid minimal assessed workstream",

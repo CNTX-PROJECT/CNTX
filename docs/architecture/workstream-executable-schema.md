@@ -2,24 +2,25 @@
 
 ## Status and authority
 
-**Document Status: Proposed.**
+**Document Status: Accepted.**
 
-This document is a Proposed executable-schema architecture decision governed
+This document is an Accepted executable-schema architecture decision governed
 by [issue #52](https://github.com/CNTX-PROJECT/CNTX/issues/52) and recorded by
 [ADR-0013](adr/0013-workstream-executable-schema.md). The accompanying
 [Schema Resource](../../schemas/workstream/1.0.0/schema.json) and
 [synthetic test evidence](../../tests/schemas/workstream/1.0.0/cases.json) are
-candidate material only. Workstream Schema Version `1.0.0` is not Accepted or
-active unless the human Owner / Final Authority separately accepts the exact
-reviewed revision and it is integrated through the governed lifecycle.
+Accepted in the exact reviewed revision recorded by Owner / Final Authority
+acceptance comment `5215029431`. On governed integration to `main`, Workstream
+Schema Version `1.0.0` becomes active within this exact scope.
 
-The same operational agent prepared and reviews the exact candidate under the
+The same operational agent prepared and reviewed the exact candidate under the
 transparent role arrangement authorized in issue #52. That review is not
-independent third-party review and cannot provide final human approval.
+independent third-party review and did not provide final human approval;
+acceptance was given separately by the human Owner / Final Authority.
 
 Within this document, **MUST** and **MUST NOT** express mandatory requirements,
 **SHOULD** and **SHOULD NOT** express strong recommendations, and **MAY**
-expresses permission within this Proposed decision.
+expresses permission within this Accepted decision.
 
 ## Purpose and decision boundary
 
@@ -34,7 +35,7 @@ meaning. Accepted [ARCH-012](project-charter-executable-schema.md) proves the
 dependency-first artifact-specific pattern without becoming a Workstream
 schema dependency.
 
-This Proposed decision binds those prerequisites into one complete Workstream
+This Accepted decision binds those prerequisites into one complete Workstream
 Schema Resource. It specializes the Accepted common envelope, represents the
 governing Project Charter as an opaque Artifact Instance/Revision pin, and
 converts only CONTRACT-002's semantic responsibilities into closed payload
@@ -76,24 +77,26 @@ CNTX choices governed by Accepted architecture and CONTRACT-002.
 
 ## Canonical identity, version, and repository path
 
-| Dimension | Proposed value |
+| Dimension | Accepted value |
 | --- | --- |
 | Logical Schema Identity | CNTX Public Core Schema Family / Workstream Artifact |
 | Schema language | JSON Schema |
 | Dialect | Draft 2020-12 |
 | `$schema` | `https://json-schema.org/draft/2020-12/schema` |
 | Canonical `$id` | `https://github.com/CNTX-PROJECT/CNTX/schemas/workstream/1.0.0` |
-| Schema Version | `1.0.0` (Proposed and inactive) |
+| Schema Version | `1.0.0` |
 | Canonical repository path | `schemas/workstream/1.0.0/schema.json` |
 | Schema-resource media type | `application/schema+json` |
-| Document Status | Proposed under issue #52 |
+| Document Status | Accepted under issue #52 and Owner acceptance comment `5215029431` |
 
 The `$id` is an absolute, fragment-free, version-qualified HTTPS identity. It
 is not a branch, tag, release, mutable retrieval coordinate, automatic network
 instruction, Artifact Instance Identifier, Contract Definition Identifier,
 approval, or trust assertion. The repository path is a source coordinate, not
-the identity itself. Drafting, validation, review, and repository presence do
-not activate the Schema Version.
+the identity itself. Drafting, validation, review, and repository presence did
+not activate the Schema Version. The Owner / Final Authority accepted the
+exact reviewed revision in issue comment `5215029431`; governed integration to
+`main` activates that exact resource.
 
 ## Canonical full-artifact root
 
@@ -278,8 +281,9 @@ accurate; whether provenance is adequate; or whether a consequential action is
 authorized.
 
 The disclosed exact-head Architect review is evidentiary and non-independent.
-It cannot activate Schema Version `1.0.0` or replace separately attributable
-human Owner / Final Authority acceptance of the exact reviewed revision.
+It did not activate Schema Version `1.0.0` or replace separately attributable
+human Owner / Final Authority acceptance of the exact reviewed revision,
+which is recorded in issue comment `5215029431`.
 
 ## Security and privacy boundary
 
@@ -295,7 +299,7 @@ permission.
 
 ## Consequences and tradeoffs
 
-The Proposed resource makes a complete Workstream structurally evaluable,
+The Accepted resource makes a complete Workstream structurally evaluable,
 preserves the independent common envelope, pins exact governing definitions,
 and makes every CONTRACT-002 responsibility explicit.
 
@@ -370,11 +374,7 @@ ARCH-012, and it grants no Task Contract or later schema authority.
 
 ## Continuing gate
 
-This document, ADR-0013, the Schema Resource, and tests remain **Proposed**.
-Issue #52 authorizes creation, validation, one candidate commit, one Draft PR,
-and one transparent non-independent exact-head COMMENT review only. It
-authorizes no Ready transition, Accepted promotion, merge, completion, issue
-closure, branch cleanup, release, deployment, or follow-on phase.
-
-Separate attributable Owner / Final Authority acceptance tied to the exact
-reviewed candidate head is required before any status promotion or integration.
+The exact reviewed candidate was accepted by the Owner / Final Authority in
+issue comment `5215029431`. Governed integration to `main` activates exactly
+Workstream Schema Version `1.0.0`. No Task Contract or later artifact-specific
+schema is automatically authorized.

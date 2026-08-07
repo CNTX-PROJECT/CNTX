@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/CNTX-PROJECT/CNTX/schemas/workstream/1.0.0",
-  "$comment": "Proposed ARCH-013 Workstream Schema Version 1.0.0 under issue #52 and Owner / Final Authority creation-authority comment 5214556377. Schema validity grants no contract conformance, approval, authority, trust, acceptance, release, deployment, merge permission, access permission, or Task Contract authority.",
+  "$comment": "Accepted ARCH-013 Workstream Schema Version 1.0.0 under issue #52 and Owner / Final Authority acceptance comment 5215029431. Schema validity grants no contract conformance, approval, authority, trust, acceptance, release, deployment, merge permission, access permission, or Task Contract authority.",
   "title": "CNTX Workstream Artifact",
   "description": "A complete Workstream Artifact Instance with the exact Accepted Common Artifact Envelope and a closed payload implementing only the responsibilities of CONTRACT-002.",
   "type": "object",

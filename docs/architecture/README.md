@@ -27,15 +27,17 @@ The [Canonical Contract Definition Identity, Initial Version, and Source Binding
 The [Project Charter Executable Schema Definition](project-charter-executable-schema.md) and [ADR-0012](adr/0012-project-charter-executable-schema.md) are **Accepted** under issue #48 and Owner acceptance comment `5210242651`. They bind the logical Project Charter Artifact Schema Identity to a concrete Draft 2020-12 `$id` and Schema Version `1.0.0`, apply the exact Accepted Common Artifact Envelope at mandatory `/envelope`, constrain the exact Project Charter Artifact Type and governing-definition pins, and define a closed CONTRACT-001 payload with synthetic validation evidence. Governed integration to `main` activates that exact Schema Version. Acceptance and schema validity grant no contract conformance, approval, authority, release, deployment, or follow-on schema authority.
 
 The [Workstream Executable Schema Definition](workstream-executable-schema.md)
-and [ADR-0013](adr/0013-workstream-executable-schema.md) are **Proposed** under
-issue #52. They define one candidate Draft 2020-12 resource with the exact
+and [ADR-0013](adr/0013-workstream-executable-schema.md) are **Accepted** under
+issue #52 and Owner acceptance comment `5215029431`. They define one Draft
+2020-12 resource with the exact
 Accepted Common Artifact Envelope at mandatory `/envelope`, exact Workstream
 Artifact Type and governing-definition pins, an opaque governing Project
 Charter Artifact Instance/Revision pin, and a closed twelve-property
-CONTRACT-002 payload. The candidate contains no Project Charter schema `$ref`.
-Creation, validation, review, repository presence, or the `1.0.0` string does
-not activate the candidate or grant contract conformance, approval, authority,
-release, deployment, merge permission, or Task Contract schema authority.
+CONTRACT-002 payload. The resource contains no Project Charter schema `$ref`.
+Governed integration to `main` activates that exact Schema Version. Acceptance,
+schema validity, or repository presence grants no contract conformance,
+approval, authority, release, deployment, merge permission, or Task Contract
+schema authority.
 
 ## Document status
 

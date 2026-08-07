@@ -1,10 +1,14 @@
 # ADR-0013: Workstream executable schema definition
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-08-07
 - **Decision owners:** Cintao66, Owner / Final Authority
 - **Issue:** [#52](https://github.com/CNTX-PROJECT/CNTX/issues/52)
 - **Governing architecture:** [ARCH-013](../workstream-executable-schema.md)
+
+Owner / Final Authority acceptance of the exact reviewed candidate is recorded
+in issue comment `5215029431`. On governed integration to `main`, Workstream
+Schema Version `1.0.0` becomes active under repository governance.
 
 ## Context
 
@@ -21,7 +25,7 @@ artifact identity, authority, versioning, and schema dependencies.
 
 ## Decision
 
-Define one Proposed JSON Schema Draft 2020-12 Schema Resource at:
+CNTX adopts one JSON Schema Draft 2020-12 Schema Resource at:
 
 `schemas/workstream/1.0.0/schema.json`
 
@@ -76,7 +80,7 @@ status vocabulary, transition system, timestamp model, or runtime.
 
 ## Consequences and tradeoffs
 
-- A complete Workstream candidate becomes structurally evaluable.
+- A complete Workstream resource becomes structurally evaluable.
 - The exact common envelope remains independently versioned and reusable.
 - All twelve CONTRACT-002 responsibilities become explicit and reviewable.
 - The Project Charter relationship remains an opaque, human-governed pin.
@@ -148,7 +152,7 @@ deployment.
 
 ## Continuing gate
 
-ADR-0013 and ARCH-013 remain Proposed. Issue #52 authorizes only one candidate
-commit, one Draft PR, validation, GitHub read-back, and one non-independent
-exact-head COMMENT review. Separate attributable Owner / Final Authority
-acceptance of the exact reviewed head is required before promotion or merge.
+The exact reviewed candidate was accepted by the Owner / Final Authority in
+issue comment `5215029431`. Governed integration to `main` activates exactly
+Workstream Schema Version `1.0.0`. No Task Contract or later artifact-specific
+schema is automatically authorized.
