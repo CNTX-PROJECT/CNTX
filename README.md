@@ -70,6 +70,24 @@ presence grants no contract conformance, task authority, permission
 enforcement, integration authority, release, deployment, implementation,
 merge permission, Context Packet schema authority, or follow-on authority.
 
+The architecture index now also exposes the **Accepted** [Context
+Packet Executable Schema Definition](docs/architecture/context-packet-executable-schema.md)
+with [ADR-0015](docs/architecture/adr/0015-context-packet-executable-schema.md),
+the Accepted [Context Packet Schema Version `1.0.0`](schemas/context-packet/1.0.0/schema.json),
+and its [synthetic validation cases](tests/schemas/context-packet/1.0.0/cases.json).
+ARCH-015 composes the exact Accepted Common Artifact Envelope with a closed
+thirteen-property CONTRACT-004 payload, exact Context Packet Artifact Type and
+governing-definition pins, and one opaque governing Task Contract Artifact
+Instance/Revision pin without any artifact-specific schema `$ref`. Source
+references, representation treatments, relevance, freshness, access,
+sufficiency, minimization, stop, and lifecycle information remain declarative.
+The resource provides no automatic selection, retrieval, ranking, RAG,
+disclosure, transformation, prompt, workflow, or runtime behavior. Governed
+integration to `main` activates the exact Schema Version. Acceptance, schema
+validity, or repository presence grants no contract conformance, task
+authority, source access, retrieval or disclosure permission, merge permission,
+release, deployment, Execution Result schema authority, or follow-on authority.
+
 The high-level roadmap is to define public concepts and documentation, invite review under the project governance, and only then consider scoped, approved implementation work. Private reference implementations may exist later outside this public repository.
 
 ## Participate

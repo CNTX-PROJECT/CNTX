@@ -54,6 +54,23 @@ Acceptance, schema validity, or repository presence grants no contract
 conformance, task authority, integration authority, release, deployment,
 merge permission, Context Packet schema authority, or follow-on authority.
 
+The [Context Packet Executable Schema Definition](context-packet-executable-schema.md)
+and [ADR-0015](adr/0015-context-packet-executable-schema.md) are **Accepted**
+under issue #56 and Owner acceptance comment `5216466742`. They define one
+Draft 2020-12 Context Packet Schema Version `1.0.0` with the exact Accepted
+Common Artifact Envelope at
+mandatory `/envelope`, exact Context Packet Artifact Type and governing
+definition pins, one opaque governing Task Contract Artifact Instance/Revision
+pin, and a closed thirteen-property CONTRACT-004 payload. The resource contains
+no Project Charter, Workstream, Task Contract, peer, Execution Result, or
+downstream schema `$ref` and no executable selection, retrieval, ranking,
+access, disclosure, transformation, prompt, workflow, or runtime mechanism.
+Governed integration to `main` activates that exact Schema Version.
+Acceptance, schema validity, or repository presence grants no contract
+conformance, task authority, source access, retrieval or disclosure permission,
+merge permission, release, deployment, Execution Result schema authority, or
+follow-on authority.
+
 ## Document status
 
 - **Proposed** — submitted for review and not yet an accepted repository decision.
