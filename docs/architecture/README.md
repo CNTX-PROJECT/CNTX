@@ -168,7 +168,8 @@ Acceptance and activation authorize no further phase automatically.
 The [CNTX Public Core Completion Boundary and Remaining Layer
 Roadmap](public-core-completion-boundary-roadmap.md) and
 [ADR-0021](adr/0021-public-core-completion-boundary-roadmap.md) are
-**Proposed** under issue #68. They identify the completed contract-and-schema
+**Accepted** under issue #68 and EIGENAAR acceptance comment `5220966638`.
+They identify the completed contract-and-schema
 foundation and dependency-order the still-separate Serialization Binding,
 schema-resource resolution/catalog, validation/output, portable conformance,
 and release-readiness decisions. They create no binding, resolver, validator,

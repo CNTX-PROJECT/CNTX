@@ -1,6 +1,6 @@
 # ADR-0021: Public Core completion boundary and remaining layer roadmap
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-08-07
 - **Issue:** [#68](https://github.com/CNTX-PROJECT/CNTX/issues/68)
 - **Decision:** ARCH-021 — CNTX Public Core Completion Boundary and Remaining Layer Roadmap
@@ -135,10 +135,10 @@ details remain forbidden in public artifacts.
 
 ## Authority and conformance boundary
 
-This decision is Proposed. Creation, validation, repository presence, and a
-transparent non-independent review grant no acceptance. Only separately
-attributable EIGENAAR / Final Authority acceptance of the exact reviewed
-revision can authorize status promotion.
+This decision is Accepted. Creation, validation, repository presence, and the
+transparent non-independent review did not grant acceptance. EIGENAAR / Final
+Authority acceptance of the exact reviewed revision is recorded in issue
+comment `5220966638`; governed integration to `main` adopts exactly ARCH-021.
 
 Schema validity does not establish contract conformance, portable artifact
 representation, truth, approval, interoperability, implementation conformance,
@@ -161,8 +161,8 @@ deployment.
 
 ## Supersession and continuing authority
 
-If Accepted, this decision may be changed or superseded only through a new
-governed decision that identifies the affected completion categories,
+This decision may be changed or superseded only through a new governed
+decision that identifies the affected completion categories,
 dependencies, sources, compatibility consequences, and authority. Acceptance
-would authorize no next roadmap candidate, implementation, release,
+authorizes no next roadmap candidate, implementation, release,
 publication, deployment, or other follow-on action automatically.

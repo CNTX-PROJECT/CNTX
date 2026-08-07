@@ -2,16 +2,17 @@
 
 ## Status and authority
 
-**Document Status:** Proposed.
+**Document Status:** Accepted.
 
-This document is a Proposed architecture decision governed by
+This document is an Accepted architecture decision governed by
 [issue #68](https://github.com/CNTX-PROJECT/CNTX/issues/68) and recorded by
-[ADR-0021](adr/0021-public-core-completion-boundary-roadmap.md). It has not
-been accepted. Creation, repository presence, validation, or review does not
-grant acceptance, integration, release, implementation, or follow-on
-authority.
+[ADR-0021](adr/0021-public-core-completion-boundary-roadmap.md). EIGENAAR /
+Final Authority acceptance of the exact reviewed candidate is recorded in
+issue comment `5220966638`. Governed integration to `main` adopts this exact
+decision. The transparent non-independent review was Evidentiary only and did
+not grant acceptance.
 
-This proposal remains subordinate to Accepted architecture, Accepted artifact
+This decision remains subordinate to Accepted architecture, Accepted artifact
 contracts, Accepted executable schemas, repository governance, security and
 privacy boundaries, controlling sources, and final human authority. It changes
 none of those sources.
@@ -25,7 +26,7 @@ That fact must not be understated, but it must not be expanded into a claim
 that portable artifact representation, validation, conformance, release,
 implementation, runtime, product, or deployment work is complete.
 
-This proposal therefore:
+This decision therefore:
 
 1. names the completed boundary;
 2. separates distinct completion categories;
@@ -35,7 +36,7 @@ This proposal therefore:
    public-core completion definition; and
 6. identifies the recommended next decision category without authorizing it.
 
-This proposal is documentation-only. It creates no schema, artifact instance,
+This decision is documentation-only. It creates no schema, artifact instance,
 Serialization Binding, resolver, catalog, validator, validation output,
 conformance protocol, implementation, release, publication, or deployment.
 
@@ -90,7 +91,7 @@ remain distinct.
 | Runtime, workflow, provider, product, and deployment layers | Outside the required public-core specification boundary unless separately introduced. | A requirement that CNTX Public Core ship a runtime or product. |
 
 A specification-oriented public core may eventually be release-ready without
-supplying a CNTX runtime or product. This proposal does not conclude that the
+supplying a CNTX runtime or product. This decision does not conclude that the
 current public core is release-ready.
 
 ## Dependency-ordered remaining roadmap
@@ -125,7 +126,7 @@ The separate decision must address, or explicitly defer with boundaries:
 - security and privacy consequences; and
 - binding identity and compatibility.
 
-This proposal decides none of those matters.
+This decision decides none of those matters.
 
 ### 2. Schema-resource resolution and catalog boundary
 
@@ -139,7 +140,7 @@ algorithm, cache, mirror, network policy, hosted authority, or retrieval
 mechanism. Deterministic validation claims require an explicit resource-supply
 and failure boundary before implementations can be compared portably.
 
-This proposal chooses no resolver, registry, catalog implementation, cache,
+This decision chooses no resolver, registry, catalog implementation, cache,
 bundler, mirror, redirect, hosted schema location, or network behavior.
 
 ### 3. Validation and validation-output contract
@@ -163,7 +164,7 @@ specific accepted candidates. They do not define a portable validator API,
 CLI, error vocabulary, validation-output format, severity model, or universal
 conformance result.
 
-This proposal defines none of those mechanisms or fields.
+This decision defines none of those mechanisms or fields.
 
 ### 4. Portable conformance evidence boundary
 
@@ -177,7 +178,7 @@ limitations, and keep final human authority intact. It must precede any
 release-readiness claim that depends on interoperability or implementation
 conformance.
 
-This proposal creates no conformance protocol, test runner, certification,
+This decision creates no conformance protocol, test runner, certification,
 badge, score, threshold, quality gate, compliance service, or reference
 implementation.
 
@@ -193,7 +194,7 @@ separate decision must determine:
 - whether a release, tag, supported-version claim, or publication is
   justified.
 
-CNTX remains unreleased and pre-alpha. This proposal authorizes no release,
+CNTX remains unreleased and pre-alpha. This decision authorizes no release,
 version support policy, tag, hosted publication, distribution, or deployment.
 
 ## Required dependency rules
@@ -213,8 +214,8 @@ The remaining roadmap obeys these rules:
    status promotion, governed integration, completion record, closure, and any
    authorized cleanup.
 
-No roadmap entry is self-authorizing. Acceptance of this proposal would record
-the order only.
+No roadmap entry is self-authorizing. Acceptance of this decision records the
+order only.
 
 ## Optional Extension Module and Profile boundary
 
@@ -229,7 +230,7 @@ release blocker for the base public core while CNTX makes no claim about:
 
 Before any such mechanism or claim is introduced, its own accepted architecture
 must define identity, authority, compatibility, conflict, unknown-mechanism,
-privacy, and conformance boundaries. This proposal defines and authorizes no
+privacy, and conformance boundaries. This decision defines and authorizes no
 Extension Module or Profile mechanism.
 
 ## Runtime, provider, product, and implementation boundary
@@ -274,7 +275,7 @@ controls remain separate from declarations about them.
 
 ## Non-decisions and deferred scope
 
-This proposal does not decide or authorize concrete serialization, JSON artifact
+This decision does not decide or authorize concrete serialization, JSON artifact
 binding, canonical JSON, media type, charset, encoding, ordering, whitespace,
 Unicode, number, duplicate-name, canonicalization, digest, signature,
 verification, trust, Artifact Instance, identifier generation, revision
@@ -288,15 +289,15 @@ publication, or deployment.
 
 ## Lifecycle and final human authority
 
-This Proposed document cannot approve itself. A transparent non-independent
-review is Evidentiary only. Only separately attributable EIGENAAR / Final
-Authority acceptance of the exact reviewed revision can authorize a
-status-only promotion. Promotion, merge, issue closure, branch cleanup, the
-next roadmap decision, implementation, release, and deployment remain separate
-actions requiring their own authority.
+This Accepted document did not approve itself. Creation, repository presence,
+validation, and transparent non-independent review did not grant acceptance.
+EIGENAAR / Final Authority acceptance of the exact reviewed revision is
+recorded in issue comment `5220966638`; governed integration to `main` adopts
+exactly this decision. Acceptance and integration authorize no next roadmap
+decision, implementation, release, publication, or deployment.
 
-If eventually Accepted, ARCH-021 may be changed or superseded only through a
-new governed decision that identifies the affected completion categories,
+ARCH-021 may be changed or superseded only through a new governed decision that
+identifies the affected completion categories,
 dependencies, sources, compatibility consequences, and authority. Historical
 Accepted sources remain preserved.
 

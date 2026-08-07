@@ -190,13 +190,14 @@ acceptance or activation. Exact-head acceptance is recorded in issue comment
 `5219885650`; governed integration to `main` activates the exact Schema Version.
 Acceptance and activation authorize no further phase automatically.
 
-The **Proposed** [CNTX Public Core Completion Boundary and Remaining Layer
+The **Accepted** [CNTX Public Core Completion Boundary and Remaining Layer
 Roadmap](docs/architecture/public-core-completion-boundary-roadmap.md) with
 [ADR-0021](docs/architecture/adr/0021-public-core-completion-boundary-roadmap.md)
-records that the contract-and-schema foundation is complete while portable
+under issue #68 and EIGENAAR acceptance comment `5220966638` records that the
+contract-and-schema foundation is complete while portable
 Serialization Binding, schema-resource resolution/catalog, validation output,
 conformance evidence, and release-readiness remain separately governed future
-decisions. The proposal does not make CNTX release-ready and authorizes no
+decisions. The Accepted decision does not make CNTX release-ready and authorizes no
 implementation, runtime, product, release, publication, deployment, or
 follow-on work.
 
