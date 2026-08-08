@@ -23,11 +23,19 @@ adverse information, and unresolved conditions.
 | --- | --- | --- | --- |
 | [REMEDIATE-001 — ASSESS-001 Release-Readiness Remediation Evidence](assess-001-release-readiness-evidence-remediation.md) | **Accepted** | Public baseline `45663112f8e253a1748543041afa9b7064b1eabc`, tree `e5b8403f64624357b8a2f9ddcc3110c3a170c456`; Accepted ASSESS-001 subject `8e75448dd5eeb1c70fd17a71a165bf9500cccc3b` | Three gap-specific evidence records; no ASSESS-001 outcome change, aggregate result, recommendation, approval, or release authority |
 
+| [REMEDIATE-002 — ASSESS-002 Release-Decision Basis](assess-002-release-decision-basis-remediation.md) | **Proposed** | Public baseline `91f55fc53e78ff847b27d036cafb1e25b34b5a81`, tree `a739a5d5d0259e3a6a74ddb54a98c5d4ba4b6b75`; Accepted ASSESS-002 remains unchanged | Public-safe due diligence and two Proposed release-policy sources; no ASSESS-003 outcome, aggregate result, release decision, active version, tag, publication, support claim, or consequential authority |
+
 ## Evidence records
 
 - [Schema Validation Reproduction Evidence](evidence/schema-validation-reproduction-evidence.md)
 - [Security, Privacy, Legal, and Disclosure Review](evidence/security-privacy-legal-disclosure-review.md)
 - [Publication, Compatibility, Support, and Claim Position](evidence/publication-compatibility-support-position.md)
+- [Security, Privacy, Legal, and Disclosure Due Diligence](evidence/security-privacy-legal-disclosure-due-diligence.md)
+
+REMEDIATE-002 also proposes two subordinate policy sources under the
+[release-policy index](../release/README.md). Their presence and Proposed
+status do not activate a release identity or version, create a tag or GitHub
+Release, or grant release authority.
 
 ## Separation and non-authority
 

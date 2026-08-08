@@ -336,6 +336,21 @@ aggregate readiness result, recommendation, approval, release decision,
 version, tag, publication, support claim, implementation, merge permission,
 ASSESS-003, issue #80 mutation, or follow-on authority.
 
+The remediation index now also exposes the **Proposed**, documentation-only
+[REMEDIATE-002 ASSESS-002 Release-Decision Basis](docs/remediation/assess-002-release-decision-basis-remediation.md)
+under issue #86 and attributable EIGENAAR / Final Authority creation comment
+`5226346595`. It adds public-safe security/privacy/legal/disclosure due
+diligence and two [Proposed release-policy sources](docs/release/README.md),
+including the logical Release Identity `CNTX Public Core Release`, prospective
+prerelease target `0.1.0-prealpha.1`, prospective tag representation
+`v0.1.0-prealpha.1`, and an intended future separately authorized GitHub
+Release channel. These are decision inputs only: ASSESS-002 remains unchanged,
+responsibility 10 remains `Not Satisfied`, and no ASSESS-003 outcome,
+aggregate readiness result, active version, tag, GitHub Release, publication,
+compatibility or support claim, final decision, release action, implementation,
+deployment, merge permission, issue #80 mutation, or follow-on authority is
+created.
+
 The high-level roadmap is to define public concepts and documentation, invite review under the project governance, and only then consider scoped, approved implementation work. Private reference implementations may exist later outside this public repository.
 
 ## Participate
