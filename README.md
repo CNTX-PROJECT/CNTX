@@ -371,6 +371,21 @@ release decision, active version, tag, GitHub Release, publication,
 compatibility or support claim, implementation, issue #80 mutation, merge
 permission, deployment, or follow-on authority.
 
+The release-policy index now also exposes the **Proposed** [DECIDE-001 CNTX
+Public-Core Final Release Decision
+candidate](docs/release/decide-001-public-core-final-release-decision.md) under
+issue #90 and attributable EIGENAAR / Final Authority creation-authority
+comment `5227058548`. It selects candidate disposition `Approve` for exact
+ASSESS-003 subject commit `109e6f293b150f48572cd747fab446c141d57193` and
+tree `446b408e27d3ebd3f6616658c61ccd9db4af8978`, prospective Release Version
+`0.1.0-prealpha.1`, prospective tag representation `v0.1.0-prealpha.1`, and a
+future separately authorized GitHub prerelease channel. It preserves the
+`Unverifiable` security/privacy/legal/disclosure result and all evidence and
+non-claim limitations. Proposed status creates no final decision, active
+version, tag, GitHub Release, release action, publication, compatibility or
+support claim, implementation, issue #80 mutation, merge permission,
+deployment, or follow-on authority.
+
 The high-level roadmap is to define public concepts and documentation, invite review under the project governance, and only then consider scoped, approved implementation work. Private reference implementations may exist later outside this public repository.
 
 ## Participate

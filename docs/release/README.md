@@ -38,3 +38,17 @@ These documents make no supported-version, compatibility, security, privacy,
 legal, compliance, production-readiness, fitness, warranty, certification, or
 absence claim. Final release authority remains exclusively with a later
 separate attributable EIGENAAR / Final Authority decision.
+
+## Proposed final release decision
+
+The [DECIDE-001 CNTX Public-Core Final Release Decision
+candidate](decide-001-public-core-final-release-decision.md) is **Proposed**
+under issue #90 with selected disposition `Approve` for exact ASSESS-003
+subject commit `109e6f293b150f48572cd747fab446c141d57193` and tree
+`446b408e27d3ebd3f6616658c61ccd9db4af8978`. The candidate preserves the five
+`Satisfied` and one `Unverifiable` readiness dimensions, the pre-decision
+eight `Satisfied`, one `Unverifiable`, and one `Not Satisfied`
+responsibilities, and all adverse-evidence and non-claim boundaries. It is not
+Accepted, does not satisfy responsibility 10, and creates no active version,
+tag, GitHub Release, publication, support or compatibility claim, release
+action, implementation, or follow-on authority.
