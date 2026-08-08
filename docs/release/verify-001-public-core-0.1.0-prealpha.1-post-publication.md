@@ -2,7 +2,8 @@
 
 ## Document status and authority
 
-- Document status: **Proposed**.
+- Document status: **Accepted** under issue #94 and attributable EIGENAAR /
+  Final Authority exact-head acceptance comment `5228226589`.
 - Verification identifier: `VERIFY-001`.
 - Public issue: [#94](https://github.com/CNTX-PROJECT/CNTX/issues/94).
 - Attributable EIGENAAR / Final Authority creation comment:
@@ -357,6 +358,6 @@ The creation phase may produce one Proposed candidate, one Draft PR, and one
 transparent non-independent exact-head COMMENT review. It then stops for
 separate attributable EIGENAAR / Final Authority exact-head acceptance.
 
-This Proposed record is derived verification evidence. It does not replace the
+This Accepted record is derived verification evidence. It does not replace the
 authoritative Git objects, GitHub objects, issue authority, Accepted sources,
 or final-human decision, and it grants no further authority.

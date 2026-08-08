@@ -401,12 +401,13 @@ create no tag, GitHub Release, publication, compatibility or support claim,
 implementation, deployment, or release action; those effects require the
 separately ordered exact-head-authorized execution.
 
-The release-policy index now also exposes the **Proposed** [VERIFY-001 CNTX
+The release-policy index now also exposes the **Accepted** [VERIFY-001 CNTX
 Public Core `0.1.0-prealpha.1` post-publication
 verification](docs/release/verify-001-public-core-0.1.0-prealpha.1-post-publication.md)
 under issue #94 and attributable EIGENAAR / Final Authority creation comment
-`5228074838`. It records point-in-time immutable-setting, tag, Release, body,
-lifecycle, exact-subject, and generated tarball/zipball path and byte evidence.
+`5228074838` and exact-head acceptance comment `5228226589`. It records
+point-in-time immutable-setting, tag, Release, body, lifecycle, exact-subject,
+and generated tarball/zipball path and byte evidence.
 The verification is non-independent, defines no aggregate result, and creates
 no compatibility, support, certification, correction, withdrawal,
 implementation, publication, deployment, merge permission, or follow-on

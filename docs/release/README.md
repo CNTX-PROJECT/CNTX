@@ -33,9 +33,9 @@ CNTX remains pre-alpha and unsupported. The separately authorized RELEASE-001
 transaction published one immutable GitHub prerelease for exact subject commit
 `109e6f293b150f48572cd747fab446c141d57193` and tree
 `446b408e27d3ebd3f6616658c61ccd9db4af8978`, represented by lightweight tag
-`v0.1.0-prealpha.1`. The Proposed [VERIFY-001 post-publication verification
+`v0.1.0-prealpha.1`. The Accepted [VERIFY-001 post-publication verification
 record](verify-001-public-core-0.1.0-prealpha.1-post-publication.md) under issue
-#94 records point-in-time channel and generated-archive evidence. Proposed
+#94 records point-in-time channel and generated-archive evidence. Accepted
 verification creates no aggregate result, certification, compatibility or
 support claim, correction, withdrawal, implementation, or follow-on authority.
 
@@ -79,12 +79,13 @@ or GitHub Release, publish or distribute anything, or authorize execution.
 After one transparent non-independent exact-head COMMENT review, work stops for
 separate attributable EIGENAAR / Final Authority acceptance.
 
-## Proposed post-publication verification
+## Accepted post-publication verification
 
 The [VERIFY-001 CNTX Public Core `0.1.0-prealpha.1` post-publication
 verification](verify-001-public-core-0.1.0-prealpha.1-post-publication.md) is
-**Proposed** under issue #94 and attributable EIGENAAR / Final Authority
-creation comment `5228074838`. It records exact tag, immutable Release, body,
+**Accepted** under issue #94, attributable EIGENAAR / Final Authority creation
+comment `5228074838`, and exact-head acceptance comment `5228226589`. It
+records exact tag, immutable Release, body,
 lifecycle, subject, and one-time generated tarball/zipball path and byte
 observations without changing any release object or Accepted source. It must
 stop after one transparent non-independent exact-head COMMENT review for
