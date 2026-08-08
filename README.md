@@ -413,6 +413,22 @@ no compatibility, support, certification, correction, withdrawal,
 implementation, publication, deployment, merge permission, or follow-on
 authority.
 
+The architecture index now also exposes the **Accepted** [CNTX Public-Core
+Completion and Maintenance
+Boundary](docs/architecture/public-core-completion-and-maintenance-boundary.md)
+(ARCH-027) with
+[ADR-0027](docs/architecture/adr/0027-public-core-completion-and-maintenance-boundary.md)
+under issue #96, attributable EIGENAAR / Final Authority creation comment
+`5228385928`, and exact-head acceptance comment `5228459221`. The
+documentation-only decision names the work through Accepted
+VERIFY-001 as the completed initial Public-Core specification and prerelease
+cycle, preserves ARCH-021 history and every Accepted predecessor, and defines
+a quiescent, event-driven boundary for separately governed future changes. It
+Acceptance and integration do not archive or close the repository, create a supported-version or
+maintenance promise, resolve evidence limitations, mutate the immutable
+release, perform correction or withdrawal, implement software, publish or
+deploy anything, or authorize a follow-on phase.
+
 The high-level roadmap is to define public concepts and documentation, invite review under the project governance, and only then consider scoped, approved implementation work. Private reference implementations may exist later outside this public repository.
 
 ## Participate
