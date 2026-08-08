@@ -2,18 +2,19 @@
 
 ## Status and authority
 
-**Document Status:** Proposed.
+**Document Status:** Accepted.
 
-This document is a Proposed architecture decision governed by
+This document is an Accepted architecture decision governed by
 [issue #96](https://github.com/CNTX-PROJECT/CNTX/issues/96) and recorded by
 [ADR-0027](adr/0027-public-core-completion-and-maintenance-boundary.md).
 Attributable EIGENAAR / Final Authority creation authority is recorded in
 issue comment `5228385928`.
+Exact-head acceptance is recorded in issue comment `5228459221`.
 
 Creation, repository presence, validation, and transparent non-independent
-review do not grant acceptance. This proposal becomes Accepted only after
-separate attributable EIGENAAR / Final Authority acceptance of its exact
-reviewed revision and governed integration to `main`.
+review did not grant acceptance. Attributable EIGENAAR / Final Authority
+exact-head acceptance and the separately authorized governed integration to
+`main` adopt this exact decision.
 
 ## Purpose and decision boundary
 
@@ -23,7 +24,7 @@ it into project archival, supported-version status, a maintenance promise,
 implementation or runtime completion, hosted-publication completion, or
 deployment.
 
-This proposal therefore:
+This decision therefore:
 
 1. names the exact completed initial Public-Core cycle;
 2. keeps separate completion categories separate;
@@ -41,7 +42,7 @@ deployment.
 
 ## Exact decision basis
 
-This proposal was prepared on exact public baseline
+This decision was prepared on exact public baseline
 `a30dd2eff01f5e6d51454560b8149d307809db01` and tree
 `1179ed6ec3af272d5147c9e392f10153b9be6387`.
 
@@ -65,7 +66,7 @@ The controlling Accepted basis includes:
   and
 - Accepted VERIFY-001.
 
-This proposal changes none of those sources, their status, identifiers,
+This decision changes none of those sources, their status, identifiers,
 versions, evidence, limitations, or authority.
 
 ## Completed initial Public-Core cycle
@@ -108,7 +109,7 @@ Completion claims must continue to name their category.
 | Validation and conformance evidence | Validation/output and Portable Conformance Evidence boundaries are Accepted; bounded reproduction evidence exists. | Canonical output/evidence artifacts, universal validator or implementation conformance, certification, or independent reproduction. |
 | Release decision and publication | One exact subject was approved and published as immutable prerelease `0.1.0-prealpha.1`. | Supported-version status, compatibility guarantee, production readiness, or future-release authority. |
 | Post-publication verification | VERIFY-001 is Accepted as a point-in-time, document-local verification. | Aggregate verification, continuing monitoring, mode/metadata proof, or security/privacy/legal completion. |
-| Maintenance | A quiescent governance boundary is defined by this proposal. | A maintenance promise, active task, support service, SLA, or automatic action. |
+| Maintenance | A quiescent governance boundary is defined by this decision. | A maintenance promise, active task, support service, SLA, or automatic action. |
 | Runtime, provider, product, and deployment | Outside the completed Public-Core specification boundary unless separately introduced. | A requirement that one privileged implementation or product define CNTX. |
 
 ## Relationship with ARCH-021
@@ -128,7 +129,7 @@ application was then evaluated and advanced through ASSESS-001/-002/-003,
 REMEDIATE-001/-002, DECIDE-001, RELEASE-001, and VERIFY-001 under separate
 authority gates.
 
-This proposal records that later state. It does not modify ARCH-021, rewrite
+This decision records that later state. It does not modify ARCH-021, rewrite
 its historical context, or imply that later evidence and outcomes existed when
 ARCH-021 was accepted.
 
@@ -335,14 +336,14 @@ decision, or verification result.
 
 ## Lifecycle and final human authority
 
-This Proposed document does not approve itself. Creation authority is not
-acceptance. Validation, review, mergeability, technical access, and repository
-presence grant no consequential authority.
+This Accepted document did not approve itself. Creation authority did not
+grant acceptance. Validation, review, mergeability, technical access, and
+repository presence grant no consequential authority.
 
-Only separate attributable EIGENAAR / Final Authority acceptance of the exact
-reviewed revision, followed by separately authorized status promotion and
-governed integration, can make this decision Accepted. Even then, acceptance
-would adopt the completion and maintenance boundary only; it would not execute
+Attributable EIGENAAR / Final Authority acceptance of the exact reviewed
+revision is recorded in issue comment `5228459221`. The separately authorized
+status promotion and governed integration adopt this decision. Acceptance
+adopts the completion and maintenance boundary only; it does not execute
 project closure, maintenance, correction, withdrawal, implementation,
 publication, deployment, or another phase.
 

@@ -1,6 +1,6 @@
 # ADR-0027: CNTX Public-Core completion and maintenance boundary
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-08-08
 - **Issue:** [#96](https://github.com/CNTX-PROJECT/CNTX/issues/96)
 - **Decision:** ARCH-027 — CNTX Public-Core Completion and Maintenance Boundary
@@ -26,7 +26,7 @@ and hosting work also needs an explicit common governance boundary.
 
 ## Decision
 
-Propose that the completed work through Accepted VERIFY-001 be named the
+Record that the completed work through Accepted VERIFY-001 is named the
 **completed initial CNTX Public-Core specification and prerelease cycle**.
 
 Keep that completion distinct from:
@@ -186,11 +186,12 @@ deployment, repository archival, locking, or deletion.
 
 ## Authority boundary
 
-This ADR is Proposed. Creation authority, repository presence, validation, and
-transparent non-independent ARCHITECT review do not grant acceptance.
-Separate attributable EIGENAAR / Final Authority acceptance of the exact
-reviewed revision and governed integration are required.
+This ADR is Accepted. Creation authority, repository presence, validation, and
+transparent non-independent ARCHITECT review did not grant acceptance.
+Attributable EIGENAAR / Final Authority exact-head acceptance is recorded in
+issue comment `5228459221`; separately authorized governed integration adopts
+the exact decision.
 
-Acceptance would adopt only the completion and maintenance boundary. It would
+Acceptance adopts only the completion and maintenance boundary. It does
 not execute project closure, maintenance, correction, withdrawal,
 implementation, publication, deployment, or another phase.
