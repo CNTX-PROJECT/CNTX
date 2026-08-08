@@ -304,6 +304,20 @@ release decision, version, tag, publication, compatibility or support claim,
 implementation, merge permission, or follow-on authority. CNTX remains
 unreleased and pre-alpha.
 
+The [CNTX Public-Core remediation-evidence](docs/remediation/README.md) index
+now exposes the **Proposed** [REMEDIATE-001 ASSESS-001 Release-Readiness
+Evidence Remediation](docs/remediation/assess-001-release-readiness-evidence-remediation.md)
+under issue #82 and attributable EIGENAAR creation-authority comment
+`5225750653`. Its three bounded evidence records reproduce all 203 unchanged
+synthetic schema cases with Python `jsonschema 4.26.0` and Ajv `8.20.0`, record
+a public-safe security/privacy/legal/disclosure review, and state the exact
+unreleased publication/compatibility/support position. The Proposed dossier
+changes no Accepted ASSESS-001 outcome, creates no aggregate result, canonical
+Portable Conformance Evidence or Validation Output, recommendation, approval,
+release decision, version, tag, publication, compatibility or support claim,
+validator, implementation, merge permission, ASSESS-002, or follow-on
+authority.
+
 The high-level roadmap is to define public concepts and documentation, invite review under the project governance, and only then consider scoped, approved implementation work. Private reference implementations may exist later outside this public repository.
 
 ## Participate
