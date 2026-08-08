@@ -23,11 +23,19 @@ authority.
 | Assessment | Status | Exact subject | Bounded result |
 | --- | --- | --- | --- |
 | [ASSESS-001 — Initial Public-Core Release Readiness Assessment](assess-001-initial-public-core-release-readiness.md) | **Accepted** | Commit `8e75448dd5eeb1c70fd17a71a165bf9500cccc3b`, tree `6aeb56b33f09c3696d5c4dbdb7ee0a87fb4582af` | Six separate ARCH-026 readiness-dimension outcomes; no aggregate result or release authority |
+| [ASSESS-002 — Second Public-Core Release Readiness Assessment](assess-002-second-public-core-release-readiness.md) | **Accepted** | Commit `ef66ab5884794ec2742478ed1f195ebb9ffeeb95`, tree `8987a2272b475faf9f091c221fd151ab85c233b9` | Four `Satisfied`, one `Unverifiable`, and one `Not Satisfied` dimension outcome; no aggregate result or release authority |
 
-ASSESS-002 and ASSESS-003 are reserved by issue #80 but are not created or
-authorized. Each requires an Accepted predecessor, materially new evidence or
-a changed frozen basis, a new exact commit/tree pin, and separate attributable
-EIGENAAR / Final Authority creation authority.
+ASSESS-002 is Accepted under issue #84, attributable EIGENAAR / Final
+Authority creation-authority comment `5226063673`, and exact-head acceptance
+comment `5226177600`. It evaluates the exact new subject and Accepted
+REMEDIATE-001 evidence without modifying ASSESS-001. Its Accepted status
+records this exact historical assessment and grants no release authority.
+
+ASSESS-003 is not created or authorized. It requires completed predecessor
+phases, materially appropriate new evidence, a new exact commit/tree pin, and
+separate attributable EIGENAAR / Final Authority creation authority. Issue #80
+remains closed and is reconsidered only after both ASSESS-002 and ASSESS-003
+are completed and a new EIGENAAR decision authorizes that action.
 
 ## Non-aggregate boundary
 
