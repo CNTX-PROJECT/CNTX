@@ -4,14 +4,17 @@
 
 - Execution sequence: `RELEASE-001`.
 - Logical execution identity: `CNTX Public Core 0.1.0-prealpha.1 Publication`.
-- Document status: **Proposed**.
+- Document status: **Accepted**.
 - Public repository: `CNTX-PROJECT/CNTX`.
 - Governing issue: [#92](https://github.com/CNTX-PROJECT/CNTX/issues/92).
 - Attributable EIGENAAR / Final Authority creation comment: `5227437332`.
+- Exact-head acceptance comment: `5227815201`, accepting reviewed commit
+  `0b5aeae93d4e46e7110d307772e867c12d6db8f5` and tree
+  `3c3a9a5d1e3c16bed7e77fffe9a740f4b758e924`.
 - Review boundary: one transparent, explicitly non-independent exact-head
   `COMMENT` review by ARCHITECT.
 
-This document defines a bounded future publication transaction. Its Proposed
+This document defines a bounded future publication transaction. Its Accepted
 status, repository presence, validation, review, or later integration does not
 execute that transaction. Immutable releases remain disabled, the intended tag
 is absent, and no GitHub Release exists during candidate creation and review.
@@ -103,7 +106,7 @@ correction or withdrawal actions, runtimes, and deployments.
 ## Frozen preconditions for later execution
 
 Every precondition must be established again immediately before a later
-authorized execution. Historical observations in this Proposed document do
+authorized execution. Historical observations in this Accepted document do
 not satisfy that future check.
 
 1. Local, remote-tracking, remote, and GitHub `main` must equal the exact
@@ -280,7 +283,7 @@ candidate head, work stops for separate attributable EIGENAAR / Final
 Authority acceptance. No Ready transition, Accepted promotion, merge, issue
 closure, branch cleanup, setting mutation, tag, GitHub Release, publication,
 distribution, `VERIFY-001`, `ARCH-027`, implementation, hosted publication, or
-deployment is authorized by this Proposed candidate.
+deployment is authorized by this Accepted plan alone.
 
 ## Appendix A — exact 111-path release-subject inventory
 

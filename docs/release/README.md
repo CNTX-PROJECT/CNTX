@@ -1,10 +1,9 @@
 # CNTX Public-Core release policy
 
-This directory contains documentation-only policy, decision, and Proposed
+This directory contains documentation-only policy, decision, and Accepted
 execution sources for the prospective CNTX Public Core release lifecycle. It
-currently supplies no published release record, tag, GitHub Release, manifest,
-package, custom archive, publication, distribution, support service,
-certification, or deployment.
+supplies no package, custom archive, manifest, support service, certification,
+implementation, or deployment.
 
 ## Lifecycle and authority
 
@@ -34,9 +33,11 @@ CNTX remains unreleased and pre-alpha. `CNTX Public Core Release` is the
 Accepted logical identity. The Accepted DECIDE-001 Final Release Decision
 selects Release Version `0.1.0-prealpha.1` for its exact assessed subject and
 fixes `v0.1.0-prealpha.1` as the intended tag representation. RELEASE-001 is
-**Proposed** under issue #92 and defines only a later separately authorized
-publication transaction. No tag exists, no GitHub Release has been created,
-immutable releases remain disabled, and no release action has been executed.
+**Accepted** under issue #92 and exact-head acceptance comment `5227815201` and
+defines the separately ordered publication transaction. Acceptance and
+integration alone do not enable immutable releases, create a tag or GitHub
+Release, or execute publication; those states change only through the exact
+separately authorized execution.
 
 These documents make no supported-version, compatibility, security, privacy,
 legal, compliance, production-readiness, fitness, warranty, certification, or
@@ -60,13 +61,14 @@ the security/privacy/legal/disclosure dimension remains `Unverifiable`. It
   release action, implementation, or direct follow-on authority beyond preparing
   a separately governed RELEASE-001 execution contract.
 
-## Proposed publication execution
+## Accepted publication execution
 
 The [RELEASE-001 CNTX Public Core `0.1.0-prealpha.1` Publication Execution
 plan](release-001-public-core-0.1.0-prealpha.1-execution.md) and exact
-[release-notes source](releases/0.1.0-prealpha.1.md) are **Proposed** under
-issue #92 and attributable EIGENAAR / Final Authority creation comment
-`5227437332`. They pin exact subject commit
+[release-notes source](releases/0.1.0-prealpha.1.md) are **Accepted** under
+issue #92, attributable EIGENAAR / Final Authority creation comment
+`5227437332`, and exact-head acceptance comment `5227815201`. They pin exact
+subject commit
 `109e6f293b150f48572cd747fab446c141d57193`, tree
 `446b408e27d3ebd3f6616658c61ccd9db4af8978`, the complete 111-path inventory,
 the intended lightweight tag, one future immutable GitHub prerelease, exact
