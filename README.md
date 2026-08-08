@@ -290,6 +290,20 @@ release record, manifest, package, version, tag, compatibility or support
 claim, implementation, release, publication, deployment, merge permission, or
 follow-on authority.
 
+The new [CNTX Public-Core assessments](docs/assessments/README.md) index exposes
+the **Proposed** [ASSESS-001 Initial Public-Core Release Readiness
+Assessment](docs/assessments/assess-001-initial-public-core-release-readiness.md)
+under umbrella issue #80 and attributable EIGENAAR creation-authority comment
+`5225329632`. It evaluates exact commit
+`8e75448dd5eeb1c70fd17a71a165bf9500cccc3b` and tree
+`6aeb56b33f09c3696d5c4dbdb7ee0a87fb4582af` across the six separate ARCH-026
+readiness dimensions and ten release-basis responsibilities. Its outcomes,
+limitations, adverse evidence, blocked conditions, and non-execution remain
+separate; it creates no aggregate `ready` result, recommendation, approval,
+release decision, version, tag, publication, compatibility or support claim,
+implementation, merge permission, or follow-on authority. CNTX remains
+unreleased and pre-alpha.
+
 The high-level roadmap is to define public concepts and documentation, invite review under the project governance, and only then consider scoped, approved implementation work. Private reference implementations may exist later outside this public repository.
 
 ## Participate
