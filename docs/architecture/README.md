@@ -272,6 +272,23 @@ perform no project closure, maintenance action, correction, withdrawal,
 release-object mutation, support or compatibility claim, implementation,
 publication, deployment, or follow-on action.
 
+The [CNTX Extension Module and Profile Architecture
+Boundary](extension-module-profile-architecture-boundary.md) and
+[ADR-0028](adr/0028-extension-module-profile-architecture-boundary.md) are
+**Accepted** as ARCH-028 under issue #98, attributable EIGENAAR / Final
+Authority creation comment `5228583661`, and exact-head acceptance comment
+`5228762336`. They separate optional Extension
+Module and Profile categories, preserve Core sovereignty, require explicit
+exact-version opt-in and fail-closed conflict handling, identify the distinct
+identity, versioning, provenance, authority, dependency, activation,
+declaration, composition, compatibility, conformance/evidence,
+security/privacy, and lifecycle responsibilities, and order every possible
+later decision dependency-first. Acceptance and integration allocate no
+concrete identity, version, field, token, vocabulary, Schema Resource,
+executable schema, resolver, validator, registry, tooling, implementation,
+release, publication,
+deployment, or follow-on authority.
+
 ## Document status
 
 - **Proposed** — submitted for review and not yet an accepted repository decision.
