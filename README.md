@@ -271,6 +271,25 @@ test runner, suite, score, badge, certification, supported-version claim,
 release-readiness decision, implementation, release, publication, deployment,
 acceptance, merge permission, or follow-on authority.
 
+The architecture index now also exposes the **Accepted** [CNTX Public-Core
+Release Readiness and Publication
+Boundary](docs/architecture/public-core-release-readiness-publication-boundary.md)
+(ARCH-026) with
+[ADR-0026](docs/architecture/adr/0026-public-core-release-readiness-publication-boundary.md)
+under issue #78, attributable EIGENAAR creation-authority comment
+`5223389264`, and EIGENAAR acceptance comment `5223546552`. The documentation-
+only decision defines an exact release subject and frozen basis, six separately
+assessed readiness dimensions, ten logical
+release-basis responsibilities, fail-closed source/evidence and limitation
+handling, security/privacy/legal/disclosure, publication, compatibility,
+support, correction, and final-human-authority boundaries. It keeps assessment,
+approval, release, version, tag, publication, distribution, support,
+certification, and deployment separate. It performs no current readiness
+assessment, changes no other Accepted source, creates no universal `ready` result,
+release record, manifest, package, version, tag, compatibility or support
+claim, implementation, release, publication, deployment, merge permission, or
+follow-on authority.
+
 The high-level roadmap is to define public concepts and documentation, invite review under the project governance, and only then consider scoped, approved implementation work. Private reference implementations may exist later outside this public repository.
 
 ## Participate
