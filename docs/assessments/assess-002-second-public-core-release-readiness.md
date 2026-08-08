@@ -2,7 +2,7 @@
 
 ## Assessment status and authority
 
-**Assessment Status:** Proposed.
+**Assessment Status:** Accepted.
 
 **Assessment Subject:** Public repository commit
 `ef66ab5884794ec2742478ed1f195ebb9ffeeb95`, tree
@@ -13,9 +13,14 @@
 **Creation Authority:** Attributable EIGENAAR / Final Authority issue comment
 `5226063673`.
 
+**Acceptance Authority:** Attributable EIGENAAR / Final Authority issue
+comment `5226177600`, accepting exact reviewed candidate commit
+`e936428e0039d8868abe99378d34fd58d57ae327` and tree
+`54ff0a2bf42c11c98523f3a2d94c669e26434e36`.
+
 **Evidence Capture:** `2026-08-08T12:30:00.0722873Z`.
 
-This document is a Proposed, documentation-only, dimension-preserving
+This document is an Accepted, documentation-only, dimension-preserving
 assessment record. It is not an architecture decision, normative contract,
 Artifact Instance, canonical Portable Conformance Evidence instance,
 Validation Output, release finding with consequential authority, release
@@ -23,12 +28,12 @@ recommendation, approval, release decision, release record, version, tag,
 publication, compatibility or support claim, certification, distribution,
 deployment, or implementation.
 
-ARCHITECT prepared this candidate and performs its exact-head review
-transparently without claiming independence. Creation authority, preparation,
-repository presence, validation, Draft pull-request state, and a transparent
-non-independent review do not grant acceptance or authorize any release
-action. Separate attributable EIGENAAR / Final Authority acceptance of the
-exact reviewed candidate is required before status promotion.
+ARCHITECT prepared and reviewed the exact candidate transparently without
+claiming independence. Attributable EIGENAAR / Final Authority accepted the
+exact reviewed candidate. Governed integration adopts this exact assessment.
+Creation authority, preparation, repository presence, validation, Draft
+pull-request state, and transparent non-independent review did not grant
+acceptance or authorize any release action.
 
 ## Governing basis
 
@@ -249,7 +254,7 @@ evidence. It does not amend or retroactively change ASSESS-001.
 
 The predecessor-to-current outcome relationship is:
 
-| Dimension | ASSESS-001 | ASSESS-002 Proposed | Evidence boundary |
+| Dimension | ASSESS-001 | ASSESS-002 Accepted | Evidence boundary |
 | --- | --- | --- | --- |
 | Governance and authority | Satisfied | Satisfied | Exact authority remains established |
 | Specification and normative sources | Satisfied | Satisfied | Accepted sources remain closed and unchanged |
@@ -271,9 +276,9 @@ release decision, version allocation, tagging, packaging, publication,
 distribution, support commitment, correction, withdrawal, deployment, or
 implementation.
 
-The candidate must receive one transparent non-independent exact-head COMMENT
+The candidate received one transparent non-independent exact-head COMMENT
 review and separate attributable EIGENAAR / Final Authority acceptance before
-any status promotion. Creation, review, acceptance, promotion, and integration
+status promotion. Creation, review, acceptance, promotion, and integration
 remain distinct from release approval and consequential action.
 
 Any post-ASSESS-002 remediation, ASSESS-003, or reconsideration of issue #80
