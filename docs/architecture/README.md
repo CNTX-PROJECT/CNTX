@@ -257,6 +257,20 @@ other Accepted source, creates no aggregate `ready` result, record, manifest,
 package, version, tag, compatibility or support claim, implementation,
 release, publication, deployment, merge permission, or follow-on authority.
 
+The [CNTX Public-Core Completion and Maintenance
+Boundary](public-core-completion-and-maintenance-boundary.md) and
+[ADR-0027](adr/0027-public-core-completion-and-maintenance-boundary.md) are
+**Proposed** as ARCH-027 under issue #96 and attributable EIGENAAR / Final
+Authority creation comment `5228385928`. They propose naming the work through
+Accepted VERIFY-001 the completed initial Public-Core specification and
+prerelease cycle, while keeping repository archival, supported-version status,
+maintenance promises, implementation/runtime/provider/product completion,
+hosted-publication completion, and deployment separate. They define only a
+quiescent, event-driven governance boundary for possible future changes. They
+perform no project closure, maintenance action, correction, withdrawal,
+release-object mutation, support or compatibility claim, implementation,
+publication, deployment, acceptance, merge, or follow-on action.
+
 ## Document status
 
 - **Proposed** — submitted for review and not yet an accepted repository decision.
