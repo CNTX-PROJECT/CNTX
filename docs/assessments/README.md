@@ -22,7 +22,7 @@ authority.
 
 | Assessment | Status | Exact subject | Bounded result |
 | --- | --- | --- | --- |
-| [ASSESS-001 — Initial Public-Core Release Readiness Assessment](assess-001-initial-public-core-release-readiness.md) | **Proposed** | Commit `8e75448dd5eeb1c70fd17a71a165bf9500cccc3b`, tree `6aeb56b33f09c3696d5c4dbdb7ee0a87fb4582af` | Six separate ARCH-026 readiness-dimension outcomes; no aggregate result or release authority |
+| [ASSESS-001 — Initial Public-Core Release Readiness Assessment](assess-001-initial-public-core-release-readiness.md) | **Accepted** | Commit `8e75448dd5eeb1c70fd17a71a165bf9500cccc3b`, tree `6aeb56b33f09c3696d5c4dbdb7ee0a87fb4582af` | Six separate ARCH-026 readiness-dimension outcomes; no aggregate result or release authority |
 
 ASSESS-002 and ASSESS-003 are reserved by issue #80 but are not created or
 authorized. Each requires an Accepted predecessor, materially new evidence or

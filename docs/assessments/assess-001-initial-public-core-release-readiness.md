@@ -2,7 +2,7 @@
 
 ## Assessment status and authority
 
-**Assessment Status:** Proposed.
+**Assessment Status:** Accepted.
 
 **Assessment Subject:** Public repository commit
 `8e75448dd5eeb1c70fd17a71a165bf9500cccc3b`, tree
@@ -13,19 +13,22 @@
 **Creation Authority:** Attributable EIGENAAR / Final Authority issue comment
 `5225329632`.
 
+**Acceptance Authority:** Attributable EIGENAAR / Final Authority issue
+comment `5225397988`, accepting exact reviewed candidate commit
+`625f2a146e4b77f677ac03b8ff7a43101859cdcc`.
+
 **Evidence Capture:** `2026-08-08T08:34:13.674Z`.
 
-This document is a proposed, documentation-only, dimension-preserving
+This document is an accepted, documentation-only, dimension-preserving
 assessment record. It is not an architecture decision, normative contract,
 Artifact Instance, Portable Conformance Evidence instance, release finding
 with consequential authority, release recommendation, approval, release
 decision, release record, version, tag, publication, compatibility or support
 claim, certification, distribution, deployment, or implementation.
 
-ARCHITECT prepared and reviews this candidate transparently without claiming
-independence. Only separate attributable EIGENAAR / Final Authority acceptance
-may accept this exact assessment record. Acceptance would not authorize any
-release action.
+ARCHITECT prepared and reviewed the candidate transparently without claiming
+independence. Attributable EIGENAAR / Final Authority accepted the exact
+reviewed candidate. Acceptance does not authorize any release action.
 
 ## Governing basis
 
@@ -213,7 +216,8 @@ recommendation, release approval, release decision, version allocation,
 tagging, packaging, publication, distribution, support commitment, deployment,
 or implementation.
 
-The candidate must receive an exact-head COMMENT review and separate
-attributable EIGENAAR acceptance before its record can be promoted. Any later
-promotion, merge, remediation, ASSESS-002, ASSESS-003, release, tag, or
-publication remains separately governed.
+The exact candidate received a transparently non-independent exact-head COMMENT
+review and separate attributable EIGENAAR acceptance before status promotion.
+Acceptance, promotion, and integration do not authorize remediation,
+ASSESS-002, ASSESS-003, release, tag, publication, or any other consequential
+action; each remains separately governed.
