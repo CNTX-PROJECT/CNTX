@@ -387,6 +387,18 @@ action, publication, compatibility or support claim, implementation, issue #80
 mutation, deployment, or direct authority beyond preparing a separately
 governed RELEASE-001 execution contract.
 
+The release-policy index now also exposes the **Proposed** [RELEASE-001 CNTX
+Public Core `0.1.0-prealpha.1` Publication Execution
+plan](docs/release/release-001-public-core-0.1.0-prealpha.1-execution.md) and
+exact [release-notes source](docs/release/releases/0.1.0-prealpha.1.md) under
+issue #92 and attributable EIGENAAR / Final Authority creation comment
+`5227437332`. The candidate pins the exact approved subject commit/tree, full
+111-path inventory, intended lightweight tag, one future immutable GitHub
+prerelease, exact body, read-back, unsupported posture, preserved limitations,
+and fail-closed partial-failure handling. Proposed status creates no tag,
+GitHub Release, publication, compatibility or support claim, implementation,
+deployment, or release-execution authority.
+
 The high-level roadmap is to define public concepts and documentation, invite review under the project governance, and only then consider scoped, approved implementation work. Private reference implementations may exist later outside this public repository.
 
 ## Participate
