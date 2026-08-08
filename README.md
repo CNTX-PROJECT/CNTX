@@ -318,6 +318,24 @@ release decision, version, tag, publication, compatibility or support claim,
 validator, implementation, merge permission, ASSESS-002, or follow-on
 authority.
 
+The assessments index now also exposes the **Proposed**
+[ASSESS-002 Second Public-Core Release Readiness
+Assessment](docs/assessments/assess-002-second-public-core-release-readiness.md)
+under issue #84 and attributable EIGENAAR creation-authority comment
+`5226063673`. It evaluates exact commit
+`ef66ab5884794ec2742478ed1f195ebb9ffeeb95` and tree
+`8987a2272b475faf9f091c221fd151ab85c233b9`, including Accepted
+REMEDIATE-001 as materially new evidence. Its six separate Proposed outcomes
+are four `Satisfied`, one `Unverifiable`, and one `Not Satisfied`; the
+validation/evidence dimension changes from its historical ASSESS-001 outcome
+only because the new subject contains bounded logical evidence for all 203
+cases. The assessment preserves non-independent reproduction, code-scanning,
+specialist/legal, release-policy, version, publication, compatibility,
+support, correction/withdrawal, and final-decision limitations. It creates no
+aggregate readiness result, recommendation, approval, release decision,
+version, tag, publication, support claim, implementation, merge permission,
+ASSESS-003, issue #80 mutation, or follow-on authority.
+
 The high-level roadmap is to define public concepts and documentation, invite review under the project governance, and only then consider scoped, approved implementation work. Private reference implementations may exist later outside this public repository.
 
 ## Participate
