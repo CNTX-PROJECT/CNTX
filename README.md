@@ -352,11 +352,12 @@ compatibility or support claim, final decision, release action, implementation,
 deployment, merge permission, issue #80 mutation, or follow-on authority is
 created.
 
-The assessments index now also exposes the **Proposed**
+The assessments index now also exposes the **Accepted**
 [ASSESS-003 Final Public-Core Release Readiness
 Reassessment](docs/assessments/assess-003-final-public-core-release-readiness.md)
 under issue #88 and attributable EIGENAAR / Final Authority creation-authority
-comment `5226762612`. It assesses exact commit
+comment `5226762612` and exact-head acceptance comment `5226852273`. It
+assesses exact commit
 `109e6f293b150f48572cd747fab446c141d57193` and tree
 `446b408e27d3ebd3f6616658c61ccd9db4af8978`, preserves Accepted ASSESS-001 and
 ASSESS-002 as immutable historical predecessors, preserves Accepted
@@ -364,7 +365,7 @@ REMEDIATE-001 validation evidence, and evaluates Accepted REMEDIATE-002 as
 materially new due-diligence and release-policy basis. Its six separate
 outcomes are five `Satisfied` and one `Unverifiable`; its ten responsibility
 outcomes are eight `Satisfied`, one `Unverifiable`, and one `Not Satisfied`.
-Responsibility 10 remains the separate final-human-decision gate. The Proposed
+Responsibility 10 remains the separate final-human-decision gate. The Accepted
 record creates no aggregate readiness result, recommendation, approval, final
 release decision, active version, tag, GitHub Release, publication,
 compatibility or support claim, implementation, issue #80 mutation, merge

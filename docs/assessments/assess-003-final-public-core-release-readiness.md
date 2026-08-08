@@ -2,7 +2,7 @@
 
 ## Assessment status and authority
 
-**Assessment Status:** Proposed.
+**Assessment Status:** Accepted.
 
 **Assessment Subject:** Public repository commit
 `109e6f293b150f48572cd747fab446c141d57193`, tree
@@ -13,22 +13,26 @@
 **Creation Authority:** Attributable EIGENAAR / Final Authority issue comment
 `5226762612`.
 
+**Acceptance Authority:** Attributable EIGENAAR / Final Authority issue
+comment `5226852273`, accepting exact reviewed candidate commit
+`2f742ec544c79296da7aaba3b3b201b2147ec0ac` and tree
+`23ac0ab6d47cdca152c6284fa6b99ad548d8df2e`.
+
 **Evidence Capture:** `2026-08-08T15:27:44Z`.
 
-This is a Proposed, documentation-only, dimension-preserving assessment
-candidate. It is not an architecture decision, normative contract, Artifact
+This document is an Accepted, documentation-only, dimension-preserving
+assessment record. It is not an architecture decision, normative contract, Artifact
 Instance, canonical Portable Conformance Evidence instance, Validation Output,
 aggregate readiness result, release recommendation, approval, final release
 decision, release record, active version, tag, publication, compatibility or
 support claim, certification, distribution, deployment, or implementation.
 
-ARCHITECT prepared this candidate and performs the separately recorded exact-
-head review transparently without claiming independence. Creation authority,
-preparation, repository presence, validation, Draft pull-request state, and
-transparent non-independent review do not grant candidate acceptance, release
-approval, final decision, or consequential authority. Separate attributable
-EIGENAAR / Final Authority acceptance of the exact reviewed head is required
-before any status promotion or integration.
+ARCHITECT prepared and reviewed the exact candidate transparently without
+claiming independence. Attributable EIGENAAR / Final Authority accepted the
+exact reviewed candidate. Governed integration adopts this exact assessment.
+Creation authority, preparation, repository presence, validation, Draft
+pull-request state, and transparent non-independent review did not grant
+acceptance, release approval, final decision, or consequential authority.
 
 The word `Final` identifies the third and final assessment in the current
 ASSESS-001/002/003 cycle. It does not mean final release approval, final
@@ -283,7 +287,7 @@ ASSESS-003 assesses a new exact subject containing Accepted REMEDIATE-002
 decision-basis evidence. It does not amend or retroactively change ASSESS-001
 or ASSESS-002.
 
-| Dimension | ASSESS-002 Accepted | ASSESS-003 Proposed | Evidence boundary |
+| Dimension | ASSESS-002 Accepted | ASSESS-003 Accepted | Evidence boundary |
 | --- | --- | --- | --- |
 | Governance and authority | Satisfied | Satisfied | Exact assessment authority remains established while final decision authority remains separate |
 | Specification and normative sources | Satisfied | Satisfied | Accepted sources remain exact and now include Accepted REMEDIATE-002 policies |
@@ -305,7 +309,9 @@ final release decision, active version allocation, tagging, packaging,
 publication, distribution, support commitment, compatibility guarantee,
 correction, withdrawal, deployment, or implementation.
 
-Creation, review, exact-head acceptance, status promotion, integration, issue
+The candidate received one transparent non-independent exact-head COMMENT
+review and separate attributable EIGENAAR / Final Authority acceptance before
+status promotion. Creation, review, acceptance, promotion, integration, issue
 completion, issue #80 reconsideration, final release decision, and
 consequential action remain distinct lifecycle events.
 
@@ -314,8 +320,8 @@ separately attributable EIGENAAR / Final Authority decision may identify and
 authorize an exact release subject, version, tag, publication set, channel,
 limitations, actions, and exclusions.
 
-After a later separate exact-head acceptance, status promotion, integration,
-completion, synchronization, and branch cleanup of ASSESS-003, issue #80 may
-be reconsidered only under a new attributable EIGENAAR decision. No issue
-mutation, final-decision contract, version, tag, release, publication, action,
-or follow-on authority is created by this handoff.
+After completed status promotion, integration, completion, synchronization,
+and branch cleanup of ASSESS-003, issue #80 may be reconsidered only under a
+new attributable EIGENAAR decision. No issue mutation, final-decision
+contract, version, tag, release, publication, action, or follow-on authority
+is created by this handoff.
