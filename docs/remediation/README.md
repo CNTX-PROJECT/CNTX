@@ -21,7 +21,7 @@ adverse information, and unresolved conditions.
 
 | Record | Status | Frozen basis | Bounded result |
 | --- | --- | --- | --- |
-| [REMEDIATE-001 — ASSESS-001 Release-Readiness Remediation Evidence](assess-001-release-readiness-evidence-remediation.md) | **Proposed** | Public baseline `45663112f8e253a1748543041afa9b7064b1eabc`, tree `e5b8403f64624357b8a2f9ddcc3110c3a170c456`; Accepted ASSESS-001 subject `8e75448dd5eeb1c70fd17a71a165bf9500cccc3b` | Three gap-specific evidence records; no ASSESS-001 outcome change, aggregate result, recommendation, approval, or release authority |
+| [REMEDIATE-001 — ASSESS-001 Release-Readiness Remediation Evidence](assess-001-release-readiness-evidence-remediation.md) | **Accepted** | Public baseline `45663112f8e253a1748543041afa9b7064b1eabc`, tree `e5b8403f64624357b8a2f9ddcc3110c3a170c456`; Accepted ASSESS-001 subject `8e75448dd5eeb1c70fd17a71a165bf9500cccc3b` | Three gap-specific evidence records; no ASSESS-001 outcome change, aggregate result, recommendation, approval, or release authority |
 
 ## Evidence records
 

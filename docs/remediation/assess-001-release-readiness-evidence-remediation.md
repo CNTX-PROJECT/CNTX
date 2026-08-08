@@ -2,7 +2,7 @@
 
 ## Status and authority
 
-**Remediation Status:** Proposed.
+**Remediation Status:** Accepted.
 
 **Frozen preparation baseline:** public commit
 `45663112f8e253a1748543041afa9b7064b1eabc`, tree
@@ -88,7 +88,7 @@ authority, recommendation, approval, decision, version allocation, tagging,
 packaging, publication, distribution, support commitment, certification, or
 deployment.
 
-The evidence is Proposed until separately accepted. Even after potential
+The evidence is Accepted as this exact reviewed record. Even after governed
 integration, ASSESS-002 remains unauthorized until a new exact creation
 contract pins the then-current immutable baseline/tree and selected evidence.
 

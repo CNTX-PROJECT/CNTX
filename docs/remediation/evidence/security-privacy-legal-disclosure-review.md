@@ -2,7 +2,7 @@
 
 ## Classification and boundary
 
-**Evidence Status:** Proposed.
+**Evidence Status:** Accepted.
 
 **Frozen repository subject:** commit
 `45663112f8e253a1748543041afa9b7064b1eabc`, tree

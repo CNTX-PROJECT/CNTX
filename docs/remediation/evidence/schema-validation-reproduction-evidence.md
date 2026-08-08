@@ -2,7 +2,7 @@
 
 ## Classification, subject, and authority boundary
 
-**Evidence Status:** Proposed.
+**Evidence Status:** Accepted.
 
 **Frozen subject:** public baseline `45663112f8e253a1748543041afa9b7064b1eabc`, tree `e5b8403f64624357b8a2f9ddcc3110c3a170c456`.
 
@@ -583,4 +583,4 @@ main();
 
 A later reproducer must pin the exact Git tree, evaluator and runtime versions, dependency closure, ten caller-supplied resources, harness hashes, and format configuration. Any later difference must remain visible with its environment and evidence; it must not overwrite this historical record or silently change schemas, manifests, expected outcomes, or Accepted decisions.
 
-This evidence is Proposed until separately accepted. Its integration would supply materially new executed evidence for a later ASSESS-002, but would not authorize or predetermine that reassessment.
+This evidence is Accepted as this exact reviewed record. Governed integration supplies materially new executed evidence for a later ASSESS-002, but does not authorize or predetermine that reassessment.
