@@ -2,7 +2,7 @@
 
 ## Classification and authority
 
-**Evidence Status:** Proposed.
+**Evidence Status:** Accepted.
 
 **Frozen repository subject:** commit
 `91f55fc53e78ff847b27d036cafb1e25b34b5a81`, tree
@@ -12,6 +12,11 @@
 
 **Governing task:** [REMEDIATE-002 issue #86](https://github.com/CNTX-PROJECT/CNTX/issues/86),
 with creation authority in comment `5226346595`.
+
+**Acceptance authority:** attributable EIGENAAR / Final Authority comment
+`5226499010`, accepting exact reviewed candidate commit
+`e67a8a3ca2851ed65ff2c403520b695b477d8d86` and tree
+`d80927f5efa227db2b444b949969f491520bf0a7`.
 
 This is a public-safe, attributable documentation review for a later release-
 decision process. ARCHITECT is not an independent security, privacy, or legal
@@ -60,8 +65,8 @@ penetration test, or legal-review service was installed or executed.
 | Automatic or hostile Schema Resource retrieval | Accepted resolution policy prohibits automatic network access and requires exact caller-supplied resources | No resolver implementation is supplied or tested; policy does not prove future implementation behaviour |
 | Secrets, credentials, private data, or private-project leakage | Public/private separation is normative; targeted scans cover recognized private-key headers, selected token/key prefixes, local private paths, and private-context markers | Narrow patterns cannot prove absence, completeness, or future safety; no private or restricted source was opened or copied |
 | Mutable platform state or hidden authority | Exact Git commits/trees and attributable issue comments pin immutable sources and authority | GitHub settings, permissions, branches, and account state remain mutable and external to the tree |
-| Tag or release substitution | Proposed policy requires an exact commit/tree, immutable release tag, and historical correction rather than silent replacement | No tag, release record, signature, digest, attestation, or verification mechanism exists |
-| History loss through correction or withdrawal | Proposed policy preserves records and requires additive correction/withdrawal notice | The channel-specific process is not active and no correction or withdrawal execution is authorized |
+| Tag or release substitution | Accepted policy requires an exact commit/tree, immutable release tag, and historical correction rather than silent replacement | No tag, release record, signature, digest, attestation, or verification mechanism exists |
+| History loss through correction or withdrawal | Accepted policy preserves records and requires additive correction/withdrawal notice | The channel-specific process is not active and no correction or withdrawal execution is authorized |
 | External links or third-party terms | Repository-local link integrity is checked; external claims remain separate | External content and terms can change; no exhaustive legal, trademark, patent, export, or jurisdictional review exists |
 
 ## Time-bounded public GitHub controls

@@ -2,7 +2,7 @@
 
 ## Status and authority
 
-**Policy Status:** Proposed.
+**Policy Status:** Accepted.
 
 **Frozen preparation baseline:** public commit
 `91f55fc53e78ff847b27d036cafb1e25b34b5a81`, tree
@@ -12,7 +12,12 @@
 with attributable EIGENAAR / Final Authority creation authority in comment
 `5226346595`.
 
-This policy is a documentation-only proposal. It records a bounded future
+**Acceptance authority:** attributable EIGENAAR / Final Authority comment
+`5226499010`, accepting exact reviewed candidate commit
+`e67a8a3ca2851ed65ff2c403520b695b477d8d86` and tree
+`d80927f5efa227db2b444b949969f491520bf0a7`.
+
+This is an Accepted documentation-only policy. It records a bounded future
 publication and claim model without publishing, releasing, supporting,
 certifying, correcting, withdrawing, distributing, or deploying anything.
 
@@ -24,7 +29,7 @@ boundary in ARCH-026.
 The intended first prerelease publication channel is a future, separately
 authorized GitHub Release in `CNTX-PROJECT/CNTX`, marked as a prerelease. Its prospective Release
 Version and tag representation are `0.1.0-prealpha.1` and
-`v0.1.0-prealpha.1` under the Proposed
+`v0.1.0-prealpha.1` under the Accepted
 [Release Identity and Version Policy](public-core-release-identity-version-policy.md).
 
 This channel statement is intent only. It creates no GitHub Release, active
@@ -136,7 +141,7 @@ or exceptional security removal must:
 7. carry separate attributable EIGENAAR / Final Authority authorization for
    every consequential action.
 
-This Proposed policy executes no correction or withdrawal and creates no
+This Accepted policy executes no correction or withdrawal and creates no
 promise that either will occur within a particular period.
 
 ## Claim and final-authority boundary

@@ -2,7 +2,7 @@
 
 ## Status and authority
 
-**Policy Status:** Proposed.
+**Policy Status:** Accepted.
 
 **Frozen preparation baseline:** public commit
 `91f55fc53e78ff847b27d036cafb1e25b34b5a81`, tree
@@ -12,7 +12,12 @@
 with attributable EIGENAAR / Final Authority creation authority in comment
 `5226346595`.
 
-This policy is a documentation-only proposal. It does not allocate an active
+**Acceptance authority:** attributable EIGENAAR / Final Authority comment
+`5226499010`, accepting exact reviewed candidate commit
+`e67a8a3ca2851ed65ff2c403520b695b477d8d86` and tree
+`d80927f5efa227db2b444b949969f491520bf0a7`.
+
+This is an Accepted documentation-only policy. It does not allocate an active
 Release Version, create or move a tag, select a final release subject, approve
 a release, create a GitHub Release, publish, distribute, support, certify, or
 deploy anything.
@@ -23,7 +28,7 @@ ARCH-026.
 
 ## Logical Release Identity
 
-The proposed stable logical identity of the release family is:
+The Accepted stable logical identity of the release family is:
 
 > `CNTX Public Core Release`
 
@@ -70,7 +75,7 @@ readiness. Those require their own evidence and attributable decisions.
 
 ## Prospective first prerelease target
 
-The proposed decision input for a possible first prerelease is:
+The Accepted prospective decision input for a possible first prerelease is:
 
 - Release Version: `0.1.0-prealpha.1`
 - tag representation: `v0.1.0-prealpha.1`
@@ -81,9 +86,9 @@ ordered future pre-alpha candidates if separately governed. A later candidate
 must use a new higher prerelease identifier; a published or historically used
 version or tag must never be silently reused for different content.
 
-These values are prospective only. They are not active, accepted release
+These values are prospective only. They are not active release
 state, a reserved Git object, or authorization to create or move a tag. At the
-time of this proposal, CNTX has no tag or GitHub Release.
+time of policy acceptance, CNTX has no tag or GitHub Release.
 
 ## Instability and compatibility boundary
 
@@ -128,7 +133,7 @@ deprecation preserves the original record, states the exact reason and scope
 that may be publicly disclosed, and requires separate authority.
 
 No correction, withdrawal, tag operation, release operation, or publication
-is authorized by this Proposed policy.
+is authorized by this Accepted policy.
 
 ## Non-authority
 

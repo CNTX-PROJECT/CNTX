@@ -336,11 +336,12 @@ aggregate readiness result, recommendation, approval, release decision,
 version, tag, publication, support claim, implementation, merge permission,
 ASSESS-003, issue #80 mutation, or follow-on authority.
 
-The remediation index now also exposes the **Proposed**, documentation-only
+The remediation index now also exposes the **Accepted**, documentation-only
 [REMEDIATE-002 ASSESS-002 Release-Decision Basis](docs/remediation/assess-002-release-decision-basis-remediation.md)
 under issue #86 and attributable EIGENAAR / Final Authority creation comment
-`5226346595`. It adds public-safe security/privacy/legal/disclosure due
-diligence and two [Proposed release-policy sources](docs/release/README.md),
+`5226346595` and exact-head acceptance comment `5226499010`. It adds public-safe
+security/privacy/legal/disclosure due diligence and two
+[Accepted release-policy sources](docs/release/README.md),
 including the logical Release Identity `CNTX Public Core Release`, prospective
 prerelease target `0.1.0-prealpha.1`, prospective tag representation
 `v0.1.0-prealpha.1`, and an intended future separately authorized GitHub
