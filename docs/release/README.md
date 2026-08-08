@@ -29,26 +29,30 @@ consequential phase requires separate attributable authority.
 
 ## Current position
 
-CNTX remains unreleased and pre-alpha. `CNTX Public Core Release` is an
-Accepted logical identity. `0.1.0-prealpha.1` and
-`v0.1.0-prealpha.1` are prospective decision inputs only. No active Release
-Version or tag exists, and no GitHub Release has been created.
+CNTX remains unreleased and pre-alpha. `CNTX Public Core Release` is the
+Accepted logical identity. The Accepted DECIDE-001 Final Release Decision
+selects Release Version `0.1.0-prealpha.1` for its exact assessed subject and
+fixes `v0.1.0-prealpha.1` as the intended tag representation. No tag exists,
+no GitHub Release has been created, and no release action has been executed.
 
 These documents make no supported-version, compatibility, security, privacy,
 legal, compliance, production-readiness, fitness, warranty, certification, or
-absence claim. Final release authority remains exclusively with a later
-separate attributable EIGENAAR / Final Authority decision.
+absence claim. Every consequential release action remains subject to separate
+attributable EIGENAAR / Final Authority authorization.
 
-## Proposed final release decision
+## Accepted final release decision
 
 The [DECIDE-001 CNTX Public-Core Final Release Decision
-candidate](decide-001-public-core-final-release-decision.md) is **Proposed**
-under issue #90 with selected disposition `Approve` for exact ASSESS-003
+record](decide-001-public-core-final-release-decision.md) is **Accepted** under
+issue #90, creation-authority comment `5227058548`, and exact-head acceptance
+comment `5227236796`, with disposition `Approve` for exact ASSESS-003
 subject commit `109e6f293b150f48572cd747fab446c141d57193` and tree
-`446b408e27d3ebd3f6616658c61ccd9db4af8978`. The candidate preserves the five
+`446b408e27d3ebd3f6616658c61ccd9db4af8978`. The decision preserves the five
 `Satisfied` and one `Unverifiable` readiness dimensions, the pre-decision
 eight `Satisfied`, one `Unverifiable`, and one `Not Satisfied`
-responsibilities, and all adverse-evidence and non-claim boundaries. It is not
-Accepted, does not satisfy responsibility 10, and creates no active version,
-tag, GitHub Release, publication, support or compatibility claim, release
-action, implementation, or follow-on authority.
+responsibilities, and all adverse-evidence and non-claim boundaries. It
+separately satisfies responsibility 10 only for the exact assessed subject;
+the security/privacy/legal/disclosure dimension remains `Unverifiable`. It
+creates no tag, GitHub Release, publication, support or compatibility claim,
+release action, implementation, or direct follow-on authority beyond preparing
+a separately governed RELEASE-001 execution contract.

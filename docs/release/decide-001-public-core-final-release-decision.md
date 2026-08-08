@@ -4,24 +4,28 @@
 
 - Decision sequence: `DECIDE-001`.
 - Logical Decision Identity: `CNTX Public-Core Final Release Decision`.
-- Document status: **Proposed**.
+- Document status: **Accepted**.
 - Selected disposition: **Approve**.
 - EIGENAAR / Final Authority: Cintao66.
 - Creation authority: issue #90 and attributable authority comment
   `5227058548`.
+- Exact-head acceptance: attributable EIGENAAR / Final Authority comment
+  `5227236796` on reviewed commit
+  `bce48cd19bc35f4c75c8cf40b5b1a3689a5bc716` and tree
+  `34435fdf39451915f04946460a67dd7fc3fdab8f`.
 - Review boundary: one transparent, explicitly non-independent exact-head
   `COMMENT` review by ARCHITECT.
 
-This Proposed document records a candidate final release decision. It is not
-an Accepted decision, does not satisfy the final-human-decision gate, and
-grants no authority to create or move a tag, create a GitHub Release, publish,
-distribute, support, correct, withdraw, or deploy anything. Only separate
-attributable EIGENAAR / Final Authority acceptance of the exact reviewed head
-and governed Accepted integration can establish the Final Release Decision.
+This Accepted document records the attributable Final Release Decision for
+only the exact assessed subject. It satisfies the final-human-decision gate for
+that subject and grants no authority to create or move a tag, create a GitHub
+Release, publish, distribute, support, correct, withdraw, or deploy anything.
+Every consequential release action remains subject to separate attributable
+EIGENAAR / Final Authority authorization.
 
 ## Exact creation baseline and assessed release subject
 
-The governing creation baseline for this Proposed record is:
+The governing creation baseline for this Accepted record is:
 
 - public repository: `CNTX-PROJECT/CNTX`;
 - creation commit: `47eaa9f1b0a597a6b873cb0d25700115ee2acdb8`;
@@ -36,7 +40,7 @@ immutably pinned as:
 - subject tracked files: 111.
 
 The creation baseline is not substituted for the assessed release subject.
-This Proposed decision applies only to the exact subject commit and tree above.
+This Accepted decision applies only to the exact subject commit and tree above.
 A different or later subject requires a new exact assessment and authority
 cycle.
 
@@ -61,7 +65,7 @@ authority.
 
 ## Preserved ASSESS-003 results
 
-This Proposed decision preserves Accepted ASSESS-003 without amendment.
+This Accepted decision preserves Accepted ASSESS-003 without amendment.
 
 ### Six separate readiness dimensions
 
@@ -92,9 +96,9 @@ This Proposed decision preserves Accepted ASSESS-003 without amendment.
 There is no aggregate readiness result, pass/fail, traffic light, score,
 grade, badge, threshold, checklist verdict, rubric, quality gate, ranking,
 majority, consensus, latest-wins result, recommendation, approval, or automatic
-decision. This Proposed candidate does not change responsibility 10. Only
-later exact-head acceptance and Accepted integration can do so for this exact
-subject.
+decision. Accepted ASSESS-003 remains unchanged, including its responsibility
+10 outcome. The attributable Accepted Final Release Decision separately
+satisfies responsibility 10 for only the exact subject identified above.
 
 ## Preserved validation and Portable Conformance Evidence basis
 
@@ -139,24 +143,24 @@ Restricted or unavailable evidence is not treated as favorable evidence.
 Missing, adverse, conflicting, uncertain, or materially limited evidence is
 not suppressed by other positive results.
 
-## Proposed disposition — Approve
+## Accepted disposition — Approve
 
-The EIGENAAR proposes to approve only the exact assessed subject for an
-unsupported pre-alpha release under this bounded basis:
+The EIGENAAR approves only the exact assessed subject for an unsupported
+pre-alpha release under this bounded basis:
 
 - Release Identity: `CNTX Public Core Release`;
-- prospective Release Version: `0.1.0-prealpha.1`;
-- prospective tag representation: `v0.1.0-prealpha.1`;
+- selected Release Version: `0.1.0-prealpha.1`;
+- intended tag representation: `v0.1.0-prealpha.1`;
 - intended later channel: one future separately authorized GitHub Release in
   `CNTX-PROJECT/CNTX`, marked as prerelease;
 - intended audience: review and experimentation; and
 - support posture: unsupported pre-alpha.
 
-The word **Approve** in this Proposed record is the selected candidate
-disposition. It is not yet the Final Release Decision and has no consequential
-effect before exact-head acceptance and Accepted integration.
+The word **Approve** in this Accepted record is the attributable Final Release
+Decision for only the exact assessed subject. It has no direct consequential
+release-execution effect.
 
-If this exact candidate is later accepted and integrated:
+Governed integration of this exact Accepted decision establishes that:
 
 1. the integrated decision becomes the attributable Final Release Decision for
    only the exact assessed subject;
@@ -168,7 +172,7 @@ If this exact candidate is later accepted and integrated:
 6. only preparation of a separate RELEASE-001 execution contract becomes an
    eligible next phase.
 
-Acceptance and integration of DECIDE-001 still do not create or move a tag,
+Acceptance and integration of DECIDE-001 do not create or move a tag,
 create a GitHub Release, create a release record, publish, distribute, support,
 correct, withdraw, or deploy anything.
 
@@ -190,7 +194,7 @@ attestations, installers, registry publications, hosted sites, mutable
 
 ## Compatibility, support, and claim boundary
 
-This Proposed decision makes no universal, prior-version, future-version,
+This Accepted decision makes no universal, prior-version, future-version,
 implementation, interoperability, or support-compatibility guarantee. It
 creates no supported-version claim, SLA, maintenance duration, response
 target, warranty, certification, accreditation, compliance statement,
@@ -202,8 +206,8 @@ for a particular purpose is established.
 
 ## Security, privacy, legal, and disclosure boundary
 
-The `Unverifiable` outcome is preserved exactly. Approval, if later Accepted,
-would be a bounded human decision under visible limitations; it would not
+The `Unverifiable` outcome is preserved exactly. This Accepted approval is a
+bounded human decision under visible limitations; it does not
 assert that security, privacy, legal, disclosure, compliance, or absence-of-
 findings requirements are universally or independently satisfied.
 
@@ -227,13 +231,13 @@ rewrite Accepted assessments, evidence, decisions, tags, release records, or
 historical limitations to appear as though an earlier state never existed.
 
 No correction, withdrawal, tag mutation, release-record mutation, or support
-action is authorized by this Proposed candidate.
+action is authorized by this Accepted decision.
 
 ## Non-execution and authority separation
 
-Creation, validation, repository presence, a clean review, later acceptance,
-or integration of this decision is separate from release execution. This
-candidate creates no Artifact Instance, Decision Record Artifact Instance,
+Creation, validation, repository presence, a clean review, acceptance, or
+integration of this decision is separate from release execution. This
+decision creates no Artifact Instance, Decision Record Artifact Instance,
 canonical Portable Conformance Evidence, canonical Validation Output, schema,
 field model, serialization, media type, canonical JSON, digest, signature,
 attestation, validator, resolver, registry, catalog, cache, bundler, API, CLI,
@@ -244,16 +248,15 @@ support service, correction, withdrawal, or deployment.
 No technical actor, evaluator, reviewer, automation, majority, consensus, or
 repository state may substitute for the EIGENAAR / Final Authority.
 
-## Mandatory exact-head acceptance stop
+## Accepted decision and release-execution gate
 
-After exactly one transparent, explicitly non-independent exact-head
-`COMMENT` review by ARCHITECT, this candidate must remain **Proposed**, its PR
-must remain Draft, issue #90 must remain open, and the local and remote public
-taskbranch must remain present.
+The exact reviewed candidate received attributable EIGENAAR / Final Authority
+acceptance in comment `5227236796`. Governed integration establishes this
+record as the Accepted Final Release Decision for only the exact assessed
+subject and makes preparation of a separate RELEASE-001 execution contract the
+next eligible candidate phase.
 
-Work then stops for separate attributable EIGENAAR / Final Authority
-acceptance of the exact reviewed candidate head. No Ready-for-review
-transition, Accepted promotion, promotion commit, merge, issue closure, branch
-cleanup, active Release Version, tag, GitHub Release, RELEASE-001 execution,
-VERIFY-001, ARCH-027, publication, distribution, implementation, support, or
-deployment is authorized in this phase.
+This Accepted decision does not execute RELEASE-001 and authorizes no direct
+tag creation or movement, GitHub Release, release record, publication,
+distribution, implementation, support, correction, withdrawal, VERIFY-001,
+ARCH-027, or deployment. Each such phase or action remains separately gated.
