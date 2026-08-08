@@ -1,9 +1,10 @@
 # ADR-0028: CNTX Extension Module and Profile architecture boundary
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-08-09
 - **Issue:** [#98](https://github.com/CNTX-PROJECT/CNTX/issues/98)
 - **Creation authority comment:** [5228583661](https://github.com/CNTX-PROJECT/CNTX/issues/98#issuecomment-5228583661)
+- **Exact-head acceptance comment:** [5228762336](https://github.com/CNTX-PROJECT/CNTX/issues/98#issuecomment-5228762336)
 - **Decision:** ARCH-028 — CNTX Extension Module and Profile Architecture
   Boundary
 
@@ -23,7 +24,7 @@ or confuse technical support with normative authority.
 
 ## Decision
 
-Propose separate optional categories for future Extension Modules and Profiles.
+Adopt separate optional categories for future Extension Modules and Profiles.
 
 An Extension Module is a possible independently identity/version-bearing,
 additive capability contract. It cannot alter, replace, weaken, or redefine the
@@ -203,11 +204,12 @@ reassessment, ARCH-029, or follow-on authority.
 
 ## Authority boundary
 
-This ADR is Proposed. Creation authority, repository presence, validation, and
-transparent non-independent ARCHITECT review do not grant acceptance.
+This ADR is Accepted. Creation authority, repository presence, validation, and
+transparent non-independent ARCHITECT review did not grant acceptance.
 Separate attributable EIGENAAR / Final Authority acceptance of the exact
-reviewed revision and governed integration are required.
+reviewed revision is recorded in issue comment `5228762336`; governed
+integration makes the decision binding.
 
-Acceptance would adopt only this architecture boundary. It would not allocate,
+Acceptance adopts only this architecture boundary. It does not allocate,
 activate, represent, validate, implement, publish, distribute, or deploy an
 Extension Module or Profile or authorize a later phase.

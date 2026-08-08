@@ -2,18 +2,19 @@
 
 ## Status and authority
 
-**Document Status:** Proposed.
+**Document Status:** Accepted.
 
-This document is a Proposed, documentation-only architecture decision governed
+This document is an Accepted, documentation-only architecture decision governed
 by [issue #98](https://github.com/CNTX-PROJECT/CNTX/issues/98) and recorded by
 [ADR-0028](adr/0028-extension-module-profile-architecture-boundary.md).
 Attributable EIGENAAR / Final Authority creation authority is recorded in issue
-comment `5228583661`.
+comment `5228583661`, and exact-head acceptance is recorded in issue comment
+`5228762336`.
 
 Creation, repository presence, validation, and transparent non-independent
-review do not grant acceptance. Only separate attributable EIGENAAR / Final
+review did not grant acceptance. Separate attributable EIGENAAR / Final
 Authority acceptance of the exact reviewed revision and separately authorized
-governed integration can make this decision Accepted.
+governed integration make this decision Accepted.
 
 ## Purpose and decision boundary
 
@@ -22,7 +23,7 @@ prerelease cycle on a quiescent, event-driven maintenance boundary. It names
 Extension Module and Profile architecture as one possible future consequential
 change category, but it creates neither mechanism.
 
-This proposal defines only the conceptual boundary within which future
+This decision defines only the conceptual boundary within which future
 Extension Module and Profile architecture could be governed. It:
 
 1. separates Extension Modules from Profiles;
@@ -39,7 +40,7 @@ implementation.
 
 ## Exact decision basis
 
-This proposal was prepared on exact public baseline
+This decision was prepared on exact public baseline
 `7403cb7b28733f2d6a31a8eebf0a2a6a99c7b8aa` and tree
 `e1b7e309b26f7d674107d5f713122429e8e6c32f`.
 
@@ -58,7 +59,7 @@ The controlling Accepted basis includes:
   verification, completion, and maintenance sources; and
 - immutable prerelease `0.1.0-prealpha.1` and its exact historical objects.
 
-This proposal changes none of those sources, identities, versions, assertions,
+This decision changes none of those sources, identities, versions, assertions,
 expected results, evidence, limitations, statuses, or authority.
 
 ## Terms and category separation
@@ -195,7 +196,7 @@ later Accepted architecture permits that dependency. A future Profile may
 select exact Core and module versions only when all selected inputs are
 independently supplied and authoritative for their own scope.
 
-This proposal creates no:
+This decision creates no:
 
 - dependency grammar or compatibility range;
 - optional-versus-required dependency token;
@@ -242,7 +243,7 @@ Conflict cannot be resolved silently through:
 An unknown or unsupported Extension Module/Profile is not automatically
 invalid for every possible purpose, but it makes any dependent evaluation
 `Unverifiable` or otherwise fail closed under the later applicable contract.
-This proposal does not allocate a portable outcome vocabulary.
+This decision does not allocate a portable outcome vocabulary.
 
 ## Supply and resolution boundary
 
@@ -256,7 +257,7 @@ states otherwise. Repository presence, a public URL, registry listing, cache,
 mirror, redirect, or successful retrieval does not establish authority,
 authenticity, acceptance, compatibility, or trust.
 
-This proposal creates no resolver, registry, catalog, cache, bundler, mirror,
+This decision creates no resolver, registry, catalog, cache, bundler, mirror,
 redirect, discovery service, hosted authority, trust store, or network
 behavior.
 
@@ -298,7 +299,7 @@ Secrets, credentials, personal data, production configuration, private paths,
 restricted evidence, private project context, and private implementation
 details remain outside public CNTX sources.
 
-This proposal grants no access, permission, disclosure, trust, authenticity,
+This decision grants no access, permission, disclosure, trust, authenticity,
 security, privacy, legal, or compliance claim.
 
 ## Dependency-first decision order
@@ -346,7 +347,7 @@ release subject or publish Extension Module/Profile material.
 
 ## Non-decisions and prohibited effects
 
-This proposal does not define or create a concrete Extension Module, Profile,
+This decision does not define or create a concrete Extension Module, Profile,
 Identifier, Version, version policy, dependency or compatibility range,
 precedence, conflict algorithm, declaration token, field, type, vocabulary,
 `$id`, Schema Resource, executable schema, payload, manifest, package, catalog,
@@ -367,15 +368,15 @@ request, tag, or GitHub Release.
 
 ## Lifecycle and final human authority
 
-This Proposed document does not approve itself. Creation authority is not
+This Accepted document did not approve itself. Creation authority was not
 acceptance. Validation, review, mergeability, technical access, repository
-presence, and implementation capability grant no consequential authority.
+presence, and implementation capability granted no consequential authority.
 
-Only separate attributable EIGENAAR / Final Authority acceptance of the exact
-reviewed revision, followed by separately authorized status promotion and
-governed integration, can make this decision Accepted. Even then, acceptance
-would adopt only the architecture boundary; it would not create or implement
-an Extension Module or Profile or authorize another phase.
+Separate attributable EIGENAAR / Final Authority acceptance of the exact
+reviewed revision is recorded in issue comment `5228762336`; separately
+authorized status promotion and governed integration make this decision
+Accepted. Acceptance adopts only the architecture boundary; it does not create
+or implement an Extension Module or Profile or authorize another phase.
 
 ## References
 

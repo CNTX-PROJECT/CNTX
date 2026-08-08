@@ -429,19 +429,21 @@ maintenance promise, resolve evidence limitations, mutate the immutable
 release, perform correction or withdrawal, implement software, publish or
 deploy anything, or authorize a follow-on phase.
 
-The architecture index now also exposes the **Proposed** [CNTX Extension
+The architecture index now also exposes the **Accepted** [CNTX Extension
 Module and Profile Architecture
 Boundary](docs/architecture/extension-module-profile-architecture-boundary.md)
 (ARCH-028) with
 [ADR-0028](docs/architecture/adr/0028-extension-module-profile-architecture-boundary.md)
-under issue #98 and attributable EIGENAAR / Final Authority creation comment
-`5228583661`. The documentation-only proposal separates optional Extension
-Module and Profile categories, preserves Core sovereignty, requires explicit
+under issue #98, attributable EIGENAAR / Final Authority creation comment
+`5228583661`, and exact-head acceptance comment `5228762336`. The
+documentation-only decision separates optional Extension Module and Profile
+categories, preserves Core sovereignty, requires explicit
 exact-version opt-in and fail-closed conflicts, and orders later identity,
 versioning, activation, composition, schema, conformance, and implementation
-decisions. It creates no concrete mechanism, identity, version, field, Schema
-Resource, executable schema, resolver, validator, tooling, implementation,
-release, publication, deployment, acceptance, merge permission, or follow-on
+decisions. Acceptance and integration create no concrete mechanism, identity,
+version, field, Schema Resource, executable schema, resolver, validator,
+tooling, implementation,
+release, publication, deployment, or follow-on
 authority.
 
 The high-level roadmap is to define public concepts and documentation, invite review under the project governance, and only then consider scoped, approved implementation work. Private reference implementations may exist later outside this public repository.
