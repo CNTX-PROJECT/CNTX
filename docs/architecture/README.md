@@ -243,19 +243,19 @@ permission, or follow-on authority.
 The [CNTX Public-Core Release Readiness and Publication
 Boundary](public-core-release-readiness-publication-boundary.md) and
 [ADR-0026](adr/0026-public-core-release-readiness-publication-boundary.md) are
-**Proposed** as ARCH-026 under issue #78 and attributable EIGENAAR creation-
-authority comment `5223389264`. They define an exact release-subject and frozen-
-basis boundary, six separately assessed readiness dimensions, ten logical
+**Accepted** as ARCH-026 under issue #78, attributable EIGENAAR creation-
+authority comment `5223389264`, and EIGENAAR acceptance comment `5223546552`.
+They define an exact release-subject and frozen-basis boundary, six separately
+assessed readiness dimensions, ten logical
 release-basis responsibilities, fail-closed governing-source and evidence
 closure, documentation/policy/license/notice, security/privacy/legal/
 disclosure, publication, compatibility, support, correction, and final-human-
 authority limits. They keep readiness assessment, approval, release, version,
 tag, publication, distribution, support, certification, and deployment
-separate. The candidate performs no current readiness assessment, changes no
-Accepted source, creates no aggregate `ready` result, record, manifest,
+separate. The decision performs no current readiness assessment, changes no
+other Accepted source, creates no aggregate `ready` result, record, manifest,
 package, version, tag, compatibility or support claim, implementation,
-release, publication, deployment, acceptance, merge permission, or follow-on
-authority.
+release, publication, deployment, merge permission, or follow-on authority.
 
 ## Document status
 

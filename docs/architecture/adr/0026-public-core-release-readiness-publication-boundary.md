@@ -1,6 +1,6 @@
 # ADR-0026: Public-core release readiness and publication boundary
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-08-08
 - **Issue:** [#78](https://github.com/CNTX-PROJECT/CNTX/issues/78)
 - **Decision:** ARCH-026 — CNTX Public-Core Release Readiness and Publication Boundary
@@ -205,15 +205,15 @@ any consequential action.
 
 ## Review and continuing gate
 
-The candidate must receive one transparent non-independent COMMENT review on
-its exact head and then stop. Creation, validation, review, repository
-presence, Draft state, and mergeability do not grant acceptance.
+The candidate received one transparent non-independent COMMENT review on its
+exact head and then stopped. Creation, validation, review, repository
+presence, Draft state, and mergeability did not grant acceptance.
 
-Only a later separate attributable EIGENAAR / Final Authority acceptance of
-the exact reviewed candidate may authorize a status-only Proposed-to-Accepted
-promotion. No promotion, Ready transition, merge, issue closure, branch
-cleanup, assessment, release, tag, support claim, publication, distribution,
-or deployment is authorized now.
+EIGENAAR / Final Authority separately accepted the exact reviewed candidate in
+issue comment `5223546552`; governed integration adopts exactly this decision.
+Acceptance and integration authorize no readiness assessment, release, release
+version, tag, support or compatibility claim, certification, publication,
+distribution, deployment, implementation, or follow-on authority.
 
 ## References
 
