@@ -482,6 +482,23 @@ definition, Identifier/Version, field, token, Schema Resource, executable
 schema, resolver, validator, tooling, implementation, release, publication,
 deployment, merge permission, or follow-on authority.
 
+The architecture index now also exposes the **Accepted** [CNTX Extension Module
+and Profile Schema Resource, Packaging and Declaration
+Model](docs/architecture/extension-module-profile-schema-resource-packaging-declaration-model.md)
+(ARCH-031) with
+[ADR-0031](docs/architecture/adr/0031-extension-module-profile-schema-resource-packaging-declaration-model.md)
+under issue #104, attributable EIGENAAR / Final Authority creation comment
+`5230355484`, and exact-head acceptance comment `5230552794`. The
+documentation-only decision separates two Definition Schema
+Families and every Definition/Schema/source/package/declaration dimension,
+requires an exact Schema Resource key-or-`None` state, constrains future
+standalone Draft 2020-12 resources and their ARCH-030-aligned graph, and defines
+closed caller-supplied packaging plus a frozen logical Governing Declaration
+Set outside Core artifacts and Core Artifact JSON. Acceptance and integration create
+no concrete identity, version, `$id`, resource, executable schema, field,
+token, package instance, resolver, validator, implementation, release,
+publication, deployment, merge permission, or follow-on authority.
+
 The high-level roadmap is to define public concepts and documentation, invite review under the project governance, and only then consider scoped, approved implementation work. Private reference implementations may exist later outside this public repository.
 
 ## Participate
