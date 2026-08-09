@@ -1,9 +1,10 @@
 # ADR-0029: CNTX Extension Module and Profile identity and version policy
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-08-09
 - **Issue:** [#100](https://github.com/CNTX-PROJECT/CNTX/issues/100)
 - **Creation authority comment:** [5228909425](https://github.com/CNTX-PROJECT/CNTX/issues/100#issuecomment-5228909425)
+- **Exact-head acceptance comment:** [5229936609](https://github.com/CNTX-PROJECT/CNTX/issues/100#issuecomment-5229936609)
 - **Decision:** ARCH-029 — CNTX Extension Module and Profile Identity and
   Version Policy
 
@@ -159,19 +160,20 @@ supersession, reassessment, ARCH-030, or follow-on authority.
 
 ## Dependency-first handoff
 
-Only after separate exact-head acceptance and integration of this decision may
-a separate Dependency, Activation, Composition and Conflict decision be
-considered. No ARCH number, issue, branch, path, Identifier, Version, or
-authority is reserved for it here.
+Acceptance of this decision establishes only the identity/version prerequisite.
+A separate Dependency, Activation, Composition and Conflict decision may be
+considered only under a new exact authority lifecycle. No ARCH number, issue,
+branch, path, Identifier, Version, or authority is reserved for it here.
 
 ## Authority boundary
 
-This ADR is Proposed. Creation authority, repository presence, validation,
+This ADR is Accepted. Creation authority, repository presence, validation,
 transparent non-independent ARCHITECT review, mergeability, and technical
-access do not grant acceptance.
+access did not grant acceptance.
 
 Separate attributable EIGENAAR / Final Authority acceptance of the exact
-reviewed revision is required before promotion or integration. Any later
-acceptance would adopt only this policy and would not allocate, activate,
+reviewed revision is recorded in issue comment `5229936609`; separately
+authorized status promotion and governed integration make the decision
+binding. Acceptance adopts only this policy and does not allocate, activate,
 represent, validate, implement, publish, distribute, or deploy an Extension
 Module or Profile or authorize another phase.

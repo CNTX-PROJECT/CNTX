@@ -2,18 +2,20 @@
 
 ## Status and authority
 
-**Document Status:** Proposed.
+**Document Status:** Accepted.
 
-This document is a Proposed, documentation-only architecture decision governed
+This document is an Accepted, documentation-only architecture decision governed
 by [issue #100](https://github.com/CNTX-PROJECT/CNTX/issues/100) and recorded by
 [ADR-0029](adr/0029-extension-module-profile-identity-version-policy.md).
 Attributable EIGENAAR / Final Authority creation authority is recorded in issue
-comment `5228909425`.
+comment `5228909425`, and exact-head acceptance is recorded in issue comment
+`5229936609`.
 
 Creation authority, repository presence, validation, and transparent
-non-independent review do not grant acceptance. This document remains
-Proposed unless the EIGENAAR / Final Authority separately accepts the exact
-reviewed revision and separately authorizes governed promotion and integration.
+non-independent review did not grant acceptance. Separate attributable
+EIGENAAR / Final Authority acceptance of the exact reviewed revision and
+separately authorized governed promotion and integration make this decision
+Accepted.
 
 ## Purpose and decision boundary
 
@@ -41,7 +43,7 @@ tooling, or implementation mechanism.
 
 ## Exact decision basis
 
-This Proposed decision was prepared on exact public baseline
+This decision was prepared on exact public baseline
 `43306b020e2f0d90b2320f9f3846c3dd4c32b835` and tree
 `d5bdb89deb62d8191eec441fc77e2679ff8dbfad`.
 
@@ -427,10 +429,10 @@ that release subject or publish Extension Module/Profile material.
 
 ## Dependency-first handoff
 
-If this decision later becomes Accepted through separate attributable
-authority and governed integration, the next possible dependency-first
-decision is a separate Extension Module and Profile Dependency, Activation,
-Composition and Conflict decision.
+Acceptance of this decision establishes only the identity/version prerequisite.
+The next possible dependency-first decision is a separate Extension Module and
+Profile Dependency, Activation, Composition and Conflict decision under a new
+exact authority lifecycle.
 
 That later decision would need to address exact dependency pins, declaration
 and activation semantics, permitted combinations, evaluation dependencies,
@@ -468,15 +470,16 @@ GitHub Release.
 
 ## Lifecycle and final human authority
 
-This Proposed document cannot approve itself. Creation authority, repository
+This Accepted document did not approve itself. Creation authority, repository
 presence, validation, review, mergeability, technical access, and
 implementation capability grant no consequential authority.
 
 Separate attributable EIGENAAR / Final Authority acceptance of the exact
-reviewed revision is required before status promotion or integration. Any
-later acceptance would adopt only this identity and version policy; it would
-not allocate, activate, represent, validate, implement, publish, distribute,
-or deploy an Extension Module or Profile or authorize another phase.
+reviewed revision is recorded in issue comment `5229936609`; separately
+authorized status promotion and governed integration make the decision
+binding. Acceptance adopts only this identity and version policy. It does not
+allocate, activate, represent, validate, implement, publish, distribute, or
+deploy an Extension Module or Profile or authorize another phase.
 
 ## References
 
