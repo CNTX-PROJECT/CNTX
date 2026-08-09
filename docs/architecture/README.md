@@ -366,8 +366,9 @@ separately governed decision and is not authorized by ARCH-032.
 The [CNTX Extension Module and Profile Tooling and Implementation
 Boundary](extension-module-profile-tooling-implementation-boundary.md) and
 [ADR-0033](adr/0033-extension-module-profile-tooling-implementation-boundary.md)
-are **Proposed** as ARCH-033 under issue #108 and attributable EIGENAAR / Final
-Authority creation comment `5231158990`. They distinguish sixteen conceptual
+are **Accepted** as ARCH-033 under issue #108, attributable EIGENAAR / Final
+Authority creation comment `5231158990`, and exact-head acceptance comment
+`5233773228`. They distinguish sixteen conceptual
 tooling and implementation categories; keep tool, implementation, capability,
 configuration, environment, output, evidence, conformance, support, release,
 and deployment dimensions separate; require a closed frozen exact-pinned
@@ -375,7 +376,7 @@ execution context and offline-first deterministic processing; preserve visible
 fail-closed failures, limitations, restricted evidence, and non-execution;
 keep reference implementations non-normative; and define resource,
 security/privacy, public/private, lifecycle, and final-human-authority
-boundaries. Proposal, validation, and review create no concrete Definition,
+boundaries. Acceptance and integration create no concrete Definition,
 Schema Resource, declaration, package, binding, output/evidence identity,
 tool, implementation, interface, runtime, service, release, publication,
 support, certification, deployment, merge permission, or follow-on authority.

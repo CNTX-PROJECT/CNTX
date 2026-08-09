@@ -2,19 +2,21 @@
 
 ## Status and authority
 
-**Document Status:** Proposed.
+**Document Status:** Accepted.
 
-This document is a Proposed, documentation-only architecture decision governed
+This document is an Accepted, documentation-only architecture decision governed
 by [issue #108](https://github.com/CNTX-PROJECT/CNTX/issues/108) and recorded by
 [ADR-0033](adr/0033-extension-module-profile-tooling-implementation-boundary.md).
 Attributable EIGENAAR / Final Authority creation authority is recorded in issue
-comment [5231158990](https://github.com/CNTX-PROJECT/CNTX/issues/108#issuecomment-5231158990).
+comment [5231158990](https://github.com/CNTX-PROJECT/CNTX/issues/108#issuecomment-5231158990),
+and exact-head acceptance is recorded in issue comment
+[5233773228](https://github.com/CNTX-PROJECT/CNTX/issues/108#issuecomment-5233773228).
 
 Creation authority, repository presence, validation, mergeability, and
-transparent non-independent ARCHITECT review do not grant acceptance. This
-decision remains Proposed until the exact reviewed revision receives separate
-attributable EIGENAAR / Final Authority acceptance and a separately authorized
-status promotion and governed integration complete successfully.
+transparent non-independent ARCHITECT review did not grant acceptance. Separate
+attributable EIGENAAR / Final Authority acceptance of the exact reviewed
+revision is recorded above; separately authorized status promotion and governed
+integration make this decision Accepted.
 
 ## Purpose and decision boundary
 
@@ -533,15 +535,16 @@ Any consequential decision requires separately attributable human authority
 under the governing CNTX lifecycle. Ambiguous or missing authority MUST remain
 visible and fail closed.
 
-## Current lifecycle state
+## Lifecycle and final human authority
 
-This document is Proposed. Exactly one candidate revision may be reviewed under
-issue #108. The transparent ARCHITECT review is non-independent and cannot
-accept the candidate.
+This Accepted document did not approve itself. Creation authority, repository
+presence, validation, transparent non-independent ARCHITECT review,
+mergeability, technical access, and implementation capability grant no
+consequential authority.
 
-After exact-head review, work MUST stop for separate attributable EIGENAAR /
-Final Authority acceptance. No Ready-for-review transition, status promotion,
-promotion commit, merge, issue completion or closure, branch cleanup, concrete
-tooling or implementation, audit, remediation, external-model interaction,
-optimization, release, publication, distribution, support, certification,
-hosting, deployment, ARCH-034, or other follow-on action is authorized.
+Separate attributable EIGENAAR / Final Authority exact-head acceptance is
+recorded in issue comment `5233773228`; separately authorized status promotion
+and governed integration make this decision Accepted. Acceptance adopts only
+this conceptual boundary and creates or activates no concrete Definition,
+schema, declaration, package, tooling, implementation, release, publication,
+distribution, support, certification, hosting, or deployment.

@@ -1,9 +1,10 @@
 # ADR-0033: CNTX Extension Module and Profile tooling and implementation boundary
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-08-09
 - **Issue:** [#108](https://github.com/CNTX-PROJECT/CNTX/issues/108)
 - **Creation authority comment:** [5231158990](https://github.com/CNTX-PROJECT/CNTX/issues/108#issuecomment-5231158990)
+- **Exact-head acceptance comment:** [5233773228](https://github.com/CNTX-PROJECT/CNTX/issues/108#issuecomment-5233773228)
 - **Decision:** ARCH-033 — CNTX Extension Module and Profile Tooling and
   Implementation Boundary
 
@@ -165,12 +166,12 @@ interaction, optimization, ARCH-034, or follow-on authority.
 
 ## Authority boundary
 
-This ADR remains Proposed. Creation authority, repository presence, validation,
-and transparent non-independent ARCHITECT review do not grant acceptance.
+This ADR is Accepted. Creation authority, repository presence, validation, and
+transparent non-independent ARCHITECT review did not grant acceptance.
 
-Separate attributable EIGENAAR / Final Authority exact-head acceptance and a
-separately authorized governed promotion and integration are required before
-this decision can become Accepted. Even Accepted status would adopt only the
-conceptual boundary and would create or authorize no concrete tool,
+Separate attributable EIGENAAR / Final Authority exact-head acceptance is
+recorded in issue comment `5233773228`; separately authorized governed
+promotion and integration make this decision Accepted. Acceptance adopts only
+the conceptual boundary and creates or authorizes no concrete tool,
 implementation, release, publication, support, certification, hosting, or
 deployment.
