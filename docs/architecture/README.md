@@ -289,6 +289,22 @@ executable schema, resolver, validator, registry, tooling, implementation,
 release, publication,
 deployment, or follow-on authority.
 
+The [CNTX Extension Module and Profile Identity and Version
+Policy](extension-module-profile-identity-version-policy.md) and
+[ADR-0029](adr/0029-extension-module-profile-identity-version-policy.md) are
+**Proposed** as ARCH-029 under issue #100 and attributable EIGENAAR / Final
+Authority creation comment `5228909425`. They define four separate
+Extension Module/Profile Definition Identifier/Version dimensions, two stable
+definition-family namespaces, one exact child-allocation rule, independent
+initial `1.0.0` version lines, MAJOR.MINOR.PATCH change rules, identity
+continuity, Accepted-version immutability, exact future allocation gates,
+opaque no-network identifiers, Core sovereignty, and final human authority.
+They create no concrete Extension Module/Profile, child Identifier/Version,
+dependency/activation/composition/conflict mechanism, Schema Resource,
+executable schema, validator, implementation, release, publication,
+deployment, or follow-on authority. Separate exact-head EIGENAAR / Final
+Authority acceptance remains required.
+
 ## Document status
 
 - **Proposed** — submitted for review and not yet an accepted repository decision.

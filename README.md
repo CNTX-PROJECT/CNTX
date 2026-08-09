@@ -446,6 +446,23 @@ tooling, implementation,
 release, publication, deployment, or follow-on
 authority.
 
+The architecture index now also exposes the **Proposed** [CNTX Extension
+Module and Profile Identity and Version
+Policy](docs/architecture/extension-module-profile-identity-version-policy.md)
+(ARCH-029) with
+[ADR-0029](docs/architecture/adr/0029-extension-module-profile-identity-version-policy.md)
+under issue #100 and attributable EIGENAAR / Final Authority creation comment
+`5228909425`. The documentation-only candidate defines separate Module/Profile
+Definition Identifier and Version dimensions, stable family namespaces, one
+child-allocation rule, independent initial `1.0.0` version lines,
+MAJOR.MINOR.PATCH change rules, Accepted-version immutability, exact future
+allocation gates, opaque no-network identifiers, Core sovereignty, and final
+human authority. It creates no concrete Extension Module/Profile, child
+Identifier/Version, dependency/activation/composition/conflict mechanism,
+Schema Resource, executable schema, validator, tooling, implementation,
+release, publication, deployment, or follow-on authority. Separate exact-head
+EIGENAAR / Final Authority acceptance remains required.
+
 The high-level roadmap is to define public concepts and documentation, invite review under the project governance, and only then consider scoped, approved implementation work. Private reference implementations may exist later outside this public repository.
 
 ## Participate
