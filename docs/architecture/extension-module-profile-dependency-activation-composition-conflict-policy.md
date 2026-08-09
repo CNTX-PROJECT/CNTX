@@ -2,18 +2,19 @@
 
 ## Status and authority
 
-**Document Status:** Proposed.
+**Document Status:** Accepted.
 
-This document is a Proposed, documentation-only architecture candidate governed
+This document is an Accepted, documentation-only architecture decision governed
 by [issue #102](https://github.com/CNTX-PROJECT/CNTX/issues/102) and recorded by
 [ADR-0030](adr/0030-extension-module-profile-dependency-activation-composition-conflict-policy.md).
 Attributable EIGENAAR / Final Authority creation authority is recorded in issue
-comment `5230085538`.
+comment `5230085538`, and exact-head acceptance is recorded in issue comment
+`5230166187`.
 
 Creation authority, repository presence, validation, and transparent
-non-independent review do not grant acceptance. This candidate remains inactive
-until separate attributable EIGENAAR / Final Authority acceptance of the exact
-reviewed revision and separately authorized governed promotion and integration.
+non-independent review did not grant acceptance. Separate attributable EIGENAAR
+/ Final Authority acceptance of the exact reviewed revision and separately
+authorized governed promotion and integration make this decision Accepted.
 
 ## Purpose and decision boundary
 
@@ -492,15 +493,15 @@ withdrawal, deprecation, or supersession cannot rewrite historical meaning in
 place. Mutable aliases and newest/latest-wins grant no authority.
 
 The immutable release `0.1.0-prealpha.1`, its tag, release subject, GitHub
-Release, and verification remain exact historical objects. This Proposed
+Release, and verification remain exact historical objects. This Accepted
 decision does not extend that release subject or publish Extension
 Module/Profile material.
 
 ## Dependency-first handoff
 
-If this decision is later separately accepted and integrated, the next
-candidate layer is a separate Extension Module and Profile Schema Resource,
-Packaging and Declaration Model decision.
+After this decision is Accepted and integrated, the next candidate layer is a
+separate Extension Module and Profile Schema Resource, Packaging and Declaration
+Model decision.
 
 This handoff authorizes no follow-on phase and reserves no ARCH number, issue,
 branch, path, field, token, Identifier, Version, schema, resource, package, or
@@ -532,14 +533,14 @@ tag, GitHub Release, or repository setting.
 
 ## Lifecycle and final human authority
 
-This Proposed document does not approve itself. Creation authority, validation,
+This Accepted document did not approve itself. Creation authority, validation,
 review, mergeability, technical access, repository presence, and implementation
-capability grant no consequential authority.
+capability granted no consequential authority.
 
 EIGENAAR / Final Authority remains the final human authority for public
-acceptance. Separate attributable acceptance of the exact reviewed revision and
-separately authorized status promotion and integration are required before this
-decision can become Accepted.
+acceptance. Separate attributable acceptance of the exact reviewed revision is
+recorded in issue comment `5230166187`; separately authorized status promotion
+and integration make this decision Accepted.
 
 ## References
 

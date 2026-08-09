@@ -463,22 +463,24 @@ Identifier/Version, dependency/activation/composition/conflict mechanism,
 Schema Resource, executable schema, validator, tooling, implementation,
 release, publication, deployment, or follow-on authority.
 
-The architecture index now also exposes the **Proposed** [CNTX Extension Module
+The architecture index now also exposes the **Accepted** [CNTX Extension Module
 and Profile Dependency, Activation, Composition and Conflict
 Policy](docs/architecture/extension-module-profile-dependency-activation-composition-conflict-policy.md)
 (ARCH-030) with
 [ADR-0030](docs/architecture/adr/0030-extension-module-profile-dependency-activation-composition-conflict-policy.md)
-under issue #102 and attributable EIGENAAR / Final Authority creation comment
-`5230085538`. The documentation-only candidate defines exact Definition keys,
+under issue #102, attributable EIGENAAR / Final Authority creation comment
+`5230085538`, and exact-head acceptance comment `5230166187`. The
+documentation-only decision defines exact Definition keys,
 logical dependency categories, one explicit frozen activation context,
 permitted dependency directions, a finite acyclic closure, one active version
 per Identifier, deterministic dependency order without precedence, additive
 Module and narrowing-only conjunctive Profile composition, fail-closed conflict
 and unknown/unsupported handling, offline-first supply, scoped evidence,
-security/privacy limits, and final human authority. It creates no concrete
+security/privacy limits, and final human authority. Acceptance and integration
+create no concrete
 definition, Identifier/Version, field, token, Schema Resource, executable
 schema, resolver, validator, tooling, implementation, release, publication,
-deployment, acceptance, merge permission, or follow-on authority.
+deployment, merge permission, or follow-on authority.
 
 The high-level roadmap is to define public concepts and documentation, invite review under the project governance, and only then consider scoped, approved implementation work. Private reference implementations may exist later outside this public repository.
 

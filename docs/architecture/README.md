@@ -310,18 +310,19 @@ Conflict
 Policy](extension-module-profile-dependency-activation-composition-conflict-policy.md)
 and
 [ADR-0030](adr/0030-extension-module-profile-dependency-activation-composition-conflict-policy.md)
-are **Proposed** as ARCH-030 under issue #102 and attributable EIGENAAR / Final
-Authority creation comment `5230085538`. They define only exact Definition
+are **Accepted** as ARCH-030 under issue #102, attributable EIGENAAR / Final
+Authority creation comment `5230085538`, and exact-head acceptance comment
+`5230166187`. They define only exact Definition
 keys, logical required/optional dependencies and Profile Subjects, one explicit
 frozen activation context, permitted dependency directions, a finite acyclic
 closure, one active version per Identifier, Core-first and topological
 dependency order without precedence, additive Module and narrowing-only
 conjunctive Profile composition, fail-closed conflicts and unknown/unsupported
 conditions, caller-supplied offline supply, scoped compatibility/conformance
-evidence, security/privacy limits, and final human authority. The candidate
-creates no concrete definition, child Identifier/Version, declaration field or
+evidence, security/privacy limits, and final human authority. Acceptance and
+integration create no concrete definition, child Identifier/Version, declaration field or
 token, Schema Resource, executable schema, resolver, validator, tooling,
-implementation, release, publication, deployment, acceptance, merge permission,
+implementation, release, publication, deployment, merge permission,
 or follow-on authority.
 
 ## Document status

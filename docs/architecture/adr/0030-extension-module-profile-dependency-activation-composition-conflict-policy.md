@@ -1,9 +1,10 @@
 # ADR-0030: CNTX Extension Module and Profile dependency, activation, composition, and conflict policy
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-08-09
 - **Issue:** [#102](https://github.com/CNTX-PROJECT/CNTX/issues/102)
 - **Creation authority comment:** [5230085538](https://github.com/CNTX-PROJECT/CNTX/issues/102#issuecomment-5230085538)
+- **Exact-head acceptance comment:** [5230166187](https://github.com/CNTX-PROJECT/CNTX/issues/102#issuecomment-5230166187)
 - **Decision:** ARCH-030 — CNTX Extension Module and Profile Dependency,
   Activation, Composition and Conflict Policy
 
@@ -171,12 +172,12 @@ follow-on authority.
 
 ## Authority boundary
 
-This ADR is Proposed. Creation authority, repository presence, validation, and
-transparent non-independent ARCHITECT review do not grant acceptance.
+This ADR is Accepted. Creation authority, repository presence, validation, and
+transparent non-independent ARCHITECT review did not grant acceptance.
 
 Separate attributable EIGENAAR / Final Authority exact-head acceptance and
-separately authorized governed promotion and integration are required before
-this decision can become Accepted. Acceptance would adopt only the conceptual
-policy and would create or activate no concrete Extension Module, Profile,
+separately authorized governed promotion and integration make this decision
+Accepted. Acceptance adopts only the conceptual policy and creates or activates
+no concrete Extension Module, Profile,
 declaration, schema, tooling, implementation, release, publication, or
 deployment.
