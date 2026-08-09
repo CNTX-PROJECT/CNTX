@@ -2,19 +2,21 @@
 
 ## Status and authority
 
-**Document Status:** Proposed.
+**Document Status:** Accepted.
 
-This document is a Proposed, documentation-only architecture decision governed
+This document is an Accepted, documentation-only architecture decision governed
 by [issue #104](https://github.com/CNTX-PROJECT/CNTX/issues/104) and recorded by
 [ADR-0031](adr/0031-extension-module-profile-schema-resource-packaging-declaration-model.md).
 Attributable EIGENAAR / Final Authority creation authority is recorded in issue
-comment [5230355484](https://github.com/CNTX-PROJECT/CNTX/issues/104#issuecomment-5230355484).
+comment [5230355484](https://github.com/CNTX-PROJECT/CNTX/issues/104#issuecomment-5230355484),
+and exact-head acceptance is recorded in issue comment
+[5230552794](https://github.com/CNTX-PROJECT/CNTX/issues/104#issuecomment-5230552794).
 
 Creation authority, repository presence, validation, and transparent
-non-independent ARCHITECT review do not grant acceptance. Separate attributable
-EIGENAAR / Final Authority acceptance of the exact reviewed revision, followed
-by separately authorized status promotion and integration, is required before
-this decision can become Accepted.
+non-independent ARCHITECT review did not grant acceptance. Separate attributable
+EIGENAAR / Final Authority acceptance of the exact reviewed revision is recorded
+above; separately authorized status promotion and governed integration make
+this decision Accepted.
 
 ## Purpose and decision boundary
 
@@ -579,14 +581,14 @@ created, reserved, or authorized.
 
 ## Lifecycle and final human authority
 
-This Proposed document does not approve itself. Creation authority, repository
+This Accepted document did not approve itself. Creation authority, repository
 presence, validation, transparent non-independent ARCHITECT review,
 mergeability, technical access, and implementation capability grant no
 consequential authority.
 
-Separate attributable EIGENAAR / Final Authority exact-head acceptance and
-separately authorized status promotion and governed integration are required
-before this decision can become Accepted.
+Separate attributable EIGENAAR / Final Authority exact-head acceptance is
+recorded in issue comment `5230552794`; separately authorized status promotion
+and governed integration make this decision Accepted.
 
 ## References
 

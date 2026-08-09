@@ -1,9 +1,10 @@
 # ADR-0031: CNTX Extension Module and Profile Schema Resource, packaging, and declaration model
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-08-09
 - **Issue:** [#104](https://github.com/CNTX-PROJECT/CNTX/issues/104)
 - **Creation authority comment:** [5230355484](https://github.com/CNTX-PROJECT/CNTX/issues/104#issuecomment-5230355484)
+- **Exact-head acceptance comment:** [5230552794](https://github.com/CNTX-PROJECT/CNTX/issues/104#issuecomment-5230552794)
 - **Decision:** ARCH-031 — CNTX Extension Module and Profile Schema Resource,
   Packaging and Declaration Model
 
@@ -213,11 +214,12 @@ follow-on authority.
 
 ## Authority boundary
 
-This ADR is Proposed. Creation authority, repository presence, validation, and
-transparent non-independent ARCHITECT review do not grant acceptance.
+This ADR is Accepted. Creation authority, repository presence, validation, and
+transparent non-independent ARCHITECT review did not grant acceptance.
 
-Separate attributable EIGENAAR / Final Authority exact-head acceptance and
-separately authorized governed promotion and integration are required before
-this decision can become Accepted. Acceptance would adopt only the conceptual
-model and would create or activate no concrete Definition, schema, declaration,
-package, tooling, implementation, release, publication, or deployment.
+Separate attributable EIGENAAR / Final Authority exact-head acceptance is
+recorded in issue comment `5230552794`; separately authorized governed promotion
+and integration make this decision Accepted. Acceptance adopts only the
+conceptual model and creates or activates no concrete Definition, schema,
+declaration, package, tooling, implementation, release, publication, or
+deployment.
