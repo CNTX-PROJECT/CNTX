@@ -499,6 +499,24 @@ no concrete identity, version, `$id`, resource, executable schema, field,
 token, package instance, resolver, validator, implementation, release,
 publication, deployment, merge permission, or follow-on authority.
 
+The architecture index now also exposes the **Proposed** [CNTX Extension Module
+and Profile Executable Schema and Validation/Conformance
+Boundary](docs/architecture/extension-module-profile-executable-schema-validation-conformance-boundary.md)
+(ARCH-032) with
+[ADR-0032](docs/architecture/adr/0032-extension-module-profile-executable-schema-validation-conformance-boundary.md)
+under issue #106 and attributable EIGENAAR / Final Authority creation comment
+`5230742345`. The documentation-only candidate defines a frozen validation
+context, separate Definition/resource/declaration/package/schema/validator/
+implementation conformance dimensions, fifteen prerequisite-ordered logical
+phases, bounded schema-local outcomes, future case responsibilities,
+fail-closed processing, output/evidence relations, security/privacy/resource
+limits, and final human authority. It creates no concrete Definition,
+identity/version, `$id`, Schema Resource, executable schema, assertion, test,
+declaration representation, package instance, resolver, validator, tooling,
+implementation, release, publication, deployment, merge permission, or
+follow-on authority. It remains Proposed pending separate exact-head Owner
+acceptance and governed integration.
+
 The high-level roadmap is to define public concepts and documentation, invite review under the project governance, and only then consider scoped, approved implementation work. Private reference implementations may exist later outside this public repository.
 
 ## Participate

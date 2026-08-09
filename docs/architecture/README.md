@@ -343,6 +343,25 @@ integration allocate no concrete identity, version, `$id`, resource, executable
 schema, field, token, package instance, resolver, validator, implementation,
 release, publication, deployment, merge permission, or follow-on authority.
 
+The [CNTX Extension Module and Profile Executable Schema and
+Validation/Conformance
+Boundary](extension-module-profile-executable-schema-validation-conformance-boundary.md)
+and
+[ADR-0032](adr/0032-extension-module-profile-executable-schema-validation-conformance-boundary.md)
+are **Proposed** as ARCH-032 under issue #106 and attributable EIGENAAR / Final
+Authority creation comment `5230742345`. They define only a future frozen
+Extension Module/Profile validation context, separate conformance dimensions,
+fifteen prerequisite-ordered logical evaluation phases, bounded schema-local
+results, future synthetic-case responsibilities, fail-closed conditions,
+validation-output and Portable Conformance Evidence relationships,
+security/privacy/resource limits, historical integrity, and final human
+authority. They create no concrete Definition, child identity/version, `$id`,
+Schema Resource, executable schema, assertion, case, declaration
+representation, package instance, resolver, validator, tooling,
+implementation, release, publication, deployment, merge permission, or
+follow-on authority. Separate exact-head acceptance and governed integration
+are required before any Tooling and Implementation Boundary may be prepared.
+
 ## Document status
 
 - **Proposed** — submitted for review and not yet an accepted repository decision.
