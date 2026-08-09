@@ -1,9 +1,10 @@
 # ADR-0032: CNTX Extension Module and Profile executable schema and validation/conformance boundary
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-08-09
 - **Issue:** [#106](https://github.com/CNTX-PROJECT/CNTX/issues/106)
 - **Creation authority comment:** [5230742345](https://github.com/CNTX-PROJECT/CNTX/issues/106#issuecomment-5230742345)
+- **Exact-head acceptance comment:** [5230968570](https://github.com/CNTX-PROJECT/CNTX/issues/106#issuecomment-5230968570)
 - **Decision:** ARCH-032 — CNTX Extension Module and Profile Executable Schema
   and Validation/Conformance Boundary
 
@@ -176,9 +177,12 @@ or follow-on authority.
 
 ## Authority boundary
 
-This ADR is Proposed. Creation authority, repository presence, validation, and
-transparent non-independent ARCHITECT review do not grant acceptance.
+This ADR is Accepted. Creation authority, repository presence, validation, and
+transparent non-independent ARCHITECT review did not grant acceptance.
 
-Separate attributable EIGENAAR / Final Authority exact-head acceptance,
-status-only promotion, and governed integration are required before this
-decision becomes Accepted or any tooling-boundary preparation may follow.
+Separate attributable EIGENAAR / Final Authority exact-head acceptance is
+recorded in issue comment `5230968570`; separately authorized governed
+promotion and integration make this decision Accepted. Acceptance adopts only
+the conceptual boundary and creates or activates no concrete Definition,
+schema, declaration, package, tooling, implementation, release, publication,
+distribution, hosting, or deployment.
