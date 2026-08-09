@@ -18,7 +18,7 @@ CNTX is model-, vendor-, runtime-, and domain-agnostic. It does not prescribe a 
 
 ## Project status and roadmap
 
-CNTX is in an early foundation phase. The repository has an accepted public governance and collaboration foundation. Its first conceptual architecture contract is accepted in the [architecture documentation](docs/architecture/README.md); it does not claim implemented runtime or product functionality.
+CNTX has completed its initial Public-Core specification and prerelease cycle within the Accepted ARCH-027 completion and maintenance boundary. The current public baseline additionally includes the [Accepted Extension Module and Profile architecture through ARCH-033](docs/architecture/README.md). The repository provides public governance, thirty-three Accepted architecture sources and ADRs, nine Accepted artifact contracts, ten Accepted Schema Versions 1.0.0 with synthetic cases, and one immutable unsupported prerelease, 0.1.0-prealpha.1. CNTX remains model-, vendor-, runtime-, and domain-agnostic and provides no concrete tool, implementation, validator, resolver, runner, SDK, library, API, CLI, workflow, runtime, product, supported release line, support service, certification, hosting, or deployment.
 
 The [artifact-contract index](docs/contracts/README.md) includes nine accepted, binding subordinate artifact-specific contracts: Project Charter, Workstream, Task Contract, Context Packet, Execution Result, Evidence Bundle, Review Record, Decision Record, and State Snapshot. None introduces an executable schema, template, validator, state engine, synchronization engine, workflow, runtime, or product functionality. No canonical artifact contract remains listed as future work; the accepted status does not authorize a follow-on phase. CNTX remains a public core that is model-, vendor-, runtime-, and domain-agnostic and remains independent of private reference implementations.
 
@@ -423,7 +423,7 @@ under issue #96, attributable EIGENAAR / Final Authority creation comment
 documentation-only decision names the work through Accepted
 VERIFY-001 as the completed initial Public-Core specification and prerelease
 cycle, preserves ARCH-021 history and every Accepted predecessor, and defines
-a quiescent, event-driven boundary for separately governed future changes. It
+a quiescent, event-driven boundary for separately governed future changes.
 Acceptance and integration do not archive or close the repository, create a supported-version or
 maintenance promise, resolve evidence limitations, mutate the immutable
 release, perform correction or withdrawal, implement software, publish or
