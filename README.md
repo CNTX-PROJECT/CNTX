@@ -518,6 +518,25 @@ implementation, release, publication, deployment, merge permission, or
 follow-on authority. Any Tooling and Implementation Boundary remains a
 separately governed decision and is not authorized by ARCH-032.
 
+The architecture index now also exposes the **Accepted** [CNTX Extension Module
+and Profile Tooling and Implementation
+Boundary](docs/architecture/extension-module-profile-tooling-implementation-boundary.md)
+(ARCH-033) with
+[ADR-0033](docs/architecture/adr/0033-extension-module-profile-tooling-implementation-boundary.md)
+under issue #108, attributable EIGENAAR / Final Authority creation comment
+`5231158990`, and exact-head acceptance comment `5233773228`. The
+documentation-only decision distinguishes sixteen tooling
+and implementation categories; keeps Tool/Implementation identity and version,
+capability, configuration, environment, output, evidence, conformance,
+support, release, and deployment separate; requires a frozen exact-pinned
+offline-first execution context; preserves fail-closed failures, limitations,
+restricted evidence, and non-execution; keeps reference implementations
+non-normative; and bounds resources, security/privacy, lifecycle, and final
+human authority. Acceptance and integration create no concrete
+Definition, schema, declaration, package, binding, output/evidence identity,
+tool, implementation, interface, runtime, service, release, publication,
+support, certification, deployment, merge permission, or follow-on authority.
+
 The high-level roadmap is to define public concepts and documentation, invite review under the project governance, and only then consider scoped, approved implementation work. Private reference implementations may exist later outside this public repository.
 
 ## Participate
