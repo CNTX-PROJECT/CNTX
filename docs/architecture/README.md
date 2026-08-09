@@ -325,6 +325,23 @@ token, Schema Resource, executable schema, resolver, validator, tooling,
 implementation, release, publication, deployment, merge permission,
 or follow-on authority.
 
+The [CNTX Extension Module and Profile Schema Resource, Packaging and
+Declaration
+Model](extension-module-profile-schema-resource-packaging-declaration-model.md)
+and
+[ADR-0031](adr/0031-extension-module-profile-schema-resource-packaging-declaration-model.md)
+are **Proposed** as ARCH-031 under issue #104 and attributable EIGENAAR / Final
+Authority creation comment `5230355484`. They define only two logical
+Definition Schema Families, strict Definition/Schema/source/package/declaration
+dimension separation, one exact Schema Resource key-or-`None` binding per
+active Definition key, a constrained standalone Draft 2020-12 resource model,
+an ARCH-030-aligned resource graph, closed caller-supplied packages,
+identity-preserving derived bundles, and a frozen logical Governing Declaration
+Set outside all Core Artifact Instances and Core Artifact JSON. Creation and
+review allocate no concrete identity, version, `$id`, resource, executable
+schema, field, token, package instance, resolver, validator, implementation,
+release, publication, deployment, merge permission, or follow-on authority.
+
 ## Document status
 
 - **Proposed** — submitted for review and not yet an accepted repository decision.
