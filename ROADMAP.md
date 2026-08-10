@@ -54,20 +54,21 @@ measured by exact evidence and separately governed gates. A successful runner
 or pilot does not automatically prove broader conformance, acceptance, support,
 release fitness, or deployment fitness.
 
-### Current Package A candidate
+### Current Package A decision
 
-The first documentation dependency is now Proposed as
+The first documentation dependency is now Accepted as
 [ARCH-034](docs/architecture/validation-execution-record.md) with
 [ADR-0034](docs/architecture/adr/0034-validation-execution-record.md) under
-issue #114. It proposes a concrete Validation Execution Record identity,
+issue #114 and exact-head acceptance comment `5240683870`. It defines a
+concrete Validation Execution Record identity,
 initial version, and closed JSON representation for the eight ARCH-024 phases,
 four separate outcomes, frozen context, diagnostics, limitations, claims, and
 human-authority boundary.
 
-The candidate is not Accepted and creates no executable schema, evidence
-package, cross-record integrity rules, Tool or Implementation identity,
-dependency, validator, runner, workflow, CI, release, support, hosting, or
-deployment. Packages B, C, D, and E remain separate later gates.
+Acceptance and integration create no executable schema, evidence package,
+cross-record integrity rules, Tool or Implementation identity, dependency,
+validator, runner, workflow, CI, release, support, hosting, or deployment.
+Packages B, C, D, and E remain separate later gates.
 
 ## Detailed project status and roadmap
 

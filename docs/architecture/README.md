@@ -383,9 +383,10 @@ support, certification, deployment, merge permission, or follow-on authority.
 
 The [CNTX Validation Execution Record Identity, Version, and JSON
 Representation](validation-execution-record.md) and
-[ADR-0034](adr/0034-validation-execution-record.md) are **Proposed** as
-ARCH-034 under issue #114 and attributable EIGENAAR / Final Authority Package A
-creation comment `5240354818`. The documentation-only candidate proposes one
+[ADR-0034](adr/0034-validation-execution-record.md) are **Accepted** as
+ARCH-034 under issue #114, attributable EIGENAAR / Final Authority Package A
+creation comment `5240354818`, and exact-head acceptance comment `5240683870`.
+The documentation-only decision defines one
 non-Artifact Validation-layer record, one stable Definition Identifier and
 initial Version `1.0.0`, one JSON Representation Identifier and initial Version
 `1.0.0`, a strict closed ten-property JSON root, exact tokens for the eight
@@ -393,9 +394,9 @@ ARCH-024 phases and four outcomes, frozen governing and evaluator-context
 responsibilities, bounded diagnostics and limitations, record-local
 referential integrity, separate conformance claims, immutable revision
 lifecycle, disabled network authority, security/privacy/resource limits, and
-automatic-authority prohibition. Proposed status, repository presence,
-validation, and review do not allocate an accepted identity or version and
-create no executable schema, evidence package, cross-record rule, Tool,
+automatic-authority prohibition. Acceptance and integration allocate and
+activate only the stated Definition and Representation identity/version pairs
+and create no executable schema, evidence package, cross-record rule, Tool,
 Implementation, dependency, validator, runner, workflow, CI, release, support,
 hosting, deployment, merge permission, or authority for Package B, C, D, or E.
 

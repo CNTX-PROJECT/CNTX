@@ -1,6 +1,6 @@
 # ADR-0034: CNTX Validation Execution Record identity, version, and JSON representation
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-08-10
 - **Issue:** [#114](https://github.com/CNTX-PROJECT/CNTX/issues/114)
 - **Creation authority comment:** [5240354818](https://github.com/CNTX-PROJECT/CNTX/issues/114#issuecomment-5240354818)
@@ -190,13 +190,16 @@ Package B, C, D, and E remain unauthorized and separately governed.
 
 ## Authority boundary
 
-This ADR is Proposed. Issue #114 and creation-authority comment `5240354818`
-authorize preparation only. Repository presence, validation, and transparent
-non-independent ARCHITECT review do not grant acceptance.
+This ADR is Accepted under issue #114, creation-authority comment `5240354818`,
+and attributable EIGENAAR / Final Authority exact-head acceptance comment
+`5240683870` for reviewed candidate commit
+`097a03f06b692f5fc108e48c252d4e5597d8c44c` and tree
+`38d039c72f015048fd202fcd78260a9532c9b604`. Repository presence, validation,
+and transparent non-independent ARCHITECT COMMENT review `4896887367` did not
+grant that acceptance.
 
-Only a later attributable EIGENAAR / Final Authority decision on the exact
-reviewed candidate may authorize status-only promotion and integration.
-Acceptance would activate only the Definition and Representation
-identity/version pairs and boundaries defined here. It would not authorize an
-executable schema, evidence package, test/rule contract, Tool, Implementation,
-dependency, runner, workflow, release, support, hosting, or deployment.
+Governed integration activates only the Definition and Representation
+identity/version pairs and boundaries defined here. Acceptance and integration
+do not authorize an executable schema, evidence package, test/rule contract,
+Tool, Implementation, dependency, runner, workflow, release, support, hosting,
+or deployment.

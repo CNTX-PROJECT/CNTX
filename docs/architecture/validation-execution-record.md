@@ -2,17 +2,18 @@
 
 ## Status and authority
 
-**Document Status:** Proposed.
+**Document Status:** Accepted.
 
-This document is a Proposed, documentation-only architecture candidate governed
+This document is an Accepted, documentation-only architecture decision governed
 by [issue #114](https://github.com/CNTX-PROJECT/CNTX/issues/114).
 Attributable EIGENAAR / Final Authority authority to prepare Package A is
 recorded in issue comment
 [`5240354818`](https://github.com/CNTX-PROJECT/CNTX/issues/114#issuecomment-5240354818).
-Creation authority, repository presence, validation, and a transparent
-non-independent review do not grant acceptance. Only a later attributable
-EIGENAAR / Final Authority decision on the exact reviewed candidate may
-authorize promotion and integration.
+Exact-head acceptance of reviewed candidate commit
+`097a03f06b692f5fc108e48c252d4e5597d8c44c` and tree
+`38d039c72f015048fd202fcd78260a9532c9b604` is recorded in issue comment
+[`5240683870`](https://github.com/CNTX-PROJECT/CNTX/issues/114#issuecomment-5240683870)
+after transparent non-independent ARCHITECT COMMENT review `4896887367`.
 
 This candidate is prepared on public baseline commit
 `7d6922a8a94d24e6ce461b3bd4aea29517b0fc1d` and tree
@@ -21,7 +22,7 @@ This candidate is prepared on public baseline commit
 Within this document, **MUST** and **MUST NOT** express mandatory requirements,
 **SHOULD** and **SHOULD NOT** express strong recommendations, and **MAY**
 express permission. These terms express requirement strength only within this
-Proposed candidate and grant no authority.
+Accepted decision and grant no authority.
 
 ## Purpose and decision boundary
 
@@ -86,8 +87,8 @@ unchanged.
 
 ## Allocated logical identities and initial versions
 
-If this candidate is later Accepted and integrated, it allocates and activates
-exactly these pairs:
+Governed integration of this Accepted decision allocates and activates exactly
+these pairs:
 
 | Dimension | Exact value |
 | --- | --- |
@@ -651,7 +652,7 @@ implementation default may select a governing version.
 
 ## Lifecycle and dependency-first next work
 
-If this candidate later becomes Accepted, it activates only the exact
+Governed integration of this Accepted decision activates only the exact
 Definition and Representation identity/version pairs allocated here. It does
 not authorize Package B, C, D, or E.
 
@@ -752,14 +753,12 @@ CNTX lifecycle.
 
 ## Lifecycle and final human authority
 
-This Proposed candidate does not approve itself. The governing issue and
-creation-authority comment authorize preparation only. Repository presence,
-validation, and transparent non-independent ARCHITECT review do not grant
-acceptance.
+This Accepted decision did not approve itself. Attributable EIGENAAR / Final
+Authority acceptance of the exact reviewed candidate is recorded in issue
+comment `5240683870`. Repository presence, validation, and transparent
+non-independent ARCHITECT review did not grant that acceptance.
 
-If EIGENAAR / Final Authority later accepts the exact reviewed candidate,
-separately authorized status-only promotion and integration may make this
-decision Accepted. Acceptance would activate only the exact Definition and
-Representation identity/version pairs and boundaries defined here. It would
-not authorize Package B, C, D, E, an executable schema, dependency, tool,
+Governed integration activates only the exact Definition and Representation
+identity/version pairs and boundaries defined here. Acceptance and integration
+do not authorize Package B, C, D, E, an executable schema, dependency, tool,
 implementation, runner, workflow, release, support, hosting, or deployment.
