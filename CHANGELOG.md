@@ -13,6 +13,10 @@ CNTX is pre-alpha and unsupported. One immutable GitHub prerelease,
 
 - Updated the public current-state description, repaired the damaged ARCH-027 sentence, and corrected the changelog release wording; no Accepted architecture, contract, schema, test, assessment, remediation, release, verification, maintenance, or Extension Module/Profile semantics changed.
 
+### Changed
+
+- Replaced the long project homepage with a concise, newcomer-focused overview; preserved the complete detailed baseline history in a dedicated `ROADMAP.md` navigation tab; and added an original theme-aware CNTX visual identity, explanatory diagrams, descriptive labels, and brand guidance without changing any Accepted architecture, governance, contract, schema, test, release, maintenance, or Extension Module/Profile semantics.
+
 ### Added
 
 - Accepted CNTX Extension Module and Profile Tooling and Implementation Boundary (ARCH-033 and ADR-0033) under issue #108, attributable EIGENAAR / Final Authority creation comment `5231158990`, and exact-head acceptance comment `5233773228`; the documentation-only decision distinguishes sixteen tooling and implementation categories, separate Tool/Implementation identity and version, supported-specification, capability, configuration, dependency, environment, input, output, evidence, conformance, interoperability, compatibility, security/privacy, support, certification, release, and deployment dimensions, one frozen exact-pinned execution context, caller-supplied offline-first deterministic processing, visible fail-closed conditions, bounded output/evidence, non-normative reference implementations, resource/security/privacy limits, public/private separation, dependency-first future lifecycles, and final human authority. Acceptance and integration create no concrete Definition, Schema Resource, declaration, package, binding, output/evidence identity, tool, implementation, interface, runtime, service, release, publication, distribution, support, certification, deployment, merge permission, or follow-on authority.

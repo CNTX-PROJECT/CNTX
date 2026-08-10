@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 180" role="img" aria-labelledby="title desc">
+  <title id="title">CNTX logo for dark backgrounds</title>
+  <desc id="desc">A bounded octagonal context mark with connected evidence points and a central human-authority diamond, followed by the CNTX wordmark.</desc>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M58 24h64l34 34v64l-34 34H58l-34-34V58z" stroke="#8B5CF6" stroke-width="8"/>
+    <path d="M90 48v20M48 90h20M112 90h20M90 112v20" stroke="#FFFFFF" stroke-width="5"/>
+    <circle cx="90" cy="48" r="6" fill="#8B5CF6" stroke="none"/>
+    <circle cx="48" cy="90" r="6" fill="#8B5CF6" stroke="none"/>
+    <circle cx="132" cy="90" r="6" fill="#8B5CF6" stroke="none"/>
+    <circle cx="90" cy="132" r="6" fill="#8B5CF6" stroke="none"/>
+    <path d="M90 68l22 22-22 22-22-22z" fill="#FFFFFF" stroke="none"/>
+  </g>
+  <text x="194" y="122" fill="#FFFFFF" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="92" font-weight="750" letter-spacing="10">CNTX</text>
+  <rect x="198" y="140" width="292" height="7" rx="3.5" fill="#8B5CF6"/>
+</svg>

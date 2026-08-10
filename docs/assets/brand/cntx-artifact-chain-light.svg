@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" role="img" aria-labelledby="title desc">
+  <title id="title">CNTX public artifact chain</title>
+  <desc id="desc">Project Charter leads to Workstream and Task Contract. Context Packet, Execution Result, Evidence Bundle, Review Record, and Decision Record preserve the collaboration trail. State Snapshot provides derived bounded orientation.</desc>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0l10 5-10 5z" fill="#7C3AED"/></marker></defs>
+  <rect width="1200" height="420" rx="28" fill="#FAF9FC"/>
+  <text x="54" y="58" fill="#111018" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="30" font-weight="700">Nine records, distinct responsibilities</text>
+  <text x="54" y="88" fill="#575260" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17">Arrows show dependency and traceability—not automatic approval, execution, or conformance.</text>
+  <g font-family="Inter,Segoe UI,Arial,sans-serif" font-size="16" text-anchor="middle">
+    <g transform="translate(54 130)"><rect width="210" height="74" rx="15" fill="#F1EAFE" stroke="#7C3AED" stroke-width="2"/><text x="105" y="46" fill="#111018" font-weight="700">Project Charter</text></g>
+    <g transform="translate(300 130)"><rect width="210" height="74" rx="15" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="2"/><text x="105" y="46" fill="#111018" font-weight="700">Workstream</text></g>
+    <g transform="translate(546 130)"><rect width="210" height="74" rx="15" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="2"/><text x="105" y="46" fill="#111018" font-weight="700">Task Contract</text></g>
+    <g transform="translate(792 130)"><rect width="354" height="74" rx="15" fill="#F1EAFE" stroke="#7C3AED" stroke-width="2"/><text x="177" y="33" fill="#111018" font-weight="700">State Snapshot</text><text x="177" y="55" fill="#575260" font-size="14">derived orientation — never task authority</text></g>
+    <g transform="translate(54 286)"><rect width="188" height="74" rx="15" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="2"/><text x="94" y="46" fill="#111018" font-weight="700">Context Packet</text></g>
+    <g transform="translate(272 286)"><rect width="188" height="74" rx="15" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="2"/><text x="94" y="46" fill="#111018" font-weight="700">Execution Result</text></g>
+    <g transform="translate(490 286)"><rect width="188" height="74" rx="15" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="2"/><text x="94" y="46" fill="#111018" font-weight="700">Evidence Bundle</text></g>
+    <g transform="translate(708 286)"><rect width="188" height="74" rx="15" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="2"/><text x="94" y="46" fill="#111018" font-weight="700">Review Record</text></g>
+    <g transform="translate(926 286)"><rect width="220" height="74" rx="15" fill="#F1EAFE" stroke="#7C3AED" stroke-width="3"/><path d="M28 19l18 18-18 18-18-18z" fill="#111018"/><text x="127" y="46" fill="#111018" font-weight="700">Decision Record</text></g>
+  </g>
+  <g stroke="#7C3AED" stroke-width="3" fill="none" marker-end="url(#arrow)"><path d="M264 167h28"/><path d="M510 167h28"/><path d="M651 204v44H148v30"/><path d="M242 323h22"/><path d="M460 323h22"/><path d="M678 323h22"/><path d="M896 323h22"/></g>
+  <path d="M1036 278v-35H969v-31" fill="none" stroke="#7C3AED" stroke-width="2" stroke-dasharray="8 7" marker-end="url(#arrow)"/>
+</svg>
