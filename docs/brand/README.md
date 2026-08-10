@@ -60,6 +60,12 @@ Avoid robots, brains, faces, magic effects, autonomous-authority metaphors,
 provider imagery, photorealistic agents, and decorative complexity. CNTX should
 look calm, exact, open, and inspectable.
 
+The compact homepage roadmap uses the paired
+[`cntx-roadmap-light.svg`](../assets/brand/cntx-roadmap-light.svg) and
+[`cntx-roadmap-dark.svg`](../assets/brand/cntx-roadmap-dark.svg) assets. It shows
+evidence-based phase order, not a promised delivery date or automatic
+authorization for the next phase.
+
 ## Labels and discoverability
 
 Recommended descriptive labels are:
