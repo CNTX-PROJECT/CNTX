@@ -381,6 +381,24 @@ Schema Resource, declaration, package, binding, output/evidence identity,
 tool, implementation, interface, runtime, service, release, publication,
 support, certification, deployment, merge permission, or follow-on authority.
 
+The [CNTX Validation Execution Record Identity, Version, and JSON
+Representation](validation-execution-record.md) and
+[ADR-0034](adr/0034-validation-execution-record.md) are **Proposed** as
+ARCH-034 under issue #114 and attributable EIGENAAR / Final Authority Package A
+creation comment `5240354818`. The documentation-only candidate proposes one
+non-Artifact Validation-layer record, one stable Definition Identifier and
+initial Version `1.0.0`, one JSON Representation Identifier and initial Version
+`1.0.0`, a strict closed ten-property JSON root, exact tokens for the eight
+ARCH-024 phases and four outcomes, frozen governing and evaluator-context
+responsibilities, bounded diagnostics and limitations, record-local
+referential integrity, separate conformance claims, immutable revision
+lifecycle, disabled network authority, security/privacy/resource limits, and
+automatic-authority prohibition. Proposed status, repository presence,
+validation, and review do not allocate an accepted identity or version and
+create no executable schema, evidence package, cross-record rule, Tool,
+Implementation, dependency, validator, runner, workflow, CI, release, support,
+hosting, deployment, merge permission, or authority for Package B, C, D, or E.
+
 ## Document status
 
 - **Proposed** — submitted for review and not yet an accepted repository decision.

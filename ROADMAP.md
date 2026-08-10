@@ -54,6 +54,21 @@ measured by exact evidence and separately governed gates. A successful runner
 or pilot does not automatically prove broader conformance, acceptance, support,
 release fitness, or deployment fitness.
 
+### Current Package A candidate
+
+The first documentation dependency is now Proposed as
+[ARCH-034](docs/architecture/validation-execution-record.md) with
+[ADR-0034](docs/architecture/adr/0034-validation-execution-record.md) under
+issue #114. It proposes a concrete Validation Execution Record identity,
+initial version, and closed JSON representation for the eight ARCH-024 phases,
+four separate outcomes, frozen context, diagnostics, limitations, claims, and
+human-authority boundary.
+
+The candidate is not Accepted and creates no executable schema, evidence
+package, cross-record integrity rules, Tool or Implementation identity,
+dependency, validator, runner, workflow, CI, release, support, hosting, or
+deployment. Packages B, C, D, and E remain separate later gates.
+
 ## Detailed project status and roadmap
 
 CNTX has completed its initial Public-Core specification and prerelease cycle within the Accepted ARCH-027 completion and maintenance boundary. The current public baseline additionally includes the [Accepted Extension Module and Profile architecture through ARCH-033](docs/architecture/README.md). The repository provides public governance, thirty-three Accepted architecture sources and ADRs, nine Accepted artifact contracts, ten Accepted Schema Versions 1.0.0 with synthetic cases, and one immutable unsupported prerelease, 0.1.0-prealpha.1. CNTX remains model-, vendor-, runtime-, and domain-agnostic and provides no concrete tool, implementation, validator, resolver, runner, SDK, library, API, CLI, workflow, runtime, product, supported release line, support service, certification, hosting, or deployment.
