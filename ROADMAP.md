@@ -70,6 +70,28 @@ cross-record integrity rules, Tool or Implementation identity, dependency,
 validator, runner, workflow, CI, release, support, hosting, or deployment.
 Packages B, C, D, and E remain separate later gates.
 
+### Current Package B decision
+
+[ARCH-035](docs/architecture/validation-evidence-reproduction-package.md) and
+[ADR-0035](docs/architecture/adr/0035-validation-evidence-reproduction-package.md)
+are **Accepted** under issue #116, attributable EIGENAAR / Final Authority
+issue-contract acceptance comment `5241232823`, and exact-head acceptance
+comment `5241789812`. The documentation-only decision defines one non-Artifact
+Validation-layer Evidence and Reproduction
+Package Definition and one JSON Representation, each with initial Version
+`1.0.0`, plus a strict closed twelve-property JSON root.
+
+The decision keeps exact inputs, revisions, governing sources, evaluator
+context, Validation Execution Records, evidence, reproduction procedures,
+outputs, diagnostics, limitations, claim scope, and authority separate. It
+requires package-local referential integrity and preserves bounded,
+offline-first, deterministic, and fail-closed processing. It does not create
+an executable schema, package instance, cross-record rule, Tool,
+Implementation, dependency, validator, runner, workflow, CI, release,
+publication, support, certification, hosting, or deployment. Acceptance and
+integration allocate and activate only the stated identities and versions.
+Packages C, D, and E remain unauthorized and separately governed.
+
 ## Detailed project status and roadmap
 
 CNTX has completed its initial Public-Core specification and prerelease cycle within the Accepted ARCH-027 completion and maintenance boundary. The current public baseline additionally includes the [Accepted Extension Module and Profile architecture through ARCH-033](docs/architecture/README.md). The repository provides public governance, thirty-three Accepted architecture sources and ADRs, nine Accepted artifact contracts, ten Accepted Schema Versions 1.0.0 with synthetic cases, and one immutable unsupported prerelease, 0.1.0-prealpha.1. CNTX remains model-, vendor-, runtime-, and domain-agnostic and provides no concrete tool, implementation, validator, resolver, runner, SDK, library, API, CLI, workflow, runtime, product, supported release line, support service, certification, hosting, or deployment.
