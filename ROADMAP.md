@@ -70,26 +70,27 @@ cross-record integrity rules, Tool or Implementation identity, dependency,
 validator, runner, workflow, CI, release, support, hosting, or deployment.
 Packages B, C, D, and E remain separate later gates.
 
-### Current Package B candidate
+### Current Package B decision
 
 [ARCH-035](docs/architecture/validation-evidence-reproduction-package.md) and
 [ADR-0035](docs/architecture/adr/0035-validation-evidence-reproduction-package.md)
-are **Proposed** under issue #116 and attributable EIGENAAR / Final Authority
-issue-contract acceptance comment `5241232823`. The documentation-only
-candidate proposes one non-Artifact Validation-layer Evidence and Reproduction
+are **Accepted** under issue #116, attributable EIGENAAR / Final Authority
+issue-contract acceptance comment `5241232823`, and exact-head acceptance
+comment `5241789812`. The documentation-only decision defines one non-Artifact
+Validation-layer Evidence and Reproduction
 Package Definition and one JSON Representation, each with initial Version
 `1.0.0`, plus a strict closed twelve-property JSON root.
 
-The candidate keeps exact inputs, revisions, governing sources, evaluator
+The decision keeps exact inputs, revisions, governing sources, evaluator
 context, Validation Execution Records, evidence, reproduction procedures,
 outputs, diagnostics, limitations, claim scope, and authority separate. It
 requires package-local referential integrity and preserves bounded,
 offline-first, deterministic, and fail-closed processing. It does not create
 an executable schema, package instance, cross-record rule, Tool,
 Implementation, dependency, validator, runner, workflow, CI, release,
-publication, support, certification, hosting, or deployment. Proposed status
-does not allocate or activate the identities or versions. Packages C, D, and E
-remain unauthorized and separately governed.
+publication, support, certification, hosting, or deployment. Acceptance and
+integration allocate and activate only the stated identities and versions.
+Packages C, D, and E remain unauthorized and separately governed.
 
 ## Detailed project status and roadmap
 

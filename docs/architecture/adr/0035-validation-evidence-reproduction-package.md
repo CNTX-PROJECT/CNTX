@@ -1,9 +1,10 @@
 # ADR-0035: CNTX Validation Evidence and Reproduction Package identity, version, and JSON representation
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-08-10
 - **Issue:** [#116](https://github.com/CNTX-PROJECT/CNTX/issues/116)
 - **Issue-contract acceptance:** [5241232823](https://github.com/CNTX-PROJECT/CNTX/issues/116#issuecomment-5241232823)
+- **Exact-head acceptance:** [5241789812](https://github.com/CNTX-PROJECT/CNTX/issues/116#issuecomment-5241789812)
 - **Decision:** ARCH-035 — CNTX Validation Evidence and Reproduction Package
   Identity, Version, and JSON Representation
 
@@ -29,7 +30,7 @@ be mistaken for canonical evidence, review, acceptance, or authority.
 ## Decision
 
 Define one non-Artifact Validation-layer Evidence and Reproduction Package with
-these Proposed logical identity/version pairs:
+these logical identity/version pairs:
 
 - Package Definition Identifier
   `https://github.com/CNTX-PROJECT/CNTX/definitions/validation-evidence-reproduction-package`,
@@ -206,16 +207,16 @@ Package C, D, and E remain unauthorized and separately governed.
 
 ## Authority boundary
 
-This ADR is Proposed under issue #116 and attributable EIGENAAR / Final
-Authority issue-contract acceptance comment `5241232823`. That authority
-permits preparation, one branch, one candidate commit/push, one Draft PR,
-validation, and transparent non-independent review only.
+This ADR is Accepted under issue #116, attributable EIGENAAR / Final Authority
+issue-contract acceptance comment `5241232823`, and exact-head acceptance
+comment `5241789812` for reviewed candidate commit
+`90d660b116288f8bb7c99152fec16022178fa8d8` and tree
+`a34fe286546f84839647b203970ff908e3aec2d9`. Repository presence, validation,
+and transparent non-independent ARCHITECT COMMENT review `4897646170` did not
+grant that acceptance.
 
-Repository presence, validation, a COMMENT review, or Draft PR state grants no
-acceptance. Only a later attributable EIGENAAR / Final Authority decision on
-the exact reviewed candidate may authorize status-only promotion and
-integration. Acceptance would activate only the Package Definition and JSON
-Representation identity/version pairs and boundaries defined here. It would
-not create a package instance or authorize Package C, D, E, an executable
-schema, dependency, Tool, Implementation, runner, workflow, release, support,
-hosting, or deployment.
+Governed integration activates only the Package Definition and JSON
+Representation identity/version pairs and boundaries defined here. Acceptance
+and integration do not create a package instance or authorize Package C, D, E,
+an executable schema, dependency, Tool, Implementation, runner, workflow,
+release, support, hosting, or deployment.

@@ -2,17 +2,18 @@
 
 ## Status and authority
 
-**Document Status:** Proposed.
+**Document Status:** Accepted.
 
-This document is a Proposed, documentation-only architecture candidate governed
+This document is an Accepted, documentation-only architecture decision governed
 by [issue #116](https://github.com/CNTX-PROJECT/CNTX/issues/116).
 Attributable EIGENAAR / Final Authority acceptance of the exact issue/task
 contract is recorded in issue comment
 [`5241232823`](https://github.com/CNTX-PROJECT/CNTX/issues/116#issuecomment-5241232823).
-Issue-contract acceptance, repository presence, validation, and transparent
-non-independent review do not accept this candidate. Only a later attributable
-EIGENAAR / Final Authority decision on the exact reviewed candidate may
-authorize promotion and integration.
+Exact-head acceptance of reviewed candidate commit
+`90d660b116288f8bb7c99152fec16022178fa8d8` and tree
+`a34fe286546f84839647b203970ff908e3aec2d9` is recorded in issue comment
+[`5241789812`](https://github.com/CNTX-PROJECT/CNTX/issues/116#issuecomment-5241789812)
+after transparent non-independent ARCHITECT COMMENT review `4897646170`.
 
 This candidate is prepared on public baseline commit
 `e46ae6f03205d1ccff364ce2ed82847a155afb2b` and tree
@@ -21,7 +22,7 @@ This candidate is prepared on public baseline commit
 Within this document, **MUST** and **MUST NOT** express mandatory requirements,
 **SHOULD** and **SHOULD NOT** express strong recommendations, and **MAY**
 express permission. These terms express requirement strength only within this
-Proposed candidate and grant no authority.
+Accepted decision and grant no authority.
 
 ## Purpose and decision boundary
 
@@ -38,7 +39,7 @@ artifact remains distinct from validation-layer output and reproduction
 material. Accepted ARCH-033 requires concrete output and evidence identities
 before any concrete Tool or Implementation contract.
 
-This decision therefore proposes exactly one concrete, non-Artifact
+This decision therefore defines exactly one concrete, non-Artifact
 Validation-layer package for bounded evidence and reproduction material that
 may support, qualify, contradict, or leave unverifiable one or more exact
 Validation Execution Record claims.
@@ -81,10 +82,10 @@ and historical Git/GitHub objects remain unchanged.
 | **Output Reference** | One package-local declaration of produced or supplied output bytes or location. | Canonical Validation Output, Artifact Instance, evidence sufficiency, or publication. |
 | **Condition Object** | An explicit structured absence, ambiguity, conflict, restriction, unsupported state, non-assessment, or non-execution declaration. | Value, default, waiver, repair, success, or permission to continue. |
 
-## Proposed logical identities and initial versions
+## Allocated logical identities and initial versions
 
-If this candidate is later Accepted and integrated, it allocates and activates
-exactly these pairs:
+Governed integration of this Accepted decision allocates and activates exactly
+these pairs:
 
 | Dimension | Exact value |
 | --- | --- |
@@ -825,7 +826,7 @@ version.
 
 ## Lifecycle and dependency-first next work
 
-If this candidate later becomes Accepted, it activates only the exact Package
+Governed integration of this Accepted decision activates only the exact Package
 Definition and JSON Representation identity/version pairs allocated here. It
 does not create a package instance or authorize Package C, D, or E.
 
@@ -929,15 +930,13 @@ technical access.
 
 ## Lifecycle and final human authority
 
-This Proposed candidate does not approve itself. Issue #116 and acceptance
-comment `5241232823` authorize preparation only. Repository presence,
-validation, and transparent non-independent ARCHITECT review do not grant
-acceptance.
+This Accepted decision did not approve itself. Attributable EIGENAAR / Final
+Authority acceptance of the exact reviewed candidate is recorded in issue
+comment `5241789812`. Repository presence, validation, and transparent
+non-independent ARCHITECT review did not grant that acceptance.
 
-Only a later attributable EIGENAAR / Final Authority decision on the exact
-reviewed candidate may authorize status-only promotion and integration.
-Acceptance would activate only the exact Package Definition and Representation
-identity/version pairs and boundaries defined here. It would not create a
-package instance or authorize Package C, D, E, an executable schema,
-dependency, Tool, Implementation, runner, workflow, release, support, hosting,
-or deployment.
+Governed integration activates only the exact Package Definition and
+Representation identity/version pairs and boundaries defined here. Acceptance
+and integration do not create a package instance or authorize Package C, D, E,
+an executable schema, dependency, Tool, Implementation, runner, workflow,
+release, support, hosting, or deployment.

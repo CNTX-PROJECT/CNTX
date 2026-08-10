@@ -403,9 +403,10 @@ hosting, deployment, merge permission, or authority for Package B, C, D, or E.
 The [CNTX Validation Evidence and Reproduction Package Identity, Version, and
 JSON Representation](validation-evidence-reproduction-package.md) and
 [ADR-0035](adr/0035-validation-evidence-reproduction-package.md) are
-**Proposed** as ARCH-035 under issue #116 and attributable EIGENAAR / Final
-Authority issue-contract acceptance comment `5241232823`. The
-documentation-only candidate proposes one non-Artifact Validation-layer
+**Accepted** as ARCH-035 under issue #116, attributable EIGENAAR / Final
+Authority issue-contract acceptance comment `5241232823`, and exact-head
+acceptance comment `5241789812`. The documentation-only decision defines one
+non-Artifact Validation-layer
 Evidence and Reproduction Package Definition Identifier and initial Version
 `1.0.0`, one JSON Representation Identifier and initial Version `1.0.0`, and a
 strict closed twelve-property JSON root. It separately records exact subjects,
@@ -415,12 +416,12 @@ and authority; requires package-local referential integrity; preserves
 offline-first, deterministic, bounded, fail-closed processing; and keeps raw
 evaluator output, canonical Validation Output, Portable Conformance Evidence,
 Evidence Bundle, review, decision, certification, release evidence, other
-Artifact Instances, and final-human authority separate. Proposed status,
-repository presence, validation, or review allocates or activates no identity
-or version and creates no executable schema, package instance, cross-record
-rule, Tool, Implementation, dependency, validator, runner, workflow, CI,
-release, publication, support, certification, hosting, deployment, merge
-permission, or authority for Package C, D, or E.
+Artifact Instances, and final-human authority separate. Acceptance and
+integration allocate and activate only the stated Definition and Representation
+identity/version pairs and create no executable schema, package instance,
+cross-record rule, Tool, Implementation, dependency, validator, runner,
+workflow, CI, release, publication, support, certification, hosting,
+deployment, merge permission, or authority for Package C, D, or E.
 
 ## Document status
 
