@@ -2,12 +2,18 @@
 
 ## Status and authority
 
-**Document Status:** Proposed.
+**Document Status:** Accepted.
 
-This candidate is prepared under public issue
-[#118](https://github.com/CNTX-PROJECT/CNTX/issues/118) and attributable
-EIGENAAR / Final Authority issue-contract acceptance comment
+This document is an Accepted, documentation-only architecture decision governed
+by public issue [#118](https://github.com/CNTX-PROJECT/CNTX/issues/118).
+Attributable EIGENAAR / Final Authority issue-contract acceptance is recorded
+in issue comment
 [`5242339896`](https://github.com/CNTX-PROJECT/CNTX/issues/118#issuecomment-5242339896).
+Exact-head acceptance of reviewed candidate commit
+`8585ac2a04be1a2978b2f155065bc706638191e2` and tree
+`fd369393b6b6687fc539a00c9677194e6944c693` is recorded in issue comment
+[`5243304427`](https://github.com/CNTX-PROJECT/CNTX/issues/118#issuecomment-5243304427)
+after transparent non-independent ARCHITECT COMMENT review `4898518876`.
 
 The accepted issue body is pinned to public baseline commit
 `5a50a7c8f19d6667c863a65299bff11a39cb29c3` and tree
@@ -15,11 +21,10 @@ The accepted issue body is pinned to public baseline commit
 characters and `23,934` UTF-8 bytes, and has SHA-256
 `f8a73ae5200e2e9ab28bbfd5537138ed6317d04670eb83c4166f48865a5f5cb1`.
 
-Issue-contract acceptance authorizes preparation and review of this Proposed
-candidate only. It does not accept this decision, activate any identity or
-version proposed here, authorize execution, or grant Ready-for-review, merge,
-issue-closure, branch-cleanup, release, publication, support, certification,
-hosting, or deployment authority.
+Issue-contract acceptance, repository presence, validation, and transparent
+non-independent review did not accept this decision. Exact-head acceptance is
+separate and does not authorize execution, release, publication, support,
+certification, hosting, or deployment.
 
 ## Purpose and decision boundary
 
@@ -96,11 +101,12 @@ acceptance.
 supplied representation. **Cross-record Reference** means a reference from one
 supplied record to another exact supplied record key and revision.
 
-## Proposed logical identities and initial versions
+## Allocated logical identities and initial versions
 
-This candidate proposes, but does not activate, these independent pairs:
+Governed integration of this Accepted decision allocates and activates exactly
+these independent pairs:
 
-| Dimension | Proposed exact value |
+| Dimension | Accepted exact value |
 | --- | --- |
 | Test Manifest Definition Identifier | `https://github.com/CNTX-PROJECT/CNTX/definitions/test-manifest` |
 | Test Manifest Definition Version | `1.0.0` |
@@ -143,7 +149,7 @@ deploy, or make a final-human decision.
 
 ## Common JSON document boundary
 
-Each proposed JSON Representation Version `1.0.0` is exactly one JSON text
+Each Accepted JSON Representation Version `1.0.0` is exactly one JSON text
 containing exactly one root object.
 
 Every representation MUST:
@@ -229,7 +235,7 @@ The direct variant contains exactly these required properties:
 
 It MAY additionally contain `issue` and `ownerAcceptanceComment` because those
 coordinates exist in some current direct manifests. No other root property is
-permitted by this proposed representation.
+permitted by this Accepted representation.
 
 For the current historical set:
 
@@ -366,9 +372,9 @@ bounded, deterministic, and fail-closed requirements. `authorityBoundary`
 contains producer, reviewer, decision-maker, Final Authority, and
 `automaticAuthority`, which MUST be exactly `false`.
 
-## Proposed initial Rule Identities and Versions
+## Allocated initial Rule Identities and Versions
 
-Every proposed initial rule has Rule Version `1.0.0` and an identifier under
+Every Accepted initial rule has Rule Version `1.0.0` and an identifier under
 `https://github.com/CNTX-PROJECT/CNTX/rules/cross-record/`.
 
 | Rule child identifier | Separate responsibility |
@@ -387,7 +393,7 @@ Every proposed initial rule has Rule Version `1.0.0` and an identifier under
 | `self-acceptance-prohibited` | A producer, executor, or non-final reviewer does not grant final acceptance to its own work. |
 | `automatic-authority-false` | Every applicable automatic-authority declaration is exactly `false`. |
 
-These Proposed identifiers define no code, query, traversal, join algorithm,
+These Accepted identifiers define no code, query, traversal, join algorithm,
 graph representation, severity, threshold, precedence, evaluation order,
 remediation, approval, or enforcement mechanism.
 
@@ -406,7 +412,7 @@ properties and no others:
 8. `claimBoundary`; and
 9. `authorityBoundary`.
 
-`evaluation` contains the proposed Definition and Representation pins, stable
+`evaluation` contains the Accepted Definition and Representation pins, stable
 Evaluation Identifier, immutable Evaluation Revision, lifecycle state,
 producer, production-time declaration or explicit condition, and digest.
 
@@ -662,10 +668,9 @@ Preparation, validation, review, acceptance, integration, schema definition,
 Tool/Implementation definition, implementation, execution, evidence,
 reassessment, release, and deployment remain separate lifecycle phases.
 
-If later accepted and integrated, this decision would activate only the exact
-Definition, Representation, and initial rule identity/version allocations
-accepted at that time. It would not create instances or authorize Package D or
-E.
+Governed integration of this Accepted decision activates only the exact
+Definition, Representation, and initial Rule identity/version allocations
+defined here. It does not create instances or authorize Package D or E.
 
 Dependency-first continuation remains:
 
@@ -766,13 +771,14 @@ evaluator.
 
 ## Lifecycle and final human authority
 
-This document remains Proposed. Public issue #118 and acceptance comment
-`5242339896` authorize candidate preparation only. A transparent
-non-independent ARCHITECT review cannot accept this candidate.
+This Accepted decision did not approve itself. Attributable EIGENAAR / Final
+Authority acceptance of the exact reviewed candidate is recorded in issue
+comment `5243304427`. Repository presence, static validation, and transparent
+non-independent ARCHITECT review `4898518876` did not grant that acceptance.
 
-Only a later attributable EIGENAAR / Final Authority decision on the exact
-reviewed candidate commit and tree may accept, reject, or require correction of
-this decision. Acceptance of a future exact candidate would still not
-authorize a schema, Tool, Implementation, dependency, runner, workflow,
-release, publication, support, certification, hosting, deployment, Package D,
-or Package E.
+Governed integration activates only the exact Definition, Representation, and
+Rule identity/version allocations and boundaries defined here. Acceptance and
+integration do not create an executable schema, instance, Tool,
+Implementation, dependency, evaluator, resolver, runner, workflow, release,
+publication, support, certification, hosting, deployment, Package D, or
+Package E.

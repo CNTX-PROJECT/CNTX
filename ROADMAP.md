@@ -92,19 +92,20 @@ publication, support, certification, hosting, or deployment. Acceptance and
 integration allocate and activate only the stated identities and versions.
 Packages C, D, and E remain unauthorized and separately governed.
 
-### Current Package C candidate
+### Current Package C decision
 
 [ARCH-036](docs/architecture/test-manifest-cross-record-integrity-rules.md) and
 [ADR-0036](docs/architecture/adr/0036-test-manifest-cross-record-integrity-rules.md)
-are **Proposed** under issue #118 and attributable EIGENAAR / Final Authority
-issue-contract acceptance comment `5242339896`. The documentation-only
-candidate proposes separate Test Manifest, Cross-Record Integrity Rule, and
+are **Accepted** under issue #118, attributable EIGENAAR / Final Authority
+issue-contract acceptance comment `5242339896`, and exact-head acceptance
+comment `5243304427`. The documentation-only decision defines separate Test
+Manifest, Cross-Record Integrity Rule, and
 Cross-Record Integrity Evaluation Record Definition/JSON Representation
 families, each with initial Version `1.0.0`.
 
-The candidate recognizes the nine direct manifests and one operation-based
+The decision recognizes the nine direct manifests and one operation-based
 State Snapshot manifest without changing their bytes, fixes deterministic
-case identity and the exact static inventory at `203/38/165`, and proposes
+case identity and the exact static inventory at `203/38/165`, and defines
 thirteen individually identified initial rule responsibilities for supplied-
 record existence, exact pins, uniqueness and conflict detection, reference
 resolution, Task Contract–Context Packet–Execution Result relationships,
@@ -113,12 +114,12 @@ independence, prohibited self-review/self-acceptance, and disabled automatic
 authority. Individual outcomes remain `satisfied`, `not-satisfied`,
 `unverifiable`, or `not-evaluated`; no aggregate result is permitted.
 
-Proposed status creates no executable schema, manifest/rule/evaluation
-instance, Tool, Implementation, dependency, evaluator, validator, resolver,
-runner, graph engine, workflow, CI, release, publication, support,
-certification, hosting, or deployment. Package D and E remain unauthorized and
-separately governed. Only a later exact-head attributable acceptance may make
-the proposed Package C identities, versions, rules, and boundaries Accepted.
+Acceptance and integration allocate and activate only the stated identities,
+versions, rules, and boundaries and create no executable schema,
+manifest/rule/evaluation instance, Tool, Implementation, dependency,
+evaluator, validator, resolver, runner, graph engine, workflow, CI, release,
+publication, support, certification, hosting, or deployment. Package D and E
+remain unauthorized and separately governed.
 
 ## Detailed project status and roadmap
 

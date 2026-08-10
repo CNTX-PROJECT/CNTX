@@ -1,9 +1,10 @@
 # ADR-0036: CNTX Test Manifest and Initial Cross-Record Integrity Rules identity, version, and JSON representation
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-08-10
 - **Issue:** [#118](https://github.com/CNTX-PROJECT/CNTX/issues/118)
 - **Issue-contract acceptance:** [5242339896](https://github.com/CNTX-PROJECT/CNTX/issues/118#issuecomment-5242339896)
+- **Exact-head acceptance:** [5243304427](https://github.com/CNTX-PROJECT/CNTX/issues/118#issuecomment-5243304427)
 - **Decision:** ARCH-036 — CNTX Test Manifest and Initial Cross-Record
   Integrity Rules Identity, Version, and JSON Representation
 
@@ -264,19 +265,16 @@ Package D and Package E remain unauthorized and separately governed.
 
 ## Authority boundary
 
-This ADR remains Proposed under issue #118 and attributable EIGENAAR / Final
-Authority issue-contract acceptance comment `5242339896`. That comment accepts
-the exact issue contract and authorizes candidate preparation; it does not
-accept this candidate or activate its proposed identities, versions, or rules.
+This ADR is Accepted under issue #118, attributable EIGENAAR / Final Authority
+issue-contract acceptance comment `5242339896`, and exact-head acceptance
+comment `5243304427` for reviewed candidate commit
+`8585ac2a04be1a2978b2f155065bc706638191e2` and tree
+`fd369393b6b6687fc539a00c9677194e6944c693`. Repository presence, static
+validation, and transparent non-independent ARCHITECT COMMENT review
+`4898518876` did not grant that acceptance.
 
-Repository presence, static validation, a matching inventory, and transparent
-non-independent ARCHITECT review grant no acceptance or consequential
-authority. Only a later attributable EIGENAAR / Final Authority decision on
-the exact reviewed candidate commit and tree may accept, reject, or require
-correction.
-
-Any later acceptance would activate only the exact accepted Definition,
-Representation, and Rule identity/version allocations and boundaries. It would
-not create an instance or authorize Package D, Package E, an executable schema,
-dependency, Tool, Implementation, evaluator, runner, workflow, release,
-publication, support, certification, hosting, or deployment.
+Governed integration activates only the Definition, Representation, and Rule
+identity/version allocations and boundaries defined here. Acceptance and
+integration do not create an instance or authorize Package D, Package E, an
+executable schema, dependency, Tool, Implementation, evaluator, runner,
+workflow, release, publication, support, certification, hosting, or deployment.
