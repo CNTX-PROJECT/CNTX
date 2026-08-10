@@ -147,13 +147,13 @@ or deployment. Acceptance and integration activate only the exact identities,
 versions, pins, capabilities, interfaces, and boundaries defined by the
 decision. Package E remains separately governed.
 
-### Current Package E candidate
+### Completed Package E slice
 
 The exact public [Package E issue/taskcontract](https://github.com/CNTX-PROJECT/CNTX/issues/122)
-is accepted through attributable EIGENAAR / Final Authority comment
-`5244896001`. Gate E2 prepares one Proposed, non-executed
-[Minimal Validation and Integrity Slice](tools/minimal-validation-integrity-slice/README.md)
-candidate on a separately governed task branch.
+is completed. The [Minimal Validation and Integrity Slice](tools/minimal-validation-integrity-slice/README.md)
+is integrated on public main at commit/tree
+`c0e46a4f9d98d2b3d76d08fb3c870fd5c2475b9c` /
+`97f3ee35a9bf6445ef78295a28f2a560a937eeef`.
 
 The candidate contains strict JSON and path boundaries, a closed five-artifact
 dependency lock, minimal Python source, bounded tests, deterministic output,
@@ -163,16 +163,29 @@ diagnostics, limitations, blocked/non-executed conditions, record/evidence
 boundaries, concrete initial resource ceilings, and
 `automaticAuthority: false`.
 
-Gate E2 does not acquire or install a dependency, import or execute candidate
-code, run implementation tests, check a schema, execute a case or rule, produce
-an output/evidence instance, make the PR Ready, merge, close the issue, clean
-the branch, change settings, release, publish, support, certify, host, or
-deploy. Exact-head Gate E3 authority is required before any acquisition,
-installation, execution, or evidence production.
+Clean Gate E3 evidence records two successful 29-test runs, two deterministic
+runner executions, and exact agreement for `203/38/165` cases. Because the
+frozen invocation supplied zero `subjectRecords`, all thirteen integrity rules
+remained separately `not-evaluated` with `applicable=false`.
+
+### Current Phase 2/3 practice candidate
+
+Issue [#124](https://github.com/CNTX-PROJECT/CNTX/issues/124) and attributable
+Gate R1 acceptance comment `5246860005` govern one Proposed, non-executed
+[bounded cross-record integrity practice slice](tools/minimal-validation-integrity-slice/practice/cross-record-integrity/README.md).
+
+Four complete strict JSON invocation candidates contain `8/9/10/1` synthetic
+public-safe records. The coherent chain makes all thirteen rules applicable;
+the other scenarios preserve one dangling reference, one restricted target,
+and genuine inapplicability. Their expected outcomes are statically derived
+and remain separate. The candidate changes no runner, dependency, schema,
+historical manifest, testcase, Definition, Representation, architecture, ADR,
+workflow, CI, release, support, hosting, deployment, or authority boundary.
+Execution and actual evidence require a later exact-head Gate R3 decision.
 
 ## Detailed project status and roadmap
 
-CNTX has completed its initial Public-Core specification and prerelease cycle within the Accepted ARCH-027 completion and maintenance boundary. The current public baseline additionally includes the [Accepted architecture through ARCH-036](docs/architecture/README.md). The repository provides public governance, thirty-six Accepted architecture sources and ADRs, nine Accepted artifact contracts, ten Accepted Schema Versions 1.0.0 with synthetic cases, and one immutable unsupported prerelease, 0.1.0-prealpha.1. CNTX remains model-, vendor-, runtime-, and domain-agnostic and provides no accepted concrete tool, implementation, validator, resolver, runner, SDK, library, API, CLI, workflow, runtime, product, supported release line, support service, certification, hosting, or deployment.
+CNTX has completed its initial Public-Core specification and prerelease cycle within the Accepted ARCH-027 completion and maintenance boundary. The current public baseline additionally includes the [Accepted architecture through ARCH-037](docs/architecture/README.md). The repository provides public governance, thirty-seven Accepted architecture sources and ADRs, nine Accepted artifact contracts, ten Accepted Schema Versions 1.0.0 with synthetic cases, one integrated minimal validation and integrity Tool/Implementation slice, and one immutable unsupported prerelease, 0.1.0-prealpha.1. CNTX remains model-, vendor-, runtime-, and domain-agnostic. The integrated slice creates no supported release line, support service, certification, hosting, deployment, workflow, CI, product, or final-human authority.
 
 The [artifact-contract index](docs/contracts/README.md) includes nine accepted, binding subordinate artifact-specific contracts: Project Charter, Workstream, Task Contract, Context Packet, Execution Result, Evidence Bundle, Review Record, Decision Record, and State Snapshot. None introduces an executable schema, template, validator, state engine, synchronization engine, workflow, runtime, or product functionality. No canonical artifact contract remains listed as future work; the accepted status does not authorize a follow-on phase. CNTX remains a public core that is model-, vendor-, runtime-, and domain-agnostic and remains independent of private reference implementations.
 

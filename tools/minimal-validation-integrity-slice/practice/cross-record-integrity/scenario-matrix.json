@@ -1,0 +1,141 @@
+{
+  "status": "proposed-non-normative-practice-fixture-metadata",
+  "governingIssue": "https://github.com/CNTX-PROJECT/CNTX/issues/124",
+  "acceptanceComment": "https://github.com/CNTX-PROJECT/CNTX/issues/124#issuecomment-5246860005",
+  "baseline": {
+    "commit": "c0e46a4f9d98d2b3d76d08fb3c870fd5c2475b9c",
+    "tree": "97f3ee35a9bf6445ef78295a28f2a560a937eeef"
+  },
+  "ruleSet": {
+    "identity": "https://github.com/CNTX-PROJECT/CNTX/rules/cross-record",
+    "version": "1.0.0"
+  },
+  "automaticAuthority": false,
+  "aggregateResultProhibited": true,
+  "scenarios": [
+    {
+      "id": "01-coherent-chain",
+      "path": "invocations/01-coherent-chain.json",
+      "recordCount": 8,
+      "purpose": "Make all thirteen rules applicable with expected satisfied outcomes."
+    },
+    {
+      "id": "02-dangling-reference",
+      "path": "invocations/02-dangling-reference.json",
+      "recordCount": 9,
+      "purpose": "Expose one exact dangling reference as not-satisfied."
+    },
+    {
+      "id": "03-restricted-reference",
+      "path": "invocations/03-restricted-reference.json",
+      "recordCount": 10,
+      "purpose": "Keep inaccessible support and reference resolution unverifiable without restricted content."
+    },
+    {
+      "id": "04-inapplicable-minimal",
+      "path": "invocations/04-inapplicable-minimal.json",
+      "recordCount": 1,
+      "purpose": "Keep six genuinely inapplicable rules separately not-evaluated."
+    }
+  ],
+  "ruleOrder": [
+    "supplied-record-exists",
+    "identity-version-revision-complete",
+    "record-key-unique",
+    "identity-revision-content-consistent",
+    "reference-resolves-exactly-once",
+    "task-context-execution-chain",
+    "validation-record-subject-link",
+    "evidence-package-execution-link",
+    "role-overlap-visible",
+    "review-independence-declared",
+    "self-review-prohibited",
+    "self-acceptance-prohibited",
+    "automatic-authority-false"
+  ],
+  "expectedOutcomes": {
+    "supplied-record-exists": [
+      "satisfied",
+      "satisfied",
+      "unverifiable",
+      "satisfied"
+    ],
+    "identity-version-revision-complete": [
+      "satisfied",
+      "satisfied",
+      "satisfied",
+      "satisfied"
+    ],
+    "record-key-unique": [
+      "satisfied",
+      "satisfied",
+      "satisfied",
+      "satisfied"
+    ],
+    "identity-revision-content-consistent": [
+      "satisfied",
+      "satisfied",
+      "satisfied",
+      "satisfied"
+    ],
+    "reference-resolves-exactly-once": [
+      "satisfied",
+      "not-satisfied",
+      "unverifiable",
+      "satisfied"
+    ],
+    "task-context-execution-chain": [
+      "satisfied",
+      "satisfied",
+      "satisfied",
+      "not-evaluated"
+    ],
+    "validation-record-subject-link": [
+      "satisfied",
+      "satisfied",
+      "satisfied",
+      "not-evaluated"
+    ],
+    "evidence-package-execution-link": [
+      "satisfied",
+      "satisfied",
+      "satisfied",
+      "not-evaluated"
+    ],
+    "role-overlap-visible": [
+      "satisfied",
+      "satisfied",
+      "satisfied",
+      "satisfied"
+    ],
+    "review-independence-declared": [
+      "satisfied",
+      "satisfied",
+      "satisfied",
+      "not-evaluated"
+    ],
+    "self-review-prohibited": [
+      "satisfied",
+      "satisfied",
+      "satisfied",
+      "not-evaluated"
+    ],
+    "self-acceptance-prohibited": [
+      "satisfied",
+      "satisfied",
+      "satisfied",
+      "not-evaluated"
+    ],
+    "automatic-authority-false": [
+      "satisfied",
+      "satisfied",
+      "satisfied",
+      "satisfied"
+    ]
+  },
+  "limitations": [
+    "Expected outcomes are statically derived and are not execution evidence.",
+    "The current invocation validator rejects missing or blank identity, version, or revision before identity-version-revision-complete can return not-satisfied.",
+    "No universal aggregate result, conformance, acceptance, certification, release, deployment, or authority claim is represented."
+  ]
+}
