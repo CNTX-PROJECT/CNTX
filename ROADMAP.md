@@ -32,6 +32,28 @@ CNTX is model-, vendor-, runtime-, and domain-agnostic. It does not prescribe a 
 - Keep people in authority for consequential decisions and merges.
 - Treat security, privacy, and scope boundaries as first-class constraints.
 
+## Current proposed execution path
+
+The specification foundation is complete. The next useful step is to prove a
+small part of it in practice. The sequence below is proposed work, not automatic
+authority to start, accept, release, or deploy any phase.
+
+| Order | Proposed milestone | Practical outcome |
+| --- | --- | --- |
+| 1 | Validation and integrity contracts | Exact rules, tool identity, implementation identity, inputs, outputs, limits, and evidence |
+| 2 | Local offline runner | Reproducible execution of the 10 schemas and 203 synthetic cases |
+| 3 | Cross-record integrity | Detect missing, duplicate, ambiguous, or conflicting links between supplied records |
+| 4 | Source and freshness controls | Make source identity, revision, time, uncertainty, and unverifiable conditions more explicit |
+| 5 | Execution and task controls | Record tool/model/skill identity and classify light, moderate, heavy, or complex work separately from risk |
+| 6 | Team authority and temporary context | Support multiple principals, isolated task capsules, cleanup, and bounded archives |
+| 7 | One real vertical-slice test | Run one small task from contract and context through evidence, review, decision candidate, and cleanup |
+| 8 | Adapters and reassessment | Assess an optional OpenSpec mapping, one runtime adapter, adversarial tests, and the next human decision |
+
+CNTX does not publish a completion timer for these milestones. Progress is
+measured by exact evidence and separately governed gates. A successful runner
+or pilot does not automatically prove broader conformance, acceptance, support,
+release fitness, or deployment fitness.
+
 ## Detailed project status and roadmap
 
 CNTX has completed its initial Public-Core specification and prerelease cycle within the Accepted ARCH-027 completion and maintenance boundary. The current public baseline additionally includes the [Accepted Extension Module and Profile architecture through ARCH-033](docs/architecture/README.md). The repository provides public governance, thirty-three Accepted architecture sources and ADRs, nine Accepted artifact contracts, ten Accepted Schema Versions 1.0.0 with synthetic cases, and one immutable unsupported prerelease, 0.1.0-prealpha.1. CNTX remains model-, vendor-, runtime-, and domain-agnostic and provides no concrete tool, implementation, validator, resolver, runner, SDK, library, API, CLI, workflow, runtime, product, supported release line, support service, certification, hosting, or deployment.

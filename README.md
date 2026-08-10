@@ -6,13 +6,14 @@
   </picture>
 </p>
 
-<p align="center"><strong>Bounded context. Verifiable work. Human authority.</strong></p>
+<p align="center"><strong>Give AI clear context. Keep evidence. Let people decide.</strong></p>
 
 <p align="center">
   <a href="README.md"><strong>Overview</strong></a> ·
   <a href="ROADMAP.md">Roadmap</a> ·
   <a href="docs/architecture/README.md">Architecture</a> ·
   <a href="docs/contracts/README.md">Contracts</a> ·
+  <a href="schemas/README.md">Schemas</a> ·
   <a href="docs/brand/README.md">Brand</a> ·
   <a href="CONTRIBUTING.md">Contribute</a>
 </p>
@@ -28,96 +29,105 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/brand/cntx-collaboration-dark.png">
   <source media="(prefers-color-scheme: light)" srcset="docs/assets/brand/cntx-collaboration-light.png">
-  <img alt="Distinct bounded context modules connect through explicit evidence paths to a central human authority" src="docs/assets/brand/cntx-collaboration-light.png">
+  <img alt="Bounded context modules connect through explicit evidence paths to a separate human authority" src="docs/assets/brand/cntx-collaboration-light.png">
 </picture>
 
-## What is CNTX?
+## CNTX in one minute
 
-CNTX is an open specification for organizing complex work between people and
-specialized AI agents. It makes four things explicit:
+AI can forget instructions, mix contexts, invent missing details, or act with
+more authority than it was given. CNTX is an open specification for making that
+work easier to inspect and control.
 
-1. **what work is allowed;**
-2. **what minimum context is supplied;**
-3. **what output and evidence are produced;**
-4. **which human authority makes the consequential decision.**
+| The problem | The CNTX approach | The intended result |
+| --- | --- | --- |
+| Context becomes unclear or too large | Give each task a small, explicit context | Less context mixing and easier review |
+| AI output can sound certain without proof | Keep claims, evidence, uncertainty, and review separate | Unsupported conclusions stay visible |
+| Automation can blur who approved what | Keep final consequential authority with identified people | No automatic self-approval |
 
-The result is collaboration that can remain bounded, inspectable, reproducible,
-and independent of any particular model, vendor, runtime, product, or domain.
+CNTX does not promise perfect AI. It provides a shared structure for bounded,
+traceable collaboration between one or more people and specialized AI agents.
+It remains independent of any model, vendor, runtime, product, or domain.
 
-## How CNTX works
+## One controlled path
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/brand/cntx-how-it-works-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="docs/assets/brand/cntx-how-it-works-light.svg">
-  <img alt="CNTX flow: define scope, supply context, perform bounded work, capture evidence, review, and make a human decision" src="docs/assets/brand/cntx-how-it-works-light.svg">
+  <img alt="Define the task, supply minimum context, perform bounded work, capture evidence, review the result, and let an identified human decide" src="docs/assets/brand/cntx-how-it-works-light.svg">
 </picture>
 
-| Principle | What it means |
-| --- | --- |
-| **Bounded** | A task has explicit scope, inputs, authority, limits, and stop conditions. |
-| **Minimal** | Each participant receives only the relevant context it needs. |
-| **Verifiable** | Outputs stay separate from evidence, review, and final decisions. |
-| **Fail closed** | Missing, conflicting, ambiguous, unsupported, or unverifiable conditions stay visible. |
-| **Human governed** | Automation never turns itself into approval or final authority. |
+Every step stays separate. Work does not become evidence by itself. Evidence
+does not become approval by itself. A tool or AI agent does not become final
+authority by producing a result.
 
-## The public artifact chain
+## What CNTX records
 
-CNTX defines nine canonical Artifact Types. Together they preserve intent,
-context, execution claims, evidence, review, decisions, and bounded orientation
-without pretending that one record proves another.
+Nine record types preserve the path from project intent to a reviewed human
+decision. They can be read as documents today; their structure is also defined
+by versioned JSON Schemas.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/brand/cntx-artifact-chain-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="docs/assets/brand/cntx-artifact-chain-light.svg">
-  <img alt="CNTX artifact chain from Project Charter and Workstream through Task Contract, Context Packet, Execution Result, Evidence Bundle, Review Record, Decision Record, and State Snapshot" src="docs/assets/brand/cntx-artifact-chain-light.svg">
+  <img alt="Project Charter, Workstream, Task Contract, Context Packet, Execution Result, Evidence Bundle, Review Record, Decision Record, and State Snapshot" src="docs/assets/brand/cntx-artifact-chain-light.svg">
 </picture>
 
-## What is available today?
+## What exists today
 
-| Public baseline | Included |
+| Part | Public baseline |
 | --- | --- |
-| Architecture | 33 Accepted architecture sources with corresponding ADRs |
-| Artifact contracts | 9 Accepted contracts for the canonical Artifact Types |
-| Executable schemas | 10 Accepted JSON Schema Draft 2020-12 resources at version `1.0.0` |
-| Synthetic evidence | 203 cases: 38 valid and 165 invalid |
+| Design | 33 Accepted architecture decisions with matching ADRs |
+| Collaboration records | 9 Accepted artifact contracts |
+| Machine-readable structure | 10 Accepted JSON Schema Draft 2020-12 resources at version `1.0.0` |
+| Examples and tests | 203 synthetic cases: 38 valid and 165 invalid |
 | Extension model | Accepted conceptual boundaries through ARCH-033 |
 | Public release | Immutable, unsupported prerelease `0.1.0-prealpha.1` |
 
-The initial Public-Core specification and prerelease cycle are complete. The
-current baseline also includes the Accepted Extension Module and Profile
-architecture through ARCH-033. See the full [status and roadmap](ROADMAP.md) for
-the exact history, boundaries, and dependency-ordered future possibilities.
-
 > [!IMPORTANT]
-> CNTX currently provides a public specification foundation. It does **not**
-> provide a concrete validator, resolver, runner, SDK, library, API, CLI,
+> CNTX is currently a specification foundation, not a finished software
+> product. It does not yet provide a concrete validator, runner, SDK, API, CLI,
 > workflow, runtime, hosted service, supported release line, certification, or
-> deployment. Repository presence or schema validity does not imply approval,
-> correctness, conformance, security, support, or final authority.
+> deployment. Schema validity alone does not prove truth, approval, security,
+> conformance, or final authority.
+
+## Roadmap pulse
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/brand/cntx-roadmap-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/brand/cntx-roadmap-light.svg">
+  <img alt="CNTX roadmap: specification foundation complete; minimal validation and integrity slice proposed next; context controls and runtime pilots follow later" src="docs/assets/brand/cntx-roadmap-light.svg">
+</picture>
+
+The proposed next milestone is a small offline validation and integrity slice:
+run the existing schemas and 203 cases reproducibly, then test cross-record
+links and one real bounded task. It creates no implementation authority by
+itself. CNTX uses governed gates rather than a promised completion date.
+
+See the [full roadmap and public baseline history](ROADMAP.md).
 
 ## Start here
 
-| If you want to… | Go to… |
+| If you want to… | Open… |
 | --- | --- |
-| Understand the design in order | [Architecture index](docs/architecture/README.md) |
-| Inspect the nine collaboration records | [Artifact-contract index](docs/contracts/README.md) |
-| Explore executable JSON Schemas | [`schemas/`](schemas/) |
-| Inspect positive and negative cases | [`tests/schemas/`](tests/schemas/) |
-| Follow status, history, and future gates | [Roadmap](ROADMAP.md) |
-| Understand release evidence | [Release index](docs/release/README.md) |
-| Propose a governed change | [Contributing](CONTRIBUTING.md) and [Governance](GOVERNANCE.md) |
+| Understand the idea | [Architecture index](docs/architecture/README.md) |
+| See the nine records | [Artifact contracts](docs/contracts/README.md) |
+| Inspect machine-readable rules | [JSON Schemas](schemas/README.md) |
+| Inspect positive and negative examples | [Schema test cases](tests/schemas/) |
+| Follow progress and future gates | [Roadmap](ROADMAP.md) |
+| Check the public release | [Release index](docs/release/README.md) |
+| Propose a safe change | [Contributing](CONTRIBUTING.md) and [Governance](GOVERNANCE.md) |
 | Report a vulnerability | [Security](SECURITY.md) |
 
 ## Find CNTX
 
-`AI collaboration` · `context engineering` · `task delegation` ·
-`human-in-the-loop` · `evidence` · `governance` · `JSON Schema` ·
+`AI collaboration` · `context engineering` · `bounded context` ·
+`human-in-the-loop` · `evidence` · `AI governance` · `JSON Schema` ·
 `multi-agent systems` · `vendor-neutral specification`
 
-## Public-repository boundary
+## Public boundary
 
-Private project data, secrets, credentials, personal data, production
-configuration, and production automation do not belong in this repository.
+Never place private project data, secrets, credentials, personal data,
+production configuration, or production automation in this public repository.
 Read [Security](SECURITY.md), [Governance](GOVERNANCE.md), and
 [AGENTS.md](AGENTS.md) before contributing consequential work.
 

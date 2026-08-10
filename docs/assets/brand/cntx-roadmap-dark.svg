@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" role="img" aria-labelledby="title desc">
+  <title id="title">CNTX roadmap pulse for dark backgrounds</title>
+  <desc id="desc">The specification foundation is complete. A minimal validation and integrity slice is proposed next, followed later by context controls and runtime pilots. There is no promised completion date.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0l10 5-10 5z" fill="#A78BFA"/></marker>
+  </defs>
+  <rect width="1200" height="300" rx="28" fill="#09070F"/>
+  <text x="52" y="54" fill="#FFFFFF" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="28" font-weight="700">Roadmap pulse</text>
+  <text x="52" y="84" fill="#D6D0DE" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="16">Progress is evidence-based. Each new phase needs a separate governed decision.</text>
+  <g font-family="Inter,Segoe UI,Arial,sans-serif">
+    <g transform="translate(52 126)">
+      <rect width="242" height="116" rx="18" fill="#211535" stroke="#A78BFA" stroke-width="2"/>
+      <circle cx="28" cy="28" r="13" fill="#8B5CF6"/>
+      <path d="M21 28l5 5 10-12" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="50" y="34" fill="#C4B5FD" font-size="13" font-weight="700">COMPLETE</text>
+      <text x="20" y="72" fill="#FFFFFF" font-size="19" font-weight="700">Specification foundation</text>
+      <text x="20" y="96" fill="#D6D0DE" font-size="14">Contracts, schemas and evidence</text>
+    </g>
+    <g transform="translate(322 116)">
+      <rect width="270" height="136" rx="20" fill="#130E1D" stroke="#A78BFA" stroke-width="4"/>
+      <rect x="18" y="16" width="116" height="25" rx="12.5" fill="#8B5CF6"/>
+      <text x="76" y="33" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="700">PROPOSED NEXT</text>
+      <text x="20" y="76" fill="#FFFFFF" font-size="19" font-weight="700">Validation + integrity</text>
+      <text x="20" y="101" fill="#D6D0DE" font-size="14">Offline runner, 203 cases</text>
+      <text x="20" y="122" fill="#D6D0DE" font-size="14">and cross-record checks</text>
+    </g>
+    <g transform="translate(620 126)">
+      <rect width="242" height="116" rx="18" fill="#130E1D" stroke="#8B5CF6" stroke-width="2"/>
+      <text x="20" y="32" fill="#C4B5FD" font-size="13" font-weight="700">LATER</text>
+      <text x="20" y="68" fill="#FFFFFF" font-size="19" font-weight="700">Context controls</text>
+      <text x="20" y="92" fill="#D6D0DE" font-size="14">Sources, freshness, skills</text>
+    </g>
+    <g transform="translate(890 126)">
+      <rect width="258" height="116" rx="18" fill="#130E1D" stroke="#8B5CF6" stroke-width="2" stroke-dasharray="8 7"/>
+      <text x="20" y="32" fill="#C4B5FD" font-size="13" font-weight="700">AFTER PROOF</text>
+      <text x="20" y="68" fill="#FFFFFF" font-size="19" font-weight="700">Runtime pilots</text>
+      <text x="20" y="92" fill="#D6D0DE" font-size="14">Adapters and adversarial tests</text>
+    </g>
+  </g>
+  <g stroke="#A78BFA" stroke-width="3" marker-end="url(#arrow)"><path d="M294 184h20"/><path d="M592 184h20"/><path d="M862 184h20"/></g>
+  <text x="1148" y="278" text-anchor="end" fill="#D6D0DE" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13">No target date is claimed.</text>
+</svg>
