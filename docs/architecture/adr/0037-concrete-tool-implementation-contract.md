@@ -1,9 +1,10 @@
 # ADR-0037: CNTX Concrete Validation and Integrity Tool and Implementation Contract
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-08-10
 - **Issue:** [#120](https://github.com/CNTX-PROJECT/CNTX/issues/120)
 - **Issue-contract acceptance:** [5243736163](https://github.com/CNTX-PROJECT/CNTX/issues/120#issuecomment-5243736163)
+- **Exact-head acceptance:** [5243941231](https://github.com/CNTX-PROJECT/CNTX/issues/120#issuecomment-5243941231)
 - **Decision:** ARCH-037 — CNTX Concrete Validation and Integrity Tool and
   Implementation Contract
 
@@ -30,21 +31,21 @@ grant acceptance, release, or deployment authority.
 
 ## Decision
 
-Propose one logical Tool identity/version pair:
+Define one logical Tool identity/version pair:
 
 - Tool Identity:
   `https://github.com/CNTX-PROJECT/CNTX/tools/minimal-validation-integrity-slice`;
 - Tool Version: `1.0.0`.
 
-Propose one separate concrete Implementation identity/version pair:
+Define one separate concrete Implementation identity/version pair:
 
 - Implementation Identity:
   `https://github.com/CNTX-PROJECT/CNTX/implementations/minimal-validation-integrity-slice/python-jsonschema`;
 - Implementation Version: `1.0.0`.
 
-The identifiers are opaque identities, not network-retrieval authority. All
-four values remain Proposed and inactive until later exact-head attributable
-acceptance and governed integration.
+The identifiers are opaque identities, not network-retrieval authority.
+Governed integration of this Accepted decision activates exactly these four
+values and no other identity or version.
 
 ### Supported specification set
 
@@ -75,7 +76,7 @@ execution are not supported by Tool Version `1.0.0`.
 
 ### Capabilities
 
-Propose these exact bounded Tool capabilities:
+Define these exact bounded Tool capabilities:
 
 - strict UTF-8 JSON input and duplicate-member rejection;
 - closed caller-supplied registration of exactly ten Schema Resources;
@@ -108,7 +109,7 @@ or deploy anything.
 
 ### Implementation, runtime, and dependencies
 
-Propose one Python implementation using exactly:
+Define one Python implementation using exactly:
 
 - CPython `3.13.14`;
 - `jsonschema` `4.26.0`;
@@ -268,7 +269,7 @@ Positive consequences:
   dependencies, interfaces, ordering, limits, and authority boundaries;
 - the ten schemas, both manifest forms, 203 cases, and thirteen rules form one
   closed supported slice;
-- Python-specific choices stay in one proposed Implementation rather than
+- Python-specific choices stay in one Implementation rather than
   becoming normative Tool or specification meaning;
 - adverse, restricted, blocked, unverifiable, not-evaluated, and non-executed
   conditions stay visible; and
@@ -342,12 +343,16 @@ Package E remains unauthorized and separately governed.
 
 ## Authority boundary
 
-This ADR is Proposed under issue #120 and attributable EIGENAAR / Final
-Authority issue-contract acceptance comment `5243736163`. Repository presence,
-static validation, and transparent non-independent ARCHITECT review do not
-accept this candidate.
+This ADR is Accepted under issue #120, attributable EIGENAAR / Final Authority
+issue-contract acceptance comment `5243736163`, and exact-head acceptance
+comment `5243941231` for reviewed candidate commit
+`d047b754efe17b66505443fad1d5891254db15e8` and tree
+`460d0f3ae014339507bdeecbc86db544a1836331`. Repository presence, static
+validation, and transparent non-independent ARCHITECT COMMENT review
+`4899510683` did not grant that acceptance.
 
-Any status promotion, identity/version activation, implementation, execution,
-integration, merge, issue closure, branch cleanup, Package E, release,
-publication, support, certification, hosting, or deployment requires a new
-exact attributable EIGENAAR / Final Authority decision.
+Governed integration activates only the exact Tool and Implementation
+identity/version pairs, supported set, capabilities, pins, interfaces, and
+boundaries defined here. Acceptance and integration do not create code,
+execution, evidence instances, release, support, deployment, or Package E
+authority.

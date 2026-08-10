@@ -121,31 +121,31 @@ evaluator, validator, resolver, runner, graph engine, workflow, CI, release,
 publication, support, certification, hosting, or deployment. Package D and E
 remain unauthorized and separately governed.
 
-### Current Package D candidate
+### Current Package D decision
 
 [ARCH-037](docs/architecture/concrete-tool-implementation-contract.md) and
 [ADR-0037](docs/architecture/adr/0037-concrete-tool-implementation-contract.md)
-are **Proposed** under issue #120 and attributable EIGENAAR / Final Authority
-issue-contract acceptance comment `5243736163`. The documentation-only
-candidate proposes one Tool Identity and Version `1.0.0`, plus one separate
+are **Accepted** under issue #120, attributable EIGENAAR / Final Authority
+issue-contract acceptance comment `5243736163`, and exact-head acceptance
+comment `5243941231`. The documentation-only decision defines one Tool
+Identity and Version `1.0.0`, plus one separate
 Python/`jsonschema` Implementation Identity and Version `1.0.0`.
 
 Its exact supported set covers the ten Accepted Schema Resources, nine direct
 and one operation-based Test Manifest, exact `203/38/165` inventory, Package
 A/B/C definitions and representations, and all thirteen Accepted integrity
-rules. It also fixes proposed capability and non-capability boundaries, runtime
+rules. It also fixes capability and non-capability boundaries, runtime
 and dependency versions, configuration/environment responsibilities, bounded
 logical input/output/diagnostic/evidence interfaces, deterministic ordering,
 fail-closed processing, resource and security/privacy limits, no aggregate
 result, and `automaticAuthority: false`.
 
-The candidate installs and executes nothing. It creates no executable schema,
+The decision installs and executes nothing. It creates no executable schema,
 record instance, evaluator, validator, resolver, runner, code, library, SDK,
 CLI, API, workflow, CI, release, publication, support, certification, hosting,
-or deployment. All proposed identities, versions, pins, capabilities, and
-interfaces remain inactive until a later exact-head attributable acceptance
-and governed integration. Package E remains unauthorized and separately
-governed.
+or deployment. Acceptance and integration activate only the exact identities,
+versions, pins, capabilities, interfaces, and boundaries defined by the
+decision. Package E remains unauthorized and separately governed.
 
 ## Detailed project status and roadmap
 

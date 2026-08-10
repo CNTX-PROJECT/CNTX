@@ -2,13 +2,18 @@
 
 ## Status and authority
 
-**Document Status:** Proposed.
+**Document Status:** Accepted.
 
-This document is a Proposed, documentation-only architecture candidate governed
+This document is an Accepted, documentation-only architecture decision governed
 by public issue [#120](https://github.com/CNTX-PROJECT/CNTX/issues/120).
-Attributable EIGENAAR / Final Authority acceptance of the exact issue/task
-contract is recorded in issue comment
+Attributable EIGENAAR / Final Authority issue-contract acceptance is recorded
+in issue comment
 [`5243736163`](https://github.com/CNTX-PROJECT/CNTX/issues/120#issuecomment-5243736163).
+Exact-head acceptance of reviewed candidate commit
+`d047b754efe17b66505443fad1d5891254db15e8` and tree
+`460d0f3ae014339507bdeecbc86db544a1836331` is recorded in issue comment
+[`5243941231`](https://github.com/CNTX-PROJECT/CNTX/issues/120#issuecomment-5243941231)
+after transparent non-independent ARCHITECT COMMENT review `4899510683`.
 
 The accepted issue body is pinned to public baseline commit
 `d8e9d71ae4c65bf74e31a9a19b1875316df26c8f` and tree
@@ -16,11 +21,10 @@ The accepted issue body is pinned to public baseline commit
 characters and `5,621` UTF-8 bytes, and has SHA-256
 `228692c1bcc7d5f27b75d39d0bba2c25de02ccc2a3bd0fe4ff6e4d168212d8ed`.
 
-Issue-contract acceptance authorizes preparation and review only. It does not
-accept this candidate, activate an identity or version, install a dependency,
-create executable code, execute a schema or testcase, release a tool, or grant
-consequential authority. Exact-head acceptance and governed integration remain
-separate later gates.
+Issue-contract acceptance, repository presence, validation, and transparent
+non-independent review did not accept this decision. Exact-head acceptance is
+separate and does not install a dependency, create executable code, execute a
+schema or testcase, release a tool, or grant consequential authority.
 
 ## Purpose and decision boundary
 
@@ -31,14 +35,14 @@ and individual Integrity Evaluation results. CNTX still has no concrete Tool
 Identity, Implementation Identity, executable runner, or accepted mechanism
 that can perform those responsibilities.
 
-This candidate proposes the exact contract for one small future validation and
-integrity slice. It proposes:
+This decision defines the exact contract for one small future validation and
+integrity slice. It defines:
 
 1. one stable Tool Identity and initial Tool Version;
 2. one separate Implementation Identity and initial Implementation Version;
 3. one exact supported specification set;
 4. explicit capabilities and non-capabilities;
-5. exact proposed runtime and dependency pins;
+5. exact runtime and dependency pins;
 6. closed configuration and execution-environment responsibilities;
 7. bounded logical input, output, diagnostic, and evidence interfaces;
 8. deterministic ordering and fail-closed behavior;
@@ -55,7 +59,7 @@ service, hosting, or deployment.
 
 ## Governing traceability
 
-This candidate is subordinate to and preserves:
+This decision is subordinate to and preserves:
 
 - ARCH-001 through ARCH-036 and ADR-0001 through ADR-0036;
 - CONTRACT-001 through CONTRACT-009;
@@ -83,7 +87,7 @@ Git/GitHub object.
 ## Terminology
 
 **Tool** means the logical, implementation-independent bounded capability
-contract proposed here. It states what one tool version may claim to do.
+contract defined here. It states what one tool version may claim to do.
 
 **Implementation** means one concrete, separately identified realization of
 that Tool contract. Its language, runtime, dependencies, code, build, and
@@ -97,7 +101,7 @@ supported.
 
 **Invocation** means one future bounded execution using one exact frozen input
 set, configuration, implementation, dependency set, environment, and limit
-set. This candidate performs no invocation.
+set. This decision performs no invocation.
 
 **Logical Interface** means the required information crossing a boundary. It
 does not select a CLI, API, SDK, process protocol, transport, media type,
@@ -108,11 +112,12 @@ itself canonical Validation Output, Portable Conformance Evidence, an Evidence
 Bundle, a Review Record, a Decision Record, certification, release evidence,
 or final-human authority.
 
-## Proposed identities and initial versions
+## Allocated identities and initial versions
 
-This candidate proposes exactly these independent identity/version pairs:
+Governed integration of this Accepted decision allocates and activates exactly
+these independent identity/version pairs:
 
-| Dimension | Proposed exact value |
+| Dimension | Accepted exact value |
 | --- | --- |
 | Tool Identity | `https://github.com/CNTX-PROJECT/CNTX/tools/minimal-validation-integrity-slice` |
 | Tool Version | `1.0.0` |
@@ -131,14 +136,14 @@ release, deployment, and final-human authority remain separate dimensions. No
 dimension implies, allocates, selects, activates, authenticates, accepts,
 approves, certifies, or proves another.
 
-Repository presence, a Proposed status, static validation, transparent review,
-or later successful execution does not activate these values. Only later
-attributable exact-head acceptance and governed integration may activate the
-exact accepted candidate.
+Repository presence, static validation, transparent review, or later successful
+execution does not create normative or consequential authority. Acceptance and
+integration activate only the exact identity/version pairs and boundaries
+defined here.
 
-## Proposed supported specification set
+## Accepted supported specification set
 
-Tool Version `1.0.0` proposes support for exactly the closed set below. Any
+Tool Version `1.0.0` supports exactly the closed set below. Any
 missing, additional, ambiguous, conflicting, or differently versioned member
 is outside the supported set and fails closed for every dependent operation.
 
@@ -237,11 +242,11 @@ Tool Version `1.0.0` does not claim support for:
 - a universal conformance verdict; or
 - support, certification, release, publication, hosting, or deployment.
 
-## Proposed Tool capability profile
+## Tool capability profile
 
-Tool Version `1.0.0` proposes exactly these bounded capabilities:
+Tool Version `1.0.0` defines exactly these bounded capabilities:
 
-| Capability | Proposed responsibility |
+| Capability | Accepted responsibility |
 | --- | --- |
 | `strict-json-input` | Parse caller-supplied JSON as strict UTF-8, reject BOM, duplicate member names, comments, invalid JSON values, and trailing non-whitespace bytes. |
 | `closed-resource-registration` | Register exactly the ten caller-supplied Schema Resources by exact `$id` and reject missing, duplicate, conflicting, or additional active resources. |
@@ -288,10 +293,10 @@ Tool Version `1.0.0` does not:
   quality gate, recommendation, or universal pass/fail; or
 - make an automatic or final-human decision.
 
-## Proposed Implementation contract
+## Implementation contract
 
-Implementation Version `1.0.0` proposes one non-normative realization of Tool
-Version `1.0.0`. Its proposed implementation language is Python. Its schema
+Implementation Version `1.0.0` defines one non-normative realization of Tool
+Version `1.0.0`. Its implementation language is Python. Its schema
 evaluation mechanism is the `jsonschema` package. Cross-record rules, strict
 input handling, deterministic ordering, record construction, and resource
 limits remain implementation responsibilities that Package E must implement
@@ -303,16 +308,16 @@ conforming implementation. Any implementation-defined behavior MUST be
 visible, bounded, attributable, and versioned where consequential. Required
 but unspecified or ambiguous behavior fails closed.
 
-This proposed first implementation is not designated as a normative reference
+This first implementation is not designated as a normative reference
 implementation. Even if later described as a reference implementation, ARCH-
 033's non-normative reference-implementation boundary remains controlling.
 
-## Proposed runtime and dependency set
+## Runtime and dependency set
 
-Implementation Version `1.0.0` proposes exactly this closed runtime and
+Implementation Version `1.0.0` defines exactly this closed runtime and
 distribution set:
 
-| Dependency dimension | Proposed exact value | Role |
+| Dependency dimension | Accepted exact value | Role |
 | --- | --- | --- |
 | Runtime | CPython `3.13.14` | Execute the future implementation. |
 | Direct distribution | `jsonschema` `4.26.0` | JSON Schema Draft 2020-12 evaluation. |
@@ -325,7 +330,7 @@ These values reuse an exact historically observed public evidence set. That
 history supports feasibility only. It does not prove the future implementation
 exists, is correct, secure, reproducible, compatible, supported, or accepted.
 
-No package is installed by this candidate. Package E must separately govern
+No package is installed by this decision. Package E must separately govern
 the concrete dependency acquisition method, integrity pins, isolated
 environment, build inputs, lock or manifest representation, installation,
 execution, and cleanup. If any exact runtime or distribution is unavailable,
@@ -338,7 +343,7 @@ libraries, interpreter build details, architecture, and platform components
 that can affect behavior belong in the execution environment and evidence;
 they are not silently excluded from the dependency boundary.
 
-## Proposed configuration contract
+## Configuration contract
 
 Every future invocation MUST receive one complete immutable configuration. The
 configuration has exactly these consequential responsibilities:
@@ -371,7 +376,7 @@ fails closed before dependent processing. Environment variables, current
 working directory, adjacent files, installed packages, locale defaults,
 previous results, caches, and host state MUST NOT silently supply configuration.
 
-## Proposed execution-environment contract
+## Execution-environment contract
 
 One future invocation MUST record at least:
 
@@ -421,7 +426,7 @@ bundle. The logical input boundary contains:
     Final Authority declarations; and
 13. explicit network prohibition and `automaticAuthority: false`.
 
-The bundle is logical. This candidate selects no archive format, directory
+The bundle is logical. This decision selects no archive format, directory
 layout, filename convention, CLI argument, API field, SDK type, transport,
 storage service, or executable interface. Package E must propose any concrete
 invocation representation within a separate exact allowlist and authority.
@@ -503,7 +508,7 @@ input revision, configuration, environment, phase, subject, and provenance.
 Raw output, interpreted observations, evidence items, claims, reviews,
 decisions, and acceptance remain separate.
 
-This candidate selects no canonical serialization, filename, directory,
+This decision selects no canonical serialization, filename, directory,
 stream, media type, severity vocabulary, localization, transport, storage,
 database, API response, CLI output, UI, or publication format. Any future
 concrete representation requires separate authority.
@@ -624,7 +629,7 @@ must produce a visible resource-limit diagnostic and non-execution record where
 possible within the remaining safe output budget. A limit is not a threshold
 for conformance, quality, acceptance, or authority.
 
-This candidate chooses no numeric thresholds, timeout values, sandbox,
+This decision chooses no numeric thresholds, timeout values, sandbox,
 container, operating system, process model, scheduler, access-control model,
 temporary-directory mechanism, or cleanup implementation. Package E must
 propose exact safe values and mechanisms before execution.
@@ -748,30 +753,28 @@ configuration, dependencies, environments, and evidence. Interoperability
 requires separately governed comparison of exact outputs and relevant behavior.
 Neither creates a support commitment.
 
-This candidate defines no release artifact, installation package, distribution
+This decision defines no release artifact, installation package, distribution
 channel, signature, software bill of materials, update mechanism, compatibility
 promise, support period, certification scheme, hosted service, or deployment.
-Repository presence is not a release. Proposed Version `1.0.0` is not Release
-Version `1.0.0` and does not alter immutable CNTX Release Version
+Repository presence is not a release. Tool or Implementation Version `1.0.0`
+is not Release Version `1.0.0` and does not alter immutable CNTX Release Version
 `0.1.0-prealpha.1`.
 
 ## Versioning and lifecycle
 
-Tool Version `1.0.0` and Implementation Version `1.0.0` are initial proposed
-contract versions only. If later Accepted and integrated, each accepted version
-is immutable. Correction, supersession, withdrawal, or a new compatible or
+Tool Version `1.0.0` and Implementation Version `1.0.0` are initial Accepted
+contract versions. Each Accepted version is immutable. Correction,
+supersession, withdrawal, or a new compatible or
 incompatible version requires a separate attributable decision that preserves
 history.
 
-The dependency-first continuation is:
+The dependency-first continuation after governed integration is:
 
-1. exact-head acceptance or rejection of this Package D candidate;
-2. governed integration if accepted;
-3. Package E issue/task contract for code, dependency acquisition, exact
+1. Package E issue/task contract for code, dependency acquisition, exact
    resource limits, concrete invocation/output representation, cases,
    execution, bounded evidence, review, and attributable decision;
-4. independent reproduction and reassessment where separately authorized; and
-5. any later release, publication, distribution, support, certification,
+2. independent reproduction and reassessment where separately authorized; and
+3. any later release, publication, distribution, support, certification,
    hosting, or deployment under separate authority.
 
 This order authorizes no later phase, branch, path, code, dependency,
@@ -786,7 +789,7 @@ Positive consequences:
   code;
 - the ten schemas, both manifest forms, 203 cases, and thirteen integrity rules
   receive one closed supported set;
-- Python and `jsonschema` are pinned for one proposed implementation without
+- Python and `jsonschema` are pinned for one implementation without
   making them normative or excluding another implementation;
 - input, output, diagnostics, evidence, resources, security/privacy, and
   non-execution are explicit before code exists;
@@ -796,8 +799,8 @@ Positive consequences:
 Costs and limitations:
 
 - the detailed contract increases documentation surface;
-- the proposed runtime and dependencies have not been installed or executed by
-  this candidate;
+- the runtime and dependencies have not been installed or executed by this
+  decision;
 - no source code, executable interface, dependency lock, build, package,
   evaluator, validator, resolver, runner, test, CI, or output instance exists;
 - static documentation validation cannot prove implementability, runtime
@@ -812,7 +815,7 @@ Costs and limitations:
 
 ## Protected predecessors and immutable history
 
-This candidate preserves without modification:
+This decision preserves without modification:
 
 - every baseline path outside the exact five-path allowlist, with only the two
   new paths added inside that allowlist;
@@ -834,7 +837,7 @@ This candidate preserves without modification:
 
 ## Explicit non-decisions and non-execution
 
-This candidate changes no path under `schemas/` or `tests/`. It creates no
+This decision changes no path under `schemas/` or `tests/`. It creates no
 Artifact Type, Artifact Instance, executable schema, schema version, manifest
 instance, rule instance, evaluation instance, Validation Execution Record
 instance, Evidence and Reproduction Package instance, canonical Validation
@@ -855,14 +858,13 @@ Package E remains unauthorized and separately governed.
 ## Final-human authority and stopgate
 
 EIGENAAR / Final Authority remains the sole final human authority. This
-candidate cannot approve or accept itself. Static validation, repository
-presence, a Draft PR, a matching supported set, a transparent non-independent
-ARCHITECT review, or later successful execution cannot grant acceptance or
-consequential authority.
+Accepted decision did not approve itself. Exact-head acceptance is recorded in
+issue comment `5243941231`; repository presence, static validation, a Draft PR,
+a matching supported set, and transparent non-independent ARCHITECT review
+`4899510683` did not grant that acceptance.
 
-ARCHITECT must stop after candidate preparation, full static validation, one
-candidate commit, one push, one Draft PR, transparent non-independent COMMENT
-review, and exact GitHub read-back. Any status promotion, activation,
-implementation, execution, integration, merge, closure, cleanup, Package E, or
-later lifecycle action requires a new exact attributable EIGENAAR / Final
-Authority decision.
+Governed integration activates only the exact Tool and Implementation
+identity/version pairs, supported set, capabilities, pins, interfaces, and
+boundaries defined here. Acceptance and integration do not create code,
+execution, evidence instances, release, support, deployment, or Package E
+authority.
