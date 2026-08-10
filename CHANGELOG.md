@@ -2,12 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project intends to use [Semantic Versioning](https://semver.org/spec/v2.0.0.html) when releases begin.
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and release versioning uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html) terminology.
 
 CNTX is pre-alpha and unsupported. One immutable GitHub prerelease,
 `0.1.0-prealpha.1`, represents an exact historical release subject.
 
 ## [Unreleased]
+
+### Fixed
+
+- Updated the public current-state description, repaired the damaged ARCH-027 sentence, and corrected the changelog release wording; no Accepted architecture, contract, schema, test, assessment, remediation, release, verification, maintenance, or Extension Module/Profile semantics changed.
 
 ### Added
 
