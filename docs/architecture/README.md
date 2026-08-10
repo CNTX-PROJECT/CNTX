@@ -423,6 +423,30 @@ cross-record rule, Tool, Implementation, dependency, validator, runner,
 workflow, CI, release, publication, support, certification, hosting,
 deployment, merge permission, or authority for Package C, D, or E.
 
+The [CNTX Test Manifest and Initial Cross-Record Integrity Rules Identity,
+Version, and JSON Representation](test-manifest-cross-record-integrity-rules.md)
+and
+[ADR-0036](adr/0036-test-manifest-cross-record-integrity-rules.md) are
+**Accepted** as ARCH-036 under issue #118, attributable EIGENAAR / Final
+Authority issue-contract acceptance comment `5242339896`, and exact-head
+acceptance comment `5243304427`. The documentation-only Package C decision
+defines three separate non-Artifact
+Validation-layer Definition and JSON Representation families for the two
+historical Test Manifest construction forms, individually versioned bounded
+Cross-Record Integrity Rules, and one closed Integrity Evaluation Record. It
+preserves the ten test manifests and exact static `203/38/165` inventory;
+defines thirteen individual rule identities; keeps `satisfied`,
+`not-satisfied`, `unverifiable`, and `not-evaluated` outcomes separate; and
+requires exact caller-supplied closed offline-first fail-closed processing,
+visible role overlap, review-independence and self-acceptance boundaries,
+individual evidence/diagnostic/limitation traceability, no aggregate result,
+and `automaticAuthority: false`. Acceptance and integration allocate and
+activate only the stated Definition, Representation, and Rule identity/version
+pairs and create no executable schema, manifest/rule/evaluation instance,
+Tool, Implementation, dependency, validator, resolver, runner, graph engine,
+workflow, CI, release, publication, support, certification, hosting,
+deployment, merge permission, or authority for Package D or E.
+
 ## Document status
 
 - **Proposed** — submitted for review and not yet an accepted repository decision.
