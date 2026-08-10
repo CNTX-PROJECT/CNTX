@@ -140,12 +140,35 @@ logical input/output/diagnostic/evidence interfaces, deterministic ordering,
 fail-closed processing, resource and security/privacy limits, no aggregate
 result, and `automaticAuthority: false`.
 
-The decision installs and executes nothing. It creates no executable schema,
+The decision installed and executed nothing. It created no executable schema,
 record instance, evaluator, validator, resolver, runner, code, library, SDK,
 CLI, API, workflow, CI, release, publication, support, certification, hosting,
 or deployment. Acceptance and integration activate only the exact identities,
 versions, pins, capabilities, interfaces, and boundaries defined by the
-decision. Package E remains unauthorized and separately governed.
+decision. Package E remains separately governed.
+
+### Current Package E candidate
+
+The exact public [Package E issue/taskcontract](https://github.com/CNTX-PROJECT/CNTX/issues/122)
+is accepted through attributable EIGENAAR / Final Authority comment
+`5244896001`. Gate E2 prepares one Proposed, non-executed
+[Minimal Validation and Integrity Slice](tools/minimal-validation-integrity-slice/README.md)
+candidate on a separately governed task branch.
+
+The candidate contains strict JSON and path boundaries, a closed five-artifact
+dependency lock, minimal Python source, bounded tests, deterministic output,
+the ten exact Schema Resources, both historical manifest forms, all 203 cases,
+and all thirteen Accepted integrity rules. It preserves separate outcomes,
+diagnostics, limitations, blocked/non-executed conditions, record/evidence
+boundaries, concrete initial resource ceilings, and
+`automaticAuthority: false`.
+
+Gate E2 does not acquire or install a dependency, import or execute candidate
+code, run implementation tests, check a schema, execute a case or rule, produce
+an output/evidence instance, make the PR Ready, merge, close the issue, clean
+the branch, change settings, release, publish, support, certify, host, or
+deploy. Exact-head Gate E3 authority is required before any acquisition,
+installation, execution, or evidence production.
 
 ## Detailed project status and roadmap
 

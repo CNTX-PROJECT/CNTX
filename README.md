@@ -85,10 +85,12 @@ by versioned JSON Schemas.
 
 > [!IMPORTANT]
 > CNTX is currently a specification foundation, not a finished software
-> product. It does not yet provide a concrete validator, runner, SDK, API, CLI,
-> workflow, runtime, hosted service, supported release line, certification, or
-> deployment. Schema validity alone does not prove truth, approval, security,
-> conformance, or final authority.
+> product. Package E now has a Proposed, non-executed local validation and
+> integrity candidate under issue #122; it is not yet an Accepted, installed,
+> or evidenced validator or runner. CNTX still provides no SDK, API, workflow,
+> hosted service, supported release line, certification, or deployment. Schema
+> validity alone does not prove truth, approval, security, conformance, or
+> final authority.
 
 ## Roadmap pulse
 
@@ -98,10 +100,12 @@ by versioned JSON Schemas.
   <img alt="CNTX roadmap: specification foundation complete; minimal validation and integrity slice proposed next; context controls and runtime pilots follow later" src="docs/assets/brand/cntx-roadmap-light.svg">
 </picture>
 
-The proposed next milestone is a small offline validation and integrity slice:
-run the existing schemas and 203 cases reproducibly, then test cross-record
-links and one real bounded task. It creates no implementation authority by
-itself. CNTX uses governed gates rather than a promised completion date.
+The current milestone is a governed Package E candidate for a small offline
+validation and integrity slice: prepare the existing schemas, 203 cases, and
+thirteen cross-record rules for reproducible local execution. The candidate is
+not installed or executed and creates no implementation, acceptance, release,
+or deployment authority by itself. CNTX uses governed gates rather than a
+promised completion date.
 
 See the [full roadmap and public baseline history](ROADMAP.md).
 
@@ -113,6 +117,7 @@ See the [full roadmap and public baseline history](ROADMAP.md).
 | See the nine records | [Artifact contracts](docs/contracts/README.md) |
 | Inspect machine-readable rules | [JSON Schemas](schemas/README.md) |
 | Inspect positive and negative examples | [Schema test cases](tests/schemas/) |
+| Inspect the non-executed Package E candidate | [Minimal validation and integrity slice](tools/minimal-validation-integrity-slice/README.md) |
 | Follow progress and future gates | [Roadmap](ROADMAP.md) |
 | Check the public release | [Release index](docs/release/README.md) |
 | Propose a safe change | [Contributing](CONTRIBUTING.md) and [Governance](GOVERNANCE.md) |
