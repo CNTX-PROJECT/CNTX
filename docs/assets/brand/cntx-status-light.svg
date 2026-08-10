@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 58" role="img" aria-labelledby="title desc">
+  <title id="title">CNTX status labels for light backgrounds</title>
+  <desc id="desc">Public Core complete, open specification, model and vendor agnostic, Apache-2.0.</desc>
+  <g font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="middle">
+    <g transform="translate(0)"><rect width="250" height="50" y="4" rx="25" fill="#F1EAFE" stroke="#7C3AED"/><circle cx="27" cy="29" r="7" fill="#7C3AED"/><text x="137" y="35" fill="#111018">PUBLIC CORE COMPLETE</text></g>
+    <g transform="translate(266)"><rect width="230" height="50" y="4" rx="25" fill="#FFFFFF" stroke="#8B5CF6"/><text x="115" y="35" fill="#111018">OPEN SPECIFICATION</text></g>
+    <g transform="translate(512)"><rect width="350" height="50" y="4" rx="25" fill="#FFFFFF" stroke="#8B5CF6"/><text x="175" y="35" fill="#111018">MODEL &amp; VENDOR AGNOSTIC</text></g>
+    <g transform="translate(878)"><rect width="242" height="50" y="4" rx="25" fill="#FFFFFF" stroke="#8B5CF6"/><text x="121" y="35" fill="#111018">APACHE-2.0</text></g>
+  </g>
+</svg>
