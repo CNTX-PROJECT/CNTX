@@ -280,6 +280,22 @@ def _bounded_observation_collections(
         + invocation["adverseEvidence"]
         + invocation["restrictedEvidence"]
     )
+    require_at_most("diagnostics", len(diagnostics), limits.diagnostics)
+    require_at_most(
+        "diagnostic bytes",
+        len(json.dumps(diagnostics, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")),
+        limits.diagnostic_bytes,
+    )
+    require_at_most(
+        "warnings and limitations",
+        len(warning_limitations),
+        limits.warnings_and_limitations,
+    )
+    require_at_most(
+        "warning and limitation bytes",
+        len(json.dumps(warning_limitations, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")),
+        limits.warnings_and_limitations_bytes,
+    )
 
 
 def _verify_dependency_lock(path: Path, expected_sha256: str) -> None:
@@ -335,22 +351,6 @@ def _verify_runtime_and_installed_dependencies() -> None:
             raise InvocationError(f"required installed dependency missing: {name}") from error
         if actual != expected[0]:
             raise InvocationError(f"installed dependency version mismatch for {name}")
-    require_at_most("diagnostics", len(diagnostics), limits.diagnostics)
-    require_at_most(
-        "diagnostic bytes",
-        len(json.dumps(diagnostics, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")),
-        limits.diagnostic_bytes,
-    )
-    require_at_most(
-        "warnings and limitations",
-        len(warning_limitations),
-        limits.warnings_and_limitations,
-    )
-    require_at_most(
-        "warning and limitation bytes",
-        len(json.dumps(warning_limitations, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")),
-        limits.warnings_and_limitations_bytes,
-    )
 
 
 def run_candidate(input_root: Path, output_root: Path, invocation_relative: str) -> dict[str, Any]:
