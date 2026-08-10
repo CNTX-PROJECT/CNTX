@@ -121,9 +121,35 @@ evaluator, validator, resolver, runner, graph engine, workflow, CI, release,
 publication, support, certification, hosting, or deployment. Package D and E
 remain unauthorized and separately governed.
 
+### Current Package D candidate
+
+[ARCH-037](docs/architecture/concrete-tool-implementation-contract.md) and
+[ADR-0037](docs/architecture/adr/0037-concrete-tool-implementation-contract.md)
+are **Proposed** under issue #120 and attributable EIGENAAR / Final Authority
+issue-contract acceptance comment `5243736163`. The documentation-only
+candidate proposes one Tool Identity and Version `1.0.0`, plus one separate
+Python/`jsonschema` Implementation Identity and Version `1.0.0`.
+
+Its exact supported set covers the ten Accepted Schema Resources, nine direct
+and one operation-based Test Manifest, exact `203/38/165` inventory, Package
+A/B/C definitions and representations, and all thirteen Accepted integrity
+rules. It also fixes proposed capability and non-capability boundaries, runtime
+and dependency versions, configuration/environment responsibilities, bounded
+logical input/output/diagnostic/evidence interfaces, deterministic ordering,
+fail-closed processing, resource and security/privacy limits, no aggregate
+result, and `automaticAuthority: false`.
+
+The candidate installs and executes nothing. It creates no executable schema,
+record instance, evaluator, validator, resolver, runner, code, library, SDK,
+CLI, API, workflow, CI, release, publication, support, certification, hosting,
+or deployment. All proposed identities, versions, pins, capabilities, and
+interfaces remain inactive until a later exact-head attributable acceptance
+and governed integration. Package E remains unauthorized and separately
+governed.
+
 ## Detailed project status and roadmap
 
-CNTX has completed its initial Public-Core specification and prerelease cycle within the Accepted ARCH-027 completion and maintenance boundary. The current public baseline additionally includes the [Accepted Extension Module and Profile architecture through ARCH-033](docs/architecture/README.md). The repository provides public governance, thirty-three Accepted architecture sources and ADRs, nine Accepted artifact contracts, ten Accepted Schema Versions 1.0.0 with synthetic cases, and one immutable unsupported prerelease, 0.1.0-prealpha.1. CNTX remains model-, vendor-, runtime-, and domain-agnostic and provides no concrete tool, implementation, validator, resolver, runner, SDK, library, API, CLI, workflow, runtime, product, supported release line, support service, certification, hosting, or deployment.
+CNTX has completed its initial Public-Core specification and prerelease cycle within the Accepted ARCH-027 completion and maintenance boundary. The current public baseline additionally includes the [Accepted architecture through ARCH-036](docs/architecture/README.md). The repository provides public governance, thirty-six Accepted architecture sources and ADRs, nine Accepted artifact contracts, ten Accepted Schema Versions 1.0.0 with synthetic cases, and one immutable unsupported prerelease, 0.1.0-prealpha.1. CNTX remains model-, vendor-, runtime-, and domain-agnostic and provides no accepted concrete tool, implementation, validator, resolver, runner, SDK, library, API, CLI, workflow, runtime, product, supported release line, support service, certification, hosting, or deployment.
 
 The [artifact-contract index](docs/contracts/README.md) includes nine accepted, binding subordinate artifact-specific contracts: Project Charter, Workstream, Task Contract, Context Packet, Execution Result, Evidence Bundle, Review Record, Decision Record, and State Snapshot. None introduces an executable schema, template, validator, state engine, synchronization engine, workflow, runtime, or product functionality. No canonical artifact contract remains listed as future work; the accepted status does not authorize a follow-on phase. CNTX remains a public core that is model-, vendor-, runtime-, and domain-agnostic and remains independent of private reference implementations.
 
