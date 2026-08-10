@@ -447,6 +447,30 @@ Tool, Implementation, dependency, validator, resolver, runner, graph engine,
 workflow, CI, release, publication, support, certification, hosting,
 deployment, merge permission, or authority for Package D or E.
 
+The [CNTX Concrete Validation and Integrity Tool and Implementation
+Contract](concrete-tool-implementation-contract.md) and
+[ADR-0037](adr/0037-concrete-tool-implementation-contract.md) are
+**Accepted** as ARCH-037 under issue #120, attributable EIGENAAR / Final
+Authority issue-contract acceptance comment `5243736163`, and exact-head
+acceptance comment `5243941231`. The documentation-only Package D decision
+defines one Tool Identity and initial Tool Version
+`1.0.0`, one separate Python/`jsonschema` Implementation Identity and initial
+Implementation Version `1.0.0`, one exact supported specification set covering
+the ten Accepted Schema Resources, both historical manifest forms, exact
+`203/38/165` inventory, Package A/B/C definitions and representations, and the
+thirteen Accepted integrity rules. It also defines explicit capabilities and
+non-capabilities, exact runtime/dependency pins, closed configuration and
+environment responsibilities, bounded logical input/output/diagnostic/evidence
+interfaces, deterministic ordering, fail-closed processing, resource and
+security/privacy limits, no aggregate result, and `automaticAuthority: false`.
+Acceptance and integration allocate and activate only the exact Tool and
+Implementation identity/version pairs, supported set, capabilities, pins,
+interfaces, and boundaries defined by the decision. They create no dependency
+installation, executable schema, instance, evaluator, validator, resolver,
+runner, code, library, SDK, CLI, API, workflow, CI, release, publication,
+support, certification, hosting, deployment, merge permission, or authority
+for Package E.
+
 ## Document status
 
 - **Proposed** — submitted for review and not yet an accepted repository decision.
