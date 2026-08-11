@@ -2,28 +2,32 @@
 
 ## Status and authority
 
-**Document Status:** Proposed.
+**Document Status:** Accepted.
 
-This document is a Proposed, documentation-only Profile Definition governed by
+This document is an Accepted, documentation-only Profile Definition governed by
 [issue #130](https://github.com/CNTX-PROJECT/CNTX/issues/130) and recorded by
 [ADR-0039](adr/0039-context-packet-epistemic-provenance-freshness-profile-definition.md).
 Attributable EIGENAAR / Final Authority issue-contract acceptance is recorded
 in issue comment
 [5254030218](https://github.com/CNTX-PROJECT/CNTX/issues/130#issuecomment-5254030218).
+Exact-head EIGENAAR / Final Authority acceptance is recorded in issue comment
+[5255793839](https://github.com/CNTX-PROJECT/CNTX/issues/130#issuecomment-5255793839)
+on candidate commit `4e0af44a238713f41692ce864b9f3616ff39c4c9` and tree
+`927ca72b1f692a045f1746ba800e699d9ee14576`.
 
-Issue-contract acceptance, candidate preparation, branch or repository
-presence, static validation, review, mergeability, URL availability, and a
-future Ready-for-review state do not accept this candidate, integrate it,
+Issue-contract acceptance, candidate preparation, status promotion, branch or
+repository presence, static validation, review, mergeability, URL availability,
+and Ready-for-review state do not by themselves integrate this Definition,
 allocate its Profile Definition Identifier, activate its initial Profile
 Definition Version, create a Profile instance, or grant consequential
-authority. Exact-head attributable EIGENAAR / Final Authority acceptance and
-separately governed integration are both required for those Definition
-allocation and activation effects.
+authority. Exact-head attributable EIGENAAR / Final Authority acceptance has
+occurred. Separately governed integration to `main` remains required for the
+Definition allocation and activation effects.
 
 ## Purpose and decision boundary
 
 CNTX has an Accepted Context Packet Contract Definition and an Accepted
-Epistemic Provenance and Freshness Extension Module Definition. This Proposed
+Epistemic Provenance and Freshness Extension Module Definition. This Accepted
 Profile Definition selects and narrows only capabilities already present in
 those two exact Accepted subjects for the bounded preparation and assessment of
 one Context Packet under one exact approved Task Contract revision.
@@ -40,9 +44,9 @@ Resource, policy instance, rule, testcase, validator, tool, implementation,
 execution, evidence instance, release, publication, support, certification,
 hosting, or deployment.
 
-## Exact proposal basis
+## Exact acceptance basis
 
-This proposal is prepared on exact public baseline commit
+This Definition was prepared on exact public baseline commit
 `affa8d154cdfd5da1f83c9f90f3b2518439bb9bf` and tree
 `e89dabd2a99a072ec25e6b8b793948b68a034189`.
 
@@ -72,27 +76,30 @@ Its controlling Accepted basis includes:
 
 ## Definition subject
 
-| Dimension | Exact Proposed value |
+| Dimension | Exact Accepted value |
 | --- | --- |
 | Definition category | CNTX Profile Definition |
 | Local name | `context-packet-epistemic-provenance-freshness` |
 | Profile Definition Identifier | `https://github.com/CNTX-PROJECT/CNTX/profile-definitions/context-packet-epistemic-provenance-freshness` |
-| Proposed initial Profile Definition Version | `1.0.0` |
-| Lifecycle status | Proposed |
+| Initial Profile Definition Version | `1.0.0` |
+| Lifecycle status | Accepted |
 
 The Identifier is an opaque, version-independent logical identifier. It grants
 no dereferencing, discovery, retrieval, redirect, registry, catalog, network,
 trust, support, or authority semantics. Profile Definition Version is a
 separate exact pin.
 
-Proposed status consumes no version. Candidate preparation, repository
-presence, path, filename, review, Ready-for-review, mergeability,
-implementation recognition, or product use allocates or activates nothing.
-No other Profile identity or version is created or reserved.
+The preceding Proposed status consumed no version. Candidate preparation,
+status promotion, repository presence, path, filename, review,
+Ready-for-review, mergeability, implementation recognition, or product use do
+not by themselves allocate or activate anything. Exact-head acceptance plus
+separately governed integration to `main` allocates and activates only the exact
+Identifier and Version above. No other Profile identity or version is created
+or reserved.
 
 ## Exact Profile Subjects
 
-This Proposed Profile has exactly two Profile Subjects:
+This Accepted Profile has exactly two Profile Subjects:
 
 1. Context Packet Contract Definition Identifier
    `https://github.com/CNTX-PROJECT/CNTX/contract-definitions/context-packet`,
@@ -114,7 +121,7 @@ context and cannot be substituted silently.
 ## Normative language
 
 The key words **MUST**, **MUST NOT**, **SHOULD**, **SHOULD NOT**, and **MAY**
-express requirement strength inside this Proposed Definition. They create no
+express requirement strength inside this Accepted Definition. They create no
 representation, processor, implementation, execution permission, acceptance,
 or consequential authority.
 
@@ -318,7 +325,7 @@ selection, fallback, substitution, repair, or silent downgrade.
 
 ## Representation, schema, rule, and implementation boundary
 
-This Proposed Definition creates no:
+This Accepted Definition creates no:
 
 - JSON property, value, enum, object shape, payload, declaration syntax, media
   type, Serialization Binding, package, bundle, or Governing Definition
@@ -387,14 +394,15 @@ Implementation capabilities, evidence, and operating context. No compatibility
 range, backward-compatibility promise, support window, maintenance promise, or
 automatic migration is created here.
 
-If later Accepted and integrated, the exact Identifier and Version above would
-become an immutable Accepted Definition subject. Correction, withdrawal,
+When separately governed integration to `main` occurs, exact-head acceptance
+and integration together allocate and activate the exact Identifier and Version
+above as an immutable Accepted Definition subject. Correction, withdrawal,
 deprecation, supersession, replacement, or a later Version requires separate
 governance and must preserve historical provenance.
 
 ## Consequences and limitations
 
-Positive consequences of this proposal are:
+Positive consequences of this Definition are:
 
 - Context Packet material sources receive explicit bounded roles and exact
   categories;
@@ -425,11 +433,11 @@ Costs and limitations are:
 - model recollection may be stale, incomplete, or wrong;
 - non-independent preparation and review provide no independent assurance; and
 - no representation, schema, policy, rule, implementation, adversarial
-  execution, or evidence instance exists for this proposed Profile.
+  execution, or evidence instance exists for this Accepted Profile.
 
 ## Protected predecessors and historical integrity
 
-This proposal changes no Accepted architecture, ADR, contract, Definition,
+This acceptance changes no preceding Accepted architecture, ADR, contract, Definition,
 Representation, Schema Resource, schema, testcase, expected-validity result,
 binding, rule, Tool/Implementation identity or version, evidence, release,
 setting, tag, limitation, adverse/restricted condition, or historical authority
@@ -441,12 +449,12 @@ immutable prerelease and GitHub Release unchanged.
 
 ## Explicit non-decisions and non-execution
 
-This Proposed Definition makes no Profile instance, concrete representation,
+This Accepted Definition makes no Profile instance, concrete representation,
 schema, Schema Resource, testcase, rule, policy instance, Tool/Implementation
 Version, dependency, Python, code, runner, execution, evidence instance,
 workflow, CI, setting change, release, tag, GitHub Release, publication,
-distribution, support, certification, hosting, deployment, acceptance,
-status promotion, merge, issue closure, branch cleanup, or follow-on decision.
+distribution, support, certification, hosting, deployment, merge, issue
+closure, branch cleanup, or follow-on decision.
 
 It performs no source access, retrieval, network operation, policy evaluation,
 digest verification, clock verification, transformation, validation, testing,
@@ -454,18 +462,21 @@ evidence production, release action, or deployment.
 
 ## Final-human authority and stopgate
 
-`automaticAuthority: false` remains fixed. This candidate is Proposed only.
-Issue acceptance, preparation, static validation, transparent non-independent
-ARCHITECT review, repository presence, mergeability, and a future Ready state
-do not grant acceptance or integration authority.
+`automaticAuthority: false` remains fixed. Exact-head EIGENAAR / Final
+Authority acceptance comment `5255793839` accepts candidate commit
+`4e0af44a238713f41692ce864b9f3616ff39c4c9` and tree
+`927ca72b1f692a045f1746ba800e699d9ee14576`. This status promotion records the
+Accepted lifecycle. Preparation, status promotion, static validation,
+transparent non-independent ARCHITECT review, branch or repository presence,
+mergeability, and Ready state do not by themselves grant integration authority.
 
-Work stops after candidate publication, review, and verification at a new
-attributable EIGENAAR / Final Authority gate bound to the exact candidate
-commit and tree. Status promotion, Ready-for-review, merge, Identifier/Version
-allocation or activation, issue closure, branch cleanup, representation,
-schema, policy, rule, tooling, implementation, execution, evidence, release,
-publication, support, certification, hosting, deployment, and every later
-phase require separate express authority.
+Work stops after status promotion, publication, review, and verification at a
+new attributable EIGENAAR / Final Authority integration gate bound to the exact
+promotion commit and tree. Merge, Identifier/Version allocation or activation,
+issue closure, branch cleanup, representation, schema, policy, rule, tooling,
+implementation, execution, evidence, release, publication, support,
+certification, hosting, deployment, and every later phase require separate
+express authority.
 
 ## References
 

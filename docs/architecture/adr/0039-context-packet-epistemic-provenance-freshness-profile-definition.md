@@ -1,10 +1,12 @@
 # ADR-0039: CNTX Context Packet Epistemic Provenance and Freshness Profile Definition
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-08-11
 - **Issue:** [#130](https://github.com/CNTX-PROJECT/CNTX/issues/130)
 - **Issue-contract acceptance comment:** [5254030218](https://github.com/CNTX-PROJECT/CNTX/issues/130#issuecomment-5254030218)
-- **Decision candidate:** ARCH-039 — CNTX Context Packet Epistemic Provenance
+- **Exact-head acceptance comment:** [5255793839](https://github.com/CNTX-PROJECT/CNTX/issues/130#issuecomment-5255793839)
+- **Accepted candidate:** commit `4e0af44a238713f41692ce864b9f3616ff39c4c9`, tree `927ca72b1f692a045f1746ba800e699d9ee14576`
+- **Decision:** ARCH-039 — CNTX Context Packet Epistemic Provenance
   and Freshness Profile Definition
 
 ## Context
@@ -24,33 +26,34 @@ override, or silently substitute a governing capability or Definition Version.
 
 No concrete Profile currently narrows the Accepted ARCH-038 capabilities for
 Context Packet source selection and freshness claims. The dependency-first
-Phase 4A2 candidate is therefore one documentation-only Profile Definition.
+Phase 4A2 decision is therefore one documentation-only Profile Definition.
 It creates no representation, schema, policy instance, rule, tooling,
 implementation, execution, or evidence.
 
-## Proposed decision
+## Decision
 
-Propose exactly one member of the CNTX Profile Definition Family:
+Accept exactly one member of the CNTX Profile Definition Family:
 
 - local name: `context-packet-epistemic-provenance-freshness`;
 - Profile Definition Identifier:
   `https://github.com/CNTX-PROJECT/CNTX/profile-definitions/context-packet-epistemic-provenance-freshness`;
-- proposed initial Profile Definition Version: `1.0.0`;
+- initial Profile Definition Version: `1.0.0`;
 - category: Profile Definition only; and
-- lifecycle status: Proposed.
+- lifecycle status: Accepted.
 
 The Identifier is opaque and version independent. Version remains a separate
-exact pin. Proposed status, issue acceptance, candidate preparation, branch or
-repository presence, validation, review, Ready-for-review, mergeability, URL
-availability, implementation recognition, or product use allocates or
-activates nothing. Exact-head attributable acceptance plus separately governed
-integration would be required to allocate and activate this exact Identifier
-and Version. No Profile instance or other identity/version is created or
-reserved.
+exact pin. The preceding Proposed status consumed no version. Issue acceptance,
+candidate preparation, status promotion, branch or repository presence,
+validation, review, Ready-for-review, mergeability, URL availability,
+implementation recognition, or product use do not by themselves allocate or
+activate anything. Exact-head attributable acceptance has occurred; separately
+governed integration to `main` remains required to allocate and activate this
+exact Identifier and Version. No Profile instance or other identity/version is
+created or reserved.
 
 ### Exact Profile Subjects
 
-Propose exactly these two Profile Subjects:
+Accept exactly these two Profile Subjects:
 
 1. Context Packet Contract Definition Identifier
    `https://github.com/CNTX-PROJECT/CNTX/contract-definitions/context-packet`,
@@ -235,13 +238,12 @@ every historical authority record unchanged.
 
 ## Non-decisions and non-execution
 
-This Proposed ADR creates no Profile instance, property, representation,
+This Accepted ADR creates no Profile instance, property, representation,
 schema, Schema Resource, testcase, rule, policy instance,
 Tool/Implementation Version, dependency, Python, code, runner, execution,
 evidence instance, workflow, CI, setting change, release, tag, GitHub Release,
-publication, distribution, support, certification, hosting, deployment,
-acceptance, status promotion, Ready transition, merge, issue closure, branch
-cleanup, or follow-on authority.
+publication, distribution, support, certification, hosting, deployment, merge,
+issue closure, branch cleanup, or follow-on authority.
 
 It performs no retrieval, network access, policy evaluation, digest
 verification, clock verification, transformation, validation, testing,
@@ -249,15 +251,19 @@ evidence production, release action, or deployment.
 
 ## Authority boundary
 
-This ADR and ARCH-039 remain Proposed. Issue-contract acceptance comment
-`5254030218`, candidate preparation, repository presence, static validation,
-mergeability, transparent non-independent ARCHITECT review, technical access,
-and implementation recognition do not grant acceptance, integration,
-Identifier allocation, Version activation, or consequential authority.
+This ADR and ARCH-039 are Accepted through exact-head EIGENAAR / Final
+Authority acceptance comment `5255793839` on candidate commit
+`4e0af44a238713f41692ce864b9f3616ff39c4c9` and tree
+`927ca72b1f692a045f1746ba800e699d9ee14576`. Issue-contract acceptance,
+candidate preparation, status promotion, repository presence, static
+validation, mergeability, transparent non-independent ARCHITECT review,
+technical access, and implementation recognition do not by themselves grant
+integration, Identifier allocation, Version activation, or consequential
+authority.
 
-Work stops at a new attributable EIGENAAR / Final Authority gate bound to the
-exact reviewed candidate commit and tree. Status promotion, Ready-for-review,
-merge, integration, issue closure, branch cleanup, and every representation,
-schema, policy, rule, implementation, execution, evidence, release,
-publication, support, certification, hosting, deployment, or later phase
-requires separate express authority.
+Work stops at a new attributable EIGENAAR / Final Authority integration gate
+bound to the exact reviewed promotion commit and tree. Merge, integration,
+issue closure, branch cleanup, and every representation, schema, policy, rule,
+implementation, execution, evidence, release, publication, support,
+certification, hosting, deployment, or later phase requires separate express
+authority.
