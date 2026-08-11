@@ -11,10 +11,13 @@ CNTX is pre-alpha and unsupported. One immutable GitHub prerelease,
 
 ### Fixed
 
+- Corrected the public ARCH-039 lifecycle text to record its completed governed integration, Identifier/Version activation, issue completion, synchronization, and branch cleanup while preserving every Profile, representation, schema, rule, implementation, evidence, and final-human-authority boundary.
+- Corrected the homepage architecture count from 37 to 39, replaced the stale pre-Phase-4 roadmap state, and removed unused SVG canvas so the visible CNTX logo is optically centered.
 - Updated the public current-state description, repaired the damaged ARCH-027 sentence, and corrected the changelog release wording; no Accepted architecture, contract, schema, test, assessment, remediation, release, verification, maintenance, or Extension Module/Profile semantics changed.
 
 ### Changed
 
+- Reorganized the homepage, roadmap, and architecture index into calm visitor-first summaries with explicit technical depth layers; preserved the complete public baseline history and made no code, schema, test, runner, dependency, execution, evidence, release, or deployment change.
 - Replaced the long project homepage with a concise, newcomer-focused overview; preserved the complete detailed baseline history in a dedicated `ROADMAP.md` navigation tab; and added an original theme-aware CNTX visual identity, explanatory diagrams, descriptive labels, and brand guidance without changing any Accepted architecture, governance, contract, schema, test, release, maintenance, or Extension Module/Profile semantics.
 
 ### Added

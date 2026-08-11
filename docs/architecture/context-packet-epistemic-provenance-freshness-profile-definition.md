@@ -14,6 +14,12 @@ Exact-head EIGENAAR / Final Authority acceptance is recorded in issue comment
 [5255793839](https://github.com/CNTX-PROJECT/CNTX/issues/130#issuecomment-5255793839)
 on candidate commit `4e0af44a238713f41692ce864b9f3616ff39c4c9` and tree
 `927ca72b1f692a045f1746ba800e699d9ee14576`.
+Separately governed integration authority is recorded in issue comment
+[5256737005](https://github.com/CNTX-PROJECT/CNTX/issues/130#issuecomment-5256737005).
+PR [#131](https://github.com/CNTX-PROJECT/CNTX/pull/131) integrated the
+Accepted Definition into `main` at commit
+`ebd81d819b91e46a1828ed2180e059ee4e32e958` and tree
+`c4730c7b59e13073e3e3b011a109e2220df7c49e`; issue #130 is completed.
 
 Issue-contract acceptance, candidate preparation, status promotion, branch or
 repository presence, static validation, review, mergeability, URL availability,
@@ -21,8 +27,10 @@ and Ready-for-review state do not by themselves integrate this Definition,
 allocate its Profile Definition Identifier, activate its initial Profile
 Definition Version, create a Profile instance, or grant consequential
 authority. Exact-head attributable EIGENAAR / Final Authority acceptance has
-occurred. Separately governed integration to `main` remains required for the
-Definition allocation and activation effects.
+occurred, and the later separately governed integration to `main` has also
+occurred. Together they allocate and activate only the exact Profile Definition
+Identifier and Version stated here. They create no Profile instance or other
+identity or version.
 
 ## Purpose and decision boundary
 
@@ -394,9 +402,9 @@ Implementation capabilities, evidence, and operating context. No compatibility
 range, backward-compatibility promise, support window, maintenance promise, or
 automatic migration is created here.
 
-When separately governed integration to `main` occurs, exact-head acceptance
-and integration together allocate and activate the exact Identifier and Version
-above as an immutable Accepted Definition subject. Correction, withdrawal,
+Exact-head acceptance and the completed separately governed integration to
+`main` together allocate and activate the exact Identifier and Version above as
+an immutable Accepted Definition subject. Correction, withdrawal,
 deprecation, supersession, replacement, or a later Version requires separate
 governance and must preserve historical provenance.
 
@@ -460,7 +468,7 @@ It performs no source access, retrieval, network operation, policy evaluation,
 digest verification, clock verification, transformation, validation, testing,
 evidence production, release action, or deployment.
 
-## Final-human authority and stopgate
+## Final-human authority and integrated state
 
 `automaticAuthority: false` remains fixed. Exact-head EIGENAAR / Final
 Authority acceptance comment `5255793839` accepts candidate commit
@@ -470,13 +478,16 @@ Accepted lifecycle. Preparation, status promotion, static validation,
 transparent non-independent ARCHITECT review, branch or repository presence,
 mergeability, and Ready state do not by themselves grant integration authority.
 
-Work stops after status promotion, publication, review, and verification at a
-new attributable EIGENAAR / Final Authority integration gate bound to the exact
-promotion commit and tree. Merge, Identifier/Version allocation or activation,
-issue closure, branch cleanup, representation, schema, policy, rule, tooling,
-implementation, execution, evidence, release, publication, support,
-certification, hosting, deployment, and every later phase require separate
-express authority.
+That separate integration authority was later recorded in comment `5256737005`.
+PR #131 was squash-merged with expected-head protection; integrated `main`
+commit/tree is `ebd81d819b91e46a1828ed2180e059ee4e32e958` /
+`c4730c7b59e13073e3e3b011a109e2220df7c49e`. Integration, completion,
+synchronization, and task-branch cleanup are complete. These completed actions
+allocate and activate only the exact Accepted Definition Identifier and Version
+and grant no authority for a Profile instance, representation, schema, policy,
+rule, tooling, implementation, execution, evidence, release, publication,
+support, certification, hosting, deployment, or later phase. Each remains a
+separate future decision.
 
 ## References
 
