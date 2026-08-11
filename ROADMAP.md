@@ -1,4 +1,4 @@
-# CNTX roadmap and public baseline history
+# CNTX roadmap
 
 <p align="center">
   <a href="README.md">Overview</a> ·
@@ -9,46 +9,49 @@
   <a href="CONTRIBUTING.md">Contribute</a>
 </p>
 
-This page preserves the detailed public-baseline status and dependency-ordered
-roadmap that previously occupied the project homepage. It records history and
-future gates; no roadmap entry authorizes itself. For the short introduction,
-start at the [CNTX overview](README.md).
+This page answers three questions: what is integrated now, what decision comes
+next, and what remains later. The complete public baseline and decision history
+are preserved below in an expandable technical section.
 
-CNTX is an open-source framework for intelligent task delegation, context
-isolation, compact project and workstream state, and verifiable collaboration
-between people and specialized AI agents.
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/brand/cntx-roadmap-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/brand/cntx-roadmap-light.svg">
+  <img alt="CNTX roadmap: the public specification, bounded validation slice, and source and freshness Definitions are integrated; exact schema resources are the next governed technical decision; practical pilots follow only after further proof" src="docs/assets/brand/cntx-roadmap-light.svg">
+</picture>
 
-## Mission
+## Simple view
 
-Complex work needs clear boundaries: tasks should be decomposed, each participant should receive only the minimal context needed, and decisions should be supported by explicit contracts and evidence. CNTX exists to provide a public foundation for those practices while preserving human authority for approval and final decisions.
+| Horizon | State | Meaning |
+| --- | --- | --- |
+| **Now** | Integrated | 39 Accepted architecture decisions, 9 record contracts, 10 Core schemas, 203 synthetic cases, one bounded local validation/integrity slice, and the ARCH-038/ARCH-039 source-and-freshness Definitions |
+| **Next** | Separate decision required | Read-only reassessment for exact Definition Schema Resources, assertions, cases, and fixed expected results |
+| **Later** | Not started | Execution and task controls, multi-principal authority, temporary context, one real vertical slice, adapters, adversarial evaluation, and reassessment |
 
-CNTX is model-, vendor-, runtime-, and domain-agnostic. It does not prescribe a specific AI provider, execution environment, industry, or private implementation.
+`Integrated` does not mean finished, supported, certified, or ready to deploy.
+`Next` does not mean authorized. CNTX advances through exact evidence and
+separately governed decisions, not through a promised completion date.
 
-## Principles
+## Mission and principles
+
+CNTX is an open, model- and vendor-neutral specification for bounded context,
+traceable work, explicit evidence, and human-controlled consequential
+decisions. It does not prescribe a provider, runtime, industry, or private
+implementation.
 
 - Decompose work into small, explicit tasks.
-- Use minimal context and isolate context between workstreams.
-- State contracts, assumptions, evidence, approvals, and handoffs clearly.
-- Keep people in authority for consequential decisions and merges.
+- Give each participant only the context needed for that task.
+- Keep assumptions, evidence, review, decisions, and handoffs distinct.
+- Preserve human authority for consequential decisions and merges.
 - Treat security, privacy, and scope boundaries as first-class constraints.
 
-## Current execution path
-
-The specification foundation and the first bounded validation and integrity
-practice slices are complete. Source, Provenance and Freshness is the current
-technical phase. Its first documentation-only Extension Module Definition is
-Accepted and integrated. The dependency-first ARCH-039 Profile Definition for
-the exact Context Packet Contract Definition `1.0.0` and ARCH-038 Extension
-Module Definition `1.0.0` is Accepted; governed integration remains pending.
-It is not active, implemented, or authorized for use. Every later step remains
-separately governed.
+## Dependency-ordered technical path
 
 | Order | Milestone | Status | Practical outcome |
 | --- | --- | --- | --- |
 | 1 | Validation and integrity contracts | Complete | Exact rules, tool identity, implementation identity, inputs, outputs, limits, and evidence |
 | 2 | Local offline runner | Complete for the minimal slice | Reproducible execution of the 10 schemas and 203 synthetic cases |
 | 3 | Cross-record integrity | Complete for the bounded practice slice | Detect missing, duplicate, ambiguous, or conflicting links between supplied records |
-| 4 | Source, provenance and freshness controls | ARCH-038 Accepted and integrated; ARCH-039 Accepted, integration pending | Make source identity, revision, time, uncertainty, and unverifiable conditions more explicit |
+| 4 | Source, provenance and freshness controls | ARCH-038 and ARCH-039 Accepted and integrated; exact schema-resource reassessment is next | Make source identity, revision, time, uncertainty, and unverifiable conditions more explicit before any representation or execution |
 | 5 | Execution and task controls | Later | Record tool/model/skill identity and classify light, moderate, heavy, or complex work separately from risk |
 | 6 | Team authority and temporary context | Later | Support multiple principals, isolated task capsules, cleanup, and bounded archives |
 | 7 | One real vertical-slice test | Later | Run one small task from contract and context through evidence, review, decision candidate, and cleanup |
@@ -58,6 +61,13 @@ CNTX does not publish a completion timer for these milestones. Progress is
 measured by exact evidence and separately governed gates. A successful runner
 or pilot does not automatically prove broader conformance, acceptance, support,
 release fitness, or deployment fitness.
+
+<details>
+<summary><strong>Open the complete technical baseline and public project history</strong></summary>
+
+The sections below preserve the detailed decisions, identities, evidence,
+limitations, and dependency history. They are the depth layer behind the short
+roadmap above; they do not grant authority for their own next step.
 
 ### Current Package A decision
 
@@ -265,7 +275,7 @@ consequential authority is created.
 
 ## Detailed project status and roadmap
 
-CNTX has completed its initial Public-Core specification and prerelease cycle within the Accepted ARCH-027 completion and maintenance boundary. The repository records [Accepted architecture through ARCH-039](docs/architecture/README.md). It provides public governance, thirty-nine Accepted architecture sources and ADRs, nine Accepted artifact contracts, ten Accepted Schema Versions 1.0.0 with synthetic cases, one integrated minimal validation and integrity Tool/Implementation slice, and one immutable unsupported prerelease, 0.1.0-prealpha.1. CNTX remains model-, vendor-, runtime-, and domain-agnostic. ARCH-038 is integrated; exact-head acceptance and integration allocated and activated only its exact Definition Identifier and Version. ARCH-039 is Accepted, but governed integration remains pending and therefore its Identifier and Version are not yet allocated or activated. Neither the integrated slice nor either Accepted Definition creates a supported release line, support service, certification, hosting, deployment, workflow, CI, product, or final-human authority.
+CNTX has completed its initial Public-Core specification and prerelease cycle within the Accepted ARCH-027 completion and maintenance boundary. The repository records [Accepted architecture through ARCH-039](docs/architecture/README.md). It provides public governance, thirty-nine Accepted architecture sources and ADRs, nine Accepted artifact contracts, ten Accepted Schema Versions 1.0.0 with synthetic cases, one integrated minimal validation and integrity Tool/Implementation slice, and one immutable unsupported prerelease, 0.1.0-prealpha.1. CNTX remains model-, vendor-, runtime-, and domain-agnostic. ARCH-038 and ARCH-039 are integrated; for each, exact-head acceptance plus separately governed integration allocated and activated only its exact Definition Identifier and Version. Neither the integrated slice nor either Accepted Definition creates a supported release line, support service, certification, hosting, deployment, workflow, CI, product, or final-human authority.
 
 The [artifact-contract index](docs/contracts/README.md) includes nine accepted, binding subordinate artifact-specific contracts: Project Charter, Workstream, Task Contract, Context Packet, Execution Result, Evidence Bundle, Review Record, Decision Record, and State Snapshot. None introduces an executable schema, template, validator, state engine, synchronization engine, workflow, runtime, or product functionality. No canonical artifact contract remains listed as future work; the accepted status does not authorize a follow-on phase. CNTX remains a public core that is model-, vendor-, runtime-, and domain-agnostic and remains independent of private reference implementations.
 
@@ -838,6 +848,8 @@ support, certification, hosting, deployment, merge permission, or follow-on
 authority is created.
 
 The high-level roadmap is to define public concepts and documentation, invite review under the project governance, and only then consider scoped, approved implementation work. Private reference implementations may exist later outside this public repository.
+
+</details>
 
 ## Participate
 

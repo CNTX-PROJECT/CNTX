@@ -6,6 +6,8 @@
 - **Issue-contract acceptance comment:** [5254030218](https://github.com/CNTX-PROJECT/CNTX/issues/130#issuecomment-5254030218)
 - **Exact-head acceptance comment:** [5255793839](https://github.com/CNTX-PROJECT/CNTX/issues/130#issuecomment-5255793839)
 - **Accepted candidate:** commit `4e0af44a238713f41692ce864b9f3616ff39c4c9`, tree `927ca72b1f692a045f1746ba800e699d9ee14576`
+- **Integration authority comment:** [5256737005](https://github.com/CNTX-PROJECT/CNTX/issues/130#issuecomment-5256737005)
+- **Integrated main:** commit `ebd81d819b91e46a1828ed2180e059ee4e32e958`, tree `c4730c7b59e13073e3e3b011a109e2220df7c49e`
 - **Decision:** ARCH-039 — CNTX Context Packet Epistemic Provenance
   and Freshness Profile Definition
 
@@ -46,10 +48,10 @@ exact pin. The preceding Proposed status consumed no version. Issue acceptance,
 candidate preparation, status promotion, branch or repository presence,
 validation, review, Ready-for-review, mergeability, URL availability,
 implementation recognition, or product use do not by themselves allocate or
-activate anything. Exact-head attributable acceptance has occurred; separately
-governed integration to `main` remains required to allocate and activate this
-exact Identifier and Version. No Profile instance or other identity/version is
-created or reserved.
+activate anything. Exact-head attributable acceptance occurred, followed by
+separately governed integration to `main`. Together they allocate and activate
+only this exact Identifier and Version. No Profile instance or other
+identity/version is created or reserved.
 
 ### Exact Profile Subjects
 
@@ -261,9 +263,13 @@ technical access, and implementation recognition do not by themselves grant
 integration, Identifier allocation, Version activation, or consequential
 authority.
 
-Work stops at a new attributable EIGENAAR / Final Authority integration gate
-bound to the exact reviewed promotion commit and tree. Merge, integration,
-issue closure, branch cleanup, and every representation, schema, policy, rule,
-implementation, execution, evidence, release, publication, support,
-certification, hosting, deployment, or later phase requires separate express
-authority.
+That separate integration authority was later recorded in comment `5256737005`.
+PR #131 was squash-merged with expected-head protection into `main` commit/tree
+`ebd81d819b91e46a1828ed2180e059ee4e32e958` /
+`c4730c7b59e13073e3e3b011a109e2220df7c49e`; issue #130 was closed as
+completed, and synchronization and task-branch cleanup followed proven tree
+equality. Those completed actions allocate and activate only the exact Accepted
+Definition Identifier and Version. Every Profile instance, representation,
+schema, policy, rule, implementation, execution, evidence, release,
+publication, support, certification, hosting, deployment, or later phase still
+requires separate express authority.

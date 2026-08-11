@@ -1,6 +1,39 @@
 # CNTX Architecture
 
-## Reading guide
+## Start here
+
+CNTX architecture explains the boundaries behind its records, schemas,
+validation, extensions, evidence, and human authority. The current public
+baseline contains **39 Accepted architecture decisions and 39 matching ADRs**.
+
+| If you need… | Open… |
+| --- | --- |
+| The central CNTX boundary | [Core architecture contract](core-contract.md) and [ADR-0001](adr/0001-public-core-boundaries.md) |
+| The nine collaboration records | [Artifact-contract index](../contracts/README.md) |
+| Machine-readable Core structure | [Schema index](../../schemas/README.md) |
+| The bounded executable practice slice | [Validation and integrity slice](../../tools/minimal-validation-integrity-slice/README.md) |
+| The source/provenance/freshness layer | [ARCH-038](epistemic-provenance-freshness-extension-module-definition.md) and [ARCH-039](context-packet-epistemic-provenance-freshness-profile-definition.md) |
+| Current and future order | [Roadmap](../../ROADMAP.md) |
+
+## Architecture map
+
+| Decisions | Subject | Current result |
+| --- | --- | --- |
+| ARCH-001–011 | Core boundaries, contract identity, envelope, schema families | Accepted foundation |
+| ARCH-012–020 | Executable schemas for the nine record types | 10 Accepted Core Schema Resources in total |
+| ARCH-021–027 | Completion, binding, resolution, validation, evidence, release boundaries | Accepted public-core and prerelease lifecycle |
+| ARCH-028–033 | Extension Module/Profile identity, composition, resources, validation, tooling | Accepted extension architecture |
+| ARCH-034–037 | Validation records, evidence package, integrity rules, Tool/Implementation contract | Accepted basis for the bounded local slice |
+| ARCH-038–039 | Epistemic provenance and freshness Module/Profile Definitions | Accepted and integrated; no representation, schema, rule, implementation, or evidence instance |
+
+Architecture documents state conceptual and normative boundaries. They do not
+by themselves install software, execute a tool, prove conformance, approve a
+result, or authorize a later phase.
+
+<details>
+<summary><strong>Open the complete Accepted architecture index</strong></summary>
+
+## Complete reading guide
 
 [The core architecture contract](core-contract.md) is the accepted normative conceptual architecture baseline for CNTX. It specifies public-core concepts and constraints, not an executable architecture. [ADR-0001](adr/0001-public-core-boundaries.md) records the accepted decision that establishes the public-core boundary. [The contract identity and versioning contract](contract-identity-versioning.md) and [ADR-0002](adr/0002-contract-identity-versioning.md) are accepted additions: ARCH-001 remains the accepted core baseline, ARCH-002 is an accepted extension of that baseline, and [the artifact-contract and schema-layering contract](artifact-contract-schema-architecture.md) and [ADR-0003](adr/0003-artifact-contract-schema-layering.md) are the accepted ARCH-003 extension of that baseline. [The Common Artifact Envelope schema boundary](common-artifact-envelope-schema-boundary.md) and [ADR-0004](adr/0004-common-artifact-envelope-schema-boundary.md) are the accepted ARCH-004 conceptual boundary for future common-envelope schema work; they do not alter existing artifact contracts or authorize executable schema work. [The Common Artifact Envelope representation boundary](common-artifact-envelope-representation-boundary.md) and [ADR-0005](adr/0005-common-artifact-envelope-representation-boundary.md) are the accepted ARCH-005 documentation-only refinement that identifies future representation obligations and decision order without selecting fields, schema technology, serialization, validation, or implementation. [The Common Artifact Envelope schema identity and initial version policy](common-artifact-envelope-schema-identity-version-policy.md) and [ADR-0006](adr/0006-common-artifact-envelope-schema-identity-version-policy.md) are the **Accepted**, documentation-only ARCH-006 allocation of one technology-neutral logical identity and the `1.0.0` initial accepted version target; they create no concrete Schema Identifier, executable schema, active Schema Version, schema-language choice, serialization, validation, runtime, or implementation. [The Common Artifact Envelope schema language and dialect](common-artifact-envelope-schema-language-dialect.md) and [ADR-0007](adr/0007-common-artifact-envelope-schema-language-dialect.md) are the **Accepted**, documentation-only ARCH-007 selection of JSON Schema Draft 2020-12 with its standard vocabulary profile; they create no executable schema, concrete `$id`, composition or packaging model, artifact Serialization Binding, validator, runtime, or implementation. [The Common Artifact Envelope schema composition and packaging](common-artifact-envelope-schema-composition-packaging.md) and [ADR-0008](adr/0008-common-artifact-envelope-schema-composition-packaging.md) are the **Accepted**, documentation-only ARCH-008 selection of one canonical root resource, internal `$defs`, static exact-version references, standalone canonical resources, derived identity-preserving bundles, and offline-first resolution; they create no executable schema, concrete `$id`, active Schema Version, artifact Serialization Binding, validator, runtime, or implementation. [The Common Artifact Envelope executable schema definition](common-artifact-envelope-executable-schema.md) and [ADR-0009](adr/0009-common-artifact-envelope-executable-schema.md) are the **Accepted** ARCH-009 binding of the one logical Common Artifact Envelope identity to JSON Schema Draft 2020-12 Schema Version `1.0.0`, with a closed six-property envelope, nine canonical Artifact Type tokens, coupled identity/version pins, optional provenance references, and optional digest evidence. Acceptance and schema validity do not define artifact-specific payload or relationships, select an artifact Serialization Binding, or provide authority, a validator, resolver, runtime, product, release, or deployment. The [`adr/`](adr/) directory is the location for architecture decision records. Accepted architecture governs the artifact-specific contracts listed in the [contract index](../contracts/README.md). CONTRACT-001, the Project Charter artifact contract, remains **Accepted** and is a binding, subordinate artifact-specific contract governed by ARCH-001, ARCH-002, and ARCH-003. CONTRACT-002, the Workstream artifact contract, remains **Accepted** and is a binding, subordinate artifact-specific contract governed by ARCH-001, ARCH-002, ARCH-003, and accepted CONTRACT-001. CONTRACT-003, the [Task Contract artifact contract](../contracts/task-contract-artifact-contract.md), is **Accepted**, binding, and subordinate, and is governed by ARCH-001, ARCH-002, ARCH-003, accepted CONTRACT-001, and accepted CONTRACT-002. It does not alter or redefine accepted architecture, Project Charter, or Workstream. Only a separately approved change to the applicable higher architecture documents can alter that architecture.
 
@@ -528,6 +561,8 @@ themselves integrate, allocate, or activate it. The Definition creates no Profil
 property, representation, schema, policy, rule, tool, implementation,
 execution, evidence instance, release, publication, support, certification,
 hosting, deployment, merge permission, or follow-on authority.
+
+</details>
 
 ## Document status
 

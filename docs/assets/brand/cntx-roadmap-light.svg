@@ -1,42 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" role="img" aria-labelledby="title desc">
-  <title id="title">CNTX roadmap pulse for light backgrounds</title>
-  <desc id="desc">The specification foundation and minimal validation and integrity slice are complete. Source, Provenance and Freshness is the next governed technical phase but is not started. Runtime pilots follow later. There is no promised completion date.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" role="img" aria-labelledby="title desc">
+  <title id="title">CNTX roadmap for light backgrounds</title>
+  <desc id="desc">Now: the public specification, bounded validation slice, and source and freshness Definitions are integrated. Next governed decision: exact Definition Schema Resources and cases. Later: practical pilots and adversarial evaluation. No target date is claimed.</desc>
   <defs>
     <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0l10 5-10 5z" fill="#7C3AED"/></marker>
   </defs>
-  <rect width="1200" height="300" rx="28" fill="#FAF9FC"/>
-  <text x="52" y="54" fill="#111018" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="28" font-weight="700">Roadmap pulse</text>
-  <text x="52" y="84" fill="#575260" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="16">Progress is evidence-based. Each new phase needs a separate governed decision.</text>
+  <rect width="1200" height="320" rx="28" fill="#FAF9FC"/>
+  <text x="52" y="52" fill="#111018" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="27" font-weight="700">Where CNTX is going</text>
+  <text x="52" y="82" fill="#575260" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="16">Evidence determines progress. A roadmap never authorizes its next step.</text>
   <g font-family="Inter,Segoe UI,Arial,sans-serif">
-    <g transform="translate(52 126)">
-      <rect width="242" height="116" rx="18" fill="#F1EAFE" stroke="#7C3AED" stroke-width="2"/>
-      <circle cx="28" cy="28" r="13" fill="#7C3AED"/>
-      <path d="M21 28l5 5 10-12" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-      <text x="50" y="34" fill="#5B21B6" font-size="13" font-weight="700">COMPLETE</text>
-      <text x="20" y="72" fill="#111018" font-size="19" font-weight="700">Specification foundation</text>
-      <text x="20" y="96" fill="#575260" font-size="14">Contracts, schemas and evidence</text>
+    <g transform="translate(52 116)">
+      <rect width="320" height="142" rx="20" fill="#F1EAFE" stroke="#7C3AED" stroke-width="3"/>
+      <circle cx="30" cy="29" r="13" fill="#7C3AED"/>
+      <path d="M23 29l5 5 10-12" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="52" y="35" fill="#5B21B6" font-size="13" font-weight="700">NOW · INTEGRATED</text>
+      <text x="22" y="76" fill="#111018" font-size="20" font-weight="700">Foundation + bounded slice</text>
+      <text x="22" y="103" fill="#575260" font-size="14">39 decisions · 203 cases · 13 rules</text>
+      <text x="22" y="126" fill="#575260" font-size="14">ARCH-038/039 Definitions accepted</text>
     </g>
-    <g transform="translate(322 116)">
-      <rect width="270" height="136" rx="20" fill="#FFFFFF" stroke="#7C3AED" stroke-width="4"/>
-      <rect x="18" y="16" width="116" height="25" rx="12.5" fill="#7C3AED"/>
-      <text x="76" y="33" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="700">COMPLETE</text>
-      <text x="20" y="76" fill="#111018" font-size="19" font-weight="700">Validation + integrity</text>
-      <text x="20" y="101" fill="#575260" font-size="14">Offline runner, 203 cases</text>
-      <text x="20" y="122" fill="#575260" font-size="14">and cross-record checks</text>
+    <g transform="translate(440 116)">
+      <rect width="320" height="142" rx="20" fill="#FFFFFF" stroke="#7C3AED" stroke-width="3"/>
+      <text x="22" y="35" fill="#5B21B6" font-size="13" font-weight="700">NEXT · SEPARATE GATE</text>
+      <text x="22" y="76" fill="#111018" font-size="20" font-weight="700">Exact schema resources</text>
+      <text x="22" y="103" fill="#575260" font-size="14">Assertions, cases and expected results</text>
+      <text x="22" y="126" fill="#575260" font-size="14">Not started or authorized by this image</text>
     </g>
-    <g transform="translate(620 126)">
-      <rect width="242" height="116" rx="18" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="2"/>
-      <text x="20" y="32" fill="#7C3AED" font-size="13" font-weight="700">NEXT GOVERNED</text>
-      <text x="20" y="68" fill="#111018" font-size="19" font-weight="700">Source + freshness</text>
-      <text x="20" y="92" fill="#575260" font-size="14">Provenance and time controls</text>
-    </g>
-    <g transform="translate(890 126)">
-      <rect width="258" height="116" rx="18" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="2" stroke-dasharray="8 7"/>
-      <text x="20" y="32" fill="#7C3AED" font-size="13" font-weight="700">AFTER PROOF</text>
-      <text x="20" y="68" fill="#111018" font-size="19" font-weight="700">Runtime pilots</text>
-      <text x="20" y="92" fill="#575260" font-size="14">Adapters and adversarial tests</text>
+    <g transform="translate(828 116)">
+      <rect width="320" height="142" rx="20" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="2" stroke-dasharray="8 7"/>
+      <text x="22" y="35" fill="#5B21B6" font-size="13" font-weight="700">LATER · AFTER PROOF</text>
+      <text x="22" y="76" fill="#111018" font-size="20" font-weight="700">Practical pilots</text>
+      <text x="22" y="103" fill="#575260" font-size="14">Real vertical slice and adapters</text>
+      <text x="22" y="126" fill="#575260" font-size="14">Adversarial tests and reassessment</text>
     </g>
   </g>
-  <g stroke="#7C3AED" stroke-width="3" marker-end="url(#arrow)"><path d="M294 184h20"/><path d="M592 184h20"/><path d="M862 184h20"/></g>
-  <text x="1148" y="278" text-anchor="end" fill="#575260" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13">No target date is claimed.</text>
+  <g stroke="#7C3AED" stroke-width="3" marker-end="url(#arrow)"><path d="M372 187h58"/><path d="M760 187h58"/></g>
+  <text x="1148" y="296" text-anchor="end" fill="#575260" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13">No target date or automatic authority.</text>
 </svg>
