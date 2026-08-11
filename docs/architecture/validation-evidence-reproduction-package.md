@@ -1,5 +1,31 @@
 # CNTX Validation Evidence and Reproduction Package Identity, Version, and JSON Representation (ARCH-035)
 
+## In ordinary language
+
+A validation result is easier to examine when its subjects, governing inputs,
+execution records, evidence, reproduction steps, outputs, diagnostics, and
+limitations travel together in one bounded package. This page defines that
+package without claiming that its contents are automatically true or complete.
+
+| Quick view | Meaning |
+| --- | --- |
+| **Status** | Accepted documentation-only architecture decision |
+| **Main question** | How can bounded validation evidence and reproduction information be packaged without becoming an approval or canonical artifact? |
+| **What this establishes** | Stable Definition and Representation identities, initial versions, a closed JSON package, local integrity, evidence and reproduction responsibilities, and explicit limits |
+| **What this does not do** | It creates no package instance, executes no procedure, proves no authenticity, sufficiency, reproducibility, conformance, certification, or authority |
+
+### Reading route
+
+- [Purpose and boundary](#purpose-and-decision-boundary)
+- [Identities and versions](#allocated-logical-identities-and-initial-versions)
+- [Package structure](#package-object)
+- [Evidence items](#evidenceitems-array)
+- [Reproduction procedures](#reproductionprocedures-array)
+- [Consequences and limitations](#consequences-and-limitations)
+
+This visitor layer is non-normative and introduces no new requirement. The
+complete Accepted text below remains controlling.
+
 ## Status and authority
 
 **Document Status:** Accepted.

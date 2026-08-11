@@ -1,5 +1,31 @@
 # CNTX Context Packet Epistemic Provenance and Freshness Profile Definition (ARCH-039)
 
+## In ordinary language
+
+ARCH-038 defines general provenance and freshness responsibilities. This
+Profile narrows those responsibilities to an exact Accepted Context Packet and
+Module Definition combination, so their use stays explicit, bounded, and
+fail-closed.
+
+| Quick view | Meaning |
+| --- | --- |
+| **Status** | Accepted and integrated Profile Definition `1.0.0` |
+| **Main question** | How are the ARCH-038 capabilities narrowed for Context Packets without changing Core meaning? |
+| **What this establishes** | One narrowing-only Profile Definition with two exact subjects, bounded Context Packet application, explicit activation and supply, conflict handling, and preserved Core sovereignty |
+| **What this does not do** | It creates no Profile instance, concrete property, representation, schema, policy, rule, Tool, execution, evidence instance, freshness proof, or automatic authority |
+
+### Reading route
+
+- [Purpose and boundary](#purpose-and-decision-boundary)
+- [Definition subject](#definition-subject)
+- [Exact Profile Subjects](#exact-profile-subjects)
+- [Bounded Context Packet application](#bounded-context-packet-application)
+- [Activation and conflict boundary](#activation-supply-and-conflict-boundary)
+- [Consequences and limitations](#consequences-and-limitations)
+
+This visitor layer is non-normative and introduces no new requirement. The
+complete Accepted text below remains controlling.
+
 ## Status and authority
 
 **Document Status:** Accepted.

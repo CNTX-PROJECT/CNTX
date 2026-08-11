@@ -18,6 +18,7 @@ CNTX is pre-alpha and unsupported. One immutable GitHub prerelease,
 
 ### Changed
 
+- Added concise, explicitly non-normative ordinary-language summaries and local reading routes to the central Core Architecture Contract and the Accepted ARCH-024 and ARCH-033 through ARCH-039 technical chain. Every pre-existing architecture byte and all status, identity, version, requirement, limitation, provenance, non-execution, non-release, and final-human-authority semantics remain unchanged.
 - Added concise visitor routes and content maps to the contracts, schemas, tools, assessments, remediation, release, governance, and contribution entry pages while preserving their complete technical and historical meaning.
 - Reorganized the homepage, roadmap, and architecture index into calm visitor-first summaries with explicit technical depth layers; preserved the complete public baseline history and made no code, schema, test, runner, dependency, execution, evidence, release, or deployment change.
 - Replaced the long project homepage with a concise, newcomer-focused overview; preserved the complete detailed baseline history in a dedicated `ROADMAP.md` navigation tab; and added an original theme-aware CNTX visual identity, explanatory diagrams, descriptive labels, and brand guidance without changing any Accepted architecture, governance, contract, schema, test, release, maintenance, or Extension Module/Profile semantics.

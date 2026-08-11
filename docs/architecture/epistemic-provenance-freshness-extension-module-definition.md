@@ -1,5 +1,31 @@
 # CNTX Epistemic Provenance and Freshness Extension Module Definition (ARCH-038)
 
+## In ordinary language
+
+A source name, timestamp, or digest alone does not prove that information is
+authentic, intact, current, applicable, or complete. This Definition separates
+the source, provenance, digest, time, policy, clock, derivation, condition, and
+evaluation responsibilities needed to reason about those questions explicitly.
+
+| Quick view | Meaning |
+| --- | --- |
+| **Status** | Accepted and integrated Extension Module Definition `1.0.0` |
+| **Main question** | Which separate responsibilities are needed to describe and evaluate epistemic provenance and freshness? |
+| **What this establishes** | One additive Module Definition with closed source categories, exact identity/revision, temporal and digest meaning, policy and clock pins, derivation, visible conditions, separate outcomes, and non-aggregation |
+| **What this does not do** | It creates no concrete property, representation, schema, policy instance, rule, Tool, execution, evidence instance, authenticity proof, freshness proof, or automatic authority |
+
+### Reading route
+
+- [Purpose and boundary](#purpose-and-decision-boundary)
+- [Definition subject](#definition-subject)
+- [Separate epistemic dimensions](#separate-epistemic-dimensions)
+- [Temporal coordinates](#separate-temporal-coordinates)
+- [Evaluation and non-aggregation](#evaluation-outcomes-and-non-aggregation)
+- [Consequences and limitations](#consequences-and-limitations)
+
+This visitor layer is non-normative and introduces no new requirement. The
+complete Accepted text below remains controlling.
+
 ## Status and authority
 
 **Document Status:** Accepted.

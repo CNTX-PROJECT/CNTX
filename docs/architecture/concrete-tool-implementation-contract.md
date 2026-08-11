@@ -1,5 +1,31 @@
 # CNTX Concrete Validation and Integrity Tool and Implementation Contract (ARCH-037)
 
+## In ordinary language
+
+This page specifies the exact responsibilities and limits of one minimal local
+validation and integrity Tool and one matching Implementation. It separates the
+accepted contract from installation, execution, evidence, support, release,
+certification, and deployment.
+
+| Quick view | Meaning |
+| --- | --- |
+| **Status** | Accepted documentation-only architecture decision |
+| **Main question** | What exact capabilities, inputs, outputs, dependencies, environment, and failure behavior must the minimal Tool and Implementation have? |
+| **What this establishes** | Tool and Implementation identities and versions, a frozen supported set, explicit capabilities and non-capabilities, deterministic processing, diagnostics, evidence, and resource boundaries |
+| **What this does not do** | It installs or executes nothing, creates no evidence instance or aggregate verdict, and grants no support, certification, release, hosting, or deployment authority |
+
+### Reading route
+
+- [Purpose and boundary](#purpose-and-decision-boundary)
+- [Identities and versions](#allocated-identities-and-initial-versions)
+- [Capabilities](#tool-capability-profile)
+- [Implementation contract](#implementation-contract)
+- [Processing sequence](#processing-sequence-and-deterministic-ordering)
+- [Non-execution and stopgate](#explicit-non-decisions-and-non-execution)
+
+This visitor layer is non-normative and introduces no new requirement. The
+complete Accepted text below remains controlling.
+
 ## Status and authority
 
 **Document Status:** Accepted.
