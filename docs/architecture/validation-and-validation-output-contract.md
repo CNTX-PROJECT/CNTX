@@ -1,5 +1,31 @@
 # CNTX Validation and Validation Output Contract (ARCH-024)
 
+## In ordinary language
+
+Validation is only meaningful when its subject, rules, versions, environment,
+outcomes, failures, and limitations stay visible. This decision defines how
+CNTX keeps those parts separate and reproducible without turning them into one
+automatic verdict.
+
+| Quick view | Meaning |
+| --- | --- |
+| **Status** | Accepted documentation-only architecture decision |
+| **Main question** | What must a bounded validation process and its output make explicit? |
+| **What this establishes** | A frozen validation context, separate dimensions and phases, four outcome categories, fail-closed behavior, and output responsibilities |
+| **What this does not do** | It creates no validator, executable schema, universal pass/fail, conformance proof, or consequential authority |
+
+### Reading route
+
+- [Purpose and boundary](#purpose-and-decision-boundary)
+- [Frozen validation context](#frozen-validation-context)
+- [Phases and dependencies](#logical-validation-phases-and-dependencies)
+- [Outcomes and claims](#outcome-aggregation-and-claims)
+- [Fail-closed behavior](#fail-closed-behavior)
+- [Consequences](#consequences)
+
+This visitor layer is non-normative and introduces no new requirement. The
+complete Accepted text below remains controlling.
+
 ## Status and authority
 
 **Document Status:** Accepted.

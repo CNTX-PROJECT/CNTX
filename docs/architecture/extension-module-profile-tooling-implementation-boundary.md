@@ -1,5 +1,31 @@
 # CNTX Extension Module and Profile Tooling and Implementation Boundary (ARCH-033)
 
+## In ordinary language
+
+A specification, a Tool, an Implementation, an execution environment, and an
+evidence package are different things. This decision keeps those layers and
+their identities, capabilities, claims, support, release, and deployment state
+separate.
+
+| Quick view | Meaning |
+| --- | --- |
+| **Status** | Accepted documentation-only architecture decision |
+| **Main question** | What boundaries must future CNTX Tools and Implementations respect? |
+| **What this establishes** | Separate categories and dimensions, a frozen caller-supplied context, offline-first deterministic processing, visible failures, and bounded evidence |
+| **What this does not do** | It creates no concrete Tool, Implementation, runtime, service, execution, conformance proof, support, release, or deployment |
+
+### Reading route
+
+- [Purpose and boundary](#purpose-and-decision-boundary)
+- [Tooling and implementation categories](#separate-tooling-and-implementation-categories)
+- [Frozen execution context](#frozen-execution-context)
+- [Fail-closed processing](#fail-closed-and-observable-processing)
+- [Evidence and reproduction](#evidence-and-reproduction-boundary)
+- [Consequences and limitations](#consequences-and-limitations)
+
+This visitor layer is non-normative and introduces no new requirement. The
+complete Accepted text below remains controlling.
+
 ## Status and authority
 
 **Document Status:** Accepted.

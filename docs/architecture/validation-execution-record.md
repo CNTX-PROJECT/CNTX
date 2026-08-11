@@ -1,5 +1,31 @@
 # CNTX Validation Execution Record Identity, Version, and JSON Representation (ARCH-034)
 
+## In ordinary language
+
+This page defines the shape of a record that can describe one bounded
+validation execution: what was checked, under which frozen context, what each
+phase reported, and which diagnostics, limitations, claims, and authority
+boundaries apply.
+
+| Quick view | Meaning |
+| --- | --- |
+| **Status** | Accepted documentation-only architecture decision |
+| **Main question** | How is one validation execution recorded without confusing the record with the execution itself? |
+| **What this establishes** | Stable Definition and Representation identities, initial versions, a closed JSON document, exact phases and outcomes, and bounded claim and authority fields |
+| **What this does not do** | It executes no validation, verifies no source, proves no correctness or conformance, and grants no approval or follow-on authority |
+
+### Reading route
+
+- [Purpose and boundary](#purpose-and-decision-boundary)
+- [Identities and versions](#allocated-logical-identities-and-initial-versions)
+- [Closed JSON root](#closed-root-object)
+- [Phase and outcome tokens](#exact-phase-sequence-and-outcome-tokens)
+- [Claims and authority](#claimboundary-object)
+- [Consequences and limitations](#consequences-and-limitations)
+
+This visitor layer is non-normative and introduces no new requirement. The
+complete Accepted text below remains controlling.
+
 ## Status and authority
 
 **Document Status:** Accepted.

@@ -1,5 +1,31 @@
 # CNTX Test Manifest and Initial Cross-Record Integrity Rules Identity, Version, and JSON Representation (ARCH-036)
 
+## In ordinary language
+
+This decision describes how CNTX identifies test manifests, thirteen initial
+cross-record integrity rules, and the separate result of evaluating each rule.
+It preserves valid, invalid, unavailable, and genuinely inapplicable conditions
+without compressing them into one score.
+
+| Quick view | Meaning |
+| --- | --- |
+| **Status** | Accepted documentation-only architecture decision |
+| **Main question** | How are test inputs, cross-record rules, and individual evaluation outcomes represented and kept separate? |
+| **What this establishes** | Two historical manifest forms, thirteen versioned rules, separate evaluation records, four outcome categories, and non-aggregation |
+| **What this does not do** | It changes no testcase, runs no rule, creates no aggregate pass/fail, proves no conformance, and grants no approval or release authority |
+
+### Reading route
+
+- [Purpose and boundary](#purpose-and-decision-boundary)
+- [Test Manifest representation](#test-manifest-json-representation)
+- [Current manifest inventory](#exact-current-manifest-inventory)
+- [Rule representation](#cross-record-integrity-rule-json-representation)
+- [Evaluation Record representation](#cross-record-integrity-evaluation-record-json-representation)
+- [No aggregate authority](#no-aggregate-authority)
+
+This visitor layer is non-normative and introduces no new requirement. The
+complete Accepted text below remains controlling.
+
 ## Status and authority
 
 **Document Status:** Accepted.

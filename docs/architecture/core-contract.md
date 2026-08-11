@@ -1,5 +1,31 @@
 # CNTX Core Architecture Contract
 
+## In ordinary language
+
+CNTX reduces context overload by dividing work into bounded tasks, giving each
+task only the context and authority it needs, and keeping consequential final
+decisions with a human. This page is the central conceptual rulebook behind
+that approach.
+
+| Quick view | Meaning |
+| --- | --- |
+| **Status** | Accepted central architecture baseline |
+| **Main question** | How can people and AI collaborate without unlimited context, blurred roles, or automatic authority? |
+| **What this establishes** | Bounded context, separated roles, nine canonical records, an evidence-led lifecycle, and final human authority |
+| **What this does not do** | It creates no runtime, provider integration, field-level schema, product, or automatic approval mechanism |
+
+### Reading route
+
+- [Why CNTX exists](#problem-statement-and-central-design-law)
+- [Canonical roles](#canonical-roles)
+- [Canonical records](#canonical-artifacts)
+- [Lifecycle](#lifecycle)
+- [Core invariants](#core-invariants)
+- [Deferred decisions](#deferred-decisions)
+
+This visitor layer is non-normative and introduces no new requirement. The
+complete Accepted text below remains controlling.
+
 ## Status and authority
 
 **Status: Accepted.** The Owner / Final Authority has granted final human approval, and this contract is accepted under [GOVERNANCE.md](../../GOVERNANCE.md). On merge and publication to `main`, it becomes the binding conceptual architecture baseline for the CNTX public core. It is subordinate to the source precedence and execution boundaries in [AGENTS.md](../../AGENTS.md) and to the authority model in [GOVERNANCE.md](../../GOVERNANCE.md). Field-level schemas and executable behavior remain future work.
