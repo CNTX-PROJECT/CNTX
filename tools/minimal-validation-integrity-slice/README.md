@@ -167,6 +167,20 @@ authority; none may rely on the current working directory or an ambient cache.
 These steps remain non-executed. Gate E3 must provide exact absolute execution
 roots privately while public evidence uses only role-relative references.
 
+## Proposed cross-record practice inputs — not executed
+
+The [bounded cross-record integrity practice slice](practice/cross-record-integrity/README.md)
+contains four full, strict JSON invocation candidates and one expected-outcome
+matrix under issue #124 and Gate R1 acceptance comment `5246860005`.
+
+The scenarios use `8/9/10/1` synthetic public-safe subject records. Together
+they make every Accepted Cross-Record Integrity Rule Version `1.0.0`
+applicable at least once and keep `satisfied`, `not-satisfied`, `unverifiable`,
+and `not-evaluated` separate. Expected outcomes are statically derived; no
+fixture has been imported or executed and no actual rule result, output,
+evidence, aggregate verdict, conformance, acceptance, certification, release,
+deployment, or authority claim is created.
+
 ## Output and authority boundary
 
 The machine-readable output keeps invocation/context pins, phase results,
