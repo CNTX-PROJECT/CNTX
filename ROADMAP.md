@@ -35,19 +35,20 @@ CNTX is model-, vendor-, runtime-, and domain-agnostic. It does not prescribe a 
 ## Current execution path
 
 The specification foundation and the first bounded validation and integrity
-practice slices are complete. Source, Provenance and Freshness is the next
+practice slices are complete. Source, Provenance and Freshness is the current
 technical phase. Its first documentation-only Extension Module Definition is
-Accepted through exact-head EIGENAAR / Final Authority acceptance comment
-`5252557346`. The status-promotion candidate is not yet integrated, and the
-capability is not active, implemented, or authorized for use. Every later step
-remains separately governed.
+Accepted and integrated. The next dependency-first step is the Proposed
+documentation-only ARCH-039 Profile Definition for the exact Context Packet
+Contract Definition `1.0.0` and ARCH-038 Extension Module Definition `1.0.0`.
+The candidate is not Accepted, active, implemented, or authorized for use.
+Every later step remains separately governed.
 
 | Order | Milestone | Status | Practical outcome |
 | --- | --- | --- | --- |
 | 1 | Validation and integrity contracts | Complete | Exact rules, tool identity, implementation identity, inputs, outputs, limits, and evidence |
 | 2 | Local offline runner | Complete for the minimal slice | Reproducible execution of the 10 schemas and 203 synthetic cases |
 | 3 | Cross-record integrity | Complete for the bounded practice slice | Detect missing, duplicate, ambiguous, or conflicting links between supplied records |
-| 4 | Source, provenance and freshness controls | First Definition Accepted; governed integration pending and capability not active | Make source identity, revision, time, uncertainty, and unverifiable conditions more explicit |
+| 4 | Source, provenance and freshness controls | ARCH-038 Accepted and integrated; ARCH-039 Profile candidate Proposed only | Make source identity, revision, time, uncertainty, and unverifiable conditions more explicit |
 | 5 | Execution and task controls | Later | Record tool/model/skill identity and classify light, moderate, heavy, or complex work separately from risk |
 | 6 | Team authority and temporary context | Later | Support multiple principals, isolated task capsules, cleanup, and bounded archives |
 | 7 | One real vertical-slice test | Later | Run one small task from contract and context through evidence, review, decision candidate, and cleanup |
@@ -216,7 +217,7 @@ Definition Identifier
 `https://github.com/CNTX-PROJECT/CNTX/extension-module-definitions/epistemic-provenance-freshness`,
 and initial Definition Version `1.0.0`.
 
-The candidate defines only additive logical source categories, exact source
+The Definition defines only additive logical source categories, exact source
 identity/revision and provenance responsibilities, four separate temporal
 coordinates, explicit digest and freshness-policy pins, clock/reference
 provenance, derivation, visible condition states, fail-closed behavior, no
@@ -229,9 +230,35 @@ themselves integrate or activate it. No Profile, representation, schema, rule,
 tool, implementation, execution, evidence, support, release, hosting, or
 deployment is created or authorized.
 
+### Proposed Phase 4A2 Profile Definition
+
+[ARCH-039](docs/architecture/context-packet-epistemic-provenance-freshness-profile-definition.md)
+and
+[ADR-0039](docs/architecture/adr/0039-context-packet-epistemic-provenance-freshness-profile-definition.md)
+are **Proposed** under issue #130 and attributable EIGENAAR / Final Authority
+issue-contract acceptance comment `5254030218`. The documentation-only
+candidate proposes Profile local name
+`context-packet-epistemic-provenance-freshness`, Profile Definition Identifier
+`https://github.com/CNTX-PROJECT/CNTX/profile-definitions/context-packet-epistemic-provenance-freshness`,
+initial Version `1.0.0`, and exactly two Profile Subjects: the Accepted Context
+Packet Contract Definition `1.0.0` and Accepted ARCH-038 Extension Module
+Definition `1.0.0`.
+
+The candidate only selects and narrows capabilities already present in those
+exact subjects. It requires bounded source roles, exact identity/revision or an
+explicit unfavorable condition, separate epistemic and temporal dimensions,
+exact applicable freshness-policy and clock/reference context, explicit digest
+and derivation boundaries, visible adverse/restricted conditions, fail-closed
+individual outcomes, non-aggregation, and `automaticAuthority: false`.
+Proposed status, preparation, branch or repository presence, validation,
+review, Ready-for-review, and mergeability allocate or activate nothing. No
+Profile instance, representation, schema, policy, rule, tool, implementation,
+execution, evidence, release, publication, support, hosting, deployment, or
+consequential authority is created.
+
 ## Detailed project status and roadmap
 
-CNTX has completed its initial Public-Core specification and prerelease cycle within the Accepted ARCH-027 completion and maintenance boundary. The current status-promotion candidate additionally records the [Accepted architecture through ARCH-038](docs/architecture/README.md). The repository provides public governance, thirty-eight Accepted architecture sources and ADRs, nine Accepted artifact contracts, ten Accepted Schema Versions 1.0.0 with synthetic cases, one integrated minimal validation and integrity Tool/Implementation slice, and one immutable unsupported prerelease, 0.1.0-prealpha.1. CNTX remains model-, vendor-, runtime-, and domain-agnostic. Governed integration of ARCH-038 is still pending; exact-head acceptance and integration together allocate and activate only its exact Definition Identifier and Version. Neither the integrated slice nor the Accepted Definition creates a supported release line, support service, certification, hosting, deployment, workflow, CI, product, or final-human authority.
+CNTX has completed its initial Public-Core specification and prerelease cycle within the Accepted ARCH-027 completion and maintenance boundary. The repository records [Accepted architecture through ARCH-038 and the Proposed ARCH-039 candidate](docs/architecture/README.md). It provides public governance, thirty-eight Accepted architecture sources and ADRs plus one Proposed architecture/ADR pair, nine Accepted artifact contracts, ten Accepted Schema Versions 1.0.0 with synthetic cases, one integrated minimal validation and integrity Tool/Implementation slice, and one immutable unsupported prerelease, 0.1.0-prealpha.1. CNTX remains model-, vendor-, runtime-, and domain-agnostic. ARCH-038 is integrated; exact-head acceptance and integration allocated and activated only its exact Definition Identifier and Version. ARCH-039 remains Proposed and allocates or activates nothing. Neither the integrated slice, the Accepted Definition, nor the Proposed Profile candidate creates a supported release line, support service, certification, hosting, deployment, workflow, CI, product, or final-human authority.
 
 The [artifact-contract index](docs/contracts/README.md) includes nine accepted, binding subordinate artifact-specific contracts: Project Charter, Workstream, Task Contract, Context Packet, Execution Result, Evidence Bundle, Review Record, Decision Record, and State Snapshot. None introduces an executable schema, template, validator, state engine, synchronization engine, workflow, runtime, or product functionality. No canonical artifact contract remains listed as future work; the accepted status does not authorize a follow-on phase. CNTX remains a public core that is model-, vendor-, runtime-, and domain-agnostic and remains independent of private reference implementations.
 
@@ -771,6 +798,27 @@ integrated Accepted Definition. Status promotion, branch or repository
 presence, Ready-for-review, validation, review, and mergeability do not by
 themselves integrate, allocate, or activate it. No Profile, representation,
 property, schema, Schema Resource, testcase, rule, policy, Tool/Implementation
+Version, dependency, code, execution, evidence instance, release, publication,
+support, certification, hosting, deployment, merge permission, or follow-on
+authority is created.
+
+The architecture index now also exposes the **Proposed** [CNTX Context Packet
+Epistemic Provenance and Freshness Profile
+Definition](docs/architecture/context-packet-epistemic-provenance-freshness-profile-definition.md)
+(ARCH-039) with
+[ADR-0039](docs/architecture/adr/0039-context-packet-epistemic-provenance-freshness-profile-definition.md)
+under issue #130 and attributable EIGENAAR / Final Authority issue-contract
+acceptance comment `5254030218`. The documentation-only candidate proposes one
+exact Profile Definition Identifier and initial Version `1.0.0` with exactly
+two Profile Subjects: the Accepted Context Packet Contract Definition `1.0.0`
+and Accepted ARCH-038 Extension Module Definition `1.0.0`. It only selects and
+narrows their existing capabilities for explicit source roles, exact pins,
+provenance, temporal and clock/reference context, applicable freshness policy,
+digest and derivation boundaries, visible conditions, fail-closed individual
+outcomes, restricted/adverse information, non-aggregation, and final-human
+authority. Proposed status, preparation, repository presence, validation,
+review, Ready-for-review, and mergeability allocate or activate nothing. No
+Profile instance, representation, schema, policy, rule, Tool/Implementation
 Version, dependency, code, execution, evidence instance, release, publication,
 support, certification, hosting, deployment, merge permission, or follow-on
 authority is created.

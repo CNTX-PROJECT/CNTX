@@ -499,6 +499,30 @@ Tool/Implementation Version, dependency, code, runner, execution, evidence,
 release, publication, support, certification, hosting, deployment, merge
 permission, or follow-on authority.
 
+The [CNTX Context Packet Epistemic Provenance and Freshness Profile
+Definition](context-packet-epistemic-provenance-freshness-profile-definition.md)
+and
+[ADR-0039](adr/0039-context-packet-epistemic-provenance-freshness-profile-definition.md)
+are **Proposed** as ARCH-039 under issue #130 and attributable EIGENAAR / Final
+Authority issue-contract acceptance comment `5254030218`. The
+documentation-only candidate proposes one Profile Definition with local name
+`context-packet-epistemic-provenance-freshness`, version-independent Profile
+Definition Identifier
+`https://github.com/CNTX-PROJECT/CNTX/profile-definitions/context-packet-epistemic-provenance-freshness`,
+proposed initial Version `1.0.0`, and exactly two Profile Subjects: the Accepted
+Context Packet Contract Definition `1.0.0` and Accepted Epistemic Provenance
+and Freshness Extension Module Definition `1.0.0`. It only selects and narrows
+capabilities from those exact subjects for bounded source roles, exact
+identity/revision, provenance, temporal and clock/reference context, applicable
+freshness policies, digest boundaries, derivation, visible conditions,
+fail-closed individual outcomes, restricted/adverse information,
+non-aggregation, and `automaticAuthority: false`. Proposed status, preparation,
+branch or repository presence, review, Ready-for-review, and mergeability
+allocate or activate nothing. The candidate creates no Profile instance,
+property, representation, schema, policy, rule, tool, implementation,
+execution, evidence instance, release, publication, support, certification,
+hosting, deployment, merge permission, or follow-on authority.
+
 ## Document status
 
 - **Proposed** — submitted for review and not yet an accepted repository decision.
