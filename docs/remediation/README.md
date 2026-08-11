@@ -1,5 +1,23 @@
 # CNTX Public-Core remediation evidence
 
+Remediation records preserve bounded evidence created in response to a known
+assessment gap. Start here when you want to see **what new evidence was added**
+without rewriting the assessment that identified the gap.
+
+## How this area fits
+
+`Assessment finding → bounded remediation evidence → later fresh assessment → separate human decision`
+
+| Looking for… | Open… |
+| --- | --- |
+| The historical assessment outcomes | [Assessments](../assessments/README.md) |
+| Evidence addressing ASSESS-001 gaps | [REMEDIATE-001](assess-001-release-readiness-evidence-remediation.md) |
+| The later public decision basis | [REMEDIATE-002](assess-002-release-decision-basis-remediation.md) |
+| Release policies and publication history | [Release policy](../release/README.md) |
+
+New evidence can inform a later assessment; it does not silently change an old
+outcome, become an approval, or authorize a release.
+
 This directory contains bounded, revision-pinned remediation-evidence records
 created in response to Accepted assessment findings. Remediation evidence does
 not rewrite an assessment, change an outcome, recommend or approve a release,

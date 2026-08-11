@@ -1,5 +1,23 @@
 # CNTX Public-Core assessments
 
+Assessments apply fixed CNTX criteria to one exact revision and evidence basis.
+Start here when you want to inspect **what was evaluated, what was observed,
+and what remained uncertain** at a specific point in history.
+
+## How this area fits
+
+`Exact subject + evidence → separate dimension outcomes → limitations and uncertainty → separate human decision`
+
+| Looking for… | Open… |
+| --- | --- |
+| The three historical assessment records | [Assessment records](#assessment-records) |
+| Evidence added after an assessment gap | [Remediation evidence](../remediation/README.md) |
+| Release policy, decision, publication, and verification | [Release policy](../release/README.md) |
+
+Assessment outcomes stay dimension-specific. They do not combine into an
+automatic pass/fail, score, recommendation, approval, or current universal
+truth.
+
 This directory contains bounded, version- and revision-pinned assessment
 records that apply Accepted CNTX governance and architecture without replacing
 their normative meaning.

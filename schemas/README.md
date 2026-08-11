@@ -1,5 +1,27 @@
 # CNTX Schema Resources
 
+CNTX currently has ten Accepted Core JSON Schema Resources: one shared envelope
+and one resource for each of the nine artifact contracts. Use this directory
+when you need the exact machine-evaluable shape of a record.
+
+## At a glance
+
+| Layer | What it provides | What it does not provide |
+| --- | --- | --- |
+| [Artifact contracts](../docs/contracts/README.md) | Meaning and responsibilities | JSON shape or validation execution |
+| Schema Resources | Exact JSON Schema Draft 2020-12 assertions | Truth, approval, authority, or complete conformance |
+| [Synthetic test manifests](../tests/README.md) | Fixed valid and invalid examples | Production evidence, certification, or a universal score |
+
+`Contract meaning → exact Schema Resource → synthetic cases → separately governed validator or tool`
+
+Choose a contract first, then its same-named schema. The complete identities,
+versions, `$id` values, acceptance provenance, evaluation boundaries, and
+change rules remain available below.
+
+<details>
+<summary><strong>Open the complete technical schema register</strong></summary>
+
+
 ## Status and authority
 
 This directory contains machine-evaluable schema-resource candidates and, after exact-revision human acceptance and governed integration, accepted schema resources. A file's existence, JSON Schema validity, `$id`, Schema Version, test result, repository location, or publication does not grant Document Status, contract conformance, authority, trust, approval, release, deployment, merge permission, or access permission.
@@ -386,3 +408,5 @@ implementation, release, deployment, publication, or follow-on authority.
 ## Change boundary
 
 Upon governed integration, exact Accepted versioned canonical standalone content is immutable. Any accepted structural or semantic change requires the applicable identity/version assessment, attributable review and approval, traceable provenance, and a separately authorized change. Schema validity alone cannot approve such a change. The Accepted Project Charter resource does not change the independently Accepted Common Artifact Envelope resource.
+
+</details>

@@ -1,5 +1,22 @@
 # Governance
 
+CNTX separates bounded work, technical review, evidence, and final human
+authority. This page explains who may do what and where work must stop.
+
+## Governance in one line
+
+`Issue or Task Contract → scoped branch → bounded change → validation and evidence → Draft PR → review → identified human decision → merge`
+
+| Role | Primary responsibility | Cannot silently do |
+| --- | --- | --- |
+| Owner / maintainer | Consequential approval and merge decisions | Turn missing evidence into certainty |
+| Lead architect | Architecture direction and transparent review | Replace final human authority |
+| Bounded implementer | Work inside the approved scope | Expand paths, behavior, or later phases |
+| Specialist reviewer | Focused advice in a named domain | Create automatic approval or certification |
+
+When scope, authority, safety, or privacy is unclear, the affected work stops
+and escalates. A review, Draft PR, handoff, or passing check is not approval.
+
 ## Authority and roles
 
 CNTX uses an owner/builder model. The repository owner and maintainers hold final authority for approval and merge. The lead architect provides architectural review and direction. Bounded implementation agents perform only explicitly authorized work. Specialist reviewers provide focused review when requested. No role replaces human final authority.

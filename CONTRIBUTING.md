@@ -1,5 +1,24 @@
 # Contributing to CNTX
 
+CNTX welcomes small, inspectable contributions that begin with an agreed
+scope. You do not need to understand the whole specification before proposing
+one bounded improvement.
+
+## Contribution route
+
+`Discuss or open an issue → agree the scope → change only that scope → validate → open a Draft PR → respond to review → wait for a human decision`
+
+| Your contribution changes… | Read first… |
+| --- | --- |
+| Architecture, contracts, or public meaning | [Governance](GOVERNANCE.md) and the [architecture index](docs/architecture/README.md) |
+| JSON representation | The governing [contract](docs/contracts/README.md), [schema](schemas/README.md), and [tests](tests/README.md) |
+| Public documentation | The relevant source page and its exact current links |
+| Security or privacy handling | [Security policy](SECURITY.md) and private maintainer guidance |
+
+The safest useful contribution is usually the smallest one that can be
+reviewed independently. A submitted change grants no merge, release, or scope
+authority.
+
 ## Start with scope
 
 For non-trivial work, start with an issue or an approved task contract. Keep each branch and pull request small, scoped, and reviewable. Follow [AGENTS.md](AGENTS.md) in all agent-assisted work.
