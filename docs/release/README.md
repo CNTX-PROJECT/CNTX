@@ -1,5 +1,25 @@
 # CNTX Public-Core release policy
 
+CNTX has one immutable historical prerelease, `0.1.0-prealpha.1`. It is
+pre-alpha and unsupported. Start here to distinguish the policy, assessment,
+human decision, publication transaction, and post-publication verification.
+
+## Release route
+
+`Policy → exact-subject assessment → human decision → separately authorized publication → immutable verification record`
+
+| Looking for… | Open… |
+| --- | --- |
+| Version and tag meaning | [Release identity and version policy](public-core-release-identity-version-policy.md) |
+| Compatibility, support, and change limits | [Publication and support policy](publication-compatibility-support-and-change-policy.md) |
+| The final human decision record | [DECIDE-001](decide-001-public-core-final-release-decision.md) |
+| The exact publication transaction | [RELEASE-001](release-001-public-core-0.1.0-prealpha.1-execution.md) |
+| Point-in-time verification | [VERIFY-001](verify-001-public-core-0.1.0-prealpha.1-post-publication.md) |
+
+An immutable prerelease records one exact historical subject. It does not make
+CNTX supported, certified, production-ready, compatible with every consumer,
+or fit for deployment.
+
 This directory contains documentation-only policy, decision, and Accepted
 execution sources for the prospective CNTX Public Core release lifecycle. It
 supplies no package, custom archive, manifest, support service, certification,

@@ -1,5 +1,26 @@
 # CNTX Artifact Contracts
 
+Nine Accepted contracts describe the public records that carry CNTX work from
+an agreed purpose to a bounded handoff. Start here when you want to understand
+**what a record means** before looking at its schema or examples.
+
+## The nine-record route
+
+`Project Charter → Workstream → Task Contract → Context Packet → Execution Result → Evidence Bundle → Review Record → Decision Record → State Snapshot`
+
+| You are looking for… | Start with… |
+| --- | --- |
+| Why the work exists | [Project Charter](project-charter-contract.md) |
+| What one bounded task may do | [Task Contract](task-contract-artifact-contract.md) |
+| What context was supplied | [Context Packet](context-packet-contract.md) |
+| What happened and what supports it | [Execution Result](execution-result-contract.md) and [Evidence Bundle](evidence-bundle-contract.md) |
+| What was reviewed or decided | [Review Record](review-record-contract.md) and [Decision Record](decision-record-contract.md) |
+| A derived handoff view | [State Snapshot](state-snapshot-contract.md) |
+
+**Next technical layer:** open the [schema index](../../schemas/README.md) only
+after choosing the governing contract. Schemas check representation; they do
+not replace contract meaning or human authority.
+
 ## Reading guide
 
 The accepted architecture contracts in [the architecture directory](../architecture/README.md) are the higher normative basis for this directory. Artifact-specific contracts specialize accepted canonical artifacts without redefining their primary meanings, classifications, authority model, lifecycle, identity and versioning semantics, provenance, or public/private boundaries. CONTRACT-001 through CONTRACT-009 are **Accepted**, binding subordinate specializations in their canonical order. CONTRACT-009, the State Snapshot contract, is the ninth accepted, documentation-only specialization, governed by accepted ARCH-001, ARCH-002, ARCH-003, and accepted CONTRACT-001 through CONTRACT-008. Its accepted status does not itself grant task, decision, approval, acceptance, integration, release, deployment, publication, or merge authority, and it does not change final human authority.
