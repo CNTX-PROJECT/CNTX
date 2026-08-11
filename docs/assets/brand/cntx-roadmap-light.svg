@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" role="img" aria-labelledby="title desc">
   <title id="title">CNTX roadmap pulse for light backgrounds</title>
-  <desc id="desc">The specification foundation is complete. A minimal validation and integrity slice is proposed next, followed later by context controls and runtime pilots. There is no promised completion date.</desc>
+  <desc id="desc">The specification foundation and minimal validation and integrity slice are complete. Source, Provenance and Freshness is the next governed technical phase but is not started. Runtime pilots follow later. There is no promised completion date.</desc>
   <defs>
     <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0l10 5-10 5z" fill="#7C3AED"/></marker>
   </defs>
@@ -19,16 +19,16 @@
     <g transform="translate(322 116)">
       <rect width="270" height="136" rx="20" fill="#FFFFFF" stroke="#7C3AED" stroke-width="4"/>
       <rect x="18" y="16" width="116" height="25" rx="12.5" fill="#7C3AED"/>
-      <text x="76" y="33" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="700">PROPOSED NEXT</text>
+      <text x="76" y="33" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="700">COMPLETE</text>
       <text x="20" y="76" fill="#111018" font-size="19" font-weight="700">Validation + integrity</text>
       <text x="20" y="101" fill="#575260" font-size="14">Offline runner, 203 cases</text>
       <text x="20" y="122" fill="#575260" font-size="14">and cross-record checks</text>
     </g>
     <g transform="translate(620 126)">
       <rect width="242" height="116" rx="18" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="2"/>
-      <text x="20" y="32" fill="#7C3AED" font-size="13" font-weight="700">LATER</text>
-      <text x="20" y="68" fill="#111018" font-size="19" font-weight="700">Context controls</text>
-      <text x="20" y="92" fill="#575260" font-size="14">Sources, freshness, skills</text>
+      <text x="20" y="32" fill="#7C3AED" font-size="13" font-weight="700">NEXT GOVERNED</text>
+      <text x="20" y="68" fill="#111018" font-size="19" font-weight="700">Source + freshness</text>
+      <text x="20" y="92" fill="#575260" font-size="14">Provenance and time controls</text>
     </g>
     <g transform="translate(890 126)">
       <rect width="258" height="116" rx="18" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="2" stroke-dasharray="8 7"/>

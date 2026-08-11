@@ -1,8 +1,9 @@
 # Bounded cross-record integrity practice slice
 
-Status: **Proposed non-normative practice fixtures — not executed**.
+Status: **Integrated non-normative practice fixtures with bounded execution
+evidence**.
 
-These four strict JSON invocations prepare the smallest public-safe scenario
+These four strict JSON invocations form the smallest public-safe scenario
 set that can make all thirteen Accepted Cross-Record Integrity Rules Version
 1.0.0 applicable at least once while keeping the four outcomes separate.
 
@@ -19,10 +20,13 @@ set that can make all thirteen Accepted Cross-Record Integrity Rules Version
   rule families are genuinely inapplicable and expected `not-evaluated`.
 
 The machine-readable expected matrix is in
-[scenario-matrix.json](scenario-matrix.json). Expected outcomes are statically
-derived. They are not observed execution results and prove no broader
-conformance, acceptance, approval, certification, release, deployment, or
-final-human authority.
+[scenario-matrix.json](scenario-matrix.json). It remains the frozen,
+statically derived pre-execution matrix; its embedded pre-execution status is
+historical input provenance, not current project lifecycle state. Later
+separately authorized executions in two isolated environments matched that
+matrix exactly. Expected and actual outcomes remain distinct and prove no
+broader conformance, acceptance, approval, certification, release, deployment,
+or final-human authority.
 
 Every record digest is SHA-256 over canonical UTF-8 JSON of its `content`
 value using sorted keys and compact separators. Restricted content is absent;
@@ -36,6 +40,8 @@ fixtures preserve that boundary and do not modify the runner.
 No fixture is a new Definition, Representation, Schema Resource, Artifact Type,
 Artifact Instance, canonical Validation Output, Portable Conformance Evidence,
 Evidence Bundle, Review Record, Decision Record, certification, release
-evidence, or authority record. `automaticAuthority` remains false. Execution,
-dependencies, output, evidence, review, acceptance, integration, release, and
-deployment require later separate authority.
+evidence, or authority record. `automaticAuthority` remains false. Issue #124
+is closed/completed and PR #125 is merged after bounded execution and evidence.
+That completed lifecycle grants no reusable execution authority, supported
+dependency installation, aggregate verdict, release, certification, hosting,
+deployment, or final-human authority.

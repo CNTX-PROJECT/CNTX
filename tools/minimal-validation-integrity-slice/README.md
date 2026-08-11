@@ -1,13 +1,17 @@
 # CNTX Minimal Validation and Integrity Slice
 
-**Candidate Status:** Proposed, non-executed implementation candidate under
-[issue #122](https://github.com/CNTX-PROJECT/CNTX/issues/122).
+**Current Status:** Integrated bounded implementation Version `1.0.0`;
+[issue #122](https://github.com/CNTX-PROJECT/CNTX/issues/122) is
+closed/completed and PR [#123](https://github.com/CNTX-PROJECT/CNTX/pull/123)
+is merged.
 
-This directory prepares one bounded implementation of the Accepted Tool and
-Implementation contracts in ARCH-037. The candidate has not been imported,
-installed, tested, or executed. Repository presence, static review, or a Draft
-PR does not establish implementation correctness, conformance, support,
-certification, release, deployment, or final-human authority.
+This directory contains one bounded implementation of the Accepted Tool and
+Implementation contracts in ARCH-037. It was installed, tested, and executed
+only in separately authorized isolated temporary environments; those
+environments and dependencies were cleaned up afterward. Repository presence
+does not install or support it and establishes no broader correctness,
+conformance, support, certification, release, deployment, or final-human
+authority.
 
 ## Exact target
 
@@ -24,9 +28,9 @@ certification, release, deployment, or final-human authority.
 The Tool and Implementation identities are opaque identifiers, not network
 locations or publication channels.
 
-## Candidate capability boundary
+## Capability boundary
 
-The source prepares the following separately observable responsibilities:
+The source implements the following separately observable responsibilities:
 
 - strict UTF-8 JSON parsing with BOM, duplicate-member, comment, invalid-number,
   trailing-data, JSON5, YAML, and XML rejection;
@@ -39,21 +43,21 @@ The source prepares the following separately observable responsibilities:
 - thirteen separately evaluated Cross-Record Integrity Rules Version `1.0.0`;
 - four separate rule outcomes: `satisfied`, `not-satisfied`, `unverifiable`,
   and `not-evaluated`;
-- bounded candidate Validation Execution Record, Validation Evidence and
+- bounded Validation Execution Record, Validation Evidence and
   Reproduction Package, and Cross-Record Integrity Evaluation Record content;
 - deterministic JSON and human-readable presentation; and
 - visible diagnostics, warnings, limitations, blocked conditions,
   non-execution, adverse/restricted-evidence boundaries, and
   `automaticAuthority: false`.
 
-The candidate does not discover inputs, contact a network, install or upgrade
+The implementation does not discover inputs, contact a network, install or upgrade
 dependencies, mutate the subject repository, repair data, use mutable aliases,
 produce a universal verdict, review, approve, accept, certify, release, host,
 or deploy anything.
 
 ## Closed invocation representation
 
-One future invocation is a strict JSON object containing exactly these root
+Each invocation is a strict JSON object containing exactly these root
 properties and no others:
 
 1. `invocation`;
@@ -128,7 +132,7 @@ availability, installability, safety, or compatibility.
 
 ## Exact initial resource ceilings
 
-The candidate encodes the accepted initial ceilings from issue #122, including
+The implementation encodes the accepted initial ceilings from issue #122, including
 exactly 10 Schema Resources, 10 manifests, 203 cases, and 13 rules; 4 MiB per
 JSON input and 64 MiB total JSON input; depth 128 and 1,000,000 parsed nodes;
 4,096 `$ref` occurrences; 300 seconds wall and CPU time; 1 GiB process memory;
@@ -137,14 +141,14 @@ JSON input and 64 MiB total JSON input; depth 128 and 1,000,000 parsed nodes;
 Input sizes, parsed nodes/depth, counts, references, output size, and boundary
 checks are represented in source. Strong process memory, CPU, handle, process,
 thread, and operating-system network enforcement requires exact Gate E3
-environment evidence. The candidate must report a stronger guarantee as
+environment evidence. The implementation must report a stronger guarantee as
 `unverifiable` or `not-evaluated` when the environment cannot prove it.
 
-## Proposed Gate E3 commands — not authorized or executed
+## Historical Gate E3 execution procedure
 
-The exact commands below are orientation for a later attributable decision.
-Every placeholder must be replaced by an exact reviewed path or digest before
-authority; none may rely on the current working directory or an ambient cache.
+The steps below describe the bounded procedure that was later separately
+authorized and executed. Repeating it still requires its own exact authority;
+no invocation may rely on the current working directory or an ambient cache.
 
 1. Verify the CPython executable and the five acquired wheel byte lengths and
    SHA-256 digests against `requirements.lock` using a standard-library-only
@@ -164,22 +168,29 @@ authority; none may rely on the current working directory or an ambient cache.
    and processes after exact target verification, or retain a visible cleanup
    limitation.
 
-These steps remain non-executed. Gate E3 must provide exact absolute execution
-roots privately while public evidence uses only role-relative references.
+Clean Gate E3 evidence recorded two 29-test runs and two runner executions with
+exact agreement across all `203/38/165` cases. The temporary execution roots,
+environments, wheels, caches, and outputs were removed after public-safe
+inventory evidence was retained. Exact absolute execution roots remained
+private; public evidence uses only role-relative references. The frozen
+zero-`subjectRecords` invocation made the thirteen integrity rules inapplicable,
+so all remained separately `not-evaluated` rather than satisfied.
 
-## Proposed cross-record practice inputs — not executed
+## Completed cross-record practice slice
 
 The [bounded cross-record integrity practice slice](practice/cross-record-integrity/README.md)
-contains four full, strict JSON invocation candidates and one expected-outcome
-matrix under issue #124 and Gate R1 acceptance comment `5246860005`.
+contains four full, strict JSON invocations and one frozen expected-outcome
+matrix under completed issue #124 and merged PR #125.
 
 The scenarios use `8/9/10/1` synthetic public-safe subject records. Together
 they make every Accepted Cross-Record Integrity Rule Version `1.0.0`
 applicable at least once and keep `satisfied`, `not-satisfied`, `unverifiable`,
-and `not-evaluated` separate. Expected outcomes are statically derived; no
-fixture has been imported or executed and no actual rule result, output,
-evidence, aggregate verdict, conformance, acceptance, certification, release,
-deployment, or authority claim is created.
+and `not-evaluated` separate. Two separately authorized isolated environments
+executed all four scenarios. The actual outcomes matched the frozen expected
+matrix exactly: `13 satisfied`; `12 satisfied / 1 not-satisfied`; `11 satisfied
+/ 2 unverifiable`; and `7 satisfied / 6 not-evaluated`. These observations
+create no aggregate verdict, broader conformance, acceptance, certification,
+release, deployment, or authority claim.
 
 ## Output and authority boundary
 

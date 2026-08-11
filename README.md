@@ -76,36 +76,40 @@ by versioned JSON Schemas.
 
 | Part | Public baseline |
 | --- | --- |
-| Design | 33 Accepted architecture decisions with matching ADRs |
+| Design | 37 Accepted architecture decisions with matching ADRs |
 | Collaboration records | 9 Accepted artifact contracts |
 | Machine-readable structure | 10 Accepted JSON Schema Draft 2020-12 resources at version `1.0.0` |
 | Examples and tests | 203 synthetic cases: 38 valid and 165 invalid |
 | Extension model | Accepted conceptual boundaries through ARCH-033 |
+| Executable slice | Integrated local Tool/Implementation `1.0.0` with 13 cross-record rules |
 | Public release | Immutable, unsupported prerelease `0.1.0-prealpha.1` |
 
 > [!IMPORTANT]
-> CNTX is currently a specification foundation, not a finished software
-> product. Package E now has a Proposed, non-executed local validation and
-> integrity candidate under issue #122; it is not yet an Accepted, installed,
-> or evidenced validator or runner. CNTX still provides no SDK, API, workflow,
-> hosted service, supported release line, certification, or deployment. Schema
-> validity alone does not prove truth, approval, security, conformance, or
-> final authority.
+> CNTX is a specification foundation with one integrated, bounded local
+> validation and integrity slice, not a finished software product. Package E
+> was installed and executed only inside separately authorized isolated
+> temporary environments; repository presence installs or supports nothing.
+> CNTX provides no SDK, API, workflow, hosted service, supported release line,
+> certification, or deployment. Schema validity, successful execution, or a
+> satisfied rule does not prove truth, approval, security, broader conformance,
+> or final authority.
 
 ## Roadmap pulse
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/brand/cntx-roadmap-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="docs/assets/brand/cntx-roadmap-light.svg">
-  <img alt="CNTX roadmap: specification foundation complete; minimal validation and integrity slice proposed next; context controls and runtime pilots follow later" src="docs/assets/brand/cntx-roadmap-light.svg">
+  <img alt="CNTX roadmap: specification foundation and the minimal validation and integrity slice are complete; Source, Provenance and Freshness is the next governed phase; runtime pilots follow later" src="docs/assets/brand/cntx-roadmap-light.svg">
 </picture>
 
-The current milestone is a governed Package E candidate for a small offline
-validation and integrity slice: prepare the existing schemas, 203 cases, and
-thirteen cross-record rules for reproducible local execution. The candidate is
-not installed or executed and creates no implementation, acceptance, release,
-or deployment authority by itself. CNTX uses governed gates rather than a
-promised completion date.
+The minimal local slice is integrated. Its bounded evidence matched all 203
+historical cases (`38` valid and `165` invalid). Four later cross-record
+scenarios separately observed: thirteen `satisfied`; twelve `satisfied` plus
+one `not-satisfied`; eleven `satisfied` plus two `unverifiable`; and seven
+`satisfied` plus six genuinely inapplicable `not-evaluated` outcomes. These are
+separate observations, not an aggregate verdict. **Source, Provenance and
+Freshness** is the next technical phase, but it is not started or authorized by
+this roadmap. CNTX uses governed gates rather than a promised completion date.
 
 See the [full roadmap and public baseline history](ROADMAP.md).
 
@@ -117,7 +121,7 @@ See the [full roadmap and public baseline history](ROADMAP.md).
 | See the nine records | [Artifact contracts](docs/contracts/README.md) |
 | Inspect machine-readable rules | [JSON Schemas](schemas/README.md) |
 | Inspect positive and negative examples | [Schema test cases](tests/schemas/) |
-| Inspect the non-executed Package E candidate | [Minimal validation and integrity slice](tools/minimal-validation-integrity-slice/README.md) |
+| Inspect the bounded validation and integrity slice | [Minimal validation and integrity slice](tools/minimal-validation-integrity-slice/README.md) |
 | Follow progress and future gates | [Roadmap](ROADMAP.md) |
 | Check the public release | [Release index](docs/release/README.md) |
 | Propose a safe change | [Contributing](CONTRIBUTING.md) and [Governance](GOVERNANCE.md) |
