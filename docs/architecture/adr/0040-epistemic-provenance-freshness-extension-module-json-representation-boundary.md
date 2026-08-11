@@ -36,7 +36,7 @@ and existing Core Artifact JSON and schemas remain immutable.
 
 ## Decision
 
-Propose one closed JSON-compatible instance-data model for one bounded
+Accept one closed JSON-compatible instance-data model for one bounded
 declaration record about one exact primary source subject governed by:
 
 - Definition Identifier
