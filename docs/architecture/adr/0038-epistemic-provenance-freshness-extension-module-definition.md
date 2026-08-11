@@ -1,9 +1,10 @@
 # ADR-0038: CNTX Epistemic Provenance and Freshness Extension Module Definition
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-08-11
 - **Issue:** [#128](https://github.com/CNTX-PROJECT/CNTX/issues/128)
 - **Issue-contract acceptance comment:** [5251980826](https://github.com/CNTX-PROJECT/CNTX/issues/128#issuecomment-5251980826)
+- **Exact-head acceptance comment:** [5252557346](https://github.com/CNTX-PROJECT/CNTX/issues/128#issuecomment-5252557346), accepting candidate commit `e6700258c584deaabf028e8d339680567ed1715f` and tree `664f00045fc7dcfb26ff2d9cf12c5787c0524493`
 - **Decision:** ARCH-038 — CNTX Epistemic Provenance and Freshness Extension
   Module Definition
 
@@ -30,21 +31,24 @@ schema, rule, tool, implementation, or evidence phase.
 
 ## Decision
 
-Propose exactly one member of the CNTX Extension Module Definition Family:
+Accept exactly one member of the CNTX Extension Module Definition Family:
 
 - local name: `epistemic-provenance-freshness`;
 - Definition Identifier:
   `https://github.com/CNTX-PROJECT/CNTX/extension-module-definitions/epistemic-provenance-freshness`;
-- proposed initial Definition Version: `1.0.0`;
+- initial Definition Version: `1.0.0`;
 - category: Extension Module Definition only; and
-- lifecycle status: Proposed.
+- lifecycle status: Accepted.
 
 The Identifier is opaque and version-independent. Definition Version remains
 a separate exact pin. Proposed status, issue acceptance, candidate preparation,
-review, mergeability, repository presence, URL availability, implementation
-recognition, or product use does not allocate the Identifier or activate
-Version `1.0.0`. No Profile identity, version, or local name is created or
-reserved.
+status promotion, branch or repository presence, Ready-for-review, review,
+mergeability, URL availability, implementation recognition, or product use
+does not by itself integrate the decision, allocate the Identifier, or activate
+Version `1.0.0`. Exact-head acceptance comment `5252557346` plus separately
+governed integration to `main` allocates and activates only this exact
+Identifier and Version as the integrated Accepted Definition. No Profile
+identity, version, or local name is created or reserved.
 
 Define this Extension Module responsibility as additive epistemic provenance
 and freshness meaning only. Preserve Core sovereignty and prohibit modification,
@@ -55,7 +59,7 @@ contract, or final-human-authority boundary.
 
 ### Closed source categories
 
-Define exactly six closed logical source categories for proposed Definition
+Define exactly six closed logical source categories for Definition
 Version `1.0.0`:
 
 1. Governing Source;
@@ -184,11 +188,12 @@ non-authority statement, not a JSON property created by this ADR.
 ### Dependency and activation boundary
 
 Define no Required or Optional Extension Module Definition Dependencies and no
-Profile Subject for this proposed Definition.
+Profile Subject for this Accepted Definition.
 
-If later Accepted, consequential use still requires a separately Accepted
-declaration/activation representation and one exact, closed, caller-supplied,
-offline-first, frozen governing context under ARCH-030 and ARCH-031. Repository,
+Consequential use of this Accepted Definition still requires a separately
+Accepted declaration/activation representation and one exact, closed,
+caller-supplied, offline-first, frozen governing context under ARCH-030 and
+ARCH-031. Repository,
 URL, package, installation, processor, product, cache, or prior-execution
 presence activates nothing.
 
@@ -328,12 +333,18 @@ validation, testing, evidence production, release action, or deployment.
 
 ## Authority boundary
 
-This ADR is Proposed. Issue-contract acceptance, candidate preparation,
-repository presence, static validation, mergeability, transparent
-non-independent ARCHITECT review, technical access, and implementation
-recognition do not grant acceptance or consequential authority.
+This ADR is Accepted through attributable EIGENAAR / Final Authority exact-head
+acceptance comment `5252557346` on candidate commit
+`e6700258c584deaabf028e8d339680567ed1715f` and tree
+`664f00045fc7dcfb26ff2d9cf12c5787c0524493`. Issue-contract acceptance,
+candidate preparation, repository presence, status promotion, static
+validation, Ready-for-review, mergeability, transparent non-independent
+ARCHITECT review, technical access, and implementation recognition do not by
+themselves integrate the decision, allocate or activate its Identifier or
+Version, or grant consequential authority. Separately governed integration to
+`main` is required for the exact integration, allocation, and activation
+effects.
 
 Work stops at a new attributable EIGENAAR / Final Authority gate for the exact
-reviewed candidate head. Acceptance, status promotion, integration,
-completion, issue closure, branch cleanup, and every later phase require
-separate express authority.
+reviewed promotion head. Integration, completion, issue closure, branch
+cleanup, and every later phase require separate express authority.

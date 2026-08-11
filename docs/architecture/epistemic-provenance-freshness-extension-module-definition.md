@@ -2,25 +2,32 @@
 
 ## Status and authority
 
-**Document Status:** Proposed.
+**Document Status:** Accepted.
 
-This document is a Proposed, documentation-only Extension Module Definition
+This document is an Accepted, documentation-only Extension Module Definition
 governed by [issue #128](https://github.com/CNTX-PROJECT/CNTX/issues/128) and
 recorded by
 [ADR-0038](adr/0038-epistemic-provenance-freshness-extension-module-definition.md).
 Attributable EIGENAAR / Final Authority issue-contract acceptance is recorded
 in issue comment
 [5251980826](https://github.com/CNTX-PROJECT/CNTX/issues/128#issuecomment-5251980826).
+Attributable EIGENAAR / Final Authority acceptance of exact candidate commit
+`e6700258c584deaabf028e8d339680567ed1715f` and tree
+`664f00045fc7dcfb26ff2d9cf12c5787c0524493` is recorded in exact-head issue
+comment
+[5252557346](https://github.com/CNTX-PROJECT/CNTX/issues/128#issuecomment-5252557346).
 
-Candidate preparation, repository presence, validation, mergeability, and a
-transparent non-independent ARCHITECT review do not grant acceptance. Only a
-later attributable EIGENAAR / Final Authority acceptance of the exact reviewed
-revision and separately governed integration can make this exact Definition
-Accepted.
+Candidate preparation, repository presence, validation, mergeability, and the
+transparent non-independent ARCHITECT review did not grant acceptance. The
+exact-head acceptance above makes the reviewed Definition Accepted. Separately
+governed integration to `main` remains required to integrate this decision and,
+with that acceptance, allocate and activate only the exact Definition
+Identifier and Version stated below.
 
-While this document remains Proposed, its Identifier and initial Definition
-Version are proposed only. They are not allocated, active, supported, released,
-or available for governing use.
+Status promotion, branch presence, repository presence, Ready-for-review,
+review, and mergeability do not by themselves integrate this decision or
+allocate or activate its Identifier or initial Definition Version. They create
+no support, release, deployment, or governing-use authority.
 
 ## Purpose and decision boundary
 
@@ -29,14 +36,14 @@ human-readable contexts, but those declarations do not by themselves establish
 source authenticity, exact revision, observation provenance, policy-pinned
 freshness, clock provenance, digest meaning, or currentness.
 
-This proposed Definition specifies exactly one additive Extension Module
+This Definition specifies exactly one additive Extension Module
 responsibility: preserving explicit, independently assessable epistemic
 provenance and freshness meaning for exact sources, observations, derived
 context, and bounded claims.
 
 It defines only:
 
-1. one proposed Extension Module Definition identity and initial version;
+1. one exact Extension Module Definition identity and initial version;
 2. six closed logical source categories;
 3. exact source identity and revision/version responsibilities;
 4. four separate temporal coordinates;
@@ -57,7 +64,7 @@ support, certification, hosting, or deployment.
 
 ## Exact decision basis
 
-This proposed decision was prepared on exact public baseline commit
+This decision was first proposed on exact public baseline commit
 `65a659efac05528b23a67b6a3ebfdbd337b336dd` and tree
 `12b29e79b253ca6cf7b1486598b894ad0eac6e8f`.
 
@@ -82,29 +89,33 @@ The controlling Accepted basis includes:
   Release `367290932` / `RE_kwDOTsnR984V5Go0`, ruleset `20518984`, disabled
   Actions, and current security settings.
 
-This proposal changes none of those sources, identities, versions, schemas,
-assertions, expected results, bindings, rules, tools, implementations,
-evidence, limitations, statuses, settings, or authority.
+This status promotion changes none of those sources, identities, versions,
+schemas, assertions, expected results, bindings, rules, tools,
+implementations, evidence, limitations, statuses, settings, or authority.
 
-## Proposed Definition subject
+## Definition subject
 
-| Dimension | Exact proposed value |
+| Dimension | Exact Accepted value |
 | --- | --- |
 | Definition category | CNTX Extension Module Definition |
 | Local name | `epistemic-provenance-freshness` |
 | Extension Module Definition Identifier | `https://github.com/CNTX-PROJECT/CNTX/extension-module-definitions/epistemic-provenance-freshness` |
 | Initial Extension Module Definition Version | `1.0.0` |
-| Lifecycle status | Proposed |
+| Lifecycle status | Accepted |
 
 The Identifier is an opaque, version-independent logical identifier. It does
 not authorize dereferencing, discovery, retrieval, redirects, registry or
 catalog lookup, network access, trust, support, or authority. Definition
 Version is a separate exact pin.
 
-Discussion, issue acceptance, candidate preparation, review, mergeability,
-repository location, path, filename, URL availability, implementation
-recognition, or product use does not allocate the Identifier or activate
-Version `1.0.0`. Proposed and reviewed states consume no Definition Version.
+Discussion, issue acceptance, candidate preparation, status promotion, branch
+or repository presence, Ready-for-review, review, mergeability, path, filename,
+URL availability, implementation recognition, or product use does not by
+itself integrate the decision, allocate the Identifier, or activate Version
+`1.0.0`. Exact-head acceptance comment `5252557346` plus separately governed
+integration to `main` allocates and activates only this exact Identifier and
+Version as the integrated Accepted Definition. Proposed and reviewed states
+consume no Definition Version.
 
 No Profile Definition Identifier, Profile Definition Version, or Profile local
 name is created or reserved.
@@ -112,13 +123,13 @@ name is created or reserved.
 ## Normative language
 
 The key words **MUST**, **MUST NOT**, **SHOULD**, **SHOULD NOT**, and **MAY**
-express requirement strength within this proposed Definition. They do not
+express requirement strength within this Accepted Definition. They do not
 create a representation, processor, implementation, execution permission, or
 consequential authority.
 
 ## Additive responsibility and Core sovereignty
 
-If separately Accepted and integrated, this Definition adds only epistemic
+Upon separately governed integration, this Accepted Definition adds only epistemic
 provenance and freshness meaning. It MUST NOT:
 
 1. modify, replace, weaken, reinterpret, repair, coerce, default, or override
@@ -170,7 +181,7 @@ authority.
 
 ## Closed logical source categories
 
-For proposed Definition Version `1.0.0`, the logical source-category set is
+For Definition Version `1.0.0`, the logical source-category set is
 closed to exactly these six semantic categories:
 
 1. **Governing Source** — an exact source whose accepted authority governs the
@@ -417,15 +428,15 @@ serialized member created by this document.
 
 ## Dependencies, activation, and composition
 
-This proposed Definition has no Required or Optional Extension Module
+This Accepted Definition has no Required or Optional Extension Module
 Definition Dependencies and creates no Profile Subject.
 
 Its normative basis remains the exact Accepted CNTX architecture and authority
 sources identified above. That basis is not an executable Definition
 dependency graph and does not make Core depend on this Definition.
 
-If this Definition later becomes Accepted, any consequential use still
-requires a separately Accepted declaration/activation representation and one
+Any consequential use of this Accepted Definition still requires a separately
+Accepted declaration/activation representation and one
 closed frozen context under ARCH-030 and ARCH-031. That context would need to
 pin the exact Definition Identifier and Version, authoritative definition
 source and revision, activation authority, applicable Core inputs, source and
@@ -518,13 +529,14 @@ or erasure. Restricted content MUST NOT be copied into a public record; only
 the minimum public-safe existence, access, scope, and limitation metadata may
 be stated when authorized.
 
-Candidate validation and a transparent non-independent ARCHITECT review are
-not independent assurance. They do not prove implementation behavior,
+Preparation, promotion, validation, publication, and a transparent
+non-independent ARCHITECT review are not independent assurance. They do not
+prove implementation behavior,
 authenticity, integrity, freshness, applicability, security/privacy,
 interoperability, support, certification, release fitness, or deployment
 fitness.
 
-No implementation or adversarial execution evidence exists for this proposed
+No implementation or adversarial execution evidence exists for this
 capability. No evidence instance is created by this document.
 
 ## Security, privacy, and resource boundary
@@ -568,25 +580,27 @@ schema evaluation, if separately created later, would not prove Definition,
 implementation, interoperability, security/privacy, support, certification,
 release, or deployment conformance.
 
-If separately Accepted, Definition Version `1.0.0` is immutable. Correction,
-normative change, withdrawal, deprecation, or supersession requires a new exact
-baseline, scope, evidence, review, attributable acceptance, integration, and
-completion lifecycle under ARCH-029. Historical versions remain identifiable.
+Upon separately governed integration, Accepted Definition Version `1.0.0` is
+allocated, activated, and immutable. Correction, normative change, withdrawal,
+deprecation, or supersession requires a new exact baseline, scope, evidence,
+review, attributable acceptance, integration, and completion lifecycle under
+ARCH-029. Historical versions remain identifiable.
 
 The immutable prerelease `0.1.0-prealpha.1`, its tag, subject, GitHub Release,
-and verification remain unchanged. This proposal does not extend that release
-subject or publish this Definition.
+and verification remain unchanged. This Definition and status promotion do not
+extend that release subject or publish this Definition.
 
 ## Dependency-first handoff
 
-This Proposed Definition is the first documentation-only dependency in the
-Source, Provenance and Freshness roadmap phase. It authorizes no later step.
+This Accepted Definition is the first documentation-only dependency in the
+Source, Provenance and Freshness roadmap phase. Its status promotion authorizes
+no later step.
 
-Only after exact-head acceptance, separately governed status promotion,
-integration, completion, synchronization, and a new read-only reassessment may
-a later authority consider another bounded phase. A possible Profile remains
-separately governed and may not invent a capability absent from exact pinned
-Accepted inputs.
+Exact-head acceptance is recorded in comment `5252557346`. Only after
+separately governed integration, completion, synchronization, and a new
+read-only reassessment may a later authority consider another bounded phase. A
+possible Profile remains separately governed and may not invent a capability
+absent from exact pinned Accepted inputs.
 
 No Profile name, Identifier, Version, issue, branch, path, representation,
 schema, rule, tool, implementation, evidence, release, or authority is reserved
@@ -622,11 +636,12 @@ Costs and limitations:
 - model recollection may be stale, incomplete, or wrong;
 - no concrete representation, schema, rule, policy, tool, implementation, or
   execution evidence exists; and
-- candidate preparation and review are non-independent.
+- preparation, promotion, validation, publication, and review are
+  non-independent.
 
 ## Protected predecessors and historical integrity
 
-This proposal preserves without semantic or object change:
+This decision preserves without semantic or object change:
 
 - ARCH-001 through ARCH-037 and ADR-0001 through ADR-0037;
 - CONTRACT-001 through CONTRACT-009;
@@ -654,21 +669,26 @@ schema validation, integrity evaluation, implementation test, adversarial test,
 evidence production, correction, withdrawal, deprecation, supersession,
 release action, or deployment action.
 
-It does not make this Definition Accepted, allocate its Identifier, activate
-Version `1.0.0`, reserve a Profile, authorize Ready-for-review, grant merge
-permission, close issue #128, or authorize branch cleanup or a follow-on phase.
+Exact-head acceptance and this status promotion do not by themselves integrate
+the Definition, allocate its Identifier, or activate Version `1.0.0`.
+Separately governed integration is required for those exact integration and
+activation effects. ARCH-038 does not reserve a Profile, grant merge
+permission, close issue #128, authorize branch cleanup, or authorize a
+follow-on phase.
 
 ## Final-human authority and stopgate
 
-This Proposed document does not approve itself. Issue-contract acceptance,
-candidate preparation, repository presence, static validation, transparent
+This Accepted document did not approve itself. Exact-head acceptance is
+recorded in attributable EIGENAAR / Final Authority comment `5252557346`.
+Issue-contract acceptance, candidate preparation, repository presence, the
+status-promotion commit, static validation, Ready-for-review, transparent
 non-independent ARCHITECT review, mergeability, technical access, and
-implementation recognition grant no consequential authority.
+implementation recognition do not by themselves integrate the decision,
+activate the Definition, or grant consequential authority.
 
 Work stops at a new attributable EIGENAAR / Final Authority gate for the exact
-reviewed candidate head. Any acceptance, status promotion, integration,
-completion, issue closure, branch cleanup, or later phase requires separate
-express authority.
+reviewed promotion head. Integration, completion, issue closure, branch
+cleanup, and every later phase require separate express authority.
 
 ## References
 
