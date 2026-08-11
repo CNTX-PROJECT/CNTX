@@ -32,22 +32,23 @@ CNTX is model-, vendor-, runtime-, and domain-agnostic. It does not prescribe a 
 - Keep people in authority for consequential decisions and merges.
 - Treat security, privacy, and scope boundaries as first-class constraints.
 
-## Current proposed execution path
+## Current execution path
 
-The specification foundation is complete. The next useful step is to prove a
-small part of it in practice. The sequence below is proposed work, not automatic
-authority to start, accept, release, or deploy any phase.
+The specification foundation and the first bounded validation and integrity
+practice slices are complete. Source, Provenance and Freshness is the next
+technical phase, but it is not started or authorized by this roadmap. Every
+later step remains separately governed.
 
-| Order | Proposed milestone | Practical outcome |
-| --- | --- | --- |
-| 1 | Validation and integrity contracts | Exact rules, tool identity, implementation identity, inputs, outputs, limits, and evidence |
-| 2 | Local offline runner | Reproducible execution of the 10 schemas and 203 synthetic cases |
-| 3 | Cross-record integrity | Detect missing, duplicate, ambiguous, or conflicting links between supplied records |
-| 4 | Source and freshness controls | Make source identity, revision, time, uncertainty, and unverifiable conditions more explicit |
-| 5 | Execution and task controls | Record tool/model/skill identity and classify light, moderate, heavy, or complex work separately from risk |
-| 6 | Team authority and temporary context | Support multiple principals, isolated task capsules, cleanup, and bounded archives |
-| 7 | One real vertical-slice test | Run one small task from contract and context through evidence, review, decision candidate, and cleanup |
-| 8 | Adapters and reassessment | Assess an optional OpenSpec mapping, one runtime adapter, adversarial tests, and the next human decision |
+| Order | Milestone | Status | Practical outcome |
+| --- | --- | --- | --- |
+| 1 | Validation and integrity contracts | Complete | Exact rules, tool identity, implementation identity, inputs, outputs, limits, and evidence |
+| 2 | Local offline runner | Complete for the minimal slice | Reproducible execution of the 10 schemas and 203 synthetic cases |
+| 3 | Cross-record integrity | Complete for the bounded practice slice | Detect missing, duplicate, ambiguous, or conflicting links between supplied records |
+| 4 | Source, provenance and freshness controls | Next governed phase; not started | Make source identity, revision, time, uncertainty, and unverifiable conditions more explicit |
+| 5 | Execution and task controls | Later | Record tool/model/skill identity and classify light, moderate, heavy, or complex work separately from risk |
+| 6 | Team authority and temporary context | Later | Support multiple principals, isolated task capsules, cleanup, and bounded archives |
+| 7 | One real vertical-slice test | Later | Run one small task from contract and context through evidence, review, decision candidate, and cleanup |
+| 8 | Adapters and reassessment | Later | Assess an optional OpenSpec mapping, one runtime adapter, adversarial tests, and the next human decision |
 
 CNTX does not publish a completion timer for these milestones. Progress is
 measured by exact evidence and separately governed gates. A successful runner
@@ -155,8 +156,9 @@ is integrated on public main at commit/tree
 `c0e46a4f9d98d2b3d76d08fb3c870fd5c2475b9c` /
 `97f3ee35a9bf6445ef78295a28f2a560a937eeef`.
 
-The candidate contains strict JSON and path boundaries, a closed five-artifact
-dependency lock, minimal Python source, bounded tests, deterministic output,
+The integrated slice contains strict JSON and path boundaries, a closed
+five-artifact dependency lock, minimal Python source, bounded tests,
+deterministic output,
 the ten exact Schema Resources, both historical manifest forms, all 203 cases,
 and all thirteen Accepted integrity rules. It preserves separate outcomes,
 diagnostics, limitations, blocked/non-executed conditions, record/evidence
@@ -168,20 +170,32 @@ runner executions, and exact agreement for `203/38/165` cases. Because the
 frozen invocation supplied zero `subjectRecords`, all thirteen integrity rules
 remained separately `not-evaluated` with `applicable=false`.
 
-### Current Phase 2/3 practice candidate
+### Completed Phase 2/3 practice slice
 
-Issue [#124](https://github.com/CNTX-PROJECT/CNTX/issues/124) and attributable
-Gate R1 acceptance comment `5246860005` govern one Proposed, non-executed
-[bounded cross-record integrity practice slice](tools/minimal-validation-integrity-slice/practice/cross-record-integrity/README.md).
+Issue [#124](https://github.com/CNTX-PROJECT/CNTX/issues/124) is
+closed/completed and PR [#125](https://github.com/CNTX-PROJECT/CNTX/pull/125)
+is merged. The [bounded cross-record integrity practice slice](tools/minimal-validation-integrity-slice/practice/cross-record-integrity/README.md)
+is integrated at commit/tree
+`954c266a28fd9f15e037b1716925d9eb1a1f031d` /
+`33a37a0c6db72ea34c231f0544e4e2d3f2b35a26`.
 
-Four complete strict JSON invocation candidates contain `8/9/10/1` synthetic
-public-safe records. The coherent chain makes all thirteen rules applicable;
-the other scenarios preserve one dangling reference, one restricted target,
-and genuine inapplicability. Their expected outcomes are statically derived
-and remain separate. The candidate changes no runner, dependency, schema,
+Four complete strict JSON invocations contain `8/9/10/1` synthetic public-safe
+records. Two separately authorized isolated environments each executed all four
+scenarios. Actual outcomes matched the frozen expected matrix exactly:
+
+- coherent: thirteen `satisfied`;
+- dangling: twelve `satisfied` and one `not-satisfied`;
+- restricted: eleven `satisfied` and two `unverifiable`;
+- minimal: seven `satisfied` and six genuinely inapplicable `not-evaluated`.
+
+Each execution also matched all `203/38/165` schema-case expectations and kept
+all eight validation phases separate. The evidence and review are
+non-independent; hard outer process limits, operating-system network isolation,
+and peak working set remain unproven or unobserved. The slice changes no schema,
 historical manifest, testcase, Definition, Representation, architecture, ADR,
 workflow, CI, release, support, hosting, deployment, or authority boundary.
-Execution and actual evidence require a later exact-head Gate R3 decision.
+These counts and outcomes are not an aggregate verdict. `automaticAuthority`
+remains false.
 
 ## Detailed project status and roadmap
 
