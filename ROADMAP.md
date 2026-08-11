@@ -24,7 +24,7 @@ are preserved below in an expandable technical section.
 | Horizon | State | Meaning |
 | --- | --- | --- |
 | **Now** | Integrated | 39 Accepted architecture decisions, 9 record contracts, 10 Core schemas, 203 synthetic cases, one bounded local validation/integrity slice, and the ARCH-038/ARCH-039 source-and-freshness Definitions |
-| **Next** | Separate decision required | Read-only reassessment for exact Definition Schema Resources, assertions, cases, and fixed expected results |
+| **Next** | Proposed ARCH-040 | Define the general Module JSON representation boundary first; exact Definition Schema Resources, assertions, cases, and fixed expected results remain later separate decisions |
 | **Later** | Not started | Execution and task controls, multi-principal authority, temporary context, one real vertical slice, adapters, adversarial evaluation, and reassessment |
 
 `Integrated` does not mean finished, supported, certified, or ready to deploy.
@@ -51,7 +51,7 @@ implementation.
 | 1 | Validation and integrity contracts | Complete | Exact rules, tool identity, implementation identity, inputs, outputs, limits, and evidence |
 | 2 | Local offline runner | Complete for the minimal slice | Reproducible execution of the 10 schemas and 203 synthetic cases |
 | 3 | Cross-record integrity | Complete for the bounded practice slice | Detect missing, duplicate, ambiguous, or conflicting links between supplied records |
-| 4 | Source, provenance and freshness controls | ARCH-038 and ARCH-039 Accepted and integrated; exact schema-resource reassessment is next | Make source identity, revision, time, uncertainty, and unverifiable conditions more explicit before any representation or execution |
+| 4 | Source, provenance and freshness controls | ARCH-038 and ARCH-039 Accepted and integrated; ARCH-040 Module JSON representation boundary Proposed | Define the machine-readable target shape before separately governing Module schema/cases, Profile representation, and Profile schema/cases |
 | 5 | Execution and task controls | Later | Record tool/model/skill identity and classify light, moderate, heavy, or complex work separately from risk |
 | 6 | Team authority and temporary context | Later | Support multiple principals, isolated task capsules, cleanup, and bounded archives |
 | 7 | One real vertical-slice test | Later | Run one small task from contract and context through evidence, review, decision candidate, and cleanup |
@@ -273,9 +273,36 @@ Profile instance, representation, schema, policy, rule, tool, implementation,
 execution, evidence, release, publication, support, hosting, deployment, or
 consequential authority is created.
 
+### Proposed Phase 4A3.1 Module representation boundary
+
+[ARCH-040](docs/architecture/epistemic-provenance-freshness-extension-module-json-representation-boundary.md)
+and
+[ADR-0040](docs/architecture/adr/0040-epistemic-provenance-freshness-extension-module-json-representation-boundary.md)
+are **Proposed** under issue #139 and attributable EIGENAAR / Final Authority
+issue-contract acceptance comment `5259097128`. They are the first
+representation-first dependency of Phase 4A3.
+
+The documentation-only proposal defines one closed thirteen-property
+JSON-compatible instance-data model for one bounded source declaration under
+exact ARCH-038 Definition Identifier/Version pins. It carries the six existing
+source categories, eight information conditions, four separate ARCH-024
+outcomes, exact source/claim/provenance responsibilities, four temporal
+coordinates, digest and policy pins, clock/reference context, finite
+derivation, limitations, adverse/restricted information, and attributable
+roles without creating an aggregate result or automatic authority.
+
+The proposal changes no Core Artifact JSON or Context Packet schema and
+allocates no Representation or Schema Identifier/Version. It creates no `$id`,
+Schema Resource, schema assertion, testcase, fixed expected result, rule,
+Tool/Implementation version, code, runner, execution, evidence, release,
+support, certification, hosting, or deployment. Proposed status, branch or
+repository presence, validation, review, and mergeability allocate or activate
+nothing. A Module Definition Schema Resource and cases remain a later separate
+gate after ARCH-040 acceptance, integration, and completion.
+
 ## Detailed project status and roadmap
 
-CNTX has completed its initial Public-Core specification and prerelease cycle within the Accepted ARCH-027 completion and maintenance boundary. The repository records [Accepted architecture through ARCH-039](docs/architecture/README.md). It provides public governance, thirty-nine Accepted architecture sources and ADRs, nine Accepted artifact contracts, ten Accepted Schema Versions 1.0.0 with synthetic cases, one integrated minimal validation and integrity Tool/Implementation slice, and one immutable unsupported prerelease, 0.1.0-prealpha.1. CNTX remains model-, vendor-, runtime-, and domain-agnostic. ARCH-038 and ARCH-039 are integrated; for each, exact-head acceptance plus separately governed integration allocated and activated only its exact Definition Identifier and Version. Neither the integrated slice nor either Accepted Definition creates a supported release line, support service, certification, hosting, deployment, workflow, CI, product, or final-human authority.
+CNTX has completed its initial Public-Core specification and prerelease cycle within the Accepted ARCH-027 completion and maintenance boundary. The repository records [Accepted architecture through ARCH-039 and separate Proposed ARCH-040](docs/architecture/README.md). It provides public governance, thirty-nine Accepted architecture sources and ADRs, one Proposed representation-boundary source and ADR, nine Accepted artifact contracts, ten Accepted Schema Versions 1.0.0 with synthetic cases, one integrated minimal validation and integrity Tool/Implementation slice, and one immutable unsupported prerelease, 0.1.0-prealpha.1. CNTX remains model-, vendor-, runtime-, and domain-agnostic. ARCH-038 and ARCH-039 are integrated; for each, exact-head acceptance plus separately governed integration allocated and activated only its exact Definition Identifier and Version. Proposed ARCH-040 allocates or activates nothing. Neither the integrated slice, either Accepted Definition, nor the Proposed representation boundary creates a supported release line, support service, certification, hosting, deployment, workflow, CI, product, or final-human authority.
 
 The [artifact-contract index](docs/contracts/README.md) includes nine accepted, binding subordinate artifact-specific contracts: Project Charter, Workstream, Task Contract, Context Packet, Execution Result, Evidence Bundle, Review Record, Decision Record, and State Snapshot. None introduces an executable schema, template, validator, state engine, synchronization engine, workflow, runtime, or product functionality. No canonical artifact contract remains listed as future work; the accepted status does not authorize a follow-on phase. CNTX remains a public core that is model-, vendor-, runtime-, and domain-agnostic and remains independent of private reference implementations.
 
