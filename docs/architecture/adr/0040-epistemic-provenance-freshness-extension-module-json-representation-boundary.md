@@ -1,9 +1,13 @@
 # ADR-0040: CNTX Epistemic Provenance and Freshness Extension Module JSON Representation Boundary
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-08-11
 - **Issue:** [#139](https://github.com/CNTX-PROJECT/CNTX/issues/139)
 - **Issue-contract acceptance comment:** [5259097128](https://github.com/CNTX-PROJECT/CNTX/issues/139#issuecomment-5259097128)
+- **Exact-head acceptance comment:** [5259328712](https://github.com/CNTX-PROJECT/CNTX/issues/139#issuecomment-5259328712)
+- **Accepted candidate:** commit
+  `60d815ed9545c5ab16a4531df9a83cc00ed65340`, tree
+  `4671ec2dac4df5029dddaaa5876375ba2b7b749d`
 - **Baseline:** commit `67e04ad50d9563b7942c4f402841417391a72ac4`, tree `89b7a2610d43684d6e48fc8455ad2480d0055ab7`
 - **Decision:** ARCH-040 — CNTX Epistemic Provenance and Freshness Extension
   Module JSON Representation Boundary
@@ -42,7 +46,7 @@ declaration record about one exact primary source subject governed by:
 
 No separate Representation Identifier or Version is allocated. No
 Serialization Binding is selected. The model is subordinate to ARCH-038 and is
-the proposed target boundary for a later separately governed Module Definition
+the Accepted target boundary for a later separately governed Module Definition
 Schema Resource.
 
 ### Closed root
@@ -284,8 +288,8 @@ authority record unchanged.
 
 ## Non-decisions and non-execution
 
-This Proposed ADR creates no Accepted status, Representation
-Identifier/Version, Serialization Binding, Schema Identifier/Version, `$id`,
+Accepted status creates no Representation Identifier/Version, Serialization
+Binding, Schema Identifier/Version, `$id`,
 Schema Resource, schema file, assertion, testcase, expected result, fixture,
 policy identity/version, digest algorithm, timestamp syntax, rule, diagnostic
 vocabulary, Tool/Implementation version, dependency, Python, code, runner,
@@ -299,15 +303,18 @@ testing, evidence production, release, or deployment.
 
 ## Authority boundary
 
-Issue #139 and attributable issue-contract acceptance comment `5259097128`
-authorize preparation of the exact Proposed documentation candidate only.
-Candidate preparation, repository presence, validation, Draft PR state,
+Issue #139, attributable issue-contract acceptance comment `5259097128`, and
+exact-head acceptance comment `5259328712` govern this Accepted decision.
+Acceptance is bound to candidate commit
+`60d815ed9545c5ab16a4531df9a83cc00ed65340` and tree
+`4671ec2dac4df5029dddaaa5876375ba2b7b749d`. The preceding Proposed status,
+candidate preparation, repository presence, validation, Draft PR state,
 transparent non-independent COMMENT review, mergeability, parsing, or
-implementation recognition does not accept, activate, integrate, or release
+implementation recognition did not accept, activate, integrate, or release
 ARCH-040.
 
-The candidate must stop at a new attributable exact-head EIGENAAR / Final
-Authority acceptance gate. Proposed-to-Accepted promotion, Ready-for-review,
-merge, issue closure, branch cleanup, Module Schema Resource work, Profile
-representation, implementation, release, publication, support, certification,
-hosting, deployment, and every later phase require separate authority.
+Status promotion, Ready-for-review, review, repository presence, and
+mergeability do not integrate or activate ARCH-040. Merge, issue closure,
+branch cleanup, Module Schema Resource work, Profile representation,
+implementation, release, publication, support, certification, hosting,
+deployment, and every later phase require separate authority.

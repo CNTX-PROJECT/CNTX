@@ -3,9 +3,9 @@
 ## Start here
 
 CNTX architecture explains the boundaries behind its records, schemas,
-validation, extensions, evidence, and human authority. The current candidate
-contains **39 Accepted architecture decisions and matching ADRs**, plus the
-separate Proposed ARCH-040 representation decision and ADR.
+validation, extensions, evidence, and human authority. The current promotion
+candidate contains **40 Accepted architecture decisions and matching ADRs**.
+ARCH-040 is Accepted but remains pending separately governed integration.
 
 | If you need… | Open… |
 | --- | --- |
@@ -13,7 +13,7 @@ separate Proposed ARCH-040 representation decision and ADR.
 | The nine collaboration records | [Artifact-contract index](../contracts/README.md) |
 | Machine-readable Core structure | [Schema index](../../schemas/README.md) |
 | The bounded executable practice slice | [Validation and integrity slice](../../tools/minimal-validation-integrity-slice/README.md) |
-| The source/provenance/freshness layer | [ARCH-038](epistemic-provenance-freshness-extension-module-definition.md), [ARCH-039](context-packet-epistemic-provenance-freshness-profile-definition.md), and Proposed [ARCH-040](epistemic-provenance-freshness-extension-module-json-representation-boundary.md) |
+| The source/provenance/freshness layer | [ARCH-038](epistemic-provenance-freshness-extension-module-definition.md), [ARCH-039](context-packet-epistemic-provenance-freshness-profile-definition.md), and [ARCH-040](epistemic-provenance-freshness-extension-module-json-representation-boundary.md) |
 | Current and future order | [Roadmap](../../ROADMAP.md) |
 
 ## Architecture map
@@ -25,7 +25,7 @@ separate Proposed ARCH-040 representation decision and ADR.
 | ARCH-021–027 | Completion, binding, resolution, validation, evidence, release boundaries | Accepted public-core and prerelease lifecycle |
 | ARCH-028–033 | Extension Module/Profile identity, composition, resources, validation, tooling | Accepted extension architecture |
 | ARCH-034–037 | Validation records, evidence package, integrity rules, Tool/Implementation contract | Accepted basis for the bounded local slice |
-| ARCH-038–040 | Epistemic provenance and freshness Module/Profile Definitions and Module representation boundary | ARCH-038/039 Accepted and integrated; ARCH-040 Proposed and documentation-only; no schema, rule, implementation, or evidence instance |
+| ARCH-038–040 | Epistemic provenance and freshness Module/Profile Definitions and Module representation boundary | ARCH-038/039 Accepted and integrated; ARCH-040 Accepted, documentation-only, and integration pending; no schema, rule, implementation, or evidence instance |
 
 Architecture documents state conceptual and normative boundaries. They do not
 by themselves install software, execute a tool, prove conformance, approve a
@@ -563,23 +563,28 @@ property, representation, schema, policy, rule, tool, implementation,
 execution, evidence instance, release, publication, support, certification,
 hosting, deployment, merge permission, or follow-on authority.
 
-The Proposed [CNTX Epistemic Provenance and Freshness Extension Module JSON
+The Accepted [CNTX Epistemic Provenance and Freshness Extension Module JSON
 Representation Boundary](epistemic-provenance-freshness-extension-module-json-representation-boundary.md)
 and
 [ADR-0040](adr/0040-epistemic-provenance-freshness-extension-module-json-representation-boundary.md)
 are the first bounded Phase 4A3 dependency. Under issue #139 and attributable
-issue-contract acceptance comment `5259097128`, they propose one closed
+issue-contract acceptance comment `5259097128`, exact-head acceptance comment
+`5259328712`, accepted candidate commit
+`60d815ed9545c5ab16a4531df9a83cc00ed65340`, and tree
+`4671ec2dac4df5029dddaaa5876375ba2b7b749d`, they define one closed
 thirteen-property JSON-compatible instance-data model for one bounded source
 declaration governed by exact ARCH-038 Definition Identifier/Version pins.
 They serialize only the existing six source categories, eight information
 conditions, four ARCH-024 outcomes, and separate source, claim, provenance,
 temporal, digest, policy, clock/reference, derivation, limitation, and
-authority responsibilities. The proposal adds nothing to Core Artifact JSON
+authority responsibilities. The decision adds nothing to Core Artifact JSON
 or Context Packet Schema Version `1.0.0`, allocates no Representation or Schema
 Identifier/Version, and creates no `$id`, Schema Resource, testcase, rule,
 tool, implementation, execution, evidence instance, release, support,
-deployment, or follow-on authority. Proposed status and candidate/review state
-allocate or activate nothing.
+deployment, or follow-on authority. The preceding Proposed status and
+candidate/review state allocated or activated nothing. Exact-head acceptance
+establishes Accepted status only; status promotion, Ready state, review,
+repository presence, and mergeability do not integrate or activate ARCH-040.
 
 </details>
 

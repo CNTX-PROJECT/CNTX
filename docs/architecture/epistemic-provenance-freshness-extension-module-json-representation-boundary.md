@@ -2,22 +2,28 @@
 
 ## Status and authority
 
-**Document Status: Proposed.**
+**Document Status: Accepted.**
 
-This documentation-only candidate is governed by [issue
+This documentation-only decision is Accepted under [issue
 #139](https://github.com/CNTX-PROJECT/CNTX/issues/139) and attributable EIGENAAR
 / Final Authority issue-contract acceptance comment
 [5259097128](https://github.com/CNTX-PROJECT/CNTX/issues/139#issuecomment-5259097128).
-It is prepared directly from public baseline commit
+Exact-head acceptance is recorded in comment
+[5259328712](https://github.com/CNTX-PROJECT/CNTX/issues/139#issuecomment-5259328712)
+on candidate commit `60d815ed9545c5ab16a4531df9a83cc00ed65340` and tree
+`4671ec2dac4df5029dddaaa5876375ba2b7b749d`, prepared directly from public
+baseline commit
 `67e04ad50d9563b7942c4f402841417391a72ac4` and tree
 `89b7a2610d43684d6e48fc8455ad2480d0055ab7`.
 
-Proposed status, issue acceptance, candidate preparation, branch or repository
-presence, validation, review, Draft or Ready state, mergeability, URL
-availability, parsing, or implementation recognition does not accept,
-allocate, activate, integrate, release, or authorize ARCH-040 or any
-representation. A new attributable exact-head EIGENAAR / Final Authority
-acceptance and later separately governed integration are required.
+The preceding Proposed status, issue-contract acceptance, candidate
+preparation, branch or repository presence, validation, review, Draft state,
+mergeability, URL availability, parsing, or implementation recognition did not
+accept, allocate, activate, integrate, release, or authorize ARCH-040 or any
+representation. Exact-head acceptance establishes Accepted status only.
+Status promotion, Ready state, review, branch or repository presence, and
+mergeability do not integrate or activate the decision; later separately
+governed integration is required.
 
 ## Purpose and decision boundary
 
@@ -28,7 +34,7 @@ implementation, or execution. A later executable Definition Schema Resource
 cannot reliably validate a representation that has not first been explicitly
 bounded.
 
-ARCH-040 therefore proposes exactly one JSON-compatible instance-data model
+ARCH-040 therefore defines exactly one JSON-compatible instance-data model
 for one bounded declaration about one exact source subject under the Accepted
 Epistemic Provenance and Freshness Extension Module Definition. It defines:
 
@@ -56,7 +62,7 @@ or execution.
 
 ## Exact decision basis
 
-This proposal is subordinate to and changes none of:
+This decision is subordinate to and changes none of:
 
 - ARCH-001 through ARCH-039 and ADR-0001 through ADR-0039;
 - especially ARCH-024 and ARCH-028 through ARCH-038 for separate outcomes,
@@ -79,7 +85,7 @@ This proposal is subordinate to and changes none of:
   adverse/restricted-evidence, non-aggregation, non-execution, and
   final-human-authority boundaries.
 
-Representation under this proposal cannot broaden, repair, override, weaken,
+Representation under this decision cannot broaden, repair, override, weaken,
 reinterpret, or replace an Accepted source. If this document and an Accepted
 source could be read differently, the Accepted source controls and the
 affected representation claim is blocked.
@@ -96,7 +102,7 @@ source subject under exactly this governing Definition key:
 | Definition Identifier | `https://github.com/CNTX-PROJECT/CNTX/extension-module-definitions/epistemic-provenance-freshness` |
 | Definition Version | `1.0.0` |
 | Representation scope | One declaration record, one exact primary source subject, zero or more explicitly bounded claims and evaluations |
-| Document status | Proposed |
+| Document status | Accepted |
 
 The governing Definition Identifier is opaque and version independent. Its
 HTTPS shape grants no dereferencing, retrieval, network, redirect, registry,
@@ -104,10 +110,10 @@ catalog, cache, trust, support, or authority. Definition Version remains a
 separate exact pin.
 
 ARCH-040 allocates no separate Representation Identifier or Representation
-Version. The root model is the proposed representation boundary for the exact
+Version. The root model is the Accepted representation boundary for the exact
 Definition key above. A later decision may determine whether an independent
 Serialization Binding identity/version is necessary after a concrete Schema
-Resource exists; this proposal does not reserve one.
+Resource exists; this decision does not reserve one.
 
 The represented declaration record is not:
 
@@ -363,7 +369,7 @@ Every specified coordinate carries:
 - `source`: exact source/provenance for the coordinate; and
 - `responsibleRole`: the attributable declaring or observing role.
 
-This proposal creates no timestamp lexical syntax, calendar profile, default
+This decision creates no timestamp lexical syntax, calendar profile, default
 timezone, duration, tolerance, threshold, clock service, synchronization
 mechanism, or time comparison algorithm. A later schema must separately select
 any syntax it can enforce without changing these meanings.
@@ -398,7 +404,7 @@ for:
 - `evidenceRefs`; and
 - `limitations`, failures, and adverse/restricted information.
 
-This proposal selects no digest algorithm, encoding, canonicalization,
+This decision selects no digest algorithm, encoding, canonicalization,
 signature, certificate, trust store, attestation, verification
 implementation, or comparison behavior. A bare algorithm or value is
 insufficient. A match supports only the exact bounded integrity claim and
@@ -560,7 +566,7 @@ for:
 - `finalHumanAuthorityRole`.
 
 Every role reference carries an opaque identity, role label, bounded scope,
-and attribution/provenance reference. This proposal creates no person,
+and attribution/provenance reference. This decision creates no person,
 account, organization, credential, authentication, authorization, access-
 control, signature, delegation, voting, approval, or identity-verification
 system.
@@ -693,9 +699,10 @@ security, legal status, safety, trust, or absence of risk.
 
 ## Lifecycle and change boundary
 
-Proposed ARCH-040 consumes no representation identity/version and activates
-nothing. If later Accepted and integrated, it establishes only this exact
-representation boundary against ARCH-038 Definition Version `1.0.0`.
+Accepted ARCH-040 consumes no separate representation identity/version.
+Acceptance and status promotion activate or integrate nothing. If later
+integrated through separately governed authority, it establishes only this
+exact representation boundary against ARCH-038 Definition Version `1.0.0`.
 
 A correction fixes documentary error without silently changing represented
 meaning. A normative property, token, requiredness, condition, structure,
@@ -823,14 +830,14 @@ rules, Tool/Implementation contracts, Package E/practice evidence, immutable
 release objects, settings, ruleset, H2.4, limitations, adverse/restricted
 evidence, and historical authority records remain unchanged.
 
-The current proposal adds documentation only. It changes no JSON, schema,
+The current decision adds documentation only. It changes no JSON, schema,
 test, fixture, expected result, rule, Python, dependency, runner, invocation,
 workflow, CI, setting, tag, Release, evidence instance, or historical source.
 
 ## Explicit non-decisions and non-execution
 
-ARCH-040 creates no Accepted status, Representation Identifier/Version,
-Serialization Binding, Definition Schema Identifier, Schema Version, `$id`,
+Accepted status creates no Representation Identifier/Version, Serialization
+Binding, Definition Schema Identifier, Schema Version, `$id`,
 Schema Resource, schema file, assertion, Test Manifest, testcase, fixed
 expected result, fixture, policy identity/version, task/source-class
 vocabulary, threshold, duration, digest algorithm, canonicalization, clock
@@ -851,13 +858,13 @@ No declaration, representation, parser result, later schema result, condition,
 evaluation, evidence reference, review, score, majority, consensus, tool,
 implementation, or model becomes final authority.
 
-This candidate must stop after one transparent non-independent ARCHITECT
-COMMENT review and final read-only verification. Proposed-to-Accepted status
-promotion, Ready-for-review, merge, integration, issue closure, branch cleanup,
-Module Schema Resource work, Profile representation, implementation, release,
-publication, support, certification, hosting, deployment, and every later
-Phase 4A3 subphase require new separate attributable EIGENAAR / Final Authority
-authority.
+Exact-head acceptance is recorded in comment `5259328712`. Status promotion,
+Ready-for-review, transparent non-independent COMMENT review, and final
+read-only verification do not integrate or activate ARCH-040. Merge,
+integration, issue closure, branch cleanup, Module Schema Resource work,
+Profile representation, implementation, release, publication, support,
+certification, hosting, deployment, and every later Phase 4A3 subphase require
+new separate attributable EIGENAAR / Final Authority authority.
 
 ## References
 
