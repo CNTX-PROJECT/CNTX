@@ -471,6 +471,34 @@ runner, code, library, SDK, CLI, API, workflow, CI, release, publication,
 support, certification, hosting, deployment, merge permission, or authority
 for Package E.
 
+The [CNTX Epistemic Provenance and Freshness Extension Module
+Definition](epistemic-provenance-freshness-extension-module-definition.md) and
+[ADR-0038](adr/0038-epistemic-provenance-freshness-extension-module-definition.md)
+are **Accepted** as ARCH-038 under issue #128, attributable EIGENAAR / Final
+Authority issue-contract acceptance comment `5251980826`, and exact-head
+acceptance comment `5252557346` on candidate commit
+`e6700258c584deaabf028e8d339680567ed1715f` and tree
+`664f00045fc7dcfb26ff2d9cf12c5787c0524493`. The documentation-only Definition
+specifies exactly one Extension Module Definition with local name
+`epistemic-provenance-freshness`, version-independent
+Identifier
+`https://github.com/CNTX-PROJECT/CNTX/extension-module-definitions/epistemic-provenance-freshness`,
+and initial Definition Version `1.0.0`. It defines closed logical
+source categories, exact source identity/revision and provenance
+responsibilities, separate publication/revision, observation/retrieval,
+record-production and valid-through times, explicit digest and policy pins,
+clock/reference provenance, derivation, visible condition states, fail-closed
+processing, non-aggregation, and `automaticAuthority: false`. Exact-head
+acceptance plus separately governed integration to `main` allocates and
+activates only this exact Identifier and Version as the integrated Accepted
+Definition. Status promotion, branch or repository presence, Ready-for-review,
+review, and mergeability do not by themselves integrate, allocate, or activate
+it. The Definition creates no
+Profile, property, representation, schema, Schema Resource, testcase, rule,
+Tool/Implementation Version, dependency, code, runner, execution, evidence,
+release, publication, support, certification, hosting, deployment, merge
+permission, or follow-on authority.
+
 ## Document status
 
 - **Proposed** — submitted for review and not yet an accepted repository decision.
