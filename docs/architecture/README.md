@@ -471,6 +471,28 @@ runner, code, library, SDK, CLI, API, workflow, CI, release, publication,
 support, certification, hosting, deployment, merge permission, or authority
 for Package E.
 
+The [CNTX Epistemic Provenance and Freshness Extension Module
+Definition](epistemic-provenance-freshness-extension-module-definition.md) and
+[ADR-0038](adr/0038-epistemic-provenance-freshness-extension-module-definition.md)
+are **Proposed** as ARCH-038 under issue #128 and attributable EIGENAAR / Final
+Authority issue-contract acceptance comment `5251980826`. The
+documentation-only candidate proposes exactly one Extension Module Definition
+with local name `epistemic-provenance-freshness`, version-independent proposed
+Identifier
+`https://github.com/CNTX-PROJECT/CNTX/extension-module-definitions/epistemic-provenance-freshness`,
+and proposed initial Definition Version `1.0.0`. It defines closed logical
+source categories, exact source identity/revision and provenance
+responsibilities, separate publication/revision, observation/retrieval,
+record-production and valid-through times, explicit digest and policy pins,
+clock/reference provenance, derivation, visible condition states, fail-closed
+processing, non-aggregation, and `automaticAuthority: false`. Proposed status,
+candidate preparation, repository presence, review, and mergeability do not
+allocate or activate the Identifier or Version. The candidate creates no
+Profile, property, representation, schema, Schema Resource, testcase, rule,
+Tool/Implementation Version, dependency, code, runner, execution, evidence,
+release, publication, support, certification, hosting, deployment, merge
+permission, or follow-on authority.
+
 ## Document status
 
 - **Proposed** — submitted for review and not yet an accepted repository decision.
