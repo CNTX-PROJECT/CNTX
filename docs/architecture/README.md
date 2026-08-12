@@ -3,10 +3,10 @@
 ## Start here
 
 CNTX architecture explains the boundaries behind its records, schemas,
-validation, extensions, evidence, and human authority. The public baseline
-contains **41 Accepted architecture decisions and matching ADRs**. ARCH-041 is
-Accepted, documentation-only, and pending separately governed integration
-before Phase 4A3.2.
+validation, extensions, evidence, and human authority. This promotion branch
+contains **42 Accepted architecture decisions and matching ADRs**. Public
+`main` remains integrated through ARCH-041; governed ARCH-042 integration is
+the next separate gate.
 
 | If you need… | Open… |
 | --- | --- |
@@ -14,7 +14,7 @@ before Phase 4A3.2.
 | The nine collaboration records | [Artifact-contract index](../contracts/README.md) |
 | Machine-readable Core structure | [Schema index](../../schemas/README.md) |
 | The bounded executable practice slice | [Validation and integrity slice](../../tools/minimal-validation-integrity-slice/README.md) and [Accepted corrective version boundary](minimal-validation-integrity-slice-corrective-version-boundary.md) |
-| The source/provenance/freshness layer | [ARCH-038](epistemic-provenance-freshness-extension-module-definition.md), [ARCH-039](context-packet-epistemic-provenance-freshness-profile-definition.md), and [ARCH-040](epistemic-provenance-freshness-extension-module-json-representation-boundary.md) |
+| The source/provenance/freshness layer | [ARCH-038](epistemic-provenance-freshness-extension-module-definition.md), [ARCH-039](context-packet-epistemic-provenance-freshness-profile-definition.md), [ARCH-040](epistemic-provenance-freshness-extension-module-json-representation-boundary.md), and Accepted [ARCH-042](epistemic-provenance-freshness-extension-module-definition-schema-resource.md) |
 | Current and future order | [Roadmap](../../ROADMAP.md) |
 
 ## Architecture map
@@ -27,7 +27,8 @@ before Phase 4A3.2.
 | ARCH-028–033 | Extension Module/Profile identity, composition, resources, validation, tooling | Accepted extension architecture |
 | ARCH-034–037 | Validation records, evidence package, integrity rules, Tool/Implementation contract | Accepted basis for the bounded local slice |
 | ARCH-038–040 | Epistemic provenance and freshness Module/Profile Definitions and Module representation boundary | Accepted and integrated; no Module schema, rule, implementation, or evidence instance |
-| ARCH-041 | Minimal validation and integrity slice corrective version boundary | Accepted, documentation-only, and integration pending; preserves `1.0.0` history, accepts `1.0.1` as the exact integration target, and keeps portability, CI, and Phase 4A3.2 separate |
+| ARCH-041 | Minimal validation and integrity slice corrective version boundary | Accepted and integrated; corrective Implementation `1.0.1` is integrated with its bounded evidence, while portability and CI remain separate |
+| ARCH-042 | Epistemic provenance and freshness Module Definition Schema Resource | Accepted with one exact schema and 48 separately matched synthetic cases; governed integration pending, with no activation or Tool support |
 
 Architecture documents state conceptual and normative boundaries. They do not
 by themselves install software, execute a tool, prove conformance, approve a
@@ -605,13 +606,32 @@ subject for new repository-file pins, accept only corrective Implementation
 Version `1.0.1` as the exact later integration target, and bound the
 path-safety change to rejecting colon-bearing relative path segments on every
 supported host. Historical invocations and evidence are not overwritten.
-Runtime portability, workflows, Actions settings, CI, correction
-implementation, execution, evidence, and Phase 4A3.2 remain separate and not
-authorized. Exact-head acceptance establishes Accepted status only. The
-preceding Proposed status, candidate, review, repository presence, Ready state,
-and mergeability allocated or activated nothing; status promotion does not
-integrate or activate ARCH-041 or Version `1.0.1`. Later separately governed
-integration to `main` is required for that exact allocation and activation.
+Runtime portability, workflows, Actions settings, CI, and Phase 4A3.2 remain
+separate. Later governed work integrated ARCH-041 and the bounded corrective
+Implementation Version `1.0.1` with its exact execution evidence, without
+rewriting Version `1.0.0` history or creating a portability, CI, support,
+release, certification, or deployment claim.
+
+The Accepted [CNTX Epistemic Provenance and Freshness Extension Module
+Definition Schema Resource](epistemic-provenance-freshness-extension-module-definition-schema-resource.md)
+and [ADR-0042](adr/0042-epistemic-provenance-freshness-extension-module-definition-schema-resource.md)
+are the bounded Phase 4A3.2 decision under issue #145, attributable Owner /
+Final Authority issue-contract acceptance comment `5267576754`, and exact-head
+candidate-acceptance comment `5269689952` on commit/tree
+`d10fb23bdec7c13bb1154bd538d8e691d486fcce` /
+`071a9909efcee1d4d74d7ff65b0b05da30e73875`. The decision binds one Accepted
+Draft 2020-12 Schema Resource at Definition Version `1.0.0`
+to the already Accepted `epistemic-provenance-freshness` Module Definition and
+supplies [48 separate synthetic cases](../../tests/schemas/extension-modules/epistemic-provenance-freshness/1.0.0/cases.json):
+8 expected valid and 40 expected invalid. These counts remain separate from the
+historical Core `203/38/165` inventory and form no aggregate score or gate.
+The preceding Proposed status allocated or activated nothing. Accepted status,
+status promotion, repository presence, schema validity, case evaluation, Ready
+state, review, or mergeability does not integrate or activate the Schema
+Resource, expand the supported Tool input set, or create a rule, execution
+authority, new evidence claim, release, support, certification, or deployment.
+The successful candidate execution remains bound only to the accepted candidate
+commit/tree above; the status-only promotion is not a new execution.
 
 </details>
 

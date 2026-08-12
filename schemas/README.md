@@ -1,8 +1,10 @@
 # CNTX Schema Resources
 
 CNTX currently has ten Accepted Core JSON Schema Resources: one shared envelope
-and one resource for each of the nine artifact contracts. Use this directory
-when you need the exact machine-evaluable shape of a record.
+and one resource for each of the nine artifact contracts. It also contains one
+Accepted Module Definition Schema Resource pending governed integration. Use
+this directory when you need the exact machine-evaluable shape of a record or
+module declaration.
 
 ## At a glance
 
@@ -404,6 +406,33 @@ define and evidence the Accepted boundary. Governed integration to `main`
 activates exactly Schema Version `1.0.0` under issue #66 and EIGENAAR acceptance
 comment `5219885650`; acceptance and activation grant no artifact instance,
 implementation, release, deployment, publication, or follow-on authority.
+
+## Accepted Epistemic Provenance and Freshness Module Definition Schema Version 1.0.0
+
+| Dimension | Accepted value |
+| --- | --- |
+| Governing Module Definition | `https://github.com/CNTX-PROJECT/CNTX/extension-module-definitions/epistemic-provenance-freshness` at `1.0.0` |
+| Schema language and dialect | JSON Schema Draft 2020-12 |
+| Canonical `$id` | `https://github.com/CNTX-PROJECT/CNTX/schemas/extension-modules/epistemic-provenance-freshness/1.0.0` |
+| Schema Version | `1.0.0` |
+| Canonical repository path | `schemas/extension-modules/epistemic-provenance-freshness/1.0.0/schema.json` |
+| Schema-resource media type | `application/schema+json` |
+| Document Status | Accepted under issue #145, Owner / Final Authority issue-contract acceptance comment `5267576754`, and exact-head candidate-acceptance comment `5269689952`; governed integration pending |
+
+The Accepted resource evaluates one closed Module declaration with explicit
+source, claim, provenance, temporal, digest, policy, derivation, condition,
+outcome, limitation, and non-automatic-authority structure. Its
+[architecture decision](../docs/architecture/epistemic-provenance-freshness-extension-module-definition-schema-resource.md),
+[ADR-0042](../docs/architecture/adr/0042-epistemic-provenance-freshness-extension-module-definition-schema-resource.md),
+and [48-case manifest](../tests/schemas/extension-modules/epistemic-provenance-freshness/1.0.0/cases.json)
+describe the exact Accepted boundary.
+
+The preceding Proposed status allocated or activated nothing. Accepted status,
+repository presence, `$id`, schema validity, case evaluation, Ready state,
+review, or mergeability does not integrate or activate the resource and
+allocates no new Definition, Profile, Core field, rule, Tool or Implementation
+version, supported input set, automatic authority, release, support,
+certification, hosting, or deployment. Governed integration remains separate.
 
 ## Change boundary
 
