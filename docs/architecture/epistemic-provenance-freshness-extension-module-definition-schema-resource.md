@@ -9,7 +9,7 @@ synthetic structural examples whose expectations preceded evaluation.
 
 | Quick view | Meaning |
 | --- | --- |
-| **Status** | Accepted Definition Schema Resource `1.0.0`; governed integration pending |
+| **Status** | Accepted and integrated Definition Schema Resource `1.0.0` |
 | **Subject** | One ARCH-040 declaration governed by ARCH-038 Definition `1.0.0` |
 | **Machine result** | Structural valid or invalid for one exact schema and instance |
 | **Not established** | Source truth, authenticity, integrity, freshness, applicability, conformance, approval, support, release, deployment, or automatic authority |
@@ -30,9 +30,19 @@ bound to candidate commit
 
 Issue-contract acceptance authorized only the bounded Proposed candidate
 lifecycle. That preceding Proposed status allocated or activated nothing.
-Exact-head acceptance establishes Accepted status. Exact-head acceptance plus
-later separately authorized governed integration to `main` allocates and
-activates only the exact Definition Schema Identifier
+Exact-head acceptance established Accepted status. Separately authorized
+governed integration is recorded in issue comment
+[5271035681](https://github.com/CNTX-PROJECT/CNTX/issues/145#issuecomment-5271035681),
+and completion is recorded in issue comment
+[5271254252](https://github.com/CNTX-PROJECT/CNTX/issues/145#issuecomment-5271254252).
+PR [#146](https://github.com/CNTX-PROJECT/CNTX/pull/146) integrated the exact
+Accepted tree into `main` at commit
+`9f482043f76c792f6c2e1e96eb4a535ee26b3a99` and tree
+`7b2f45791e3b7bff7e856f26fff9b22598c06709`; issue #145 is closed/completed,
+and the task branch is absent locally and publicly.
+
+Exact-head acceptance plus that governed integration allocates and activates
+only the exact Definition Schema Identifier
 `https://github.com/CNTX-PROJECT/CNTX/schemas/extension-modules/epistemic-provenance-freshness`,
 Schema Version `1.0.0`, and canonical `$id`
 `https://github.com/CNTX-PROJECT/CNTX/schemas/extension-modules/epistemic-provenance-freshness/1.0.0`
@@ -41,8 +51,8 @@ repository presence, schema or JSON parsing, schema checking, case evaluation,
 static validation, Ready state, review, or mergeability does not by itself
 integrate, allocate, or activate the resource or establish conformance,
 semantic truth, provenance truth, freshness, approval, certification, support,
-release fitness, deployment fitness, or authority. Separately governed
-integration to `main` remains required.
+release fitness, deployment fitness, or authority. Integration created no new
+execution or evidence instance and did not expand Tool support.
 
 ## Exact decision basis
 
@@ -80,7 +90,7 @@ cannot repair, reinterpret, broaden, narrow, or complete them silently.
 | Schema language and dialect | JSON Schema Draft 2020-12 |
 | Media type | `application/schema+json` |
 | Canonical repository path | `schemas/extension-modules/epistemic-provenance-freshness/1.0.0/schema.json` |
-| Document Status | Accepted; governed integration pending |
+| Document Status | Accepted and integrated |
 
 The Definition Schema Identifier is version independent. Schema Version is a
 separate semantic-version coordinate. The version-qualified `$id` identifies
@@ -91,8 +101,9 @@ support, publication, or authority.
 Definition Version `1.0.0` and Schema Version `1.0.0` are independent. Their
 equal values create no lockstep lifecycle. The preceding Proposed issue, path,
 file, `$id`, candidate, review, and validation presence allocated or activated
-nothing. Accepted status without governed integration likewise does not
-integrate, allocate, or activate the resource.
+nothing. Accepted status alone did not integrate, allocate, or activate the
+resource; the completed separately governed integration above did so only for
+the exact Schema Identifier, Version, and canonical `$id`.
 
 ## One standalone resource
 
@@ -341,17 +352,23 @@ Bounds reduce unbounded structural supply but prove no runtime memory, CPU,
 time, thread, process, handle, parser, operating-system isolation, or denial-
 of-service guarantee.
 
-## Lifecycle and stopgate
+## Integrated lifecycle and boundary
 
-The exact candidate is Accepted. Candidate creation, isolated validation,
-push, Draft PR, complete read-back, transparent non-independent `COMMENTED`
-review, exact-head acceptance, status promotion, Ready state, or mergeability
-does not integrate, allocate, activate, release, close, or clean up ARCH-042.
+The exact candidate was Accepted and later governed-integrated through PR #146.
+The integrated `main` tree equals the Accepted promotion tree, issue #145 is
+closed/completed, local `main` was synchronized, and the exact task branch was
+removed locally and publicly under the separately attributable integration and
+cleanup authority recorded above.
 
-Work stops at a new attributable EIGENAAR / Final Authority exact-head
-integration gate. Merge, issue closure, branch cleanup, Profile work, Tool
-expansion, CI, release, publication, support, certification, hosting,
-deployment, and every later phase require new separate authority.
+The original isolated execution and evidence remain bound only to candidate
+commit/tree `d10fb23bdec7c13bb1154bd538d8e691d486fcce` /
+`071a9909efcee1d4d74d7ff65b0b05da30e73875`. Promotion and integration did not
+execute the schema or cases again and created no new evidence instance.
+
+Completed integration authorizes no Profile representation, Profile Schema
+Resource, Tool expansion, CI, release, publication, support, certification,
+hosting, deployment, H2.4 completion, or later phase. Each requires new
+separate authority.
 
 ## References
 
