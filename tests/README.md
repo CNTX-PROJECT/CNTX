@@ -1,18 +1,19 @@
 # CNTX synthetic schema tests
 
 This directory is the navigation point for the fixed synthetic cases that
-exercise the ten Accepted Core Schema Resources.
+exercise the ten Accepted Core Schema Resources and the separate Proposed
+ARCH-042 Module Definition Schema Resource candidate.
 
 ## What exists today
 
 | Item | Count |
 | --- | ---: |
-| Versioned test manifests | 10 |
-| Total cases | 203 |
-| Expected valid | 38 |
-| Expected invalid | 165 |
-| Direct manifest forms | 9 |
-| Operation-based manifest forms | 1 |
+| Accepted Core manifests | 10 |
+| Historical Core cases | 203: 38 expected valid and 165 expected invalid |
+| Historical Core manifest forms | 9 direct and 1 operation-based |
+| Proposed Module manifests | 1 |
+| Proposed ARCH-042 cases | 48: 8 expected valid and 40 expected invalid |
+| Proposed ARCH-042 manifest forms | 1 direct |
 
 `Accepted schema → fixed input case → fixed expected validity → separately governed execution`
 
@@ -30,6 +31,7 @@ exercise the ten Accepted Core Schema Resources.
 | Review Record | [cases.json](schemas/review-record/1.0.0/cases.json) |
 | Decision Record | [cases.json](schemas/decision-record/1.0.0/cases.json) |
 | State Snapshot | [cases.json](schemas/state-snapshot/1.0.0/cases.json) |
+| Epistemic Provenance and Freshness Module Definition Schema (Proposed) | [cases.json](schemas/extension-modules/epistemic-provenance-freshness/1.0.0/cases.json) |
 
 Open the [schema index](../schemas/README.md) for the governing resources or the
 [minimal validation and integrity slice](../tools/minimal-validation-integrity-slice/README.md)
@@ -42,4 +44,8 @@ expected results. Their presence, parseability, execution, or matched result
 does not prove source truth, semantic correctness, complete conformance,
 security, production readiness, approval, certification, release fitness,
 deployment fitness, or final-human authority. Results remain individual; the
-`203/38/165` inventory is not an aggregate score or quality gate.
+historical Core `203/38/165` inventory is not an aggregate score or quality
+gate. The Proposed ARCH-042 `48/8/40` inventory is separate and likewise forms
+no aggregate pass/fail, score, badge, conformance claim, approval, or authority.
+Its presence or evaluation does not expand the supported input set of the
+minimal validation and integrity Tool.

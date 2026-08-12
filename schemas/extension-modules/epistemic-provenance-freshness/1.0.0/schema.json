@@ -1,0 +1,1347 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/CNTX-PROJECT/CNTX/schemas/extension-modules/epistemic-provenance-freshness/1.0.0",
+  "$comment": "Proposed ARCH-042 candidate under issue #145 and Owner / Final Authority issue-contract acceptance comment 5267576754. Repository presence, parsing, validation, review, or mergeability does not allocate or activate the proposed Definition Schema Identifier, Schema Version, canonical $id, support, release, deployment, or final authority.",
+  "title": "CNTX Epistemic Provenance and Freshness Extension Module Definition Schema Resource",
+  "description": "A closed structural schema for one ARCH-040 declaration governed by the Accepted ARCH-038 Definition. Structural validity proves no source truth, authenticity, integrity, freshness, applicability, conformance, approval, certification, release fitness, deployment fitness, or automatic authority.",
+  "type": "object",
+  "properties": {
+    "governingDefinition": {
+      "$ref": "#/$defs/governingDefinition"
+    },
+    "declaration": {
+      "$ref": "#/$defs/declaration"
+    },
+    "source": {
+      "$ref": "#/$defs/source"
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/claim"
+      },
+      "maxItems": 32,
+      "uniqueItems": true
+    },
+    "provenance": {
+      "$ref": "#/$defs/provenance"
+    },
+    "temporal": {
+      "$ref": "#/$defs/temporal"
+    },
+    "integrity": {
+      "$ref": "#/$defs/integrity"
+    },
+    "policies": {
+      "$ref": "#/$defs/policies"
+    },
+    "derivation": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/conditionWrapper"
+        },
+        {
+          "properties": {
+            "value": {
+              "$ref": "#/$defs/derivationValue"
+            }
+          }
+        }
+      ]
+    },
+    "conditions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/conditionDeclaration"
+      },
+      "maxItems": 64,
+      "uniqueItems": true
+    },
+    "evaluations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/evaluation"
+      },
+      "maxItems": 64,
+      "uniqueItems": true
+    },
+    "limitations": {
+      "$ref": "#/$defs/limitations"
+    },
+    "authority": {
+      "$ref": "#/$defs/authority"
+    }
+  },
+  "required": [
+    "governingDefinition",
+    "declaration",
+    "source",
+    "claims",
+    "provenance",
+    "temporal",
+    "integrity",
+    "policies",
+    "derivation",
+    "conditions",
+    "evaluations",
+    "limitations",
+    "authority"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "source": {
+            "properties": {
+              "categories": {
+                "properties": {
+                  "condition": {
+                    "const": "specified"
+                  },
+                  "value": {
+                    "contains": {
+                      "const": "derived-source"
+                    }
+                  }
+                },
+                "required": [
+                  "condition",
+                  "value"
+                ]
+              }
+            },
+            "required": [
+              "categories"
+            ]
+          }
+        },
+        "required": [
+          "source"
+        ]
+      },
+      "then": {
+        "properties": {
+          "derivation": {
+            "properties": {
+              "condition": {
+                "const": "specified"
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "derivation": {
+            "properties": {
+              "condition": {
+                "not": {
+                  "const": "specified"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "nonBlankString": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2048,
+      "pattern": "\\S"
+    },
+    "shortString": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "pattern": "\\S"
+    },
+    "stringArray": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/nonBlankString"
+      },
+      "maxItems": 32,
+      "uniqueItems": true
+    },
+    "nonEmptyStringArray": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/nonBlankString"
+      },
+      "minItems": 1,
+      "maxItems": 32,
+      "uniqueItems": true
+    },
+    "roleRef": {
+      "type": "object",
+      "properties": {
+        "identity": {
+          "$ref": "#/$defs/shortString"
+        },
+        "role": {
+          "$ref": "#/$defs/shortString"
+        },
+        "scope": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "attributionRef": {
+          "$ref": "#/$defs/shortString"
+        }
+      },
+      "required": [
+        "identity",
+        "role",
+        "scope",
+        "attributionRef"
+      ],
+      "additionalProperties": false
+    },
+    "roleArray": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/roleRef"
+      },
+      "minItems": 1,
+      "maxItems": 16,
+      "uniqueItems": true
+    },
+    "pin": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "revision": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "identifier",
+        "revision"
+      ],
+      "additionalProperties": false
+    },
+    "pinArray": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/pin"
+      },
+      "maxItems": 32,
+      "uniqueItems": true
+    },
+    "conditionToken": {
+      "enum": [
+        "specified",
+        "assessed-none",
+        "not-assessed",
+        "missing",
+        "inaccessible",
+        "conflicting",
+        "restricted",
+        "unverifiable"
+      ]
+    },
+    "conditionWrapper": {
+      "type": "object",
+      "properties": {
+        "condition": {
+          "$ref": "#/$defs/conditionToken"
+        },
+        "value": {},
+        "explanation": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "evidenceRefs": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "responsibleRoles": {
+          "$ref": "#/$defs/roleArray"
+        }
+      },
+      "required": [
+        "condition",
+        "explanation",
+        "evidenceRefs",
+        "responsibleRoles"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "condition": {
+                "const": "specified"
+              }
+            },
+            "required": [
+              "condition"
+            ]
+          },
+          "then": {
+            "required": [
+              "value"
+            ]
+          },
+          "else": {
+            "not": {
+              "required": [
+                "value"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "stringCondition": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/conditionWrapper"
+        },
+        {
+          "properties": {
+            "value": {
+              "$ref": "#/$defs/nonBlankString"
+            }
+          }
+        }
+      ]
+    },
+    "stringArrayCondition": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/conditionWrapper"
+        },
+        {
+          "properties": {
+            "value": {
+              "$ref": "#/$defs/nonEmptyStringArray"
+            }
+          }
+        }
+      ]
+    },
+    "roleArrayCondition": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/conditionWrapper"
+        },
+        {
+          "properties": {
+            "value": {
+              "$ref": "#/$defs/roleArray"
+            }
+          }
+        }
+      ]
+    },
+    "pinCondition": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/conditionWrapper"
+        },
+        {
+          "properties": {
+            "value": {
+              "$ref": "#/$defs/pin"
+            }
+          }
+        }
+      ]
+    },
+    "governingDefinition": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "const": "https://github.com/CNTX-PROJECT/CNTX/extension-module-definitions/epistemic-provenance-freshness"
+        },
+        "version": {
+          "const": "1.0.0"
+        },
+        "sourceRevision": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "identifier",
+        "version",
+        "sourceRevision"
+      ],
+      "additionalProperties": false
+    },
+    "supersessionPin": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "revision": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "identifier",
+        "revision"
+      ],
+      "additionalProperties": false
+    },
+    "declaration": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "revision": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "producingRole": {
+          "$ref": "#/$defs/roleRef"
+        },
+        "governingContext": {
+          "$ref": "#/$defs/pinCondition"
+        },
+        "supersedes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/supersessionPin"
+          },
+          "maxItems": 16,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "identifier",
+        "revision",
+        "producingRole",
+        "governingContext",
+        "supersedes"
+      ],
+      "additionalProperties": false
+    },
+    "sourceRole": {
+      "type": "object",
+      "properties": {
+        "role": {
+          "$ref": "#/$defs/shortString"
+        },
+        "claimBoundary": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "role",
+        "claimBoundary"
+      ],
+      "additionalProperties": false
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "categories": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/conditionWrapper"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "enum": [
+                      "governing-source",
+                      "observation-source",
+                      "evidence-source",
+                      "derived-source",
+                      "human-assertion-source",
+                      "model-recollection-source"
+                    ]
+                  },
+                  "minItems": 1,
+                  "maxItems": 6,
+                  "uniqueItems": true
+                }
+              }
+            }
+          ]
+        },
+        "identity": {
+          "$ref": "#/$defs/stringCondition"
+        },
+        "revision": {
+          "$ref": "#/$defs/stringCondition"
+        },
+        "locations": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "availability": {
+          "$ref": "#/$defs/stringCondition"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/sourceRole"
+          },
+          "minItems": 1,
+          "maxItems": 16,
+          "uniqueItems": true
+        },
+        "subjectBoundary": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "categories",
+        "identity",
+        "revision",
+        "locations",
+        "availability",
+        "roles",
+        "subjectBoundary"
+      ],
+      "additionalProperties": false
+    },
+    "claimScope": {
+      "type": "object",
+      "properties": {
+        "inclusions": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "exclusions": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "nonClaims": {
+          "$ref": "#/$defs/stringArray"
+        }
+      },
+      "required": [
+        "inclusions",
+        "exclusions",
+        "nonClaims"
+      ],
+      "additionalProperties": false
+    },
+    "claim": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "$ref": "#/$defs/shortString"
+        },
+        "subject": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "dimensions": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "source-category",
+              "source-identity",
+              "source-revision",
+              "source-availability",
+              "provenance",
+              "authenticity",
+              "integrity",
+              "source-publication-revision-time",
+              "observation-retrieval-time",
+              "record-production-time",
+              "valid-through-time",
+              "freshness",
+              "applicability",
+              "clock-reference-provenance",
+              "derivation",
+              "validation",
+              "evidence"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 17,
+          "uniqueItems": true
+        },
+        "statement": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "roles": {
+          "$ref": "#/$defs/roleArray"
+        },
+        "governingSources": {
+          "$ref": "#/$defs/pinArray"
+        },
+        "scope": {
+          "$ref": "#/$defs/claimScope"
+        },
+        "evidenceRefs": {
+          "$ref": "#/$defs/stringArray"
+        }
+      },
+      "required": [
+        "identifier",
+        "subject",
+        "dimensions",
+        "statement",
+        "roles",
+        "governingSources",
+        "scope",
+        "evidenceRefs"
+      ],
+      "additionalProperties": false
+    },
+    "provenanceValue": {
+      "type": "object",
+      "properties": {
+        "statements": {
+          "$ref": "#/$defs/nonEmptyStringArray"
+        },
+        "sourcePins": {
+          "$ref": "#/$defs/pinArray"
+        },
+        "sequence": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "accessDisclosureConditions": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "uncertainty": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "limitations": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "adverseInformation": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "restrictedInformationMetadata": {
+          "$ref": "#/$defs/stringArray"
+        }
+      },
+      "required": [
+        "statements",
+        "sourcePins",
+        "sequence",
+        "accessDisclosureConditions",
+        "uncertainty",
+        "limitations",
+        "adverseInformation",
+        "restrictedInformationMetadata"
+      ],
+      "additionalProperties": false
+    },
+    "provenanceValueCondition": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/conditionWrapper"
+        },
+        {
+          "properties": {
+            "value": {
+              "$ref": "#/$defs/provenanceValue"
+            }
+          }
+        }
+      ]
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "origin": {
+          "$ref": "#/$defs/provenanceValueCondition"
+        },
+        "custody": {
+          "$ref": "#/$defs/provenanceValueCondition"
+        },
+        "acquisition": {
+          "$ref": "#/$defs/provenanceValueCondition"
+        },
+        "observation": {
+          "$ref": "#/$defs/provenanceValueCondition"
+        },
+        "supply": {
+          "$ref": "#/$defs/provenanceValueCondition"
+        },
+        "transformation": {
+          "$ref": "#/$defs/provenanceValueCondition"
+        },
+        "responsibleRoles": {
+          "$ref": "#/$defs/roleArrayCondition"
+        }
+      },
+      "required": [
+        "origin",
+        "custody",
+        "acquisition",
+        "observation",
+        "supply",
+        "transformation",
+        "responsibleRoles"
+      ],
+      "additionalProperties": false
+    },
+    "explicitOffsetDateTime": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 35,
+      "format": "date-time",
+      "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-([0-2][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]{1,9})?(Z|[+-]([01][0-9]|2[0-3]):[0-5][0-9])$"
+    },
+    "offset": {
+      "type": "string",
+      "pattern": "^(Z|[+-]([01][0-9]|2[0-3]):[0-5][0-9])$"
+    },
+    "temporalValue": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "$ref": "#/$defs/explicitOffsetDateTime"
+        },
+        "reference": {
+          "$ref": "#/$defs/pin"
+        },
+        "offset": {
+          "$ref": "#/$defs/offset"
+        },
+        "precision": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "uncertainty": {
+          "$ref": "#/$defs/nonEmptyStringArray"
+        },
+        "source": {
+          "$ref": "#/$defs/pin"
+        },
+        "responsibleRole": {
+          "$ref": "#/$defs/roleRef"
+        }
+      },
+      "required": [
+        "value",
+        "reference",
+        "offset",
+        "precision",
+        "uncertainty",
+        "source",
+        "responsibleRole"
+      ],
+      "additionalProperties": false
+    },
+    "temporalCondition": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/conditionWrapper"
+        },
+        {
+          "properties": {
+            "value": {
+              "$ref": "#/$defs/temporalValue"
+            }
+          }
+        }
+      ]
+    },
+    "temporal": {
+      "type": "object",
+      "properties": {
+        "sourcePublicationRevisionTime": {
+          "$ref": "#/$defs/temporalCondition"
+        },
+        "observationRetrievalTime": {
+          "$ref": "#/$defs/temporalCondition"
+        },
+        "recordProductionTime": {
+          "$ref": "#/$defs/temporalCondition"
+        },
+        "validThroughTime": {
+          "$ref": "#/$defs/temporalCondition"
+        }
+      },
+      "required": [
+        "sourcePublicationRevisionTime",
+        "observationRetrievalTime",
+        "recordProductionTime",
+        "validThroughTime"
+      ],
+      "additionalProperties": false
+    },
+    "digestClaim": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "$ref": "#/$defs/shortString"
+        },
+        "algorithm": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "value": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "subjectBoundary": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "sourceRevision": {
+          "$ref": "#/$defs/pin"
+        },
+        "acquisitionContext": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "verificationProcedure": {
+          "$ref": "#/$defs/pinCondition"
+        },
+        "observationTime": {
+          "enum": [
+            "sourcePublicationRevisionTime",
+            "observationRetrievalTime",
+            "recordProductionTime",
+            "validThroughTime"
+          ]
+        },
+        "responsibleRole": {
+          "$ref": "#/$defs/roleRef"
+        },
+        "condition": {
+          "$ref": "#/$defs/conditionToken"
+        },
+        "outcomeRef": {
+          "$ref": "#/$defs/stringCondition"
+        },
+        "evidenceRefs": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "limitations": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "failures": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "adverseInformation": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "restrictedInformationMetadata": {
+          "$ref": "#/$defs/stringArray"
+        }
+      },
+      "required": [
+        "identifier",
+        "algorithm",
+        "value",
+        "subjectBoundary",
+        "sourceRevision",
+        "acquisitionContext",
+        "verificationProcedure",
+        "observationTime",
+        "responsibleRole",
+        "condition",
+        "outcomeRef",
+        "evidenceRefs",
+        "limitations",
+        "failures",
+        "adverseInformation",
+        "restrictedInformationMetadata"
+      ],
+      "additionalProperties": false
+    },
+    "integrity": {
+      "type": "object",
+      "properties": {
+        "digestClaims": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/digestClaim"
+          },
+          "maxItems": 32,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "digestClaims"
+      ],
+      "additionalProperties": false
+    },
+    "policyValue": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "version": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "authoritativeSource": {
+          "$ref": "#/$defs/pin"
+        },
+        "taskClass": {
+          "$ref": "#/$defs/stringCondition"
+        },
+        "sourceClass": {
+          "$ref": "#/$defs/stringCondition"
+        },
+        "temporalInputs": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "sourcePublicationRevisionTime",
+              "observationRetrievalTime",
+              "recordProductionTime",
+              "validThroughTime"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 4,
+          "uniqueItems": true
+        },
+        "assessmentReferenceTime": {
+          "enum": [
+            "sourcePublicationRevisionTime",
+            "observationRetrievalTime",
+            "recordProductionTime",
+            "validThroughTime"
+          ]
+        },
+        "clockReference": {
+          "$ref": "#/$defs/pin"
+        },
+        "conditionBoundary": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "claimantRoles": {
+          "$ref": "#/$defs/roleArray"
+        },
+        "evaluatorRoles": {
+          "$ref": "#/$defs/roleArray"
+        },
+        "evidenceRefs": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "limitations": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "adverseInformation": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "restrictedInformationMetadata": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "evaluationRef": {
+          "$ref": "#/$defs/stringCondition"
+        }
+      },
+      "required": [
+        "identifier",
+        "version",
+        "authoritativeSource",
+        "taskClass",
+        "sourceClass",
+        "temporalInputs",
+        "assessmentReferenceTime",
+        "clockReference",
+        "conditionBoundary",
+        "claimantRoles",
+        "evaluatorRoles",
+        "evidenceRefs",
+        "limitations",
+        "adverseInformation",
+        "restrictedInformationMetadata",
+        "evaluationRef"
+      ],
+      "additionalProperties": false
+    },
+    "policyCondition": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/conditionWrapper"
+        },
+        {
+          "properties": {
+            "value": {
+              "$ref": "#/$defs/policyValue"
+            }
+          }
+        }
+      ]
+    },
+    "policies": {
+      "type": "object",
+      "properties": {
+        "freshnessPolicy": {
+          "$ref": "#/$defs/policyCondition"
+        },
+        "applicabilityPolicy": {
+          "$ref": "#/$defs/policyCondition"
+        }
+      },
+      "required": [
+        "freshnessPolicy",
+        "applicabilityPolicy"
+      ],
+      "additionalProperties": false
+    },
+    "upstreamSource": {
+      "type": "object",
+      "properties": {
+        "identity": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "revision": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "governing-source",
+              "observation-source",
+              "evidence-source",
+              "derived-source",
+              "human-assertion-source",
+              "model-recollection-source"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 6,
+          "uniqueItems": true
+        },
+        "accessCondition": {
+          "$ref": "#/$defs/stringCondition"
+        }
+      },
+      "required": [
+        "identity",
+        "revision",
+        "categories",
+        "accessCondition"
+      ],
+      "additionalProperties": false
+    },
+    "transformation": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "revision": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "responsibleRoles": {
+          "$ref": "#/$defs/roleArray"
+        },
+        "materialParameters": {
+          "$ref": "#/$defs/stringArray"
+        }
+      },
+      "required": [
+        "identifier",
+        "revision",
+        "responsibleRoles",
+        "materialParameters"
+      ],
+      "additionalProperties": false
+    },
+    "derivationValue": {
+      "type": "object",
+      "properties": {
+        "upstreamSources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/upstreamSource"
+          },
+          "minItems": 1,
+          "maxItems": 16,
+          "uniqueItems": true
+        },
+        "transformations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/transformation"
+          },
+          "minItems": 1,
+          "maxItems": 16
+        },
+        "relationships": {
+          "$ref": "#/$defs/nonEmptyStringArray"
+        },
+        "omissions": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "uncertainty": {
+          "$ref": "#/$defs/nonEmptyStringArray"
+        },
+        "integrityRefs": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "conditions": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "claimRefs": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "evidenceRefs": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "limitations": {
+          "$ref": "#/$defs/nonEmptyStringArray"
+        },
+        "authority": {
+          "$ref": "#/$defs/roleArray"
+        }
+      },
+      "required": [
+        "upstreamSources",
+        "transformations",
+        "relationships",
+        "omissions",
+        "uncertainty",
+        "integrityRefs",
+        "conditions",
+        "claimRefs",
+        "evidenceRefs",
+        "limitations",
+        "authority"
+      ],
+      "additionalProperties": false
+    },
+    "conditionDeclaration": {
+      "type": "object",
+      "properties": {
+        "dimension": {
+          "enum": [
+            "source-category",
+            "source-identity",
+            "source-revision",
+            "source-availability",
+            "provenance",
+            "authenticity",
+            "integrity",
+            "source-publication-revision-time",
+            "observation-retrieval-time",
+            "record-production-time",
+            "valid-through-time",
+            "freshness",
+            "applicability",
+            "clock-reference-provenance",
+            "derivation",
+            "validation",
+            "evidence"
+          ]
+        },
+        "subject": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "condition": {
+          "$ref": "#/$defs/conditionToken"
+        },
+        "explanation": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "responsibleRoles": {
+          "$ref": "#/$defs/roleArray"
+        },
+        "references": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "limitations": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "dependentEffects": {
+          "$ref": "#/$defs/nonEmptyStringArray"
+        }
+      },
+      "required": [
+        "dimension",
+        "subject",
+        "condition",
+        "explanation",
+        "responsibleRoles",
+        "references",
+        "limitations",
+        "dependentEffects"
+      ],
+      "additionalProperties": false
+    },
+    "evaluation": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "$ref": "#/$defs/shortString"
+        },
+        "dimension": {
+          "enum": [
+            "source-category",
+            "source-identity",
+            "source-revision",
+            "source-availability",
+            "provenance",
+            "authenticity",
+            "integrity",
+            "source-publication-revision-time",
+            "observation-retrieval-time",
+            "record-production-time",
+            "valid-through-time",
+            "freshness",
+            "applicability",
+            "clock-reference-provenance",
+            "derivation",
+            "validation",
+            "evidence"
+          ]
+        },
+        "subject": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "claimRef": {
+          "$ref": "#/$defs/stringCondition"
+        },
+        "governingSources": {
+          "$ref": "#/$defs/pinArray"
+        },
+        "policyPin": {
+          "$ref": "#/$defs/pinCondition"
+        },
+        "evidenceRefs": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "evaluatorContext": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "observationReferenceTime": {
+          "$ref": "#/$defs/stringCondition"
+        },
+        "outcome": {
+          "enum": [
+            "satisfied",
+            "not-satisfied",
+            "unverifiable",
+            "not-evaluated"
+          ]
+        },
+        "diagnostics": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "limitations": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "failures": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "adverseInformation": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "restrictedInformationMetadata": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "claimantRoles": {
+          "$ref": "#/$defs/roleArray"
+        },
+        "evaluatorRoles": {
+          "$ref": "#/$defs/roleArray"
+        },
+        "reviewingRoles": {
+          "$ref": "#/$defs/roleArrayCondition"
+        },
+        "governingRoles": {
+          "$ref": "#/$defs/roleArray"
+        },
+        "nonExecutionOrBlockedPrerequisites": {
+          "$ref": "#/$defs/stringArray"
+        }
+      },
+      "required": [
+        "identifier",
+        "dimension",
+        "subject",
+        "claimRef",
+        "governingSources",
+        "policyPin",
+        "evidenceRefs",
+        "evaluatorContext",
+        "observationReferenceTime",
+        "outcome",
+        "diagnostics",
+        "limitations",
+        "failures",
+        "adverseInformation",
+        "restrictedInformationMetadata",
+        "claimantRoles",
+        "evaluatorRoles",
+        "reviewingRoles",
+        "governingRoles",
+        "nonExecutionOrBlockedPrerequisites"
+      ],
+      "additionalProperties": false
+    },
+    "limitations": {
+      "type": "object",
+      "properties": {
+        "scopeLimitations": {
+          "$ref": "#/$defs/stringArrayCondition"
+        },
+        "methodLimitations": {
+          "$ref": "#/$defs/stringArrayCondition"
+        },
+        "evidenceLimitations": {
+          "$ref": "#/$defs/stringArrayCondition"
+        },
+        "accessLimitations": {
+          "$ref": "#/$defs/stringArrayCondition"
+        },
+        "securityPrivacyLimitations": {
+          "$ref": "#/$defs/stringArrayCondition"
+        },
+        "resourceLimitations": {
+          "$ref": "#/$defs/stringArrayCondition"
+        },
+        "adverseInformation": {
+          "$ref": "#/$defs/stringArrayCondition"
+        },
+        "restrictedInformationMetadata": {
+          "$ref": "#/$defs/stringArrayCondition"
+        },
+        "unknownUnsupportedOrNonExecuted": {
+          "$ref": "#/$defs/stringArrayCondition"
+        }
+      },
+      "required": [
+        "scopeLimitations",
+        "methodLimitations",
+        "evidenceLimitations",
+        "accessLimitations",
+        "securityPrivacyLimitations",
+        "resourceLimitations",
+        "adverseInformation",
+        "restrictedInformationMetadata",
+        "unknownUnsupportedOrNonExecuted"
+      ],
+      "additionalProperties": false
+    },
+    "authority": {
+      "type": "object",
+      "properties": {
+        "declaringRoles": {
+          "$ref": "#/$defs/roleArray"
+        },
+        "supplyingRoles": {
+          "$ref": "#/$defs/roleArray"
+        },
+        "evaluatingRoles": {
+          "$ref": "#/$defs/roleArrayCondition"
+        },
+        "reviewingRoles": {
+          "$ref": "#/$defs/roleArrayCondition"
+        },
+        "governingRoles": {
+          "$ref": "#/$defs/roleArray"
+        },
+        "finalHumanAuthorityRole": {
+          "$ref": "#/$defs/roleRef"
+        }
+      },
+      "required": [
+        "declaringRoles",
+        "supplyingRoles",
+        "evaluatingRoles",
+        "reviewingRoles",
+        "governingRoles",
+        "finalHumanAuthorityRole"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
