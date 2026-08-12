@@ -36,7 +36,7 @@ def _validate_relative(relative: str) -> PurePath:
         raise UnsafePath("absolute, drive, or share path rejected")
     if any(part in {"", ".", ".."} for part in candidate.parts):
         raise UnsafePath("empty, current, or parent segment rejected")
-    if os.name == "nt" and any(":" in part for part in candidate.parts):
+    if any(":" in part for part in candidate.parts):
         raise UnsafePath("device or alternate-data-stream syntax rejected")
     return candidate
 

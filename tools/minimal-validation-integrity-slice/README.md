@@ -28,6 +28,34 @@ authority.
 The Tool and Implementation identities are opaque identifiers, not network
 locations or publication channels.
 
+### Proposed corrective Implementation Version 1.0.1
+
+Accepted issue [#143](https://github.com/CNTX-PROJECT/CNTX/issues/143) and
+attributable issue-acceptance comment
+[`5263430981`](https://github.com/CNTX-PROJECT/CNTX/issues/143#issuecomment-5263430981)
+govern one Proposed, non-executed corrective candidate. Its source-first
+commit/tree is `1d28b2df55db86b82d23c011eba809a484559272` /
+`ac73860d2908efa9ec4eaf5b7e814de44fd2beb1`.
+
+The source delta only rejects a colon in every caller-supplied relative path
+segment on every supported host and changes only `IMPLEMENTATION_VERSION` from
+`1.0.0` to `1.0.1`. Tool Identity, Tool Version `1.0.0`, Implementation
+Identity, all other source behavior, tests, schemas, rules, records, outputs,
+and historical evidence remain unchanged.
+
+[`requirements-1.0.1.lock`](requirements-1.0.1.lock) is a new separate lock
+revision. It retains exact CPython `3.13.14` and the same five historical
+dependency artifacts. The new
+[`corrective-1.0.1` practice revision](practice/cross-record-integrity/corrective-1.0.1/scenario-matrix.json)
+uses exact LF Git-blob pins from the source-first commit/tree. Neither subject
+overwrites its historical `1.0.0` predecessor.
+
+This candidate has not acquired or installed dependencies and has not imported
+or executed the implementation, tests, schemas, cases, invocations, rules, or
+runner. The retained Windows acquisition set establishes no Linux, macOS, or
+multi-platform portability. Static preparation creates no execution evidence,
+aggregate verdict, support, release, deployment, CI, or automatic authority.
+
 ## Capability boundary
 
 The source implements the following separately observable responsibilities:
@@ -116,6 +144,12 @@ for exactly five wheel artifacts. It pins each name, version, filename, Python/
 ABI/platform tag, byte length, SHA-256 digest, and public origin. The candidate
 lock was prepared by read-only comparison of public GitHub lockfiles; no wheel
 was downloaded and no dependency was installed.
+
+The separate corrective [`requirements-1.0.1.lock`](requirements-1.0.1.lock)
+retains the exact five artifact blocks and exact runtime from the historical
+lock while identifying Implementation Version `1.0.1`. It is also an
+acquisition manifest, not acquisition authority, and remains specifically a
+Windows acquisition set.
 
 Before any future installation, Gate E3 must authorize exact commands and the
 acquired bytes must match every lock field. A later acquisition phase must not
