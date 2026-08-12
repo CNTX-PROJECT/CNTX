@@ -16,16 +16,16 @@ are preserved below in an expandable technical section.
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/brand/cntx-roadmap-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="docs/assets/brand/cntx-roadmap-light.svg">
-  <img alt="CNTX roadmap: the public specification, bounded validation slice, source and freshness Definitions, Module representation boundary, corrective version, and corrective evidence are integrated; a Proposed exact Module schema resource and cases come before practical pilots" src="docs/assets/brand/cntx-roadmap-light.svg">
+  <img alt="CNTX roadmap: the public specification, bounded validation slice, source and freshness Definitions, Module representation boundary, corrective version, and corrective evidence are integrated; the exact Module schema resource and cases are Accepted pending governed integration before practical pilots" src="docs/assets/brand/cntx-roadmap-light.svg">
 </picture>
 
 ## Simple view
 
 | Horizon | State | Meaning |
 | --- | --- | --- |
-| **Now** | Phase 4A3.2 Proposed candidate | ARCH-042 defines one exact epistemic provenance and freshness Module Definition Schema Resource candidate with 48 separate synthetic cases |
-| **Next** | Exact-head candidate gate | Static validation, one isolated case evaluation, transparent review, and Final Authority acceptance of the exact candidate precede any status promotion or integration |
-| **Later** | Not started | Separately govern ARCH-042 acceptance and integration, then continue practical pilots, adapters, portability/CI assessment, and adversarial evaluation |
+| **Now** | Phase 4A3.2 Accepted decision | ARCH-042 defines one exact epistemic provenance and freshness Module Definition Schema Resource with 48 separate synthetic cases; governed integration is pending |
+| **Next** | Exact-head integration gate | Separately authorize integration of the exact promoted head; status, Ready state, review, and mergeability do not integrate or activate it |
+| **Later** | Not started | After governed ARCH-042 integration, continue separately governed practical pilots, adapters, portability/CI assessment, and adversarial evaluation |
 
 `Integrated` does not mean finished, supported, certified, or ready to deploy.
 `Next` does not mean authorized. CNTX advances through exact evidence and
@@ -51,7 +51,7 @@ implementation.
 | 1 | Validation and integrity contracts | Complete | Exact rules, tool identity, implementation identity, inputs, outputs, limits, and evidence |
 | 2 | Local offline runner | Complete for the minimal slice | Reproducible execution of the 10 schemas and 203 synthetic cases |
 | 3 | Cross-record integrity | Complete for the bounded practice slice | Detect missing, duplicate, ambiguous, or conflicting links between supplied records |
-| 4 | Source, provenance and freshness controls | ARCH-038 through ARCH-041 and corrective Implementation `1.0.1` are integrated; Proposed ARCH-042 schema/cases candidate under issue #145 | Complete the exact-head ARCH-042 candidate gate, then separately govern status promotion and integration |
+| 4 | Source, provenance and freshness controls | ARCH-038 through ARCH-041 and corrective Implementation `1.0.1` are integrated; ARCH-042 schema/cases are Accepted under issue #145 with integration pending | Separately govern exact-head ARCH-042 integration |
 | 5 | Execution and task controls | Later | Record tool/model/skill identity and classify light, moderate, heavy, or complex work separately from risk |
 | 6 | Team authority and temporary context | Later | Support multiple principals, isolated task capsules, cleanup, and bounded archives |
 | 7 | One real vertical-slice test | Later | Run one small task from contract and context through evidence, review, decision candidate, and cleanup |
@@ -372,10 +372,10 @@ retained Windows acquisition set establish no Linux, macOS, or multi-platform
 portability. The result creates no CI/Actions, support, release, certification,
 hosting, or deployment claim.
 
-### Proposed Phase 4A3.2 Module Definition Schema Resource candidate
+### Accepted Phase 4A3.2 Module Definition Schema Resource — integration pending
 
 Accepted issue #145 and attributable Owner / Final Authority issue-contract
-acceptance comment `5267576754` govern one Proposed ARCH-042 candidate prepared
+acceptance comment `5267576754` governed one Proposed ARCH-042 candidate prepared
 directly from public baseline commit/tree
 `c7650274a2818a5c3eaca0abfb0bc86fd747e4b2` /
 `f7dd74615c11e5390c0680f862668f425285e7f7`. It adds one architecture source,
@@ -384,22 +384,32 @@ direct manifest with 48 separate synthetic cases: 8 expected valid and 40
 expected invalid. Five existing navigation/current-state files are updated;
 all other 191 baseline paths remain protected.
 
+Attributable exact-head candidate-acceptance comment `5269689952` on candidate
+commit/tree `d10fb23bdec7c13bb1154bd538d8e691d486fcce` /
+`071a9909efcee1d4d74d7ff65b0b05da30e73875` establishes Accepted status. The
+successful isolated candidate execution remains evidence for exactly that
+candidate and was not repeated for the status-only promotion. Governed
+integration to `main` remains the separate next gate.
+
 The candidate binds only the already Accepted
 `epistemic-provenance-freshness` Definition Identifier and Version `1.0.0` to
-one proposed canonical Schema `$id`. Its 13 required root responsibilities
+one Accepted canonical Schema `$id`, pending governed integration. Its 13
+required root responsibilities
 cover governance, declaration, source, claims, provenance, temporal and digest
 integrity, policies, derivation, conditions, evaluations, limitations, and
 attributable human authority while prohibiting any `automaticAuthority`
 member. The `48/8/40` inventory remains separate from the
 historical Core `203/38/165` cases and creates no aggregate result or gate.
-Proposed status, schema validity, evaluation, review, repository presence,
-Ready state, or mergeability does not accept or activate the Schema Resource,
-expand the supported Tool input set, or authorize a rule, implementation,
-workflow, CI, release, support, certification, hosting, or deployment.
+The preceding Proposed status allocated or activated nothing. Accepted status,
+status promotion, schema validity, evaluation, review, repository presence,
+Ready state, or mergeability does not integrate or activate the Schema
+Resource, expand the supported Tool input set, or authorize a rule,
+implementation, workflow, CI, release, support, certification, hosting, or
+deployment.
 
 ## Detailed project status and roadmap
 
-CNTX has completed its initial Public-Core specification and prerelease cycle within the Accepted ARCH-027 completion and maintenance boundary. The current baseline records [Accepted and integrated architecture through ARCH-041](docs/architecture/README.md), including the bounded corrective Implementation Version `1.0.1` and its exact evidence. It provides public governance, forty-one Accepted architecture sources and ADRs, nine Accepted artifact contracts, ten Accepted Core Schema Versions 1.0.0 with synthetic cases, one integrated minimal validation and integrity Tool/Implementation slice, and one immutable unsupported prerelease, 0.1.0-prealpha.1. CNTX remains model-, vendor-, runtime-, and domain-agnostic. Proposed ARCH-042 starts Phase 4A3.2 with one exact Module Definition Schema Resource candidate and 48 separate synthetic cases; it is not Accepted or active and does not expand the supported Tool input set. Neither the integrated slice, either Accepted Definition, the Accepted representation boundary, ARCH-041, corrective Implementation `1.0.1`, nor the ARCH-042 candidate creates a supported release line, support service, certification, hosting, deployment, workflow, CI, product, or final-human authority.
+CNTX has completed its initial Public-Core specification and prerelease cycle within the Accepted ARCH-027 completion and maintenance boundary. Public `main` records [Accepted and integrated architecture through ARCH-041](docs/architecture/README.md), including the bounded corrective Implementation Version `1.0.1` and its exact evidence. The exact promotion branch contains forty-two Accepted architecture sources and ADRs, nine Accepted artifact contracts, ten Accepted Core Schema Versions 1.0.0 with synthetic cases, one Accepted ARCH-042 Module Definition Schema Resource with 48 separate synthetic cases pending governed integration, one integrated minimal validation and integrity Tool/Implementation slice, and one immutable unsupported prerelease, 0.1.0-prealpha.1. CNTX remains model-, vendor-, runtime-, and domain-agnostic. ARCH-042 Accepted status does not integrate or activate the Schema Resource and does not expand the supported Tool input set. Neither the integrated slice, either Accepted Definition, the Accepted representation boundary, ARCH-041, corrective Implementation `1.0.1`, nor ARCH-042 creates a supported release line, support service, certification, hosting, deployment, workflow, CI, product, or final-human authority.
 
 The [artifact-contract index](docs/contracts/README.md) includes nine accepted, binding subordinate artifact-specific contracts: Project Charter, Workstream, Task Contract, Context Packet, Execution Result, Evidence Bundle, Review Record, Decision Record, and State Snapshot. None introduces an executable schema, template, validator, state engine, synchronization engine, workflow, runtime, or product functionality. No canonical artifact contract remains listed as future work; the accepted status does not authorize a follow-on phase. CNTX remains a public core that is model-, vendor-, runtime-, and domain-agnostic and remains independent of private reference implementations.
 

@@ -6,11 +6,11 @@
     "identifier": "https://github.com/CNTX-PROJECT/CNTX/extension-module-definitions/epistemic-provenance-freshness",
     "version": "1.0.0"
   },
-  "documentStatus": "Proposed",
+  "documentStatus": "Accepted",
   "nonNormative": true,
   "issue": "https://github.com/CNTX-PROJECT/CNTX/issues/145",
-  "ownerAcceptanceComment": "5267576754",
-  "description": "Exactly 48 public-safe synthetic structural cases for the Proposed ARCH-042 Schema Resource: 8 expected valid and 40 expected invalid. Every result remains separate. Expected validity proves no source truth, Definition conformance, authenticity, integrity, freshness, applicability, approval, certification, release fitness, deployment fitness, or final-human authority.",
+  "ownerAcceptanceComment": "5269689952",
+  "description": "Exactly 48 public-safe synthetic structural cases for the Accepted ARCH-042 Schema Resource, pending separately governed integration: 8 expected valid and 40 expected invalid. Every result remains separate. Expected validity proves no source truth, Definition conformance, authenticity, integrity, freshness, applicability, approval, certification, release fitness, deployment fitness, or final-human authority.",
   "caseInventory": {
     "total": 48,
     "expectedValid": 8,

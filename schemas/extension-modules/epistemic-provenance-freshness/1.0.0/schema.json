@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/CNTX-PROJECT/CNTX/schemas/extension-modules/epistemic-provenance-freshness/1.0.0",
-  "$comment": "Proposed ARCH-042 candidate under issue #145 and Owner / Final Authority issue-contract acceptance comment 5267576754. Repository presence, parsing, validation, review, or mergeability does not allocate or activate the proposed Definition Schema Identifier, Schema Version, canonical $id, support, release, deployment, or final authority.",
+  "$comment": "Accepted ARCH-042 under issue #145, Owner / Final Authority issue-contract acceptance comment 5267576754, and exact-head candidate acceptance comment 5269689952 on commit d10fb23bdec7c13bb1154bd538d8e691d486fcce and tree 071a9909efcee1d4d74d7ff65b0b05da30e73875. Status promotion, repository presence, parsing, validation, Ready state, review, or mergeability does not integrate, allocate, or activate the Definition Schema Identifier, Schema Version, canonical $id, support, release, deployment, or final authority; separately governed integration to main remains required.",
   "title": "CNTX Epistemic Provenance and Freshness Extension Module Definition Schema Resource",
   "description": "A closed structural schema for one ARCH-040 declaration governed by the Accepted ARCH-038 Definition. Structural validity proves no source truth, authenticity, integrity, freshness, applicability, conformance, approval, certification, release fitness, deployment fitness, or automatic authority.",
   "type": "object",

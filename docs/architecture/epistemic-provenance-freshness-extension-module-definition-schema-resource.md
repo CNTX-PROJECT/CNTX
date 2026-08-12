@@ -3,36 +3,50 @@
 ## In ordinary language
 
 ARCH-038 defines what source provenance and freshness mean. ARCH-040 defines
-the closed JSON-compatible declaration shape. This Proposed decision translates
+the closed JSON-compatible declaration shape. This Accepted decision translates
 only that accepted shape into one machine-evaluable JSON Schema and fixes 48
-synthetic structural examples before evaluation.
+synthetic structural examples whose expectations preceded evaluation.
 
 | Quick view | Meaning |
 | --- | --- |
-| **Status** | Proposed Definition Schema Resource `1.0.0` |
+| **Status** | Accepted Definition Schema Resource `1.0.0`; governed integration pending |
 | **Subject** | One ARCH-040 declaration governed by ARCH-038 Definition `1.0.0` |
 | **Machine result** | Structural valid or invalid for one exact schema and instance |
 | **Not established** | Source truth, authenticity, integrity, freshness, applicability, conformance, approval, support, release, deployment, or automatic authority |
 
 ## Status and authority
 
-**Document Status:** Proposed.
+**Document Status:** Accepted.
 
-This candidate is governed by [issue #145](https://github.com/CNTX-PROJECT/CNTX/issues/145).
+This decision is governed by [issue #145](https://github.com/CNTX-PROJECT/CNTX/issues/145).
 Attributable EIGENAAR / Final Authority acceptance of the exact issue contract
 is recorded in issue comment
 [5267576754](https://github.com/CNTX-PROJECT/CNTX/issues/145#issuecomment-5267576754).
+Attributable exact-head candidate acceptance is recorded in issue comment
+[5269689952](https://github.com/CNTX-PROJECT/CNTX/issues/145#issuecomment-5269689952),
+bound to candidate commit
+`d10fb23bdec7c13bb1154bd538d8e691d486fcce` and tree
+`071a9909efcee1d4d74d7ff65b0b05da30e73875`.
 
-Issue acceptance authorizes only the bounded Proposed candidate lifecycle.
-Candidate preparation, repository presence, parsing, schema checking, case
-evaluation, Draft PR state, review, or mergeability does not make ARCH-042
-Accepted and does not allocate or activate the proposed Definition Schema
-Identifier, Schema Version, or canonical `$id`. Exact-head acceptance and
-separately governed integration to `main` remain required.
+Issue-contract acceptance authorized only the bounded Proposed candidate
+lifecycle. That preceding Proposed status allocated or activated nothing.
+Exact-head acceptance establishes Accepted status. Exact-head acceptance plus
+later separately authorized governed integration to `main` allocates and
+activates only the exact Definition Schema Identifier
+`https://github.com/CNTX-PROJECT/CNTX/schemas/extension-modules/epistemic-provenance-freshness`,
+Schema Version `1.0.0`, and canonical `$id`
+`https://github.com/CNTX-PROJECT/CNTX/schemas/extension-modules/epistemic-provenance-freshness/1.0.0`
+as the integrated Accepted Schema Resource. Status promotion, branch or
+repository presence, schema or JSON parsing, schema checking, case evaluation,
+static validation, Ready state, review, or mergeability does not by itself
+integrate, allocate, or activate the resource or establish conformance,
+semantic truth, provenance truth, freshness, approval, certification, support,
+release fitness, deployment fitness, or authority. Separately governed
+integration to `main` remains required.
 
 ## Exact decision basis
 
-This candidate is prepared directly from public baseline commit
+The accepted candidate was prepared directly from public baseline commit
 `c7650274a2818a5c3eaca0abfb0bc86fd747e4b2` and tree
 `f7dd74615c11e5390c0680f862668f425285e7f7`.
 
@@ -53,9 +67,9 @@ The controlling semantic sources are:
 The schema may enforce only structure justified by those exact sources. It
 cannot repair, reinterpret, broaden, narrow, or complete them silently.
 
-## Proposed Definition Schema identity and version
+## Accepted Definition Schema identity and version
 
-| Dimension | Exact Proposed value |
+| Dimension | Exact Accepted value |
 | --- | --- |
 | Schema family | `CNTX Extension Module Definition Schema Family` |
 | Definition Schema Identifier | `https://github.com/CNTX-PROJECT/CNTX/schemas/extension-modules/epistemic-provenance-freshness` |
@@ -65,8 +79,8 @@ cannot repair, reinterpret, broaden, narrow, or complete them silently.
 | Governing Definition Version | `1.0.0` |
 | Schema language and dialect | JSON Schema Draft 2020-12 |
 | Media type | `application/schema+json` |
-| Canonical candidate path | `schemas/extension-modules/epistemic-provenance-freshness/1.0.0/schema.json` |
-| Document Status | Proposed |
+| Canonical repository path | `schemas/extension-modules/epistemic-provenance-freshness/1.0.0/schema.json` |
+| Document Status | Accepted; governed integration pending |
 
 The Definition Schema Identifier is version independent. Schema Version is a
 separate semantic-version coordinate. The version-qualified `$id` identifies
@@ -75,12 +89,15 @@ network access, registry or catalog lookup, availability, trust, acceptance,
 support, publication, or authority.
 
 Definition Version `1.0.0` and Schema Version `1.0.0` are independent. Their
-equal values create no lockstep lifecycle. Proposed issue, path, file, `$id`,
-candidate, review, or validation presence allocates or activates nothing.
+equal values create no lockstep lifecycle. The preceding Proposed issue, path,
+file, `$id`, candidate, review, and validation presence allocated or activated
+nothing. Accepted status without governed integration likewise does not
+integrate, allocate, or activate the resource.
 
 ## One standalone resource
 
-The candidate consists of one canonical standalone root JSON Schema Resource:
+The Accepted decision consists of one canonical standalone root JSON Schema
+Resource:
 
 - exact root `$schema` and canonical `$id`;
 - internal reusable definitions only below root `$defs`;
@@ -258,21 +275,30 @@ created.
 
 ## Evaluation and Tool boundary
 
-Expected results are frozen before any evaluator runs. The separately bounded
-candidate validation may evaluate all 48 cases once in one isolated temporary
+Expected results were frozen before any evaluator run. The separately bounded
+candidate validation evaluated all 48 cases once in one isolated temporary
 Windows environment using exact CPython `3.13.14` and only the five exact
 artifacts pinned by the integrated corrective lock. Artifact filename, size,
-and digest must be verified before installation; resolution and evaluation
-perform no network access; cleanup removes all temporary material.
+and digest were verified before installation; resolution and evaluation used
+no network access. All 48 expected/actual results matched and cleanup
+completed. That accepted execution evidence is bound exclusively to candidate
+commit/tree
+`d10fb23bdec7c13bb1154bd538d8e691d486fcce` /
+`071a9909efcee1d4d74d7ff65b0b05da30e73875`; the status-only promotion is not
+a new execution or evidence instance. Its execution-evidence SHA-256 remains
+`2ec1f7552ee7830d9fa8fccfd4dd0e0d1089ea77f7566a4da4f255cc298ee938`
+and its evaluator-result SHA-256 remains
+`df9e2af0a2b6cf14830619dd496895bb851ba2e5968417e972bfea739c6db975`.
 
 This validation does not add a public harness, dependency, lock, Python file,
 runner, invocation, output, or evidence instance. It does not expand the
 existing minimal Tool/Implementation's exact ten-schema supported set, 29
 tests, thirteen rules, or historical/corrective practice scenarios.
 
-Any acquisition, verification, installation, meta-schema, evaluation,
-comparison, isolation, or cleanup failure stops fail closed without retry or
-favorable claim.
+The execution was governed by the unchanged rule that any acquisition,
+verification, installation, meta-schema, evaluation, comparison, isolation, or
+cleanup failure stops fail closed without retry or favorable claim. The same
+rule remains required for any future separately authorized execution.
 
 ## Standard JSON Schema limitations
 
@@ -317,16 +343,15 @@ of-service guarantee.
 
 ## Lifecycle and stopgate
 
-The candidate remains Proposed. Candidate creation, isolated validation, push,
-Draft PR, complete read-back, one transparent non-independent `COMMENTED`
-review, and final verification may not promote, integrate, release, close, or
-clean up ARCH-042.
+The exact candidate is Accepted. Candidate creation, isolated validation,
+push, Draft PR, complete read-back, transparent non-independent `COMMENTED`
+review, exact-head acceptance, status promotion, Ready state, or mergeability
+does not integrate, allocate, activate, release, close, or clean up ARCH-042.
 
 Work stops at a new attributable EIGENAAR / Final Authority exact-head
-candidate-acceptance gate. Status promotion, Ready, merge, issue closure,
-branch cleanup, Profile work, Tool expansion, CI, release, publication,
-support, certification, hosting, deployment, and every later phase require
-new separate authority.
+integration gate. Merge, issue closure, branch cleanup, Profile work, Tool
+expansion, CI, release, publication, support, certification, hosting,
+deployment, and every later phase require new separate authority.
 
 ## References
 
@@ -337,7 +362,7 @@ new separate authority.
 - [Schema Resource Resolution and Catalog Boundary](schema-resource-resolution-catalog-boundary.md)
 - [Validation and Validation Output Contract](validation-and-validation-output-contract.md)
 - [ADR-0042](adr/0042-epistemic-provenance-freshness-extension-module-definition-schema-resource.md)
-- [Proposed Schema Resource](../../schemas/extension-modules/epistemic-provenance-freshness/1.0.0/schema.json)
+- [Accepted Schema Resource](../../schemas/extension-modules/epistemic-provenance-freshness/1.0.0/schema.json)
 - [Synthetic cases](../../tests/schemas/extension-modules/epistemic-provenance-freshness/1.0.0/cases.json)
 - [Governance](../../GOVERNANCE.md)
 - [Security policy](../../SECURITY.md)
