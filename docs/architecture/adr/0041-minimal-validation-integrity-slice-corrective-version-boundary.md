@@ -1,9 +1,13 @@
 # ADR-0041: CNTX Minimal Validation and Integrity Slice Corrective Version Boundary
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-08-12
 - **Issue:** [#141](https://github.com/CNTX-PROJECT/CNTX/issues/141)
 - **Issue-contract acceptance comment:** [5262502160](https://github.com/CNTX-PROJECT/CNTX/issues/141#issuecomment-5262502160)
+- **Exact-head candidate-acceptance comment:** [5262723710](https://github.com/CNTX-PROJECT/CNTX/issues/141#issuecomment-5262723710)
+- **Accepted candidate:** commit
+  `89f7a46319fd64e517e160b03b390e90bf1534ed`, tree
+  `2c519280a71491d3484bfebfc809f7e50e3bed50`
 - **Baseline:** commit `97d72439bcad31c144352091cb74eaac342f0ae3`,
   tree `831c8e953de06a1dd8b124904779653df43543fa`
 - **Decision:** ARCH-041 — CNTX Minimal Validation and Integrity Slice
@@ -55,16 +59,18 @@ available, byte length, SHA-256, and observation method. Location, branch,
 filename, working tree, cache, or current directory cannot replace the
 immutable blob subject.
 
-### Propose Implementation Version `1.0.1`
+### Accept the corrective Implementation Version `1.0.1` target
 
 Keep the existing Implementation Identity:
 
 `https://github.com/CNTX-PROJECT/CNTX/implementations/minimal-validation-integrity-slice/python-jsonschema`
 
-Propose only corrective Implementation Version `1.0.1` under that identity.
-Tool Version remains `1.0.0`; no new Tool Identity or Version is created.
-Proposed status, candidate presence, review, Ready state, repository presence,
-or mergeability does not allocate or activate `1.0.1`.
+Accept only corrective Implementation Version `1.0.1` as the later integration
+target under that identity. Tool Version remains `1.0.0`; no new Tool Identity
+or Version is created. Accepted status, candidate presence, review, Ready
+state, repository presence, or mergeability does not allocate or activate
+`1.0.1`. Exact-head candidate acceptance plus later separately authorized
+governed integration to `main` is required for allocation and activation.
 
 ### Bound one behavior correction
 
@@ -167,7 +173,7 @@ unchanged.
 
 ## Non-decisions and non-execution
 
-Proposed status creates no `.gitattributes`, repin, lock, invocation, matrix,
+Accepted status creates no `.gitattributes`, repin, lock, invocation, matrix,
 Python change, testcase change, schema, Schema Resource, rule, Tool or
 Implementation activation, dependency acquisition, install, runner execution,
 output, evidence instance, workflow, CI, Actions enablement, settings change,
@@ -179,13 +185,18 @@ validation, testing, execution, evidence production, release, or deployment.
 
 ## Authority boundary
 
-Issue #141 and issue-contract acceptance comment `5262502160` govern this
-Proposed documentation candidate. Candidate presence, Draft PR state,
-transparent non-independent COMMENT review, Ready state, repository presence,
-or mergeability does not accept, integrate, allocate, activate, execute,
-release, or authorize ARCH-041 or Implementation Version `1.0.1`.
+Issue #141, issue-contract acceptance comment `5262502160`, and exact-head
+candidate-acceptance comment `5262723710` govern this Accepted decision.
+Acceptance is bound to candidate commit
+`89f7a46319fd64e517e160b03b390e90bf1534ed` and tree
+`2c519280a71491d3484bfebfc809f7e50e3bed50`. The preceding Proposed status,
+candidate presence, Draft PR state, transparent non-independent COMMENT
+review, Ready state, repository presence, and mergeability did not accept,
+integrate, allocate, activate, execute, or release ARCH-041 or Implementation
+Version `1.0.1`.
 
-Candidate acceptance, status promotion, merge, integration, issue closure,
-branch cleanup, correction implementation, execution, evidence, portability,
-CI, settings changes, and Phase 4A3.2 require later separate attributable
-EIGENAAR / Final Authority authority at the applicable exact subject.
+Status promotion does not integrate or activate ARCH-041 or Implementation
+Version `1.0.1`. Merge, integration, issue closure, branch cleanup, correction
+implementation, execution, evidence, portability, CI, settings changes, and
+Phase 4A3.2 require later separate attributable EIGENAAR / Final Authority
+authority at the applicable exact subject.

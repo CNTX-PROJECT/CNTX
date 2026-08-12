@@ -4,8 +4,8 @@
 
 CNTX architecture explains the boundaries behind its records, schemas,
 validation, extensions, evidence, and human authority. The public baseline
-contains **40 Accepted architecture decisions and matching ADRs**. The current
-candidate adds one Proposed, documentation-only ARCH-041 correction boundary
+contains **41 Accepted architecture decisions and matching ADRs**. ARCH-041 is
+Accepted, documentation-only, and pending separately governed integration
 before Phase 4A3.2.
 
 | If you need… | Open… |
@@ -13,7 +13,7 @@ before Phase 4A3.2.
 | The central CNTX boundary | [Core architecture contract](core-contract.md) and [ADR-0001](adr/0001-public-core-boundaries.md) |
 | The nine collaboration records | [Artifact-contract index](../contracts/README.md) |
 | Machine-readable Core structure | [Schema index](../../schemas/README.md) |
-| The bounded executable practice slice | [Validation and integrity slice](../../tools/minimal-validation-integrity-slice/README.md) and [Proposed corrective version boundary](minimal-validation-integrity-slice-corrective-version-boundary.md) |
+| The bounded executable practice slice | [Validation and integrity slice](../../tools/minimal-validation-integrity-slice/README.md) and [Accepted corrective version boundary](minimal-validation-integrity-slice-corrective-version-boundary.md) |
 | The source/provenance/freshness layer | [ARCH-038](epistemic-provenance-freshness-extension-module-definition.md), [ARCH-039](context-packet-epistemic-provenance-freshness-profile-definition.md), and [ARCH-040](epistemic-provenance-freshness-extension-module-json-representation-boundary.md) |
 | Current and future order | [Roadmap](../../ROADMAP.md) |
 
@@ -27,7 +27,7 @@ before Phase 4A3.2.
 | ARCH-028–033 | Extension Module/Profile identity, composition, resources, validation, tooling | Accepted extension architecture |
 | ARCH-034–037 | Validation records, evidence package, integrity rules, Tool/Implementation contract | Accepted basis for the bounded local slice |
 | ARCH-038–040 | Epistemic provenance and freshness Module/Profile Definitions and Module representation boundary | Accepted and integrated; no Module schema, rule, implementation, or evidence instance |
-| ARCH-041 | Minimal validation and integrity slice corrective version boundary | Proposed and documentation-only; preserves `1.0.0` history, proposes `1.0.1`, and keeps portability, CI, and Phase 4A3.2 separate |
+| ARCH-041 | Minimal validation and integrity slice corrective version boundary | Accepted, documentation-only, and integration pending; preserves `1.0.0` history, accepts `1.0.1` as the exact integration target, and keeps portability, CI, and Phase 4A3.2 separate |
 
 Architecture documents state conceptual and normative boundaries. They do not
 by themselves install software, execute a tool, prove conformance, approve a
@@ -591,20 +591,27 @@ exact tree `831c8e953de06a1dd8b124904779653df43543fa`. Integration creates no
 Schema Resource, testcase, rule, implementation, execution, evidence instance,
 release, support, deployment, or automatic authority.
 
-The Proposed [CNTX Minimal Validation and Integrity Slice Corrective Version
+The Accepted [CNTX Minimal Validation and Integrity Slice Corrective Version
 Boundary](minimal-validation-integrity-slice-corrective-version-boundary.md)
 and
 [ADR-0041](adr/0041-minimal-validation-integrity-slice-corrective-version-boundary.md)
 are a bounded correction gate before Phase 4A3.2. Under issue #141 and
-attributable issue-contract acceptance comment `5262502160`, they preserve
-immutable Tool/Implementation Version `1.0.0` history, define exact Git-blob
-bytes as the subject for new repository-file pins, propose only corrective
-Implementation Version `1.0.1`, and bound the path-safety change to rejecting
-colon-bearing relative path segments on every supported host. Historical
-invocations and evidence are not overwritten. Runtime portability, workflows,
-Actions settings, CI, correction implementation, execution, evidence, and
-Phase 4A3.2 remain separate and not authorized. Proposed status, candidate,
-review, repository presence, or mergeability allocates or activates nothing.
+attributable issue-contract acceptance comment `5262502160` and exact-head
+candidate-acceptance comment `5262723710` on commit
+`89f7a46319fd64e517e160b03b390e90bf1534ed` and tree
+`2c519280a71491d3484bfebfc809f7e50e3bed50`, they preserve immutable
+Tool/Implementation Version `1.0.0` history, define exact Git-blob bytes as the
+subject for new repository-file pins, accept only corrective Implementation
+Version `1.0.1` as the exact later integration target, and bound the
+path-safety change to rejecting colon-bearing relative path segments on every
+supported host. Historical invocations and evidence are not overwritten.
+Runtime portability, workflows, Actions settings, CI, correction
+implementation, execution, evidence, and Phase 4A3.2 remain separate and not
+authorized. Exact-head acceptance establishes Accepted status only. The
+preceding Proposed status, candidate, review, repository presence, Ready state,
+and mergeability allocated or activated nothing; status promotion does not
+integrate or activate ARCH-041 or Version `1.0.1`. Later separately governed
+integration to `main` is required for that exact allocation and activation.
 
 </details>
 

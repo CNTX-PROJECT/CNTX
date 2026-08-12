@@ -2,22 +2,30 @@
 
 ## Status and authority
 
-**Document Status: Proposed.**
+**Document Status: Accepted.**
 
-This documentation-only decision is Proposed under [issue
+This documentation-only decision is Accepted under [issue
 #141](https://github.com/CNTX-PROJECT/CNTX/issues/141) and attributable
 EIGENAAR / Final Authority issue-contract acceptance comment
 [5262502160](https://github.com/CNTX-PROJECT/CNTX/issues/141#issuecomment-5262502160).
-It is prepared directly from public baseline commit
+Exact-head candidate acceptance is recorded in comment
+[5262723710](https://github.com/CNTX-PROJECT/CNTX/issues/141#issuecomment-5262723710)
+on candidate commit `89f7a46319fd64e517e160b03b390e90bf1534ed` and tree
+`2c519280a71491d3484bfebfc809f7e50e3bed50`, prepared directly from public
+baseline commit
 `97d72439bcad31c144352091cb74eaac342f0ae3` and tree
 `831c8e953de06a1dd8b124904779653df43543fa`.
 
-Issue-contract acceptance authorizes preparation and review of this exact
-Proposed candidate only. It does not accept ARCH-041, allocate or activate
-Implementation Version `1.0.1`, correct code, repair a pin, create a new
-invocation or evidence instance, enable CI, or start Phase 4A3.2. Candidate,
-branch, repository, Draft PR, review, Ready, or mergeability state cannot
-create any of those effects.
+The preceding Proposed status, issue-contract acceptance, candidate
+preparation, branch or repository presence, validation, Draft state, review,
+Ready state, or mergeability did not accept, integrate, allocate, activate,
+execute, or release ARCH-041 or Implementation Version `1.0.1`. Exact-head
+candidate acceptance establishes Accepted document status only. Status
+promotion, branch or repository presence, Ready state, review, and
+mergeability do not integrate or activate the decision. Later separately
+governed integration to `main` is required to allocate and activate only the
+exact corrective Implementation Version `1.0.1`; no correction code, pin,
+invocation, evidence, CI, or Phase 4A3.2 authority is created.
 
 ## Purpose
 
@@ -71,7 +79,7 @@ This decision is subordinate to and changes none of:
 - adverse/restricted-evidence, non-execution, non-aggregation,
   `automaticAuthority: false`, and sole final-human-authority boundaries.
 
-If this Proposed document could be read as changing an Accepted predecessor,
+If this Accepted document could be read as changing an Accepted predecessor,
 the predecessor controls and the proposed effect is blocked.
 
 ## Corrective decision
@@ -117,25 +125,26 @@ or transformed checkout is not an immutable blob identity. A later
 cannot redefine historical digest subjects or convert old values into
 Git-blob digests.
 
-### 3. Propose only Implementation Version `1.0.1`
+### 3. Accept only the corrective Implementation Version `1.0.1` target
 
 The unchanged Implementation Identity is:
 
 `https://github.com/CNTX-PROJECT/CNTX/implementations/minimal-validation-integrity-slice/python-jsonschema`
 
-ARCH-041 proposes corrective Implementation Version `1.0.1` under that same
-identity. It creates no new Tool Identity or Tool Version; Tool Version
-remains `1.0.0`.
+ARCH-041 accepts corrective Implementation Version `1.0.1` as the exact
+integration target under that same identity. It creates no new Tool Identity
+or Tool Version; Tool Version remains `1.0.0`.
 
-Version `1.0.1` is not allocated or active while ARCH-041 remains Proposed.
-Issue presence, candidate presence, review, Ready state, branch presence,
-repository presence, mergeability, or a version-shaped string cannot allocate,
-activate, execute, release, support, or certify it. Acceptance and governed
-integration require later separate attributable authority.
+Accepted status alone does not allocate or activate Version `1.0.1`.
+Allocation and activation require this exact-head candidate acceptance plus
+later separately authorized governed integration to `main`. Issue presence,
+candidate presence, review, Ready state, branch presence, repository presence,
+mergeability, or a version-shaped string cannot allocate, activate, execute,
+release, support, or certify it.
 
 ### 4. Bound the path-safety correction
 
-The proposed Implementation Version `1.0.1` may differ behaviorally from
+The Accepted corrective Implementation Version `1.0.1` target may differ behaviorally from
 Version `1.0.0` only by rejecting a colon in any caller-supplied relative path
 segment on every supported host. This aligns implementation behavior with the
 existing cross-platform test expectation for `file:stream`.
@@ -207,7 +216,7 @@ read-only reassessment can determine whether Phase 4A3.2 may begin.
 
 ## Compatibility and historical meaning
 
-Implementation Versions `1.0.0` and proposed `1.0.1` remain distinct exact
+Implementation Version `1.0.0` and the Accepted `1.0.1` target remain distinct exact
 subjects. A consumer cannot substitute one for the other, infer a version from
 the Tool Version, or treat a newer number as proof of greater correctness,
 portability, support, security, or fitness.
@@ -296,7 +305,7 @@ Schema Resource work relies on it.
 
 ## Explicit non-decisions and non-execution
 
-Proposed ARCH-041 creates no `.gitattributes`, historical-file edit, repin,
+Accepted ARCH-041 creates no `.gitattributes`, historical-file edit, repin,
 dependency lock, invocation, matrix, Python change, testcase change, schema,
 Schema Resource, rule, Tool or Implementation activation, dependency
 acquisition, installation, execution, output, evidence instance, workflow, CI,
@@ -315,13 +324,20 @@ The controlling assertion remains `automaticAuthority: false`. A document,
 issue, branch, commit, PR, review, tool, test, digest, CI result, model output,
 majority, consensus, or mergeability state cannot become final authority.
 
-Issue #141 and issue-contract acceptance comment `5262502160` authorize only
-the Proposed documentation candidate and transparent non-independent review.
-Candidate acceptance, status promotion, Ready transition, merge, integration,
-issue closure, branch cleanup, correction implementation, execution, evidence,
-portability, CI, settings changes, and Phase 4A3.2 each require later separate
-attributable EIGENAAR / Final Authority authority at the applicable exact
-subject.
+Issue #141, issue-contract acceptance comment `5262502160`, and exact-head
+candidate-acceptance comment `5262723710` govern this Accepted decision.
+Acceptance is bound to candidate commit
+`89f7a46319fd64e517e160b03b390e90bf1534ed` and tree
+`2c519280a71491d3484bfebfc809f7e50e3bed50`. The preceding Proposed status,
+candidate preparation, branch or repository presence, validation, Draft PR
+state, transparent non-independent COMMENT review, Ready state, and
+mergeability allocated or activated nothing.
+
+Status promotion does not integrate or activate ARCH-041 or Implementation
+Version `1.0.1`. Merge, integration, issue closure, branch cleanup, correction
+implementation, execution, evidence, portability, CI, settings changes, and
+Phase 4A3.2 each require later separate attributable EIGENAAR / Final
+Authority authority at the applicable exact subject.
 
 ## References
 
