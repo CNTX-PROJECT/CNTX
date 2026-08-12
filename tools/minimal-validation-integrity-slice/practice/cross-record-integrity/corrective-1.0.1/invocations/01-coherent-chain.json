@@ -1,0 +1,604 @@
+{
+  "invocation": {
+    "identifier": "https://github.com/CNTX-PROJECT/CNTX/practice/cross-record-integrity/corrective-1.0.1/invocations/01-coherent-chain",
+    "revision": "corrective-1.0.1-r1"
+  },
+  "tool": {
+    "identity": "https://github.com/CNTX-PROJECT/CNTX/tools/minimal-validation-integrity-slice",
+    "version": "1.0.0"
+  },
+  "implementation": {
+    "identity": "https://github.com/CNTX-PROJECT/CNTX/implementations/minimal-validation-integrity-slice/python-jsonschema",
+    "version": "1.0.1"
+  },
+  "implementationSource": {
+    "repository": "https://github.com/CNTX-PROJECT/CNTX",
+    "commit": "1d28b2df55db86b82d23c011eba809a484559272",
+    "tree": "ac73860d2908efa9ec4eaf5b7e814de44fd2beb1"
+  },
+  "validationSubject": {
+    "repository": "https://github.com/CNTX-PROJECT/CNTX",
+    "commit": "1d28b2df55db86b82d23c011eba809a484559272",
+    "tree": "ac73860d2908efa9ec4eaf5b7e814de44fd2beb1"
+  },
+  "governingContext": {
+    "issue": "https://github.com/CNTX-PROJECT/CNTX/issues/143",
+    "acceptanceComment": "https://github.com/CNTX-PROJECT/CNTX/issues/143#issuecomment-5263430981",
+    "baselineCommit": "4ea5aa4e76b6bb6bd38919fa741d93cb07495765",
+    "baselineTree": "fb7cfee3f4cd5edf3503d01f6601ef2ff1d4321f"
+  },
+  "evaluatorContext": {
+    "ruleSet": "https://github.com/CNTX-PROJECT/CNTX/rules/cross-record",
+    "ruleSetVersion": "1.0.0",
+    "evaluationState": "proposed-not-executed"
+  },
+  "dependencyLock": {
+    "path": "tools/minimal-validation-integrity-slice/requirements-1.0.1.lock",
+    "sha256": "47e42f3d43f4882763d461a6fc7aa4ce1e81f75a4a5a241b23318e4b7a216a10"
+  },
+  "configuration": {
+    "strictJson": true,
+    "duplicateMembers": "rejected",
+    "ordering": "deterministic",
+    "automaticRepair": false,
+    "defaults": false
+  },
+  "environment": {
+    "runtime": "CPython",
+    "runtimeVersion": "3.13.14",
+    "dependencies": {
+      "jsonschema": "4.26.0",
+      "attrs": "26.1.0",
+      "jsonschema-specifications": "2025.9.1",
+      "referencing": "0.37.0",
+      "rpds-py": "2026.6.3"
+    },
+    "state": "proposed-not-executed"
+  },
+  "schemas": [
+    {
+      "identity": "https://github.com/CNTX-PROJECT/CNTX/schemas/common-artifact-envelope/1.0.0",
+      "version": "1.0.0",
+      "path": "schemas/common-artifact-envelope/1.0.0/schema.json",
+      "sha256": "8aedfbebf6b02d6d4ec5903ce73d6dc9afc667adaf9d792fc7501029a0e43c87"
+    },
+    {
+      "identity": "https://github.com/CNTX-PROJECT/CNTX/schemas/context-packet/1.0.0",
+      "version": "1.0.0",
+      "path": "schemas/context-packet/1.0.0/schema.json",
+      "sha256": "6df587fd5c798f4f09090ea2249544a78ab8ffc4aafc2809425096dee859a9ab"
+    },
+    {
+      "identity": "https://github.com/CNTX-PROJECT/CNTX/schemas/decision-record/1.0.0",
+      "version": "1.0.0",
+      "path": "schemas/decision-record/1.0.0/schema.json",
+      "sha256": "cc84cc97a16741a1540e41f8d30e5c898ce40331bc330df724d61aeff5d1dcca"
+    },
+    {
+      "identity": "https://github.com/CNTX-PROJECT/CNTX/schemas/evidence-bundle/1.0.0",
+      "version": "1.0.0",
+      "path": "schemas/evidence-bundle/1.0.0/schema.json",
+      "sha256": "41120135f5d6a6130273fb93c5a5ab9bcfced8229952b6e47f28bc5c57d0f646"
+    },
+    {
+      "identity": "https://github.com/CNTX-PROJECT/CNTX/schemas/execution-result/1.0.0",
+      "version": "1.0.0",
+      "path": "schemas/execution-result/1.0.0/schema.json",
+      "sha256": "756755408a266e4e099fae7d76026e70ba2291401078c7559187279040aa07df"
+    },
+    {
+      "identity": "https://github.com/CNTX-PROJECT/CNTX/schemas/project-charter/1.0.0",
+      "version": "1.0.0",
+      "path": "schemas/project-charter/1.0.0/schema.json",
+      "sha256": "bd9aa3b37461a390758b89e69e9ae77925f0bb05ac787d68461375e9d6199036"
+    },
+    {
+      "identity": "https://github.com/CNTX-PROJECT/CNTX/schemas/review-record/1.0.0",
+      "version": "1.0.0",
+      "path": "schemas/review-record/1.0.0/schema.json",
+      "sha256": "a20381b661f45ebff24ed6b86b9069ac9451eec9137822430b7927c288e86711"
+    },
+    {
+      "identity": "https://github.com/CNTX-PROJECT/CNTX/schemas/state-snapshot/1.0.0",
+      "version": "1.0.0",
+      "path": "schemas/state-snapshot/1.0.0/schema.json",
+      "sha256": "9564bcf9d652f53abeddf40f8cd79c01e58351127fdbd6d9c4730beff5ac6e8c"
+    },
+    {
+      "identity": "https://github.com/CNTX-PROJECT/CNTX/schemas/task-contract/1.0.0",
+      "version": "1.0.0",
+      "path": "schemas/task-contract/1.0.0/schema.json",
+      "sha256": "a5353ea0b068a339ccf9d9bf194e03ec19d7bdfc2e0965c06acb7eb0f952a517"
+    },
+    {
+      "identity": "https://github.com/CNTX-PROJECT/CNTX/schemas/workstream/1.0.0",
+      "version": "1.0.0",
+      "path": "schemas/workstream/1.0.0/schema.json",
+      "sha256": "40e62d1168a2cff978cbfe36e5e982cddb9ccabf66eab2a02b99d14e3717d9a5"
+    }
+  ],
+  "manifests": [
+    {
+      "key": "manifest-common-artifact-envelope-1.0.0",
+      "schemaIdentity": "https://github.com/CNTX-PROJECT/CNTX/schemas/common-artifact-envelope/1.0.0",
+      "version": "1.0.0",
+      "path": "tests/schemas/common-artifact-envelope/1.0.0/cases.json",
+      "sha256": "28ed71dc539ab353b329f0d333c23bf0050e35cf7f2254ceecd0ab63473b36e6",
+      "construction": "direct"
+    },
+    {
+      "key": "manifest-context-packet-1.0.0",
+      "schemaIdentity": "https://github.com/CNTX-PROJECT/CNTX/schemas/context-packet/1.0.0",
+      "version": "1.0.0",
+      "path": "tests/schemas/context-packet/1.0.0/cases.json",
+      "sha256": "c6a0aa21125550189cbdce0012478a653dab28badc5a52923352ffefba06827c",
+      "construction": "direct"
+    },
+    {
+      "key": "manifest-decision-record-1.0.0",
+      "schemaIdentity": "https://github.com/CNTX-PROJECT/CNTX/schemas/decision-record/1.0.0",
+      "version": "1.0.0",
+      "path": "tests/schemas/decision-record/1.0.0/cases.json",
+      "sha256": "ac463ed4050fe8a86c3dbd48fbb26278f6f044bcefb77a6c9e0a50acd196529a",
+      "construction": "direct"
+    },
+    {
+      "key": "manifest-evidence-bundle-1.0.0",
+      "schemaIdentity": "https://github.com/CNTX-PROJECT/CNTX/schemas/evidence-bundle/1.0.0",
+      "version": "1.0.0",
+      "path": "tests/schemas/evidence-bundle/1.0.0/cases.json",
+      "sha256": "02f9e86caf8cd550346818e924c562668d2d63a615fe85689d0e927904e15ba5",
+      "construction": "direct"
+    },
+    {
+      "key": "manifest-execution-result-1.0.0",
+      "schemaIdentity": "https://github.com/CNTX-PROJECT/CNTX/schemas/execution-result/1.0.0",
+      "version": "1.0.0",
+      "path": "tests/schemas/execution-result/1.0.0/cases.json",
+      "sha256": "9f3b1478b15b4be72f55099a0c1ad5770ad1ad2ffd0a0ccf389c041920417823",
+      "construction": "direct"
+    },
+    {
+      "key": "manifest-project-charter-1.0.0",
+      "schemaIdentity": "https://github.com/CNTX-PROJECT/CNTX/schemas/project-charter/1.0.0",
+      "version": "1.0.0",
+      "path": "tests/schemas/project-charter/1.0.0/cases.json",
+      "sha256": "758a05a1e08d7399e3b36835f19b2c760f4d49723269257efb942ce8975aca32",
+      "construction": "direct"
+    },
+    {
+      "key": "manifest-review-record-1.0.0",
+      "schemaIdentity": "https://github.com/CNTX-PROJECT/CNTX/schemas/review-record/1.0.0",
+      "version": "1.0.0",
+      "path": "tests/schemas/review-record/1.0.0/cases.json",
+      "sha256": "49851f831a1c87e4683528ef0d69b3497a1ad404be3d081903b8ed63106b6fab",
+      "construction": "direct"
+    },
+    {
+      "key": "manifest-state-snapshot-1.0.0",
+      "schemaIdentity": "https://github.com/CNTX-PROJECT/CNTX/schemas/state-snapshot/1.0.0",
+      "version": "1.0.0",
+      "path": "tests/schemas/state-snapshot/1.0.0/cases.json",
+      "sha256": "f7b46005b860c11f46e08bd8772e4811200d1e921b24fd94a252739c76d2acdd",
+      "construction": "operation-based"
+    },
+    {
+      "key": "manifest-task-contract-1.0.0",
+      "schemaIdentity": "https://github.com/CNTX-PROJECT/CNTX/schemas/task-contract/1.0.0",
+      "version": "1.0.0",
+      "path": "tests/schemas/task-contract/1.0.0/cases.json",
+      "sha256": "51c69422c3f7940c24ed55d94bfaa9e7f5219620e37b2931cfdd9fa061fbb972",
+      "construction": "direct"
+    },
+    {
+      "key": "manifest-workstream-1.0.0",
+      "schemaIdentity": "https://github.com/CNTX-PROJECT/CNTX/schemas/workstream/1.0.0",
+      "version": "1.0.0",
+      "path": "tests/schemas/workstream/1.0.0/cases.json",
+      "sha256": "e8ee8cf36761059fbe293e7aaf99f3b5e0f0b9b078877ebfea2e87e159ff3d40",
+      "construction": "direct"
+    }
+  ],
+  "rules": [
+    {
+      "identity": "https://github.com/CNTX-PROJECT/CNTX/rules/cross-record/supplied-record-exists",
+      "version": "1.0.0"
+    },
+    {
+      "identity": "https://github.com/CNTX-PROJECT/CNTX/rules/cross-record/identity-version-revision-complete",
+      "version": "1.0.0"
+    },
+    {
+      "identity": "https://github.com/CNTX-PROJECT/CNTX/rules/cross-record/record-key-unique",
+      "version": "1.0.0"
+    },
+    {
+      "identity": "https://github.com/CNTX-PROJECT/CNTX/rules/cross-record/identity-revision-content-consistent",
+      "version": "1.0.0"
+    },
+    {
+      "identity": "https://github.com/CNTX-PROJECT/CNTX/rules/cross-record/reference-resolves-exactly-once",
+      "version": "1.0.0"
+    },
+    {
+      "identity": "https://github.com/CNTX-PROJECT/CNTX/rules/cross-record/task-context-execution-chain",
+      "version": "1.0.0"
+    },
+    {
+      "identity": "https://github.com/CNTX-PROJECT/CNTX/rules/cross-record/validation-record-subject-link",
+      "version": "1.0.0"
+    },
+    {
+      "identity": "https://github.com/CNTX-PROJECT/CNTX/rules/cross-record/evidence-package-execution-link",
+      "version": "1.0.0"
+    },
+    {
+      "identity": "https://github.com/CNTX-PROJECT/CNTX/rules/cross-record/role-overlap-visible",
+      "version": "1.0.0"
+    },
+    {
+      "identity": "https://github.com/CNTX-PROJECT/CNTX/rules/cross-record/review-independence-declared",
+      "version": "1.0.0"
+    },
+    {
+      "identity": "https://github.com/CNTX-PROJECT/CNTX/rules/cross-record/self-review-prohibited",
+      "version": "1.0.0"
+    },
+    {
+      "identity": "https://github.com/CNTX-PROJECT/CNTX/rules/cross-record/self-acceptance-prohibited",
+      "version": "1.0.0"
+    },
+    {
+      "identity": "https://github.com/CNTX-PROJECT/CNTX/rules/cross-record/automatic-authority-false",
+      "version": "1.0.0"
+    }
+  ],
+  "subjectRecords": [
+    {
+      "key": "task-contract",
+      "kind": "task-contract",
+      "identity": "https://github.com/CNTX-PROJECT/CNTX/practice/cross-record-integrity/records/task-contract",
+      "version": "1.0.0",
+      "revision": "r1",
+      "sha256": "64e4e6e10a813f07bb3466ab8a89d52e2925b7915e86525f3a302eda90d8e02d",
+      "provenance": {
+        "source": "synthetic-public-safe-practice-fixture",
+        "baselineCommit": "c0e46a4f9d98d2b3d76d08fb3c870fd5c2475b9c",
+        "baselineTree": "97f3ee35a9bf6445ef78295a28f2a560a937eeef"
+      },
+      "accessibility": "accessible",
+      "content": {
+        "recordKey": "task-contract",
+        "purpose": "Synthetic public-safe task-contract practice record."
+      },
+      "references": [],
+      "roles": {
+        "requester": "synthetic-requester",
+        "producer": "synthetic-producer",
+        "executor": "synthetic-executor",
+        "declaredOverlaps": []
+      },
+      "links": {},
+      "automaticAuthority": false
+    },
+    {
+      "key": "context-packet",
+      "kind": "context-packet",
+      "identity": "https://github.com/CNTX-PROJECT/CNTX/practice/cross-record-integrity/records/context-packet",
+      "version": "1.0.0",
+      "revision": "r1",
+      "sha256": "5f283e6dee8350d87245fc81cd6599eeaafe47011ed541cfe90ff12fb00af351",
+      "provenance": {
+        "source": "synthetic-public-safe-practice-fixture",
+        "baselineCommit": "c0e46a4f9d98d2b3d76d08fb3c870fd5c2475b9c",
+        "baselineTree": "97f3ee35a9bf6445ef78295a28f2a560a937eeef"
+      },
+      "accessibility": "accessible",
+      "content": {
+        "recordKey": "context-packet",
+        "purpose": "Synthetic public-safe context-packet practice record."
+      },
+      "references": [],
+      "roles": {
+        "producer": "synthetic-producer",
+        "executor": "synthetic-executor",
+        "declaredOverlaps": []
+      },
+      "links": {},
+      "automaticAuthority": false
+    },
+    {
+      "key": "execution-result",
+      "kind": "execution-result",
+      "identity": "https://github.com/CNTX-PROJECT/CNTX/practice/cross-record-integrity/records/execution-result",
+      "version": "1.0.0",
+      "revision": "r1",
+      "sha256": "249fd49d931ba7c4ae0bc0c33cbc4377d89cbdf5ad623f50c815d6727fb58eac",
+      "provenance": {
+        "source": "synthetic-public-safe-practice-fixture",
+        "baselineCommit": "c0e46a4f9d98d2b3d76d08fb3c870fd5c2475b9c",
+        "baselineTree": "97f3ee35a9bf6445ef78295a28f2a560a937eeef"
+      },
+      "accessibility": "accessible",
+      "content": {
+        "recordKey": "execution-result",
+        "purpose": "Synthetic public-safe execution-result practice record."
+      },
+      "references": [],
+      "roles": {
+        "producer": "synthetic-producer",
+        "executor": "synthetic-executor",
+        "declaredOverlaps": []
+      },
+      "links": {
+        "taskContract": {
+          "targetKey": "task-contract",
+          "targetRevision": "r1"
+        },
+        "contextPacket": {
+          "targetKey": "context-packet",
+          "targetRevision": "r1"
+        }
+      },
+      "automaticAuthority": false
+    },
+    {
+      "key": "validation-subject",
+      "kind": "validation-subject",
+      "identity": "https://github.com/CNTX-PROJECT/CNTX/practice/cross-record-integrity/records/validation-subject",
+      "version": "1.0.0",
+      "revision": "r1",
+      "sha256": "a3aafbe812be07cb914d6d739145c1b1eec0a579278849bbb9bf70c62dc5c1d7",
+      "provenance": {
+        "source": "synthetic-public-safe-practice-fixture",
+        "baselineCommit": "c0e46a4f9d98d2b3d76d08fb3c870fd5c2475b9c",
+        "baselineTree": "97f3ee35a9bf6445ef78295a28f2a560a937eeef"
+      },
+      "accessibility": "accessible",
+      "content": {
+        "recordKey": "validation-subject",
+        "purpose": "Synthetic public-safe validation-subject practice record."
+      },
+      "references": [],
+      "roles": {
+        "producer": "synthetic-producer",
+        "executor": "synthetic-executor",
+        "declaredOverlaps": []
+      },
+      "links": {},
+      "automaticAuthority": false
+    },
+    {
+      "key": "validation-execution-record",
+      "kind": "validation-execution-record",
+      "identity": "https://github.com/CNTX-PROJECT/CNTX/practice/cross-record-integrity/records/validation-execution-record",
+      "version": "1.0.0",
+      "revision": "r1",
+      "sha256": "8e974332900c622cdc560bad3d0c21187430224ab693c2457b1deaab05fa55c7",
+      "provenance": {
+        "source": "synthetic-public-safe-practice-fixture",
+        "baselineCommit": "c0e46a4f9d98d2b3d76d08fb3c870fd5c2475b9c",
+        "baselineTree": "97f3ee35a9bf6445ef78295a28f2a560a937eeef"
+      },
+      "accessibility": "accessible",
+      "content": {
+        "recordKey": "validation-execution-record",
+        "purpose": "Synthetic public-safe validation-execution-record practice record."
+      },
+      "references": [],
+      "roles": {
+        "producer": "synthetic-producer",
+        "executor": "synthetic-executor",
+        "declaredOverlaps": []
+      },
+      "links": {
+        "subject": {
+          "targetKey": "validation-subject",
+          "targetRevision": "r1"
+        }
+      },
+      "automaticAuthority": false
+    },
+    {
+      "key": "validation-evidence-reproduction-package",
+      "kind": "validation-evidence-reproduction-package",
+      "identity": "https://github.com/CNTX-PROJECT/CNTX/practice/cross-record-integrity/records/validation-evidence-reproduction-package",
+      "version": "1.0.0",
+      "revision": "r1",
+      "sha256": "a4a91755414b3ea2351f33a3b94571da1a07c2ed60109bb59bab8b8a8748e5d6",
+      "provenance": {
+        "source": "synthetic-public-safe-practice-fixture",
+        "baselineCommit": "c0e46a4f9d98d2b3d76d08fb3c870fd5c2475b9c",
+        "baselineTree": "97f3ee35a9bf6445ef78295a28f2a560a937eeef"
+      },
+      "accessibility": "accessible",
+      "content": {
+        "recordKey": "validation-evidence-reproduction-package",
+        "purpose": "Synthetic public-safe validation-evidence-reproduction-package practice record."
+      },
+      "references": [],
+      "roles": {
+        "producer": "synthetic-producer",
+        "executor": "synthetic-executor",
+        "declaredOverlaps": []
+      },
+      "links": {
+        "executionRecord": {
+          "targetKey": "execution-result",
+          "targetRevision": "r1"
+        }
+      },
+      "automaticAuthority": false
+    },
+    {
+      "key": "review-record",
+      "kind": "review-record",
+      "identity": "https://github.com/CNTX-PROJECT/CNTX/practice/cross-record-integrity/records/review-record",
+      "version": "1.0.0",
+      "revision": "r1",
+      "sha256": "5a85b7dde38fb31ab3213ab5804396032170ae3ad2e0af637c71ba75d7ec1e27",
+      "provenance": {
+        "source": "synthetic-public-safe-practice-fixture",
+        "baselineCommit": "c0e46a4f9d98d2b3d76d08fb3c870fd5c2475b9c",
+        "baselineTree": "97f3ee35a9bf6445ef78295a28f2a560a937eeef"
+      },
+      "accessibility": "accessible",
+      "content": {
+        "recordKey": "review-record",
+        "purpose": "Synthetic public-safe review-record practice record."
+      },
+      "references": [],
+      "roles": {
+        "producer": "synthetic-producer",
+        "executor": "synthetic-executor",
+        "reviewer": "synthetic-independent-reviewer",
+        "declaredOverlaps": []
+      },
+      "links": {},
+      "automaticAuthority": false,
+      "independence": {
+        "required": true,
+        "declaration": "independent",
+        "sourceKey": "task-contract",
+        "sourceRevision": "r1"
+      }
+    },
+    {
+      "key": "decision-record",
+      "kind": "decision-record",
+      "identity": "https://github.com/CNTX-PROJECT/CNTX/practice/cross-record-integrity/records/decision-record",
+      "version": "1.0.0",
+      "revision": "r1",
+      "sha256": "8c27ebb8ad3f0e637cacb647b55fa35cfe0277147bd98166c30c32ffc9d499a8",
+      "provenance": {
+        "source": "synthetic-public-safe-practice-fixture",
+        "baselineCommit": "c0e46a4f9d98d2b3d76d08fb3c870fd5c2475b9c",
+        "baselineTree": "97f3ee35a9bf6445ef78295a28f2a560a937eeef"
+      },
+      "accessibility": "accessible",
+      "content": {
+        "recordKey": "decision-record",
+        "purpose": "Synthetic public-safe decision-record practice record."
+      },
+      "references": [],
+      "roles": {
+        "producer": "synthetic-producer",
+        "executor": "synthetic-executor",
+        "reviewer": "synthetic-independent-reviewer",
+        "acceptor": "synthetic-acceptor",
+        "finalAuthority": "synthetic-final-authority",
+        "declaredOverlaps": []
+      },
+      "links": {},
+      "automaticAuthority": false
+    }
+  ],
+  "resourceLimits": {
+    "schema_resources": 10,
+    "manifests": 10,
+    "cases": 203,
+    "operations_per_case": 64,
+    "operations_total": 1024,
+    "rules": 13,
+    "subject_records": 256,
+    "individual_json_bytes": 4194304,
+    "total_json_bytes": 67108864,
+    "json_depth": 128,
+    "json_nodes": 1000000,
+    "ref_occurrences": 4096,
+    "graph_nodes": 10,
+    "graph_edges": 4096,
+    "expansion_depth": 64,
+    "expansions": 8192,
+    "rule_results": 4096,
+    "diagnostics": 10000,
+    "diagnostic_bytes": 16777216,
+    "warnings_and_limitations": 10000,
+    "warnings_and_limitations_bytes": 16777216,
+    "individual_output_bytes": 16777216,
+    "retained_output_bytes": 134217728,
+    "temporary_storage_bytes": 268435456,
+    "worker_concurrency": 1,
+    "worker_processes": 1,
+    "worker_threads": 1,
+    "handles": 128,
+    "wall_seconds": 300,
+    "cpu_seconds": 300,
+    "process_memory_bytes": 1073741824,
+    "repeated_executions": 2
+  },
+  "output": {
+    "machinePath": "01-coherent-chain/result.json",
+    "summaryPath": "01-coherent-chain/summary.txt"
+  },
+  "executionWindow": {
+    "state": "proposed-not-executed",
+    "repeatedExecutions": 2
+  },
+  "evidenceItems": [],
+  "reproductionProcedures": [
+    {
+      "step": 1,
+      "statement": "Use only a later exact-head separately authorized frozen execution context."
+    },
+    {
+      "step": 2,
+      "statement": "Execute twice in separate isolated environments and compare deterministic outputs."
+    },
+    {
+      "step": 3,
+      "statement": "Retain only separately authorized public-safe evidence and verify cleanup."
+    }
+  ],
+  "expectedInventory": {
+    "schemaResources": 10,
+    "manifests": 10,
+    "directManifests": 9,
+    "operationBasedManifests": 1,
+    "cases": 203,
+    "expectedValid": 38,
+    "expectedInvalid": 165,
+    "rules": 13
+  },
+  "requestedOperations": [
+    "schema-resource-checking",
+    "test-manifest-evaluation",
+    "cross-record-integrity-evaluation",
+    "candidate-record-and-evidence-production"
+  ],
+  "phaseApplicability": {
+    "governing-input-assessment": true,
+    "parsing-and-representation-assessment": true,
+    "identity-and-version-assessment": true,
+    "resolution-and-resource-closure-assessment": true,
+    "schema-definition-assessment": true,
+    "schema-evaluation-assessment": true,
+    "normative-contract-assessment": true,
+    "output-and-evidence-assessment": true
+  },
+  "adverseEvidence": [],
+  "restrictedEvidence": [],
+  "retentionAndCleanup": {
+    "retention": "public-safe evidence only after separate authority",
+    "cleanup": "remove verified disposable execution roots after evidence inventory",
+    "currentState": "not-executed"
+  },
+  "claimBoundary": {
+    "scope": "Expected practice-scenario observations only until separately executed and reviewed.",
+    "aggregateResult": false,
+    "broaderConformance": false
+  },
+  "roles": {
+    "requester": "Cintao66 / Final Authority",
+    "executor": "ARCHITECT",
+    "reviewer": "ARCHITECT (non-independent)",
+    "decisionMaker": "Cintao66 / Final Authority",
+    "acceptor": "Cintao66 / Final Authority",
+    "finalAuthority": "Cintao66 / Final Authority"
+  },
+  "network": {
+    "automaticAccess": false,
+    "state": "prohibited"
+  },
+  "automaticAuthority": false
+}
