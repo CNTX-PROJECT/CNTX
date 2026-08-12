@@ -3,16 +3,17 @@
 ## Start here
 
 CNTX architecture explains the boundaries behind its records, schemas,
-validation, extensions, evidence, and human authority. The current promotion
-candidate contains **40 Accepted architecture decisions and matching ADRs**.
-ARCH-040 is Accepted but remains pending separately governed integration.
+validation, extensions, evidence, and human authority. The public baseline
+contains **41 Accepted architecture decisions and matching ADRs**. ARCH-041 is
+Accepted, documentation-only, and pending separately governed integration
+before Phase 4A3.2.
 
 | If you need… | Open… |
 | --- | --- |
 | The central CNTX boundary | [Core architecture contract](core-contract.md) and [ADR-0001](adr/0001-public-core-boundaries.md) |
 | The nine collaboration records | [Artifact-contract index](../contracts/README.md) |
 | Machine-readable Core structure | [Schema index](../../schemas/README.md) |
-| The bounded executable practice slice | [Validation and integrity slice](../../tools/minimal-validation-integrity-slice/README.md) |
+| The bounded executable practice slice | [Validation and integrity slice](../../tools/minimal-validation-integrity-slice/README.md) and [Accepted corrective version boundary](minimal-validation-integrity-slice-corrective-version-boundary.md) |
 | The source/provenance/freshness layer | [ARCH-038](epistemic-provenance-freshness-extension-module-definition.md), [ARCH-039](context-packet-epistemic-provenance-freshness-profile-definition.md), and [ARCH-040](epistemic-provenance-freshness-extension-module-json-representation-boundary.md) |
 | Current and future order | [Roadmap](../../ROADMAP.md) |
 
@@ -25,7 +26,8 @@ ARCH-040 is Accepted but remains pending separately governed integration.
 | ARCH-021–027 | Completion, binding, resolution, validation, evidence, release boundaries | Accepted public-core and prerelease lifecycle |
 | ARCH-028–033 | Extension Module/Profile identity, composition, resources, validation, tooling | Accepted extension architecture |
 | ARCH-034–037 | Validation records, evidence package, integrity rules, Tool/Implementation contract | Accepted basis for the bounded local slice |
-| ARCH-038–040 | Epistemic provenance and freshness Module/Profile Definitions and Module representation boundary | ARCH-038/039 Accepted and integrated; ARCH-040 Accepted, documentation-only, and integration pending; no schema, rule, implementation, or evidence instance |
+| ARCH-038–040 | Epistemic provenance and freshness Module/Profile Definitions and Module representation boundary | Accepted and integrated; no Module schema, rule, implementation, or evidence instance |
+| ARCH-041 | Minimal validation and integrity slice corrective version boundary | Accepted, documentation-only, and integration pending; preserves `1.0.0` history, accepts `1.0.1` as the exact integration target, and keeps portability, CI, and Phase 4A3.2 separate |
 
 Architecture documents state conceptual and normative boundaries. They do not
 by themselves install software, execute a tool, prove conformance, approve a
@@ -583,8 +585,33 @@ Identifier/Version, and creates no `$id`, Schema Resource, testcase, rule,
 tool, implementation, execution, evidence instance, release, support,
 deployment, or follow-on authority. The preceding Proposed status and
 candidate/review state allocated or activated nothing. Exact-head acceptance
-establishes Accepted status only; status promotion, Ready state, review,
-repository presence, and mergeability do not integrate or activate ARCH-040.
+established Accepted status only. Later separately governed integration was
+squash-merged as commit `97d72439bcad31c144352091cb74eaac342f0ae3` with
+exact tree `831c8e953de06a1dd8b124904779653df43543fa`. Integration creates no
+Schema Resource, testcase, rule, implementation, execution, evidence instance,
+release, support, deployment, or automatic authority.
+
+The Accepted [CNTX Minimal Validation and Integrity Slice Corrective Version
+Boundary](minimal-validation-integrity-slice-corrective-version-boundary.md)
+and
+[ADR-0041](adr/0041-minimal-validation-integrity-slice-corrective-version-boundary.md)
+are a bounded correction gate before Phase 4A3.2. Under issue #141 and
+attributable issue-contract acceptance comment `5262502160` and exact-head
+candidate-acceptance comment `5262723710` on commit
+`89f7a46319fd64e517e160b03b390e90bf1534ed` and tree
+`2c519280a71491d3484bfebfc809f7e50e3bed50`, they preserve immutable
+Tool/Implementation Version `1.0.0` history, define exact Git-blob bytes as the
+subject for new repository-file pins, accept only corrective Implementation
+Version `1.0.1` as the exact later integration target, and bound the
+path-safety change to rejecting colon-bearing relative path segments on every
+supported host. Historical invocations and evidence are not overwritten.
+Runtime portability, workflows, Actions settings, CI, correction
+implementation, execution, evidence, and Phase 4A3.2 remain separate and not
+authorized. Exact-head acceptance establishes Accepted status only. The
+preceding Proposed status, candidate, review, repository presence, Ready state,
+and mergeability allocated or activated nothing; status promotion does not
+integrate or activate ARCH-041 or Version `1.0.1`. Later separately governed
+integration to `main` is required for that exact allocation and activation.
 
 </details>
 

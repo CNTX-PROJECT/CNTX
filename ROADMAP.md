@@ -16,16 +16,16 @@ are preserved below in an expandable technical section.
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/brand/cntx-roadmap-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="docs/assets/brand/cntx-roadmap-light.svg">
-  <img alt="CNTX roadmap: the public specification, bounded validation slice, and source and freshness Definitions are integrated; exact schema resources are the next governed technical decision; practical pilots follow only after further proof" src="docs/assets/brand/cntx-roadmap-light.svg">
+  <img alt="CNTX roadmap: the public specification, bounded validation slice, source and freshness Definitions, and Module representation boundary are integrated; a bounded corrective version decision comes before exact schema resources and practical pilots" src="docs/assets/brand/cntx-roadmap-light.svg">
 </picture>
 
 ## Simple view
 
 | Horizon | State | Meaning |
 | --- | --- | --- |
-| **Now** | Accepted, integration pending | 40 Accepted architecture decisions; ARCH-040 defines the general Module JSON representation boundary but is not yet integrated or activated |
-| **Next** | Governed ARCH-040 integration | Integrate only the exact Accepted representation boundary; Definition Schema Resources, assertions, cases, and fixed expected results remain later separate decisions |
-| **Later** | Not started | Execution and task controls, multi-principal authority, temporary context, one real vertical slice, adapters, adversarial evaluation, and reassessment |
+| **Now** | Accepted, integration pending | 40 decisions are integrated; ARCH-041 accepts a narrow `1.0.1` correction boundary while preserving all `1.0.0` history, but activates nothing yet |
+| **Next** | Govern ARCH-041 integration | Integrate only the exact Accepted boundary; correction code, new pins/revisions, execution, portability, and CI remain later separate decisions |
+| **Later** | Not started | Implement and evidence the correction under separate authority, reassess Phase 4A3.2, then continue schema resources, practical pilots, adapters, and adversarial evaluation |
 
 `Integrated` does not mean finished, supported, certified, or ready to deploy.
 `Next` does not mean authorized. CNTX advances through exact evidence and
@@ -51,7 +51,7 @@ implementation.
 | 1 | Validation and integrity contracts | Complete | Exact rules, tool identity, implementation identity, inputs, outputs, limits, and evidence |
 | 2 | Local offline runner | Complete for the minimal slice | Reproducible execution of the 10 schemas and 203 synthetic cases |
 | 3 | Cross-record integrity | Complete for the bounded practice slice | Detect missing, duplicate, ambiguous, or conflicting links between supplied records |
-| 4 | Source, provenance and freshness controls | ARCH-038 and ARCH-039 Accepted and integrated; ARCH-040 Module JSON representation boundary Accepted, integration pending | Integrate the machine-readable target shape before separately governing Module schema/cases, Profile representation, and Profile schema/cases |
+| 4 | Source, provenance and freshness controls | ARCH-038 through ARCH-040 Accepted and integrated; ARCH-041 Accepted and integration pending before Phase 4A3.2 | Integrate the exact corrective `1.0.1` boundary, then separately govern correction implementation/evidence and reassess Module schema/cases |
 | 5 | Execution and task controls | Later | Record tool/model/skill identity and classify light, moderate, heavy, or complex work separately from risk |
 | 6 | Team authority and temporary context | Later | Support multiple principals, isolated task capsules, cleanup, and bounded archives |
 | 7 | One real vertical-slice test | Later | Run one small task from contract and context through evidence, review, decision candidate, and cleanup |
@@ -283,8 +283,11 @@ issue-contract acceptance comment `5259097128`, and exact-head acceptance
 comment `5259328712` on candidate commit
 `60d815ed9545c5ab16a4531df9a83cc00ed65340` and tree
 `4671ec2dac4df5029dddaaa5876375ba2b7b749d`. They are the first
-representation-first dependency of Phase 4A3 and remain pending separately
-governed integration.
+representation-first dependency of Phase 4A3. Later separately governed
+integration was squash-merged as commit
+`97d72439bcad31c144352091cb74eaac342f0ae3` with exact tree
+`831c8e953de06a1dd8b124904779653df43543fa`; issue #139 is
+closed/completed.
 
 The documentation-only decision defines one closed thirteen-property
 JSON-compatible instance-data model for one bounded source declaration under
@@ -301,14 +304,46 @@ Schema Resource, schema assertion, testcase, fixed expected result, rule,
 Tool/Implementation version, code, runner, execution, evidence, release,
 support, certification, hosting, or deployment. The preceding Proposed status,
 branch or repository presence, validation, review, and mergeability allocated
-or activated nothing. Exact-head acceptance establishes Accepted status only;
-status promotion, Ready state, review, repository presence, and mergeability
-do not integrate or activate ARCH-040. A Module Definition Schema Resource and
-cases remain a later separate gate after ARCH-040 integration and completion.
+or activated nothing. Exact-head acceptance established Accepted status only;
+the later integration creates no Schema Resource, testcase, rule,
+implementation, execution, evidence, release, support, certification, hosting,
+deployment, or automatic authority. A Module Definition Schema Resource and
+cases remain a later separate gate.
+
+### Accepted correction gate before Phase 4A3.2
+
+[ARCH-041](docs/architecture/minimal-validation-integrity-slice-corrective-version-boundary.md)
+and
+[ADR-0041](docs/architecture/adr/0041-minimal-validation-integrity-slice-corrective-version-boundary.md)
+are **Accepted** under issue #141, attributable EIGENAAR / Final Authority
+issue-contract acceptance comment `5262502160`, and exact-head
+candidate-acceptance comment `5262723710` on candidate commit/tree
+`89f7a46319fd64e517e160b03b390e90bf1534ed` /
+`2c519280a71491d3484bfebfc809f7e50e3bed50`, prepared from public baseline
+commit/tree `97d72439bcad31c144352091cb74eaac342f0ae3` /
+`831c8e953de06a1dd8b124904779653df43543fa`. They remain pending separately
+governed integration.
+
+The documentation-only boundary preserves immutable Tool and Implementation
+Version `1.0.0` history. It defines exact Git-blob bytes as the subject for new
+repository-file pins, accepts only corrective Implementation Version `1.0.1`
+as the exact later integration target, and bounds the behavior change to
+rejecting a colon in every caller-supplied relative path segment on every
+supported host. Later corrective lock, invocation, and matrix subjects must
+use new revisions instead of overwriting historical objects.
+
+Runtime/dependency portability, workflow/CI, Actions settings, correction
+implementation, execution, evidence, integration, and Phase 4A3.2 remain
+separate. Exact-head acceptance establishes Accepted status only. The
+preceding Proposed status, candidate, review, repository presence, Ready state,
+and mergeability allocated or activated nothing; status promotion does not
+integrate or activate ARCH-041 or Version `1.0.1`. Later governed integration
+to `main` is required for that exact allocation and activation. Phase 4A3.2
+remains not started.
 
 ## Detailed project status and roadmap
 
-CNTX has completed its initial Public-Core specification and prerelease cycle within the Accepted ARCH-027 completion and maintenance boundary. The promotion candidate records [Accepted architecture through ARCH-040](docs/architecture/README.md). It provides public governance, forty Accepted architecture sources and ADRs, nine Accepted artifact contracts, ten Accepted Schema Versions 1.0.0 with synthetic cases, one integrated minimal validation and integrity Tool/Implementation slice, and one immutable unsupported prerelease, 0.1.0-prealpha.1. CNTX remains model-, vendor-, runtime-, and domain-agnostic. ARCH-038 and ARCH-039 are integrated; for each, exact-head acceptance plus separately governed integration allocated and activated only its exact Definition Identifier and Version. ARCH-040 is Accepted but pending integration, consumes no separate representation identity/version, and activates nothing through status alone. Neither the integrated slice, either Accepted Definition, nor the Accepted representation boundary creates a supported release line, support service, certification, hosting, deployment, workflow, CI, product, or final-human authority.
+CNTX has completed its initial Public-Core specification and prerelease cycle within the Accepted ARCH-027 completion and maintenance boundary. The promotion candidate records [Accepted architecture through ARCH-041](docs/architecture/README.md). It provides public governance, forty-one Accepted architecture sources and ADRs, nine Accepted artifact contracts, ten Accepted Schema Versions 1.0.0 with synthetic cases, one integrated minimal validation and integrity Tool/Implementation slice, and one immutable unsupported prerelease, 0.1.0-prealpha.1. CNTX remains model-, vendor-, runtime-, and domain-agnostic. ARCH-038 and ARCH-039 are integrated; for each, exact-head acceptance plus separately governed integration allocated and activated only its exact Definition Identifier and Version. ARCH-040 is Accepted and integrated, consumes no separate representation identity/version, and creates no executable schema. ARCH-041 is Accepted but pending integration; status alone allocates or activates no corrective Implementation Version. Neither the integrated slice, either Accepted Definition, the Accepted representation boundary, nor Accepted ARCH-041 creates a supported release line, support service, certification, hosting, deployment, workflow, CI, product, or final-human authority.
 
 The [artifact-contract index](docs/contracts/README.md) includes nine accepted, binding subordinate artifact-specific contracts: Project Charter, Workstream, Task Contract, Context Packet, Execution Result, Evidence Bundle, Review Record, Decision Record, and State Snapshot. None introduces an executable schema, template, validator, state engine, synchronization engine, workflow, runtime, or product functionality. No canonical artifact contract remains listed as future work; the accepted status does not authorize a follow-on phase. CNTX remains a public core that is model-, vendor-, runtime-, and domain-agnostic and remains independent of private reference implementations.
 
