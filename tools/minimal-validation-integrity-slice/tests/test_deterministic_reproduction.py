@@ -54,7 +54,7 @@ def _prepare_input(repository_root: Path, input_root: Path) -> dict:
             "sha256": _digest(input_root / manifest_relative),
             "construction": "operation-based" if slug == "state-snapshot" else "direct",
         })
-    lock = repository_root / "tools/minimal-validation-integrity-slice/requirements.lock"
+    lock = repository_root / "tools/minimal-validation-integrity-slice/requirements-1.0.1.lock"
     copied_lock = input_root / "dependency/requirements.lock"
     copied_lock.parent.mkdir(parents=True, exist_ok=True)
     shutil.copyfile(lock, copied_lock)
