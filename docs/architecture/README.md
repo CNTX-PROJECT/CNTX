@@ -5,8 +5,8 @@
 CNTX architecture explains the boundaries behind its records, schemas,
 validation, extensions, evidence, and human authority. Public `main` contains
 **42 Accepted and integrated architecture decisions and matching ADRs**. This
-candidate also contains one current Proposed ARCH-043/ADR-0043 pair, which is
-not accepted or integrated.
+status-promotion branch also contains the Accepted ARCH-043/ADR-0043 pair,
+which is not integrated.
 
 | If you need… | Open… |
 | --- | --- |
@@ -14,7 +14,7 @@ not accepted or integrated.
 | The nine collaboration records | [Artifact-contract index](../contracts/README.md) |
 | Machine-readable Core structure | [Schema index](../../schemas/README.md) |
 | The bounded executable practice slice | [Validation and integrity slice](../../tools/minimal-validation-integrity-slice/README.md) and [Accepted corrective version boundary](minimal-validation-integrity-slice-corrective-version-boundary.md) |
-| The source/provenance/freshness layer | [ARCH-038](epistemic-provenance-freshness-extension-module-definition.md), [ARCH-039](context-packet-epistemic-provenance-freshness-profile-definition.md), [ARCH-040](epistemic-provenance-freshness-extension-module-json-representation-boundary.md), integrated [ARCH-042](epistemic-provenance-freshness-extension-module-definition-schema-resource.md), and Proposed [ARCH-043](context-packet-epistemic-provenance-freshness-profile-json-representation-boundary.md) |
+| The source/provenance/freshness layer | [ARCH-038](epistemic-provenance-freshness-extension-module-definition.md), [ARCH-039](context-packet-epistemic-provenance-freshness-profile-definition.md), [ARCH-040](epistemic-provenance-freshness-extension-module-json-representation-boundary.md), integrated [ARCH-042](epistemic-provenance-freshness-extension-module-definition-schema-resource.md), and Accepted [ARCH-043](context-packet-epistemic-provenance-freshness-profile-json-representation-boundary.md) with integration pending |
 | Current and future order | [Roadmap](../../ROADMAP.md) |
 
 ## Architecture map
@@ -29,7 +29,7 @@ not accepted or integrated.
 | ARCH-038–040 | Epistemic provenance and freshness Module/Profile Definitions and Module representation boundary | Accepted and integrated; no Module schema, rule, implementation, or evidence instance |
 | ARCH-041 | Minimal validation and integrity slice corrective version boundary | Accepted and integrated; corrective Implementation `1.0.1` is integrated with its bounded evidence, while portability and CI remain separate |
 | ARCH-042 | Epistemic provenance and freshness Module Definition Schema Resource | Accepted and integrated with one exact schema and 48 separately matched synthetic cases; no Tool support or new evidence instance |
-| ARCH-043 | Context Packet epistemic provenance and freshness Profile JSON representation boundary | Proposed only; one closed external application record, no Core/schema/Tool change or activation |
+| ARCH-043 | Context Packet epistemic provenance and freshness Profile JSON representation boundary | Accepted; governed integration pending; one closed external application record, no Core/schema/Tool change or activation |
 
 Architecture documents state conceptual and normative boundaries. They do not
 by themselves install software, execute a tool, prove conformance, approve a
@@ -637,18 +637,22 @@ does not expand Tool support or create a new execution/evidence instance. The
 successful candidate execution remains bound only to the accepted candidate
 commit/tree above.
 
-The Proposed [CNTX Context Packet Epistemic Provenance and Freshness Profile
+The Accepted [CNTX Context Packet Epistemic Provenance and Freshness Profile
 JSON Representation Boundary](context-packet-epistemic-provenance-freshness-profile-json-representation-boundary.md)
 and [ADR-0043](adr/0043-context-packet-epistemic-provenance-freshness-profile-json-representation-boundary.md)
-are the bounded Phase 4A3.3 candidate under issue #147 and attributable issue-
-contract acceptance comment `5273569440`. They propose one closed standalone
+are the bounded Phase 4A3.3 decision under issue #147, attributable issue-
+contract acceptance comment `5273569440`, and exact-head candidate-acceptance
+comment `5277015423` on commit/tree
+`05e55ded2a7d0276ee9832b0bdff973b8b19b0d5` /
+`d8d5855b0c986f008da2b123cd21f2cd6c6f0b2b`. They define one closed standalone
 fourteen-member application record for the exact Accepted Profile Definition,
 one exact Context Packet revision, one exact approved Task Contract revision,
 and deterministic packet-local associations to exact ARCH-040 Module
-declarations. Proposed status creates no Profile instance, Core property,
-schema, case, rule, Tool capability, execution, evidence, aggregate outcome, or
-automatic authority. Exact-head acceptance and later separately governed
-integration remain required.
+declarations. The preceding Proposed status allocated or activated nothing.
+Exact-head acceptance and this status-only promotion establish Accepted status
+only and create no Profile instance, Core property, schema, case, rule, Tool
+capability, execution, evidence, aggregate outcome, or automatic authority.
+Separately governed integration remains required.
 
 </details>
 

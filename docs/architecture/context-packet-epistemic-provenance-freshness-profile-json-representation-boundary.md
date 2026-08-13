@@ -2,14 +2,14 @@
 
 ## In ordinary language
 
-ARCH-039 defines what the Context Packet Profile means. ARCH-043 proposes one
+ARCH-039 defines what the Context Packet Profile means. ARCH-043 defines one
 closed JSON-compatible record that can state how that exact Profile is applied
 to one exact Context Packet revision under one exact approved Task Contract
 revision, without changing either Core artifact.
 
 | Quick view | Meaning |
 | --- | --- |
-| **Status** | Proposed documentation-only representation boundary |
+| **Status** | Accepted documentation-only representation boundary; governed integration pending |
 | **Governing Profile** | `context-packet-epistemic-provenance-freshness` Definition `1.0.0` |
 | **Target** | One exact Context Packet Artifact Instance/Revision under one exact approved Task Contract Artifact Instance/Revision |
 | **What this establishes** | One closed standalone Profile application record, exact source-to-Module-declaration associations, narrowing-only responsibilities, explicit conditions/evaluations/limitations, and final-human authority |
@@ -26,13 +26,13 @@ revision, without changing either Core artifact.
 - [Consequences and limitations](#consequences-and-limitations)
 
 This visitor layer is non-normative and adds no requirement beyond the full
-Proposed text below.
+Accepted text below.
 
 ## Status and authority
 
-**Document Status:** Proposed.
+**Document Status:** Accepted.
 
-This documentation-only candidate is governed by
+This documentation-only decision is governed by
 [issue #147](https://github.com/CNTX-PROJECT/CNTX/issues/147). Attributable
 EIGENAAR / Final Authority acceptance of the exact issue contract is recorded
 in issue comment
@@ -44,12 +44,15 @@ The exact public baseline is commit
 `9f482043f76c792f6c2e1e96eb4a535ee26b3a99`, tree
 `7b2f45791e3b7bff7e856f26fff9b22598c06709`, with 200 tracked paths.
 
-Issue-contract acceptance authorizes preparation and review of one Proposed
-candidate only. Proposed status, branch or repository presence, static
-validation, Draft PR state, review, rendering, parsing, or mergeability does
-not accept, allocate, activate, integrate, release, or deploy ARCH-043. Exact-
-head attributable acceptance and later separately governed integration to
-`main` remain necessary.
+Attributable exact-head acceptance is recorded in issue comment
+[5277015423](https://github.com/CNTX-PROJECT/CNTX/issues/147#issuecomment-5277015423)
+for candidate commit `05e55ded2a7d0276ee9832b0bdff973b8b19b0d5` and tree
+`d8d5855b0c986f008da2b123cd21f2cd6c6f0b2b`. The preceding Proposed status,
+branch or repository presence, static validation, Draft PR state, review,
+rendering, parsing, and mergeability allocated or activated nothing. Exact-head
+acceptance establishes Accepted status only. This status promotion does not
+integrate, activate, release, or deploy ARCH-043; later separately governed
+integration to `main` remains necessary.
 
 ## Purpose and decision boundary
 
@@ -59,7 +62,7 @@ the Accepted Context Packet Contract Definition. It deliberately creates no
 Profile application property, representation, schema, rule, implementation,
 or execution.
 
-This Proposed decision defines exactly one standalone closed JSON-compatible
+This Accepted decision defines exactly one standalone closed JSON-compatible
 Profile application/declaration record. The record applies the exact Accepted
 Profile Definition to one exact Context Packet Artifact Instance/Revision
 under one exact approved Task Contract Artifact Instance/Revision. It is the
@@ -79,7 +82,7 @@ decision, approval, release, or deployment record.
 
 ## Accepted basis and precedence
 
-This Proposed boundary remains subordinate to and preserves:
+This Accepted boundary remains subordinate to and preserves:
 
 1. ARCH-039 and ADR-0039 as the exact Accepted narrowing-only Profile source;
 2. ARCH-040 and ADR-0040 as the exact Accepted closed Module declaration
@@ -130,7 +133,7 @@ canonical `$id` is allocated.
 ## Normative language
 
 The key words **MUST**, **MUST NOT**, **SHOULD**, **SHOULD NOT**, and **MAY**
-express requirement strength inside this Proposed decision. They create no
+express requirement strength inside this Accepted decision. They create no
 processor, execution permission, acceptance, or consequential authority.
 
 ## Closed fourteen-member root
@@ -605,8 +608,8 @@ execution when complete reliable processing is not possible.
 
 ## Lifecycle and change boundary
 
-Proposed ARCH-043 consumes no identity or version. A later exact-head
-acceptance would establish Accepted status only. Status promotion, Ready state,
+Accepted ARCH-043 consumes no separate identity or version. Exact-head
+acceptance established Accepted status only. This status promotion, Ready state,
 review, repository presence, and mergeability do not integrate or activate the
 representation. Separately governed integration remains required.
 
@@ -616,8 +619,8 @@ reference, association, or semantic change requires a separately governed
 compatibility and version decision. Historical sources and authority records
 remain source preserved.
 
-Only after exact-head acceptance, governed integration, completion,
-synchronization, and separately authorized cleanup may public `main` be
+Only after governed integration, completion, synchronization, and separately
+authorized cleanup may public `main` be
 reassessed for a possible Phase 4A3.4 Profile Definition Schema Resource. This
 decision reserves no ARCH number, Schema Identifier/Version, `$id`, path,
 assertion, case, expected result, validator capability, or authority for that
@@ -700,8 +703,10 @@ corrective `1.0.1`, settings, ruleset, tag, immutable prerelease, H2.4, and all
 historical authority records remain unchanged except the separately authorized
 present-state wording correction for completed ARCH-042 integration.
 
-This Proposed decision creates no eighth path, second candidate commit,
-Accepted status, Ready transition, merge, issue closure, branch cleanup,
+The preceding Proposed decision created no eighth path, Accepted status, or
+activation. This status-only promotion changes exactly five existing
+status-bearing documentation paths and creates no second candidate commit,
+Ready transition, merge, issue closure, branch cleanup,
 Profile instance, Profile Schema Resource, Core property, JSON file, testcase,
 policy instance, rule, Tool/Implementation version, supported-set expansion,
 dependency, code, execution, evidence instance, workflow, CI, setting, release,
@@ -715,10 +720,11 @@ or later-phase authority.
 later schema result, condition, evaluation, evidence reference, review, score,
 majority, tool, implementation, or model becomes final authority.
 
-Work stops after one transparent non-independent `COMMENTED` review and final
-read-only verification at a new attributable EIGENAAR / Final Authority exact-
-head candidate-acceptance gate. No merge, issue closure, branch cleanup,
-schema work, execution, release, deployment, or later phase is authorized.
+Attributable EIGENAAR / Final Authority exact-head acceptance is recorded in
+issue comment `5277015423`. This status-only promotion stops at the separately
+governed integration gate. No Ready transition, second review, merge, issue
+closure, branch cleanup, schema work, execution, release, deployment, or later
+phase is authorized.
 
 ## References
 

@@ -1,11 +1,13 @@
 # ADR-0043: CNTX Context Packet Epistemic Provenance and Freshness Profile JSON Representation Boundary
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-08-13
 - **Issue:** [#147](https://github.com/CNTX-PROJECT/CNTX/issues/147)
 - **Issue-contract acceptance comment:** [5273569440](https://github.com/CNTX-PROJECT/CNTX/issues/147#issuecomment-5273569440)
+- **Exact-head acceptance comment:** [5277015423](https://github.com/CNTX-PROJECT/CNTX/issues/147#issuecomment-5277015423)
 - **Baseline:** commit `9f482043f76c792f6c2e1e96eb4a535ee26b3a99`, tree `7b2f45791e3b7bff7e856f26fff9b22598c06709`
-- **Decision:** Proposed ARCH-043 — CNTX Context Packet Epistemic Provenance and Freshness Profile JSON Representation Boundary
+- **Accepted candidate:** commit `05e55ded2a7d0276ee9832b0bdff973b8b19b0d5`, tree `d8d5855b0c986f008da2b123cd21f2cd6c6f0b2b`
+- **Decision:** Accepted ARCH-043 — CNTX Context Packet Epistemic Provenance and Freshness Profile JSON Representation Boundary
 
 ## Context
 
@@ -22,7 +24,7 @@ ARCH-040, associate every exact selected Context Packet source without
 assuming `sourceReference` uniqueness, and preserve non-aggregation and final-
 human authority.
 
-## Proposed decision
+## Decision
 
 Define one closed standalone JSON-compatible Profile application/declaration
 record for one exact Context Packet Artifact Instance/Revision under one exact
@@ -173,19 +175,23 @@ pins, rules, Tool/Implementation behavior/evidence, settings, ruleset, tag,
 immutable prerelease, H2.4, and authority records except the exact authorized
 present-state correction for completed ARCH-042 integration.
 
-This Proposed decision performs no retrieval, resolution, policy or time
+This Accepted decision performs no retrieval, resolution, policy or time
 evaluation, digest verification, transformation, validation, testing,
 execution, evidence production, review decision, release, or deployment.
 
 ## Authority boundary
 
-Issue `#147` and attributable issue-contract acceptance comment `5273569440`
-authorize only one Proposed candidate lifecycle. Candidate preparation,
-validation, Draft PR, transparent non-independent `COMMENTED` review, rendering,
-and mergeability do not accept or activate ARCH-043.
+Issue `#147`, attributable issue-contract acceptance comment `5273569440`, and
+attributable exact-head acceptance comment `5277015423` govern this decision.
+The latter accepts candidate commit/tree
+`05e55ded2a7d0276ee9832b0bdff973b8b19b0d5` /
+`d8d5855b0c986f008da2b123cd21f2cd6c6f0b2b`. The preceding Proposed status,
+candidate preparation, validation, Draft PR, transparent non-independent
+`COMMENTED` review, rendering, and mergeability allocated or activated nothing.
+Exact-head acceptance and this status-only promotion establish Accepted status
+only; they do not integrate or activate ARCH-043.
 
-Work stops at a new attributable EIGENAAR / Final Authority exact-head
-candidate-acceptance gate. Accepted promotion, Ready transition, second review,
-merge, issue closure, branch cleanup, schema work, Tool work, release,
-deployment, Phase 4A3.4, Phase 4A3.5, and every later phase require separate
-authority.
+Work stops at the separately governed integration gate. Ready transition,
+second review, merge, issue closure, branch cleanup, schema work, Tool work,
+release, deployment, Phase 4A3.4, Phase 4A3.5, and every later phase require
+separate authority.
