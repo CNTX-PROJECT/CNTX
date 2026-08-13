@@ -5,8 +5,11 @@
 - **Issue:** [#145](https://github.com/CNTX-PROJECT/CNTX/issues/145)
 - **Issue-contract acceptance comment:** [5267576754](https://github.com/CNTX-PROJECT/CNTX/issues/145#issuecomment-5267576754)
 - **Exact-head candidate acceptance comment:** [5269689952](https://github.com/CNTX-PROJECT/CNTX/issues/145#issuecomment-5269689952)
+- **Integration acceptance comment:** [5271035681](https://github.com/CNTX-PROJECT/CNTX/issues/145#issuecomment-5271035681)
+- **Integration completion comment:** [5271254252](https://github.com/CNTX-PROJECT/CNTX/issues/145#issuecomment-5271254252)
 - **Baseline:** commit `c7650274a2818a5c3eaca0abfb0bc86fd747e4b2`, tree `f7dd74615c11e5390c0680f862668f425285e7f7`
 - **Accepted candidate:** commit `d10fb23bdec7c13bb1154bd538d8e691d486fcce`, tree `071a9909efcee1d4d74d7ff65b0b05da30e73875`
+- **Integrated main:** commit `9f482043f76c792f6c2e1e96eb4a535ee26b3a99`, tree `7b2f45791e3b7bff7e856f26fff9b22598c06709`
 - **Decision:** ARCH-042 — CNTX Epistemic Provenance and Freshness Extension Module Definition Schema Resource
 
 ## Context
@@ -173,8 +176,9 @@ the preceding Proposed candidate lifecycle. Exact-head acceptance comment
 `5269689952` on candidate commit/tree
 `d10fb23bdec7c13bb1154bd538d8e691d486fcce` /
 `071a9909efcee1d4d74d7ff65b0b05da30e73875` establishes Accepted status.
-Exact-head acceptance plus later separately authorized governed integration to
-`main` allocates and activates only Definition Schema Identifier
+Exact-head acceptance plus separately authorized governed integration through
+PR [#146](https://github.com/CNTX-PROJECT/CNTX/pull/146) allocates and activates
+only Definition Schema Identifier
 `https://github.com/CNTX-PROJECT/CNTX/schemas/extension-modules/epistemic-provenance-freshness`,
 Schema Version `1.0.0`, and canonical `$id`
 `https://github.com/CNTX-PROJECT/CNTX/schemas/extension-modules/epistemic-provenance-freshness/1.0.0`
@@ -186,7 +190,14 @@ activate, release, or deploy ARCH-042 or establish conformance, semantic truth,
 provenance truth, freshness, approval, certification, support, release fitness,
 deployment fitness, or authority.
 
-Work stops at a new attributable exact-head EIGENAAR / Final Authority
-integration gate. Merge, issue closure, branch cleanup, Profile work, Tool
-expansion, CI, release, publication, support, certification, hosting,
-deployment, and later phases require separate authority.
+Issue #145 is closed/completed and the exact task branch is absent locally and
+publicly. The integrated `main` tree equals the Accepted promotion tree. The
+original isolated execution and evidence remain bound only to candidate
+commit/tree `d10fb23bdec7c13bb1154bd538d8e691d486fcce` /
+`071a9909efcee1d4d74d7ff65b0b05da30e73875`; promotion and integration created
+no new execution or evidence instance.
+
+Completed integration authorizes no Profile representation, Profile Schema
+Resource, Tool expansion, CI, release, publication, support, certification,
+hosting, deployment, H2.4 completion, or later phase. Each remains separately
+governed.

@@ -3,10 +3,10 @@
 ## Start here
 
 CNTX architecture explains the boundaries behind its records, schemas,
-validation, extensions, evidence, and human authority. This promotion branch
-contains **42 Accepted architecture decisions and matching ADRs**. Public
-`main` remains integrated through ARCH-041; governed ARCH-042 integration is
-the next separate gate.
+validation, extensions, evidence, and human authority. Public `main` contains
+**42 Accepted and integrated architecture decisions and matching ADRs**. This
+status-promotion branch also contains the Accepted ARCH-043/ADR-0043 pair,
+which is not integrated.
 
 | If you need… | Open… |
 | --- | --- |
@@ -14,7 +14,7 @@ the next separate gate.
 | The nine collaboration records | [Artifact-contract index](../contracts/README.md) |
 | Machine-readable Core structure | [Schema index](../../schemas/README.md) |
 | The bounded executable practice slice | [Validation and integrity slice](../../tools/minimal-validation-integrity-slice/README.md) and [Accepted corrective version boundary](minimal-validation-integrity-slice-corrective-version-boundary.md) |
-| The source/provenance/freshness layer | [ARCH-038](epistemic-provenance-freshness-extension-module-definition.md), [ARCH-039](context-packet-epistemic-provenance-freshness-profile-definition.md), [ARCH-040](epistemic-provenance-freshness-extension-module-json-representation-boundary.md), and Accepted [ARCH-042](epistemic-provenance-freshness-extension-module-definition-schema-resource.md) |
+| The source/provenance/freshness layer | [ARCH-038](epistemic-provenance-freshness-extension-module-definition.md), [ARCH-039](context-packet-epistemic-provenance-freshness-profile-definition.md), [ARCH-040](epistemic-provenance-freshness-extension-module-json-representation-boundary.md), integrated [ARCH-042](epistemic-provenance-freshness-extension-module-definition-schema-resource.md), and Accepted [ARCH-043](context-packet-epistemic-provenance-freshness-profile-json-representation-boundary.md) with integration pending |
 | Current and future order | [Roadmap](../../ROADMAP.md) |
 
 ## Architecture map
@@ -28,7 +28,8 @@ the next separate gate.
 | ARCH-034–037 | Validation records, evidence package, integrity rules, Tool/Implementation contract | Accepted basis for the bounded local slice |
 | ARCH-038–040 | Epistemic provenance and freshness Module/Profile Definitions and Module representation boundary | Accepted and integrated; no Module schema, rule, implementation, or evidence instance |
 | ARCH-041 | Minimal validation and integrity slice corrective version boundary | Accepted and integrated; corrective Implementation `1.0.1` is integrated with its bounded evidence, while portability and CI remain separate |
-| ARCH-042 | Epistemic provenance and freshness Module Definition Schema Resource | Accepted with one exact schema and 48 separately matched synthetic cases; governed integration pending, with no activation or Tool support |
+| ARCH-042 | Epistemic provenance and freshness Module Definition Schema Resource | Accepted and integrated with one exact schema and 48 separately matched synthetic cases; no Tool support or new evidence instance |
+| ARCH-043 | Context Packet epistemic provenance and freshness Profile JSON representation boundary | Accepted; governed integration pending; one closed external application record, no Core/schema/Tool change or activation |
 
 Architecture documents state conceptual and normative boundaries. They do not
 by themselves install software, execute a tool, prove conformance, approve a
@@ -625,13 +626,33 @@ to the already Accepted `epistemic-provenance-freshness` Module Definition and
 supplies [48 separate synthetic cases](../../tests/schemas/extension-modules/epistemic-provenance-freshness/1.0.0/cases.json):
 8 expected valid and 40 expected invalid. These counts remain separate from the
 historical Core `203/38/165` inventory and form no aggregate score or gate.
-The preceding Proposed status allocated or activated nothing. Accepted status,
-status promotion, repository presence, schema validity, case evaluation, Ready
-state, review, or mergeability does not integrate or activate the Schema
-Resource, expand the supported Tool input set, or create a rule, execution
-authority, new evidence claim, release, support, certification, or deployment.
-The successful candidate execution remains bound only to the accepted candidate
-commit/tree above; the status-only promotion is not a new execution.
+The preceding Proposed status allocated or activated nothing. Separately
+governed integration acceptance comment `5271035681` and completion comment
+`5271254252` record integration through PR #146 at commit/tree
+`9f482043f76c792f6c2e1e96eb4a535ee26b3a99` /
+`7b2f45791e3b7bff7e856f26fff9b22598c06709`; issue #145 is closed/completed and
+the task branch is absent locally and publicly. Integration allocates and
+activates only the exact Schema Identifier, Version, and canonical `$id`; it
+does not expand Tool support or create a new execution/evidence instance. The
+successful candidate execution remains bound only to the accepted candidate
+commit/tree above.
+
+The Accepted [CNTX Context Packet Epistemic Provenance and Freshness Profile
+JSON Representation Boundary](context-packet-epistemic-provenance-freshness-profile-json-representation-boundary.md)
+and [ADR-0043](adr/0043-context-packet-epistemic-provenance-freshness-profile-json-representation-boundary.md)
+are the bounded Phase 4A3.3 decision under issue #147, attributable issue-
+contract acceptance comment `5273569440`, and exact-head candidate-acceptance
+comment `5277015423` on commit/tree
+`05e55ded2a7d0276ee9832b0bdff973b8b19b0d5` /
+`d8d5855b0c986f008da2b123cd21f2cd6c6f0b2b`. They define one closed standalone
+fourteen-member application record for the exact Accepted Profile Definition,
+one exact Context Packet revision, one exact approved Task Contract revision,
+and deterministic packet-local associations to exact ARCH-040 Module
+declarations. The preceding Proposed status allocated or activated nothing.
+Exact-head acceptance and this status-only promotion establish Accepted status
+only and create no Profile instance, Core property, schema, case, rule, Tool
+capability, execution, evidence, aggregate outcome, or automatic authority.
+Separately governed integration remains required.
 
 </details>
 
