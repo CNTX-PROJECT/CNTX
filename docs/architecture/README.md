@@ -4,9 +4,9 @@
 
 CNTX architecture explains the boundaries behind its records, schemas,
 validation, extensions, evidence, and human authority. Public `main` contains
-**42 Accepted and integrated architecture decisions and matching ADRs**. This
-status-promotion branch also contains the Accepted ARCH-043/ADR-0043 pair,
-which is not integrated.
+**43 Accepted and integrated architecture decisions and matching ADRs**. This
+candidate branch also contains the Proposed ARCH-044/ADR-0044 pair, which is
+not Accepted or integrated.
 
 | If you need… | Open… |
 | --- | --- |
@@ -14,7 +14,7 @@ which is not integrated.
 | The nine collaboration records | [Artifact-contract index](../contracts/README.md) |
 | Machine-readable Core structure | [Schema index](../../schemas/README.md) |
 | The bounded executable practice slice | [Validation and integrity slice](../../tools/minimal-validation-integrity-slice/README.md) and [Accepted corrective version boundary](minimal-validation-integrity-slice-corrective-version-boundary.md) |
-| The source/provenance/freshness layer | [ARCH-038](epistemic-provenance-freshness-extension-module-definition.md), [ARCH-039](context-packet-epistemic-provenance-freshness-profile-definition.md), [ARCH-040](epistemic-provenance-freshness-extension-module-json-representation-boundary.md), integrated [ARCH-042](epistemic-provenance-freshness-extension-module-definition-schema-resource.md), and Accepted [ARCH-043](context-packet-epistemic-provenance-freshness-profile-json-representation-boundary.md) with integration pending |
+| The source/provenance/freshness layer | [ARCH-038](epistemic-provenance-freshness-extension-module-definition.md), [ARCH-039](context-packet-epistemic-provenance-freshness-profile-definition.md), [ARCH-040](epistemic-provenance-freshness-extension-module-json-representation-boundary.md), integrated [ARCH-042](epistemic-provenance-freshness-extension-module-definition-schema-resource.md), integrated [ARCH-043](context-packet-epistemic-provenance-freshness-profile-json-representation-boundary.md), and Proposed [ARCH-044](context-packet-epistemic-provenance-freshness-profile-definition-schema-resource.md) |
 | Current and future order | [Roadmap](../../ROADMAP.md) |
 
 ## Architecture map
@@ -29,7 +29,8 @@ which is not integrated.
 | ARCH-038–040 | Epistemic provenance and freshness Module/Profile Definitions and Module representation boundary | Accepted and integrated; no Module schema, rule, implementation, or evidence instance |
 | ARCH-041 | Minimal validation and integrity slice corrective version boundary | Accepted and integrated; corrective Implementation `1.0.1` is integrated with its bounded evidence, while portability and CI remain separate |
 | ARCH-042 | Epistemic provenance and freshness Module Definition Schema Resource | Accepted and integrated with one exact schema and 48 separately matched synthetic cases; no Tool support or new evidence instance |
-| ARCH-043 | Context Packet epistemic provenance and freshness Profile JSON representation boundary | Accepted; governed integration pending; one closed external application record, no Core/schema/Tool change or activation |
+| ARCH-043 | Context Packet epistemic provenance and freshness Profile JSON representation boundary | Accepted and integrated; one closed external application record, no Core/schema/Tool change or automatic activation |
+| ARCH-044 | Context Packet epistemic provenance and freshness Profile Definition Schema Resource | Proposed candidate with one closed standalone schema and 72 fixed operation-based cases; no acceptance, activation, Tool support, or execution yet |
 
 Architecture documents state conceptual and normative boundaries. They do not
 by themselves install software, execute a tool, prove conformance, approve a
@@ -637,7 +638,7 @@ does not expand Tool support or create a new execution/evidence instance. The
 successful candidate execution remains bound only to the accepted candidate
 commit/tree above.
 
-The Accepted [CNTX Context Packet Epistemic Provenance and Freshness Profile
+The Accepted and integrated [CNTX Context Packet Epistemic Provenance and Freshness Profile
 JSON Representation Boundary](context-packet-epistemic-provenance-freshness-profile-json-representation-boundary.md)
 and [ADR-0043](adr/0043-context-packet-epistemic-provenance-freshness-profile-json-representation-boundary.md)
 are the bounded Phase 4A3.3 decision under issue #147, attributable issue-
@@ -649,10 +650,37 @@ fourteen-member application record for the exact Accepted Profile Definition,
 one exact Context Packet revision, one exact approved Task Contract revision,
 and deterministic packet-local associations to exact ARCH-040 Module
 declarations. The preceding Proposed status allocated or activated nothing.
-Exact-head acceptance and this status-only promotion establish Accepted status
-only and create no Profile instance, Core property, schema, case, rule, Tool
-capability, execution, evidence, aggregate outcome, or automatic authority.
-Separately governed integration remains required.
+Exact-head acceptance and status promotion established Accepted status only.
+Separately governed integration acceptance comment `5277937526` and completion
+comment `5277961696` record PR #148 integration at public `main` commit/tree
+`eec00d698512533c3d40f985fe5d588cd03438f1` /
+`87a2d5aaf01e3f7c45b4fb4e3d8aa40a21dc046a`; issue #147 is closed/completed and
+the task branch is absent locally and publicly. Integration established only
+the exact representation boundary and created no Profile instance, Core
+property, schema, case, rule, Tool capability, execution, evidence, aggregate
+outcome, release, deployment, or automatic authority.
+
+The Proposed [CNTX Context Packet Epistemic Provenance and Freshness Profile
+Definition Schema Resource](context-packet-epistemic-provenance-freshness-profile-definition-schema-resource.md)
+and [ADR-0044](adr/0044-context-packet-epistemic-provenance-freshness-profile-definition-schema-resource.md)
+form the bounded Phase 4A3.4 candidate under issue #149 and attributable
+EIGENAAR / Final Authority issue-contract acceptance comment `5279967413`, as
+supplemented only by source-preserving correction addenda `5280408320` and
+`5280832992`. The first addendum changes only the baseline link pins to `1489
+Markdown / 27 HTML` and `1297 local / 219 external`; the second changes only the
+evaluation-responsibility count from sixteen to seventeen while preserving the
+exact seventeen Accepted ARCH-043 members. Neither makes a semantic or
+lifecycle change. They propose
+one standalone JSON Schema Draft 2020-12 resource for the exact ARCH-043
+fourteen-member application record, with exactly 52 root `$defs`, `207/207/0`
+separate total/internal/external references, finite limits, and one separate
+operation-based manifest of 72 fixed cases: 11 expected valid and 61 expected
+invalid. The schema is intentionally schema-local: it cannot prove external
+packet/task equality, source-association coverage or equality, projected-key
+uniqueness, opaque-reference resolution, graph semantics, source truth,
+conformance, or authority. Proposed status, repository presence, schema
+parseability, case materialization, review, or mergeability accepts or
+activates nothing. No isolated candidate execution has yet occurred.
 
 </details>
 
