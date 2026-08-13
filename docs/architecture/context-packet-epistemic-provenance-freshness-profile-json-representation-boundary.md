@@ -9,7 +9,7 @@ revision, without changing either Core artifact.
 
 | Quick view | Meaning |
 | --- | --- |
-| **Status** | Accepted documentation-only representation boundary; governed integration pending |
+| **Status** | Accepted and integrated documentation-only representation boundary |
 | **Governing Profile** | `context-packet-epistemic-provenance-freshness` Definition `1.0.0` |
 | **Target** | One exact Context Packet Artifact Instance/Revision under one exact approved Task Contract Artifact Instance/Revision |
 | **What this establishes** | One closed standalone Profile application record, exact source-to-Module-declaration associations, narrowing-only responsibilities, explicit conditions/evaluations/limitations, and final-human authority |
@@ -50,9 +50,20 @@ for candidate commit `05e55ded2a7d0276ee9832b0bdff973b8b19b0d5` and tree
 `d8d5855b0c986f008da2b123cd21f2cd6c6f0b2b`. The preceding Proposed status,
 branch or repository presence, static validation, Draft PR state, review,
 rendering, parsing, and mergeability allocated or activated nothing. Exact-head
-acceptance establishes Accepted status only. This status promotion does not
-integrate, activate, release, or deploy ARCH-043; later separately governed
-integration to `main` remains necessary.
+acceptance established Accepted status only.
+
+Separately governed integration was later authorized in issue comment
+[5277937526](https://github.com/CNTX-PROJECT/CNTX/issues/147#issuecomment-5277937526)
+and completed in issue comment
+[5277961696](https://github.com/CNTX-PROJECT/CNTX/issues/147#issuecomment-5277961696).
+PR [#148](https://github.com/CNTX-PROJECT/CNTX/pull/148) integrated the exact
+Accepted promotion tree into `main` at commit
+`eec00d698512533c3d40f985fe5d588cd03438f1` and tree
+`87a2d5aaf01e3f7c45b4fb4e3d8aa40a21dc046a`; issue #147 is closed/completed,
+and the task branch is absent locally and publicly. Integration established
+only this exact representation boundary. It created no Profile instance, Core
+property, schema, case, rule, Tool capability, execution, evidence, release,
+deployment, or automatic authority.
 
 ## Purpose and decision boundary
 
@@ -609,9 +620,10 @@ execution when complete reliable processing is not possible.
 ## Lifecycle and change boundary
 
 Accepted ARCH-043 consumes no separate identity or version. Exact-head
-acceptance established Accepted status only. This status promotion, Ready state,
-review, repository presence, and mergeability do not integrate or activate the
-representation. Separately governed integration remains required.
+acceptance established Accepted status only. The later separately governed
+integration identified above integrated this exact representation boundary.
+Status promotion, Ready state, review, repository presence, and mergeability
+did not by themselves integrate or activate it.
 
 A correction may fix documentary error without silently changing represented
 meaning. Any normative member, token, requiredness, structure, condition,
@@ -619,12 +631,12 @@ reference, association, or semantic change requires a separately governed
 compatibility and version decision. Historical sources and authority records
 remain source preserved.
 
-Only after governed integration, completion, synchronization, and separately
-authorized cleanup may public `main` be
-reassessed for a possible Phase 4A3.4 Profile Definition Schema Resource. This
-decision reserves no ARCH number, Schema Identifier/Version, `$id`, path,
-assertion, case, expected result, validator capability, or authority for that
-work.
+Governed integration, completion, synchronization, and task-branch cleanup are
+complete. Public `main` may therefore be reassessed under a separate exact task
+contract for a possible Phase 4A3.4 Profile Definition Schema Resource. This
+ARCH-043 decision itself reserves no ARCH number, Schema Identifier/Version,
+`$id`, path, assertion, case, expected result, validator capability, or
+authority for that work.
 
 ## Consequences and limitations
 
@@ -714,17 +726,19 @@ tag, publication beyond the governed issue/candidate/PR records, support,
 certification, hosting, deployment, H2.4 completion, Phase 4A3.4, Phase 4A3.5,
 or later-phase authority.
 
-## Final-human authority and stopgate
+## Final-human authority and integrated state
 
 `automaticAuthority: false` remains controlling. No representation, parser,
 later schema result, condition, evaluation, evidence reference, review, score,
 majority, tool, implementation, or model becomes final authority.
 
 Attributable EIGENAAR / Final Authority exact-head acceptance is recorded in
-issue comment `5277015423`. This status-only promotion stops at the separately
-governed integration gate. No Ready transition, second review, merge, issue
-closure, branch cleanup, schema work, execution, release, deployment, or later
-phase is authorized.
+issue comment `5277015423`. Separate integration authority comment `5277937526`
+and completion comment `5277961696` govern the completed PR #148 integration,
+issue closure, synchronization, and task-branch cleanup. Those completed
+actions authorize no Profile Definition Schema Resource, case, Tool support,
+execution, evidence, release, deployment, Phase 4A3.4, Phase 4A3.5, or later
+phase. Each remains separately governed.
 
 ## References
 

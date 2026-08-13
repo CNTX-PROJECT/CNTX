@@ -1,0 +1,1491 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/CNTX-PROJECT/CNTX/schemas/profiles/context-packet-epistemic-provenance-freshness/1.0.0",
+  "$comment": "Accepted ARCH-044 under issue #149, EIGENAAR / Final Authority issue-contract acceptance comment 5279967413, source-preserving link-pin correction addendum 5280408320, source-preserving evaluation-count correction addendum 5280832992, and exact-head candidate acceptance comment 5285702199 on commit 7420e5d179ab965bfda58780df4f41a08a0b62de and tree 56d1808cb95f3dd5a0b5d84f2a8e440891dff5e6. The first addendum corrects only the baseline link inventory. The second corrects only the evaluation-responsibility count from sixteen to seventeen while preserving the exact seventeen Accepted ARCH-043 members. Neither changes any schema assertion, identity, version, resource graph, or lifecycle boundary. The resource media type is application/schema+json. All $ref values are fragment-only internal references and instruct no retrieval. Status promotion, repository presence, parsing, schema validity, evaluation, Ready state, review, or mergeability does not integrate, allocate, or activate this schema identity or grant Profile conformance, approval, release, deployment, or authority; separately governed integration remains required.",
+  "title": "CNTX Context Packet Epistemic Provenance and Freshness Profile Definition Schema Resource",
+  "description": "A closed structural schema for one ARCH-043 external Profile application record governed by the Accepted ARCH-039 Profile Definition. Structural validity proves no cross-record equality, source truth, provenance truth, freshness, applicability, conformance, approval, release fitness, deployment fitness, or authority.",
+  "type": "object",
+  "properties": {
+    "governingProfileDefinition": {
+      "$ref": "#/$defs/governingProfileDefinition"
+    },
+    "profileSubjects": {
+      "$ref": "#/$defs/profileSubjects"
+    },
+    "application": {
+      "$ref": "#/$defs/application"
+    },
+    "targetContextPacket": {
+      "$ref": "#/$defs/targetContextPacket"
+    },
+    "governingTaskContract": {
+      "$ref": "#/$defs/governingTaskContract"
+    },
+    "sourceAssociations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/sourceAssociation"
+      },
+      "minItems": 1,
+      "maxItems": 64,
+      "uniqueItems": true
+    },
+    "selectedCapabilities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/selectedCapability"
+      },
+      "minItems": 1,
+      "maxItems": 64,
+      "uniqueItems": true
+    },
+    "governingContext": {
+      "$ref": "#/$defs/governingContext"
+    },
+    "supply": {
+      "$ref": "#/$defs/supply"
+    },
+    "activationContext": {
+      "$ref": "#/$defs/activationContext"
+    },
+    "conditions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/conditionDeclaration"
+      },
+      "maxItems": 128,
+      "uniqueItems": true
+    },
+    "evaluations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/evaluation"
+      },
+      "maxItems": 128,
+      "uniqueItems": true
+    },
+    "limitations": {
+      "$ref": "#/$defs/limitations"
+    },
+    "authority": {
+      "$ref": "#/$defs/authority"
+    }
+  },
+  "required": [
+    "governingProfileDefinition",
+    "profileSubjects",
+    "application",
+    "targetContextPacket",
+    "governingTaskContract",
+    "sourceAssociations",
+    "selectedCapabilities",
+    "governingContext",
+    "supply",
+    "activationContext",
+    "conditions",
+    "evaluations",
+    "limitations",
+    "authority"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "nonBlankString": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2048,
+      "pattern": "\\S"
+    },
+    "shortString": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "pattern": "\\S"
+    },
+    "referenceArray": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/shortString"
+      },
+      "maxItems": 64,
+      "uniqueItems": true
+    },
+    "nonEmptyReferenceArray": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/shortString"
+      },
+      "minItems": 1,
+      "maxItems": 64,
+      "uniqueItems": true
+    },
+    "nonEmptyRoleReferenceArray": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/shortString"
+      },
+      "minItems": 1,
+      "maxItems": 32,
+      "uniqueItems": true
+    },
+    "statementArray": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/nonBlankString"
+      },
+      "maxItems": 64,
+      "uniqueItems": true
+    },
+    "nonEmptyStatementArray": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/nonBlankString"
+      },
+      "minItems": 1,
+      "maxItems": 64,
+      "uniqueItems": true
+    },
+    "roleRef": {
+      "type": "object",
+      "properties": {
+        "identity": {
+          "$ref": "#/$defs/shortString"
+        },
+        "role": {
+          "$ref": "#/$defs/shortString"
+        },
+        "scope": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "attributionRef": {
+          "$ref": "#/$defs/shortString"
+        }
+      },
+      "required": [
+        "identity",
+        "role",
+        "scope",
+        "attributionRef"
+      ],
+      "additionalProperties": false
+    },
+    "roleCollection": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/roleRef"
+      },
+      "minItems": 1,
+      "maxItems": 32,
+      "uniqueItems": true
+    },
+    "referencePin": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "$ref": "#/$defs/shortString"
+        },
+        "revision": {
+          "$ref": "#/$defs/shortString"
+        }
+      },
+      "required": [
+        "identifier",
+        "revision"
+      ],
+      "additionalProperties": false
+    },
+    "referencePinArray": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/referencePin"
+      },
+      "maxItems": 64,
+      "uniqueItems": true
+    },
+    "definitionSourcePin": {
+      "type": "object",
+      "properties": {
+        "definitionIdentifier": {
+          "$ref": "#/$defs/shortString"
+        },
+        "definitionVersion": {
+          "$ref": "#/$defs/shortString"
+        },
+        "authoritativeSourceRevision": {
+          "$ref": "#/$defs/shortString"
+        }
+      },
+      "required": [
+        "definitionIdentifier",
+        "definitionVersion",
+        "authoritativeSourceRevision"
+      ],
+      "additionalProperties": false
+    },
+    "nonEmptyDefinitionSourcePinArray": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/definitionSourcePin"
+      },
+      "minItems": 1,
+      "maxItems": 64,
+      "uniqueItems": true
+    },
+    "applicationRevisionPin": {
+      "type": "object",
+      "properties": {
+        "applicationIdentifier": {
+          "$ref": "#/$defs/shortString"
+        },
+        "applicationRevision": {
+          "$ref": "#/$defs/shortString"
+        }
+      },
+      "required": [
+        "applicationIdentifier",
+        "applicationRevision"
+      ],
+      "additionalProperties": false
+    },
+    "moduleDeclarationPin": {
+      "type": "object",
+      "properties": {
+        "declarationIdentifier": {
+          "$ref": "#/$defs/shortString"
+        },
+        "declarationRevision": {
+          "$ref": "#/$defs/shortString"
+        },
+        "authoritativeRepresentationSourceRevision": {
+          "$ref": "#/$defs/shortString"
+        }
+      },
+      "required": [
+        "declarationIdentifier",
+        "declarationRevision",
+        "authoritativeRepresentationSourceRevision"
+      ],
+      "additionalProperties": false
+    },
+    "nonEmptyModuleDeclarationPinArray": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/moduleDeclarationPin"
+      },
+      "minItems": 1,
+      "maxItems": 64,
+      "uniqueItems": true
+    },
+    "epistemicDimension": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "pattern": "\\S",
+      "enum": [
+        "source-category",
+        "source-identity",
+        "source-revision",
+        "source-availability",
+        "provenance",
+        "authenticity",
+        "integrity",
+        "source-publication-revision-time",
+        "observation-retrieval-time",
+        "record-production-time",
+        "valid-through-time",
+        "freshness",
+        "applicability",
+        "clock-reference-provenance",
+        "derivation",
+        "validation",
+        "evidence"
+      ]
+    },
+    "governingProfileDefinition": {
+      "type": "object",
+      "properties": {
+        "definitionIdentifier": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "\\S",
+          "const": "https://github.com/CNTX-PROJECT/CNTX/profile-definitions/context-packet-epistemic-provenance-freshness"
+        },
+        "definitionVersion": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "\\S",
+          "const": "1.0.0"
+        },
+        "definitionCategory": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "\\S",
+          "const": "CNTX Profile Definition"
+        },
+        "authoritativeSourceRevision": {
+          "$ref": "#/$defs/shortString"
+        }
+      },
+      "required": [
+        "definitionIdentifier",
+        "definitionVersion",
+        "definitionCategory",
+        "authoritativeSourceRevision"
+      ],
+      "additionalProperties": false
+    },
+    "contextPacketProfileSubject": {
+      "type": "object",
+      "properties": {
+        "definitionIdentifier": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "\\S",
+          "const": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/context-packet"
+        },
+        "definitionVersion": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "\\S",
+          "const": "1.0.0"
+        },
+        "authoritativeSourceRevision": {
+          "$ref": "#/$defs/shortString"
+        }
+      },
+      "required": [
+        "definitionIdentifier",
+        "definitionVersion",
+        "authoritativeSourceRevision"
+      ],
+      "additionalProperties": false
+    },
+    "epistemicProvenanceFreshnessModuleProfileSubject": {
+      "type": "object",
+      "properties": {
+        "definitionIdentifier": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "\\S",
+          "const": "https://github.com/CNTX-PROJECT/CNTX/extension-module-definitions/epistemic-provenance-freshness"
+        },
+        "definitionVersion": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "\\S",
+          "const": "1.0.0"
+        },
+        "authoritativeSourceRevision": {
+          "$ref": "#/$defs/shortString"
+        }
+      },
+      "required": [
+        "definitionIdentifier",
+        "definitionVersion",
+        "authoritativeSourceRevision"
+      ],
+      "additionalProperties": false
+    },
+    "profileSubjects": {
+      "type": "object",
+      "properties": {
+        "contextPacketContractDefinition": {
+          "$ref": "#/$defs/contextPacketProfileSubject"
+        },
+        "epistemicProvenanceFreshnessModuleDefinition": {
+          "$ref": "#/$defs/epistemicProvenanceFreshnessModuleProfileSubject"
+        }
+      },
+      "required": [
+        "contextPacketContractDefinition",
+        "epistemicProvenanceFreshnessModuleDefinition"
+      ],
+      "additionalProperties": false
+    },
+    "applicationScope": {
+      "type": "object",
+      "properties": {
+        "purpose": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "intendedUse": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "materialityBoundary": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "prohibitedUses": {
+          "$ref": "#/$defs/nonEmptyStatementArray"
+        }
+      },
+      "required": [
+        "purpose",
+        "intendedUse",
+        "materialityBoundary",
+        "prohibitedUses"
+      ],
+      "additionalProperties": false
+    },
+    "nonAggregation": {
+      "type": "object",
+      "properties": {
+        "technicalMembersRemainSeparate": {
+          "type": "boolean",
+          "const": true
+        },
+        "evaluationOutcomesRemainSeparate": {
+          "type": "boolean",
+          "const": true
+        },
+        "aggregationProhibited": {
+          "type": "boolean",
+          "const": true
+        }
+      },
+      "required": [
+        "technicalMembersRemainSeparate",
+        "evaluationOutcomesRemainSeparate",
+        "aggregationProhibited"
+      ],
+      "additionalProperties": false
+    },
+    "application": {
+      "type": "object",
+      "properties": {
+        "applicationIdentifier": {
+          "$ref": "#/$defs/shortString"
+        },
+        "applicationRevision": {
+          "$ref": "#/$defs/shortString"
+        },
+        "relationship": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "\\S",
+          "const": "external-profile-application"
+        },
+        "supersedes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/applicationRevisionPin"
+          },
+          "maxItems": 32,
+          "uniqueItems": true
+        },
+        "scope": {
+          "$ref": "#/$defs/applicationScope"
+        },
+        "nonAggregation": {
+          "$ref": "#/$defs/nonAggregation"
+        }
+      },
+      "required": [
+        "applicationIdentifier",
+        "applicationRevision",
+        "relationship",
+        "supersedes",
+        "scope",
+        "nonAggregation"
+      ],
+      "additionalProperties": false
+    },
+    "targetContextPacket": {
+      "type": "object",
+      "properties": {
+        "artifactInstanceIdentifier": {
+          "$ref": "#/$defs/shortString"
+        },
+        "artifactRevision": {
+          "$ref": "#/$defs/shortString"
+        },
+        "contractDefinitionIdentifier": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "\\S",
+          "const": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/context-packet"
+        },
+        "contractDefinitionVersion": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "\\S",
+          "const": "1.0.0"
+        },
+        "schemaIdentifier": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "\\S",
+          "const": "https://github.com/CNTX-PROJECT/CNTX/schemas/context-packet/1.0.0"
+        },
+        "schemaVersion": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "\\S",
+          "const": "1.0.0"
+        },
+        "authoritativeSourceRevision": {
+          "$ref": "#/$defs/shortString"
+        }
+      },
+      "required": [
+        "artifactInstanceIdentifier",
+        "artifactRevision",
+        "contractDefinitionIdentifier",
+        "contractDefinitionVersion",
+        "schemaIdentifier",
+        "schemaVersion",
+        "authoritativeSourceRevision"
+      ],
+      "additionalProperties": false
+    },
+    "governingTaskContract": {
+      "type": "object",
+      "properties": {
+        "artifactInstanceIdentifier": {
+          "$ref": "#/$defs/shortString"
+        },
+        "artifactRevision": {
+          "$ref": "#/$defs/shortString"
+        },
+        "contractDefinitionIdentifier": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "\\S",
+          "const": "https://github.com/CNTX-PROJECT/CNTX/contract-definitions/task-contract"
+        },
+        "contractDefinitionVersion": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "\\S",
+          "const": "1.0.0"
+        },
+        "schemaIdentifier": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "\\S",
+          "const": "https://github.com/CNTX-PROJECT/CNTX/schemas/task-contract/1.0.0"
+        },
+        "schemaVersion": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "\\S",
+          "const": "1.0.0"
+        },
+        "authoritativeSourceRevision": {
+          "$ref": "#/$defs/shortString"
+        },
+        "approvalReference": {
+          "$ref": "#/$defs/shortString"
+        }
+      },
+      "required": [
+        "artifactInstanceIdentifier",
+        "artifactRevision",
+        "contractDefinitionIdentifier",
+        "contractDefinitionVersion",
+        "schemaIdentifier",
+        "schemaVersion",
+        "authoritativeSourceRevision",
+        "approvalReference"
+      ],
+      "additionalProperties": false
+    },
+    "claimRole": {
+      "type": "object",
+      "properties": {
+        "role": {
+          "$ref": "#/$defs/shortString"
+        },
+        "claimBoundary": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "role",
+        "claimBoundary"
+      ],
+      "additionalProperties": false
+    },
+    "claimRoleCollection": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/claimRole"
+      },
+      "minItems": 1,
+      "maxItems": 32,
+      "uniqueItems": true
+    },
+    "materiality": {
+      "type": "object",
+      "properties": {
+        "taskContractRelativeBoundary": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "materialSourceBoundary": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "claimBoundary": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "rationale": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "taskContractRelativeBoundary",
+        "materialSourceBoundary",
+        "claimBoundary",
+        "rationale"
+      ],
+      "additionalProperties": false
+    },
+    "applicability": {
+      "type": "object",
+      "properties": {
+        "applicabilityContext": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "profileSubjectRefs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512,
+            "pattern": "\\S",
+            "enum": [
+              "contextPacketContractDefinition",
+              "epistemicProvenanceFreshnessModuleDefinition"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 2,
+          "uniqueItems": true
+        },
+        "narrowingStatement": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "conditionRefs": {
+          "$ref": "#/$defs/referenceArray"
+        }
+      },
+      "required": [
+        "applicabilityContext",
+        "profileSubjectRefs",
+        "narrowingStatement",
+        "conditionRefs"
+      ],
+      "additionalProperties": false
+    },
+    "provenanceReferences": {
+      "type": "object",
+      "properties": {
+        "originRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "custodyRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "acquisitionRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "observationRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "supplyRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "transformationRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "responsibleRoleRefs": {
+          "$ref": "#/$defs/nonEmptyRoleReferenceArray"
+        },
+        "limitationRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "adverseInformationRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "restrictedInformationMetadataRefs": {
+          "$ref": "#/$defs/referenceArray"
+        }
+      },
+      "required": [
+        "originRefs",
+        "custodyRefs",
+        "acquisitionRefs",
+        "observationRefs",
+        "supplyRefs",
+        "transformationRefs",
+        "responsibleRoleRefs",
+        "limitationRefs",
+        "adverseInformationRefs",
+        "restrictedInformationMetadataRefs"
+      ],
+      "additionalProperties": false
+    },
+    "temporalReferences": {
+      "type": "object",
+      "properties": {
+        "sourcePublicationRevisionTimeRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "observationRetrievalTimeRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "recordProductionTimeRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "validThroughTimeRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "clockReferenceProvenanceRefs": {
+          "$ref": "#/$defs/referenceArray"
+        }
+      },
+      "required": [
+        "sourcePublicationRevisionTimeRefs",
+        "observationRetrievalTimeRefs",
+        "recordProductionTimeRefs",
+        "validThroughTimeRefs",
+        "clockReferenceProvenanceRefs"
+      ],
+      "additionalProperties": false
+    },
+    "policyPin": {
+      "type": "object",
+      "properties": {
+        "policyIdentifier": {
+          "$ref": "#/$defs/shortString"
+        },
+        "policyVersion": {
+          "$ref": "#/$defs/shortString"
+        },
+        "authoritativeSourceRevision": {
+          "$ref": "#/$defs/shortString"
+        },
+        "applicabilityContextRef": {
+          "$ref": "#/$defs/shortString"
+        }
+      },
+      "required": [
+        "policyIdentifier",
+        "policyVersion",
+        "authoritativeSourceRevision",
+        "applicabilityContextRef"
+      ],
+      "additionalProperties": false
+    },
+    "policyPinArray": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/policyPin"
+      },
+      "maxItems": 64,
+      "uniqueItems": true
+    },
+    "policyReferences": {
+      "type": "object",
+      "properties": {
+        "freshnessPolicyPins": {
+          "$ref": "#/$defs/policyPinArray"
+        },
+        "applicabilityPolicyPins": {
+          "$ref": "#/$defs/policyPinArray"
+        }
+      },
+      "required": [
+        "freshnessPolicyPins",
+        "applicabilityPolicyPins"
+      ],
+      "additionalProperties": false
+    },
+    "digestClaimReference": {
+      "type": "object",
+      "properties": {
+        "digestClaimReference": {
+          "$ref": "#/$defs/shortString"
+        },
+        "algorithmIdentifier": {
+          "$ref": "#/$defs/shortString"
+        },
+        "subjectBoundary": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "verificationContextRef": {
+          "$ref": "#/$defs/shortString"
+        },
+        "evidenceRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "limitationRefs": {
+          "$ref": "#/$defs/referenceArray"
+        }
+      },
+      "required": [
+        "digestClaimReference",
+        "algorithmIdentifier",
+        "subjectBoundary",
+        "verificationContextRef",
+        "evidenceRefs",
+        "limitationRefs"
+      ],
+      "additionalProperties": false
+    },
+    "integrityReferences": {
+      "type": "object",
+      "properties": {
+        "digestClaimRefs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/digestClaimReference"
+          },
+          "maxItems": 64,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "digestClaimRefs"
+      ],
+      "additionalProperties": false
+    },
+    "derivationReferences": {
+      "type": "object",
+      "properties": {
+        "inputSourceRefs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/shortString"
+          },
+          "maxItems": 32,
+          "uniqueItems": true
+        },
+        "transformationRefs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/shortString"
+          },
+          "maxItems": 32
+        }
+      },
+      "required": [
+        "inputSourceRefs",
+        "transformationRefs"
+      ],
+      "additionalProperties": false
+    },
+    "sourceAssociation": {
+      "type": "object",
+      "properties": {
+        "associationIdentifier": {
+          "$ref": "#/$defs/shortString"
+        },
+        "contextPacketSourceIndex": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 63
+        },
+        "sourceReference": {
+          "$ref": "#/$defs/shortString"
+        },
+        "claimRoles": {
+          "$ref": "#/$defs/claimRoleCollection"
+        },
+        "sourceCategories": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512,
+            "pattern": "\\S",
+            "enum": [
+              "governing-source",
+              "observation-source",
+              "evidence-source",
+              "derived-source",
+              "human-assertion-source",
+              "model-recollection-source"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 6,
+          "uniqueItems": true
+        },
+        "materiality": {
+          "$ref": "#/$defs/materiality"
+        },
+        "moduleDeclaration": {
+          "$ref": "#/$defs/moduleDeclarationPin"
+        },
+        "applicability": {
+          "$ref": "#/$defs/applicability"
+        },
+        "provenance": {
+          "$ref": "#/$defs/provenanceReferences"
+        },
+        "temporal": {
+          "$ref": "#/$defs/temporalReferences"
+        },
+        "policies": {
+          "$ref": "#/$defs/policyReferences"
+        },
+        "integrity": {
+          "$ref": "#/$defs/integrityReferences"
+        },
+        "derivation": {
+          "$ref": "#/$defs/derivationReferences"
+        },
+        "conditionRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "limitationRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "authorityRefs": {
+          "$ref": "#/$defs/nonEmptyRoleReferenceArray"
+        }
+      },
+      "required": [
+        "associationIdentifier",
+        "contextPacketSourceIndex",
+        "sourceReference",
+        "claimRoles",
+        "sourceCategories",
+        "materiality",
+        "moduleDeclaration",
+        "applicability",
+        "provenance",
+        "temporal",
+        "policies",
+        "integrity",
+        "derivation",
+        "conditionRefs",
+        "limitationRefs",
+        "authorityRefs"
+      ],
+      "additionalProperties": false
+    },
+    "selectedCapability": {
+      "type": "object",
+      "properties": {
+        "capabilityIdentifier": {
+          "$ref": "#/$defs/shortString"
+        },
+        "dimension": {
+          "$ref": "#/$defs/epistemicDimension"
+        },
+        "subject": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "narrowingStatement": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "sourceAssociationRefs": {
+          "$ref": "#/$defs/nonEmptyReferenceArray"
+        },
+        "claimRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "policyRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "conditionRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "evaluationRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "limitationRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "authorityRefs": {
+          "$ref": "#/$defs/nonEmptyRoleReferenceArray"
+        }
+      },
+      "required": [
+        "capabilityIdentifier",
+        "dimension",
+        "subject",
+        "narrowingStatement",
+        "sourceAssociationRefs",
+        "claimRefs",
+        "policyRefs",
+        "conditionRefs",
+        "evaluationRefs",
+        "limitationRefs",
+        "authorityRefs"
+      ],
+      "additionalProperties": false
+    },
+    "governingContext": {
+      "type": "object",
+      "properties": {
+        "contextIdentifier": {
+          "$ref": "#/$defs/shortString"
+        },
+        "contextRevision": {
+          "$ref": "#/$defs/shortString"
+        },
+        "declarationSetReference": {
+          "$ref": "#/$defs/shortString"
+        },
+        "declarationSetRevision": {
+          "$ref": "#/$defs/shortString"
+        },
+        "definitionSourcePins": {
+          "$ref": "#/$defs/nonEmptyDefinitionSourcePinArray"
+        },
+        "prerequisiteRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "conflictRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "authorityRefs": {
+          "$ref": "#/$defs/nonEmptyRoleReferenceArray"
+        }
+      },
+      "required": [
+        "contextIdentifier",
+        "contextRevision",
+        "declarationSetReference",
+        "declarationSetRevision",
+        "definitionSourcePins",
+        "prerequisiteRefs",
+        "conflictRefs",
+        "authorityRefs"
+      ],
+      "additionalProperties": false
+    },
+    "supply": {
+      "type": "object",
+      "properties": {
+        "supplierRoleRefs": {
+          "$ref": "#/$defs/nonEmptyRoleReferenceArray"
+        },
+        "supplyProvenanceRefs": {
+          "$ref": "#/$defs/nonEmptyReferenceArray"
+        },
+        "suppliedDefinitionSourcePins": {
+          "$ref": "#/$defs/nonEmptyDefinitionSourcePinArray"
+        },
+        "suppliedModuleDeclarationPins": {
+          "$ref": "#/$defs/nonEmptyModuleDeclarationPinArray"
+        },
+        "targetContextPacketSupplyRef": {
+          "$ref": "#/$defs/shortString"
+        },
+        "governingTaskContractSupplyRef": {
+          "$ref": "#/$defs/shortString"
+        },
+        "restrictionAndAccessConditionRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "limitationRefs": {
+          "$ref": "#/$defs/referenceArray"
+        }
+      },
+      "required": [
+        "supplierRoleRefs",
+        "supplyProvenanceRefs",
+        "suppliedDefinitionSourcePins",
+        "suppliedModuleDeclarationPins",
+        "targetContextPacketSupplyRef",
+        "governingTaskContractSupplyRef",
+        "restrictionAndAccessConditionRefs",
+        "limitationRefs"
+      ],
+      "additionalProperties": false
+    },
+    "activationContext": {
+      "type": "object",
+      "properties": {
+        "activationContextIdentifier": {
+          "$ref": "#/$defs/shortString"
+        },
+        "activationContextRevision": {
+          "$ref": "#/$defs/shortString"
+        },
+        "applicationRelationship": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "\\S",
+          "const": "referenced-prerequisite-context"
+        },
+        "prerequisiteRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "conflictRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "nonExecutionRefs": {
+          "$ref": "#/$defs/nonEmptyReferenceArray"
+        },
+        "authorityRefs": {
+          "$ref": "#/$defs/nonEmptyRoleReferenceArray"
+        }
+      },
+      "required": [
+        "activationContextIdentifier",
+        "activationContextRevision",
+        "applicationRelationship",
+        "prerequisiteRefs",
+        "conflictRefs",
+        "nonExecutionRefs",
+        "authorityRefs"
+      ],
+      "additionalProperties": false
+    },
+    "conditionToken": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "pattern": "\\S",
+      "enum": [
+        "specified",
+        "assessed-none",
+        "not-assessed",
+        "missing",
+        "inaccessible",
+        "conflicting",
+        "restricted",
+        "unverifiable"
+      ]
+    },
+    "conditionDeclaration": {
+      "type": "object",
+      "properties": {
+        "conditionIdentifier": {
+          "$ref": "#/$defs/shortString"
+        },
+        "condition": {
+          "$ref": "#/$defs/conditionToken"
+        },
+        "dimension": {
+          "$ref": "#/$defs/epistemicDimension"
+        },
+        "subject": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "sourceAssociationRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "claimRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "evidenceRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "limitationRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "responsibleRoleRefs": {
+          "$ref": "#/$defs/nonEmptyRoleReferenceArray"
+        },
+        "dependentCapabilityRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "explanation": {
+          "$ref": "#/$defs/nonBlankString"
+        }
+      },
+      "required": [
+        "conditionIdentifier",
+        "condition",
+        "dimension",
+        "subject",
+        "sourceAssociationRefs",
+        "claimRefs",
+        "evidenceRefs",
+        "limitationRefs",
+        "responsibleRoleRefs",
+        "dependentCapabilityRefs",
+        "explanation"
+      ],
+      "additionalProperties": false
+    },
+    "evaluationOutcome": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "pattern": "\\S",
+      "enum": [
+        "satisfied",
+        "not-satisfied",
+        "unverifiable",
+        "not-evaluated"
+      ]
+    },
+    "evaluation": {
+      "type": "object",
+      "properties": {
+        "evaluationIdentifier": {
+          "$ref": "#/$defs/shortString"
+        },
+        "outcome": {
+          "$ref": "#/$defs/evaluationOutcome"
+        },
+        "dimension": {
+          "$ref": "#/$defs/epistemicDimension"
+        },
+        "subject": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "capabilityRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "sourceAssociationRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "claimRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "governingSourcePins": {
+          "$ref": "#/$defs/referencePinArray"
+        },
+        "policyRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "conditionRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "evidenceRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "observationAndReferenceContext": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "diagnostics": {
+          "$ref": "#/$defs/statementArray"
+        },
+        "limitationRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "adverseAndRestrictedInformationRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "nonExecutionRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "responsibleRoleRefs": {
+          "$ref": "#/$defs/nonEmptyRoleReferenceArray"
+        }
+      },
+      "required": [
+        "evaluationIdentifier",
+        "outcome",
+        "dimension",
+        "subject",
+        "capabilityRefs",
+        "sourceAssociationRefs",
+        "claimRefs",
+        "governingSourcePins",
+        "policyRefs",
+        "conditionRefs",
+        "evidenceRefs",
+        "observationAndReferenceContext",
+        "diagnostics",
+        "limitationRefs",
+        "adverseAndRestrictedInformationRefs",
+        "nonExecutionRefs",
+        "responsibleRoleRefs"
+      ],
+      "additionalProperties": false
+    },
+    "limitationDeclaration": {
+      "type": "object",
+      "properties": {
+        "limitationIdentifier": {
+          "$ref": "#/$defs/shortString"
+        },
+        "subject": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "statement": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "sourceAssociationRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "capabilityRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "conditionRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "evaluationRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "evidenceRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "responsibleRoleRefs": {
+          "$ref": "#/$defs/nonEmptyRoleReferenceArray"
+        }
+      },
+      "required": [
+        "limitationIdentifier",
+        "subject",
+        "statement",
+        "sourceAssociationRefs",
+        "capabilityRefs",
+        "conditionRefs",
+        "evaluationRefs",
+        "evidenceRefs",
+        "responsibleRoleRefs"
+      ],
+      "additionalProperties": false
+    },
+    "assessedNoneDeclaration": {
+      "type": "object",
+      "properties": {
+        "condition": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "\\S",
+          "const": "assessed-none"
+        },
+        "explanation": {
+          "$ref": "#/$defs/nonBlankString"
+        },
+        "evidenceRefs": {
+          "$ref": "#/$defs/referenceArray"
+        },
+        "responsibleRoleRefs": {
+          "$ref": "#/$defs/nonEmptyRoleReferenceArray"
+        }
+      },
+      "required": [
+        "condition",
+        "explanation",
+        "evidenceRefs",
+        "responsibleRoleRefs"
+      ],
+      "additionalProperties": false
+    },
+    "limitationCategory": {
+      "oneOf": [
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/limitationDeclaration"
+          },
+          "minItems": 1,
+          "maxItems": 64,
+          "uniqueItems": true
+        },
+        {
+          "$ref": "#/$defs/assessedNoneDeclaration"
+        }
+      ]
+    },
+    "limitations": {
+      "type": "object",
+      "properties": {
+        "scopeLimitations": {
+          "$ref": "#/$defs/limitationCategory"
+        },
+        "minimalityLimitations": {
+          "$ref": "#/$defs/limitationCategory"
+        },
+        "sourceCoverageLimitations": {
+          "$ref": "#/$defs/limitationCategory"
+        },
+        "methodLimitations": {
+          "$ref": "#/$defs/limitationCategory"
+        },
+        "evidenceLimitations": {
+          "$ref": "#/$defs/limitationCategory"
+        },
+        "accessLimitations": {
+          "$ref": "#/$defs/limitationCategory"
+        },
+        "securityPrivacyLimitations": {
+          "$ref": "#/$defs/limitationCategory"
+        },
+        "resourceLimitations": {
+          "$ref": "#/$defs/limitationCategory"
+        },
+        "adverseInformation": {
+          "$ref": "#/$defs/limitationCategory"
+        },
+        "restrictedInformationMetadata": {
+          "$ref": "#/$defs/limitationCategory"
+        },
+        "unknownUnsupportedOrNonExecuted": {
+          "$ref": "#/$defs/limitationCategory"
+        }
+      },
+      "required": [
+        "scopeLimitations",
+        "minimalityLimitations",
+        "sourceCoverageLimitations",
+        "methodLimitations",
+        "evidenceLimitations",
+        "accessLimitations",
+        "securityPrivacyLimitations",
+        "resourceLimitations",
+        "adverseInformation",
+        "restrictedInformationMetadata",
+        "unknownUnsupportedOrNonExecuted"
+      ],
+      "additionalProperties": false
+    },
+    "authority": {
+      "type": "object",
+      "properties": {
+        "declaringRoles": {
+          "$ref": "#/$defs/roleCollection"
+        },
+        "selectingRoles": {
+          "$ref": "#/$defs/roleCollection"
+        },
+        "supplyingRoles": {
+          "$ref": "#/$defs/roleCollection"
+        },
+        "applyingRoles": {
+          "$ref": "#/$defs/roleCollection"
+        },
+        "evaluatingRoles": {
+          "$ref": "#/$defs/roleCollection"
+        },
+        "reviewingRoles": {
+          "$ref": "#/$defs/roleCollection"
+        },
+        "governingRoles": {
+          "$ref": "#/$defs/roleCollection"
+        },
+        "finalHumanAuthorityRoles": {
+          "$ref": "#/$defs/roleCollection"
+        }
+      },
+      "required": [
+        "declaringRoles",
+        "selectingRoles",
+        "supplyingRoles",
+        "applyingRoles",
+        "evaluatingRoles",
+        "reviewingRoles",
+        "governingRoles",
+        "finalHumanAuthorityRoles"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

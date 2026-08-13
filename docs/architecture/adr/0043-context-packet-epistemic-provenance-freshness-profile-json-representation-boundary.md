@@ -5,8 +5,11 @@
 - **Issue:** [#147](https://github.com/CNTX-PROJECT/CNTX/issues/147)
 - **Issue-contract acceptance comment:** [5273569440](https://github.com/CNTX-PROJECT/CNTX/issues/147#issuecomment-5273569440)
 - **Exact-head acceptance comment:** [5277015423](https://github.com/CNTX-PROJECT/CNTX/issues/147#issuecomment-5277015423)
+- **Integration acceptance comment:** [5277937526](https://github.com/CNTX-PROJECT/CNTX/issues/147#issuecomment-5277937526)
+- **Integration completion comment:** [5277961696](https://github.com/CNTX-PROJECT/CNTX/issues/147#issuecomment-5277961696)
 - **Baseline:** commit `9f482043f76c792f6c2e1e96eb4a535ee26b3a99`, tree `7b2f45791e3b7bff7e856f26fff9b22598c06709`
 - **Accepted candidate:** commit `05e55ded2a7d0276ee9832b0bdff973b8b19b0d5`, tree `d8d5855b0c986f008da2b123cd21f2cd6c6f0b2b`
+- **Integrated main:** commit `eec00d698512533c3d40f985fe5d588cd03438f1`, tree `87a2d5aaf01e3f7c45b4fb4e3d8aa40a21dc046a`
 - **Decision:** Accepted ARCH-043 — CNTX Context Packet Epistemic Provenance and Freshness Profile JSON Representation Boundary
 
 ## Context
@@ -182,16 +185,20 @@ execution, evidence production, review decision, release, or deployment.
 ## Authority boundary
 
 Issue `#147`, attributable issue-contract acceptance comment `5273569440`, and
-attributable exact-head acceptance comment `5277015423` govern this decision.
-The latter accepts candidate commit/tree
+attributable exact-head acceptance comment `5277015423` govern the decision and
+its Accepted candidate commit/tree
 `05e55ded2a7d0276ee9832b0bdff973b8b19b0d5` /
 `d8d5855b0c986f008da2b123cd21f2cd6c6f0b2b`. The preceding Proposed status,
 candidate preparation, validation, Draft PR, transparent non-independent
 `COMMENTED` review, rendering, and mergeability allocated or activated nothing.
-Exact-head acceptance and this status-only promotion establish Accepted status
-only; they do not integrate or activate ARCH-043.
+Exact-head acceptance and status promotion established Accepted status only.
 
-Work stops at the separately governed integration gate. Ready transition,
-second review, merge, issue closure, branch cleanup, schema work, Tool work,
-release, deployment, Phase 4A3.4, Phase 4A3.5, and every later phase require
-separate authority.
+Separate integration authority comment `5277937526` and completion comment
+`5277961696` govern PR #148 integration at public `main` commit/tree
+`eec00d698512533c3d40f985fe5d588cd03438f1` /
+`87a2d5aaf01e3f7c45b4fb4e3d8aa40a21dc046a`. Issue #147 is closed/completed,
+and the exact task branch is absent locally and publicly. Completed integration
+establishes only this exact representation boundary. It authorizes no Profile
+Definition Schema Resource, case, Tool work, execution, evidence, release,
+deployment, Phase 4A3.4, Phase 4A3.5, or later phase; each remains separately
+governed.

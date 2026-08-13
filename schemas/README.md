@@ -2,9 +2,10 @@
 
 CNTX currently has ten Accepted Core JSON Schema Resources: one shared envelope
 and one resource for each of the nine artifact contracts. It also contains one
-Accepted Module Definition Schema Resource pending governed integration. Use
-this directory when you need the exact machine-evaluable shape of a record or
-module declaration.
+Accepted and integrated Module Definition Schema Resource and one Accepted
+Profile Definition Schema Resource pending governed integration. Use this
+directory when you need the exact machine-evaluable shape of a record, Module
+declaration, or Profile application.
 
 ## At a glance
 
@@ -417,7 +418,7 @@ implementation, release, deployment, publication, or follow-on authority.
 | Schema Version | `1.0.0` |
 | Canonical repository path | `schemas/extension-modules/epistemic-provenance-freshness/1.0.0/schema.json` |
 | Schema-resource media type | `application/schema+json` |
-| Document Status | Accepted under issue #145, Owner / Final Authority issue-contract acceptance comment `5267576754`, and exact-head candidate-acceptance comment `5269689952`; governed integration pending |
+| Document Status | Accepted and integrated under issue #145, Owner / Final Authority issue-contract acceptance comment `5267576754`, exact-head candidate-acceptance comment `5269689952`, integration comment `5271035681`, and completion comment `5271254252` |
 
 The Accepted resource evaluates one closed Module declaration with explicit
 source, claim, provenance, temporal, digest, policy, derivation, condition,
@@ -429,10 +430,74 @@ describe the exact Accepted boundary.
 
 The preceding Proposed status allocated or activated nothing. Accepted status,
 repository presence, `$id`, schema validity, case evaluation, Ready state,
-review, or mergeability does not integrate or activate the resource and
-allocates no new Definition, Profile, Core field, rule, Tool or Implementation
-version, supported input set, automatic authority, release, support,
-certification, hosting, or deployment. Governed integration remains separate.
+review, or mergeability did not integrate or activate the resource. Separately
+governed PR #146 integrated it at commit/tree
+`9f482043f76c792f6c2e1e96eb4a535ee26b3a99` /
+`7b2f45791e3b7bff7e856f26fff9b22598c06709`; issue #145 is closed/completed and
+the task branch is absent locally and publicly. The original execution and
+evidence remain bound only to candidate commit/tree
+`d10fb23bdec7c13bb1154bd538d8e691d486fcce` /
+`071a9909efcee1d4d74d7ff65b0b05da30e73875`. Integration created no new
+execution/evidence instance, Definition, Profile, Core field, rule, Tool or
+Implementation version, supported input set, automatic authority, release,
+support, certification, hosting, or deployment.
+
+## Accepted Context Packet Epistemic Provenance and Freshness Profile Definition Schema Version 1.0.0
+
+| Dimension | Accepted value |
+| --- | --- |
+| Governing Profile Definition | `https://github.com/CNTX-PROJECT/CNTX/profile-definitions/context-packet-epistemic-provenance-freshness` at `1.0.0` |
+| Definition Schema Identifier | `https://github.com/CNTX-PROJECT/CNTX/schemas/profiles/context-packet-epistemic-provenance-freshness` |
+| Schema language and dialect | JSON Schema Draft 2020-12 |
+| Canonical `$id` | `https://github.com/CNTX-PROJECT/CNTX/schemas/profiles/context-packet-epistemic-provenance-freshness/1.0.0` |
+| Schema Version | `1.0.0` |
+| Canonical repository path | `schemas/profiles/context-packet-epistemic-provenance-freshness/1.0.0/schema.json` |
+| Separate reference inventory | Exactly `207 total / 207 internal / 0 external`, across 52 root `$defs` |
+| Schema-resource media type | `application/schema+json` |
+| Document Status | Accepted under issue #149, attributable issue-contract acceptance comment `5279967413`, source-preserving correction addenda `5280408320` and `5280832992`, and exact-head candidate-acceptance comment `5285702199`; governed integration pending |
+
+The Accepted resource evaluates one external closed ARCH-043 Profile application
+record with all fourteen required root members. It fixes the exact governing
+Profile and two subject pins, Context Packet and Task Contract coordinates,
+packet-local source associations, six source categories, seventeen capability
+dimensions, eight conditions, four separate outcomes, eleven limitation
+categories, attributable roles, finite structural limits, non-aggregation, and
+the prohibition on a serialized `automaticAuthority` property.
+
+The resource is standalone and uses only fragment-internal `$ref` values. It
+does not embed or evaluate the external Context Packet, Task Contract, or
+ARCH-040 Module declaration; external reference edges are exactly zero. The
+[Accepted ARCH-044 decision](../docs/architecture/context-packet-epistemic-provenance-freshness-profile-definition-schema-resource.md),
+[ADR-0044](../docs/architecture/adr/0044-context-packet-epistemic-provenance-freshness-profile-definition-schema-resource.md),
+and [72-case operation-based manifest](../tests/schemas/profiles/context-packet-epistemic-provenance-freshness/1.0.0/cases.json)
+describe the bounded Accepted boundary.
+
+Correction addendum `5280408320` changes only the accepted baseline link pins
+to `1489 Markdown / 27 HTML` and `1297 local / 219 external`. It leaves the
+baseline commit/tree, schema meaning, exact `207/207/0` candidate reference
+inventory, cases, Proposed status, and every lifecycle boundary unchanged.
+
+Second correction addendum `5280832992` changes only the evaluation-
+responsibility count from sixteen to seventeen while preserving the exact
+seventeen Accepted ARCH-043 members. It changes no schema assertion, case,
+identity, version, resource graph, validation requirement, or lifecycle
+boundary.
+
+Attributable exact-head candidate-acceptance comment `5285702199` is bound to
+candidate commit/tree `7420e5d179ab965bfda58780df4f41a08a0b62de` /
+`56d1808cb95f3dd5a0b5d84f2a8e440891dff5e6`. The preceding Proposed status
+allocated or activated nothing. Standard JSON Schema cannot prove packet-
+external equality, complete selected-source association, projected-key
+uniqueness, opaque-reference resolution,
+graph completeness or acyclicity, narrowing-only meaning, source truth,
+freshness, policy applicability, conformance, access, approval, or authority.
+Accepted status, status promotion, path or `$id` presence, parseability, meta-
+schema validity, case materialization, validation, Ready state, review, or
+mergeability does not integrate, allocate, or activate the Schema Identifier /
+Version and grants no Profile instance, Tool support, new execution/evidence,
+release, deployment, or final-human authority. The successful local candidate
+validation remains bound only to the accepted candidate commit/tree above; this
+status-only promotion is not a new execution or evidence instance.
 
 ## Change boundary
 
