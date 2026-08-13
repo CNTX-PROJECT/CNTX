@@ -2,8 +2,8 @@
 
 This directory is the navigation point for the fixed synthetic cases that
 exercise the ten Accepted Core Schema Resources, the separate Accepted and
-integrated ARCH-042 Module Definition Schema Resource, and the Accepted
-ARCH-044 Profile Definition Schema Resource pending governed integration.
+integrated ARCH-042 Module Definition Schema Resource, and the Accepted and
+integrated ARCH-044 Profile Definition Schema Resource.
 
 ## What exists today
 
@@ -36,7 +36,7 @@ ARCH-044 Profile Definition Schema Resource pending governed integration.
 | Decision Record | [cases.json](schemas/decision-record/1.0.0/cases.json) |
 | State Snapshot | [cases.json](schemas/state-snapshot/1.0.0/cases.json) |
 | Epistemic Provenance and Freshness Module Definition Schema (Accepted and integrated) | [cases.json](schemas/extension-modules/epistemic-provenance-freshness/1.0.0/cases.json) |
-| Context Packet Epistemic Provenance and Freshness Profile Definition Schema (Accepted; integration pending) | [cases.json](schemas/profiles/context-packet-epistemic-provenance-freshness/1.0.0/cases.json) |
+| Context Packet Epistemic Provenance and Freshness Profile Definition Schema (Accepted and integrated) | [cases.json](schemas/profiles/context-packet-epistemic-provenance-freshness/1.0.0/cases.json) |
 
 Open the [schema index](../schemas/README.md) for the governing resources or the
 [minimal validation and integrity slice](../tools/minimal-validation-integrity-slice/README.md)
@@ -88,5 +88,13 @@ evaluation-responsibility count from sixteen to seventeen while preserving the
 exact seventeen Accepted ARCH-043 members. Neither changes any case, expected
 boolean, operation, schema assertion, status, execution boundary, or lifecycle
 authority. Exact-head candidate-acceptance comment `5285702199` establishes the
-Accepted decision for the unchanged candidate; this status-only promotion is
-not a new execution and governed integration remains separate.
+Accepted decision for the unchanged candidate; the status-only promotion was
+not a new execution and governed integration remained separate. Later
+integration-authority comment `5286010813` authorized merged PR #150 at public
+`main` commit/tree `1d9e4667d68cce6e0289464c821bcd95e1d355ae` /
+`3feeb1ce8ce2c0a7b45b88e42c9d668fc856d367`. Completion comment `5286062635`
+records issue #149 closed/completed and the task branch absent locally and
+publicly. Integration preserved all accepted schema/case bytes, all historical
+lifecycle and execution/evidence pins, all 12 Schema Resources, and the
+separate Core `203/38/165`, Module `48/8/40`, and Profile `72/11/61`
+inventories. It created no Tool support or new execution/evidence claim.

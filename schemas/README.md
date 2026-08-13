@@ -2,8 +2,8 @@
 
 CNTX currently has ten Accepted Core JSON Schema Resources: one shared envelope
 and one resource for each of the nine artifact contracts. It also contains one
-Accepted and integrated Module Definition Schema Resource and one Accepted
-Profile Definition Schema Resource pending governed integration. Use this
+Accepted and integrated Module Definition Schema Resource and one Accepted and
+integrated Profile Definition Schema Resource. Use this
 directory when you need the exact machine-evaluable shape of a record, Module
 declaration, or Profile application.
 
@@ -454,7 +454,7 @@ support, certification, hosting, or deployment.
 | Canonical repository path | `schemas/profiles/context-packet-epistemic-provenance-freshness/1.0.0/schema.json` |
 | Separate reference inventory | Exactly `207 total / 207 internal / 0 external`, across 52 root `$defs` |
 | Schema-resource media type | `application/schema+json` |
-| Document Status | Accepted under issue #149, attributable issue-contract acceptance comment `5279967413`, source-preserving correction addenda `5280408320` and `5280832992`, and exact-head candidate-acceptance comment `5285702199`; governed integration pending |
+| Document Status | Accepted and integrated under issue #149, exact-head candidate-acceptance comment `5285702199`, integration-authority comment `5286010813`, merged PR #150, and completion comment `5286062635` |
 
 The Accepted resource evaluates one external closed ARCH-043 Profile application
 record with all fourteen required root members. It fixes the exact governing
@@ -493,11 +493,22 @@ graph completeness or acyclicity, narrowing-only meaning, source truth,
 freshness, policy applicability, conformance, access, approval, or authority.
 Accepted status, status promotion, path or `$id` presence, parseability, meta-
 schema validity, case materialization, validation, Ready state, review, or
-mergeability does not integrate, allocate, or activate the Schema Identifier /
-Version and grants no Profile instance, Tool support, new execution/evidence,
-release, deployment, or final-human authority. The successful local candidate
-validation remains bound only to the accepted candidate commit/tree above; this
-status-only promotion is not a new execution or evidence instance.
+mergeability did not by themselves integrate, allocate, or activate the Schema
+Identifier / Version and granted no Profile instance, Tool support, new
+execution/evidence, release, deployment, or final-human authority. The
+successful local candidate validation remains bound only to the accepted
+candidate commit/tree above; the status-only promotion was not a new execution
+or evidence instance.
+
+Separately governed integration-authority comment `5286010813` authorized
+merged PR #150 at public `main` commit/tree
+`1d9e4667d68cce6e0289464c821bcd95e1d355ae` /
+`3feeb1ce8ce2c0a7b45b88e42c9d668fc856d367`. Completion comment `5286062635`
+records issue #149 closed/completed and the task branch absent locally and
+publicly. Integration preserved the accepted schema and case bytes, all
+historical lifecycle and execution/evidence pins, all 12 Schema Resources, and
+the separate Core `203/38/165`, Module `48/8/40`, and Profile `72/11/61`
+inventories. It created no Tool support or new execution/evidence claim.
 
 ## Change boundary
 
