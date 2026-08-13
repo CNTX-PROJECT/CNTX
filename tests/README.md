@@ -2,8 +2,8 @@
 
 This directory is the navigation point for the fixed synthetic cases that
 exercise the ten Accepted Core Schema Resources, the separate Accepted and
-integrated ARCH-042 Module Definition Schema Resource, and the Proposed
-ARCH-044 Profile Definition Schema Resource candidate.
+integrated ARCH-042 Module Definition Schema Resource, and the Accepted
+ARCH-044 Profile Definition Schema Resource pending governed integration.
 
 ## What exists today
 
@@ -15,9 +15,9 @@ ARCH-044 Profile Definition Schema Resource candidate.
 | Accepted Module manifests | 1 |
 | Accepted ARCH-042 cases | 48: 8 expected valid and 40 expected invalid |
 | Accepted ARCH-042 manifest forms | 1 direct |
-| Proposed Profile manifests | 1 |
-| Proposed ARCH-044 cases | 72: 11 expected valid and 61 expected invalid |
-| Proposed ARCH-044 manifest forms | 1 operation-based |
+| Accepted Profile manifests | 1 |
+| Accepted ARCH-044 cases | 72: 11 expected valid and 61 expected invalid |
+| Accepted ARCH-044 manifest forms | 1 operation-based |
 
 `Governed schema resource or candidate → fixed input case → fixed expected validity → separately governed execution`
 
@@ -36,7 +36,7 @@ ARCH-044 Profile Definition Schema Resource candidate.
 | Decision Record | [cases.json](schemas/decision-record/1.0.0/cases.json) |
 | State Snapshot | [cases.json](schemas/state-snapshot/1.0.0/cases.json) |
 | Epistemic Provenance and Freshness Module Definition Schema (Accepted and integrated) | [cases.json](schemas/extension-modules/epistemic-provenance-freshness/1.0.0/cases.json) |
-| Context Packet Epistemic Provenance and Freshness Profile Definition Schema (Proposed candidate) | [cases.json](schemas/profiles/context-packet-epistemic-provenance-freshness/1.0.0/cases.json) |
+| Context Packet Epistemic Provenance and Freshness Profile Definition Schema (Accepted; integration pending) | [cases.json](schemas/profiles/context-packet-epistemic-provenance-freshness/1.0.0/cases.json) |
 
 Open the [schema index](../schemas/README.md) for the governing resources or the
 [minimal validation and integrity slice](../tools/minimal-validation-integrity-slice/README.md)
@@ -63,23 +63,30 @@ closed/completed and the task branch is absent locally and publicly. Status
 promotion and integration were not new executions or evidence instances and
 did not expand the minimal Tool's supported input set.
 
-The Proposed ARCH-044 `72/11/61` operation-based manifest contains one complete
+The Accepted ARCH-044 `72/11/61` operation-based manifest contains one complete
 `baseInstance`; each named case deep-copies it and applies only ordered RFC 6901
 `add`, `remove`, or `replace` operations before separate evaluation. These are
 deterministic test mechanics, not a Profile representation, patch protocol,
 migration, runtime, or implementation contract. The new manifest changes the
 construction inventory from `10 direct / 1 operation-based` to `10 direct / 2
-operation-based`. Its cases have been fixed in this candidate but have not yet
-been executed. Proposed status, deterministic materialization, schema validity,
-case expectations, review, or mergeability accepts or activates nothing,
-expands no Tool support, and creates no execution/evidence claim, aggregate
-result, certification, release gate, deployment gate, or authority.
+operation-based`. Its cases were fixed before validation. The final authorized
+local run evaluated each case exactly once and matched all `72/72` expectations
+(`11 valid / 61 invalid`) with zero mismatches. That validation is local, non-
+governing, non-independent, and bound only to candidate commit/tree
+`7420e5d179ab965bfda58780df4f41a08a0b62de` /
+`56d1808cb95f3dd5a0b5d84f2a8e440891dff5e6`. Accepted status, deterministic
+materialization, schema validity, case expectations, validation, Ready state,
+review, or mergeability does not integrate or activate the resource, expands no
+Tool support, and creates no new execution/evidence instance, aggregate result,
+certification, release gate, deployment gate, or authority.
 
-Issue-contract acceptance comment `5279967413` governs this Proposed candidate,
+Issue-contract acceptance comment `5279967413` governed the Proposed candidate,
 as supplemented only by source-preserving correction addenda `5280408320` and
 `5280832992`. The first corrects the baseline link inventory to `1489 Markdown /
 27 HTML` and `1297 local / 219 external`. The second corrects only the
 evaluation-responsibility count from sixteen to seventeen while preserving the
 exact seventeen Accepted ARCH-043 members. Neither changes any case, expected
 boolean, operation, schema assertion, status, execution boundary, or lifecycle
-authority.
+authority. Exact-head candidate-acceptance comment `5285702199` establishes the
+Accepted decision for the unchanged candidate; this status-only promotion is
+not a new execution and governed integration remains separate.

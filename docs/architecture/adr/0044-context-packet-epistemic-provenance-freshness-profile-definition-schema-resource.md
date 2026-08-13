@@ -1,13 +1,15 @@
 # ADR-0044: CNTX Context Packet Epistemic Provenance and Freshness Profile Definition Schema Resource
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-08-13
 - **Issue:** [#149](https://github.com/CNTX-PROJECT/CNTX/issues/149)
 - **Issue-contract acceptance comment:** [5279967413](https://github.com/CNTX-PROJECT/CNTX/issues/149#issuecomment-5279967413)
 - **Source-preserving correction addendum:** [5280408320](https://github.com/CNTX-PROJECT/CNTX/issues/149#issuecomment-5280408320)
 - **Second source-preserving correction addendum:** [5280832992](https://github.com/CNTX-PROJECT/CNTX/issues/149#issuecomment-5280832992)
+- **Exact-head acceptance comment:** [5285702199](https://github.com/CNTX-PROJECT/CNTX/issues/149#issuecomment-5285702199)
 - **Baseline:** commit `eec00d698512533c3d40f985fe5d588cd03438f1`, tree `87a2d5aaf01e3f7c45b4fb4e3d8aa40a21dc046a`
-- **Decision candidate:** Proposed ARCH-044 — CNTX Context Packet Epistemic Provenance and Freshness Profile Definition Schema Resource
+- **Accepted candidate:** commit `7420e5d179ab965bfda58780df4f41a08a0b62de`, tree `56d1808cb95f3dd5a0b5d84f2a8e440891dff5e6`
+- **Decision:** Accepted ARCH-044 — CNTX Context Packet Epistemic Provenance and Freshness Profile Definition Schema Resource
 
 ## Context
 
@@ -27,11 +29,16 @@ baseline link inventory to `1489 Markdown / 27 HTML` and `1297 local / 219
 external`. The second corrects only the evaluation-responsibility count from
 sixteen to seventeen while preserving the exact seventeen Accepted ARCH-043
 members. Neither changes any semantic or lifecycle term or accepts or activates
-this decision or schema.
+this decision or schema. Attributable exact-head candidate acceptance comment
+`5285702199` accepts only commit/tree
+`7420e5d179ab965bfda58780df4f41a08a0b62de` /
+`56d1808cb95f3dd5a0b5d84f2a8e440891dff5e6`. The preceding Proposed status
+allocated or activated nothing; this status-only promotion records the Accepted
+decision while governed integration remains separate.
 
-## Proposed decision
+## Accepted decision
 
-Propose one child of the `CNTX Profile Definition Schema Family`:
+Accept one child of the `CNTX Profile Definition Schema Family`:
 
 - Definition Schema Identifier
   `https://github.com/CNTX-PROJECT/CNTX/schemas/profiles/context-packet-epistemic-provenance-freshness`;
@@ -40,7 +47,7 @@ Propose one child of the `CNTX Profile Definition Schema Family`:
   `https://github.com/CNTX-PROJECT/CNTX/schemas/profiles/context-packet-epistemic-provenance-freshness/1.0.0`;
 - JSON Schema Draft 2020-12;
 - media type `application/schema+json`;
-- canonical candidate path
+- canonical repository path
   `schemas/profiles/context-packet-epistemic-provenance-freshness/1.0.0/schema.json`;
   and
 - one operation-based synthetic manifest at
@@ -48,8 +55,10 @@ Propose one child of the `CNTX Profile Definition Schema Family`:
 
 The Definition Schema Identifier is version independent. Schema Version and
 Profile Definition Version remain separate even where both equal `1.0.0`.
-Proposed issue, candidate, path, `$id`, parseability, case result, review, or
-repository presence allocates or activates neither coordinate.
+The preceding Proposed issue, candidate, path, `$id`, parseability, case result,
+review, and repository presence allocated or activated neither coordinate.
+Accepted status without governed integration likewise does not integrate,
+allocate, or activate either coordinate.
 
 ### Standalone zero-external-reference resource
 
@@ -238,10 +247,12 @@ Costs and limitations:
 - whole-value uniqueness is weaker than projected-key uniqueness;
 - cross-record, graph, source-truth, policy, access, conformance, and authority
   semantics remain outside standard JSON Schema;
-- no candidate execution, alternate implementation, portability, performance,
-  production, hard-resource, OS-isolation, or complete adversarial evidence
-  exists yet; and
-- Proposed status allocates and activates nothing.
+- the successful candidate validation is limited to one Windows host, one
+  exact runtime and dependency set, one schema, and 72 synthetic cases; it is
+  not portability, performance, production, hard-resource, OS-isolation, or
+  complete adversarial evidence; and
+- the preceding Proposed status allocated and activated nothing, while
+  Accepted status without integration likewise activates nothing.
 
 ## Alternatives not selected
 
@@ -288,7 +299,7 @@ authority.
 
 ## Protected history and non-decisions
 
-The candidate changes no Accepted Core schema/test, Artifact Contract,
+The decision changes no Accepted Core schema/test, Artifact Contract,
 Definition or Representation meaning, existing Schema Identity/Version,
 ARCH-042 schema/cases, Serialization Binding, Tool/Implementation, dependency,
 lock, rule, workflow, CI, setting, tag, Release, evidence instance, H2.4 state,
@@ -299,7 +310,7 @@ ARCH-042 integrations while preserving all original Proposed, candidate,
 execution, evidence, acceptance, promotion, integration, completion, and
 cleanup provenance.
 
-The candidate creates no Profile instance, Core property, policy instance,
+The decision creates no Profile instance, Core property, policy instance,
 rule, cross-record validator, diagnostic vocabulary, Tool/Implementation
 version, supported-set expansion, public runner, workflow, CI, release,
 publication beyond the governed issue/candidate/PR records, support,
@@ -310,19 +321,21 @@ later-phase authority.
 
 Issue #149, attributable issue-contract acceptance comment `5279967413`, the
 link-pin-only source-preserving correction addendum `5280408320`, and the
-evaluation-count-only correction addendum `5280832992` authorize candidate
-preparation only. They do not make this Proposed ADR or ARCH-044
-Accepted architecture and do not allocate or activate the proposed Definition
-Schema Identifier, Schema Version, canonical `$id`, or resource.
+evaluation-count-only correction addendum `5280832992` authorized candidate
+preparation only. Attributable exact-head candidate acceptance comment
+`5285702199` plus this status-only promotion establish Accepted status for the
+unchanged candidate. They do not integrate, allocate, or activate the
+Definition Schema Identifier, Schema Version, canonical `$id`, or resource.
 
 Candidate preparation, parsing, meta-schema checking, case materialization,
-fixed expectations, static validation, Draft PR state, transparent non-
-independent `COMMENTED` review, rendering, repository presence, and
-mergeability grant no acceptance, execution/evidence claim, integration,
-release, deployment, or authority.
+fixed expectations, static validation, the candidate-bound local validation,
+Draft PR state, transparent non-independent `COMMENTED` review, rendering,
+repository presence, and mergeability grant no integration, activation,
+release, deployment, or authority. The status-only promotion is not a new
+execution or evidence instance.
 
 Work must stop at one separately attributable EIGENAAR / Final Authority exact-
-head candidate-acceptance gate. Status promotion, Ready transition, second
+promotion-head integration-candidate acceptance gate. Ready transition, second
 review, merge, issue closure, branch cleanup, Tool support, release, deployment,
 H2.4 completion, Phase 4A3.5, and all later phases require new separate
 authority.

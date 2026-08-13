@@ -3,33 +3,33 @@
 ## In ordinary language
 
 ARCH-043 defines one exact external record for applying the Accepted Context
-Packet Epistemic Provenance and Freshness Profile. Proposed ARCH-044 translates
-only that closed record into one machine-evaluable JSON Schema candidate and
-fixes 72 synthetic structural examples before any candidate execution.
+Packet Epistemic Provenance and Freshness Profile. Accepted ARCH-044 translates
+only that closed record into one machine-evaluable JSON Schema and fixes 72
+synthetic structural examples whose expectations preceded validation.
 
 | Quick view | Meaning |
 | --- | --- |
-| **Status** | Proposed Profile Definition Schema Resource candidate `1.0.0`; not Accepted or integrated |
+| **Status** | Accepted Profile Definition Schema Resource `1.0.0`; governed integration pending |
 | **Subject** | One ARCH-043 application record governed by the exact Profile Definition `1.0.0` |
 | **Machine result** | Schema-local structural valid or invalid for one exact candidate schema and materialized instance |
 | **Not established** | External packet/task equality, complete source association, source truth, Profile conformance, approval, Tool support, release, deployment, or authority |
 
 ### Reading route
 
-- [Identity and resource model](#proposed-definition-schema-identity-and-version)
+- [Identity and resource model](#accepted-definition-schema-identity-and-version)
 - [Closed root and structural assertions](#closed-fourteen-member-root)
 - [Cases](#synthetic-cases-fixed-before-execution)
 - [What the schema cannot prove](#standard-json-schema-limitations)
-- [Lifecycle boundary](#proposed-lifecycle-and-authority-boundary)
+- [Lifecycle boundary](#accepted-lifecycle-and-authority-boundary)
 
 This visitor layer is non-normative and adds no requirement beyond the complete
-Proposed decision below.
+Accepted decision below.
 
 ## Status and authority
 
-**Document Status:** Proposed.
+**Document Status:** Accepted.
 
-This candidate is governed by
+This decision is governed by
 [issue #149](https://github.com/CNTX-PROJECT/CNTX/issues/149). Attributable
 EIGENAAR / Final Authority acceptance of the exact issue contract is recorded
 in issue comment
@@ -64,15 +64,20 @@ The exact public baseline is commit
 and ADR-0043 are Accepted and integrated through PR #148; issue #147 is
 closed/completed and its exact task branch is absent locally and publicly.
 
-Issue-contract acceptance authorizes only the bounded Proposed candidate
-lifecycle. It does not accept, allocate, activate, or integrate ARCH-044, its
-Definition Schema Identifier, Schema Version, canonical `$id`, Schema Resource,
-case expectations, or any Profile instance. Exact-head candidate acceptance,
-status promotion, and integration remain later and separately governed.
+Attributable exact-head candidate acceptance is recorded in issue comment
+[5285702199](https://github.com/CNTX-PROJECT/CNTX/issues/149#issuecomment-5285702199),
+bound to candidate commit
+`7420e5d179ab965bfda58780df4f41a08a0b62de` and tree
+`56d1808cb95f3dd5a0b5d84f2a8e440891dff5e6`.
 
-The candidate schema, case manifest, documentation, static validation, Draft
-PR, review, and mergeability cannot accept themselves. No isolated candidate
-execution or execution-evidence claim exists at this stage.
+Issue-contract acceptance authorized only the bounded Proposed candidate
+lifecycle. That preceding Proposed status allocated or activated nothing.
+Exact-head candidate acceptance and this status-only promotion establish
+Accepted status only. Status promotion, branch or repository presence, schema
+or JSON parsing, meta-schema validity, case evaluation, Draft state, review, or
+mergeability does not integrate, allocate, or activate the Definition Schema
+Identifier, Schema Version, canonical `$id`, or Schema Resource. Separately
+governed integration to `main` remains required.
 
 ## Purpose and exact decision boundary
 
@@ -81,8 +86,8 @@ two Profile Subjects. Accepted and integrated ARCH-043 defines one external
 closed fourteen-member JSON-compatible record that applies that Profile to one
 exact Context Packet revision under one exact approved Task Contract revision.
 
-Proposed ARCH-044 defines exactly one standalone JSON Schema Draft 2020-12
-resource candidate for that exact record and exactly one separate operation-
+Accepted ARCH-044 defines exactly one standalone JSON Schema Draft 2020-12
+resource for that exact record and exactly one separate operation-
 based synthetic case manifest. It translates only schema-local structure that
 is justified by ARCH-039 and ARCH-043. It does not repair, reinterpret, broaden,
 weaken, default, override, or silently complete either source.
@@ -95,7 +100,7 @@ decision, approval, release, or deployment record.
 
 ## Exact decision basis and precedence
 
-The candidate remains subordinate to and preserves:
+The decision remains subordinate to and preserves:
 
 1. ARCH-039 and ADR-0039 as the Accepted Profile Definition and exact two-
    subject semantic source;
@@ -116,11 +121,11 @@ The candidate remains subordinate to and preserves:
    evidence, release, security/privacy, and authority boundary.
 
 If a property, token, assertion, limit, or case cannot be justified by those
-exact sources and issue #149, it is outside this candidate.
+exact sources and issue #149, it is outside this decision.
 
-## Proposed Definition Schema identity and version
+## Accepted Definition Schema identity and version
 
-| Dimension | Exact Proposed value |
+| Dimension | Exact Accepted value |
 | --- | --- |
 | Schema family | `CNTX Profile Definition Schema Family` |
 | Definition Schema Identifier | `https://github.com/CNTX-PROJECT/CNTX/schemas/profiles/context-packet-epistemic-provenance-freshness` |
@@ -130,25 +135,27 @@ exact sources and issue #149, it is outside this candidate.
 | Governing Profile Definition Version | `1.0.0` |
 | Schema language and dialect | JSON Schema Draft 2020-12 |
 | Media type | `application/schema+json` |
-| Canonical candidate path | `schemas/profiles/context-packet-epistemic-provenance-freshness/1.0.0/schema.json` |
-| Document Status | Proposed |
+| Canonical repository path | `schemas/profiles/context-packet-epistemic-provenance-freshness/1.0.0/schema.json` |
+| Document Status | Accepted; governed integration pending |
 
 The Definition Schema Identifier is version independent. Schema Version is a
 separate exact semantic-version coordinate. The version-qualified `$id`
-identifies the standalone resource candidate; its HTTPS shape grants no
+identifies the standalone resource; its HTTPS shape grants no
 retrieval, redirect, network access, registry use, trust, support,
 publication, acceptance, activation, or authority.
 
 Profile Definition Version `1.0.0` and Schema Version `1.0.0` are independent.
-Equal values create no lockstep lifecycle. Issue-contract acceptance, path,
-file, `$id`, schema validity, case expectation, review, or repository presence
-allocates or activates neither proposed schema coordinate.
+Equal values create no lockstep lifecycle. The preceding Proposed issue, path,
+file, `$id`, candidate, review, and validation presence allocated or activated
+nothing. Accepted status without governed integration likewise does not
+integrate, allocate, or activate either schema coordinate.
 
 ## One standalone resource with zero external references
 
-The candidate contains one canonical standalone root JSON Schema Resource:
+The Accepted decision contains one canonical standalone root JSON Schema
+Resource:
 
-- exact root `$schema` and proposed canonical `$id`;
+- exact root `$schema` and Accepted canonical `$id`;
 - one public-safe `$comment`, title, and bounded description;
 - exactly 52 internal reusable definitions, all below root `$defs`;
 - exactly 207 static fragment-only internal `$ref` values, reaching all 52
@@ -539,30 +546,32 @@ release gate, deployment gate, or authority.
 
 ## Evaluation and Tool boundary
 
-The candidate schema, one complete base instance, 72 operations sets, and all
-expected results must be immutable before the one separately bounded candidate
-execution permitted by issue #149. No such execution has yet occurred.
+The candidate schema, one complete base instance, 72 operation sets, and all
+expected results were immutable before the separately bounded candidate
+validation permitted by issue #149. The final authorized local validation used
+one non-independent native-Windows environment, exact 64-bit CPython `3.13.14`,
+and the five exact dependency wheels pinned by
+`tools/minimal-validation-integrity-slice/requirements-1.0.1.lock`. It verified
+interpreter provenance and each wheel's exact filename, byte size, and SHA-256
+before one isolated offline hash-required installation, passed the Draft
+2020-12 meta-schema check, materialized and evaluated all 72 cases exactly once,
+and matched all `72/72` expectations (`11 valid / 61 invalid`) with zero
+mismatches, `86` applied operations, and `207/207/0` total/internal/external
+references. The complete raw transcript was read back in `222/222`
+deterministic parts before acknowledgment-gated cleanup completed.
 
-The permitted later run is limited to one non-independent native-Windows
-environment, exact 64-bit CPython `3.13.14`, and the five exact dependency
-wheels pinned by
-`tools/minimal-validation-integrity-slice/requirements-1.0.1.lock`. It must
-verify interpreter provenance and each wheel's exact filename, byte size, and
-SHA-256 before an isolated offline hash-required installation; evaluate the
-Draft 2020-12 meta-schema; materialize and evaluate each case exactly once;
-preserve separate results; use no network after acquisition; and complete
-guarded cleanup. Any acquisition, verification, installation, meta-schema,
-materialization, evaluation, comparison, repository-integrity, or cleanup
-failure stops fail closed without retry or favorable claim.
+That validation remains local, non-governing, non-independent, and bound only
+to accepted candidate commit/tree
+`7420e5d179ab965bfda58780df4f41a08a0b62de` /
+`56d1808cb95f3dd5a0b5d84f2a8e440891dff5e6`. This status-only promotion is not
+a new execution or evidence instance. The private harness, environment, wheels,
+logs, and outputs remained temporary and outside this repository. The existing
+minimal validation and integrity Tool's exact ten-schema supported set, 29
+unittest methods, thirteen rules, dependencies, scenarios, outputs, and
+evidence remain unchanged and were not re-executed for ARCH-044.
 
-That future private harness, environment, wheels, logs, and outputs remain
-temporary and outside this repository. The existing minimal validation and
-integrity Tool's exact ten-schema supported set, 29 unittest methods, thirteen
-rules, dependencies, scenarios, outputs, and evidence remain unchanged and are
-not re-executed for ARCH-044.
-
-Even a successful permitted run would be Windows-specific and non-independent.
-It would not establish portability, interoperability, complete coverage,
+The successful run is Windows-specific and non-independent. It does not
+establish portability, interoperability, complete coverage,
 performance, resource safety, production-data safety, conformance, support,
 release fitness, or deployment fitness.
 
@@ -600,7 +609,7 @@ conformance remain later and separately governed.
 
 ## Core sovereignty and protected history
 
-This candidate changes no Common Artifact Envelope, Core Artifact schema,
+This decision changes no Common Artifact Envelope, Core Artifact schema,
 Context Packet or Task Contract contract/payload/schema, Module declaration or
 ARCH-042 schema/cases, existing Schema Resource, existing test manifest,
 practice JSON, Tool/Implementation source, dependency, lock, rule, workflow,
@@ -633,20 +642,25 @@ Finite schema bounds reduce unbounded structural supply. They prove no parser,
 memory, CPU, time, handle, thread, process, operating-system isolation, network
 isolation, or denial-of-service guarantee.
 
-## Proposed lifecycle and authority boundary
+## Accepted lifecycle and authority boundary
 
 Issue-contract acceptance comment `5279967413`, as supplemented only by the
 source-preserving link-pin correction in comment `5280408320` and the
-evaluation-count correction in comment `5280832992`, authorizes
-preparation of one exact candidate, static validation, one immutable candidate
+evaluation-count correction in comment `5280832992`, authorized preparation of
+one exact candidate, static validation, one immutable candidate
 commit, the one separately bounded post-commit execution, one Draft PR, one
 transparent non-independent `COMMENTED` review, and a stop at exact-head
-candidate acceptance.
+candidate acceptance. Attributable exact-head acceptance comment `5285702199`
+accepts only candidate commit/tree
+`7420e5d179ab965bfda58780df4f41a08a0b62de` /
+`56d1808cb95f3dd5a0b5d84f2a8e440891dff5e6`.
 
-Proposed status consumes no active Schema Version. Candidate preparation,
-schema or JSON parsing, meta-schema validity, operation materialization, fixed
-expected results, review, Draft state, repository presence, and mergeability
-allocate or activate nothing and establish no execution/evidence claim.
+The preceding Proposed status consumed no active Schema Version. Candidate
+preparation, schema or JSON parsing, meta-schema validity, operation
+materialization, fixed expected results, validation, review, Draft state,
+repository presence, and mergeability allocated or activated nothing.
+Exact-head acceptance and this status-only promotion establish Accepted status
+only; governed integration remains a separate later decision.
 
 A correction may fix documentary or schema error before exact-head acceptance
 only within the one authorized candidate commit. Any later normative member,
@@ -654,9 +668,9 @@ token, assertion, limit, case, expected result, or structural change requires a
 separately governed compatibility and version decision. Historical sources and
 authority records remain source preserved.
 
-This candidate authorizes no second candidate commit, status promotion,
-Accepted status, Ready transition, second review, merge, issue closure, branch
-cleanup, Profile instance, Tool expansion, workflow, CI, release, tag,
+This Accepted decision authorizes no Ready transition, second review, merge,
+issue closure, branch cleanup, Profile instance, Tool expansion, workflow, CI,
+release, tag,
 publication outside the governed records, support, certification, hosting,
 deployment, H2.4 completion, Phase 4A3.5, pilot, adapter, portability work,
 adversarial evaluation, or later phase.
@@ -672,7 +686,7 @@ adversarial evaluation, or later phase.
 - [Schema Resource Resolution and Catalog Boundary](schema-resource-resolution-catalog-boundary.md)
 - [Validation and Validation Output Contract](validation-and-validation-output-contract.md)
 - [ADR-0044](adr/0044-context-packet-epistemic-provenance-freshness-profile-definition-schema-resource.md)
-- [Proposed Schema Resource](../../schemas/profiles/context-packet-epistemic-provenance-freshness/1.0.0/schema.json)
+- [Accepted Schema Resource](../../schemas/profiles/context-packet-epistemic-provenance-freshness/1.0.0/schema.json)
 - [Synthetic cases](../../tests/schemas/profiles/context-packet-epistemic-provenance-freshness/1.0.0/cases.json)
 - [Governance](../../GOVERNANCE.md)
 - [Security policy](../../SECURITY.md)

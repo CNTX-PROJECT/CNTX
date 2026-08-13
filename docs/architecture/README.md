@@ -5,8 +5,8 @@
 CNTX architecture explains the boundaries behind its records, schemas,
 validation, extensions, evidence, and human authority. Public `main` contains
 **43 Accepted and integrated architecture decisions and matching ADRs**. This
-candidate branch also contains the Proposed ARCH-044/ADR-0044 pair, which is
-not Accepted or integrated.
+status-promotion branch also contains the Accepted ARCH-044/ADR-0044 pair,
+which is not integrated.
 
 | If you need… | Open… |
 | --- | --- |
@@ -14,7 +14,7 @@ not Accepted or integrated.
 | The nine collaboration records | [Artifact-contract index](../contracts/README.md) |
 | Machine-readable Core structure | [Schema index](../../schemas/README.md) |
 | The bounded executable practice slice | [Validation and integrity slice](../../tools/minimal-validation-integrity-slice/README.md) and [Accepted corrective version boundary](minimal-validation-integrity-slice-corrective-version-boundary.md) |
-| The source/provenance/freshness layer | [ARCH-038](epistemic-provenance-freshness-extension-module-definition.md), [ARCH-039](context-packet-epistemic-provenance-freshness-profile-definition.md), [ARCH-040](epistemic-provenance-freshness-extension-module-json-representation-boundary.md), integrated [ARCH-042](epistemic-provenance-freshness-extension-module-definition-schema-resource.md), integrated [ARCH-043](context-packet-epistemic-provenance-freshness-profile-json-representation-boundary.md), and Proposed [ARCH-044](context-packet-epistemic-provenance-freshness-profile-definition-schema-resource.md) |
+| The source/provenance/freshness layer | [ARCH-038](epistemic-provenance-freshness-extension-module-definition.md), [ARCH-039](context-packet-epistemic-provenance-freshness-profile-definition.md), [ARCH-040](epistemic-provenance-freshness-extension-module-json-representation-boundary.md), integrated [ARCH-042](epistemic-provenance-freshness-extension-module-definition-schema-resource.md), integrated [ARCH-043](context-packet-epistemic-provenance-freshness-profile-json-representation-boundary.md), and Accepted [ARCH-044](context-packet-epistemic-provenance-freshness-profile-definition-schema-resource.md) with integration pending |
 | Current and future order | [Roadmap](../../ROADMAP.md) |
 
 ## Architecture map
@@ -30,7 +30,7 @@ not Accepted or integrated.
 | ARCH-041 | Minimal validation and integrity slice corrective version boundary | Accepted and integrated; corrective Implementation `1.0.1` is integrated with its bounded evidence, while portability and CI remain separate |
 | ARCH-042 | Epistemic provenance and freshness Module Definition Schema Resource | Accepted and integrated with one exact schema and 48 separately matched synthetic cases; no Tool support or new evidence instance |
 | ARCH-043 | Context Packet epistemic provenance and freshness Profile JSON representation boundary | Accepted and integrated; one closed external application record, no Core/schema/Tool change or automatic activation |
-| ARCH-044 | Context Packet epistemic provenance and freshness Profile Definition Schema Resource | Proposed candidate with one closed standalone schema and 72 fixed operation-based cases; no acceptance, activation, Tool support, or execution yet |
+| ARCH-044 | Context Packet epistemic provenance and freshness Profile Definition Schema Resource | Accepted with one closed standalone schema and 72 separately matched operation-based cases; governed integration pending, with no activation or Tool support |
 
 Architecture documents state conceptual and normative boundaries. They do not
 by themselves install software, execute a tool, prove conformance, approve a
@@ -660,17 +660,20 @@ the exact representation boundary and created no Profile instance, Core
 property, schema, case, rule, Tool capability, execution, evidence, aggregate
 outcome, release, deployment, or automatic authority.
 
-The Proposed [CNTX Context Packet Epistemic Provenance and Freshness Profile
+The Accepted [CNTX Context Packet Epistemic Provenance and Freshness Profile
 Definition Schema Resource](context-packet-epistemic-provenance-freshness-profile-definition-schema-resource.md)
 and [ADR-0044](adr/0044-context-packet-epistemic-provenance-freshness-profile-definition-schema-resource.md)
-form the bounded Phase 4A3.4 candidate under issue #149 and attributable
-EIGENAAR / Final Authority issue-contract acceptance comment `5279967413`, as
-supplemented only by source-preserving correction addenda `5280408320` and
-`5280832992`. The first addendum changes only the baseline link pins to `1489
-Markdown / 27 HTML` and `1297 local / 219 external`; the second changes only the
+form the bounded Phase 4A3.4 decision under issue #149, attributable EIGENAAR /
+Final Authority issue-contract acceptance comment `5279967413`, source-
+preserving correction addenda `5280408320` and `5280832992`, and exact-head
+candidate-acceptance comment `5285702199` on commit/tree
+`7420e5d179ab965bfda58780df4f41a08a0b62de` /
+`56d1808cb95f3dd5a0b5d84f2a8e440891dff5e6`. The first addendum changes only
+the baseline link pins to `1489 Markdown / 27 HTML` and `1297 local / 219
+external`; the second changes only the
 evaluation-responsibility count from sixteen to seventeen while preserving the
 exact seventeen Accepted ARCH-043 members. Neither makes a semantic or
-lifecycle change. They propose
+lifecycle change. The decision defines
 one standalone JSON Schema Draft 2020-12 resource for the exact ARCH-043
 fourteen-member application record, with exactly 52 root `$defs`, `207/207/0`
 separate total/internal/external references, finite limits, and one separate
@@ -678,9 +681,12 @@ operation-based manifest of 72 fixed cases: 11 expected valid and 61 expected
 invalid. The schema is intentionally schema-local: it cannot prove external
 packet/task equality, source-association coverage or equality, projected-key
 uniqueness, opaque-reference resolution, graph semantics, source truth,
-conformance, or authority. Proposed status, repository presence, schema
-parseability, case materialization, review, or mergeability accepts or
-activates nothing. No isolated candidate execution has yet occurred.
+conformance, or authority. The preceding Proposed status allocated or activated
+nothing. Accepted status, status promotion, repository presence, schema
+parseability, case materialization, validation, review, Ready state, or
+mergeability does not integrate or activate the resource. The successful local
+candidate validation remains bound only to the accepted candidate commit/tree
+above; this status-only promotion is not a new execution or evidence instance.
 
 </details>
 

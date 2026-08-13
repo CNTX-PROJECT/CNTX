@@ -6,12 +6,12 @@
     "identifier": "https://github.com/CNTX-PROJECT/CNTX/profile-definitions/context-packet-epistemic-provenance-freshness",
     "version": "1.0.0"
   },
-  "documentStatus": "Proposed",
+  "documentStatus": "Accepted",
   "nonNormative": true,
   "issue": "https://github.com/CNTX-PROJECT/CNTX/issues/149",
   "issueContractAcceptanceComment": 5279967413,
   "sourcePreservingCorrectionAddendumComment": 5280408320,
-  "description": "Exactly 72 public-safe synthetic structural cases for the Proposed ARCH-044 Profile Definition Schema Resource: 11 expected valid and 61 expected invalid. Every result remains separate. Expected validity proves no source truth, Profile conformance, Context Packet or Task Contract validity, authenticity, integrity, freshness, applicability, approval, certification, release fitness, deployment fitness, or final-human authority.",
+  "description": "Exactly 72 public-safe synthetic structural cases for the Accepted ARCH-044 Profile Definition Schema Resource, pending separately governed integration: 11 expected valid and 61 expected invalid. Every result remains separate. Expected validity proves no source truth, Profile conformance, Context Packet or Task Contract validity, authenticity, integrity, freshness, applicability, approval, certification, release fitness, deployment fitness, or final-human authority.",
   "caseInventory": {
     "total": 72,
     "expectedValid": 11,
