@@ -1,11 +1,13 @@
 # ADR-0045: CNTX Governing Definition Declaration and Frozen Governing Declaration Set JSON Representation Boundary
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-08-14
 - **Issue:** [#151](https://github.com/CNTX-PROJECT/CNTX/issues/151)
 - **Issue-contract acceptance comment:** [5286906192](https://github.com/CNTX-PROJECT/CNTX/issues/151#issuecomment-5286906192)
+- **Exact-head candidate-acceptance comment:** [5290871158](https://github.com/CNTX-PROJECT/CNTX/issues/151#issuecomment-5290871158)
 - **Baseline:** commit `1d9e4667d68cce6e0289464c821bcd95e1d355ae`, tree `3feeb1ce8ce2c0a7b45b88e42c9d668fc856d367`
-- **Decision candidate:** Proposed ARCH-045 — CNTX Governing Definition Declaration and Frozen Governing Declaration Set JSON Representation Boundary
+- **Accepted candidate:** commit `a92cb298a5106db27f0c6b720a5faa3b6571ddf1`, complete tree `1a68548638f0ff570639a051bbca65e778642ca4`
+- **Decision:** Accepted ARCH-045 — CNTX Governing Definition Declaration and Frozen Governing Declaration Set JSON Representation Boundary; not integrated
 
 ## Context
 
@@ -21,10 +23,13 @@ ARCH-032 keeps declaration/set conformance separate from package, schema,
 validation output, evidence, and authority. ARCH-033 requires concrete
 declaration representation before concrete Tool/Implementation work. Issue
 #151 and attributable EIGENAAR / Final Authority issue-contract acceptance
-comment `5286906192` authorize one documentation-only representation candidate
-and a stop before exact-head candidate acceptance.
+comment `5286906192` authorized one documentation-only representation candidate
+and a stop before exact-head candidate acceptance. Attributable exact-head
+acceptance comment `5290871158` accepts only the candidate commit and complete
+tree recorded above. Separately authorized status-only promotion establishes
+Accepted status without integration.
 
-## Proposed decision
+## Accepted decision
 
 Define one closed JSON-compatible representation model with:
 
@@ -191,7 +196,7 @@ review, and attributable authority.
 
 ## Non-decisions
 
-This Proposed decision allocates no declaration/set Identity or Version,
+This Accepted decision allocates no declaration/set Identity or Version,
 Artifact Type, Core member, media type, canonical bytes, Schema Identifier or
 Version, `$id`, Schema Resource, assertion, case, package/bundle, manifest,
 Serialization Binding, resolver, registry, catalog, cache, API, SDK, CLI,
@@ -201,15 +206,20 @@ configuration, interface, code, execution, evidence, workflow, CI, aggregate
 result, automatic authority, release, support, certification, hosting, or
 deployment.
 
-## Candidate lifecycle and stop boundary
+## Accepted lifecycle and integration stop boundary
 
-Issue-contract acceptance comment `5286906192` authorizes this documentation
+Issue-contract acceptance comment `5286906192` authorized this documentation
 candidate only. Candidate preparation, Markdown/link validation, review, Draft
-state, repository presence, and mergeability do not accept ARCH-045.
+state, repository presence, and mergeability did not accept ARCH-045. Exact-head
+acceptance comment `5290871158` accepted only candidate commit/tree
+`a92cb298a5106db27f0c6b720a5faa3b6571ddf1` /
+`1a68548638f0ff570639a051bbca65e778642ca4`. The preceding Proposed status
+allocated or activated nothing. Exact-head acceptance and status-only promotion
+establish Accepted status only and make no semantic representation change.
 
-Work stops for attributable EIGENAAR / Final Authority acceptance of the exact
-candidate commit and complete tree. Status promotion, Ready transition,
-integration, merge, issue closure, branch cleanup, package/bundle work,
-schema/cases, Serialization Binding, Validation Output, Portable Conformance
-Evidence, Tool/Implementation, execution, release, support, certification,
-hosting, deployment, and all later phases remain separately governed.
+Work stops before separate integration authority for the exact promotion head
+and complete tree. Ready transition, integration, merge, issue closure, branch
+cleanup, package/bundle work, schema/cases, Serialization Binding, Validation
+Output, Portable Conformance Evidence, Tool/Implementation, execution, release,
+support, certification, hosting, deployment, and all later phases remain
+separately governed.

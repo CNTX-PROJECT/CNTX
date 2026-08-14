@@ -4,13 +4,13 @@
 
 ARCH-031 says what must be known about every active Extension Module or Profile
 Definition and about the complete frozen set that governs one evaluation.
-Proposed ARCH-045 gives that information one closed JSON-compatible shape. It
+Accepted ARCH-045 gives that information one closed JSON-compatible shape. It
 does not make the declaration set a Core record, approve its contents, define a
 schema or package, or give software permission to act.
 
 | Quick view | Meaning |
 | --- | --- |
-| **Status** | Proposed documentation-only representation candidate; issue contract accepted, exact-head candidate acceptance pending |
+| **Status** | Accepted documentation-only representation decision; integration pending |
 | **Declaration** | One closed fourteen-member record for one exact active Definition key |
 | **Declaration Set** | One closed six-member root containing exactly one declaration for every and only active Definition key |
 | **Preserved basis** | All 21 ARCH-031 declaration responsibilities and all 11 Declaration Set invariants |
@@ -26,11 +26,11 @@ schema or package, or give software permission to act.
 - [Failure and non-decisions](#fail-closed-and-non-decision-boundary)
 
 This visitor layer is non-normative and adds no requirement beyond the complete
-Proposed decision below.
+Accepted decision below.
 
 ## Status and authority
 
-**Document Status:** Proposed candidate; not Accepted or integrated.
+**Document Status:** Accepted; not integrated.
 
 This candidate is governed by
 [issue #151](https://github.com/CNTX-PROJECT/CNTX/issues/151). Attributable
@@ -41,6 +41,13 @@ The accepted issue body contains exactly 25,517 characters, 25,517 UTF-8 bytes,
 and SHA-256
 `ebac6d72c098fa27bf6f59913c41a7d5f5f796285911782180f399a918384bde`.
 
+Attributable EIGENAAR / Final Authority exact-head acceptance is recorded in
+issue comment
+[5290871158](https://github.com/CNTX-PROJECT/CNTX/issues/151#issuecomment-5290871158),
+bound only to candidate commit
+`a92cb298a5106db27f0c6b720a5faa3b6571ddf1` and complete tree
+`1a68548638f0ff570639a051bbca65e778642ca4`.
+
 The exact public baseline is commit
 `1d9e4667d68cce6e0289464c821bcd95e1d355ae`, tree
 `3feeb1ce8ce2c0a7b45b88e42c9d668fc856d367`, with 206 tracked paths. The
@@ -48,12 +55,13 @@ accepted issue contract authorizes only one documentation candidate with two
 added paths and seven modified paths. All other 199 baseline paths remain
 protected.
 
-Issue-contract acceptance authorizes candidate preparation, validation, one
+Issue-contract acceptance authorized candidate preparation, validation, one
 candidate commit, one Draft pull request, transparent non-independent review,
-and a mandatory stop. It does not accept ARCH-045 or any candidate commit/tree.
-Exact-head candidate acceptance, status promotion, integration, merge, issue
+and a mandatory stop. It did not accept ARCH-045 or any candidate commit/tree.
+The exact-head comment above and a separately authorized status-only promotion
+establish Accepted status only. They do not authorize integration, merge, issue
 closure, cleanup, package/bundle work, schema work, tooling, execution,
-evidence, release, and deployment remain separate later gates.
+evidence, release, or deployment.
 
 ## Purpose and exact decision boundary
 
@@ -65,7 +73,7 @@ Declaration Set equal to the complete active Definition Set. Those logical
 responsibilities deliberately allocate no fields, tokens, object shapes,
 schema, media type, or Serialization Binding.
 
-ARCH-045 proposes the first concrete JSON-compatible representation boundary
+ARCH-045 defines the first concrete JSON-compatible representation boundary
 for exactly those responsibilities:
 
 1. one reusable closed `GoverningDefinitionDeclaration` record shape; and
@@ -76,14 +84,14 @@ one complete Definition Version. They are separate dimensions even where this
 representation places them in the same closed subobject.
 
 The member names and shapes below are normative only for this representation
-candidate. JSON-compatible does not choose document bytes, UTF-8 rules,
+decision. JSON-compatible does not choose document bytes, UTF-8 rules,
 duplicate-name handling, number handling, member order, canonicalization,
 media type, storage, transport, Schema Resource, validation behavior, or
 Serialization Binding.
 
 ## Accepted basis and precedence
 
-This candidate remains subordinate to and preserves:
+This Accepted decision remains subordinate to and preserves:
 
 1. ARCH-028 and ARCH-029 for Core sovereignty, the two Definition families,
    stable namespaces, child allocation, and independent identity/version;
@@ -607,25 +615,26 @@ source/resource/context pins, evidence, limitations, adverse/restricted
 conditions, observation time, and attributable authority visible. No
 individual result becomes an aggregate pass/fail or consequential decision.
 
-## Candidate lifecycle and stop boundary
+## Accepted lifecycle and integration stop boundary
 
-Issue-contract acceptance comment `5286906192` authorizes only this exact
+Issue-contract acceptance comment `5286906192` authorized only the exact
 documentation candidate, validation, one candidate commit, one Draft pull
 request, transparent non-independent review, and the mandatory exact-head stop.
 
 Candidate preparation, Markdown validity, link validity, review, Draft state,
-repository presence, and mergeability do not accept ARCH-045. A correction may
-fix a candidate defect only within the exact accepted issue scope before
-exact-head acceptance. Any new root member, responsibility, invariant,
-identity/version, package, schema, binding, output/evidence, tooling,
-implementation, execution, or later-layer choice requires separate authority.
+repository presence, and mergeability did not accept ARCH-045. Attributable
+exact-head acceptance comment `5290871158` accepted only candidate commit/tree
+`a92cb298a5106db27f0c6b720a5faa3b6571ddf1` /
+`1a68548638f0ff570639a051bbca65e778642ca4`. The preceding Proposed status
+allocated or activated nothing. Exact-head acceptance and status-only promotion
+establish Accepted status only and make no semantic representation change.
 
-Work must stop for attributable EIGENAAR / Final Authority acceptance of the
-exact candidate commit and complete tree. Status promotion, Ready transition,
-integration, merge, issue closure, branch cleanup, package/bundle work,
-schema/cases, Serialization Binding, Validation Output, Portable Conformance
-Evidence, Tool/Implementation, execution, release, support, certification,
-hosting, and deployment remain unauthorized.
+Work stops before separate integration authority for the exact promotion head
+and complete tree. Ready transition, integration, merge, issue closure, branch
+cleanup, package/bundle work, schema/cases, Serialization Binding, Validation
+Output, Portable Conformance Evidence, Tool/Implementation, execution, release,
+support, certification, hosting, deployment, and every later-layer choice
+remain unauthorized.
 
 ## References
 

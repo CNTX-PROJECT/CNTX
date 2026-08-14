@@ -5,8 +5,8 @@
 CNTX architecture explains the boundaries behind its records, schemas,
 validation, extensions, evidence, and human authority. Public `main` contains
 **44 Accepted and integrated architecture decisions and matching ADRs**. This
-documentation-only branch also contains the Proposed ARCH-045/ADR-0045 pair,
-which is not Accepted or integrated.
+documentation-only branch also contains the Accepted ARCH-045/ADR-0045 pair,
+which is not integrated.
 
 | If you need… | Open… |
 | --- | --- |
@@ -31,7 +31,7 @@ which is not Accepted or integrated.
 | ARCH-042 | Epistemic provenance and freshness Module Definition Schema Resource | Accepted and integrated with one exact schema and 48 separately matched synthetic cases; no Tool support or new evidence instance |
 | ARCH-043 | Context Packet epistemic provenance and freshness Profile JSON representation boundary | Accepted and integrated; one closed external application record, no Core/schema/Tool change or automatic activation |
 | ARCH-044 | Context Packet epistemic provenance and freshness Profile Definition Schema Resource | Accepted and integrated with one closed standalone schema and 72 separately matched operation-based cases; no new execution/evidence instance, activation, or Tool support |
-| ARCH-045 | Governing Definition Declaration and frozen Governing Declaration Set JSON representation boundary | Proposed only; one reusable closed fourteen-member declaration and one closed six-member set preserving 21 responsibilities and 11 invariants, with no identity, schema, package, Binding, Tool, execution, or authority |
+| ARCH-045 | Governing Definition Declaration and frozen Governing Declaration Set JSON representation boundary | Accepted but not integrated; one reusable closed fourteen-member declaration and one closed six-member set preserving 21 responsibilities and 11 invariants, with no identity, schema, package, Binding, Tool, execution, or authority |
 
 Architecture documents state conceptual and normative boundaries. They do not
 by themselves install software, execute a tool, prove conformance, approve a
@@ -699,13 +699,15 @@ pins, the separate Core `203/38/165`, Module `48/8/40`, and Profile `72/11/61`
 inventories, and all 12 Schema Resources. It created no Tool support or new
 execution/evidence instance.
 
-The Proposed [CNTX Governing Definition Declaration and Frozen Governing
+The Accepted [CNTX Governing Definition Declaration and Frozen Governing
 Declaration Set JSON Representation
 Boundary](governing-definition-declaration-set-json-representation-boundary.md)
 and [ADR-0045](adr/0045-governing-definition-declaration-set-json-representation-boundary.md)
-form the bounded documentation-only Phase 4A3.5 candidate under issue #151 and
+form the bounded documentation-only Phase 4A3.5 decision under issue #151 and
 attributable EIGENAAR / Final Authority issue-contract acceptance comment
-`5286906192`. The candidate defines one reusable closed fourteen-member
+`5286906192`. Exact-head candidate-acceptance comment `5290871158` accepts
+candidate commit/tree `a92cb298a5106db27f0c6b720a5faa3b6571ddf1` /
+`1a68548638f0ff570639a051bbca65e778642ca4`. The decision defines one reusable closed fourteen-member
 `GoverningDefinitionDeclaration`, maps every exact ARCH-031 declaration
 responsibility once, and defines one closed six-member frozen
 `GoverningDeclarationSet` preserving all eleven set invariants. It stays outside
@@ -713,8 +715,10 @@ every existing Core Artifact Instance and creates no declaration/set identity
 or version, package/bundle representation, media type, canonical serialization,
 Schema Resource, testcase, Binding, Tool/Implementation, execution, evidence,
 approval, release, support, certification, hosting, deployment, or later-phase
-authority. Proposed status, validation, review, Draft state, and mergeability do
-not accept or integrate the candidate.
+authority. The preceding Proposed status allocated or activated nothing.
+Exact-head acceptance and status-only promotion establish Accepted status only;
+validation, review, Draft state, repository presence, and mergeability do not
+integrate the decision.
 
 </details>
 
