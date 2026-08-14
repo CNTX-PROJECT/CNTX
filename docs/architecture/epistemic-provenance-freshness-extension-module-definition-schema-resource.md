@@ -336,9 +336,16 @@ Resource, historical test manifest, practice input, Tool/Implementation,
 dependency, lock, rule, workflow, CI, setting, tag, Release, evidence instance,
 or historical authority record.
 
-Core-invalid data cannot become Core-valid through this separate resource. A
-future Profile representation and Profile Schema Resource remain separate
-narrowing-only tasks. H2.4 remains an independent visitor assessment.
+Core-invalid data cannot become Core-valid through this separate resource. The
+then-future narrowing-only Profile representation and Profile Schema Resource
+were later Accepted and governed-integrated under their own separate authority
+through ARCH-043 and ARCH-044. That later lifecycle changes no ARCH-042 schema,
+case, identifier, assertion, execution, evidence, or semantic boundary.
+
+H2.4 [issue #138](https://github.com/CNTX-PROJECT/CNTX/issues/138) was later
+closed as `not planned` without an independent visitor review. That visitor
+criterion remains `Not Evaluated`; closure does not establish H2.4 completion,
+approval, certification, or current-`main` quality evidence.
 
 ## Security and privacy
 

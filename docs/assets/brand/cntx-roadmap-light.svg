@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" role="img" aria-labelledby="title desc">
   <title id="title">CNTX roadmap for light backgrounds</title>
-  <desc id="desc">Now: the public specification, bounded validation slice, and source and freshness Definitions are integrated. Next governed decision: exact Definition Schema Resources and cases. Later: practical pilots and adversarial evaluation. No target date is claimed.</desc>
+  <desc id="desc">Now: the public foundation through ARCH-045 is integrated, including 45 decisions and 12 Schema Resources at bounded Phase 4A3.5. Next: every technical subject requires its own new, exact, attributable task contract; this correction authorizes no follow-on execution. Later: execution and task controls, team authority and context, a vertical slice, adapters, and reassessment remain separate. No target date is claimed.</desc>
   <defs>
     <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0l10 5-10 5z" fill="#7C3AED"/></marker>
   </defs>
@@ -13,23 +13,23 @@
       <circle cx="30" cy="29" r="13" fill="#7C3AED"/>
       <path d="M23 29l5 5 10-12" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
       <text x="52" y="35" fill="#5B21B6" font-size="13" font-weight="700">NOW · INTEGRATED</text>
-      <text x="22" y="76" fill="#111018" font-size="20" font-weight="700">Foundation + bounded slice</text>
-      <text x="22" y="103" fill="#575260" font-size="14">39 decisions · 203 cases · 13 rules</text>
-      <text x="22" y="126" fill="#575260" font-size="14">ARCH-038/039 Definitions accepted</text>
+      <text x="22" y="76" fill="#111018" font-size="20" font-weight="700">Foundation + ARCH-045</text>
+      <text x="22" y="103" fill="#575260" font-size="14">45 decisions · 12 Schema Resources</text>
+      <text x="22" y="126" fill="#575260" font-size="14">Phase 4A3.5 integrated</text>
     </g>
     <g transform="translate(440 116)">
       <rect width="320" height="142" rx="20" fill="#FFFFFF" stroke="#7C3AED" stroke-width="3"/>
       <text x="22" y="35" fill="#5B21B6" font-size="13" font-weight="700">NEXT · SEPARATE GATE</text>
-      <text x="22" y="76" fill="#111018" font-size="20" font-weight="700">Exact schema resources</text>
-      <text x="22" y="103" fill="#575260" font-size="14">Assertions, cases and expected results</text>
-      <text x="22" y="126" fill="#575260" font-size="14">Not started or authorized by this image</text>
+      <text x="22" y="76" fill="#111018" font-size="20" font-weight="700">New exact task contract</text>
+      <text x="22" y="103" fill="#575260" font-size="14">Every next subject needs authority</text>
+      <text x="22" y="126" fill="#575260" font-size="14">No execution from this correction</text>
     </g>
     <g transform="translate(828 116)">
       <rect width="320" height="142" rx="20" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="2" stroke-dasharray="8 7"/>
       <text x="22" y="35" fill="#5B21B6" font-size="13" font-weight="700">LATER · AFTER PROOF</text>
-      <text x="22" y="76" fill="#111018" font-size="20" font-weight="700">Practical pilots</text>
-      <text x="22" y="103" fill="#575260" font-size="14">Real vertical slice and adapters</text>
-      <text x="22" y="126" fill="#575260" font-size="14">Adversarial tests and reassessment</text>
+      <text x="22" y="76" fill="#111018" font-size="20" font-weight="700">Separate later layers</text>
+      <text x="22" y="103" fill="#575260" font-size="14">Execution, task + team controls</text>
+      <text x="22" y="126" fill="#575260" font-size="14">Vertical slice, adapters, reassessment</text>
     </g>
   </g>
   <g stroke="#7C3AED" stroke-width="3" marker-end="url(#arrow)"><path d="M372 187h58"/><path d="M760 187h58"/></g>
