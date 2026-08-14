@@ -9,7 +9,7 @@ synthetic structural examples whose expectations preceded validation.
 
 | Quick view | Meaning |
 | --- | --- |
-| **Status** | Accepted Profile Definition Schema Resource `1.0.0`; governed integration pending |
+| **Status** | Accepted and integrated Profile Definition Schema Resource `1.0.0` |
 | **Subject** | One ARCH-043 application record governed by the exact Profile Definition `1.0.0` |
 | **Machine result** | Schema-local structural valid or invalid for one exact candidate schema and materialized instance |
 | **Not established** | External packet/task equality, complete source association, source truth, Profile conformance, approval, Tool support, release, deployment, or authority |
@@ -72,12 +72,24 @@ bound to candidate commit
 
 Issue-contract acceptance authorized only the bounded Proposed candidate
 lifecycle. That preceding Proposed status allocated or activated nothing.
-Exact-head candidate acceptance and this status-only promotion establish
+Exact-head candidate acceptance and the status-only promotion established
 Accepted status only. Status promotion, branch or repository presence, schema
 or JSON parsing, meta-schema validity, case evaluation, Draft state, review, or
-mergeability does not integrate, allocate, or activate the Definition Schema
-Identifier, Schema Version, canonical `$id`, or Schema Resource. Separately
-governed integration to `main` remains required.
+mergeability did not by themselves integrate, allocate, or activate the
+Definition Schema Identifier, Schema Version, canonical `$id`, or Schema
+Resource.
+
+Separately attributable integration-authority comment
+[5286010813](https://github.com/CNTX-PROJECT/CNTX/issues/149#issuecomment-5286010813)
+authorized PR #150 integration of the unchanged Accepted candidate. PR #150 is
+merged at public `main` commit
+`1d9e4667d68cce6e0289464c821bcd95e1d355ae` and tree
+`3feeb1ce8ce2c0a7b45b88e42c9d668fc856d367`. Completion comment
+[5286062635](https://github.com/CNTX-PROJECT/CNTX/issues/149#issuecomment-5286062635)
+records issue #149 as closed/completed and its exact task branch as absent
+locally and publicly. Integration preserves all original Proposed, correction-
+addendum, failed-validation, replacement-validation, candidate, acceptance,
+promotion, execution, evidence, integration, completion, and cleanup pins.
 
 ## Purpose and exact decision boundary
 
@@ -136,7 +148,7 @@ exact sources and issue #149, it is outside this decision.
 | Schema language and dialect | JSON Schema Draft 2020-12 |
 | Media type | `application/schema+json` |
 | Canonical repository path | `schemas/profiles/context-packet-epistemic-provenance-freshness/1.0.0/schema.json` |
-| Document Status | Accepted; governed integration pending |
+| Document Status | Accepted and integrated through PR #150 under integration-authority comment `5286010813` |
 
 The Definition Schema Identifier is version independent. Schema Version is a
 separate exact semantic-version coordinate. The version-qualified `$id`
@@ -659,8 +671,14 @@ The preceding Proposed status consumed no active Schema Version. Candidate
 preparation, schema or JSON parsing, meta-schema validity, operation
 materialization, fixed expected results, validation, review, Draft state,
 repository presence, and mergeability allocated or activated nothing.
-Exact-head acceptance and this status-only promotion establish Accepted status
-only; governed integration remains a separate later decision.
+Exact-head acceptance and the status-only promotion established Accepted status
+only; integration remained separately governed and was later authorized by
+comment `5286010813`. PR #150 integrated the unchanged Accepted decision at
+public `main` commit/tree
+`1d9e4667d68cce6e0289464c821bcd95e1d355ae` /
+`3feeb1ce8ce2c0a7b45b88e42c9d668fc856d367`. Completion comment `5286062635`
+records issue #149 closed/completed and the task branch absent locally and
+publicly.
 
 A correction may fix documentary or schema error before exact-head acceptance
 only within the one authorized candidate commit. Any later normative member,
@@ -668,12 +686,14 @@ token, assertion, limit, case, expected result, or structural change requires a
 separately governed compatibility and version decision. Historical sources and
 authority records remain source preserved.
 
-This Accepted decision authorizes no Ready transition, second review, merge,
-issue closure, branch cleanup, Profile instance, Tool expansion, workflow, CI,
-release, tag,
+Neither integration nor completion changed the accepted schema/case bytes,
+repeated an execution, created evidence, or expanded the minimal Tool's exact
+ten-schema supported set. All 12 Schema Resources and the separate Core
+`203/38/165`, Module `48/8/40`, and Profile `72/11/61` inventories remain
+unchanged. No Profile instance, Tool expansion, workflow, CI, release, tag,
 publication outside the governed records, support, certification, hosting,
 deployment, H2.4 completion, Phase 4A3.5, pilot, adapter, portability work,
-adversarial evaluation, or later phase.
+adversarial evaluation, or later-phase authority follows.
 
 ## References
 

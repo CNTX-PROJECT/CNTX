@@ -4,8 +4,8 @@
 
 CNTX architecture explains the boundaries behind its records, schemas,
 validation, extensions, evidence, and human authority. Public `main` contains
-**43 Accepted and integrated architecture decisions and matching ADRs**. This
-status-promotion branch also contains the Accepted ARCH-044/ADR-0044 pair,
+**44 Accepted and integrated architecture decisions and matching ADRs**. This
+documentation-only branch also contains the Accepted ARCH-045/ADR-0045 pair,
 which is not integrated.
 
 | If you need… | Open… |
@@ -14,7 +14,7 @@ which is not integrated.
 | The nine collaboration records | [Artifact-contract index](../contracts/README.md) |
 | Machine-readable Core structure | [Schema index](../../schemas/README.md) |
 | The bounded executable practice slice | [Validation and integrity slice](../../tools/minimal-validation-integrity-slice/README.md) and [Accepted corrective version boundary](minimal-validation-integrity-slice-corrective-version-boundary.md) |
-| The source/provenance/freshness layer | [ARCH-038](epistemic-provenance-freshness-extension-module-definition.md), [ARCH-039](context-packet-epistemic-provenance-freshness-profile-definition.md), [ARCH-040](epistemic-provenance-freshness-extension-module-json-representation-boundary.md), integrated [ARCH-042](epistemic-provenance-freshness-extension-module-definition-schema-resource.md), integrated [ARCH-043](context-packet-epistemic-provenance-freshness-profile-json-representation-boundary.md), and Accepted [ARCH-044](context-packet-epistemic-provenance-freshness-profile-definition-schema-resource.md) with integration pending |
+| The source/provenance/freshness layer | [ARCH-038](epistemic-provenance-freshness-extension-module-definition.md), [ARCH-039](context-packet-epistemic-provenance-freshness-profile-definition.md), [ARCH-040](epistemic-provenance-freshness-extension-module-json-representation-boundary.md), integrated [ARCH-042](epistemic-provenance-freshness-extension-module-definition-schema-resource.md), integrated [ARCH-043](context-packet-epistemic-provenance-freshness-profile-json-representation-boundary.md), and integrated [ARCH-044](context-packet-epistemic-provenance-freshness-profile-definition-schema-resource.md) |
 | Current and future order | [Roadmap](../../ROADMAP.md) |
 
 ## Architecture map
@@ -30,7 +30,8 @@ which is not integrated.
 | ARCH-041 | Minimal validation and integrity slice corrective version boundary | Accepted and integrated; corrective Implementation `1.0.1` is integrated with its bounded evidence, while portability and CI remain separate |
 | ARCH-042 | Epistemic provenance and freshness Module Definition Schema Resource | Accepted and integrated with one exact schema and 48 separately matched synthetic cases; no Tool support or new evidence instance |
 | ARCH-043 | Context Packet epistemic provenance and freshness Profile JSON representation boundary | Accepted and integrated; one closed external application record, no Core/schema/Tool change or automatic activation |
-| ARCH-044 | Context Packet epistemic provenance and freshness Profile Definition Schema Resource | Accepted with one closed standalone schema and 72 separately matched operation-based cases; governed integration pending, with no activation or Tool support |
+| ARCH-044 | Context Packet epistemic provenance and freshness Profile Definition Schema Resource | Accepted and integrated with one closed standalone schema and 72 separately matched operation-based cases; no new execution/evidence instance, activation, or Tool support |
+| ARCH-045 | Governing Definition Declaration and frozen Governing Declaration Set JSON representation boundary | Accepted but not integrated; one reusable closed fourteen-member declaration and one closed six-member set preserving 21 responsibilities and 11 invariants, with no identity, schema, package, Binding, Tool, execution, or authority |
 
 Architecture documents state conceptual and normative boundaries. They do not
 by themselves install software, execute a tool, prove conformance, approve a
@@ -684,9 +685,40 @@ uniqueness, opaque-reference resolution, graph semantics, source truth,
 conformance, or authority. The preceding Proposed status allocated or activated
 nothing. Accepted status, status promotion, repository presence, schema
 parseability, case materialization, validation, review, Ready state, or
-mergeability does not integrate or activate the resource. The successful local
+mergeability did not by themselves integrate or activate the resource. The successful local
 candidate validation remains bound only to the accepted candidate commit/tree
 above; this status-only promotion is not a new execution or evidence instance.
+
+Separately governed integration-authority comment `5286010813` and completion
+comment `5286062635` record PR #150 integration at public `main` commit/tree
+`1d9e4667d68cce6e0289464c821bcd95e1d355ae` /
+`3feeb1ce8ce2c0a7b45b88e42c9d668fc856d367`; issue #149 is closed/completed and
+the task branch is absent locally and publicly. Integration preserved the
+accepted schema and case bytes, all historical lifecycle and execution/evidence
+pins, the separate Core `203/38/165`, Module `48/8/40`, and Profile `72/11/61`
+inventories, and all 12 Schema Resources. It created no Tool support or new
+execution/evidence instance.
+
+The Accepted [CNTX Governing Definition Declaration and Frozen Governing
+Declaration Set JSON Representation
+Boundary](governing-definition-declaration-set-json-representation-boundary.md)
+and [ADR-0045](adr/0045-governing-definition-declaration-set-json-representation-boundary.md)
+form the bounded documentation-only Phase 4A3.5 decision under issue #151 and
+attributable EIGENAAR / Final Authority issue-contract acceptance comment
+`5286906192`. Exact-head candidate-acceptance comment `5290871158` accepts
+candidate commit/tree `a92cb298a5106db27f0c6b720a5faa3b6571ddf1` /
+`1a68548638f0ff570639a051bbca65e778642ca4`. The decision defines one reusable closed fourteen-member
+`GoverningDefinitionDeclaration`, maps every exact ARCH-031 declaration
+responsibility once, and defines one closed six-member frozen
+`GoverningDeclarationSet` preserving all eleven set invariants. It stays outside
+every existing Core Artifact Instance and creates no declaration/set identity
+or version, package/bundle representation, media type, canonical serialization,
+Schema Resource, testcase, Binding, Tool/Implementation, execution, evidence,
+approval, release, support, certification, hosting, deployment, or later-phase
+authority. The preceding Proposed status allocated or activated nothing.
+Exact-head acceptance and status-only promotion establish Accepted status only;
+validation, review, Draft state, repository presence, and mergeability do not
+integrate the decision.
 
 </details>
 

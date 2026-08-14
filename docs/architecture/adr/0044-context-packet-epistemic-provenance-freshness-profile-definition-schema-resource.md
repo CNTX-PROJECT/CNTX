@@ -9,6 +9,10 @@
 - **Exact-head acceptance comment:** [5285702199](https://github.com/CNTX-PROJECT/CNTX/issues/149#issuecomment-5285702199)
 - **Baseline:** commit `eec00d698512533c3d40f985fe5d588cd03438f1`, tree `87a2d5aaf01e3f7c45b4fb4e3d8aa40a21dc046a`
 - **Accepted candidate:** commit `7420e5d179ab965bfda58780df4f41a08a0b62de`, tree `56d1808cb95f3dd5a0b5d84f2a8e440891dff5e6`
+- **Integration-authority comment:** [5286010813](https://github.com/CNTX-PROJECT/CNTX/issues/149#issuecomment-5286010813)
+- **Integrated pull request:** [#150](https://github.com/CNTX-PROJECT/CNTX/pull/150)
+- **Integrated `main`:** commit `1d9e4667d68cce6e0289464c821bcd95e1d355ae`, tree `3feeb1ce8ce2c0a7b45b88e42c9d668fc856d367`
+- **Completion comment:** [5286062635](https://github.com/CNTX-PROJECT/CNTX/issues/149#issuecomment-5286062635)
 - **Decision:** Accepted ARCH-044 — CNTX Context Packet Epistemic Provenance and Freshness Profile Definition Schema Resource
 
 ## Context
@@ -33,8 +37,14 @@ this decision or schema. Attributable exact-head candidate acceptance comment
 `5285702199` accepts only commit/tree
 `7420e5d179ab965bfda58780df4f41a08a0b62de` /
 `56d1808cb95f3dd5a0b5d84f2a8e440891dff5e6`. The preceding Proposed status
-allocated or activated nothing; this status-only promotion records the Accepted
-decision while governed integration remains separate.
+allocated or activated nothing; the status-only promotion recorded the Accepted
+decision while governed integration remained separate. Later integration-
+authority comment `5286010813` authorized PR #150, which integrated the
+unchanged decision at public `main` commit/tree
+`1d9e4667d68cce6e0289464c821bcd95e1d355ae` /
+`3feeb1ce8ce2c0a7b45b88e42c9d668fc856d367`. Completion comment `5286062635`
+records issue #149 closed/completed and the task branch absent locally and
+publicly.
 
 ## Accepted decision
 
@@ -210,9 +220,14 @@ or authority.
 
 ## Candidate execution boundary
 
-The schema, base instance, operations, and expected results must be frozen in
-one immutable candidate commit before the one isolated evaluation permitted by
-issue #149. No such candidate execution or evidence exists yet.
+The schema, base instance, operations, and expected results were frozen in one
+immutable candidate commit before the one isolated evaluation permitted by
+issue #149. The authorized local, non-governing, non-independent run remains
+bound only to accepted candidate commit/tree
+`7420e5d179ab965bfda58780df4f41a08a0b62de` /
+`56d1808cb95f3dd5a0b5d84f2a8e440891dff5e6`: all `72/72` expectations matched
+with zero mismatches. Status promotion and integration were not new executions
+or evidence instances.
 
 The permitted later evaluation is bounded to one non-independent native-
 Windows environment, exact 64-bit CPython `3.13.14`, the five exact dependency
@@ -324,8 +339,13 @@ link-pin-only source-preserving correction addendum `5280408320`, and the
 evaluation-count-only correction addendum `5280832992` authorized candidate
 preparation only. Attributable exact-head candidate acceptance comment
 `5285702199` plus this status-only promotion establish Accepted status for the
-unchanged candidate. They do not integrate, allocate, or activate the
-Definition Schema Identifier, Schema Version, canonical `$id`, or resource.
+unchanged candidate. They did not by themselves integrate, allocate, or activate
+the Definition Schema Identifier, Schema Version, canonical `$id`, or resource.
+Separately attributable comment `5286010813` authorized PR #150 integration of
+that exact Accepted candidate; completion comment `5286062635` records issue
+#149 closed/completed and branch cleanup after public `main` commit/tree
+`1d9e4667d68cce6e0289464c821bcd95e1d355ae` /
+`3feeb1ce8ce2c0a7b45b88e42c9d668fc856d367`.
 
 Candidate preparation, parsing, meta-schema checking, case materialization,
 fixed expectations, static validation, the candidate-bound local validation,
@@ -334,8 +354,9 @@ repository presence, and mergeability grant no integration, activation,
 release, deployment, or authority. The status-only promotion is not a new
 execution or evidence instance.
 
-Work must stop at one separately attributable EIGENAAR / Final Authority exact-
-promotion-head integration-candidate acceptance gate. Ready transition, second
-review, merge, issue closure, branch cleanup, Tool support, release, deployment,
-H2.4 completion, Phase 4A3.5, and all later phases require new separate
-authority.
+Integration and completion preserved all accepted schema/case bytes, original
+lifecycle and execution/evidence pins, all 12 Schema Resources, and the separate
+Core `203/38/165`, Module `48/8/40`, and Profile `72/11/61` inventories. They
+created no Tool support, new execution/evidence instance, Profile instance,
+aggregate result, release, deployment, H2.4 completion, Phase 4A3.5, or later-
+phase authority.
