@@ -4,7 +4,8 @@
 
 CNTX architecture explains the boundaries behind its records, schemas,
 validation, extensions, evidence, and human authority. Public `main` contains
-**45 Accepted and integrated architecture decisions and matching ADRs**.
+**45 Accepted and integrated architecture decisions and matching ADRs**. This
+separate candidate proposes one ARCH-046 decision and matching ADR.
 
 | If you need… | Open… |
 | --- | --- |
@@ -13,6 +14,7 @@ validation, extensions, evidence, and human authority. Public `main` contains
 | Machine-readable Core structure | [Schema index](../../schemas/README.md) |
 | The bounded executable practice slice | [Validation and integrity slice](../../tools/minimal-validation-integrity-slice/README.md) and [Accepted corrective version boundary](minimal-validation-integrity-slice-corrective-version-boundary.md) |
 | The source/provenance/freshness layer | [ARCH-038](epistemic-provenance-freshness-extension-module-definition.md), [ARCH-039](context-packet-epistemic-provenance-freshness-profile-definition.md), [ARCH-040](epistemic-provenance-freshness-extension-module-json-representation-boundary.md), integrated [ARCH-042](epistemic-provenance-freshness-extension-module-definition-schema-resource.md), integrated [ARCH-043](context-packet-epistemic-provenance-freshness-profile-json-representation-boundary.md), integrated [ARCH-044](context-packet-epistemic-provenance-freshness-profile-definition-schema-resource.md), and integrated [ARCH-045](governing-definition-declaration-set-json-representation-boundary.md) |
+| The Proposed execution/task-control boundary | [ARCH-046](execution-task-control-architecture-boundary.md) and [ADR-0046](adr/0046-execution-task-control-architecture-boundary.md) |
 | Current and future order | [Roadmap](../../ROADMAP.md) |
 
 ## Architecture map
@@ -30,6 +32,7 @@ validation, extensions, evidence, and human authority. Public `main` contains
 | ARCH-043 | Context Packet epistemic provenance and freshness Profile JSON representation boundary | Accepted and integrated; one closed external application record, no Core/schema/Tool change or automatic activation |
 | ARCH-044 | Context Packet epistemic provenance and freshness Profile Definition Schema Resource | Accepted and integrated with one closed standalone schema and 72 separately matched operation-based cases; no new execution/evidence instance, activation, or Tool support |
 | ARCH-045 | Governing Definition Declaration and frozen Governing Declaration Set JSON representation boundary | Accepted and integrated; one reusable closed fourteen-member declaration and one closed six-member set preserving 21 responsibilities and 11 invariants, with no identity, schema, package, Binding, Tool, execution, or authority |
+| ARCH-046 | Execution and Task Control Architecture Boundary | Proposed; exact Task Contract remains controlling, with four descriptive complexity classes, 27 separate participant/control dimensions, and twelve conceptual responsibility groups; no representation, mechanism, Tool/Implementation, execution, or authority |
 
 Architecture documents state conceptual and normative boundaries. They do not
 by themselves install software, execute a tool, prove conformance, approve a
@@ -735,6 +738,43 @@ the current local, origin-tracking, and live public-remote views. This is a
 present-state observation only; it does not reconstruct, replace, or
 retroactively grant historical cleanup authority. Integration changed none of
 the representation semantics or later-layer non-effect boundaries above.
+
+The Proposed [CNTX Execution and Task Control Architecture
+Boundary](execution-task-control-architecture-boundary.md) and
+[ADR-0046](adr/0046-execution-task-control-architecture-boundary.md) form the
+documentation-only decision candidate under issue
+[#155](https://github.com/CNTX-PROJECT/CNTX/issues/155) and attributable
+EIGENAAR / Final Authority issue-contract acceptance comment
+[5297998742](https://github.com/CNTX-PROJECT/CNTX/issues/155#issuecomment-5297998742).
+The exact accepted baseline is commit/tree
+`255e781daf8d691c769c84a71dfdb3bd5b95ad4c` /
+`558f87c5ce31500624a7d0a3839b368611735729`, with 208 paths.
+
+The Proposed decision keeps one exact approved Task Contract Artifact Revision
+controlling, defines exactly four descriptive complexity classes — `light`,
+`moderate`, `heavy`, and `complex` — independently from risk and authority,
+distinguishes exactly 27 participant/control dimensions, and identifies
+exactly twelve conceptual task-control responsibility groups. Minimum context,
+least privilege, exact pins, caller-supplied closed frozen input, offline-first
+processing, visible fail-closed conditions, non-aggregation, separate
+evidence/review/decision, `automaticAuthority: false`, and final human
+authority remain explicit.
+
+ARCH-046 allocates no Artifact Type, record, representation, field, token,
+state, schema, Tool/Implementation/Model/Skill identity or version, capability,
+provider, participant, access, selection, routing, scheduler, orchestrator,
+workflow, execution, output, evidence, support, release, deployment, or
+authority. Team authority/context, a vertical slice, adapters, portability/CI,
+reassessment, release, and deployment remain separate later gates.
+
+The source and ADR remain Proposed. Issue-contract acceptance authorized only
+candidate preparation, validation, one commit, one push, one Draft PR, one
+transparent non-independent `COMMENTED` review, and the mandatory exact-head
+stop. Candidate preparation, validation, review, Draft state, repository
+presence, and mergeability do not accept or integrate ARCH-046. Exact-head
+candidate acceptance, status-only promotion, Ready, integration, merge,
+closure, synchronization, cleanup, and every later technical phase remain
+separately governed.
 
 </details>
 
