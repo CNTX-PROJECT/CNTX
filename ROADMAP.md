@@ -9,23 +9,23 @@
   <a href="CONTRIBUTING.md">Contribute</a>
 </p>
 
-This page answers three questions: what is integrated now, what decision comes
-next, and what remains later. The complete public baseline and decision history
-are preserved below in an expandable technical section.
+This page answers three questions: what is integrated now, what requires its
+own separate next gate, and what remains later. The complete public baseline
+and decision history are preserved below in an expandable technical section.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/brand/cntx-roadmap-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="docs/assets/brand/cntx-roadmap-light.svg">
-  <img alt="CNTX roadmap: the public specification, bounded validation slice, source and freshness Definitions, Module representation and schema resource, and Profile application representation are integrated; the Accepted Profile Definition Schema Resource awaits governed integration" src="docs/assets/brand/cntx-roadmap-light.svg">
+  <img alt="CNTX roadmap: the public foundation through ARCH-045 is integrated; every next technical subject requires its own exact attributable contract; execution and task controls, team authority and context, a vertical slice, adapters, and reassessment remain separate" src="docs/assets/brand/cntx-roadmap-light.svg">
 </picture>
 
 ## Simple view
 
 | Horizon | State | Meaning |
 | --- | --- | --- |
-| **Now** | Phase 4A3.5 Accepted; integration pending | ARCH-045 documents one reusable fourteen-member Governing Definition Declaration and one frozen six-member Governing Declaration Set; no identity, schema, package, Binding, Tool, execution, or authority is created |
-| **Next** | Exact promotion-head integration gate | Separately decide whether to integrate the exact Accepted ARCH-045 promotion head; Accepted status, review, Draft state, and mergeability do not integrate it |
-| **Later** | Not started | Governed integration, practical pilots, adapters, portability/CI, and adversarial evaluation all remain separate later decisions |
+| **Now** | Phase 4A3.5 / ARCH-045 Accepted and integrated | Public `main` contains the bounded fourteen-member Governing Definition Declaration and frozen six-member Governing Declaration Set decision; no identity, schema, package, Binding, Tool, execution, or authority was created |
+| **Next** | Separate attributable contract required | This correction authorizes no follow-on technical execution; every next technical subject requires its own new, exact, attributable contract |
+| **Later** | Separate gates | Execution and task controls, team authority and context, a real vertical slice, adapters, portability/CI, adversarial reassessment, release, and deployment remain separately governed |
 
 `Integrated` does not mean finished, supported, certified, or ready to deploy.
 `Next` does not mean authorized. CNTX advances through exact evidence and
@@ -51,7 +51,7 @@ implementation.
 | 1 | Validation and integrity contracts | Complete | Exact rules, tool identity, implementation identity, inputs, outputs, limits, and evidence |
 | 2 | Local offline runner | Complete for the minimal slice | Reproducible execution of the 10 schemas and 203 synthetic cases |
 | 3 | Cross-record integrity | Complete for the bounded practice slice | Detect missing, duplicate, ambiguous, or conflicting links between supplied records |
-| 4 | Source, provenance and freshness controls | ARCH-038 through ARCH-044 and corrective Implementation `1.0.1` are integrated; ARCH-045 is Accepted but not integrated | Separately decide integration of the exact ARCH-045 promotion head |
+| 4 | Source, provenance and freshness controls | ARCH-038 through ARCH-045 and corrective Implementation `1.0.1` are integrated at their bounded scopes | Phase 4A3.5 is complete at its documentation-only boundary; any further source, provenance, or freshness subject requires its own exact attributable contract |
 | 5 | Execution and task controls | Later | Record tool/model/skill identity and classify light, moderate, heavy, or complex work separately from risk |
 | 6 | Team authority and temporary context | Later | Support multiple principals, isolated task capsules, cleanup, and bounded archives |
 | 7 | One real vertical-slice test | Later | Run one small task from contract and context through evidence, review, decision candidate, and cleanup |
@@ -494,10 +494,12 @@ comment `5286010813` and completion comment `5286062635`. Issue #149 is
 closed/completed and its task branch is absent locally and publicly. All 12
 Schema Resources and the separate Core `203/38/165`, Module `48/8/40`, and
 Profile `72/11/61` inventories are integrated without a new execution/evidence
-instance or Tool support. ARCH-045 integration, release, and deployment require
-separate authority.
+instance or Tool support. ARCH-045 was later integrated under its own separate
+authority. This correction authorizes no follow-on technical execution; every
+next subject requires its own exact attributable contract, while release and
+deployment remain separate.
 
-### Accepted Phase 4A3.5 Governing Declaration JSON representation boundary
+### Accepted and integrated Phase 4A3.5 Governing Declaration JSON representation boundary
 
 Issue #151 and attributable EIGENAAR / Final Authority issue-contract
 acceptance comment `5286906192` authorize one documentation-only ARCH-045
@@ -517,17 +519,47 @@ provenance, limitations, conditions, claim scope, lifecycle traceability,
 attributable roles, non-aggregation, fail-closed processing, and
 `automaticAuthority: false` distinct and visible. It remains outside every
 existing Core Artifact Instance. The preceding Proposed status allocated or
-activated nothing. Exact-head acceptance and status-only promotion establish
-Accepted status only; they create no declaration/set identity or version,
+activated nothing. Exact-head acceptance and status-only promotion established
+Accepted status only; they created no declaration/set identity or version,
 package/bundle representation, media type, canonical serialization, Schema
 Resource, testcase, Binding, Tool/Implementation, execution, evidence,
 approval, release, support, certification, hosting, deployment, merge,
-integration, or later-phase authority. Integration and cleanup remain separate
-gates.
+integration, or later-phase authority. At that lifecycle stage, integration and
+cleanup remained separate gates.
+
+Separately governed work promoted the exact Accepted candidate to commit/tree
+`c7b8c5cc793516197726344e7d30c12d0a86f514` /
+`ed4e8bb0cb6479d88064d5c8330cf7fa1a3208c4` and integrated that exact promotion
+tree through [PR #152](https://github.com/CNTX-PROJECT/CNTX/pull/152). The
+expected-head-pinned squash merge produced public `main` commit/tree
+`0bccbb39a56044be3a9c7236dd828b1d1959e7ce` /
+`ed4e8bb0cb6479d88064d5c8330cf7fa1a3208c4`; the promotion and integration
+trees are identical and the promotion-to-integration diff is empty. Completion
+comment [5292133876](https://github.com/CNTX-PROJECT/CNTX/issues/151#issuecomment-5292133876)
+records the integrated result; issue #151 is now `closed/completed`.
+
+The former task branch
+`codex/arch-045-governing-declaration-set-json-representation` is absent from
+the current local, origin-tracking, and live public-remote views. This is a
+present-state observation only; it does not reconstruct, replace, or
+retroactively grant historical cleanup authority. Integration and issue
+completion changed none of the representation semantics or later-layer
+non-effect boundaries above.
+
+### H2.4 administrative disposition
+
+H2.4 [issue #138](https://github.com/CNTX-PROJECT/CNTX/issues/138) is
+`closed/not planned`. The independent visitor review was not performed and
+remains `Not Evaluated`, so H2.4 completion is not established. Closure
+discontinued that issue's remaining formal visitor-review stage; it created no
+visitor evidence, aggregate result, approval, certification, release or
+deployment fitness, or current-`main` quality assessment. Any future
+spontaneous opinion is informal, not retroactive H2.4 evidence, and requires a
+new attributable decision before governed recording or action.
 
 ## Detailed project status and roadmap
 
-CNTX has completed its initial Public-Core specification and prerelease cycle within the Accepted ARCH-027 completion and maintenance boundary. Public `main` records [Accepted and integrated architecture through ARCH-044](docs/architecture/README.md), including the bounded corrective Implementation Version `1.0.1`, its exact evidence, the Module Definition Schema Resource with 48 cases, the closed Profile application representation, and the Profile Definition Schema Resource with 72 cases. This documentation-only branch contains one additional Accepted ARCH-045 architecture source/ADR pair awaiting separately governed integration, plus nine Accepted artifact contracts, 12 integrated Accepted Schema Resources, one integrated minimal validation and integrity Tool/Implementation slice, and one immutable unsupported prerelease, 0.1.0-prealpha.1. CNTX remains model-, vendor-, runtime-, and domain-agnostic. The separate case inventories remain Core `203/38/165`, Module `48/8/40`, and Profile `72/11/61`; no descriptive sum or ratio is an aggregate verdict. ARCH-044 integration created no Tool support or new execution/evidence instance. Accepted ARCH-045 creates no identity/version, schema, package/bundle, Binding, Tool/Implementation, execution/evidence, or authority. Neither the integrated slice, either Accepted Definition, either representation boundary, ARCH-041, corrective Implementation `1.0.1`, ARCH-042 through ARCH-044, nor Accepted ARCH-045 creates a supported release line, support service, certification, hosting, deployment, workflow, CI, product, or final-human authority.
+CNTX has completed its initial Public-Core specification and prerelease cycle within the Accepted ARCH-027 completion and maintenance boundary. Public `main` records [45 Accepted and integrated architecture decisions and matching ADRs through ARCH-045](docs/architecture/README.md), including the bounded corrective Implementation Version `1.0.1` and its exact evidence, the Module Definition Schema Resource with 48 cases, the closed Profile application representation, the Profile Definition Schema Resource with 72 cases, and the documentation-only Governing Definition Declaration and frozen Governing Declaration Set representation boundary. It also contains nine Accepted artifact contracts, 12 integrated Accepted Schema Resources, one integrated minimal validation and integrity Tool/Implementation slice, and one immutable unsupported prerelease, `0.1.0-prealpha.1`. CNTX remains model-, vendor-, runtime-, and domain-agnostic. The separate case inventories remain Core `203/38/165`, Module `48/8/40`, and Profile `72/11/61`; no descriptive sum or ratio is an aggregate verdict. ARCH-044 integration created no Tool support or new execution/evidence instance. ARCH-045 integration created no identity/version, schema, package/bundle, Binding, Tool/Implementation, execution/evidence, or authority. Neither the integrated slice, either Accepted Definition, either representation boundary, ARCH-041, corrective Implementation `1.0.1`, ARCH-042 through ARCH-045, nor this correction creates a supported release line, support service, certification, hosting, deployment, workflow, CI, product, or final-human authority. This correction authorizes no follow-on technical execution; every next technical subject requires its own exact attributable contract.
 
 The [artifact-contract index](docs/contracts/README.md) includes nine accepted, binding subordinate artifact-specific contracts: Project Charter, Workstream, Task Contract, Context Packet, Execution Result, Evidence Bundle, Review Record, Decision Record, and State Snapshot. None introduces an executable schema, template, validator, state engine, synchronization engine, workflow, runtime, or product functionality. No canonical artifact contract remains listed as future work; the accepted status does not authorize a follow-on phase. CNTX remains a public core that is model-, vendor-, runtime-, and domain-agnostic and remains independent of private reference implementations.
 

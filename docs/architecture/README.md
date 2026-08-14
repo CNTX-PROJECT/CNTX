@@ -4,9 +4,7 @@
 
 CNTX architecture explains the boundaries behind its records, schemas,
 validation, extensions, evidence, and human authority. Public `main` contains
-**44 Accepted and integrated architecture decisions and matching ADRs**. This
-documentation-only branch also contains the Accepted ARCH-045/ADR-0045 pair,
-which is not integrated.
+**45 Accepted and integrated architecture decisions and matching ADRs**.
 
 | If you need… | Open… |
 | --- | --- |
@@ -14,7 +12,7 @@ which is not integrated.
 | The nine collaboration records | [Artifact-contract index](../contracts/README.md) |
 | Machine-readable Core structure | [Schema index](../../schemas/README.md) |
 | The bounded executable practice slice | [Validation and integrity slice](../../tools/minimal-validation-integrity-slice/README.md) and [Accepted corrective version boundary](minimal-validation-integrity-slice-corrective-version-boundary.md) |
-| The source/provenance/freshness layer | [ARCH-038](epistemic-provenance-freshness-extension-module-definition.md), [ARCH-039](context-packet-epistemic-provenance-freshness-profile-definition.md), [ARCH-040](epistemic-provenance-freshness-extension-module-json-representation-boundary.md), integrated [ARCH-042](epistemic-provenance-freshness-extension-module-definition-schema-resource.md), integrated [ARCH-043](context-packet-epistemic-provenance-freshness-profile-json-representation-boundary.md), and integrated [ARCH-044](context-packet-epistemic-provenance-freshness-profile-definition-schema-resource.md) |
+| The source/provenance/freshness layer | [ARCH-038](epistemic-provenance-freshness-extension-module-definition.md), [ARCH-039](context-packet-epistemic-provenance-freshness-profile-definition.md), [ARCH-040](epistemic-provenance-freshness-extension-module-json-representation-boundary.md), integrated [ARCH-042](epistemic-provenance-freshness-extension-module-definition-schema-resource.md), integrated [ARCH-043](context-packet-epistemic-provenance-freshness-profile-json-representation-boundary.md), integrated [ARCH-044](context-packet-epistemic-provenance-freshness-profile-definition-schema-resource.md), and integrated [ARCH-045](governing-definition-declaration-set-json-representation-boundary.md) |
 | Current and future order | [Roadmap](../../ROADMAP.md) |
 
 ## Architecture map
@@ -31,7 +29,7 @@ which is not integrated.
 | ARCH-042 | Epistemic provenance and freshness Module Definition Schema Resource | Accepted and integrated with one exact schema and 48 separately matched synthetic cases; no Tool support or new evidence instance |
 | ARCH-043 | Context Packet epistemic provenance and freshness Profile JSON representation boundary | Accepted and integrated; one closed external application record, no Core/schema/Tool change or automatic activation |
 | ARCH-044 | Context Packet epistemic provenance and freshness Profile Definition Schema Resource | Accepted and integrated with one closed standalone schema and 72 separately matched operation-based cases; no new execution/evidence instance, activation, or Tool support |
-| ARCH-045 | Governing Definition Declaration and frozen Governing Declaration Set JSON representation boundary | Accepted but not integrated; one reusable closed fourteen-member declaration and one closed six-member set preserving 21 responsibilities and 11 invariants, with no identity, schema, package, Binding, Tool, execution, or authority |
+| ARCH-045 | Governing Definition Declaration and frozen Governing Declaration Set JSON representation boundary | Accepted and integrated; one reusable closed fourteen-member declaration and one closed six-member set preserving 21 responsibilities and 11 invariants, with no identity, schema, package, Binding, Tool, execution, or authority |
 
 Architecture documents state conceptual and normative boundaries. They do not
 by themselves install software, execute a tool, prove conformance, approve a
@@ -56,9 +54,9 @@ CONTRACT-008, the [Decision Record artifact contract](../contracts/decision-reco
 
 CONTRACT-009, the [State Snapshot artifact contract](../contracts/state-snapshot-contract.md), is **Accepted**, documentation-only, binding, and subordinate to accepted ARCH-001, ARCH-002, ARCH-003, and accepted CONTRACT-001 through CONTRACT-008. It specializes State Snapshot semantics only and does not alter accepted architecture, any accepted artifact contract, or final human authority. CONTRACT-001 through CONTRACT-009 are **Accepted**.
 
-This architecture documentation is read with the repository [README](../../README.md), [agent instructions](../../AGENTS.md), [governance](../../GOVERNANCE.md), and [security policy](../../SECURITY.md). The README describes the project and its current status. `AGENTS.md` sets execution constraints and source precedence. `GOVERNANCE.md` assigns decision authority and approval. Normative architecture states what the public core requires conceptually; governance assigns who may approve it; implementation is future conforming work; and non-binding discussion is neither an approved decision nor an authority source.
+This architecture documentation is read with the repository [README](../../README.md), [agent instructions](../../AGENTS.md), [governance](../../GOVERNANCE.md), and [security policy](../../SECURITY.md). The README describes the project and its current status. `AGENTS.md` sets execution constraints and source precedence. `GOVERNANCE.md` assigns decision authority and approval. Normative architecture states what the public core requires conceptually; governance assigns who may approve it; every conforming implementation remains subordinate; and non-binding discussion is neither an approved decision nor an authority source.
 
-No executable runtime, selector, retrieval system, provider integration, validator, or product functionality is implemented here. ARCH-009 introduces one Accepted executable Common Artifact Envelope Schema Resource only; it is not an artifact-specific schema, a complete artifact definition, a Serialization Binding, or an implementation.
+The repository contains one bounded local Tool/Implementation slice for its exact supported set. No general runtime, selector, retrieval system, provider integration, supported product, or broad validator is implemented here. ARCH-009 introduces one Accepted executable Common Artifact Envelope Schema Resource only; it is not an artifact-specific schema, a complete artifact definition, a Serialization Binding, or an implementation.
 
 The [Artifact-Specific Schema Family and Canonical Artifact Container Boundary](artifact-specific-schema-family-container-boundary.md) and [ADR-0010](adr/0010-artifact-specific-schema-family-container-boundary.md) are **Accepted**, documentation-only architecture. They allocate nine technology-neutral artifact-specific logical Schema Identities and inactive `1.0.0` targets, select one closed full-artifact root with mandatory `envelope` and `payload`, and pin the envelope location to the exact Accepted Common Artifact Envelope Schema Version `1.0.0`. They create no executable artifact-specific schema or payload, concrete artifact-specific `$id`, active Schema Version, binding, validator, runtime, implementation, release, or deployment; their acceptance authorizes no follow-on phase.
 
@@ -716,9 +714,27 @@ or version, package/bundle representation, media type, canonical serialization,
 Schema Resource, testcase, Binding, Tool/Implementation, execution, evidence,
 approval, release, support, certification, hosting, deployment, or later-phase
 authority. The preceding Proposed status allocated or activated nothing.
-Exact-head acceptance and status-only promotion establish Accepted status only;
-validation, review, Draft state, repository presence, and mergeability do not
-integrate the decision.
+Exact-head acceptance and status-only promotion established Accepted status
+only; validation, review, Draft state, repository presence, and mergeability
+did not integrate the decision.
+
+The Accepted promotion commit/tree is
+`c7b8c5cc793516197726344e7d30c12d0a86f514` /
+`ed4e8bb0cb6479d88064d5c8330cf7fa1a3208c4`. Separately governed
+[PR #152](https://github.com/CNTX-PROJECT/CNTX/pull/152) integrated that exact
+tree into public `main` at commit/tree
+`0bccbb39a56044be3a9c7236dd828b1d1959e7ce` /
+`ed4e8bb0cb6479d88064d5c8330cf7fa1a3208c4`; the promotion-to-integration diff
+is empty and the complete trees are equal. Completion comment
+[5292133876](https://github.com/CNTX-PROJECT/CNTX/issues/151#issuecomment-5292133876)
+records the integrated result; issue #151 is now `closed/completed`.
+
+The former task branch
+`codex/arch-045-governing-declaration-set-json-representation` is absent from
+the current local, origin-tracking, and live public-remote views. This is a
+present-state observation only; it does not reconstruct, replace, or
+retroactively grant historical cleanup authority. Integration changed none of
+the representation semantics or later-layer non-effect boundaries above.
 
 </details>
 

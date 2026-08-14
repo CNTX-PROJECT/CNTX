@@ -10,7 +10,7 @@ schema or package, or give software permission to act.
 
 | Quick view | Meaning |
 | --- | --- |
-| **Status** | Accepted documentation-only representation decision; integration pending |
+| **Status** | Accepted and integrated documentation-only representation decision |
 | **Declaration** | One closed fourteen-member record for one exact active Definition key |
 | **Declaration Set** | One closed six-member root containing exactly one declaration for every and only active Definition key |
 | **Preserved basis** | All 21 ARCH-031 declaration responsibilities and all 11 Declaration Set invariants |
@@ -30,9 +30,9 @@ Accepted decision below.
 
 ## Status and authority
 
-**Document Status:** Accepted; not integrated.
+**Document Status:** Accepted and integrated.
 
-This candidate is governed by
+This decision is governed by
 [issue #151](https://github.com/CNTX-PROJECT/CNTX/issues/151). Attributable
 EIGENAAR / Final Authority acceptance of the exact issue contract is recorded
 in issue comment
@@ -59,9 +59,13 @@ Issue-contract acceptance authorized candidate preparation, validation, one
 candidate commit, one Draft pull request, transparent non-independent review,
 and a mandatory stop. It did not accept ARCH-045 or any candidate commit/tree.
 The exact-head comment above and a separately authorized status-only promotion
-establish Accepted status only. They do not authorize integration, merge, issue
-closure, cleanup, package/bundle work, schema work, tooling, execution,
-evidence, release, or deployment.
+to commit `c7b8c5cc793516197726344e7d30c12d0a86f514` and complete tree
+`ed4e8bb0cb6479d88064d5c8330cf7fa1a3208c4` established Accepted status only.
+They made no semantic representation change and did not themselves authorize
+integration, merge, issue closure, cleanup, package/bundle work, schema work,
+tooling, execution, evidence, release, or deployment. The later separately
+governed integration and issue-completion lifecycle is recorded under
+[Accepted lifecycle and integrated state](#accepted-lifecycle-and-integrated-state).
 
 ## Purpose and exact decision boundary
 
@@ -615,7 +619,7 @@ source/resource/context pins, evidence, limitations, adverse/restricted
 conditions, observation time, and attributable authority visible. No
 individual result becomes an aggregate pass/fail or consequential decision.
 
-## Accepted lifecycle and integration stop boundary
+## Accepted lifecycle and integrated state
 
 Issue-contract acceptance comment `5286906192` authorized only the exact
 documentation candidate, validation, one candidate commit, one Draft pull
@@ -627,14 +631,41 @@ exact-head acceptance comment `5290871158` accepted only candidate commit/tree
 `a92cb298a5106db27f0c6b720a5faa3b6571ddf1` /
 `1a68548638f0ff570639a051bbca65e778642ca4`. The preceding Proposed status
 allocated or activated nothing. Exact-head acceptance and status-only promotion
-establish Accepted status only and make no semantic representation change.
+established Accepted status only and made no semantic representation change.
 
-Work stops before separate integration authority for the exact promotion head
-and complete tree. Ready transition, integration, merge, issue closure, branch
-cleanup, package/bundle work, schema/cases, Serialization Binding, Validation
-Output, Portable Conformance Evidence, Tool/Implementation, execution, release,
-support, certification, hosting, deployment, and every later-layer choice
-remain unauthorized.
+At the Accepted promotion stage, work stopped before separate integration
+authority for promotion commit/tree
+`c7b8c5cc793516197726344e7d30c12d0a86f514` /
+`ed4e8bb0cb6479d88064d5c8330cf7fa1a3208c4`. Ready transition, integration,
+merge, issue closure, branch cleanup, and every later-layer choice were
+unauthorized at that stage. This historical stop remains part of the lifecycle
+provenance.
+
+The later public integration-completion record
+[5292133876](https://github.com/CNTX-PROJECT/CNTX/issues/151#issuecomment-5292133876)
+records the separately governed, expected-head-pinned squash merge of that exact
+promotion head through [PR #152](https://github.com/CNTX-PROJECT/CNTX/pull/152).
+The merge produced public `main` commit
+`0bccbb39a56044be3a9c7236dd828b1d1959e7ce`, with sole parent
+`1d9e4667d68cce6e0289464c821bcd95e1d355ae`, and complete tree
+`ed4e8bb0cb6479d88064d5c8330cf7fa1a3208c4`. The promotion and integration
+trees are identical, and the promotion-to-integration diff is empty. Issue #151
+is `closed/completed`.
+
+The former task branch
+`codex/arch-045-governing-declaration-set-json-representation` is absent from
+the current local, origin-tracking, and live public-remote views. This is a
+current-state observation only. It does not reconstruct, replace, or
+retroactively grant historical cleanup authority. Issue #151 contains no
+separate public cleanup-authority comment after the integration-completion
+record's explicit cleanup stop.
+
+Integration and issue completion create no declaration/set identity or version,
+package/bundle, media type, canonical serialization, Schema Resource, testcase,
+Serialization Binding, Validation Output, Portable Conformance Evidence,
+Tool/Implementation, execution, evidence, aggregate result, automatic
+authority, release, support, certification, hosting, or deployment. Every such
+later-layer choice remains separately governed.
 
 ## References
 
