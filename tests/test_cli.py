@@ -33,7 +33,7 @@ class CliTests(unittest.TestCase):
         result = run_cli("--help", cwd=REPOSITORY_ROOT)
 
         self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertIn("{init}", result.stdout)
+        self.assertIn("{init,pack,verify}", result.stdout)
         self.assertIn("controleerbaar contextpakket", result.stdout)
 
     def test_init_creates_expected_template(self) -> None:

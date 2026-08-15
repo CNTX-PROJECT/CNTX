@@ -3,9 +3,17 @@
 from __future__ import annotations
 
 import argparse
+from collections.abc import Sequence
+import os
 from pathlib import Path
 import sys
-from collections.abc import Sequence
+
+from .core import (
+    OpenCntxError,
+    format_verify_report,
+    pack_project,
+    verify_package,
+)
 
 
 CONFIG_TEMPLATE = '''[task]
@@ -33,6 +41,15 @@ def build_parser() -> argparse.ArgumentParser:
         "init",
         help="maak veilig een opencntx.toml-sjabloon in de huidige map",
     )
+    subparsers.add_parser(
+        "pack",
+        help="maak atomair CONTEXT.md en manifest.json uit de gekozen bronnen",
+    )
+    verify_parser = subparsers.add_parser(
+        "verify",
+        help="controleer een pakket op gewijzigde, ontbrekende en nieuwe bronnen",
+    )
+    verify_parser.add_argument("package", help="pakketmap, bijvoorbeeld .opencntx/latest")
     return parser
 
 
@@ -61,4 +78,21 @@ def main(argv: Sequence[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     if args.command == "init":
         return init_project(Path.cwd())
+    try:
+        if args.command == "pack":
+            package_path, manifest = pack_project(Path.cwd())
+            print(
+                f"Gemaakt: {package_path} "
+                f"({manifest['package']['file_count']} bestanden, "
+                f"{manifest['package']['total_bytes']} bytes)"
+            )
+            return 0
+        if args.command == "verify":
+            package_argument = args.package.replace("\\", os.sep)
+            report = verify_package(Path(package_argument))
+            print(format_verify_report(report))
+            return 0 if report.ok else 1
+    except OpenCntxError as exc:
+        print(f"Fout: {exc}", file=sys.stderr)
+        return 2
     return 2
