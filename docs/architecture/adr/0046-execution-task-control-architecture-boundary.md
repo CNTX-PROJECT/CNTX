@@ -7,7 +7,7 @@
 - **Exact-head candidate-acceptance comment:** [5298435115](https://github.com/CNTX-PROJECT/CNTX/pull/156#issuecomment-5298435115)
 - **Baseline:** commit `255e781daf8d691c769c84a71dfdb3bd5b95ad4c`, complete tree `558f87c5ce31500624a7d0a3839b368611735729`, 208 paths
 - **Accepted candidate:** commit `d8ce562b7d4cf3cb10188216e706f6d4dbebe53a`, complete tree `375345f27d6b122349b8cb7ba4eda5749d372856`
-- **Decision:** Accepted ARCH-046 — CNTX Execution and Task Control Architecture Boundary; not integrated
+- **Decision:** Accepted and integrated ARCH-046 — CNTX Execution and Task Control Architecture Boundary
 
 ## Context
 
@@ -125,7 +125,7 @@ gates.
 - Individual outcomes remain non-aggregated and final consequential authority
   remains human.
 
-## Accepted lifecycle and integration stop
+## Accepted lifecycle and integration record
 
 Candidate preparation, validation, review, Draft state, repository presence,
 and mergeability did not accept or integrate ARCH-046. Exact-head acceptance
@@ -135,7 +135,31 @@ comment `5298435115` accepted only candidate commit/tree
 allocated or activated nothing. Exact-head acceptance and status-only promotion
 establish Accepted status only and make no semantic architecture change.
 
-Work stops before separate integration authority for the exact promotion head
-and complete tree. Ready, integration, merge, closure, synchronization,
-cleanup, representation, implementation, execution, release, and deployment
-remain separately governed.
+At that lifecycle stage, work stopped before separate integration authority
+for the exact promotion head and complete tree. Ready, integration, merge,
+closure, synchronization, cleanup, representation, implementation, execution,
+release, and deployment remained separately governed.
+
+Separately governed work promoted the exact Accepted candidate to commit/tree
+`7f0b76242c6bcc22b52a0ef7e227126798454364` /
+`87ad12a0af13fd0578c84a29175de5d0c75ed7ce` and integrated that exact promotion
+tree through [PR #156](https://github.com/CNTX-PROJECT/CNTX/pull/156). The
+expected-head-protected squash merge produced public `main` commit/tree
+`198bcd24abd0db9c9b13fb8be4df31168c6b6312` /
+`87ad12a0af13fd0578c84a29175de5d0c75ed7ce`, with the prior public `main`
+commit `255e781daf8d691c769c84a71dfdb3bd5b95ad4c` as sole parent. The promotion
+and integration trees are identical and the complete promotion-to-integration
+diff is empty. Completion comment
+[5300854335](https://github.com/CNTX-PROJECT/CNTX/issues/155#issuecomment-5300854335)
+records the integrated result; issue #155 is `closed/completed` and local,
+origin-tracking, and live public `main` were synchronized to the integrated
+commit/tree.
+
+The former task branch
+`codex/arch-046-execution-task-control-architecture-boundary` is absent from
+the current local, origin-tracking, and live public-remote views. This is a
+present-state observation only; it does not reconstruct, replace, or
+retroactively grant historical cleanup authority. Integration, completion,
+synchronization, and branch absence changed none of this decision or its
+consequences. This correction authorizes no follow-on technical execution;
+every next subject requires its own exact attributable contract.

@@ -54,12 +54,12 @@ result.
 
 | Public foundation | Current state |
 | --- | --- |
-| Architecture | 45 Accepted and integrated decisions with 45 matching ADRs |
+| Architecture | 46 Accepted and integrated decisions with 46 matching ADRs |
 | Collaboration records | 9 Accepted artifact contracts |
-| Machine-readable structure | 12 Accepted and integrated JSON Schema Draft 2020-12 resources: 10 Core, 1 Module, and 1 Profile resource at version `1.0.0` |
+| Machine-readable structure | 12 Accepted and integrated JSON Schema Draft 2020-12 resources with 12 separate case manifests: 10 Core, 1 Module, and 1 Profile resource at version `1.0.0` |
 | Synthetic examples | Separate matched inventories: Core `203/38/165`, Module `48/8/40`, and Profile `72/11/61`; no combined score or verdict |
 | Bounded executable slice | One local offline Tool/Implementation slice for its exact ten-schema supported set, plus 13 separate cross-record rules; not a general or supported validator |
-| Source and freshness layer | ARCH-038 through ARCH-045 and corrective Implementation `1.0.1` are integrated at their bounded documented scopes |
+| Source, freshness, and task-control layers | ARCH-038 through ARCH-046 and corrective Implementation `1.0.1` are integrated at their bounded documented scopes |
 | Public release | Immutable, unsupported prerelease `0.1.0-prealpha.1` |
 
 > [!IMPORTANT]
@@ -74,17 +74,16 @@ result.
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/brand/cntx-roadmap-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="docs/assets/brand/cntx-roadmap-light.svg">
-  <img alt="CNTX roadmap: the public foundation through ARCH-045 is integrated; every next technical subject requires its own exact attributable contract; execution and task controls, team context, a vertical slice, adapters, and reassessment remain separate" src="docs/assets/brand/cntx-roadmap-light.svg">
+  <img alt="CNTX roadmap: the public foundation through ARCH-046 is integrated; this correction authorizes no follow-on technical execution and every next subject requires its own exact attributable contract; team authority and temporary context, a vertical slice, adapters, and reassessment remain separate" src="docs/assets/brand/cntx-roadmap-light.svg">
 </picture>
 
-- **Now:** 45 architecture decisions and matching ADRs, 12 Schema Resources,
-  the bounded validation/integrity slice, ARCH-038 through ARCH-045, and
+- **Now:** 46 architecture decisions and matching ADRs, 12 Schema Resources,
+  the bounded validation/integrity slice, ARCH-038 through ARCH-046, and
   corrective Implementation `1.0.1` are integrated at their bounded scopes.
 - **Next:** this correction authorizes no follow-on technical execution; every
   next roadmap subject requires its own new, exact, attributable contract.
-- **Later:** execution and task controls, team authority and temporary context,
-  one real vertical slice, adapters, and adversarial reassessment remain
-  separate gates.
+- **Later:** team authority and temporary context, one real vertical slice,
+  adapters, and adversarial reassessment remain separate gates.
 
 There is no promised completion date. Every consequential step requires its
 own governed decision. See the [full roadmap and technical history](ROADMAP.md).

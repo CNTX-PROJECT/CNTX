@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" role="img" aria-labelledby="title desc">
   <title id="title">CNTX roadmap for light backgrounds</title>
-  <desc id="desc">Now: the public foundation through ARCH-045 is integrated, including 45 decisions and 12 Schema Resources at bounded Phase 4A3.5. Next: every technical subject requires its own new, exact, attributable task contract; this correction authorizes no follow-on execution. Later: execution and task controls, team authority and context, a vertical slice, adapters, and reassessment remain separate. No target date is claimed.</desc>
+  <desc id="desc">Now: the public foundation through ARCH-046 is integrated, including 46 decisions and 12 Schema Resources at their bounded documented scopes. Next: every technical subject requires its own new, exact, attributable task contract; this correction authorizes no follow-on technical execution. Later: team authority and temporary context, a vertical slice, adapters, and reassessment remain separate. No target date is claimed.</desc>
   <defs>
     <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0l10 5-10 5z" fill="#7C3AED"/></marker>
   </defs>
@@ -13,9 +13,9 @@
       <circle cx="30" cy="29" r="13" fill="#7C3AED"/>
       <path d="M23 29l5 5 10-12" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
       <text x="52" y="35" fill="#5B21B6" font-size="13" font-weight="700">NOW · INTEGRATED</text>
-      <text x="22" y="76" fill="#111018" font-size="20" font-weight="700">Foundation + ARCH-045</text>
-      <text x="22" y="103" fill="#575260" font-size="14">45 decisions · 12 Schema Resources</text>
-      <text x="22" y="126" fill="#575260" font-size="14">Phase 4A3.5 integrated</text>
+      <text x="22" y="76" fill="#111018" font-size="20" font-weight="700">Foundation + ARCH-046</text>
+      <text x="22" y="103" fill="#575260" font-size="14">46 decisions · 12 Schema Resources</text>
+      <text x="22" y="126" fill="#575260" font-size="14">Execution/task boundary integrated</text>
     </g>
     <g transform="translate(440 116)">
       <rect width="320" height="142" rx="20" fill="#FFFFFF" stroke="#7C3AED" stroke-width="3"/>
@@ -28,7 +28,7 @@
       <rect width="320" height="142" rx="20" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="2" stroke-dasharray="8 7"/>
       <text x="22" y="35" fill="#5B21B6" font-size="13" font-weight="700">LATER · AFTER PROOF</text>
       <text x="22" y="76" fill="#111018" font-size="20" font-weight="700">Separate later layers</text>
-      <text x="22" y="103" fill="#575260" font-size="14">Execution, task + team controls</text>
+      <text x="22" y="103" fill="#575260" font-size="14">Team authority + temporary context</text>
       <text x="22" y="126" fill="#575260" font-size="14">Vertical slice, adapters, reassessment</text>
     </g>
   </g>

@@ -12,7 +12,7 @@ control record, choose a participant, run anything, or approve a result.
 
 | Quick view | Meaning |
 | --- | --- |
-| **Status** | Accepted documentation-only conceptual architecture decision; integration pending |
+| **Status** | Accepted and integrated documentation-only conceptual architecture decision |
 | **Controlling authority** | One exact approved Task Contract Artifact Revision |
 | **Complexity** | Exactly `light`, `moderate`, `heavy`, or `complex`, separate from risk and authority |
 | **Participants** | 27 distinct reference/control dimensions, with no identity or capability allocation |
@@ -27,14 +27,14 @@ control record, choose a participant, run anything, or approve a result.
 - [Twelve task-control groups](#exact-twelve-conceptual-task-control-responsibility-groups)
 - [Fail-closed controls](#closed-offline-first-and-fail-closed-boundary)
 - [Representation and implementation boundary](#representation-identity-implementation-and-later-layer-boundary)
-- [Accepted lifecycle and integration stop](#accepted-lifecycle-and-integration-stop)
+- [Accepted lifecycle and integration record](#accepted-lifecycle-and-integration-record)
 
 This visitor layer is non-normative and adds no requirement beyond the
 complete Accepted decision below.
 
 ## Status and authority
 
-**Document Status:** Accepted; not integrated.
+**Document Status:** Accepted and integrated.
 
 This decision is governed by
 [issue #155](https://github.com/CNTX-PROJECT/CNTX/issues/155). Attributable
@@ -445,7 +445,7 @@ No Tool, model, skill, schema, case, runner, scheduler, workflow, or other
 mechanism is executed in this documentation-only decision. No prior execution
 or evidence is reinterpreted as ARCH-046 validation.
 
-## Accepted lifecycle and integration stop
+## Accepted lifecycle and integration record
 
 Issue-contract acceptance comment `5297998742` authorized only this exact
 documentation candidate, validation, one candidate commit, one push, one
@@ -461,12 +461,37 @@ allocated or activated nothing. Exact-head acceptance and status-only
 promotion establish Accepted status only and make no semantic architecture
 change.
 
-Work stops before separate integration authority for the exact promotion head
-and complete tree. Ready, integration, merge, issue closure, main
-synchronization, branch cleanup, representation/schema work,
-Tool/Implementation, model/skill selection, execution/evidence, team
+At that lifecycle stage, work stopped before separate integration authority
+for the exact promotion head and complete tree. Ready, integration, merge,
+issue closure, main synchronization, branch cleanup, representation/schema
+work, Tool/Implementation, model/skill selection, execution/evidence, team
 authority/context, vertical slice, adapter, reassessment, release, support,
-certification, hosting, and deployment each remain separately governed.
+certification, hosting, and deployment each remained separately governed.
+
+Separately governed work promoted the exact Accepted candidate to commit/tree
+`7f0b76242c6bcc22b52a0ef7e227126798454364` /
+`87ad12a0af13fd0578c84a29175de5d0c75ed7ce` and integrated that exact promotion
+tree through [PR #156](https://github.com/CNTX-PROJECT/CNTX/pull/156). The
+expected-head-protected squash merge produced public `main` commit/tree
+`198bcd24abd0db9c9b13fb8be4df31168c6b6312` /
+`87ad12a0af13fd0578c84a29175de5d0c75ed7ce`, with the prior public `main`
+commit `255e781daf8d691c769c84a71dfdb3bd5b95ad4c` as sole parent. The promotion
+and integration trees are identical and the complete promotion-to-integration
+diff is empty. Completion comment
+[5300854335](https://github.com/CNTX-PROJECT/CNTX/issues/155#issuecomment-5300854335)
+records the integrated result; issue #155 is `closed/completed`. Local,
+origin-tracking, and live public `main` were synchronized to the integrated
+commit/tree.
+
+The former task branch
+`codex/arch-046-execution-task-control-architecture-boundary` is absent from
+the current local, origin-tracking, and live public-remote views. This is a
+present-state observation only; it does not reconstruct, replace, or
+retroactively grant historical cleanup authority. Integration, completion,
+synchronization, and branch absence changed none of this decision's conceptual
+semantics or later-layer non-effect boundaries. This correction authorizes no
+follow-on technical execution; every next subject requires its own exact
+attributable contract.
 
 ## References
 
