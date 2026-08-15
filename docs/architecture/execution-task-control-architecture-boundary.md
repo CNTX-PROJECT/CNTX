@@ -6,13 +6,13 @@ CNTX needs a stable way to describe how demanding a task is and which exact
 tools, implementations, models, skills, or people participate without turning
 those descriptions into permission, risk, correctness, or approval.
 
-Proposed ARCH-046 defines that conceptual boundary. The exact approved Task
+Accepted ARCH-046 defines that conceptual boundary. The exact approved Task
 Contract still controls what may happen. This decision does not create a task-
 control record, choose a participant, run anything, or approve a result.
 
 | Quick view | Meaning |
 | --- | --- |
-| **Status** | Proposed documentation-only conceptual architecture decision |
+| **Status** | Accepted documentation-only conceptual architecture decision; integration pending |
 | **Controlling authority** | One exact approved Task Contract Artifact Revision |
 | **Complexity** | Exactly `light`, `moderate`, `heavy`, or `complex`, separate from risk and authority |
 | **Participants** | 27 distinct reference/control dimensions, with no identity or capability allocation |
@@ -27,14 +27,14 @@ control record, choose a participant, run anything, or approve a result.
 - [Twelve task-control groups](#exact-twelve-conceptual-task-control-responsibility-groups)
 - [Fail-closed controls](#closed-offline-first-and-fail-closed-boundary)
 - [Representation and implementation boundary](#representation-identity-implementation-and-later-layer-boundary)
-- [Candidate lifecycle and current stop](#proposed-candidate-lifecycle-and-current-stop)
+- [Accepted lifecycle and integration stop](#accepted-lifecycle-and-integration-stop)
 
 This visitor layer is non-normative and adds no requirement beyond the
-complete Proposed decision below.
+complete Accepted decision below.
 
 ## Status and authority
 
-**Document Status:** Proposed.
+**Document Status:** Accepted; not integrated.
 
 This decision is governed by
 [issue #155](https://github.com/CNTX-PROJECT/CNTX/issues/155). Attributable
@@ -55,14 +55,20 @@ existing paths change, the complete candidate comparison additionally proves
 all 205 unchanged baseline paths byte-for-byte and mode-for-mode identical.
 This stronger proof changes no allowlist or authority boundary.
 
-Issue-contract acceptance authorizes candidate preparation, validation, one
+Attributable EIGENAAR / Final Authority exact-head acceptance is recorded in
+PR comment
+[5298435115](https://github.com/CNTX-PROJECT/CNTX/pull/156#issuecomment-5298435115),
+bound only to candidate commit
+`d8ce562b7d4cf3cb10188216e706f6d4dbebe53a` and complete tree
+`375345f27d6b122349b8cb7ba4eda5749d372856`.
+
+Issue-contract acceptance authorized candidate preparation, validation, one
 candidate commit, one push, one Draft pull request, one transparent non-
-independent `COMMENTED` review, and a mandatory stop. It does not accept
-ARCH-046 or any candidate commit/tree. This architecture source and its ADR
-remain Proposed until separate attributable exact-head candidate acceptance
-and any separately authorized status-only promotion. Integration, merge,
-closure, synchronization, cleanup, representation, implementation, execution,
-release, and deployment remain later authority gates.
+independent `COMMENTED` review, and a mandatory stop. It did not accept
+ARCH-046 or any candidate commit/tree. The exact-head comment above and this
+separately authorized status-only promotion establish Accepted status only.
+They do not authorize integration, merge, closure, synchronization, cleanup,
+representation, implementation, execution, release, or deployment.
 
 ## Purpose and exact decision boundary
 
@@ -439,24 +445,28 @@ No Tool, model, skill, schema, case, runner, scheduler, workflow, or other
 mechanism is executed in this documentation-only decision. No prior execution
 or evidence is reinterpreted as ARCH-046 validation.
 
-## Proposed candidate lifecycle and current stop
+## Accepted lifecycle and integration stop
 
-Issue-contract acceptance comment `5297998742` authorizes only this exact
+Issue-contract acceptance comment `5297998742` authorized only this exact
 documentation candidate, validation, one candidate commit, one push, one
 Draft pull request, one transparent non-independent `COMMENTED` review, and
 the mandatory exact-head stop.
 
 Candidate preparation, Markdown/link validity, review, Draft state,
-repository presence, and mergeability do not accept or integrate ARCH-046.
-The architecture and ADR remain Proposed. They allocate or activate nothing.
+repository presence, and mergeability did not accept or integrate ARCH-046.
+Attributable exact-head acceptance comment `5298435115` accepted only
+candidate commit/tree `d8ce562b7d4cf3cb10188216e706f6d4dbebe53a` /
+`375345f27d6b122349b8cb7ba4eda5749d372856`. The preceding Proposed status
+allocated or activated nothing. Exact-head acceptance and status-only
+promotion establish Accepted status only and make no semantic architecture
+change.
 
-Work must stop after candidate publication and review before separate
-attributable exact-head candidate acceptance. Status-only promotion, Ready
-transition, integration, merge, issue closure, main synchronization, branch
-cleanup, representation/schema work, Tool/Implementation, model/skill
-selection, execution/evidence, team authority/context, vertical slice,
-adapter, reassessment, release, support, certification, hosting, and
-deployment each remain separately governed.
+Work stops before separate integration authority for the exact promotion head
+and complete tree. Ready, integration, merge, issue closure, main
+synchronization, branch cleanup, representation/schema work,
+Tool/Implementation, model/skill selection, execution/evidence, team
+authority/context, vertical slice, adapter, reassessment, release, support,
+certification, hosting, and deployment each remain separately governed.
 
 ## References
 

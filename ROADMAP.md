@@ -16,16 +16,16 @@ and decision history are preserved below in an expandable technical section.
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/brand/cntx-roadmap-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="docs/assets/brand/cntx-roadmap-light.svg">
-  <img alt="CNTX roadmap: the public foundation through ARCH-045 is integrated; Proposed ARCH-046 documents an execution and task-control boundary and awaits exact-head candidate acceptance; team authority and context, a vertical slice, adapters, and reassessment remain separate" src="docs/assets/brand/cntx-roadmap-light.svg">
+  <img alt="CNTX roadmap: the public foundation through ARCH-045 is integrated; Accepted ARCH-046 documents an execution and task-control boundary and awaits separately governed integration; team authority and context, a vertical slice, adapters, and reassessment remain separate" src="docs/assets/brand/cntx-roadmap-light.svg">
 </picture>
 
 ## Simple view
 
 | Horizon | State | Meaning |
 | --- | --- | --- |
-| **Now** | Proposed ARCH-046 candidate | One documentation-only conceptual Execution and Task Control boundary proposes four descriptive complexity classes, 27 separate participant/control dimensions, and twelve responsibility groups while the exact Task Contract remains controlling; no representation or execution is created |
-| **Next** | Separate exact-head candidate acceptance | Candidate preparation, validation, review, Draft state, and mergeability do not accept or integrate ARCH-046; every later lifecycle action requires its own attributable authority |
-| **Later** | Separate gates | Status promotion and integration, then team authority and context, a real vertical slice, adapters, portability/CI, adversarial reassessment, release, and deployment remain separately governed |
+| **Now** | ARCH-046 Accepted; integration pending | One documentation-only conceptual Execution and Task Control boundary defines four descriptive complexity classes, 27 separate participant/control dimensions, and twelve responsibility groups while the exact Task Contract remains controlling; no representation or execution is created |
+| **Next** | Exact promotion-head integration gate | Separately decide whether to integrate the exact Accepted ARCH-046 promotion head; Accepted status, review, Draft state, and mergeability do not integrate it |
+| **Later** | Separate gates | Governed integration, then team authority and context, a real vertical slice, adapters, portability/CI, adversarial reassessment, release, and deployment remain separately governed |
 
 `Integrated` does not mean finished, supported, certified, or ready to deploy.
 `Next` does not mean authorized. CNTX advances through exact evidence and
@@ -52,7 +52,7 @@ implementation.
 | 2 | Local offline runner | Complete for the minimal slice | Reproducible execution of the 10 schemas and 203 synthetic cases |
 | 3 | Cross-record integrity | Complete for the bounded practice slice | Detect missing, duplicate, ambiguous, or conflicting links between supplied records |
 | 4 | Source, provenance and freshness controls | ARCH-038 through ARCH-045 and corrective Implementation `1.0.1` are integrated at their bounded scopes | Phase 4A3.5 is complete at its documentation-only boundary; any further source, provenance, or freshness subject requires its own exact attributable contract |
-| 5 | Execution and task controls | Proposed ARCH-046 candidate; exact-head acceptance pending | Keep the exact Task Contract controlling; define `light`, `moderate`, `heavy`, and `complex` separately from risk and authority; preserve participant, context, output, evidence, review, and human-decision dimensions without creating a representation or mechanism |
+| 5 | Execution and task controls | ARCH-046 Accepted but not integrated | Keep the exact Task Contract controlling; define `light`, `moderate`, `heavy`, and `complex` separately from risk and authority; preserve participant, context, output, evidence, review, and human-decision dimensions without creating a representation or mechanism |
 | 6 | Team authority and temporary context | Later | Support multiple principals, isolated task capsules, cleanup, and bounded archives |
 | 7 | One real vertical-slice test | Later | Run one small task from contract and context through evidence, review, decision candidate, and cleanup |
 | 8 | Adapters and reassessment | Later | Assess an optional OpenSpec mapping, one runtime adapter, adversarial tests, and the next human decision |
@@ -546,18 +546,24 @@ retroactively grant historical cleanup authority. Integration and issue
 completion changed none of the representation semantics or later-layer
 non-effect boundaries above.
 
-### Proposed ARCH-046 execution and task control architecture boundary
+### Accepted ARCH-046 execution and task control architecture boundary
 
 Issue [#155](https://github.com/CNTX-PROJECT/CNTX/issues/155) and attributable
 EIGENAAR / Final Authority issue-contract acceptance comment
 [5297998742](https://github.com/CNTX-PROJECT/CNTX/issues/155#issuecomment-5297998742)
-authorize one documentation-only Proposed candidate from exact public baseline
+authorized one documentation-only Proposed candidate from exact public baseline
 commit/tree `255e781daf8d691c769c84a71dfdb3bd5b95ad4c` /
 `558f87c5ce31500624a7d0a3839b368611735729`, with 208 paths. The accepted
 issue body is pinned at 34,282 Unicode characters, 34,328 UTF-8 bytes, and
 SHA-256 `65e12417356511214087a8ea8e1db716aa0aca0a53a73d8bb4e4c2ad32aab5d0`.
 
-The Proposed decision keeps one exact approved Task Contract Artifact Revision
+Attributable exact-head candidate-acceptance comment
+[5298435115](https://github.com/CNTX-PROJECT/CNTX/pull/156#issuecomment-5298435115)
+accepts candidate commit/tree
+`d8ce562b7d4cf3cb10188216e706f6d4dbebe53a` /
+`375345f27d6b122349b8cb7ba4eda5749d372856`.
+
+The Accepted decision keeps one exact approved Task Contract Artifact Revision
 controlling. It defines exactly four descriptive work-complexity classes —
 `light`, `moderate`, `heavy`, and `complex` — independently from risk,
 consequence, authority, priority, urgency, cost, duration, uncertainty,
@@ -582,11 +588,12 @@ deployment. Team or multiple-principal authority, temporary context, a real
 vertical slice, adapters, portability/CI, reassessment, release, and
 deployment remain separate later roadmap gates.
 
-The architecture source and ADR remain Proposed. Candidate preparation,
-validation, one transparent non-independent `COMMENTED` review, Draft state,
-repository presence, and mergeability do not accept or integrate ARCH-046.
-The current stop is before separate attributable exact-head candidate
-acceptance. Status-only promotion, Ready, integration, merge, closure,
+The preceding Proposed status allocated or activated nothing. Exact-head
+acceptance and status-only promotion establish Accepted status only; candidate
+preparation, validation, one transparent non-independent `COMMENTED` review,
+Draft state, repository presence, and mergeability do not integrate ARCH-046.
+The current stop is before separate governed integration authority for the
+exact promotion head and complete tree. Ready, integration, merge, closure,
 synchronization, cleanup, and every later technical phase remain separately
 governed.
 
@@ -603,7 +610,7 @@ new attributable decision before governed recording or action.
 
 ## Detailed project status and roadmap
 
-CNTX has completed its initial Public-Core specification and prerelease cycle within the Accepted ARCH-027 completion and maintenance boundary. Public `main` records [45 Accepted and integrated architecture decisions and matching ADRs through ARCH-045](docs/architecture/README.md); this separate candidate proposes one ARCH-046 decision and matching ADR. The Accepted foundation includes the bounded corrective Implementation Version `1.0.1` and its exact evidence, the Module Definition Schema Resource with 48 cases, the closed Profile application representation, the Profile Definition Schema Resource with 72 cases, and the documentation-only Governing Definition Declaration and frozen Governing Declaration Set representation boundary. It also contains nine Accepted artifact contracts, 12 integrated Accepted Schema Resources, one integrated minimal validation and integrity Tool/Implementation slice, and one immutable unsupported prerelease, `0.1.0-prealpha.1`. CNTX remains model-, vendor-, runtime-, and domain-agnostic. The separate case inventories remain Core `203/38/165`, Module `48/8/40`, and Profile `72/11/61`; no descriptive sum or ratio is an aggregate verdict. Proposed ARCH-046 creates no representation, Tool/Implementation, model/skill selection, execution/evidence, support, release, deployment, or authority and does not raise the Accepted architecture count. Candidate preparation, validation, review, Draft state, and mergeability accept or integrate nothing. Every later lifecycle action requires its own exact attributable authority.
+CNTX has completed its initial Public-Core specification and prerelease cycle within the Accepted ARCH-027 completion and maintenance boundary. Public `main` records [45 Accepted and integrated architecture decisions and matching ADRs through ARCH-045](docs/architecture/README.md); this separate branch contains one additional Accepted ARCH-046 decision and matching ADR awaiting separately governed integration. The Accepted foundation includes the bounded corrective Implementation Version `1.0.1` and its exact evidence, the Module Definition Schema Resource with 48 cases, the closed Profile application representation, the Profile Definition Schema Resource with 72 cases, and the documentation-only Governing Definition Declaration and frozen Governing Declaration Set representation boundary. It also contains nine Accepted artifact contracts, 12 integrated Accepted Schema Resources, one integrated minimal validation and integrity Tool/Implementation slice, and one immutable unsupported prerelease, `0.1.0-prealpha.1`. CNTX remains model-, vendor-, runtime-, and domain-agnostic. The separate case inventories remain Core `203/38/165`, Module `48/8/40`, and Profile `72/11/61`; no descriptive sum or ratio is an aggregate verdict. Accepted ARCH-046 creates no representation, Tool/Implementation, model/skill selection, execution/evidence, support, release, deployment, or authority. Exact-head acceptance, status promotion, validation, review, Draft state, and mergeability do not integrate it. Every later lifecycle action requires its own exact attributable authority.
 
 The [artifact-contract index](docs/contracts/README.md) includes nine accepted, binding subordinate artifact-specific contracts: Project Charter, Workstream, Task Contract, Context Packet, Execution Result, Evidence Bundle, Review Record, Decision Record, and State Snapshot. None introduces an executable schema, template, validator, state engine, synchronization engine, workflow, runtime, or product functionality. No canonical artifact contract remains listed as future work; the accepted status does not authorize a follow-on phase. CNTX remains a public core that is model-, vendor-, runtime-, and domain-agnostic and remains independent of private reference implementations.
 

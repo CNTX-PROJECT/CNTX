@@ -1,11 +1,13 @@
 # ADR-0046: CNTX Execution and Task Control Architecture Boundary
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-08-14
 - **Issue:** [#155](https://github.com/CNTX-PROJECT/CNTX/issues/155)
 - **Issue-contract acceptance comment:** [5297998742](https://github.com/CNTX-PROJECT/CNTX/issues/155#issuecomment-5297998742)
+- **Exact-head candidate-acceptance comment:** [5298435115](https://github.com/CNTX-PROJECT/CNTX/pull/156#issuecomment-5298435115)
 - **Baseline:** commit `255e781daf8d691c769c84a71dfdb3bd5b95ad4c`, complete tree `558f87c5ce31500624a7d0a3839b368611735729`, 208 paths
-- **Decision:** Proposed ARCH-046 — CNTX Execution and Task Control Architecture Boundary
+- **Accepted candidate:** commit `d8ce562b7d4cf3cb10188216e706f6d4dbebe53a`, complete tree `375345f27d6b122349b8cb7ba4eda5749d372856`
+- **Decision:** Accepted ARCH-046 — CNTX Execution and Task Control Architecture Boundary; not integrated
 
 ## Context
 
@@ -23,11 +25,13 @@ that slice, choosing participants, introducing a representation, or granting
 execution authority.
 
 Issue #155 and attributable EIGENAAR / Final Authority issue-contract
-acceptance comment `5297998742` authorize one documentation-only Proposed
-candidate and a stop before exact-head candidate acceptance. They do not
-accept ARCH-046 or any candidate commit/tree.
+acceptance comment `5297998742` authorized one documentation-only Proposed
+candidate and a stop before exact-head candidate acceptance. Attributable
+exact-head acceptance comment `5298435115` accepts only the candidate commit
+and complete tree recorded above. Separately authorized status-only promotion
+establishes Accepted status without integration.
 
-## Proposed decision
+## Accepted decision
 
 Define one conceptual Execution and Task Control Architecture Boundary with:
 
@@ -121,15 +125,17 @@ gates.
 - Individual outcomes remain non-aggregated and final consequential authority
   remains human.
 
-## Lifecycle and current stop
+## Accepted lifecycle and integration stop
 
-The architecture source and this ADR remain Proposed. Candidate preparation,
-validation, review, Draft state, repository presence, and mergeability do not
-accept or integrate ARCH-046 and allocate or activate nothing.
+Candidate preparation, validation, review, Draft state, repository presence,
+and mergeability did not accept or integrate ARCH-046. Exact-head acceptance
+comment `5298435115` accepted only candidate commit/tree
+`d8ce562b7d4cf3cb10188216e706f6d4dbebe53a` /
+`375345f27d6b122349b8cb7ba4eda5749d372856`. The preceding Proposed status
+allocated or activated nothing. Exact-head acceptance and status-only promotion
+establish Accepted status only and make no semantic architecture change.
 
-After one candidate commit, one push, one Draft PR, complete validation, and
-one transparent non-independent `COMMENTED` review bound to the exact
-candidate commit and tree, work stops before separate attributable exact-head
-candidate acceptance. Status-only promotion, Ready, integration, merge,
-closure, synchronization, cleanup, representation, implementation, execution,
-release, and deployment remain separately governed.
+Work stops before separate integration authority for the exact promotion head
+and complete tree. Ready, integration, merge, closure, synchronization,
+cleanup, representation, implementation, execution, release, and deployment
+remain separately governed.
