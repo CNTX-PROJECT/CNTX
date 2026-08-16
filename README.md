@@ -132,6 +132,72 @@ technische freshnessstatus is geen inhoudelijke waarheid of OWNER-goedkeuring.
 De catalogus bevat geen originele bronbytes, volledige samenvattingen,
 embeddings of vectoren.
 
+### Begrensde taak met OWNER-gates
+
+Eén lokale taak kan als een controleerbare keten worden vastgelegd. De normale
+volgorde is:
+
+```text
+ARCHITECT-voorstel
+→ exacte OWNER-goedkeuring
+→ uitvoering geregistreerd
+→ resultaat en bewijs ingeleverd
+→ ARCHITECT-controle
+→ exacte OWNER-aanvaarding
+→ lokaal afrondingsbewijs
+```
+
+Begin met één voorstel dat minimaal één officieel inputbestand, toegestane
+actie, verboden actie en acceptatiecriterium vastpint:
+
+```powershell
+opencntx workspace task propose TASK-20260816-0001 `
+  --title "Controle elektrische offerte" `
+  --goal "Controleer de offerte tegen het goedgekeurde hoofdstuk." `
+  --done "Resultaat bevat afwijkingen, bewijs en open vragen." `
+  --executor-role "ROLE-ELEKTRICIEN" `
+  --input "CHAPTERS/CH-ELEKTRICITEIT/CHAPTER.md" `
+  --allow "Lees uitsluitend de gepinde input" `
+  --forbid "Geen externe verzending" `
+  --expected-output "Eén lokaal resultaat met bewijs" `
+  --acceptance "Iedere claim verwijst naar een gepinde input" `
+  --architect "ARCHITECT" `
+  --root mijn-project
+```
+
+De uitvoer toont de exacte voorstel-digest. Alleen die digest en revisie kunnen
+daarna worden goedgekeurd:
+
+```powershell
+opencntx workspace task approve TASK-20260816-0001 `
+  --revision 1 `
+  --proposal-digest <EXACTE-64-HEX-DIGEST> `
+  --owner "OWNER" `
+  --root mijn-project
+opencntx workspace task begin TASK-20260816-0001 `
+  --architect "ARCHITECT" `
+  --root mijn-project
+```
+
+`begin` registreert alleen de overgang en maakt een kleine menselijke
+`TASK.md`; het start geen proces, AI of agent. `submit-result` bewaart één
+resultaat en optionele bewijsbestanden uitsluitend als onvertrouwde bytes.
+`review-result`, `accept-result` en `close` vereisen telkens de exacte digests
+van de vorige objecten. `status` hercontroleert de volledige eventketen, inputs
+en artifacts.
+
+Taakevents onder `TASKS/<TASK-ID>/events/` zijn append-only en aan elkaar
+gehasht. Een oude digest, gewijzigde input, ontbrekend bewijs, handmatig
+veranderde taakkaart of overgeslagen status wordt geweigerd. Er kan maximaal één
+niet-terminale taak tegelijk bestaan. OPENCNTX herhaalt nooit automatisch; de
+derde opeenvolgende gelijke foutsignatuur wordt zichtbaar `BLOCKED`.
+
+De opties `--owner`, `--architect` en `--executor` leggen een lokale
+actorverklaring vast. Zonder account, sleutel of digitale handtekening bewijst
+OPENCNTX niet welke natuurlijke persoon het commando invoerde. Lokale
+bestandstoegang blijft de vertrouwensgrens. De workflow wijzigt geen roadmap,
+`CURRENT.md`, bronnen, hoofdstukken of catalogus en voert geen taakresultaat uit.
+
 De leesbare frontmatter van `CONTROL/CURRENT.md` legt standaard maximaal 2 GiB
 per bron en 20 GiB officiële bronopslag vast. Deze opslagbudgetten staan los
 van de veel kleinere contextbudgetten van `pack`.
@@ -139,7 +205,8 @@ van de veel kleinere contextbudgetten van `pack`.
 Deze lokale werkruimtelaag doet bewust geen achtergrondbewaking, chatopname,
 netwerkdownload, cloudback-up, OCR, transcriptie, beeld- of videoanalyse,
 vrije zoekopdracht, AI-selectie of agentuitvoering. De SQLite-catalogus is
-uitsluitend een lokale, herbouwbare metadata-index.
+uitsluitend een lokale, herbouwbare metadata-index; de taakflow is uitsluitend
+een lokale bewijs- en statusketen.
 
 ## Veiligheid en beperkingen
 

@@ -15,6 +15,19 @@ from .core import (
     pack_project,
     verify_package,
 )
+from .workflow import (
+    accept_result,
+    approve_task,
+    begin_task,
+    cancel_task,
+    close_task,
+    propose_task,
+    record_attempt,
+    review_result,
+    submit_result,
+    supersede_task,
+    task_status,
+)
 from .workspace import (
     PRIVACY_LABELS,
     WorkspaceError,
@@ -63,7 +76,7 @@ def build_parser() -> argparse.ArgumentParser:
     verify_parser.add_argument("package", help="pakketmap, bijvoorbeeld .opencntx/latest")
     workspace_parser = subparsers.add_parser(
         "workspace",
-        help="initialiseer lokale projectopslag of capture één bestand veilig",
+        help="lokale opslag, hoofdstukken, catalogus en begrensde taakgates",
     )
     workspace_subparsers = workspace_parser.add_subparsers(
         dest="workspace_command",
@@ -163,6 +176,133 @@ def build_parser() -> argparse.ArgumentParser:
         default=".",
         help="projectwerkruimte; standaard de huidige map",
     )
+    workspace_task_parser = workspace_subparsers.add_parser(
+        "task",
+        help="registreer één begrensde taak met exacte OWNER-gates",
+    )
+    workspace_task_subparsers = workspace_task_parser.add_subparsers(
+        dest="workspace_task_command",
+        required=True,
+    )
+    task_propose_parser = workspace_task_subparsers.add_parser(
+        "propose",
+        help="maak één taakvoorstel dat exact op OWNER-goedkeuring wacht",
+    )
+    task_propose_parser.add_argument("task_id", help="taak-ID, bijvoorbeeld TASK-20260816-0001")
+    task_propose_parser.add_argument("--title", required=True, help="korte taaktitel")
+    task_propose_parser.add_argument("--goal", required=True, help="één begrensd doel")
+    task_propose_parser.add_argument(
+        "--done", required=True, help="exacte Definition of Done"
+    )
+    task_propose_parser.add_argument(
+        "--executor-role", required=True, help="begrensde uitvoerderrol"
+    )
+    task_propose_parser.add_argument(
+        "--input", action="append", required=True, help="officieel relatief inputpad; herhaalbaar"
+    )
+    task_propose_parser.add_argument(
+        "--allow", action="append", required=True, help="toegestane actie; herhaalbaar"
+    )
+    task_propose_parser.add_argument(
+        "--forbid", action="append", required=True, help="verboden actie; herhaalbaar"
+    )
+    task_propose_parser.add_argument(
+        "--expected-output", required=True, help="verwachte resultaatvorm"
+    )
+    task_propose_parser.add_argument(
+        "--acceptance", action="append", required=True, help="acceptatiecriterium; herhaalbaar"
+    )
+    task_propose_parser.add_argument(
+        "--architect", required=True, help="lokale ARCHITECT-actorverklaring"
+    )
+    task_propose_parser.add_argument("--root", default=".", help="projectwerkruimte")
+
+    task_approve_parser = workspace_task_subparsers.add_parser(
+        "approve", help="registreer een exacte lokale OWNER-goedkeuring"
+    )
+    task_approve_parser.add_argument("task_id")
+    task_approve_parser.add_argument("--revision", required=True, type=int)
+    task_approve_parser.add_argument("--proposal-digest", required=True)
+    task_approve_parser.add_argument("--owner", required=True)
+    task_approve_parser.add_argument("--root", default=".")
+
+    task_begin_parser = workspace_task_subparsers.add_parser(
+        "begin", help="registreer uitvoering zonder een proces of agent te starten"
+    )
+    task_begin_parser.add_argument("task_id")
+    task_begin_parser.add_argument("--architect", required=True)
+    task_begin_parser.add_argument("--root", default=".")
+
+    task_result_parser = workspace_task_subparsers.add_parser(
+        "submit-result", help="bewaar één resultaat en optioneel bewijs als bytes"
+    )
+    task_result_parser.add_argument("task_id")
+    task_result_parser.add_argument("--result", required=True)
+    task_result_parser.add_argument("--evidence", action="append", default=[])
+    task_result_parser.add_argument("--limitation", action="append", default=[])
+    task_result_parser.add_argument("--open-question", action="append", default=[])
+    task_result_parser.add_argument("--executor", required=True)
+    task_result_parser.add_argument("--root", default=".")
+
+    task_review_parser = workspace_task_subparsers.add_parser(
+        "review-result", help="bind ARCHITECT-controle aan het exacte resultaat"
+    )
+    task_review_parser.add_argument("task_id")
+    task_review_parser.add_argument("--result-digest", required=True)
+    task_review_parser.add_argument("--outcome", required=True, choices=("PASS", "RETURN"))
+    task_review_parser.add_argument("--finding", action="append", required=True)
+    task_review_parser.add_argument("--architect", required=True)
+    task_review_parser.add_argument("--root", default=".")
+
+    task_accept_parser = workspace_task_subparsers.add_parser(
+        "accept-result", help="registreer exacte lokale OWNER-aanvaarding of retour"
+    )
+    task_accept_parser.add_argument("task_id")
+    task_accept_parser.add_argument("--result-digest", required=True)
+    task_accept_parser.add_argument("--review-digest", required=True)
+    task_accept_parser.add_argument("--decision", required=True, choices=("ACCEPT", "RETURN"))
+    task_accept_parser.add_argument("--owner", required=True)
+    task_accept_parser.add_argument("--root", default=".")
+
+    task_close_parser = workspace_task_subparsers.add_parser(
+        "close", help="schrijf alleen na OWNER-aanvaarding het afrondingsbewijs"
+    )
+    task_close_parser.add_argument("task_id")
+    task_close_parser.add_argument("--architect", required=True)
+    task_close_parser.add_argument("--root", default=".")
+
+    task_status_parser = workspace_task_subparsers.add_parser(
+        "status", help="controleer recordketen, inputs, artifacts en actuele gate"
+    )
+    task_status_parser.add_argument("task_id")
+    task_status_parser.add_argument("--root", default=".")
+
+    task_attempt_parser = workspace_task_subparsers.add_parser(
+        "record-attempt", help="registreer één handmatige foutpoging; nooit automatisch"
+    )
+    task_attempt_parser.add_argument("task_id")
+    task_attempt_parser.add_argument("--error-code", required=True)
+    task_attempt_parser.add_argument("--error-signature", required=True)
+    task_attempt_parser.add_argument("--new-basis", required=True)
+    task_attempt_parser.add_argument("--executor", required=True)
+    task_attempt_parser.add_argument("--root", default=".")
+
+    task_cancel_parser = workspace_task_subparsers.add_parser(
+        "cancel", help="beëindig een niet-terminale taak met een OWNER-verklaring"
+    )
+    task_cancel_parser.add_argument("task_id")
+    task_cancel_parser.add_argument("--reason", required=True)
+    task_cancel_parser.add_argument("--owner", required=True)
+    task_cancel_parser.add_argument("--root", default=".")
+
+    task_supersede_parser = workspace_task_subparsers.add_parser(
+        "supersede", help="wijs met een OWNER-verklaring een vervangende taak-ID aan"
+    )
+    task_supersede_parser.add_argument("task_id")
+    task_supersede_parser.add_argument("--replacement-task-id", required=True)
+    task_supersede_parser.add_argument("--reason", required=True)
+    task_supersede_parser.add_argument("--owner", required=True)
+    task_supersede_parser.add_argument("--root", default=".")
     return parser
 
 
@@ -184,6 +324,22 @@ def init_project(project_root: Path) -> int:
 
     print(f"Gemaakt: {destination}")
     return 0
+
+
+def _print_task_result(root: Path, result: object) -> None:
+    resolved_root = root.resolve(strict=True)
+    task_path = result.task_path.relative_to(resolved_root).as_posix()
+    print(f"{result.status}: {result.task_id} revisie {result.revision}")
+    print(f"Taakstatus: {result.task_status}")
+    print(f"Objectdigest: {result.object_digest}")
+    print(f"Recorddigest: {result.record_digest}")
+    print(f"Taakkaart: {task_path}")
+    if result.receipt_path is not None:
+        receipt = result.receipt_path.relative_to(resolved_root).as_posix()
+        print(f"Ontvangstbewijs: {receipt}")
+    print(
+        "Actor-ID is een lokale verklaring, geen cryptografisch identiteitsbewijs."
+    )
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -254,6 +410,90 @@ def main(argv: Sequence[str] | None = None) -> int:
                     print(f"State-digest: {result.state_digest}")
                     print(f"Ontvangstbewijs: {receipt}")
                     return 0
+            if args.workspace_command == "task":
+                root = Path(args.root)
+                if args.workspace_task_command == "propose":
+                    result = propose_task(
+                        root,
+                        args.task_id,
+                        title=args.title,
+                        goal=args.goal,
+                        definition_of_done=args.done,
+                        executor_role=args.executor_role,
+                        input_paths=args.input,
+                        allowed_actions=args.allow,
+                        forbidden_actions=args.forbid,
+                        expected_output=args.expected_output,
+                        acceptance_criteria=args.acceptance,
+                        architect=args.architect,
+                    )
+                elif args.workspace_task_command == "approve":
+                    result = approve_task(
+                        root,
+                        args.task_id,
+                        revision=args.revision,
+                        proposal_digest=args.proposal_digest,
+                        owner=args.owner,
+                    )
+                elif args.workspace_task_command == "begin":
+                    result = begin_task(root, args.task_id, architect=args.architect)
+                elif args.workspace_task_command == "submit-result":
+                    result = submit_result(
+                        root,
+                        args.task_id,
+                        result_path=Path(args.result),
+                        evidence_paths=[Path(path) for path in args.evidence],
+                        limitations=args.limitation,
+                        open_questions=args.open_question,
+                        executor=args.executor,
+                    )
+                elif args.workspace_task_command == "review-result":
+                    result = review_result(
+                        root,
+                        args.task_id,
+                        result_digest=args.result_digest,
+                        outcome=args.outcome,
+                        findings=args.finding,
+                        architect=args.architect,
+                    )
+                elif args.workspace_task_command == "accept-result":
+                    result = accept_result(
+                        root,
+                        args.task_id,
+                        result_digest=args.result_digest,
+                        review_digest=args.review_digest,
+                        decision=args.decision,
+                        owner=args.owner,
+                    )
+                elif args.workspace_task_command == "close":
+                    result = close_task(root, args.task_id, architect=args.architect)
+                elif args.workspace_task_command == "status":
+                    result = task_status(root, args.task_id)
+                elif args.workspace_task_command == "record-attempt":
+                    result = record_attempt(
+                        root,
+                        args.task_id,
+                        error_code=args.error_code,
+                        error_signature=args.error_signature,
+                        new_basis=args.new_basis,
+                        executor=args.executor,
+                    )
+                elif args.workspace_task_command == "cancel":
+                    result = cancel_task(
+                        root, args.task_id, reason=args.reason, owner=args.owner
+                    )
+                elif args.workspace_task_command == "supersede":
+                    result = supersede_task(
+                        root,
+                        args.task_id,
+                        replacement_task_id=args.replacement_task_id,
+                        reason=args.reason,
+                        owner=args.owner,
+                    )
+                else:
+                    return 2
+                _print_task_result(root, result)
+                return 0
         if args.command == "pack":
             package_path, manifest = pack_project(Path.cwd())
             print(
