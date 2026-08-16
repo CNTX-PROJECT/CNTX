@@ -61,6 +61,49 @@ opencntx verify .opencntx/latest
 Exitcode `0` betekent gelijk, `1` betekent drift of een onvolledige controle en
 `2` betekent een configuratie- of uitvoerfout.
 
+## Optioneel lokaal opslagfundament
+
+> Dit onderdeel is ontwikkelwerk na de gepubliceerde `v0.1.0` en maakt geen
+> deel uit van de installatie vanaf die tag zolang geen latere release is
+> goedgekeurd.
+
+De optionele `workspace`-groep maakt een gewone lokale projectwerkruimte en kan
+één aangeleverd bestand veilig registreren zonder het uit te voeren of te
+interpreteren:
+
+```powershell
+opencntx workspace init mijn-project
+opencntx workspace capture plan.pdf --root mijn-project --origin OWNER
+```
+
+`workspace init` maakt leesbare mappen voor besturing, inbox, bronnen,
+hoofdstukken, taken, werkwijzen en rollen. Een bestaande volledige werkruimte
+wordt niet herschreven; een gedeeltelijke of conflicterende structuur wordt
+geweigerd.
+
+`workspace capture`:
+
+- accepteert precies één regulier lokaal bestand;
+- bewaart de exacte bytes onder een unieke source-ID;
+- registreert grootte, SHA-256, UTC-tijd, herkomst en privacy;
+- gebruikt standaard privacylabel `PRIVATE`;
+- herkent een exacte duplicaat zonder een tweede bronkopie te maken;
+- verwijdert, verplaatst, opent of voert het aangeleverde bestand niet uit;
+- eindigt zichtbaar als `CAPTURED`, `DUPLICATE` of `NOT_CAPTURED`;
+- schrijft een klein ontvangstbewijs onder `.opencntx/receipts/`.
+
+Beschikbare privacylabels zijn `PUBLIC`, `PRIVATE`, `RESTRICTED` en
+`QUARANTINED`. Met `--supersedes SOURCE-ID` kan een nieuwe inhoudsversie
+expliciet naar een bestaande bron verwijzen.
+
+De leesbare frontmatter van `CONTROL/CURRENT.md` legt standaard maximaal 2 GiB
+per bron en 20 GiB officiële bronopslag vast. Deze opslagbudgetten staan los
+van de veel kleinere contextbudgetten van `pack`.
+
+Deze eerste opslaglaag doet bewust geen achtergrondbewaking, chatopname,
+netwerkdownload, cloudback-up, OCR, transcriptie, beeld- of videoanalyse,
+database-indexering, AI-selectie of agentuitvoering.
+
 ## Veiligheid en beperkingen
 
 - Lees `CONTEXT.md` altijd voordat u het deelt; geselecteerde broninhoud staat er
