@@ -96,13 +96,50 @@ Beschikbare privacylabels zijn `PUBLIC`, `PRIVATE`, `RESTRICTED` en
 `QUARANTINED`. Met `--supersedes SOURCE-ID` kan een nieuwe inhoudsversie
 expliciet naar een bestaande bron verwijzen.
 
+Na capture kan één duidelijk onderwerp een uniform, nog niet goedgekeurd
+hoofdstuk krijgen. Met `--source` wordt de exacte geregistreerde SHA-256 in het
+hoofdstuk vastgezet; de optie mag voor meerdere bronnen worden herhaald:
+
+```powershell
+opencntx workspace chapter create CH-ELEKTRICITEIT `
+  --title "Elektriciteit" `
+  --source SRC-20260816-0123456789ab `
+  --root mijn-project
+opencntx workspace catalog rebuild --root mijn-project
+```
+
+`chapter create` maakt uitsluitend
+`CHAPTERS/CH-ELEKTRICITEIT/CHAPTER.md` als leesbaar `DRAFT`-sjabloon. Het
+overschrijft geen bestaand hoofdstuk en verleent geen OWNER-goedkeuring. Met
+herhaalbare `--depends-on CHAPTER-ID`-opties kunnen bestaande hoofdstukken als
+afhankelijkheid worden vastgelegd.
+
+`catalog rebuild`:
+
+- leest alleen officiële bronrecords en `CHAPTER.md`-bestanden;
+- controleert bronbytes en exacte hashpins zonder broninhoud te interpreteren;
+- berekent `CURRENT`, `STALE`, `INCOMPLETE` of `ARCHIVED`;
+- regenereert de compacte menselijke `CHAPTERS/INDEX.md`;
+- vervangt `.opencntx/catalog.sqlite` na SQLite-integriteitscontrole;
+- schrijft een rebuildreceipt en toont dezelfde state-digest in index en
+  catalogus;
+- stopt bij onveilige paden, dubbele ID's, onbekende formaten of een
+  dependencycyclus.
+
+De Markdown-bronnen en hoofdstukken blijven officieel. `INDEX.md` en SQLite
+bevatten geen unieke waarheid en kunnen volledig opnieuw worden opgebouwd. Een
+technische freshnessstatus is geen inhoudelijke waarheid of OWNER-goedkeuring.
+De catalogus bevat geen originele bronbytes, volledige samenvattingen,
+embeddings of vectoren.
+
 De leesbare frontmatter van `CONTROL/CURRENT.md` legt standaard maximaal 2 GiB
 per bron en 20 GiB officiële bronopslag vast. Deze opslagbudgetten staan los
 van de veel kleinere contextbudgetten van `pack`.
 
-Deze eerste opslaglaag doet bewust geen achtergrondbewaking, chatopname,
+Deze lokale werkruimtelaag doet bewust geen achtergrondbewaking, chatopname,
 netwerkdownload, cloudback-up, OCR, transcriptie, beeld- of videoanalyse,
-database-indexering, AI-selectie of agentuitvoering.
+vrije zoekopdracht, AI-selectie of agentuitvoering. De SQLite-catalogus is
+uitsluitend een lokale, herbouwbare metadata-index.
 
 ## Veiligheid en beperkingen
 
@@ -115,8 +152,10 @@ database-indexering, AI-selectie of agentuitvoering.
   geweigerd.
 - Budgetoverschrijding is een fout; OPENCNTX kapt een pakket nooit stil af.
 - `pack` en `verify` wijzigen geen bronbestanden.
-- OPENCNTX 0.1 doet geen AI-samenvatting of automatische bronselectie en biedt
-  geen PDF-/beeldextractie, agents, MCP, GUI, cloud, database of hosting.
+- De gepubliceerde OPENCNTX 0.1-tag doet geen AI-samenvatting of automatische
+  bronselectie en biedt geen PDF-/beeldextractie, agents, MCP, GUI, cloud,
+  database of hosting. De latere workspace-ontwikkeling blijft lokaal en is
+  niet automatisch onderdeel van die tag of release.
 - OPENCNTX is een lokaal hulpmiddel, geen garantie dat gedeelde context veilig,
   volledig of geschikt is voor een specifieke AI-tool.
 

@@ -37,4 +37,35 @@ De workspace-opslag heeft geen netwerk-, cloud-, watcher-, OCR-, transcriptie-,
 AI- of agentfunctie. Grote bestanden vallen onder aparte lokale
 opslagbudgetten en worden niet automatisch aan een contextpakket toegevoegd.
 
+## Hoofdstukken en lokale catalogus
+
+`workspace chapter create` schrijft uitsluitend een nieuw `DRAFT`-sjabloon en
+overschrijft geen bestaand hoofdstuk. Een hoofdstukstatus, SHA-256 of
+freshnesswaarde verleent geen OWNER-goedkeuring en bewijst niet dat een
+samenvatting inhoudelijk waar is.
+
+`workspace catalog rebuild` behandelt TOML-frontmatter en Markdown als
+onvertrouwde data. Hoofdstuk-ID's, velden, relaties, paden en vaste secties
+worden strikt gevalideerd. SQL-waarden worden alleen als parameters geschreven;
+tekst uit een hoofdstuk wordt nooit als SQL of instructie uitgevoerd.
+
+De SQLite-catalogus onder `.opencntx/catalog.sqlite` is afgeleid en
+vervangbaar. Officiële bronrecords en `CHAPTER.md`-bestanden blijven leidend.
+De database bevat technische metadata en relaties, maar geen originele
+bronbytes, volledige hoofdstuksamenvattingen, embeddings of vectoren. Verwijder
+of beschadig de catalogus alleen wanneer u begrijpt dat `catalog rebuild` haar
+opnieuw uit de officiële lokale bestanden maakt.
+
+Freshness betekent uitsluitend:
+
+- `CURRENT`: vastgelegde bronpins en dependencies zijn technisch exact;
+- `STALE`: een concrete bron of dependency is vervangen, ontbreekt of wijkt af;
+- `INCOMPLETE`: de kennis is nog DRAFT of een relatie kan niet worden bevestigd;
+- `ARCHIVED`: het hoofdstuk is expliciet als historisch gemarkeerd.
+
+Een dependencycyclus, symlink, padontsnapping, onbekend schema of onveilige
+index stopt de rebuild. Een handmatig afwijkende `CHAPTERS/INDEX.md` wordt niet
+stil overschreven. Catalogusreceipts bevatten geen originele broninhoud of
+absolute persoonlijke bronpaden.
+
 Meld kwetsbaarheden niet in een openbaar issue. Gebruik de optie **Report a vulnerability** onder het tabblad **Security** van deze GitHub-repository.
