@@ -68,4 +68,46 @@ index stopt de rebuild. Een handmatig afwijkende `CHAPTERS/INDEX.md` wordt niet
 stil overschreven. Catalogusreceipts bevatten geen originele broninhoud of
 absolute persoonlijke bronpaden.
 
+## Lokale taakrecords en OWNER-gates
+
+`workspace task` bewaart officiële taak- en beslisrecords als append-only JSON
+onder `TASKS/<TASK-ID>/events/`. Ieder event bevat een eigen SHA-256 en de digest
+van het vorige event. Voor iedere statusovergang wordt de volledige keten
+opnieuw gecontroleerd. Wijziging, verwijdering, invoeging, hernummering,
+onbekende velden en een overgeslagen status falen gesloten.
+
+Een taakgoedkeuring bindt exact taak-ID, revisie en voorstel-digest. Een
+resultaataanvaarding bindt exact resultaat- en controledigest. Een gewijzigde
+input, verkeerd object, oude revisie of afwijkende digest erft nooit een eerdere
+goedkeuring. `CLOSED` is alleen mogelijk nadat voorstel, OWNER-goedkeuring,
+resultaat, ARCHITECT-controle en OWNER-aanvaarding opnieuw samen zijn
+gevalideerd.
+
+De actor-ID bij `--owner`, `--architect` of `--executor` is een lokale
+verklaring. OPENCNTX gebruikt in deze lokale, dependencyvrije laag geen account,
+private sleutel of digitale handtekening en beweert daarom niet dat de naam een
+cryptografisch geauthenticeerde natuurlijke persoon is. Bescherm de werkruimte
+met passende bestandsrechten en geef schrijftoegang uitsluitend aan vertrouwde
+gebruikers. Wie de officiële bestanden kan vervangen, valt binnen de lokale
+vertrouwensgrens; hashes maken wijziging zichtbaar maar voorkomen geen
+bestandswijziging.
+
+`submit-result` behandelt resultaat en bewijs als onvertrouwde bytes. Het voert
+ze niet uit, opent geen bijbehorende toepassing en doet geen inhoudsextractie.
+Symlinks, mappen, onbegrensde bestanden, padontsnapping en wijziging tijdens het
+kopiëren worden geweigerd. De gegenereerde `TASK.md` bevat alleen begrensde
+metadata en digests; eventrecords blijven leidend. Een handmatig gewijzigde of
+onbeheerde taakkaart wordt niet stil overschreven.
+
+De workflow start geen proces, agent, netwerkverbinding of automatische retry.
+Handmatige foutpogingen moeten nieuwe input of een gewijzigde aanpak registreren.
+Na drie opeenvolgende gelijke foutsignaturen wordt de taak `BLOCKED`; verdere
+uitvoering stopt zichtbaar. `RETURNED`, `BLOCKED`, `CANCELLED`, `SUPERSEDED` en
+ongeldige ketens kunnen niet als voltooid worden afgesloten.
+
+Taaksluiting publiceert, mergt, verwijdert of verwerkt niets buiten de lokale
+taakdirectory. De workflow wijzigt geen `CONTROL/ROADMAP.md`, `CONTROL/CURRENT.md`,
+bronrecord, hoofdstuk of catalogus en verleent geen toestemming voor externe
+verzending.
+
 Meld kwetsbaarheden niet in een openbaar issue. Gebruik de optie **Report a vulnerability** onder het tabblad **Security** van deze GitHub-repository.
