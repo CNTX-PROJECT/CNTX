@@ -8,6 +8,7 @@ import os
 from pathlib import Path
 import sys
 
+from .catalog import create_chapter, rebuild_catalog
 from .core import (
     OpenCntxError,
     format_verify_report,
@@ -102,6 +103,66 @@ def build_parser() -> argparse.ArgumentParser:
         "--supersedes",
         help="optionele bestaande source-ID die deze nieuwe bron vervangt",
     )
+    workspace_chapter_parser = workspace_subparsers.add_parser(
+        "chapter",
+        help="maak een veilig, nog niet goedgekeurd hoofdstuksjabloon",
+    )
+    workspace_chapter_subparsers = workspace_chapter_parser.add_subparsers(
+        dest="workspace_chapter_command",
+        required=True,
+    )
+    workspace_chapter_create_parser = workspace_chapter_subparsers.add_parser(
+        "create",
+        help="maak één nieuw DRAFT-hoofdstuk zonder iets te overschrijven",
+    )
+    workspace_chapter_create_parser.add_argument(
+        "chapter_id",
+        help="stabiele hoofdstuk-ID, bijvoorbeeld CH-ELEKTRICITEIT",
+    )
+    workspace_chapter_create_parser.add_argument(
+        "--title",
+        required=True,
+        help="korte leesbare hoofdstuktitel",
+    )
+    workspace_chapter_create_parser.add_argument(
+        "--scope",
+        default="UNKNOWN — door OWNER en ARCHITECT te bepalen.",
+        help="korte grens van het onderwerp",
+    )
+    workspace_chapter_create_parser.add_argument(
+        "--source",
+        action="append",
+        default=[],
+        help="bestaande exacte source-ID; optie mag worden herhaald",
+    )
+    workspace_chapter_create_parser.add_argument(
+        "--depends-on",
+        action="append",
+        default=[],
+        help="bestaande hoofdstuk-ID; optie mag worden herhaald",
+    )
+    workspace_chapter_create_parser.add_argument(
+        "--root",
+        default=".",
+        help="projectwerkruimte; standaard de huidige map",
+    )
+    workspace_catalog_parser = workspace_subparsers.add_parser(
+        "catalog",
+        help="herbouw de menselijke index en lokale SQLite-catalogus",
+    )
+    workspace_catalog_subparsers = workspace_catalog_parser.add_subparsers(
+        dest="workspace_catalog_command",
+        required=True,
+    )
+    workspace_catalog_rebuild_parser = workspace_catalog_subparsers.add_parser(
+        "rebuild",
+        help="herbouw catalogus en index uit officiële werkruimtebestanden",
+    )
+    workspace_catalog_rebuild_parser.add_argument(
+        "--root",
+        default=".",
+        help="projectwerkruimte; standaard de huidige map",
+    )
     return parser
 
 
@@ -156,6 +217,43 @@ def main(argv: Sequence[str] | None = None) -> int:
                 )
                 print(f"Ontvangstbewijs: {receipt}")
                 return 0
+            if args.workspace_command == "chapter":
+                if args.workspace_chapter_command == "create":
+                    root = Path(args.root)
+                    result = create_chapter(
+                        root,
+                        args.chapter_id,
+                        title=args.title,
+                        scope=args.scope,
+                        source_ids=args.source,
+                        dependency_ids=args.depends_on,
+                    )
+                    resolved_root = root.resolve(strict=True)
+                    chapter = result.chapter_path.relative_to(resolved_root).as_posix()
+                    print(f"{result.status}: {result.chapter_id}")
+                    print(f"Hoofdstuk: {chapter}")
+                    print("Status: DRAFT; dit verleent geen OWNER-goedkeuring.")
+                    return 0
+            if args.workspace_command == "catalog":
+                if args.workspace_catalog_command == "rebuild":
+                    root = Path(args.root)
+                    result = rebuild_catalog(root)
+                    resolved_root = root.resolve(strict=True)
+                    receipt = result.receipt_path.relative_to(resolved_root).as_posix()
+                    counts = result.freshness_counts
+                    print(
+                        f"{result.status}: {result.chapter_count} hoofdstukken, "
+                        f"{result.source_count} bronnen"
+                    )
+                    print(
+                        "Freshness: "
+                        f"CURRENT={counts['CURRENT']}, STALE={counts['STALE']}, "
+                        f"INCOMPLETE={counts['INCOMPLETE']}, "
+                        f"ARCHIVED={counts['ARCHIVED']}"
+                    )
+                    print(f"State-digest: {result.state_digest}")
+                    print(f"Ontvangstbewijs: {receipt}")
+                    return 0
         if args.command == "pack":
             package_path, manifest = pack_project(Path.cwd())
             print(
