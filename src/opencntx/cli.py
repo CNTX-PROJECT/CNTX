@@ -15,6 +15,11 @@ from .core import (
     pack_project,
     verify_package,
 )
+from .navigator import (
+    build_context_package,
+    format_context_verify_report,
+    verify_context_package,
+)
 from .workflow import (
     accept_result,
     approve_task,
@@ -76,7 +81,7 @@ def build_parser() -> argparse.ArgumentParser:
     verify_parser.add_argument("package", help="pakketmap, bijvoorbeeld .opencntx/latest")
     workspace_parser = subparsers.add_parser(
         "workspace",
-        help="lokale opslag, hoofdstukken, catalogus en begrensde taakgates",
+        help="lokale opslag, catalogus, taakgates en begrensde contextnavigatie",
     )
     workspace_subparsers = workspace_parser.add_subparsers(
         dest="workspace_command",
@@ -176,6 +181,30 @@ def build_parser() -> argparse.ArgumentParser:
         default=".",
         help="projectwerkruimte; standaard de huidige map",
     )
+    workspace_context_parser = workspace_subparsers.add_parser(
+        "context",
+        help="bouw of controleer één taakgebonden heet-warm-koudpakket",
+    )
+    workspace_context_subparsers = workspace_context_parser.add_subparsers(
+        dest="workspace_context_command",
+        required=True,
+    )
+    workspace_context_build_parser = workspace_context_subparsers.add_parser(
+        "build",
+        help="maak lokaal context voor één goedgekeurde taak in uitvoering",
+    )
+    workspace_context_build_parser.add_argument("task_id")
+    workspace_context_build_parser.add_argument("--proposal-digest", required=True)
+    workspace_context_build_parser.add_argument("--max-files", required=True, type=int)
+    workspace_context_build_parser.add_argument("--max-bytes", required=True, type=int)
+    workspace_context_build_parser.add_argument("--root", default=".")
+    workspace_context_verify_parser = workspace_context_subparsers.add_parser(
+        "verify",
+        help="controleer pakketbytes en de volledige actuele taakroute read-only",
+    )
+    workspace_context_verify_parser.add_argument("task_id")
+    workspace_context_verify_parser.add_argument("--proposal-digest", required=True)
+    workspace_context_verify_parser.add_argument("--root", default=".")
     workspace_task_parser = workspace_subparsers.add_parser(
         "task",
         help="registreer één begrensde taak met exacte OWNER-gates",
@@ -410,6 +439,38 @@ def main(argv: Sequence[str] | None = None) -> int:
                     print(f"State-digest: {result.state_digest}")
                     print(f"Ontvangstbewijs: {receipt}")
                     return 0
+            if args.workspace_command == "context":
+                root = Path(args.root)
+                if args.workspace_context_command == "build":
+                    result = build_context_package(
+                        root,
+                        args.task_id,
+                        proposal_digest=args.proposal_digest,
+                        max_files=args.max_files,
+                        max_bytes=args.max_bytes,
+                    )
+                    resolved_root = root.resolve(strict=True)
+                    package = result.package_path.relative_to(resolved_root).as_posix()
+                    receipt = result.receipt_path.relative_to(resolved_root).as_posix()
+                    print(
+                        f"{result.status}: {result.task_id} revisie {result.revision} "
+                        f"({result.file_count} bestanden, {result.total_bytes} bytes)"
+                    )
+                    print(f"Pakket: {package}")
+                    print(f"Context-SHA-256: {result.context_digest}")
+                    print(f"Manifest-SHA-256: {result.manifest_digest}")
+                    print(f"Ontvangstbewijs: {receipt}")
+                    print("Lokaal gebouwd; dit geeft geen toestemming voor extern delen.")
+                    return 0
+                if args.workspace_context_command == "verify":
+                    report = verify_context_package(
+                        root,
+                        args.task_id,
+                        proposal_digest=args.proposal_digest,
+                    )
+                    print(format_context_verify_report(report))
+                    return 0 if report.ok else 1
+                return 2
             if args.workspace_command == "task":
                 root = Path(args.root)
                 if args.workspace_task_command == "propose":

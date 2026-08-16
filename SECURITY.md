@@ -110,4 +110,43 @@ taakdirectory. De workflow wijzigt geen `CONTROL/ROADMAP.md`, `CONTROL/CURRENT.m
 bronrecord, hoofdstuk of catalogus en verleent geen toestemming voor externe
 verzending.
 
+## Taakgebonden contextnavigatie
+
+`workspace context build` is geen zoek-AI en geen toestemming om informatie te
+delen. Het commando werkt uitsluitend voor één valide taak in `IN_EXECUTION`,
+vereist de exacte proposal-digest en controleert dat OWNER-, ROADMAP- en
+CURRENT-bestanden aan dezelfde goedgekeurde taakinput zijn gepind. Een lokale
+actorverklaring blijft geen cryptografisch identiteitsbewijs.
+
+De navigator behandelt catalogus, hoofdstukken, bronrecords en originele bytes
+als onbetrouwbare lokale input. Hij opent SQLite read-only, controleert
+integriteit en het bekende schema en vergelijkt catalogusdigest, indexhash en
+rijen met de opnieuw berekende officiële bestandsstaat. Een verschil vereist
+een afzonderlijke `workspace catalog rebuild`; de navigator herschrijft index
+of catalogus nooit zelf.
+
+Alle relevante hoofdstukken moeten technisch `CURRENT` en inhoudelijk
+`OWNER_ACCEPTED` zijn. Een gewijzigd of vervangen bronbestand, onbekende
+dependency, stale pin, dependencycyclus of andere onvolledigheid stopt de
+selectie. Een freshnessstatus bewijst nog steeds niet dat de inhoud waar of
+veilig is; zij bewijst alleen de beschreven technische relaties.
+
+`PUBLIC` en `PRIVATE` kunnen uitsluitend via de goedgekeurde lokale taakroute
+worden geladen. `RESTRICTED` vereist een expliciete broninput en
+`QUARANTINED` wordt altijd geweigerd. Privacylabels zijn classificatie, geen
+versleuteling of toegangscontrole. Controleer daarom ook de bestandsrechten van
+de werkruimte en lees `CONTEXT.md` voordat u het pakket deelt.
+
+De contextgrenzen zijn hard. Een bestand- of bytebudgetoverschrijding,
+onleesbaar bestand, binaire inhoud of ongeldige UTF-8 maakt geen gedeeltelijk
+nieuw pakket en verwijdert geen geselecteerde bron. Het manifest vermeldt wat
+binnen de taakroute is gelezen en welke catalogus-ID's erbuiten bleven; het
+beweert niet dat het hele project is onderzocht.
+
+`workspace context verify` is read-only en controleert naast de gewone
+pakketbytes opnieuw taak-, CONTROL-, catalogus-, hoofdstuk-, bron-, privacy- en
+selectiebinding. Een non-zero resultaat betekent dat het pakket niet als
+actuele taakcontext mag worden behandeld. Build en verify starten geen proces,
+netwerkverbinding, AI, agent, OCR, transcriptie of automatische retry.
+
 Meld kwetsbaarheden niet in een openbaar issue. Gebruik de optie **Report a vulnerability** onder het tabblad **Security** van deze GitHub-repository.

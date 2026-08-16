@@ -198,6 +198,68 @@ OPENCNTX niet welke natuurlijke persoon het commando invoerde. Lokale
 bestandstoegang blijft de vertrouwensgrens. De workflow wijzigt geen roadmap,
 `CURRENT.md`, bronnen, hoofdstukken of catalogus en voert geen taakresultaat uit.
 
+### Taakgebonden contextnavigator
+
+Na exacte OWNER-goedkeuring en `workspace task begin` kan de lokale navigator
+voor die ene taak een normaal OPENCNTX-pakket maken. De selectie gebruikt geen
+AI of vrije zoekopdracht. Zij volgt uitsluitend gepinde taakinputs,
+hoofdstukafhankelijkheden en bron-ID's.
+
+Vooraf gelden deze zichtbare voorwaarden:
+
+- de taak is exact `IN_EXECUTION`;
+- `CONTROL/OWNER.md`, `CONTROL/ROADMAP.md` en `CONTROL/CURRENT.md` zijn als
+  taakinputs goedgekeurd;
+- `CURRENT.md` bevat exact
+  `- Actieve taak: TASK-YYYYMMDD-NNNN revisie 1`;
+- minimaal één hoofdstuk, playbook, rol of geregistreerde bron is als
+  inhoudelijke taakinput gepind;
+- `workspace catalog rebuild` is na de laatste officiële bron- of
+  hoofdstukwijziging uitgevoerd.
+
+Bouw daarna met bewuste harde contextgrenzen:
+
+```powershell
+opencntx workspace context build TASK-20260816-0001 `
+  --proposal-digest <EXACTE-64-HEX-DIGEST> `
+  --max-files 25 `
+  --max-bytes 100000 `
+  --root mijn-project
+```
+
+De vaste laadvolgorde is:
+
+1. **heet** — OWNER-regels, roadmap, actuele taak en taakkaart;
+2. **warm** — expliciete hoofdstukken, hun afhankelijkheden, playbooks en
+   rollen;
+3. **koud** — exact door die route gepinde bronrecords en UTF-8-originelen.
+
+Alle relevante hoofdstukken moeten `OWNER_ACCEPTED` en `CURRENT` zijn.
+`RESTRICTED` bronnen vereisen bovendien een expliciete broninput;
+`QUARANTINED`, binaire, ontbrekende en verouderde bronnen worden geweigerd.
+Een te klein budget geeft een fout en laat een bestaand pakket intact: er wordt
+nooit stil afgekapt of willekeurig context weggelaten.
+
+Een succes schrijft atomair de bestaande twee primaire bestanden onder
+`.opencntx/latest/`. Het gewone manifest bevat daarnaast een `navigation`-deel
+met taak- en catalogusdigests, gelezen heet/warm/koud-paden en de niet-gelezen
+hoofdstuk- en bron-ID's buiten de goedgekeurde taakscope.
+
+Gebruik beide controles:
+
+```powershell
+opencntx verify .opencntx/latest
+opencntx workspace context verify TASK-20260816-0001 `
+  --proposal-digest <EXACTE-64-HEX-DIGEST> `
+  --root mijn-project
+```
+
+De eerste controleert pakket- en bronbytes. De tweede controleert read-only ook
+de actuele taakketen, CONTROL-binding, catalogus, dependencyclosure, freshness,
+privacy en deterministische selectie. Een lokaal gebouwd pakket is geen
+toestemming om het extern te delen en beweert nooit dat het volledige project
+werd onderzocht.
+
 De leesbare frontmatter van `CONTROL/CURRENT.md` legt standaard maximaal 2 GiB
 per bron en 20 GiB officiële bronopslag vast. Deze opslagbudgetten staan los
 van de veel kleinere contextbudgetten van `pack`.
@@ -206,7 +268,8 @@ Deze lokale werkruimtelaag doet bewust geen achtergrondbewaking, chatopname,
 netwerkdownload, cloudback-up, OCR, transcriptie, beeld- of videoanalyse,
 vrije zoekopdracht, AI-selectie of agentuitvoering. De SQLite-catalogus is
 uitsluitend een lokale, herbouwbare metadata-index; de taakflow is uitsluitend
-een lokale bewijs- en statusketen.
+een lokale bewijs- en statusketen en de navigator uitsluitend een
+deterministische lokale pakketroute.
 
 ## Veiligheid en beperkingen
 
