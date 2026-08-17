@@ -32,6 +32,21 @@ from .media import (
     review_derivation,
     verify_media,
 )
+from .playbook import (
+    approve_playbook,
+    approve_role,
+    executor_status,
+    format_definition_verify_report,
+    format_executor_verify_report,
+    playbook_status,
+    prepare_executor,
+    register_playbook,
+    register_role,
+    role_status,
+    verify_executor,
+    verify_playbook,
+    verify_role,
+)
 from .workflow import (
     accept_result,
     approve_task,
@@ -263,6 +278,129 @@ def build_parser() -> argparse.ArgumentParser:
     media_remove_parser.add_argument("--content-sha256", required=True)
     media_remove_parser.add_argument("--owner", required=True)
     media_remove_parser.add_argument("--root", default=".")
+    workspace_playbook_parser = workspace_subparsers.add_parser(
+        "playbook",
+        help="registreer en keur niet-uitvoerbare werkwijzerevisies goed",
+    )
+    workspace_playbook_subparsers = workspace_playbook_parser.add_subparsers(
+        dest="workspace_playbook_command",
+        required=True,
+    )
+    playbook_register_parser = workspace_playbook_subparsers.add_parser(
+        "register",
+        help="registreer één onveranderlijke voorgestelde playbookrevisie",
+    )
+    playbook_register_parser.add_argument("playbook_id")
+    playbook_register_parser.add_argument("--revision", required=True, type=int)
+    playbook_register_parser.add_argument("--title", required=True)
+    playbook_register_parser.add_argument("--purpose", required=True)
+    playbook_register_parser.add_argument("--input", action="append", required=True)
+    playbook_register_parser.add_argument("--step", action="append", required=True)
+    playbook_register_parser.add_argument("--stop", action="append", required=True)
+    playbook_register_parser.add_argument("--evidence", action="append", required=True)
+    playbook_register_parser.add_argument("--allow", action="append", required=True)
+    playbook_register_parser.add_argument("--forbid", action="append", required=True)
+    playbook_register_parser.add_argument("--architect", required=True)
+    playbook_register_parser.add_argument("--supersedes-digest")
+    playbook_register_parser.add_argument("--root", default=".")
+    playbook_approve_parser = workspace_playbook_subparsers.add_parser(
+        "approve",
+        help="bind een lokale OWNER-goedkeuring aan exact één playbookrevisie",
+    )
+    playbook_approve_parser.add_argument("playbook_id")
+    playbook_approve_parser.add_argument("--revision", required=True, type=int)
+    playbook_approve_parser.add_argument("--definition-digest", required=True)
+    playbook_approve_parser.add_argument("--owner", required=True)
+    playbook_approve_parser.add_argument("--root", default=".")
+    for command_name, help_text in (
+        ("status", "toon de berekende playbookstatus zonder te schrijven"),
+        ("verify", "controleer playbookbytes en approval volledig read-only"),
+    ):
+        command_parser = workspace_playbook_subparsers.add_parser(
+            command_name, help=help_text
+        )
+        command_parser.add_argument("playbook_id")
+        command_parser.add_argument("--revision", required=True, type=int)
+        command_parser.add_argument("--root", default=".")
+
+    workspace_role_parser = workspace_subparsers.add_parser(
+        "role",
+        help="registreer begrensde rolrevisies zonder OWNER-bevoegdheid",
+    )
+    workspace_role_subparsers = workspace_role_parser.add_subparsers(
+        dest="workspace_role_command",
+        required=True,
+    )
+    role_register_parser = workspace_role_subparsers.add_parser(
+        "register",
+        help="registreer één onveranderlijke voorgestelde rolrevisie",
+    )
+    role_register_parser.add_argument("role_id")
+    role_register_parser.add_argument("--revision", required=True, type=int)
+    role_register_parser.add_argument("--title", required=True)
+    role_register_parser.add_argument(
+        "--responsibility", action="append", required=True
+    )
+    role_register_parser.add_argument("--allow", action="append", required=True)
+    role_register_parser.add_argument("--forbid", action="append", required=True)
+    role_register_parser.add_argument("--handoff", required=True)
+    role_register_parser.add_argument("--architect", required=True)
+    role_register_parser.add_argument("--supersedes-digest")
+    role_register_parser.add_argument("--root", default=".")
+    role_approve_parser = workspace_role_subparsers.add_parser(
+        "approve",
+        help="bind een lokale OWNER-goedkeuring aan exact één rolrevisie",
+    )
+    role_approve_parser.add_argument("role_id")
+    role_approve_parser.add_argument("--revision", required=True, type=int)
+    role_approve_parser.add_argument("--definition-digest", required=True)
+    role_approve_parser.add_argument("--owner", required=True)
+    role_approve_parser.add_argument("--root", default=".")
+    for command_name, help_text in (
+        ("status", "toon de berekende rolstatus zonder te schrijven"),
+        ("verify", "controleer rolbytes en approval volledig read-only"),
+    ):
+        command_parser = workspace_role_subparsers.add_parser(
+            command_name, help=help_text
+        )
+        command_parser.add_argument("role_id")
+        command_parser.add_argument("--revision", required=True, type=int)
+        command_parser.add_argument("--root", default=".")
+
+    workspace_executor_parser = workspace_subparsers.add_parser(
+        "executor",
+        help="maak of controleer één niet-uitvoerend taakgebonden uitvoerderpakket",
+    )
+    workspace_executor_subparsers = workspace_executor_parser.add_subparsers(
+        dest="workspace_executor_command",
+        required=True,
+    )
+    executor_prepare_parser = workspace_executor_subparsers.add_parser(
+        "prepare",
+        help="bind taak, context, playbook en rol zonder een uitvoerder te starten",
+    )
+    executor_prepare_parser.add_argument("task_id")
+    executor_prepare_parser.add_argument("--revision", required=True, type=int)
+    executor_prepare_parser.add_argument("--proposal-digest", required=True)
+    executor_prepare_parser.add_argument("--playbook-id", required=True)
+    executor_prepare_parser.add_argument("--playbook-revision", required=True, type=int)
+    executor_prepare_parser.add_argument("--playbook-digest", required=True)
+    executor_prepare_parser.add_argument("--role-id", required=True)
+    executor_prepare_parser.add_argument("--role-revision", required=True, type=int)
+    executor_prepare_parser.add_argument("--role-digest", required=True)
+    executor_prepare_parser.add_argument("--context-manifest-digest", required=True)
+    executor_prepare_parser.add_argument("--executor", required=True)
+    executor_prepare_parser.add_argument("--root", default=".")
+    for command_name, help_text in (
+        ("status", "toon de actuele uitvoerderpakketstatus zonder te schrijven"),
+        ("verify", "controleer alle taak-, context- en definitiebindingen read-only"),
+    ):
+        command_parser = workspace_executor_subparsers.add_parser(
+            command_name, help=help_text
+        )
+        command_parser.add_argument("task_id")
+        command_parser.add_argument("executor_id")
+        command_parser.add_argument("--root", default=".")
     workspace_context_parser = workspace_subparsers.add_parser(
         "context",
         help="bouw of controleer één taakgebonden heet-warm-koudpakket",
@@ -465,6 +603,36 @@ def _print_media_result(root: Path, result: object) -> None:
     print("Afgeleide tekst is niet automatisch een feit of OWNER-goedgekeurde kennis.")
 
 
+def _print_definition_result(root: Path, result: object) -> None:
+    resolved_root = root.resolve(strict=True)
+    definition = result.definition_path.relative_to(resolved_root).as_posix()
+    receipt = result.receipt_path.relative_to(resolved_root).as_posix()
+    print(
+        f"{result.status}: {result.definition_type} {result.definition_id} "
+        f"revisie {result.revision}"
+    )
+    print(f"Definitie-SHA-256: {result.definition_digest}")
+    print(f"Document-SHA-256: {result.document_digest}")
+    print(f"Document: {definition}")
+    print(f"Ontvangstbewijs: {receipt}")
+    print("Actor-ID is een lokale verklaring, geen cryptografisch identiteitsbewijs.")
+
+
+def _print_definition_status(result: object) -> None:
+    print(
+        f"{result.status}: {result.definition_type} {result.definition_id} "
+        f"revisie {result.revision}"
+    )
+    if result.definition_digest is not None:
+        print(f"Definitie-SHA-256: {result.definition_digest}")
+    if result.document_digest is not None:
+        print(f"Document-SHA-256: {result.document_digest}")
+    if result.approval_digest is not None:
+        print(f"Approvalrecord-SHA-256: {result.approval_digest}")
+    for error in result.errors:
+        print(f"Fout: {error}")
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     """Run the OPENCNTX command-line interface."""
     args = build_parser().parse_args(argv)
@@ -599,6 +767,120 @@ def main(argv: Sequence[str] | None = None) -> int:
                     )
                     _print_media_result(root, result)
                     return 0
+                return 2
+            if args.workspace_command == "playbook":
+                root = Path(args.root)
+                if args.workspace_playbook_command == "register":
+                    result = register_playbook(
+                        root,
+                        args.playbook_id,
+                        revision=args.revision,
+                        title=args.title,
+                        purpose=args.purpose,
+                        inputs=args.input,
+                        steps=args.step,
+                        stop_conditions=args.stop,
+                        evidence_requirements=args.evidence,
+                        allowed_actions=args.allow,
+                        forbidden_actions=args.forbid,
+                        architect=args.architect,
+                        supersedes_digest=args.supersedes_digest,
+                    )
+                    _print_definition_result(root, result)
+                    return 0
+                if args.workspace_playbook_command == "approve":
+                    result = approve_playbook(
+                        root,
+                        args.playbook_id,
+                        revision=args.revision,
+                        definition_digest=args.definition_digest,
+                        owner=args.owner,
+                    )
+                    _print_definition_result(root, result)
+                    return 0
+                if args.workspace_playbook_command == "status":
+                    result = playbook_status(root, args.playbook_id, args.revision)
+                    _print_definition_status(result)
+                    return 0 if not result.errors else 1
+                if args.workspace_playbook_command == "verify":
+                    report = verify_playbook(root, args.playbook_id, args.revision)
+                    print(format_definition_verify_report(report))
+                    return 0 if report.ok else 1
+                return 2
+            if args.workspace_command == "role":
+                root = Path(args.root)
+                if args.workspace_role_command == "register":
+                    result = register_role(
+                        root,
+                        args.role_id,
+                        revision=args.revision,
+                        title=args.title,
+                        responsibilities=args.responsibility,
+                        allowed_actions=args.allow,
+                        forbidden_actions=args.forbid,
+                        handoff=args.handoff,
+                        architect=args.architect,
+                        supersedes_digest=args.supersedes_digest,
+                    )
+                    _print_definition_result(root, result)
+                    return 0
+                if args.workspace_role_command == "approve":
+                    result = approve_role(
+                        root,
+                        args.role_id,
+                        revision=args.revision,
+                        definition_digest=args.definition_digest,
+                        owner=args.owner,
+                    )
+                    _print_definition_result(root, result)
+                    return 0
+                if args.workspace_role_command == "status":
+                    result = role_status(root, args.role_id, args.revision)
+                    _print_definition_status(result)
+                    return 0 if not result.errors else 1
+                if args.workspace_role_command == "verify":
+                    report = verify_role(root, args.role_id, args.revision)
+                    print(format_definition_verify_report(report))
+                    return 0 if report.ok else 1
+                return 2
+            if args.workspace_command == "executor":
+                root = Path(args.root)
+                if args.workspace_executor_command == "prepare":
+                    result = prepare_executor(
+                        root,
+                        args.task_id,
+                        revision=args.revision,
+                        proposal_digest=args.proposal_digest,
+                        playbook_id=args.playbook_id,
+                        playbook_revision=args.playbook_revision,
+                        playbook_digest=args.playbook_digest,
+                        role_id=args.role_id,
+                        role_revision=args.role_revision,
+                        role_digest=args.role_digest,
+                        context_manifest_digest=args.context_manifest_digest,
+                        executor=args.executor,
+                    )
+                    resolved_root = root.resolve(strict=True)
+                    assignment = result.assignment_path.relative_to(resolved_root).as_posix()
+                    receipt = result.receipt_path.relative_to(resolved_root).as_posix()
+                    print(f"{result.status}: {result.task_id} / {result.executor_id}")
+                    print(f"Record-SHA-256: {result.record_digest}")
+                    print(f"Opdracht: {assignment}")
+                    print(f"Ontvangstbewijs: {receipt}")
+                    print("Er is geen mens, proces, tool, model of agent gestart.")
+                    return 0
+                if args.workspace_executor_command == "status":
+                    result = executor_status(root, args.task_id, args.executor_id)
+                    print(f"{result.status}: {result.task_id} / {result.executor_id}")
+                    if result.record_digest is not None:
+                        print(f"Record-SHA-256: {result.record_digest}")
+                    for error in result.errors:
+                        print(f"Fout: {error}")
+                    return 0 if not result.errors else 1
+                if args.workspace_executor_command == "verify":
+                    report = verify_executor(root, args.task_id, args.executor_id)
+                    print(format_executor_verify_report(report))
+                    return 0 if report.ok else 1
                 return 2
             if args.workspace_command == "context":
                 root = Path(args.root)
