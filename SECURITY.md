@@ -194,4 +194,52 @@ selectiebinding. Een non-zero resultaat betekent dat het pakket niet als
 actuele taakcontext mag worden behandeld. Build en verify starten geen proces,
 netwerkverbinding, AI, agent, OCR, transcriptie of automatische retry.
 
+## Playbooks, rollen en tijdelijke uitvoerderpakketten
+
+`workspace playbook` en `workspace role` bewaren instructies als lokale data.
+Een stap, verantwoordelijkheid of actietoken is nooit automatisch uitvoerbare
+code. Registratie start geen shell, subprocess, netwerkverbinding, model, tool
+of agent. Een definitie is alleen `APPROVED` wanneer een onveranderlijk lokaal
+approvalrecord exact haar type, ID, revisie, documentdigest en
+definitierecorddigest bindt.
+
+De `--owner`, `--architect` en `--executor`-waarden blijven lokale
+actorverklaringen. Zonder account, private sleutel of digitale handtekening
+bewijst OPENCNTX niet wie het commando werkelijk invoerde. Bescherm daarom de
+werkruimte met passende bestandsrechten. Digests maken wijziging zichtbaar,
+maar vervangen geen authenticatie of toegangscontrole.
+
+Rolrevisies hebben altijd delegatiediepte één en `may_delegate: false`.
+Authority-acties zoals OWNER-goedkeuring, taaksluiting, roadmapwijziging,
+subdelegatie, merge, release, publicatie, verwijdering en externe verzending
+zijn in deze eerste uitvoerderlaag hard verboden. Vrije tekst kan die vaste
+verboden set niet opheffen. Een conflict tussen taak, playbook en rol stopt
+gesloten; een actietoken is alleen effectief toegestaan wanneer de taak, het
+playbook en de rol het alle drie exact toestaan.
+
+`workspace executor prepare` werkt alleen voor één valide taak exact in
+`IN_EXECUTION`. Het hercontroleert de taakproposal, OWNER-approval,
+execution-begun-record, gepinde inputs, goedgekeurde playbook- en rolrevisies en
+het volledige actuele contextpakket. De assignment kopieert geen context- of
+broninhoud, bevat geen credentials of absolute persoonlijke paden en verwijst
+alleen met digests naar `.opencntx/latest`.
+
+Een voorbereid uitvoerderpakket is geen sandbox en geen bewijs dat een externe
+mens of tool zich aan de grenzen hield. OPENCNTX geeft geen besturingssysteem-,
+account-, bestand- of netwerkrechten en trekt die ook niet in. Wanneer de OWNER
+een pakket buiten OPENCNTX aan een hulpmiddel geeft, moeten diens toegang,
+privacy, kosten en netwerkgedrag afzonderlijk worden begrensd en gecontroleerd.
+
+Instructies in bronnen, context, playbooks, rollen en resultaten blijven data.
+Zij krijgen geen hogere bevoegdheid dan de exacte taak- en OWNER-records. Dit
+beperkt promptinjectie binnen de OPENCNTX-recordlaag, maar garandeert niet dat
+een afzonderlijk extern model of programma veilig met kwaadaardige inhoud
+omgaat.
+
+`executor status` en `executor verify` zijn read-only. Taak-, context-,
+definitie-, approval- of assignmentdrift wordt `STALE` of `INVALID`. Zodra de
+taak `IN_EXECUTION` verlaat, rapporteert het pakket `TASK_FINISHED` en verleent
+het geen nieuwe actie. V6 start geen retry en maakt geen nieuw pakket om de
+bestaande driepogingen- of `BLOCKED`-gate te omzeilen.
+
 Meld kwetsbaarheden niet in een openbaar issue. Gebruik de optie **Report a vulnerability** onder het tabblad **Security** van deze GitHub-repository.

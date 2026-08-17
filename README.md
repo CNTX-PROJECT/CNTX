@@ -350,6 +350,118 @@ uitsluitend een lokale, herbouwbare metadata-index; de taakflow is uitsluitend
 een lokale bewijs- en statusketen en de navigator uitsluitend een
 deterministische lokale pakketroute.
 
+### Begrensde playbooks, rollen en uitvoerderpakketten
+
+Een playbook is een herhaalbare werkwijze; een rol beschrijft de vaste grenzen
+van een tijdelijke uitvoerder. Beide beginnen als `PROPOSED` en worden pas
+bruikbaar nadat de OWNER hun exacte revisie en definitie-SHA-256 afzonderlijk
+heeft goedgekeurd. Registratie voert de stappen niet uit:
+
+```powershell
+opencntx workspace playbook register PB-BRON-CONTROLE `
+  --revision 1 `
+  --title "Controleer één bron" `
+  --purpose "Controleer uitsluitend de toegewezen bron." `
+  --input "Eén taakgebonden contextpakket" `
+  --step "Controleer eerst alle digests." `
+  --stop "Stop bij ontbrekende of gewijzigde bronbytes." `
+  --evidence "Exacte bron-ID, versie en SHA-256." `
+  --allow inspect-source `
+  --allow write-bounded-result `
+  --forbid external-send `
+  --forbid subdelegate `
+  --architect "ARCHITECT" `
+  --root mijn-project
+```
+
+Een rol gebruikt dezelfde kleine actietokens. Zij moet alle vaste
+authority-acties verbieden, waaronder `owner-approve`, `owner-accept`,
+`task-close`, `roadmap-change`, `subdelegate`, `merge`, `release`, `publish`,
+`delete` en `external-send`:
+
+```powershell
+opencntx workspace role register ROLE-BRON-REVIEWER `
+  --revision 1 `
+  --title "Begrensde bronreviewer" `
+  --responsibility "Controleer uitsluitend de toegewezen bron." `
+  --allow inspect-source `
+  --allow write-bounded-result `
+  --forbid delete `
+  --forbid external-send `
+  --forbid merge `
+  --forbid owner-accept `
+  --forbid owner-approve `
+  --forbid playbook-approve `
+  --forbid publish `
+  --forbid release `
+  --forbid roadmap-change `
+  --forbid role-approve `
+  --forbid subdelegate `
+  --forbid task-cancel `
+  --forbid task-close `
+  --forbid task-supersede `
+  --handoff "Lever resultaat en bewijs terug aan de ARCHITECT." `
+  --architect "ARCHITECT" `
+  --root mijn-project
+```
+
+Gebruik de getoonde definitiedigests om iedere revisie exact goed te keuren:
+
+```powershell
+opencntx workspace playbook approve PB-BRON-CONTROLE `
+  --revision 1 `
+  --definition-digest <EXACTE-PLAYBOOKDIGEST> `
+  --owner "OWNER" `
+  --root mijn-project
+opencntx workspace role approve ROLE-BRON-REVIEWER `
+  --revision 1 `
+  --definition-digest <EXACTE-ROLDIGEST> `
+  --owner "OWNER" `
+  --root mijn-project
+```
+
+Een nieuwe inhoudelijke versie krijgt een nieuwe revisiemap en bindt met
+`--supersedes-digest` exact de vorige definitiedigest. Oude revisies en
+approvals worden niet overschreven. `status` en `verify` zijn read-only en
+tonen `PROPOSED`, `APPROVED`, `STALE` of `INVALID`.
+
+Voor een V6-uitvoerderpakket moet het bestaande taakvoorstel de exacte
+`PLAYBOOK.md` en `ROLE.md` als inputs pinnen, het rol-ID letterlijk als
+`--executor-role` gebruiken en uitsluitend kleine actietokens in `--allow` en
+`--forbid` gebruiken. Nadat de taak exact `IN_EXECUTION` is en de
+contextnavigator groen is, kan één pakket worden voorbereid:
+
+```powershell
+opencntx workspace executor prepare TASK-20260817-0001 `
+  --revision 1 `
+  --proposal-digest <EXACTE-TAAKVOORSTELDIGEST> `
+  --playbook-id PB-BRON-CONTROLE `
+  --playbook-revision 1 `
+  --playbook-digest <EXACTE-PLAYBOOKDIGEST> `
+  --role-id ROLE-BRON-REVIEWER `
+  --role-revision 1 `
+  --role-digest <EXACTE-ROLDIGEST> `
+  --context-manifest-digest <EXACTE-CONTEXTMANIFESTDIGEST> `
+  --executor "UITVOERDER-1" `
+  --root mijn-project
+```
+
+`prepare` hercontroleert de volledige taakketen, inputs, context, definities,
+approvals en actiegrenzen. De effectieve toegestane acties moeten zowel door de
+taak als door het playbook en de rol zijn toegestaan; verboden wint altijd.
+Het resultaat onder `.opencntx/executors/` is een klein `ASSIGNMENT.md` plus
+een exact record. Het verwijst naar `.opencntx/latest` en kopieert geen
+bron- of contextbytes.
+
+`EXECUTOR_PACKAGE_PREPARED` betekent alleen dat de opdracht controleerbaar is
+samengebonden. OPENCNTX start geen mens, proces, tool, AI of agent en verleent
+geen computer- of netwerktoegang. Delegatiediepte is exact één en
+`may_delegate` is altijd false. Resultaat en bewijs keren via de bestaande
+`workspace task submit-result`-flow terug naar de ARCHITECT; alleen de OWNER kan
+het exacte gecontroleerde resultaat aanvaarden. `executor status` en
+`executor verify` schrijven niets en maken drift of een afgewerkte taak
+zichtbaar.
+
 ## Veiligheid en beperkingen
 
 - Lees `CONTEXT.md` altijd voordat u het deelt; geselecteerde broninhoud staat er
