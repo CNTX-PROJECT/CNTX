@@ -132,6 +132,83 @@ technische freshnessstatus is geen inhoudelijke waarheid of OWNER-goedkeuring.
 De catalogus bevat geen originele bronbytes, volledige samenvattingen,
 embeddings of vectoren.
 
+### Media en veilige afgeleide tekst
+
+`workspace capture` bewaart afbeeldingen, schema's, PDF's, audio en video al
+byte-exact zonder ze uit te voeren. OPENCNTX start zelf geen OCR, transcriptie,
+parser of AI. Wanneer een mens of een afzonderlijk gekozen hulpmiddel een
+UTF-8-tekstbestand heeft gemaakt, kan die tekst wel veilig en zichtbaar als
+afleiding worden geregistreerd:
+
+```powershell
+opencntx workspace media register SRC-20260817-0123456789ab `
+  --text afgeleid.txt `
+  --kind OCR `
+  --producer-class LOCAL_TOOL `
+  --producer "offline-tool 1" `
+  --locator "pagina 1-3" `
+  --root mijn-project
+```
+
+De registratie bewaart `content.txt` en een onveranderlijk record onder
+`.opencntx/derived/<SOURCE-ID>/<DERIVATION-ID>/`. Het record bindt de tekst aan
+de exacte originele bron- en recordhash, erft het privacylabel en bewaart de
+opgegeven soort, makerklasse en locators. Deze metadata is een lokale
+verklaring; OPENCNTX bewijst niet welk hulpmiddel de tekst werkelijk maakte.
+
+`workspace media status` toont altijd een expliciete toestand:
+
+- `NOT_INVESTIGATED` — geen afgeleide tekst geregistreerd;
+- `UNREVIEWED` — geregistreerd maar niet menselijk gecontroleerd;
+- `REVIEWED` — bruikbaar bevonden, maar niet automatisch een feit;
+- `REJECTED` — afgewezen en niet promoveerbaar;
+- `PROMOTED` — bewust als gewone `CAPTURED` tekstbron opgeslagen;
+- `STALE` — originele of afgeleide bytes wijken af;
+- `REMOVED` — afgeleide tekstkopie verwijderd, provenance bewaard.
+
+Een controle bindt de beslissing aan de exacte contentdigest:
+
+```powershell
+opencntx workspace media review SRC-... DRV-... `
+  --content-sha256 <EXACTE-64-HEX-DIGEST> `
+  --decision ACCEPT `
+  --finding "pagina's handmatig vergeleken" `
+  --reviewer "ARCHITECT" `
+  --root mijn-project
+```
+
+Alleen `REVIEWED` kan met de getoonde reviewdigest bewust worden gepromoveerd:
+
+```powershell
+opencntx workspace media promote SRC-... DRV-... `
+  --review-digest <EXACTE-64-HEX-DIGEST> `
+  --root mijn-project
+opencntx workspace media verify SRC-... DRV-... --root mijn-project
+```
+
+Promotie gebruikt de bestaande veilige captureflow en maakt uitsluitend een
+gewone tekstbron met dezelfde privacy en een exacte verwijzing naar origineel
+en afleiding. De tekst wordt niet automatisch een feit, hoofdstuk,
+OWNER-goedgekeurde kennis, catalogusselectie of taakcontext. Zij moet daarna
+bewust door de bestaande chapter- en taskflow worden gepind.
+
+Een nieuwe afleiding overschrijft nooit de oude; gebruik
+`--supersedes-derivation-id DRV-...`. Exacte verwijdering vereist source-ID,
+derivation-ID, recorddigest, contentdigest en een lokale OWNER-verklaring:
+
+```powershell
+opencntx workspace media remove SRC-... DRV-... `
+  --record-digest <EXACTE-64-HEX-DIGEST> `
+  --content-sha256 <EXACTE-64-HEX-DIGEST> `
+  --owner "OWNER" `
+  --root mijn-project
+```
+
+Dit verwijdert alleen de afgeleide `content.txt`. Het officiële origineel,
+andere afleidingen en een reeds gepromoveerde bron blijven bestaan. Een klein
+verwijderrecord blijft als provenance leesbaar. `status` en `verify` zijn
+read-only en schrijven geen receipt.
+
 ### Begrensde taak met OWNER-gates
 
 Eén lokale taak kan als een controleerbare keten worden vastgelegd. De normale
@@ -261,12 +338,14 @@ toestemming om het extern te delen en beweert nooit dat het volledige project
 werd onderzocht.
 
 De leesbare frontmatter van `CONTROL/CURRENT.md` legt standaard maximaal 2 GiB
-per bron en 20 GiB officiële bronopslag vast. Deze opslagbudgetten staan los
-van de veel kleinere contextbudgetten van `pack`.
+per bron of afgeleide tekst en 20 GiB gezamenlijke officiële bron- en actieve
+afgeleide tekstbytes vast. Deze opslagbudgetten staan los van de veel kleinere
+contextbudgetten van `pack`.
 
 Deze lokale werkruimtelaag doet bewust geen achtergrondbewaking, chatopname,
 netwerkdownload, cloudback-up, OCR, transcriptie, beeld- of videoanalyse,
-vrije zoekopdracht, AI-selectie of agentuitvoering. De SQLite-catalogus is
+vrije zoekopdracht, AI-selectie of agentuitvoering. Mediaregistratie bewaart
+alleen reeds aangeleverde afgeleide UTF-8-tekst. De SQLite-catalogus is
 uitsluitend een lokale, herbouwbare metadata-index; de taakflow is uitsluitend
 een lokale bewijs- en statusketen en de navigator uitsluitend een
 deterministische lokale pakketroute.

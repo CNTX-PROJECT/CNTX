@@ -630,6 +630,52 @@ def _hash_file(path: Path) -> tuple[int, str]:
     return byte_count, digest.hexdigest()
 
 
+def _derived_storage_bytes(root: Path) -> int:
+    """Count active derived text bytes without following managed symlinks."""
+    derived_root = root / ".opencntx" / "derived"
+    if not derived_root.exists():
+        return 0
+    if derived_root.is_symlink() or not derived_root.is_dir():
+        raise WorkspaceError(
+            ".opencntx/derived moet een veilige gewone map zijn.",
+            code="derived_storage_invalid",
+        )
+    total = 0
+    try:
+        for current, directory_names, file_names in os.walk(
+            derived_root, topdown=True, followlinks=False
+        ):
+            current_path = Path(current)
+            for name in directory_names:
+                if (current_path / name).is_symlink():
+                    raise WorkspaceError(
+                        "Een afleidingsmap mag geen symlink zijn.",
+                        code="derived_storage_invalid",
+                    )
+            for name in file_names:
+                path = current_path / name
+                if path.is_symlink():
+                    raise WorkspaceError(
+                        "Een afleidingsbestand mag geen symlink zijn.",
+                        code="derived_storage_invalid",
+                    )
+                if name == "content.txt":
+                    if not path.is_file():
+                        raise WorkspaceError(
+                            "Afgeleide content moet een regulier bestand zijn.",
+                            code="derived_storage_invalid",
+                        )
+                    total += path.stat().st_size
+    except WorkspaceError:
+        raise
+    except OSError as exc:
+        raise WorkspaceError(
+            f"Afgeleide opslag kan niet veilig worden gemeten: {exc}",
+            code="derived_storage_unavailable",
+        ) from exc
+    return total
+
+
 def _atomic_json(path: Path, value: dict[str, Any]) -> None:
     temporary = path.parent / f".{path.name}.{uuid4().hex}.tmp"
     try:
@@ -906,6 +952,7 @@ def capture_source(
             )
 
         current_total = sum(item.byte_count for item in stored.values())
+        current_total += _derived_storage_bytes(root)
         if current_total + byte_count > config.max_storage_bytes:
             raise WorkspaceError(
                 "Totaal opslagbudget wordt overschreden: "
