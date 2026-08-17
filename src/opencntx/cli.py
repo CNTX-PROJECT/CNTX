@@ -20,6 +20,18 @@ from .navigator import (
     format_context_verify_report,
     verify_context_package,
 )
+from .media import (
+    DECISIONS,
+    KINDS,
+    PRODUCER_CLASSES,
+    format_media_verify_report,
+    media_status,
+    promote_derivation,
+    register_derivation,
+    remove_derivation,
+    review_derivation,
+    verify_media,
+)
 from .workflow import (
     accept_result,
     approve_task,
@@ -81,7 +93,7 @@ def build_parser() -> argparse.ArgumentParser:
     verify_parser.add_argument("package", help="pakketmap, bijvoorbeeld .opencntx/latest")
     workspace_parser = subparsers.add_parser(
         "workspace",
-        help="lokale opslag, catalogus, taakgates en begrensde contextnavigatie",
+        help="lokale opslag, media, catalogus, taakgates en contextnavigatie",
     )
     workspace_subparsers = workspace_parser.add_subparsers(
         dest="workspace_command",
@@ -181,6 +193,76 @@ def build_parser() -> argparse.ArgumentParser:
         default=".",
         help="projectwerkruimte; standaard de huidige map",
     )
+    workspace_media_parser = workspace_subparsers.add_parser(
+        "media",
+        help="registreer en controleer tekst die veilig van media is afgeleid",
+    )
+    workspace_media_subparsers = workspace_media_parser.add_subparsers(
+        dest="workspace_media_command",
+        required=True,
+    )
+    media_register_parser = workspace_media_subparsers.add_parser(
+        "register",
+        help="registreer aangeleverde UTF-8-tekst zonder OCR, AI of tool te starten",
+    )
+    media_register_parser.add_argument("source_id")
+    media_register_parser.add_argument("--text", required=True)
+    media_register_parser.add_argument("--kind", required=True, choices=KINDS)
+    media_register_parser.add_argument(
+        "--producer-class", required=True, choices=PRODUCER_CLASSES
+    )
+    media_register_parser.add_argument("--producer", required=True)
+    media_register_parser.add_argument("--locator", action="append", default=[])
+    media_register_parser.add_argument("--supersedes-derivation-id")
+    media_register_parser.add_argument("--root", default=".")
+
+    media_review_parser = workspace_media_subparsers.add_parser(
+        "review",
+        help="controleer exact één afleiding zonder haar als feit te aanvaarden",
+    )
+    media_review_parser.add_argument("source_id")
+    media_review_parser.add_argument("derivation_id")
+    media_review_parser.add_argument("--content-sha256", required=True)
+    media_review_parser.add_argument("--decision", required=True, choices=DECISIONS)
+    media_review_parser.add_argument("--finding", action="append", required=True)
+    media_review_parser.add_argument("--reviewer", required=True)
+    media_review_parser.add_argument("--root", default=".")
+
+    media_promote_parser = workspace_media_subparsers.add_parser(
+        "promote",
+        help="promoveer gecontroleerde tekst bewust tot gewone CAPTURED bron",
+    )
+    media_promote_parser.add_argument("source_id")
+    media_promote_parser.add_argument("derivation_id")
+    media_promote_parser.add_argument("--review-digest", required=True)
+    media_promote_parser.add_argument("--root", default=".")
+
+    media_status_parser = workspace_media_subparsers.add_parser(
+        "status",
+        help="toon of media niet onderzocht, afgeleid, gecontroleerd of verwijderd zijn",
+    )
+    media_status_parser.add_argument("source_id")
+    media_status_parser.add_argument("derivation_id", nargs="?")
+    media_status_parser.add_argument("--root", default=".")
+
+    media_verify_parser = workspace_media_subparsers.add_parser(
+        "verify",
+        help="controleer originele, afgeleide en promotiebytes volledig read-only",
+    )
+    media_verify_parser.add_argument("source_id")
+    media_verify_parser.add_argument("derivation_id", nargs="?")
+    media_verify_parser.add_argument("--root", default=".")
+
+    media_remove_parser = workspace_media_subparsers.add_parser(
+        "remove",
+        help="verwijder uitsluitend exact gepinde afgeleide tekst met tombstone",
+    )
+    media_remove_parser.add_argument("source_id")
+    media_remove_parser.add_argument("derivation_id")
+    media_remove_parser.add_argument("--record-digest", required=True)
+    media_remove_parser.add_argument("--content-sha256", required=True)
+    media_remove_parser.add_argument("--owner", required=True)
+    media_remove_parser.add_argument("--root", default=".")
     workspace_context_parser = workspace_subparsers.add_parser(
         "context",
         help="bouw of controleer één taakgebonden heet-warm-koudpakket",
@@ -371,6 +453,18 @@ def _print_task_result(root: Path, result: object) -> None:
     )
 
 
+def _print_media_result(root: Path, result: object) -> None:
+    resolved_root = root.resolve(strict=True)
+    receipt = result.receipt_path.relative_to(resolved_root).as_posix()
+    print(f"{result.status}: {result.source_id} / {result.derivation_id}")
+    print(f"Afgeleide SHA-256: {result.content_sha256}")
+    print(f"Record-SHA-256: {result.record_sha256}")
+    if result.promoted_source_id is not None:
+        print(f"Gepromoveerde bron: {result.promoted_source_id}")
+    print(f"Ontvangstbewijs: {receipt}")
+    print("Afgeleide tekst is niet automatisch een feit of OWNER-goedgekeurde kennis.")
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     """Run the OPENCNTX command-line interface."""
     args = build_parser().parse_args(argv)
@@ -439,6 +533,73 @@ def main(argv: Sequence[str] | None = None) -> int:
                     print(f"State-digest: {result.state_digest}")
                     print(f"Ontvangstbewijs: {receipt}")
                     return 0
+            if args.workspace_command == "media":
+                root = Path(args.root)
+                if args.workspace_media_command == "register":
+                    result = register_derivation(
+                        root,
+                        args.source_id,
+                        Path(args.text),
+                        kind=args.kind,
+                        producer_class=args.producer_class,
+                        producer=args.producer,
+                        locators=args.locator,
+                        supersedes_derivation_id=args.supersedes_derivation_id,
+                    )
+                    _print_media_result(root, result)
+                    return 0
+                if args.workspace_media_command == "review":
+                    result = review_derivation(
+                        root,
+                        args.source_id,
+                        args.derivation_id,
+                        content_sha256=args.content_sha256,
+                        decision=args.decision,
+                        findings=args.finding,
+                        reviewer=args.reviewer,
+                    )
+                    _print_media_result(root, result)
+                    return 0
+                if args.workspace_media_command == "promote":
+                    result = promote_derivation(
+                        root,
+                        args.source_id,
+                        args.derivation_id,
+                        review_digest=args.review_digest,
+                    )
+                    _print_media_result(root, result)
+                    return 0
+                if args.workspace_media_command == "status":
+                    entries = media_status(root, args.source_id, args.derivation_id)
+                    for entry in entries:
+                        identity = entry.derivation_id or entry.source_id
+                        print(f"{entry.status}: {identity}")
+                        print(entry.statement)
+                        if entry.content_sha256 is not None:
+                            print(f"Afgeleide SHA-256: {entry.content_sha256}")
+                        if entry.record_sha256 is not None:
+                            print(f"Record-SHA-256: {entry.record_sha256}")
+                        if entry.review_sha256 is not None:
+                            print(f"Review-SHA-256: {entry.review_sha256}")
+                        if entry.promoted_source_id is not None:
+                            print(f"Gepromoveerde bron: {entry.promoted_source_id}")
+                    return 0
+                if args.workspace_media_command == "verify":
+                    report = verify_media(root, args.source_id, args.derivation_id)
+                    print(format_media_verify_report(report))
+                    return 0 if report.ok else 1
+                if args.workspace_media_command == "remove":
+                    result = remove_derivation(
+                        root,
+                        args.source_id,
+                        args.derivation_id,
+                        record_digest=args.record_digest,
+                        content_sha256=args.content_sha256,
+                        owner=args.owner,
+                    )
+                    _print_media_result(root, result)
+                    return 0
+                return 2
             if args.workspace_command == "context":
                 root = Path(args.root)
                 if args.workspace_context_command == "build":

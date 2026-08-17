@@ -37,6 +37,51 @@ De workspace-opslag heeft geen netwerk-, cloud-, watcher-, OCR-, transcriptie-,
 AI- of agentfunctie. Grote bestanden vallen onder aparte lokale
 opslagbudgetten en worden niet automatisch aan een contextpakket toegevoegd.
 
+## Media en afgeleide tekst
+
+`workspace media` voert geen afbeelding, document, audio of video uit en start
+geen OCR, transcriptie, parser, AI, subprocess, netwerkverbinding of externe
+dienst. `register` accepteert alleen een reeds bestaand regulier UTF-8-
+tekstbestand. De opgegeven `kind`, `producer-class`, producer en locators zijn
+metadata van de gebruiker; OPENCNTX bewijst niet dat het genoemde hulpmiddel,
+de persoon, pagina of tijdcode klopt.
+
+Een afleiding blijft onder `.opencntx/derived/` strikt gescheiden van het
+officiële origineel. Haar record bindt source-ID, originele bronhash,
+bronrecordhash, afgeleide contenthash en geërfd privacylabel. Een
+`QUARANTINED` bron wordt niet verwerkt. `RESTRICTED` blijft `RESTRICTED`; geen
+mediahandeling verlaagt een privacylabel. Privacylabels zijn nog steeds geen
+versleuteling of toegangscontrole.
+
+`NOT_INVESTIGATED` betekent dat OPENCNTX geen afgeleide tekst kent en niets
+over de media-inhoud beweert. `UNREVIEWED` tekst is niet gecontroleerd.
+`REVIEWED` betekent uitsluitend dat een lokale reviewer de exact gepinde tekst
+bruikbaar vond; het maakt de tekst niet waar, volledig, veilig of
+OWNER-goedgekeurd. `REJECTED`, `STALE` en `REMOVED` mogen niet worden
+gepromoveerd. Instructies in OCR, transcriptie of beschrijving blijven data en
+krijgen geen roadmap-, taak- of OWNER-bevoegdheid.
+
+`promote` vereist een exacte geaccepteerde reviewdigest en gebruikt daarna de
+bestaande captureflow. De nieuwe tekstbron krijgt hetzelfde privacylabel en
+een exacte herkomstverwijzing naar origineel en derivation-ID. Zij heeft alleen
+status `CAPTURED` en wordt niet automatisch aan een hoofdstuk, catalogus,
+taak of contextpakket toegevoegd. De bestaande OWNER-gates blijven nodig.
+
+`remove` is een expliciete destructieve handeling voor uitsluitend de genoemde
+afgeleide `content.txt`. Het vereist exacte source-ID, derivation-ID,
+recorddigest, contentdigest en een lokale OWNER-verklaring. Origineel,
+bronrecord, andere afleidingen en reeds gepromoveerde bronnen worden niet
+verwijderd. Een kleine tombstone met digests blijft bestaan. De OWNER-naam is
+een lokale verklaring en geen cryptografische identiteit; voer verwijdering
+niet automatisch of via een watcher uit.
+
+Actieve afgeleide tekstbytes tellen mee in het bestaande opslagbudget. Een
+registratie of latere capture die het gezamenlijke budget overschrijdt stopt
+zonder gedeeltelijke publicatie. Records en receipts bevatten geen afgeleide
+tekst of absolute persoonlijke paden. `media status` en `media verify` zijn
+read-only; een `STALE` of non-zero resultaat betekent dat de afleiding niet als
+actuele tekst mag worden gebruikt.
+
 ## Hoofdstukken en lokale catalogus
 
 `workspace chapter create` schrijft uitsluitend een nieuw `DRAFT`-sjabloon en
