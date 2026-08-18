@@ -1,9 +1,9 @@
 [task]
-goal = "Beschrijf de ene concrete taak"
+goal = "Describe the one concrete task"
 
 [context]
-include = ["README.md", "src/**/*.py"]
+include = ["README.md"]
 required = ["README.md"]
-exclude = [".git/**", ".env*", "**/*.key", "**/*.pem"]
-max_files = 25
-max_bytes = 100000
+exclude = [".git/**", ".opencntx/**", ".env*", "**/*.key", "**/*.pem"]
+max_files = 10
+max_bytes = 50000

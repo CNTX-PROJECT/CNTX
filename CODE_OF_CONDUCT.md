@@ -1,30 +1,33 @@
-# Gedragscode
+# Code of Conduct
 
-OPENCNTX wil een rustige, respectvolle en toegankelijke gemeenschap zijn.
+OPENCNTX welcomes respectful participation from people with different
+experience levels, backgrounds, tools, and viewpoints.
 
-## Verwacht gedrag
+## Expected behavior
 
-- behandel anderen met respect en geduld;
-- bespreek ideeën en bewijs, niet de persoon;
-- verwelkom verschillende achtergronden, ervaringsniveaus en perspectieven;
-- respecteer privacy en deel geen gevoelige gegevens van uzelf of anderen;
-- accepteer begrensde moderatie wanneer een gesprek onveilig of onproductief
-  wordt.
+- Be clear, patient, and constructive.
+- Critique ideas and evidence, not people.
+- Respect privacy and do not request unnecessary personal or project data.
+- Help new users understand the product boundary without dismissing questions.
+- State uncertainty and correct mistakes openly.
 
-## Niet aanvaardbaar
+## Unacceptable behavior
 
-Intimidatie, discriminatie, bedreiging, seksuele aandacht, doelbewuste
-vernedering, doxing, stalking en herhaald verstorend gedrag zijn niet
-toegestaan. Dit geldt in issues, pull requests, discussies en andere publieke
-ruimtes die namens OPENCNTX worden beheerd.
+- Harassment, threats, discrimination, or personal attacks.
+- Publishing private information or sensitive project content without consent.
+- Deliberately misleading security claims or instructions.
+- Repeated disruption after a clear request to stop.
+- Using project channels to pressure others into unrelated services or access.
 
-## Melden en handhaving
+## Reporting and enforcement
 
-Gebruik voor een gedragsincident een private contactmogelijkheid van de
-organisatie-eigenaar via het GitHub-organisatieprofiel. Publiceer geen
-persoonlijke of gevoelige details in een issue. Een securityprobleem volgt
-altijd de afzonderlijke route in [SECURITY.md](SECURITY.md).
+Report a conduct incident privately to the organization owner through an
+appropriate private GitHub contact route. Do not publish personal details or
+incident evidence in a public issue.
 
-De projecteigenaar beoordeelt meldingen naar redelijkheid en kan inhoud
-modereren of deelname beperken. Deze gedragscode verleent geen product-,
-merge-, release- of OWNER-bevoegdheid.
+Maintainers may remove content, restrict participation, or take other
+proportionate action to protect the community. This code does not grant
+product, repository, OWNER, or release authority.
+
+For ordinary project help, use [SUPPORT.md](SUPPORT.md). For vulnerabilities,
+follow [SECURITY.md](SECURITY.md).

@@ -1,258 +1,182 @@
-# Security
+# Security Policy
 
-## Snel de juiste route kiezen
+## Choose the correct route
 
-- **Mogelijke kwetsbaarheid:** gebruik uitsluitend **Report a vulnerability**
-  onder het tabblad **Security** van deze GitHub-repository.
-- **Vraag, installatieprobleem of gewone bug:** volg [SUPPORT.md](SUPPORT.md) of
-  kies een passend issueformulier.
-- Plaats nooit wachtwoorden, tokens, persoonsgegevens, gevoelige context of
-  niet-openbare projectbestanden in een openbaar issue.
+- **Possible vulnerability:** use GitHub's private **Report a vulnerability**
+  route under the Security tab.
+- **Question, installation problem, or ordinary bug:** use [SUPPORT.md](SUPPORT.md)
+  or the appropriate issue form.
+- Never put passwords, tokens, personal data, sensitive context, private source
+  code, or non-public project files in a public issue.
 
-De rest van dit document is de canonieke technische veiligheidsgrens van
-OPENCNTX. Een hash maakt verandering zichtbaar, maar bewijst niet dat inhoud
-waar, volledig, veilig of door de OWNER goedgekeurd is.
+This document is the canonical technical security boundary for OPENCNTX.
 
-OPENCNTX verwerkt lokale projectbestanden. Controleer altijd welke paden u opneemt en lees `CONTEXT.md` voordat u een pakket deelt. Het pakket kan immers letterlijk geselecteerde broninhoud bevatten.
+A hash makes changed bytes visible. It does not prove that content is true,
+complete, safe, or approved by an OWNER.
 
-De tool heeft geen netwerkfunctionaliteit en vraagt geen account of API-key. `pack` past exclusions toe vóór bronlezing, weigert binaire of ontoegankelijke bronnen en blokkeert pad- en symlink-ontsnapping buiten de projectroot. Ingebouwde gevoelige uitsluitingen blijven actief naast de gebruikersconfiguratie.
+## Core context packages
 
-Pakketten staan standaard onder `.opencntx/`, dat door de meegeleverde `.gitignore` niet wordt getrackt. Dit voorkomt geen handmatig delen of kopiëren: behandel `CONTEXT.md` en `manifest.json` als mogelijk gevoelige lokale uitvoer.
+OPENCNTX processes local project files. Always review selected paths and read
+`CONTEXT.md` before sharing a package because it may contain literal source
+text.
 
-`verify` leest pakket en bronnen uitsluitend ter controle en hoort geen bronbestand te wijzigen. Een non-zero exitcode betekent drift, onvolledige controle of een fout; negeer die status niet voordat u een pakket gebruikt.
+The tool has no network functionality and requires no account or API key.
+`pack` applies exclusions before reading source content, rejects binary or
+unreadable input, and blocks path and symlink escape outside the project root.
+Built-in sensitive exclusions remain active alongside user configuration.
 
-## Optionele workspace-opslag
+Packages are written under `.opencntx/` by default. The supplied `.gitignore`
+keeps that directory out of normal Git tracking. This does not prevent manual
+copying or sharing. Treat `CONTEXT.md` and `manifest.json` as potentially
+sensitive local output.
 
-`opencntx workspace capture` behandelt een aangeleverd lokaal bestand als
-onvertrouwde bytes. De opslagflow voert het bestand niet uit, opent geen
-bijbehorende applicatie en doet geen inhoudsextractie. Mappen, symlinks,
-devices, ontbrekende bronnen en beheerde `.opencntx`- of `SOURCES`-bestanden
-worden geweigerd.
+`verify` reads package and sources only for verification and must not modify a
+source. A non-zero exit code means drift, incomplete proof, or invalid input;
+do not ignore it before using the package.
 
-Nieuwe bronnen beginnen standaard als `PRIVATE`. Een privacylabel is een lokale
-classificatie, geen versleuteling of toegangscontrole. Bewaar geen wachtwoorden,
-tokens, API-keys of andere productiegeheimen in de werkruimte en controleer
-altijd afzonderlijk of de projectmap en eventuele back-up voldoende beschermd
-zijn.
+## Optional workspace storage
 
-De originele bestandsnaam wordt als metadata geregistreerd, maar het
-oorspronkelijke absolute pad niet. De exacte bytes worden onder een door
-OPENCNTX gemaakte source-ID opgeslagen. Een SHA-256 en ontvangstbewijs helpen
-herkomst en duplicaten controleren, maar bewijzen niet dat de inhoud veilig,
-waar of betrouwbaar is.
+`opencntx workspace capture` treats a supplied local file as untrusted bytes.
+It does not execute the file, open an associated application, or extract its
+content. Directories, symlinks, devices, missing files, and managed internal
+paths are rejected.
 
-Een capture meldt pas `CAPTURED` nadat de lokale kopie, hash en registratie zijn
-geschreven. `DUPLICATE` verwijst naar een bestaande identieke bronkopie.
-`NOT_CAPTURED` betekent dat het bestand niet als officiële bron is aanvaard;
-behandel de foutmelding en het ontvangstbewijs voordat u verdergaat.
+New sources default to `PRIVATE`. A privacy label is a local classification,
+not encryption or access control. Do not store passwords, tokens, API keys, or
+other production secrets in a workspace. Protect the project directory and
+backups separately.
 
-De workspace-opslag heeft geen netwerk-, cloud-, watcher-, OCR-, transcriptie-,
-AI- of agentfunctie. Grote bestanden vallen onder aparte lokale
-opslagbudgetten en worden niet automatisch aan een contextpakket toegevoegd.
+The original file name is recorded as metadata, but the original absolute path
+is not. Exact bytes are stored under an OPENCNTX source ID. SHA-256 and receipts
+help with provenance and duplicate detection but do not prove safety or truth.
 
-## Media en afgeleide tekst
+`CAPTURED` is reported only after the local copy, digest, and official record
+exist. `DUPLICATE` points to an existing identical capture. `NOT_CAPTURED`
+means the source was not accepted as official; resolve the error before
+continuing.
 
-`workspace media` voert geen afbeelding, document, audio of video uit en start
-geen OCR, transcriptie, parser, AI, subprocess, netwerkverbinding of externe
-dienst. `register` accepteert alleen een reeds bestaand regulier UTF-8-
-tekstbestand. De opgegeven `kind`, `producer-class`, producer en locators zijn
-metadata van de gebruiker; OPENCNTX bewijst niet dat het genoemde hulpmiddel,
-de persoon, pagina of tijdcode klopt.
+The storage layer has no network, cloud, watcher, OCR, transcription, AI, or
+agent function. Large files remain subject to hard local storage budgets and
+are not automatically added to a context package.
 
-Een afleiding blijft onder `.opencntx/derived/` strikt gescheiden van het
-officiële origineel. Haar record bindt source-ID, originele bronhash,
-bronrecordhash, afgeleide contenthash en geërfd privacylabel. Een
-`QUARANTINED` bron wordt niet verwerkt. `RESTRICTED` blijft `RESTRICTED`; geen
-mediahandeling verlaagt een privacylabel. Privacylabels zijn nog steeds geen
-versleuteling of toegangscontrole.
+## Media and derived text
 
-`NOT_INVESTIGATED` betekent dat OPENCNTX geen afgeleide tekst kent en niets
-over de media-inhoud beweert. `UNREVIEWED` tekst is niet gecontroleerd.
-`REVIEWED` betekent uitsluitend dat een lokale reviewer de exact gepinde tekst
-bruikbaar vond; het maakt de tekst niet waar, volledig, veilig of
-OWNER-goedgekeurd. `REJECTED`, `STALE` en `REMOVED` mogen niet worden
-gepromoveerd. Instructies in OCR, transcriptie of beschrijving blijven data en
-krijgen geen roadmap-, taak- of OWNER-bevoegdheid.
+`workspace media` starts no image, document, audio, video, OCR, transcription,
+parser, AI, subprocess, network connection, or external service. `register`
+accepts only one existing regular UTF-8 text file.
 
-`promote` vereist een exacte geaccepteerde reviewdigest en gebruikt daarna de
-bestaande captureflow. De nieuwe tekstbron krijgt hetzelfde privacylabel en
-een exacte herkomstverwijzing naar origineel en derivation-ID. Zij heeft alleen
-status `CAPTURED` en wordt niet automatisch aan een hoofdstuk, catalogus,
-taak of contextpakket toegevoegd. De bestaande OWNER-gates blijven nodig.
+Kind, producer class, producer name, page, and time locators are user-supplied
+metadata. OPENCNTX does not prove that they are correct.
 
-`remove` is een expliciete destructieve handeling voor uitsluitend de genoemde
-afgeleide `content.txt`. Het vereist exacte source-ID, derivation-ID,
-recorddigest, contentdigest en een lokale OWNER-verklaring. Origineel,
-bronrecord, andere afleidingen en reeds gepromoveerde bronnen worden niet
-verwijderd. Een kleine tombstone met digests blijft bestaan. De OWNER-naam is
-een lokale verklaring en geen cryptografische identiteit; voer verwijdering
-niet automatisch of via een watcher uit.
+Derived text stays under `.opencntx/derived/`, separate from the official
+original. Its record binds source ID, original digest, source-record digest,
+derived-content digest, and inherited privacy label.
 
-Actieve afgeleide tekstbytes tellen mee in het bestaande opslagbudget. Een
-registratie of latere capture die het gezamenlijke budget overschrijdt stopt
-zonder gedeeltelijke publicatie. Records en receipts bevatten geen afgeleide
-tekst of absolute persoonlijke paden. `media status` en `media verify` zijn
-read-only; een `STALE` of non-zero resultaat betekent dat de afleiding niet als
-actuele tekst mag worden gebruikt.
+- `QUARANTINED` sources are not processed.
+- `RESTRICTED` remains `RESTRICTED`.
+- No media command lowers a privacy label.
+- Instructions inside derived text remain data and gain no task, roadmap, or
+  OWNER authority.
 
-## Hoofdstukken en lokale catalogus
+`NOT_INVESTIGATED` means no derived text is known. `UNREVIEWED` is not yet
+checked. `REVIEWED` means only that a reviewer found the exact bytes usable.
+It does not mean true, complete, safe, or OWNER-approved. `REJECTED`, `STALE`,
+and `REMOVED` content cannot be promoted.
 
-`workspace chapter create` schrijft uitsluitend een nieuw `DRAFT`-sjabloon en
-overschrijft geen bestaand hoofdstuk. Een hoofdstukstatus, SHA-256 of
-freshnesswaarde verleent geen OWNER-goedkeuring en bewijst niet dat een
-samenvatting inhoudelijk waar is.
+Promotion requires an exact accepted review digest and reuses the normal
+capture flow. The new source inherits privacy and exact provenance but remains
+only `CAPTURED`; it is not automatically added to a chapter, task, or package.
 
-`workspace catalog rebuild` behandelt TOML-frontmatter en Markdown als
-onvertrouwde data. Hoofdstuk-ID's, velden, relaties, paden en vaste secties
-worden strikt gevalideerd. SQL-waarden worden alleen als parameters geschreven;
-tekst uit een hoofdstuk wordt nooit als SQL of instructie uitgevoerd.
+Removal is an explicit destructive operation for one exact derived
+`content.txt`. It requires source ID, derivation ID, record digest, content
+digest, and a local OWNER declaration. The original, official source record,
+other derivations, and promoted sources are not removed. A tombstone remains.
 
-De SQLite-catalogus onder `.opencntx/catalog.sqlite` is afgeleid en
-vervangbaar. Officiële bronrecords en `CHAPTER.md`-bestanden blijven leidend.
-De database bevat technische metadata en relaties, maar geen originele
-bronbytes, volledige hoofdstuksamenvattingen, embeddings of vectoren. Verwijder
-of beschadig de catalogus alleen wanneer u begrijpt dat `catalog rebuild` haar
-opnieuw uit de officiële lokale bestanden maakt.
+## Chapters and local catalog
 
-Freshness betekent uitsluitend:
+`workspace chapter create` writes a new `DRAFT` template and does not overwrite
+an existing chapter. Chapter status, digest, or freshness never grants OWNER
+approval or proves a summary true.
 
-- `CURRENT`: vastgelegde bronpins en dependencies zijn technisch exact;
-- `STALE`: een concrete bron of dependency is vervangen, ontbreekt of wijkt af;
-- `INCOMPLETE`: de kennis is nog DRAFT of een relatie kan niet worden bevestigd;
-- `ARCHIVED`: het hoofdstuk is expliciet als historisch gemarkeerd.
+`workspace catalog rebuild` treats TOML front matter and Markdown as untrusted
+data. IDs, fields, relations, paths, and fixed sections are validated. SQL
+values are parameterized; chapter text is never executed as SQL or instruction.
 
-Een dependencycyclus, symlink, padontsnapping, onbekend schema of onveilige
-index stopt de rebuild. Een handmatig afwijkende `CHAPTERS/INDEX.md` wordt niet
-stil overschreven. Catalogusreceipts bevatten geen originele broninhoud of
-absolute persoonlijke bronpaden.
+`.opencntx/catalog.sqlite` is derived and replaceable. Official source records
+and chapter files remain controlling. The index stores technical metadata and
+relations, not full original source bytes, embeddings, or vectors.
 
-## Lokale taakrecords en OWNER-gates
+Freshness means only:
 
-`workspace task` bewaart officiële taak- en beslisrecords als append-only JSON
-onder `TASKS/<TASK-ID>/events/`. Ieder event bevat een eigen SHA-256 en de digest
-van het vorige event. Voor iedere statusovergang wordt de volledige keten
-opnieuw gecontroleerd. Wijziging, verwijdering, invoeging, hernummering,
-onbekende velden en een overgeslagen status falen gesloten.
+- `CURRENT`: source and dependency pins match;
+- `STALE`: a concrete source or dependency changed, disappeared, or differs;
+- `INCOMPLETE`: the knowledge is draft or a relation cannot be confirmed;
+- `ARCHIVED`: the chapter is intentionally historical.
 
-Een taakgoedkeuring bindt exact taak-ID, revisie en voorstel-digest. Een
-resultaataanvaarding bindt exact resultaat- en controledigest. Een gewijzigde
-input, verkeerd object, oude revisie of afwijkende digest erft nooit een eerdere
-goedkeuring. `CLOSED` is alleen mogelijk nadat voorstel, OWNER-goedkeuring,
-resultaat, ARCHITECT-controle en OWNER-aanvaarding opnieuw samen zijn
-gevalideerd.
+Dependency cycles, symlinks, path escape, unknown schemas, or an unsafe index
+stop the rebuild. A manually divergent index is not silently overwritten.
 
-De actor-ID bij `--owner`, `--architect` of `--executor` is een lokale
-verklaring. OPENCNTX gebruikt in deze lokale, dependencyvrije laag geen account,
-private sleutel of digitale handtekening en beweert daarom niet dat de naam een
-cryptografisch geauthenticeerde natuurlijke persoon is. Bescherm de werkruimte
-met passende bestandsrechten en geef schrijftoegang uitsluitend aan vertrouwde
-gebruikers. Wie de officiële bestanden kan vervangen, valt binnen de lokale
-vertrouwensgrens; hashes maken wijziging zichtbaar maar voorkomen geen
-bestandswijziging.
+## Task records and OWNER gates
 
-`submit-result` behandelt resultaat en bewijs als onvertrouwde bytes. Het voert
-ze niet uit, opent geen bijbehorende toepassing en doet geen inhoudsextractie.
-Symlinks, mappen, onbegrensde bestanden, padontsnapping en wijziging tijdens het
-kopiëren worden geweigerd. De gegenereerde `TASK.md` bevat alleen begrensde
-metadata en digests; eventrecords blijven leidend. Een handmatig gewijzigde of
-onbeheerde taakkaart wordt niet stil overschreven.
+`workspace task` stores official decision events as append-only JSON under
+`TASKS/<TASK-ID>/events/`. Each event has its own SHA-256 and the previous event
+digest. The complete chain is verified before every transition.
 
-De workflow start geen proces, agent, netwerkverbinding of automatische retry.
-Handmatige foutpogingen moeten nieuwe input of een gewijzigde aanpak registreren.
-Na drie opeenvolgende gelijke foutsignaturen wordt de taak `BLOCKED`; verdere
-uitvoering stopt zichtbaar. `RETURNED`, `BLOCKED`, `CANCELLED`, `SUPERSEDED` en
-ongeldige ketens kunnen niet als voltooid worden afgesloten.
+Modification, removal, insertion, renumbering, unknown fields, or a skipped
+state fails closed.
 
-Taaksluiting publiceert, mergt, verwijdert of verwerkt niets buiten de lokale
-taakdirectory. De workflow wijzigt geen `CONTROL/ROADMAP.md`, `CONTROL/CURRENT.md`,
-bronrecord, hoofdstuk of catalogus en verleent geen toestemming voor externe
-verzending.
+Task approval binds the exact task ID, revision, and proposal digest. Result
+acceptance binds the exact result and review digests. A changed input, wrong
+object, old revision, or different digest never inherits an earlier approval.
+`CLOSED` is possible only after the required result, review, and OWNER decision.
 
-## Taakgebonden contextnavigatie
+An OWNER name is a local declaration, not cryptographic authentication of a
+natural person. Protect workspace write access.
 
-`workspace context build` is geen zoek-AI en geen toestemming om informatie te
-delen. Het commando werkt uitsluitend voor één valide taak in `IN_EXECUTION`,
-vereist de exacte proposal-digest en controleert dat OWNER-, ROADMAP- en
-CURRENT-bestanden aan dezelfde goedgekeurde taakinput zijn gepind. Een lokale
-actorverklaring blijft geen cryptografisch identiteitsbewijs.
+Only one non-terminal task is allowed at a time. OPENCNTX performs no automatic
+retry. One failed attempt records one stable signature. After three equal
+signatures, the task becomes `BLOCKED` and requires a new human decision.
 
-De navigator behandelt catalogus, hoofdstukken, bronrecords en originele bytes
-als onbetrouwbare lokale input. Hij opent SQLite read-only, controleert
-integriteit en het bekende schema en vergelijkt catalogusdigest, indexhash en
-rijen met de opnieuw berekende officiële bestandsstaat. Een verschil vereist
-een afzonderlijke `workspace catalog rebuild`; de navigator herschrijft index
-of catalogus nooit zelf.
+## Task-bound context navigation
 
-Alle relevante hoofdstukken moeten technisch `CURRENT` en inhoudelijk
-`OWNER_ACCEPTED` zijn. Een gewijzigd of vervangen bronbestand, onbekende
-dependency, stale pin, dependencycyclus of andere onvolledigheid stopt de
-selectie. Een freshnessstatus bewijst nog steeds niet dat de inhoud waar of
-veilig is; zij bewijst alleen de beschreven technische relaties.
+The navigator follows only explicit, allowed relations. It has no embedding,
+vector search, knowledge graph, semantic ranking, automatic discovery, AI
+summary, or network service.
 
-`PUBLIC` en `PRIVATE` kunnen uitsluitend via de goedgekeurde lokale taakroute
-worden geladen. `RESTRICTED` vereist een expliciete broninput en
-`QUARANTINED` wordt altijd geweigerd. Privacylabels zijn classificatie, geen
-versleuteling of toegangscontrole. Controleer daarom ook de bestandsrechten van
-de werkruimte en lees `CONTEXT.md` voordat u het pakket deelt.
+`context build` works only for one valid task in `IN_EXECUTION`. It checks the
+task chain, current control state, catalog freshness, accepted chapters,
+playbook and role pins, source privacy, path safety, and budgets before atomic
+publication.
 
-De contextgrenzen zijn hard. Een bestand- of bytebudgetoverschrijding,
-onleesbaar bestand, binaire inhoud of ongeldige UTF-8 maakt geen gedeeltelijk
-nieuw pakket en verwijdert geen geselecteerde bron. Het manifest vermeldt wat
-binnen de taakroute is gelezen en welke catalogus-ID's erbuiten bleven; het
-beweert niet dat het hele project is onderzocht.
+The compact control snapshot is derived from one exact supported marker block.
+The full roadmap digest remains pinned. The snapshot does not edit, interpret,
+approve, or synchronize the roadmap.
 
-`workspace context verify` is read-only en controleert naast de gewone
-pakketbytes opnieuw taak-, CONTROL-, catalogus-, hoofdstuk-, bron-, privacy- en
-selectiebinding. Een non-zero resultaat betekent dat het pakket niet als
-actuele taakcontext mag worden behandeld. Build en verify starten geen proces,
-netwerkverbinding, AI, agent, OCR, transcriptie of automatische retry.
+`context verify` is read-only and intended while the task remains
+`IN_EXECUTION`. After closure, use the preserved append-only chain and exact
+recorded digests as historical evidence.
 
-## Playbooks, rollen en tijdelijke uitvoerderpakketten
+## Playbooks, roles, and executor packages
 
-`workspace playbook` en `workspace role` bewaren instructies als lokale data.
-Een stap, verantwoordelijkheid of actietoken is nooit automatisch uitvoerbare
-code. Registratie start geen shell, subprocess, netwerkverbinding, model, tool
-of agent. Een definitie is alleen `APPROVED` wanneer een onveranderlijk lokaal
-approvalrecord exact haar type, ID, revisie, documentdigest en
-definitierecorddigest bindt.
+Playbooks and roles are proposed first and approved only by exact revision and
+definition digest. Their names and metadata do not start or authenticate a
+person, process, tool, model, or agent.
 
-De `--owner`, `--architect` en `--executor`-waarden blijven lokale
-actorverklaringen. Zonder account, private sleutel of digitale handtekening
-bewijst OPENCNTX niet wie het commando werkelijk invoerde. Bescherm daarom de
-werkruimte met passende bestandsrechten. Digests maken wijziging zichtbaar,
-maar vervangen geen authenticatie of toegangscontrole.
+Allowed actions are the intersection of task, playbook, and role. A conflict or
+forbidden action stops fail closed. No one layer can override the forbidden
+set of another.
 
-Rolrevisies hebben altijd delegatiediepte één en `may_delegate: false`.
-Authority-acties zoals OWNER-goedkeuring, taaksluiting, roadmapwijziging,
-subdelegatie, merge, release, publicatie, verwijdering en externe verzending
-zijn in deze eerste uitvoerderlaag hard verboden. Vrije tekst kan die vaste
-verboden set niet opheffen. Een conflict tussen taak, playbook en rol stopt
-gesloten; een actietoken is alleen effectief toegestaan wanneer de taak, het
-playbook en de rol het alle drie exact toestaan.
+`workspace executor prepare` works only for one valid task in `IN_EXECUTION`
+with exact context, playbook, role, and task bindings. At most one executor
+package exists per task revision. It contains assignment metadata but does not
+copy full context bytes or start execution.
 
-`workspace executor prepare` werkt alleen voor één valide taak exact in
-`IN_EXECUTION`. Het hercontroleert de taakproposal, OWNER-approval,
-execution-begun-record, gepinde inputs, goedgekeurde playbook- en rolrevisies en
-het volledige actuele contextpakket. De assignment kopieert geen context- of
-broninhoud, bevat geen credentials of absolute persoonlijke paden en verwijst
-alleen met digests naar `.opencntx/latest`.
+When the task leaves `IN_EXECUTION`, executor status reports `TASK_FINISHED`.
+The package gains no continuing authority.
 
-Een voorbereid uitvoerderpakket is geen sandbox en geen bewijs dat een externe
-mens of tool zich aan de grenzen hield. OPENCNTX geeft geen besturingssysteem-,
-account-, bestand- of netwerkrechten en trekt die ook niet in. Wanneer de OWNER
-een pakket buiten OPENCNTX aan een hulpmiddel geeft, moeten diens toegang,
-privacy, kosten en netwerkgedrag afzonderlijk worden begrensd en gecontroleerd.
+## Reporting a vulnerability
 
-Instructies in bronnen, context, playbooks, rollen en resultaten blijven data.
-Zij krijgen geen hogere bevoegdheid dan de exacte taak- en OWNER-records. Dit
-beperkt promptinjectie binnen de OPENCNTX-recordlaag, maar garandeert niet dat
-een afzonderlijk extern model of programma veilig met kwaadaardige inhoud
-omgaat.
-
-`executor status` en `executor verify` zijn read-only. Taak-, context-,
-definitie-, approval- of assignmentdrift wordt `STALE` of `INVALID`. Zodra de
-taak `IN_EXECUTION` verlaat, rapporteert het pakket `TASK_FINISHED` en verleent
-het geen nieuwe actie. V6 start geen retry en maakt geen nieuw pakket om de
-bestaande driepogingen- of `BLOCKED`-gate te omzeilen.
-
-Meld kwetsbaarheden niet in een openbaar issue. Gebruik de optie **Report a vulnerability** onder het tabblad **Security** van deze GitHub-repository.
+Do not report vulnerabilities in a public issue. Use GitHub's private
+**Report a vulnerability** route under the Security tab. Include the smallest
+safe reproduction, affected version, impact, and suggested mitigation without
+including unrelated private context.

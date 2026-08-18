@@ -41,7 +41,16 @@ PALETTE = {
     "#C084FC",
 }
 
-ALLOWED_ELEMENTS = {"svg", "g", "title", "desc", "rect", "polygon", "circle"}
+ALLOWED_ELEMENTS = {
+    "svg",
+    "g",
+    "title",
+    "desc",
+    "rect",
+    "polygon",
+    "circle",
+    "ellipse",
+}
 ALLOWED_ATTRIBUTES = {
     "svg": {"width", "height", "viewBox", "role", "aria-labelledby"},
     "g": {"id", "fill", "aria-label"},
@@ -50,6 +59,7 @@ ALLOWED_ATTRIBUTES = {
     "rect": {"x", "y", "width", "height", "fill"},
     "polygon": {"points", "fill"},
     "circle": {"cx", "cy", "r", "fill"},
+    "ellipse": {"cx", "cy", "rx", "ry", "fill"},
 }
 
 
@@ -165,6 +175,35 @@ class BrandTests(unittest.TestCase):
             self.assertEqual(colors[0], groups["word-open"].attrib["fill"])
             self.assertEqual(colors[1], groups["word-cntx"].attrib["fill"])
 
+    def test_primary_brand_is_simple_text_without_legacy_network_art(self) -> None:
+        for name in (
+            "opencntx-avatar.svg",
+            "opencntx-social-preview.svg",
+            "opencntx-wordmark-dark.svg",
+            "opencntx-wordmark-light.svg",
+        ):
+            with self.subTest(name=name):
+                data = (BRAND / name).read_bytes()
+                for legacy in (b'id="boundary"', b'id="network"', b'id="nodes"'):
+                    self.assertNotIn(legacy, data)
+                self.assertIn(b'id="word-open"', data)
+                self.assertIn(b'id="word-cntx"', data)
+
+        for name in ("opencntx-avatar.svg", "opencntx-social-preview.svg"):
+            root = ElementTree.parse(BRAND / name).getroot()
+            groups = {
+                element.attrib.get("id"): element
+                for element in root
+                if _local_name(element.tag) == "g"
+            }
+            self.assertEqual("#6D28D9", groups["word-open"].attrib["fill"])
+            self.assertEqual("#0B0B0F", groups["word-cntx"].attrib["fill"])
+
+        social = (BRAND / "opencntx-social-preview.svg").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("SMALL CONTEXT. CLEAR EVIDENCE. ANY MODEL.", social)
+
     def test_text_and_graphic_contrasts_meet_the_contract(self) -> None:
         text_pairs = (
             ("#0B0B0F", "#F7F5FB"),
@@ -213,7 +252,10 @@ class BrandTests(unittest.TestCase):
         self.assertEqual(expected_paths, [item[1] for item in parsed])
         for digest, relative in parsed:
             self.assertEqual(64, len(digest))
-            actual = hashlib.sha256((ROOT / relative).read_bytes()).hexdigest()
+            data = (ROOT / relative).read_bytes()
+            if relative.endswith(".svg"):
+                data = data.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+            actual = hashlib.sha256(data).hexdigest()
             self.assertEqual(digest, actual, relative)
 
     def test_standard_library_renderer_reproduces_derivatives(self) -> None:

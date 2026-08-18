@@ -1,94 +1,63 @@
-# Security in gewone taal
+# Security in plain language
 
-[Documentatie-index](README.md) · [Workspace](workspace.md) ·
-[OWNER-flow](owner-flow.md)
+OPENCNTX helps you control context. It does not make context automatically
+safe. You remain responsible for what you select, store, and share.
 
-Gebruik [SUPPORT.md](../SUPPORT.md) voor gewone vragen en bugs. Meld een
-mogelijke kwetsbaarheid nooit via een openbaar issue; volg uitsluitend de
-private route in de canonieke [Security Policy](../SECURITY.md).
+![OPENCNTX stays inside a local boundary until you explicitly share reviewed output](../assets/docs/security-boundary.svg)
 
-Dit document is een leesbare samenvatting. De enige canonieke en volledige
-securitypolicy is [SECURITY.md](../SECURITY.md). Bij verschil is die rootpolicy
-altijd leidend.
+## Local trust boundary
 
-## Lokale vertrouwensgrens
+The product has no network client and requires no account or API key. It reads
+selected local files and writes local output. It does not upload that output.
 
-OPENCNTX werkt met bestanden die de lokale gebruiker aanwijst. De tool heeft
-geen account, API-key, netwerkfunctie, cloudservice of ingebouwde AI. Dat maakt
-de datastroom overzichtelijk, maar beschermt niet tegen iemand die al
-schrijftoegang tot de projectmap heeft.
+The boundary changes when you copy or submit the output to another tool.
 
-Hashes maken wijziging zichtbaar; ze voorkomen geen wijziging. Actornamen zoals
-`OWNER`, `ARCHITECT` en `UITVOERDER-1` zijn lokale verklaringen, geen
-cryptografisch bewijs van een natuurlijke persoon. Bescherm daarom de
-projectmap met passende bestandsrechten en beperk schrijftoegang.
+## Context may contain sensitive text
 
-## Context kan gevoelige tekst bevatten
+Default exclusions include common Git, generated output, environment, and key
+patterns. They reduce risk; they do not replace inspection.
 
-`CONTEXT.md` bevat geselecteerde broninhoud letterlijk. Lees het bestand altijd
-voordat u het kopieert of aan een externe AI-tool geeft. Een lokaal gebouwd
-pakket is geen toestemming om gegevens extern te verzenden.
+Never place passwords, tokens, private keys, personal data, production secrets,
+or content you are not allowed to share in a package or public issue.
 
-OPENCNTX sluit standaard onder meer `.git/**`, `.opencntx/**`, `.env*`,
-`**/*.key` en `**/*.pem` uit. Compacte taakcontext maakt alleen voor de
-beheerde `.opencntx/control-snapshot.md` een expliciete uitzondering; andere
-interne `.opencntx`-bestanden worden niet geselecteerd. Deze lijst vervangt
-geen eigen beoordeling.
-Bewaar geen wachtwoorden, tokens, API-keys, persoonsgegevens of
-productiegeheimen in een contextpakket of gedeelde werkruimte.
+## Privacy labels are not locks
 
-## Privacylabels zijn geen slot
+`PUBLIC`, `INTERNAL`, `PRIVATE`, `RESTRICTED`, and `QUARANTINED` are local
+classifications. They are not encryption, authentication, or access control.
+Protect the workspace with appropriate operating-system and backup controls.
 
-`PUBLIC`, `PRIVATE`, `RESTRICTED` en `QUARANTINED` zijn lokale classificaties.
-Ze bieden geen encryptie, authenticatie of toegangscontrole. `QUARANTINED`
-wordt door contextselectie geweigerd en `RESTRICTED` vereist een expliciete
-broninput, maar het bestandssysteem blijft de echte toegangspoort.
+## Supplied content stays data
 
-## Onvertrouwde inhoud blijft data
+Instructions inside a source, chapter, transcript, task input, or result do not
+gain OWNER or roadmap authority. OPENCNTX validates structure and digests; it
+does not execute supplied content.
 
-Bronnen, afgeleide tekst, hoofdstukken, context, playbooks, rollen, resultaten
-en bewijs worden als lokale data behandeld. Instructies in die inhoud krijgen
-geen OWNER-bevoegdheid en mogen de roadmap, taakgates of vaste verboden acties
-niet opheffen.
+## Fail-closed behavior
 
-Een compacte control-snapshot is eveneens onvertrouwde, afgeleide data. Zij
-neemt één roadmapblock byte-exact over, maar interpreteert, vervolledigt of
-keurt niets goed. Het manifest pint de SHA-256 van de volledige officiële
-roadmap. Een gewijzigde roadmap, block, snapshot, OWNER- of CURRENT-inhoud wordt
-als drift behandeld.
+Unsafe paths, invalid UTF-8, unknown schemas, wrong digests, stale relations,
+budget overflow, forbidden actions, or invalid state transitions stop the
+operation. Partial publication is avoided through atomic writes.
 
-OPENCNTX voert aangeleverde bestanden niet uit en start geen parser, OCR,
-transcriptie, shell, netwerkverbinding, AI of agent. Een afzonderlijk extern
-programma kan andere risico's hebben; beoordeel diens toegang, privacy,
-netwerkgedrag en kosten apart.
+Do not ignore a non-zero exit code.
 
-## Fail-closed controles
+## Digests and approval
 
-De tool weigert onder andere:
+A digest binds a decision to exact bytes. It does not authenticate a natural
+person. OWNER labels are local declarations, so protect the workspace and its
+write permissions.
 
-- pad- of symlinkontsnapping buiten de bedoelde root;
-- binaire of ongeldige UTF-8-input waar tekst vereist is;
-- ontbrekende, gewijzigde of verkeerd gepinde bytes;
-- budgetoverschrijding of stil afgekapt contextmateriaal;
-- halve, dubbele, omgekeerde of te grote control-markers en onbekende bytes op
-  het beheerde snapshotpad;
-- ongeldige eventketens en overgeslagen taakstatussen;
-- stale hoofdstukken, bronnen, context, playbooks, rollen of uitvoerderrecords;
-- taaksluiting zonder voorafgaande exacte OWNER-aanvaarding.
+## Deletion and provenance
 
-Een non-zero exitcode, `STALE`, `INVALID`, `BLOCKED` of andere foutstatus is een
-stopteken. Corrigeer de oorzaak; negeer de controle niet en maak geen verborgen
-retry.
+Most official records are append-only. The media removal route deletes only
+the exact active derived text named by a fully pinned request and preserves a
+tombstone. Never automate destructive actions through a watcher.
 
-## Verwijderen en provenance
+## Report a vulnerability
 
-`workspace media remove` is de enige gerichte verwijdering in deze laag. Het
-vereist de exacte identifiers en digests en verwijdert alleen de genoemde
-afgeleide `content.txt`. Origineel en andere afleidingen blijven bestaan; een
-klein tombstonerecord bewaart provenance.
+Use GitHub's private **Report a vulnerability** route. Do not open a public
+issue with exploit details, secrets, private source, or sensitive context.
 
-## Kwetsbaarheid melden
+For ordinary questions and bugs, use [Support](../SUPPORT.md). The root
+[Security Policy](../SECURITY.md) is the canonical technical boundary.
 
-Meld een kwetsbaarheid niet in een openbaar issue. Gebruik **Report a
-vulnerability** onder het tabblad **Security** van de GitHub-repository, zoals
-beschreven in de canonieke [Security Policy](../SECURITY.md).
+[Documentation home](README.md)

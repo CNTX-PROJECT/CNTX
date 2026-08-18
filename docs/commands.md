@@ -1,83 +1,85 @@
-# Commandoreferentie
+# Command reference
 
-[Documentatie-index](README.md) · [Kern](core.md) · [Workspace](workspace.md) ·
-[OWNER-flow](owner-flow.md)
+This navigation table preserves the 41 documented CLI paths: four orientation
+help routes and 37 executable routes. It does not invent options or grant
+permission to run a workflow step. Use the exact nested `--help` output for
+required arguments and repeatable options.
 
-Deze compacte basisindex bewaart de 41 bestaande CLI-paden: 37 uitvoerbare
-leaf-commando's en vier help-/oriëntatiepaden. De nieuwe compacte controlroute
-staat afzonderlijk onder de tabel, zodat de bestaande referentievolgorde stabiel
-blijft. Gebruik altijd `--help` voor de exacte argumenten en herhaalbare opties.
-
-| Nr. | CLI-pad | Functie |
+| # | Command path | Purpose |
 |---:|---|---|
-| 1 | `opencntx --help` | toon de drie kerncommando's en workspace-ingang |
-| 2 | `opencntx workspace --help` | toon de workspacegroepen en directe opdrachten |
-| 3 | `opencntx workspace media --help` | toon de veilige media-afleidingsopdrachten |
-| 4 | `opencntx workspace task --help` | toon de volledige lokale taakstatusmachine |
-| 5 | `opencntx init` | maak veilig `opencntx.toml` in de huidige map |
-| 6 | `opencntx pack` | bouw atomair `CONTEXT.md` en `manifest.json` |
-| 7 | `opencntx verify` | controleer pakket, manifest en gepinde bronbytes |
-| 8 | `opencntx workspace init` | maak de vaste lokale projectwerkruimte |
-| 9 | `opencntx workspace capture` | registreer één regulier bestand byte-exact |
-| 10 | `opencntx workspace chapter create` | maak één nieuw DRAFT-hoofdstuk met bronpins |
-| 11 | `opencntx workspace catalog rebuild` | herbouw index en SQLite-catalogus uit officiële bestanden |
-| 12 | `opencntx workspace media register` | registreer reeds aangeleverde UTF-8-afleiding |
-| 13 | `opencntx workspace media review` | bind reviewbeslissing aan de exacte teksthash |
-| 14 | `opencntx workspace media promote` | capture een REVIEWED afleiding bewust als tekstbron |
-| 15 | `opencntx workspace media status` | toon afleidingsstatus zonder te schrijven |
-| 16 | `opencntx workspace media verify` | controleer bron-, record-, review- en tekstbinding |
-| 17 | `opencntx workspace media remove` | verwijder alleen exact gepinde afgeleide tekstbytes |
-| 18 | `opencntx workspace playbook register` | registreer één onveranderlijke PROPOSED playbookrevisie |
-| 19 | `opencntx workspace playbook approve` | keur exact één playbookdefinitie afzonderlijk goed |
-| 20 | `opencntx workspace playbook status` | toon playbookstatus zonder wijziging |
-| 21 | `opencntx workspace playbook verify` | controleer revisie, definitie en approvalrecord |
-| 22 | `opencntx workspace role register` | registreer één begrensde PROPOSED rolrevisie |
-| 23 | `opencntx workspace role approve` | keur exact één roldefinitie afzonderlijk goed |
-| 24 | `opencntx workspace role status` | toon rolstatus zonder wijziging |
-| 25 | `opencntx workspace role verify` | controleer revisie, grenzen en approvalrecord |
-| 26 | `opencntx workspace executor prepare` | bind taak, context, playbook en rol in één pakket |
-| 27 | `opencntx workspace executor status` | toon actuele of afgewerkte uitvoerderstatus |
-| 28 | `opencntx workspace executor verify` | controleer het volledige uitvoerderrecord read-only |
-| 29 | `opencntx workspace context build` | bouw deterministisch één taakgebonden contextpakket |
-| 30 | `opencntx workspace context verify` | controleer de levende taak- en contextbinding read-only |
-| 31 | `opencntx workspace task propose` | leg doel, inputs, grenzen en acceptatie vast |
-| 32 | `opencntx workspace task approve` | bind OWNER-goedkeuring aan revisie en proposal-digest |
-| 33 | `opencntx workspace task begin` | registreer de overgang naar `IN_EXECUTION` |
-| 34 | `opencntx workspace task submit-result` | bewaar exact één resultaat en optioneel bewijs |
-| 35 | `opencntx workspace task review-result` | bind ARCHITECT-review aan het exacte resultaat |
-| 36 | `opencntx workspace task accept-result` | registreer OWNER-besluit over resultaat en review |
-| 37 | `opencntx workspace task close` | sluit alleen na een geldig OWNER-`ACCEPT` |
-| 38 | `opencntx workspace task status` | valideer en toon de volledige append-only taakketen |
-| 39 | `opencntx workspace task record-attempt` | registreer foutsignatuur voor de anti-deadloopgate |
-| 40 | `opencntx workspace task cancel` | beëindig de taak expliciet als geannuleerd |
-| 41 | `opencntx workspace task supersede` | beëindig de taak ten gunste van een benoemde opvolger |
+| 1 | `opencntx --help` | show top-level orientation without changing a project |
+| 2 | `opencntx workspace --help` | show workspace command groups |
+| 3 | `opencntx workspace media --help` | show media routes |
+| 4 | `opencntx workspace task --help` | show task lifecycle routes |
+| 5 | `opencntx init` | create a readable core configuration |
+| 6 | `opencntx pack` | build one bounded core context package |
+| 7 | `opencntx verify` | verify a core package and its source drift |
+| 8 | `opencntx workspace init` | create a new local project workspace |
+| 9 | `opencntx workspace capture` | store one supplied source byte-for-byte |
+| 10 | `opencntx workspace chapter create` | create one new draft chapter with source pins |
+| 11 | `opencntx workspace catalog rebuild` | rebuild the derived local catalog and index |
+| 12 | `opencntx workspace media register` | register supplied derived UTF-8 text |
+| 13 | `opencntx workspace media review` | record review of one exact derived text object |
+| 14 | `opencntx workspace media promote` | capture accepted derived text with provenance |
+| 15 | `opencntx workspace media status` | report current derivation state read-only |
+| 16 | `opencntx workspace media verify` | verify source, record, review, and text bindings |
+| 17 | `opencntx workspace media remove` | remove exact active derived bytes with a tombstone |
+| 18 | `opencntx workspace playbook register` | register a proposed playbook revision |
+| 19 | `opencntx workspace playbook approve` | approve one exact playbook definition |
+| 20 | `opencntx workspace playbook status` | report playbook state read-only |
+| 21 | `opencntx workspace playbook verify` | verify playbook records and definition digests |
+| 22 | `opencntx workspace role register` | register a proposed role revision |
+| 23 | `opencntx workspace role approve` | approve one exact role definition |
+| 24 | `opencntx workspace role status` | report role state read-only |
+| 25 | `opencntx workspace role verify` | verify role records and definition digests |
+| 26 | `opencntx workspace executor prepare` | bind task, context, playbook, and role |
+| 27 | `opencntx workspace executor status` | report executor package state read-only |
+| 28 | `opencntx workspace executor verify` | verify assignment and permission bindings |
+| 29 | `opencntx workspace context build` | build one deterministic task-bound package |
+| 30 | `opencntx workspace context verify` | verify live task and context bindings read-only |
+| 31 | `opencntx workspace task propose` | append one exact task proposal |
+| 32 | `opencntx workspace task approve` | append exact OWNER proposal approval |
+| 33 | `opencntx workspace task begin` | move one approved task into execution |
+| 34 | `opencntx workspace task submit-result` | append one result and evidence binding |
+| 35 | `opencntx workspace task review-result` | append an ARCHITECT review |
+| 36 | `opencntx workspace task accept-result` | append the exact OWNER result decision |
+| 37 | `opencntx workspace task close` | close an accepted task |
+| 38 | `opencntx workspace task status` | report current task state read-only |
+| 39 | `opencntx workspace task record-attempt` | append one stable failure signature |
+| 40 | `opencntx workspace task cancel` | terminate a task explicitly as cancelled |
+| 41 | `opencntx workspace task supersede` | terminate a task in favor of a named successor |
 
-## Compacte actuele roadmapsturing
+## Compact current roadmap control
+
+Refresh a supported marked current block with:
 
 ```powershell
-opencntx workspace control refresh --root mijn-project
+opencntx workspace control refresh --root my-project
 ```
 
-`control refresh` valideert `OWNER.md`, de volledige `ROADMAP.md` en
-`CURRENT.md`. Bij exact één geldig markerblock publiceert het atomair
-`.opencntx/control-snapshot.md` en toont het de volledige roadmap-, block- en
-snapshotdigests. Zonder markers bevestigt het zichtbaar
-`LEGACY_FULL_ROADMAP`; het voegt nooit zelf markers toe. De snapshot is
-afgeleid, vervangbaar en verleent geen OWNER-bevoegdheid.
+The snapshot is derived. It does not edit, interpret, approve, or synchronize
+the official roadmap.
 
-## Exacte opties vinden
+## Find exact options
 
-Voeg `--help` toe aan het volledige uitvoerpad:
+Add `--help` to the specific route, for example:
 
 ```powershell
-opencntx verify --help
-opencntx workspace capture --help
-opencntx workspace control refresh --help
 opencntx workspace context build --help
-opencntx workspace executor prepare --help
-opencntx workspace task accept-result --help
+opencntx workspace playbook register --help
 ```
 
-Deze referentie is een navigatiekaart en verandert de CLI niet. Een woord in
-een gids is nooit een nieuw commando of een bevoegdheid om een taak, merge,
-release, publicatie, AI of extern proces te starten.
+## Important boundary
+
+A documented command is not authority to approve a task, delete content,
+publish a result, or bypass an OWNER gate. The active task records and exact
+digests remain controlling.
+
+## Related pages
+
+- [Core commands](core.md)
+- [Workspace](workspace.md)
+- [OWNER flow](owner-flow.md)
+- [Troubleshooting](troubleshooting.md)
+
+[Documentation home](README.md)

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">The five-step OPENCNTX core flow</title>
+  <desc id="desc">Initialize a configuration, pack selected local text, inspect the result, verify the package, and only then share it.</desc>
+  <rect width="1200" height="360" rx="28" fill="#F7F5FB"/>
+  <g font-family="Segoe UI, Arial, sans-serif" text-anchor="middle">
+    <g fill="#FFFFFF" stroke="#7C3AED" stroke-width="4">
+      <rect x="40" y="100" width="180" height="130" rx="20"/><rect x="270" y="100" width="180" height="130" rx="20"/>
+      <rect x="500" y="100" width="180" height="130" rx="20"/><rect x="730" y="100" width="180" height="130" rx="20"/>
+      <rect x="960" y="100" width="180" height="130" rx="20"/>
+    </g>
+    <g fill="#0B0B0F">
+      <text x="130" y="155" font-size="28" font-weight="700">1 · init</text><text x="130" y="195" font-size="21">Set the goal</text>
+      <text x="360" y="155" font-size="28" font-weight="700">2 · pack</text><text x="360" y="195" font-size="21">Build locally</text>
+      <text x="590" y="155" font-size="28" font-weight="700">3 · inspect</text><text x="590" y="195" font-size="21">Read CONTEXT.md</text>
+      <text x="820" y="155" font-size="28" font-weight="700">4 · verify</text><text x="820" y="195" font-size="21">Detect drift</text>
+      <text x="1050" y="155" font-size="28" font-weight="700">5 · share</text><text x="1050" y="195" font-size="21">Your decision</text>
+    </g>
+  </g>
+  <g fill="#7C3AED">
+    <polygon points="235,150 260,165 235,180"/><polygon points="465,150 490,165 465,180"/>
+    <polygon points="695,150 720,165 695,180"/><polygon points="925,150 950,165 925,180"/>
+  </g>
+  <text x="600" y="300" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="23" fill="#555563">A failed check stops the flow. OPENCNTX never silently cuts or uploads context.</text>
+</svg>

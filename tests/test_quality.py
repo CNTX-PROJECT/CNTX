@@ -32,12 +32,34 @@ _configure_windows_ci_temp_root()
 
 GUIDES = {
     "brand.md",
+    "chapters-and-catalog.md",
+    "context-navigation.md",
+    "context-packets.md",
     "core.md",
-    "workspace.md",
-    "owner-flow.md",
     "commands.md",
+    "faq.md",
+    "getting-started.md",
+    "glossary.md",
+    "how-it-works.md",
+    "installation.md",
+    "media.md",
+    "owner-flow.md",
+    "playbooks-and-roles.md",
+    "roadmap.md",
     "security.md",
     "platforms.md",
+    "troubleshooting.md",
+    "workspace.md",
+}
+
+DIAGRAMS = {
+    "context-selection.svg",
+    "core-flow.svg",
+    "opencntx-overview.svg",
+    "owner-flow.svg",
+    "roadmap.svg",
+    "security-boundary.svg",
+    "workspace-map.svg",
 }
 
 EXPECTED_ACTION_USES = {
@@ -180,18 +202,78 @@ class PublicQualityTests(unittest.TestCase):
         )
         self.assertIn("Report a vulnerability", security)
         self.assertIn("SUPPORT.md", security)
-        self.assertIn("openbaar issue", support)
+        self.assertIn("public issue", support)
         self.assertIn("blank_issues_enabled: false", issue_config)
         self.assertIn("/security/advisories/new", issue_config)
         self.assertNotIn("mailto:", issue_config)
         for phrase in (
-            "Security- en privacygrenzen",
-            "Nieuwe of gewijzigde dependencies",
-            "Documentatie en changelog",
+            "Security and privacy boundaries",
+            "New or changed dependencies",
+            "Documentation and changelog",
             "render_brand.py --check",
-            "Nul automatische checks is geen groen bewijs",
+            "Zero automated checks is not green evidence",
         ):
             self.assertIn(phrase, pull_request)
+
+    def test_all_public_guidance_is_english(self) -> None:
+        public_files = [
+            README,
+            CHANGELOG,
+            ROOT / "SECURITY.md",
+            ROOT / "CODE_OF_CONDUCT.md",
+            ROOT / "CONTRIBUTING.md",
+            ROOT / "SUPPORT.md",
+            ROOT / "examples" / "minimal" / "opencntx.toml",
+            ROOT / ".github" / "ISSUE_TEMPLATE" / "bug_report.yml",
+            ROOT / ".github" / "ISSUE_TEMPLATE" / "config.yml",
+            ROOT / ".github" / "ISSUE_TEMPLATE" / "feature_request.yml",
+            ROOT / ".github" / "pull_request_template.md",
+            *(DOCS / name for name in sorted(GUIDES)),
+            DOCS / "README.md",
+        ]
+        forbidden_phrases = (
+            "Versiestatus",
+            "Installeren",
+            "Toegevoegd",
+            "Bekende beperkingen",
+            "documentatie-index",
+            "werkruimte",
+            "hoofdstuk",
+            "veiligheidsgrenzen",
+            "Meld een",
+            "Voor u begint",
+            "Gedragscode",
+            "Bijdragen aan",
+        )
+        for path in public_files:
+            with self.subTest(path=path.relative_to(ROOT)):
+                text = path.read_text(encoding="utf-8")
+                for phrase in forbidden_phrases:
+                    self.assertNotIn(phrase, text)
+
+    def test_documentation_diagrams_are_safe_accessible_and_complete(self) -> None:
+        diagram_root = ROOT / "assets" / "docs"
+        actual = {path.name for path in diagram_root.glob("*.svg")}
+        self.assertEqual(DIAGRAMS, actual)
+        forbidden = (
+            b"<script",
+            b"<image",
+            b"<foreignObject",
+            b"<iframe",
+            b"<animate",
+            b"href=",
+            b"url(",
+        )
+        for name in sorted(DIAGRAMS):
+            with self.subTest(name=name):
+                data = (diagram_root / name).read_bytes()
+                data.decode("utf-8", errors="strict")
+                for token in forbidden:
+                    self.assertNotIn(token, data)
+                self.assertIn(b'role="img"', data)
+                self.assertIn(b'aria-labelledby="title desc"', data)
+                self.assertIn(b'<title id="title">', data)
+                self.assertIn(b'<desc id="desc">', data)
 
     def test_workflow_uses_immutable_official_action_pins(self) -> None:
         text = WORKFLOW.read_text(encoding="utf-8")
@@ -273,7 +355,7 @@ class PublicQualityTests(unittest.TestCase):
             "https://github.com/CNTX-PROJECT/OPENCNTX.git",
             readme,
         )
-        self.assertIn("`0.2.0`-bron", workspace)
+        self.assertIn("The optional workspace layer", workspace)
         self.assertIn('if installed != "0.2.0"', workflow)
 
         release_surfaces = (

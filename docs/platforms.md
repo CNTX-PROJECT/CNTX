@@ -1,87 +1,70 @@
-# Platformen en controles
+# Platforms and CI
 
-[Documentatie-index](README.md) · [Kern](core.md) ·
-[Commandoreferentie](commands.md)
+OPENCNTX requires Python 3.11 or newer and has no runtime dependencies.
 
-## Ondersteunde Pythonversies
+## Supported Python versions
 
-De package-metadata ondersteunt Python 3.11, 3.12 en 3.13. De runtime heeft
-geen dependencies buiten de Python-standaardbibliotheek.
+- Python 3.11
+- Python 3.12
+- Python 3.13
 
-Andere Pythonversies worden niet door deze documentatie als ondersteund
-geclaimd.
+## Fully tested operating systems
 
-## Bewezen platformen
+- Windows
+- Ubuntu Linux
 
-De volledige suite is handmatig uitgevoerd op:
+The code may work elsewhere, but the project does not claim live CI proof for
+an operating system outside this matrix.
 
-- Windows met Python 3.13;
-- Ubuntu met Python 3.12.
+## Active CI matrix
 
-Bij de laatste geïntegreerde basis waren 128 van 128 tests op beide routes
-groen, met `PYTHONDONTWRITEBYTECODE=1` en `ResourceWarning` als fout. De 8B-
-kandidaat moet na toevoeging van zes kwaliteitscontroles exact 134 van 134
-tests op beide platformen halen voordat een Draft PR aan de OWNER wordt
-voorgelegd.
+Status label: `CI_ACTIVE`
 
-Dit bewijs claimt niet dat ieder ander besturingssysteem of iedere mogelijke
-Python-/shellcombinatie praktisch is getest.
+Every pull request and push to `main` runs six jobs:
 
-## Handmatig testen
+| Operating system | Python 3.11 | Python 3.12 | Python 3.13 |
+|---|:---:|:---:|:---:|
+| Ubuntu | ✓ | ✓ | ✓ |
+| Windows | ✓ | ✓ | ✓ |
 
-PowerShell:
+Each job:
+
+1. checks out the exact commit;
+2. sets up the selected Python version;
+3. runs the complete test suite with `ResourceWarning` treated as an error;
+4. builds exactly one wheel;
+5. installs that wheel without dependencies;
+6. verifies package version and `opencntx --help`.
+
+## What counts as proof
+
+Only a completed successful live run on the exact candidate or main commit is
+green CI evidence. A workflow file, local run, or empty check list is not live
+CI proof.
+
+The `main` ruleset requires the exact six matrix check names and strict current
+commit status.
+
+## Run tests locally
 
 ```powershell
-$env:PYTHONDONTWRITEBYTECODE = "1"
+$env:PYTHONDONTWRITEBYTECODE="1"
 python -W error::ResourceWarning -m unittest discover -s tests
-python -m pip wheel . --no-deps --wheel-dir dist
+python tools/render_brand.py --check
 ```
 
-Ubuntu-shell:
+Ubuntu:
 
 ```bash
-PYTHONDONTWRITEBYTECODE=1 \
-  python3 -W error::ResourceWarning -m unittest discover -s tests
-python3 -m pip wheel . --no-deps --wheel-dir dist
+PYTHONDONTWRITEBYTECODE=1 python3 -W error::ResourceWarning -m unittest discover -s tests
+PYTHONDONTWRITEBYTECODE=1 python3 tools/render_brand.py --check
 ```
 
-Wheelinstallatie en `opencntx --help` moeten daarna vanuit een tijdelijke
-testlocatie worden gecontroleerd. Gegenereerde wheels, caches en
-installatie-uitvoer horen niet in Git.
+## Related pages
 
-## Voorbereide CI-matrix
+- [Installation](installation.md)
+- [Troubleshooting](troubleshooting.md)
+- [Public roadmap](roadmap.md)
+- [Contribution guide](../CONTRIBUTING.md)
 
-De repository bevat een begrensde workflowdefinitie voor exact zes combinaties:
-
-| Runner | Python |
-|---|---|
-| `ubuntu-latest` | 3.11, 3.12 en 3.13 |
-| `windows-latest` | 3.11, 3.12 en 3.13 |
-
-Iedere combinatie is ontworpen om:
-
-1. de volledige testsuite met ResourceWarnings als fout uit te voeren;
-2. één wheel zonder runtime-dependencies te bouwen;
-3. exact dat wheel te installeren;
-4. package- en metadataversie te vergelijken;
-5. `opencntx --help` als geïnstalleerde CLI-smoke uit te voeren.
-
-De workflow heeft uitsluitend `contents: read`, bewaart geen checkout-
-credentials, gebruikt geen secrets en publiceert niets. Officiële Actions zijn
-op volledige immutable commits vastgepind.
-
-## Huidige CI-status
-
-De live GitHub-repository-instelling heeft de begrensde workflow geactiveerd.
-De juiste repositorystatus is:
-
-`CI_ACTIVE`
-
-Iedere pull request en push naar `main` moet daardoor exact zes matrixjobs
-starten. Alleen wanneer alle zes jobs op de bedoelde commit live als
-`completed/success` eindigen, is die ene commit groen. Nul runs, nul checks,
-een overgeslagen job of een run op een andere commit is geen groen bewijs.
-
-Required checks en branchbescherming zijn veranderlijke GitHub-instellingen.
-Hun actuele werking moet live worden gelezen en wordt nooit uitsluitend uit
-deze documentatie afgeleid.
+[Documentation home](README.md)

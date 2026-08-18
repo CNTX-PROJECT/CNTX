@@ -1,22 +1,22 @@
-## Doel
+## Goal
 
-Beschrijf één probleem en de begrensde oplossing.
+Describe one problem and the bounded solution.
 
-## Exacte scope
+## Exact scope
 
-- Gewijzigde paden:
-- Bewust niet gewijzigd:
+- Changed paths:
+- Intentionally unchanged:
 
-## Controle
+## Verification
 
-- [ ] Relevante tests zijn lokaal uitgevoerd en de resultaten staan hieronder.
-- [ ] Security- en privacygrenzen zijn gecontroleerd.
-- [ ] Er zijn geen geheimen, persoonsgegevens of private projectgegevens toegevoegd.
-- [ ] Nieuwe of gewijzigde dependencies zijn expliciet vermeld en gemotiveerd.
-- [ ] Documentatie en changelog zijn bijgewerkt wanneer dat nodig is.
-- [ ] Gegenereerde merk-PNG's en `SHA256SUMS` zijn met `python tools/render_brand.py --check` gecontroleerd, indien van toepassing.
+- [ ] Relevant tests were run locally and the real results are listed below.
+- [ ] Security and privacy boundaries were reviewed.
+- [ ] No secrets, personal data, or private project content were added.
+- [ ] New or changed dependencies are explicitly listed and justified.
+- [ ] Documentation and changelog were updated when required.
+- [ ] Generated brand PNG files and `SHA256SUMS` were checked with `python tools/render_brand.py --check`, when applicable.
 
-## Bewijs en beperkingen
+## Evidence and limitations
 
-Noem de werkelijk uitgevoerde commando's, platformen en bekende beperkingen.
-Nul automatische checks is geen groen bewijs.
+List the actual commands, platforms, results, and known limitations.
+Zero automated checks is not green evidence.

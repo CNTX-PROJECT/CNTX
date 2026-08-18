@@ -1,148 +1,96 @@
-# Workspace en bronnen
+# Workspace
 
-[Documentatie-index](README.md) · [OWNER-flow](owner-flow.md) ·
-[Commandoreferentie](commands.md) · [Security](security.md)
+The optional workspace layer organizes a longer project without turning
+OPENCNTX into a cloud service, AI platform, or automatic agent system.
 
-De optionele workspace-laag zit in de `0.2.0`-bron. Zij ordent
-lokale projectinformatie zonder een bestand uit te voeren of inhoud als waar
-te aanvaarden.
+![The workspace separates control, sources, chapters, tasks, playbooks, roles, derived text, and replaceable indexes](../assets/docs/workspace-map.svg)
 
-## Werkruimte maken
+## Create a workspace
 
 ```powershell
-opencntx workspace init mijn-project
+opencntx workspace init my-project
 ```
 
-De opdracht maakt leesbare mappen voor besturing, inbox, bronnen,
-hoofdstukken, taken, playbooks en rollen. Een bestaande complete werkruimte
-wordt niet herschreven. Een gedeeltelijke of conflicterende structuur wordt
-geweigerd.
-
-## Compacte actuele roadmapsturing
-
-Nieuwe werkruimtes markeren in `CONTROL/ROADMAP.md` exact één actuele sectie:
+The command creates a new directory and refuses to overwrite a non-empty one.
+Use `--force-empty-existing` only for an existing directory that is truly
+empty.
 
 ```text
-<!-- OPENCNTX:CONTROL:START -->
-## Actuele opdracht
-
-Geen.
-<!-- OPENCNTX:CONTROL:END -->
+my-project/
+├── opencntx.toml
+├── CONTROL/
+│   ├── OWNER.md
+│   ├── ROADMAP.md
+│   └── CURRENT.md
+├── SOURCES/
+├── CHAPTERS/
+├── TASKS/
+├── PLAYBOOKS/
+├── ROLES/
+└── .opencntx/
 ```
 
-Houd dit block klein en actueel; maximaal 16.384 UTF-8-bytes. Uitgebreide
-afgeronde geschiedenis kan buiten de markers blijven staan. Vernieuw de
-afgeleide weergave desgewenst expliciet:
+## Refresh the compact control snapshot
+
+A new workspace includes one marked current block in `CONTROL/ROADMAP.md`.
+After editing that official block, run:
 
 ```powershell
-opencntx workspace control refresh --root mijn-project
+opencntx workspace control refresh --root my-project
 ```
 
-De beheerde `.opencntx/control-snapshot.md` bevat het block byte-exact plus de
-SHA-256 van `OWNER.md`, de volledige `ROADMAP.md` en `CURRENT.md`. Contextbouw
-vernieuwt deze snapshot automatisch. Het officiële roadmapbestand wordt nooit
-automatisch gewijzigd. Werkruimtes zonder markers blijven zichtbaar in
-`LEGACY_FULL_ROADMAP` en laden zoals voorheen de volledige roadmap.
+This creates or refreshes `.opencntx/control-snapshot.md`. The full roadmap
+digest remains pinned. OPENCNTX does not write roadmap decisions or summarize
+them with AI.
 
-Een halve, dubbele, geneste, omgekeerde of te grote markering stopt gesloten.
-OPENCNTX vat niets met AI samen en leidt geen goedkeuring uit roadmaptekst af.
-
-## Eén bron vastleggen
+## Capture one supplied source
 
 ```powershell
-opencntx workspace capture plan.pdf --root mijn-project --origin OWNER
+opencntx workspace capture README.md `
+  --root my-project `
+  --origin OWNER `
+  --privacy PRIVATE
 ```
 
-`capture` accepteert precies één regulier lokaal bestand en:
+The capture flow:
 
-- bewaart de exacte bytes onder een unieke source-ID;
-- registreert grootte, SHA-256, UTC-tijd, herkomst en privacylabel;
-- gebruikt standaard privacy `PRIVATE`;
-- herkent een exact duplicaat zonder een tweede bronkopie;
-- opent, verplaatst, verwijdert of voert het aangeleverde bestand niet uit;
-- schrijft een klein ontvangstbewijs onder `.opencntx/receipts/`.
+- reads one regular local file;
+- rejects directories, devices, symlinks, and managed internal paths;
+- stores exact bytes under a generated source ID;
+- records origin, privacy label, size, and SHA-256;
+- omits the original absolute path from the official record;
+- returns a receipt.
 
-De zichtbare eindstatus is `CAPTURED`, `DUPLICATE` of `NOT_CAPTURED`.
-Privacylabels zijn `PUBLIC`, `PRIVATE`, `RESTRICTED` en `QUARANTINED`. Met
-`--supersedes SOURCE-ID` verwijst een nieuwe inhoudsversie expliciet naar een
-oudere bron. Een label is classificatie, geen encryptie of toegangscontrole.
+New sources default to `PRIVATE`. Labels are classification, not encryption.
 
-## Hoofdstuk maken
+## What comes next
 
-```powershell
-opencntx workspace chapter create CH-ELEKTRICITEIT `
-  --title "Elektriciteit" `
-  --source SRC-20260816-0123456789ab `
-  --root mijn-project
-```
+Captured sources do not automatically become accepted knowledge or task
+context. The normal order is:
 
-`chapter create` schrijft uitsluitend een nieuw
-`CHAPTERS/CH-ELEKTRICITEIT/CHAPTER.md`-sjabloon als `DRAFT`. Iedere herhaalde
-`--source` legt de actuele geregistreerde bron-SHA-256 vast. Herhaalde
-`--depends-on`-opties leggen hoofdstukafhankelijkheden vast.
+1. capture a source;
+2. create and review a chapter;
+3. rebuild the catalog;
+4. register and approve any needed playbook and role;
+5. propose and approve one task;
+6. build and verify task context;
+7. prepare at most one bounded executor package;
+8. submit, review, accept, and close the result.
 
-Een DRAFT, digest of technische freshnessstatus is geen inhoudelijke
-OWNER-goedkeuring. Een bestaand hoofdstuk wordt niet overschreven.
+## Storage boundaries
 
-## Catalogus herbouwen
+- Original sources stay separate from derived text.
+- Official records stay separate from replaceable indexes.
+- Append-only task events are never treated as editable status files.
+- A source hash does not grant OWNER approval.
+- No workspace command starts an AI, agent, OCR tool, or external sync.
 
-```powershell
-opencntx workspace catalog rebuild --root mijn-project
-```
+## Related pages
 
-De herbouw:
+- [Chapters and catalog](chapters-and-catalog.md)
+- [Context navigation](context-navigation.md)
+- [Media and derived text](media.md)
+- [OWNER flow](owner-flow.md)
+- [Security](security.md)
 
-- leest officiële bronrecords en `CHAPTER.md`-bestanden;
-- hercontroleert bronbytes, pins en afhankelijkheden;
-- berekent `CURRENT`, `STALE`, `INCOMPLETE` of `ARCHIVED`;
-- regenereert `CHAPTERS/INDEX.md`;
-- vervangt `.opencntx/catalog.sqlite` pas na integriteitscontrole;
-- toont dezelfde state-digest in index en catalogus.
-
-Markdownbronnen en hoofdstukken blijven officieel. De SQLite-catalogus en
-index zijn afgeleid en volledig herbouwbaar. Een dependencycyclus, onbekend
-schema, onveilig pad of gewijzigde beheerde index stopt gesloten.
-
-## Media en afgeleide UTF-8-tekst
-
-`capture` kan media byte-exact bewaren, maar OPENCNTX voert geen OCR,
-transcriptie, parser, beeld- of videoanalyse uit. Alleen reeds aangeleverde
-UTF-8-tekst kan als afleiding worden geregistreerd:
-
-```powershell
-opencntx workspace media register SRC-... `
-  --text afgeleid.txt `
-  --kind OCR `
-  --producer-class LOCAL_TOOL `
-  --producer "offline-tool 1" `
-  --locator "pagina 1-3" `
-  --root mijn-project
-```
-
-De afleiding blijft gescheiden onder `.opencntx/derived/` en bindt aan de
-exacte originele bronbytes en het geërfde privacylabel. De maker- en
-locatormetadata zijn lokale verklaringen, geen door OPENCNTX bewezen feiten.
-
-Mogelijke statussen:
-
-- `NOT_INVESTIGATED`: geen afleiding bekend;
-- `UNREVIEWED`: geregistreerd maar niet menselijk gecontroleerd;
-- `REVIEWED`: exact gepinde tekst bruikbaar bevonden, niet automatisch waar;
-- `REJECTED`: afgewezen en niet promoveerbaar;
-- `PROMOTED`: bewust via de gewone captureflow als tekstbron opgeslagen;
-- `STALE`: bron-, record- of tekstbytes wijken af;
-- `REMOVED`: tekstkopie verwijderd, provenance bewaard.
-
-`media review` bindt een beslissing aan de exacte contentdigest. Alleen
-`REVIEWED` kan met de getoonde reviewdigest via `media promote` een gewone
-`CAPTURED` tekstbron worden. Die bron wordt niet automatisch een feit,
-hoofdstuk, taakinput of contextbestand.
-
-`media remove` verwijdert alleen de exact geïdentificeerde afgeleide
-`content.txt` na controle van source-ID, derivation-ID, recorddigest,
-contentdigest en een lokale OWNER-verklaring. Origineel, andere afleidingen en
-reeds gepromoveerde bronnen blijven bestaan; een tombstone bewaart provenance.
-
-Gebruik [de commandoreferentie](commands.md) en de betreffende `--help`-route
-voor alle verplichte opties. Lees voor taakselectie en contextbouw verder in
-[OWNER-flow en taakgates](owner-flow.md).
+[Documentation home](README.md)

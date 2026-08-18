@@ -67,7 +67,7 @@ def _shapes(element: ElementTree.Element, inherited_fill: str | None = None):
         return
     if name in {"title", "desc"}:
         return
-    if name not in {"rect", "polygon", "circle"}:
+    if name not in {"rect", "polygon", "circle", "ellipse"}:
         raise ValueError(f"unsupported SVG element: {name}")
     if fill is None:
         raise ValueError(f"missing fill on {name}")
@@ -131,6 +131,23 @@ def _draw_circle(canvas, width, height, attrs, color, sx, sy) -> None:
     cy = _number(attrs["cy"]) * sy
     rx = _number(attrs["r"]) * sx
     ry = _number(attrs["r"]) * sy
+    min_x = max(0, int(cx - rx))
+    max_x = min(width, int(cx + rx) + 1)
+    min_y = max(0, int(cy - ry))
+    max_y = min(height, int(cy + ry) + 1)
+    for y in range(min_y, max_y):
+        dy = ((y + 0.5) - cy) / ry
+        for x in range(min_x, max_x):
+            dx = ((x + 0.5) - cx) / rx
+            if dx * dx + dy * dy <= 1.0:
+                _set_pixel(canvas, width, x, y, color)
+
+
+def _draw_ellipse(canvas, width, height, attrs, color, sx, sy) -> None:
+    cx = _number(attrs["cx"]) * sx
+    cy = _number(attrs["cy"]) * sy
+    rx = _number(attrs["rx"]) * sx
+    ry = _number(attrs["ry"]) * sy
     min_x = max(0, int(cx - rx))
     max_x = min(width, int(cx + rx) + 1)
     min_y = max(0, int(cy - ry))
@@ -216,8 +233,10 @@ def render(svg_path: Path, output_path: Path, width: int, height: int) -> None:
             _draw_rect(canvas, source_width, source_height, attrs, color, sx, sy)
         elif name == "polygon":
             _draw_polygon(canvas, source_width, source_height, attrs, color, sx, sy)
-        else:
+        elif name == "circle":
             _draw_circle(canvas, source_width, source_height, attrs, color, sx, sy)
+        else:
+            _draw_ellipse(canvas, source_width, source_height, attrs, color, sx, sy)
     rgba = _downsample(canvas, source_width, width, height)
     output_path.write_bytes(_png(width, height, rgba))
 
@@ -228,7 +247,10 @@ def _manifest_bytes(png_root: Path | None = None) -> bytes:
         path = ROOT / relative
         if png_root is not None and relative.endswith(".png"):
             path = png_root / Path(relative).name
-        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        data = path.read_bytes()
+        if relative.endswith(".svg"):
+            data = data.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+        digest = hashlib.sha256(data).hexdigest()
         lines.append(f"{digest}  {relative}")
     return " | ".join(lines).encode("ascii")
 
