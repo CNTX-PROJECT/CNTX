@@ -2,9 +2,11 @@ from __future__ import annotations
 
 import os
 from pathlib import Path
+import runpy
 import subprocess
 import sys
 import tempfile
+import tomllib
 import unittest
 
 
@@ -29,6 +31,15 @@ def run_cli(*arguments: str, cwd: Path) -> subprocess.CompletedProcess[str]:
 
 
 class CliTests(unittest.TestCase):
+    def test_package_versions_match(self) -> None:
+        with (REPOSITORY_ROOT / "pyproject.toml").open("rb") as project_file:
+            project_version = tomllib.load(project_file)["project"]["version"]
+
+        package_globals = runpy.run_path(SOURCE_ROOT / "opencntx" / "__init__.py")
+
+        self.assertEqual(project_version, "0.2.0.dev0")
+        self.assertEqual(package_globals["__version__"], project_version)
+
     def test_help_works(self) -> None:
         result = run_cli("--help", cwd=REPOSITORY_ROOT)
 

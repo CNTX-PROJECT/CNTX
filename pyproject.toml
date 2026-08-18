@@ -4,13 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "opencntx"
-version = "0.1.0"
+version = "0.2.0.dev0"
 description = "Create small, explicit, verifiable context packages for one AI task."
 readme = "README.md"
 requires-python = ">=3.11"
 license = "Apache-2.0"
 license-files = ["LICENSE"]
 authors = [{ name = "OPENCNTX contributors" }]
+keywords = ["ai", "cli", "context-management", "local-first", "verification"]
 classifiers = [
   "Development Status :: 3 - Alpha",
   "Environment :: Console",
@@ -21,6 +22,13 @@ classifiers = [
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
 ]
+
+[project.urls]
+Homepage = "https://github.com/CNTX-PROJECT/OPENCNTX"
+Source = "https://github.com/CNTX-PROJECT/OPENCNTX"
+Issues = "https://github.com/CNTX-PROJECT/OPENCNTX/issues"
+Changelog = "https://github.com/CNTX-PROJECT/OPENCNTX/blob/main/CHANGELOG.md"
+Security = "https://github.com/CNTX-PROJECT/OPENCNTX/security/policy"
 
 [project.scripts]
 opencntx = "opencntx.cli:main"
