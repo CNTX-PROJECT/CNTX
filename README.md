@@ -5,11 +5,19 @@ contextpakket. U kiest zelf de lokale tekstbronnen; OPENCNTX bundelt ze met
 paden, groottes en SHA-256-hashes. De tool werkt zonder account, netwerk, API-key
 of AI-provider.
 
+## Versiestatus
+
+| Versie | Inhoud | Status |
+|---|---|---|
+| `v0.1.0` | `init`, `pack` en `verify` | Gepubliceerde kernrelease |
+| `0.2.0.dev0` op `main` | Kern plus de lokale `workspace`-groep | Ontwikkelversie; nog geen `v0.2.0`-release |
+
 ## Installeren
 
-Vereist: Python 3.11 of nieuwer en Git voor onderstaande download. Versie 0.1
-staat niet op PyPI; de GitHub-bronrelease gebruikt de standaard
-Python-packageflow:
+Vereist: Python 3.11 of nieuwer en Git voor onderstaande download. OPENCNTX
+staat niet op PyPI en gebruikt de standaard Python-packageflow.
+
+### Gepubliceerde kernrelease `v0.1.0`
 
 ```powershell
 git clone --branch v0.1.0 --depth 1 https://github.com/CNTX-PROJECT/OPENCNTX.git
@@ -17,7 +25,19 @@ cd OPENCNTX
 python -m pip install .
 ```
 
-Controleer daarna met `opencntx --help` of de installatie beschikbaar is.
+### Actuele ontwikkelbron `0.2.0.dev0`
+
+Gebruik deze bron alleen wanneer u ook de lokale `workspace`-groep wilt
+uitproberen. Zij is nog niet als `v0.2.0` gepubliceerd:
+
+```powershell
+git clone --depth 1 https://github.com/CNTX-PROJECT/OPENCNTX.git
+cd OPENCNTX
+python -m pip install .
+```
+
+Controleer na beide installatiepaden met `opencntx --help` of de installatie
+beschikbaar is.
 
 ## De drie commando's
 
@@ -63,9 +83,9 @@ Exitcode `0` betekent gelijk, `1` betekent drift of een onvolledige controle en
 
 ## Optioneel lokaal opslagfundament
 
-> Dit onderdeel is ontwikkelwerk na de gepubliceerde `v0.1.0` en maakt geen
-> deel uit van de installatie vanaf die tag zolang geen latere release is
-> goedgekeurd.
+> De `workspace`-groep zit in de actuele bronversie `0.2.0.dev0` op `main`, maar
+> niet in de gepubliceerde tag `v0.1.0`. Een definitieve `v0.2.0`-release is nog
+> niet gepubliceerd.
 
 De optionele `workspace`-groep maakt een gewone lokale projectwerkruimte en kan
 één aangeleverd bestand veilig registreren zonder het uit te voeren of te
@@ -337,6 +357,14 @@ privacy en deterministische selectie. Een lokaal gebouwd pakket is geen
 toestemming om het extern te delen en beweert nooit dat het volledige project
 werd onderzocht.
 
+Voer beide controles uit zolang de taak nog `IN_EXECUTION` is: na de contextbouw
+en vóór `workspace task submit-result`. Na resultaatindiening, OWNER-aanvaarding
+of taaksluiting is het pakket geen levende uitvoeringsroute meer. Controleer de
+historische afronding dan via de append-only taakketen en vastgelegde digests,
+het resultaat en bewijs, plus `workspace executor status` en
+`workspace executor verify`. Het enige uitvoerderpakket hoort na sluiting
+uitsluitend `TASK_FINISHED` te rapporteren.
+
 De leesbare frontmatter van `CONTROL/CURRENT.md` legt standaard maximaal 2 GiB
 per bron of afgeleide tekst en 20 GiB gezamenlijke officiële bron- en actieve
 afgeleide tekstbytes vast. Deze opslagbudgetten staan los van de veel kleinere
@@ -473,10 +501,11 @@ zichtbaar.
   geweigerd.
 - Budgetoverschrijding is een fout; OPENCNTX kapt een pakket nooit stil af.
 - `pack` en `verify` wijzigen geen bronbestanden.
-- De gepubliceerde OPENCNTX 0.1-tag doet geen AI-samenvatting of automatische
-  bronselectie en biedt geen PDF-/beeldextractie, agents, MCP, GUI, cloud,
-  database of hosting. De latere workspace-ontwikkeling blijft lokaal en is
-  niet automatisch onderdeel van die tag of release.
+- De gepubliceerde `v0.1.0`-tag bevat alleen de kern. De actuele
+  `0.2.0.dev0`-bron voegt de lokale workspaceflow toe, maar is nog geen
+  definitieve `v0.2.0`-release. Geen van beide doet AI-samenvatting,
+  automatische bronselectie, PDF-/beeldextractie, agentstart, MCP, GUI, cloud,
+  database of hosting.
 - OPENCNTX is een lokaal hulpmiddel, geen garantie dat gedeelde context veilig,
   volledig of geschikt is voor een specifieke AI-tool.
 
