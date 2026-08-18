@@ -1,97 +1,111 @@
-# Kern: init, pack en verify
+# Core commands: init, pack, and verify
 
-[Documentatie-index](README.md) · [Commandoreferentie](commands.md) ·
-[Security](security.md)
+The core flow creates one bounded context package from local UTF-8 text. It is
+the shortest OPENCNTX path and does not require a workspace.
 
-De kern maakt voor één taak een begrensd pakket van lokale UTF-8-tekst. De
-gebruiker kiest de bronnen; OPENCNTX selecteert niet semantisch en vat niets
-samen.
+![The core flow has five steps: initialize, pack, inspect, verify, and share by choice](../assets/docs/core-flow.svg)
 
-## 1. Configuratie maken
+## 1. Create a configuration
 
-Ga naar de lokale projectroot en voer uit:
+Run inside your project directory:
 
 ```powershell
 opencntx init
 ```
 
-Dit maakt `opencntx.toml` en overschrijft nooit een bestaand bestand. Een klein
-voorbeeld:
+The command creates `opencntx.toml`. It fails instead of overwriting an
+existing configuration.
 
 ```toml
 [task]
-goal = "Leg uit waarom deze kleine Python-test faalt"
+goal = "Explain the one concrete task"
 
 [context]
 include = ["README.md", "src/**/*.py", "tests/**/*.py"]
 required = ["README.md"]
-exclude = [".git/**", ".env*", "**/*.key", "**/*.pem"]
+exclude = [".git/**", ".opencntx/**", ".env*", "**/*.key", "**/*.pem"]
 max_files = 25
 max_bytes = 100000
 ```
 
-De velden betekenen:
+### Important fields
 
-- `goal`: het ene doel waarvoor het pakket wordt gemaakt;
-- `include`: expliciete relatieve bestanden of globpatronen;
-- `required`: paden die aanwezig en geselecteerd moeten zijn;
-- `exclude`: extra uitsluitingen bovenop de ingebouwde veilige uitsluitingen;
-- `max_files`: harde bovengrens voor het aantal geselecteerde bestanden;
-- `max_bytes`: harde bovengrens voor hun gezamenlijke bytes.
+| Field | Meaning |
+|---|---|
+| `goal` | One human-readable task |
+| `include` | File patterns that may enter the package |
+| `required` | Files that must be present |
+| `exclude` | Extra patterns that must stay out |
+| `max_files` | Hard file-count budget |
+| `max_bytes` | Hard total-byte budget |
 
-Ingebouwde uitsluitingen, waaronder `.git/**`, `.opencntx/**`, `.env*`,
-`**/*.key` en `**/*.pem`, blijven actief. Budgetoverschrijding is een fout; de
-tool kapt nooit stil bestanden of bytes af.
+Built-in sensitive exclusions remain active even when your own list is short.
 
-## 2. Pakket maken
+## 2. Build the package
 
 ```powershell
 opencntx pack
 ```
 
-Een geslaagde run publiceert atomair precies twee primaire bestanden onder
-`.opencntx/latest/`:
+The command:
 
-- `CONTEXT.md` met het doel, begrenzing en de letterlijke geselecteerde tekst;
-- `manifest.json` met relatieve paden, groottes, SHA-256-hashes, selectie en
-  uitsluitredenen.
+1. validates the configuration;
+2. resolves candidate paths inside the project root;
+3. applies exclusions before reading content;
+4. rejects binary, unreadable, unsafe, or escaping paths;
+5. enforces file and byte budgets;
+6. writes a complete package atomically.
 
-Een bestaand compleet pakket blijft intact als de nieuwe bouw faalt. De tool
-leest geen bron buiten de projectroot, volgt geen onveilige symlink en weigert
-binaire, onleesbare of ongeldige UTF-8-input.
+The default output is `.opencntx/latest/`.
 
-## 3. Pakket controleren
+## 3. Inspect the output
+
+Read both files:
+
+- `CONTEXT.md` — the task goal and selected source text;
+- `manifest.json` — package metadata, paths, sizes, and SHA-256 hashes.
+
+The manifest is evidence about bytes. It is not a statement that the content
+is true, complete, safe, or approved.
+
+## 4. Verify the package
 
 ```powershell
 opencntx verify .opencntx/latest
 ```
 
-`verify` vergelijkt pakket, manifest en actuele bronbytes en rapporteert:
+Verification reports source state separately:
 
-- `unchanged`: bron bestaat en digest is gelijk;
-- `changed`: bron bestaat maar bytes of digest wijken af;
-- `missing`: gepinde bron bestaat niet meer;
-- `unexpected`: pakket bevat iets dat niet door het manifest wordt verwacht.
+- `unchanged` — the source exists and its recorded bytes match;
+- `changed` — the source exists but its bytes differ;
+- `missing` — a recorded source no longer exists;
+- `unexpected` — the package contains an unrecorded file or structure.
 
-De controle is read-only en herbouwt het pakket niet.
+Verification is read-only. It does not repair sources or rebuild the package.
 
-## Exitcodes
+## Exit codes
 
-| Code | Betekenis |
-|---|---|
-| `0` | opdracht geslaagd of controle exact gelijk |
-| `1` | drift of een onvolledige verificatie |
-| `2` | configuratie-, validatie- of uitvoerfout |
+| Code | Meaning |
+|---:|---|
+| `0` | The requested operation completed and its checks passed |
+| `1` | The request was valid but verification found drift |
+| `2` | Input, configuration, path, budget, or package structure was invalid |
 
-Een non-zero code mag niet worden genegeerd voordat het pakket wordt gebruikt
-of gedeeld.
+Treat every non-zero code as a stop until you understand the output.
 
-## Wat de kern niet doet
+## What the core does not do
 
-De kern doet geen AI-selectie, samenvatting, ranking, embeddings, OCR,
-PDF-/beeldextractie, netwerkdownload, cloudopslag, agentstart, GUI of MCP. Een
-geldig pakket bewijst welke bytes werden opgenomen; het bewijst niet dat de
-inhoud waar, volledig of veilig voor een externe AI-tool is.
+- no automatic file ranking or summarization;
+- no embeddings or vector search;
+- no PDF, Office, image, audio, or video extraction;
+- no AI, agent, network, or cloud operation;
+- no automatic upload or answer verification.
 
-Lees daarom altijd `CONTEXT.md` zelf voordat u het buiten uw lokale project
-gebruikt.
+## Related pages
+
+- [Getting started](getting-started.md)
+- [Context packages](context-packets.md)
+- [Command reference](commands.md)
+- [Security](security.md)
+
+[Documentation home](README.md)

@@ -1,5 +1,5 @@
-name: Bug melden
-description: Meld één reproduceerbaar probleem zonder gevoelige inhoud.
+name: Report a bug
+description: Report one reproducible problem without sensitive content.
 title: "[Bug]: "
 labels:
   - bug
@@ -7,12 +7,12 @@ body:
   - type: markdown
     attributes:
       value: |
-        Deel nooit wachtwoorden, tokens, persoonsgegevens, private broncode of gevoelige context. Meld een mogelijke kwetsbaarheid uitsluitend via **Report a vulnerability** onder Security.
+        Never share passwords, tokens, personal data, private source code, or sensitive context. Report a possible vulnerability only through **Report a vulnerability** under Security.
   - type: input
     id: version
     attributes:
-      label: OPENCNTX-versie
-      description: Bijvoorbeeld v0.1.0 of 0.2.0.dev0 met commit-SHA.
+      label: OPENCNTX version
+      description: For example v0.2.0 or a commit SHA.
     validations:
       required: true
   - type: dropdown
@@ -21,36 +21,36 @@ body:
       label: Platform
       options:
         - Windows
-        - Ubuntu of andere Linux
+        - Ubuntu or another Linux distribution
         - macOS
-        - Ander platform
+        - Another platform
     validations:
       required: true
   - type: textarea
     id: steps
     attributes:
-      label: Reproductiestappen
-      description: Geef het kleinste veilige voorbeeld en de exacte commando's.
+      label: Reproduction steps
+      description: Provide the smallest safe example and exact commands.
     validations:
       required: true
   - type: textarea
     id: expected
     attributes:
-      label: Verwacht gedrag
+      label: Expected behavior
     validations:
       required: true
   - type: textarea
     id: actual
     attributes:
-      label: Werkelijk gedrag
+      label: Actual behavior
     validations:
       required: true
   - type: checkboxes
     id: safety
     attributes:
-      label: Veiligheidscontrole
+      label: Safety check
       options:
-        - label: Ik heb geheimen, persoonsgegevens en niet-openbare projectinhoud verwijderd.
+        - label: I removed secrets, personal data, and non-public project content.
           required: true
-        - label: Dit is geen kwetsbaarheidsmelding.
+        - label: This is not a vulnerability report.
           required: true

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
+  <title id="title">Task-bound context selection</title>
+  <desc id="desc">Hot control and task files are always included. Warm approved chapters, playbooks, roles, and referenced sources are followed through explicit pins. Cold unrelated history stays outside the package.</desc>
+  <rect width="1200" height="500" rx="28" fill="#F7F5FB"/>
+  <g font-family="Segoe UI, Arial, sans-serif" text-anchor="middle">
+    <rect x="70" y="90" width="300" height="300" rx="28" fill="#7C3AED"/>
+    <text x="220" y="150" font-size="35" font-weight="800" fill="#FFFFFF">HOT</text>
+    <text x="220" y="205" font-size="24" fill="#FFFFFF">CONTROL</text><text x="220" y="245" font-size="24" fill="#FFFFFF">active task</text><text x="220" y="285" font-size="24" fill="#FFFFFF">exact current state</text>
+    <rect x="450" y="90" width="300" height="300" rx="28" fill="#FFFFFF" stroke="#7C3AED" stroke-width="4"/>
+    <text x="600" y="150" font-size="35" font-weight="800" fill="#6D28D9">WARM</text>
+    <text x="600" y="205" font-size="24" fill="#0B0B0F">approved chapters</text><text x="600" y="245" font-size="24" fill="#0B0B0F">playbook and role</text><text x="600" y="285" font-size="24" fill="#0B0B0F">pinned sources</text>
+    <rect x="830" y="90" width="300" height="300" rx="28" fill="#E8E6EF"/>
+    <text x="980" y="150" font-size="35" font-weight="800" fill="#555563">COLD</text>
+    <text x="980" y="205" font-size="24" fill="#555563">unrelated chapters</text><text x="980" y="245" font-size="24" fill="#555563">old task history</text><text x="980" y="285" font-size="24" fill="#555563">unselected sources</text>
+    <text x="600" y="455" font-size="22" fill="#555563">Only explicit, valid relations move information into a task package.</text>
+  </g>
+  <g fill="#7C3AED"><polygon points="390,225 430,240 390,255"/><polygon points="770,225 810,240 770,255"/></g>
+</svg>

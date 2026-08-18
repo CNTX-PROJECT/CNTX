@@ -1,1 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title description">  <title id="title">OPENCNTX avatar</title>  <desc id="description">A purple octagonal boundary around a near-black context network on a light background.</desc>  <rect x="0" y="0" width="512" height="512" fill="#F7F5FB"/>  <g id="boundary" fill="#7C3AED">    <polygon points="128,32 384,32 368,64 144,64"/><polygon points="384,32 480,128 448,144 368,64"/>    <polygon points="480,128 480,384 448,368 448,144"/><polygon points="480,384 384,480 368,448 448,368"/>    <polygon points="384,480 128,480 144,448 368,448"/><polygon points="128,480 32,384 64,368 144,448"/>    <polygon points="32,384 32,128 64,144 64,368"/><polygon points="32,128 128,32 144,64 64,144"/>  </g>  <g id="network" fill="#0B0B0F">    <rect x="242" y="156" width="28" height="36"/><rect x="242" y="320" width="28" height="36"/>    <rect x="156" y="242" width="36" height="28"/><rect x="320" y="242" width="36" height="28"/>    <polygon points="256,192 320,256 256,320 192,256"/>  </g>  <g id="nodes" fill="#7C3AED">    <circle cx="256" cy="128" r="28"/><circle cx="128" cy="256" r="28"/>    <circle cx="384" cy="256" r="28"/><circle cx="256" cy="384" r="28"/>  </g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title description">
+  <title id="title">OPENCNTX avatar</title>
+  <desc id="description">A simple stacked text avatar with OPEN in purple and CNTX in near-black on a light background.</desc>
+  <rect x="0" y="0" width="512" height="512" fill="#F7F5FB"/>
+  <g id="word-open" fill="#6D28D9" aria-label="OPEN">
+    <ellipse cx="70" cy="164" rx="46" ry="58"/><ellipse cx="70" cy="164" rx="27" ry="38" fill="#F7F5FB"/>
+    <rect x="135" y="106" width="19" height="116"/><rect x="154" y="106" width="65" height="19"/><rect x="154" y="157" width="65" height="19"/><rect x="200" y="125" width="19" height="32"/>
+    <rect x="244" y="106" width="19" height="116"/><rect x="263" y="106" width="64" height="19"/><rect x="263" y="155" width="56" height="19"/><rect x="263" y="203" width="64" height="19"/>
+    <rect x="350" y="106" width="19" height="116"/><rect x="469" y="106" width="19" height="116"/><polygon points="369,106 391,106 469,196 469,222 447,222 369,132"/>
+  </g>
+  <g id="word-cntx" fill="#0B0B0F" aria-label="CNTX">
+    <ellipse cx="70" cy="348" rx="46" ry="58"/><ellipse cx="70" cy="348" rx="27" ry="38" fill="#F7F5FB"/><rect x="70" y="318" width="54" height="60" fill="#F7F5FB"/>
+    <rect x="135" y="290" width="19" height="116"/><rect x="236" y="290" width="19" height="116"/><polygon points="154,290 176,290 236,380 236,406 214,406 154,316"/>
+    <rect x="277" y="290" width="88" height="19"/><rect x="312" y="309" width="19" height="97"/>
+    <polygon points="388,290 412,290 488,382 488,406 464,406 388,314"/><polygon points="464,290 488,290 412,406 388,406 388,382"/>
+  </g>
+</svg>

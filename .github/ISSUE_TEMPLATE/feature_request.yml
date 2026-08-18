@@ -1,45 +1,45 @@
-name: Functie voorstellen
-description: Beschrijf één probleem en gewenste uitkomst binnen de productgrens.
-title: "[Voorstel]: "
+name: Suggest an improvement
+description: Describe one problem and desired outcome within the product boundary.
+title: "[Proposal]: "
 labels:
   - enhancement
 body:
   - type: markdown
     attributes:
       value: |
-        Een voorstel is geen automatische toezegging. OPENCNTX blijft lokaal, expliciet, provider-neutraal en begrensd; deel geen gevoelige projectinhoud.
+        A proposal is not an automatic commitment. OPENCNTX remains local, explicit, provider-neutral, and bounded. Do not share sensitive project content.
   - type: textarea
     id: problem
     attributes:
-      label: Welk probleem wilt u oplossen?
-      description: Beschrijf het gebruikersprobleem zonder al een technische oplossing te eisen.
+      label: What problem should be solved?
+      description: Describe the user problem before requiring a technical solution.
     validations:
       required: true
   - type: textarea
     id: outcome
     attributes:
-      label: Gewenste uitkomst
-      description: Wat moet merkbaar eenvoudiger, veiliger of duidelijker worden?
+      label: Desired outcome
+      description: What should become measurably simpler, safer, or clearer?
     validations:
       required: true
   - type: textarea
     id: boundary
     attributes:
-      label: Productgrens
-      description: Waarom past dit bij kleine, lokale en verifieerbare contextpakketten?
+      label: Product boundary
+      description: Why does this fit small, local, verifiable context packages?
     validations:
       required: true
   - type: textarea
     id: privacy
     attributes:
-      label: Privacy- en security-impact
-      description: Welke gegevens, rechten, externe diensten of nieuwe risico's zouden betrokken zijn?
+      label: Privacy and security impact
+      description: Which data, permissions, external services, or new risks would be involved?
     validations:
       required: true
   - type: checkboxes
     id: acknowledgement
     attributes:
-      label: Bevestiging
+      label: Confirmation
       options:
-        - label: Ik begrijp dat indiening geen goedkeuring, planning, merge of release belooft.
+        - label: I understand that submission does not promise approval, planning, merge, or release.
           required: true

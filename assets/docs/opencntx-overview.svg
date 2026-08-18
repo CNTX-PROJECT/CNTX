@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="460" viewBox="0 0 1200 460" role="img" aria-labelledby="title desc">
+  <title id="title">How OPENCNTX fits between your files and an AI tool</title>
+  <desc id="desc">You choose local files. OPENCNTX selects, records, hashes, and verifies a small context package. You review it before giving it to any AI tool that accepts text or files.</desc>
+  <rect width="1200" height="460" rx="28" fill="#F7F5FB"/>
+  <g font-family="Segoe UI, Arial, sans-serif" text-anchor="middle">
+    <rect x="60" y="130" width="220" height="180" rx="22" fill="#FFFFFF" stroke="#7C3AED" stroke-width="4"/>
+    <text x="170" y="190" font-size="30" font-weight="700" fill="#0B0B0F">Your local files</text>
+    <text x="170" y="238" font-size="23" fill="#555563">You choose them</text>
+    <text x="170" y="272" font-size="23" fill="#555563">Nothing is uploaded</text>
+    <rect x="380" y="90" width="260" height="260" rx="30" fill="#7C3AED"/>
+    <text x="510" y="185" font-size="42" font-weight="800" fill="#FFFFFF">OPEN</text>
+    <text x="510" y="235" font-size="42" font-weight="800" fill="#FFFFFF">CNTX</text>
+    <text x="510" y="290" font-size="22" fill="#FFFFFF">Select · hash · verify</text>
+    <rect x="740" y="130" width="220" height="180" rx="22" fill="#FFFFFF" stroke="#7C3AED" stroke-width="4"/>
+    <text x="850" y="190" font-size="30" font-weight="700" fill="#0B0B0F">Small package</text>
+    <text x="850" y="238" font-size="23" fill="#555563">CONTEXT.md</text>
+    <text x="850" y="272" font-size="23" fill="#555563">manifest.json</text>
+    <rect x="1010" y="130" width="150" height="180" rx="22" fill="#0B0B0F"/>
+    <text x="1085" y="192" font-size="27" font-weight="700" fill="#FFFFFF">Any AI</text>
+    <text x="1085" y="230" font-size="27" font-weight="700" fill="#FFFFFF">tool you</text>
+    <text x="1085" y="268" font-size="27" font-weight="700" fill="#FFFFFF">choose</text>
+  </g>
+  <g fill="#7C3AED">
+    <rect x="300" y="214" width="60" height="12"/><polygon points="360,196 390,220 360,244"/>
+    <rect x="660" y="214" width="60" height="12"/><polygon points="720,196 750,220 720,244"/>
+    <rect x="970" y="214" width="20" height="12"/><polygon points="990,196 1020,220 990,244"/>
+  </g>
+  <text x="600" y="410" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="24" fill="#555563">OPENCNTX does not call, control, or recommend an AI model.</text>
+</svg>
