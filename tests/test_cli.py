@@ -37,7 +37,7 @@ class CliTests(unittest.TestCase):
 
         package_globals = runpy.run_path(SOURCE_ROOT / "opencntx" / "__init__.py")
 
-        self.assertEqual(project_version, "0.2.0.dev0")
+        self.assertEqual(project_version, "0.2.0")
         self.assertEqual(package_globals["__version__"], project_version)
 
     def test_help_works(self) -> None:
