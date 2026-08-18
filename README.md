@@ -168,9 +168,10 @@ een openbaar issue.
 ## Projectstatus
 
 De bron op `main` is `0.2.0.dev0` en nog niet uitgebracht als `v0.2.0`.
-De voorbereide GitHub Actions-workflow is `CI_DEFINED_INACTIVE` zolang Actions
-voor het repository uit staat. Nul workflowruns zijn geen groen CI-bewijs;
-Windows- en Ubuntu-controles blijven tot activatie handmatig verplicht.
+De begrensde GitHub Actions-workflow is `CI_ACTIVE` en controleert pull requests
+en pushes naar `main` op Windows en Ubuntu met Python 3.11, 3.12 en 3.13.
+Alleen de live run op de exacte commit bewijst of de zes matrixjobs groen zijn.
+Required checks en branchbescherming blijven afzonderlijke live GitHub-status.
 
 Zie [CHANGELOG.md](CHANGELOG.md) voor wijzigingen. OPENCNTX is gelicentieerd
 onder [Apache-2.0](LICENSE).

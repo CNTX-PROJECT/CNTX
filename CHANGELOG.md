@@ -60,9 +60,9 @@ gepubliceerd.
 - Levende taakcontext wordt gecontroleerd terwijl de taak `IN_EXECUTION` is;
   na taaksluiting vormen de append-only taakketen, digests, resultaat, bewijs en
   uitvoerderstatus het historische afrondingsbewijs.
-- GitHub Actions staat nog uit. De workflow is daarom voorbereid maar blijft
-  `CI_DEFINED_INACTIVE` totdat een afzonderlijk goedgekeurde GitHub-instelling
-  haar activeert; nul workflowruns zijn geen groen CI-bewijs.
+- GitHub Actions is als `CI_ACTIVE` begrensd tot zes Windows-/Ubuntujobs met
+  Python 3.11, 3.12 en 3.13. Alleen de live run op de exacte commit geldt als
+  bewijs; required checks en branchbescherming blijven live GitHub-status.
 
 ## 0.1.0 - 2026-08-16
 

@@ -72,15 +72,16 @@ op volledige immutable commits vastgepind.
 
 ## Huidige CI-status
 
-De live GitHub-repository-instelling heeft Actions nog uitgeschakeld. Daarom is
-de juiste status:
+De live GitHub-repository-instelling heeft de begrensde workflow geactiveerd.
+De juiste repositorystatus is:
 
-`CI_DEFINED_INACTIVE`
+`CI_ACTIVE`
 
-De workflow is gedefinieerd, maar kan nog geen live run of check produceren.
-Nul workflowruns of nul checks is nadrukkelijk geen groen CI-bewijs. Tot een
-afzonderlijk goedgekeurde GitHub-instelling de workflow activeert, blijven
-Windows- en Ubuntu-controles handmatig verplicht.
+Iedere pull request en push naar `main` moet daardoor exact zes matrixjobs
+starten. Alleen wanneer alle zes jobs op de bedoelde commit live als
+`completed/success` eindigen, is die ene commit groen. Nul runs, nul checks,
+een overgeslagen job of een run op een andere commit is geen groen bewijs.
 
-Activatie, branch protection en required checks vallen buiten deze
-documentatieopdracht.
+Required checks en branchbescherming zijn veranderlijke GitHub-instellingen.
+Hun actuele werking moet live worden gelezen en wordt nooit uitsluitend uit
+deze documentatie afgeleid.

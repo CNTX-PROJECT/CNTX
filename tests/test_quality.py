@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import os
 import re
+import tempfile
 import unittest
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
@@ -8,8 +10,24 @@ from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 README = ROOT / "README.md"
+CHANGELOG = ROOT / "CHANGELOG.md"
 DOCS = ROOT / "docs"
 WORKFLOW = ROOT / ".github" / "workflows" / "ci.yml"
+
+
+def _configure_windows_ci_temp_root() -> None:
+    if os.name != "nt" or os.environ.get("GITHUB_ACTIONS") != "true":
+        return
+    runner_temp = os.environ.get("RUNNER_TEMP")
+    if runner_temp is None:
+        raise RuntimeError("Windows GitHub Actions requires RUNNER_TEMP")
+    canonical_temp = Path(runner_temp).resolve()
+    if not canonical_temp.is_dir():
+        raise RuntimeError("Windows GitHub Actions RUNNER_TEMP must exist")
+    tempfile.tempdir = str(canonical_temp)
+
+
+_configure_windows_ci_temp_root()
 
 GUIDES = {
     "brand.md",
@@ -219,6 +237,20 @@ class PublicQualityTests(unittest.TestCase):
             'subprocess.run(["opencntx", "--help"], check=True)',
         ):
             self.assertIn(value, text)
+
+    def test_public_ci_status_is_active_and_unambiguous(self) -> None:
+        status_documents = (README, CHANGELOG, DOCS / "platforms.md")
+        for document in status_documents:
+            with self.subTest(document=document.name):
+                text = document.read_text(encoding="utf-8")
+                self.assertIn("CI_ACTIVE", text)
+                self.assertNotIn("CI_DEFINED_INACTIVE", text)
+                self.assertIn("live", text.lower())
+        if os.name == "nt" and os.environ.get("GITHUB_ACTIONS") == "true":
+            self.assertEqual(
+                Path(os.environ["RUNNER_TEMP"]).resolve(),
+                Path(tempfile.gettempdir()).resolve(),
+            )
 
 
 if __name__ == "__main__":
