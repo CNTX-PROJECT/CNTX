@@ -26,7 +26,10 @@ voordat u het kopieert of aan een externe AI-tool geeft. Een lokaal gebouwd
 pakket is geen toestemming om gegevens extern te verzenden.
 
 OPENCNTX sluit standaard onder meer `.git/**`, `.opencntx/**`, `.env*`,
-`**/*.key` en `**/*.pem` uit. Deze lijst vervangt geen eigen beoordeling.
+`**/*.key` en `**/*.pem` uit. Compacte taakcontext maakt alleen voor de
+beheerde `.opencntx/control-snapshot.md` een expliciete uitzondering; andere
+interne `.opencntx`-bestanden worden niet geselecteerd. Deze lijst vervangt
+geen eigen beoordeling.
 Bewaar geen wachtwoorden, tokens, API-keys, persoonsgegevens of
 productiegeheimen in een contextpakket of gedeelde werkruimte.
 
@@ -44,6 +47,12 @@ en bewijs worden als lokale data behandeld. Instructies in die inhoud krijgen
 geen OWNER-bevoegdheid en mogen de roadmap, taakgates of vaste verboden acties
 niet opheffen.
 
+Een compacte control-snapshot is eveneens onvertrouwde, afgeleide data. Zij
+neemt één roadmapblock byte-exact over, maar interpreteert, vervolledigt of
+keurt niets goed. Het manifest pint de SHA-256 van de volledige officiële
+roadmap. Een gewijzigde roadmap, block, snapshot, OWNER- of CURRENT-inhoud wordt
+als drift behandeld.
+
 OPENCNTX voert aangeleverde bestanden niet uit en start geen parser, OCR,
 transcriptie, shell, netwerkverbinding, AI of agent. Een afzonderlijk extern
 programma kan andere risico's hebben; beoordeel diens toegang, privacy,
@@ -57,6 +66,8 @@ De tool weigert onder andere:
 - binaire of ongeldige UTF-8-input waar tekst vereist is;
 - ontbrekende, gewijzigde of verkeerd gepinde bytes;
 - budgetoverschrijding of stil afgekapt contextmateriaal;
+- halve, dubbele, omgekeerde of te grote control-markers en onbekende bytes op
+  het beheerde snapshotpad;
 - ongeldige eventketens en overgeslagen taakstatussen;
 - stale hoofdstukken, bronnen, context, playbooks, rollen of uitvoerderrecords;
 - taaksluiting zonder voorafgaande exacte OWNER-aanvaarding.

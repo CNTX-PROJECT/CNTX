@@ -15,6 +15,7 @@ from .core import (
     pack_project,
     verify_package,
 )
+from .control import refresh_control_snapshot
 from .navigator import (
     build_context_package,
     format_context_verify_report,
@@ -147,6 +148,23 @@ def build_parser() -> argparse.ArgumentParser:
     workspace_capture_parser.add_argument(
         "--supersedes",
         help="optionele bestaande source-ID die deze nieuwe bron vervangt",
+    )
+    workspace_control_parser = workspace_subparsers.add_parser(
+        "control",
+        help="beheer de compacte, afgeleide actuele roadmapsturing",
+    )
+    workspace_control_subparsers = workspace_control_parser.add_subparsers(
+        dest="workspace_control_command",
+        required=True,
+    )
+    workspace_control_refresh_parser = workspace_control_subparsers.add_parser(
+        "refresh",
+        help="vernieuw de control-snapshot zonder de officiële roadmap te wijzigen",
+    )
+    workspace_control_refresh_parser.add_argument(
+        "--root",
+        default=".",
+        help="projectwerkruimte; standaard de huidige map",
     )
     workspace_chapter_parser = workspace_subparsers.add_parser(
         "chapter",
@@ -664,6 +682,29 @@ def main(argv: Sequence[str] | None = None) -> int:
                 )
                 print(f"Ontvangstbewijs: {receipt}")
                 return 0
+            if args.workspace_command == "control":
+                if args.workspace_control_command == "refresh":
+                    root = Path(args.root)
+                    result = refresh_control_snapshot(root)
+                    resolved_root = root.resolve(strict=True)
+                    assert result.receipt_path is not None
+                    receipt = result.receipt_path.relative_to(resolved_root).as_posix()
+                    print(f"{result.status}: {result.mode}")
+                    print(f"Roadmap-SHA-256: {result.roadmap_sha256}")
+                    if result.block_sha256 is not None:
+                        print(
+                            f"Controlblock: {result.block_bytes} bytes, "
+                            f"SHA-256 {result.block_sha256}"
+                        )
+                    if result.snapshot_sha256 is not None:
+                        print(f"Snapshot-SHA-256: {result.snapshot_sha256}")
+                    if result.snapshot_path is not None:
+                        snapshot = result.snapshot_path.relative_to(resolved_root).as_posix()
+                        print(f"Snapshot: {snapshot}")
+                    print(f"Ontvangstbewijs: {receipt}")
+                    print("Afgeleid bewijs; dit verleent geen OWNER-bevoegdheid.")
+                    return 0
+                return 2
             if args.workspace_command == "chapter":
                 if args.workspace_chapter_command == "create":
                     root = Path(args.root)

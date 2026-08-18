@@ -138,6 +138,18 @@ De contextnavigator werkt alleen voor een valide taak exact in
 actieve taak en revisie noemen. Alle relevante hoofdstukken moeten
 `OWNER_ACCEPTED` en technisch `CURRENT` zijn.
 
+Een nieuwe werkruimte heeft in `ROADMAP.md` één exact gemarkeerd actueel block.
+U kunt de afgeleide snapshot vooraf zichtbaar vernieuwen:
+
+```powershell
+opencntx workspace control refresh --root mijn-project
+```
+
+`context build` doet deze refresh in compact mode ook automatisch. De taak pint
+nog steeds de volledige `ROADMAP.md`; het manifest bewaart haar volledige
+SHA-256. Alleen de byte-exacte actuele sectie komt als hete snapshot in
+`CONTEXT.md`. Zonder markers blijft de volledige roadmaproute actief.
+
 ```powershell
 opencntx workspace context build TASK-20260818-0001 `
   --proposal-digest <EXACTE-VOORSTELDIGEST> `
@@ -156,7 +168,8 @@ De selectie volgt uitsluitend expliciete taakinputs, hoofdstukafhankelijkheden
 en bronpins. De vaste laadvolgorde is heet — CONTROL en taak; warm —
 hoofdstukken, playbooks en rollen; koud — hun gepinde bronrecords en
 UTF-8-originelen. `QUARANTINED` wordt geweigerd; `RESTRICTED` vereist een
-expliciete broninput. Een te klein budget maakt geen gedeeltelijk pakket.
+expliciete broninput. Een te klein budget maakt geen gedeeltelijk pakket. Een
+beschadigde markerconfiguratie valt nooit stil terug naar legacy mode.
 
 ## 5. Eén begrensd uitvoerderpakket
 

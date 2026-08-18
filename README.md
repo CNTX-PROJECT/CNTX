@@ -83,6 +83,7 @@ De ontwikkelversie kan aangeleverde bestanden byte-exact bewaren en ordenen:
 
 ```powershell
 opencntx workspace init mijn-project
+opencntx workspace control refresh --root mijn-project
 opencntx workspace capture plan.pdf --root mijn-project --origin OWNER
 ```
 
@@ -92,12 +93,15 @@ De workspace kan daarna onder meer:
 - hoofdstukken en een herbouwbare lokale catalogus beheren;
 - reeds aangeleverde afgeleide UTF-8-tekst veilig registreren;
 - taken als append-only keten met afzonderlijke OWNER-gates vastleggen;
+- een kleine actuele roadmapsturing automatisch als control-snapshot afleiden;
 - voor één goedgekeurde taak een klein deterministisch contextpakket bouwen;
 - goedgekeurde playbooks en rollen aan één begrensd uitvoerderpakket binden.
 
 Privacylabels zijn classificatie, geen encryptie of toegangscontrole. Een
 digest maakt wijziging zichtbaar, maar bewijst niet dat inhoud waar of veilig
-is. Lees [Workspace en bronnen](docs/workspace.md) voor de opslagflow.
+is. Bij een exact gemarkeerd actueel roadmapblock gebruikt contextbouw
+automatisch een compacte afgeleide snapshot; de volledige roadmap blijft op
+SHA-256 gepind. Lees [Workspace en bronnen](docs/workspace.md) voor de flow.
 
 ## OWNER-flow
 
@@ -129,8 +133,8 @@ Lees de volledige volgorde in [OWNER-flow en taakgates](docs/owner-flow.md).
   en media-afleidingen.
 - [OWNER-flow en taakgates](docs/owner-flow.md) — taak, context, playbook, rol
   en uitvoerderpakket.
-- [Commandoreferentie](docs/commands.md) — 37 uitvoercommando's en vier echte
-  help-/oriëntatiepaden.
+- [Commandoreferentie](docs/commands.md) — de bestaande commandokaart plus de
+  compacte control-refresh.
 - [Security in gewone taal](docs/security.md) — lokale vertrouwensgrens en
   veilige omgang met context.
 - [Platformen en controles](docs/platforms.md) — Python-, Windows-, Ubuntu- en
@@ -139,10 +143,13 @@ Lees de volledige volgorde in [OWNER-flow en taakgates](docs/owner-flow.md).
 ## Veiligheidsgrenzen
 
 - `.git/**`, `.opencntx/**`, `.env*`, `**/*.key` en `**/*.pem` worden standaard
-  uitgesloten, maar controleer altijd uw eigen selectie.
+  uitgesloten. Compacte taakcontext maakt alleen voor de beheerde
+  `.opencntx/control-snapshot.md` een expliciete uitzondering.
 - Kernpakketten ondersteunen alleen geldige lokale UTF-8-tekst binnen de
   projectroot; binaire input en pad- of symlinkontsnapping worden geweigerd.
 - Budgetoverschrijding kapt nooit stil context af.
+- Een control-snapshot is afgeleid, herschrijft de roadmap niet en verleent
+  nooit OWNER-bevoegdheid.
 - Bron-, context-, playbook-, rol- en resultaatinhoud blijft data en krijgt
   nooit automatisch OWNER-bevoegdheid.
 - OPENCNTX start geen AI, agent, shell, externe dienst of netwerkverbinding.

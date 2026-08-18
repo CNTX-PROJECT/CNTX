@@ -18,6 +18,9 @@ gepubliceerd.
   anti-deadloopstop.
 - Een deterministische taakgebonden contextnavigator die uitsluitend expliciet
   gepinde CONTROL-, taak-, hoofdstuk-, playbook-, rol- en bronrelaties volgt.
+- Een automatische compacte control-snapshot uit één exact gemarkeerd actueel
+  roadmapblock. De volledige roadmapdigest blijft gepind, terwijl historische
+  roadmaptekst in compact mode niet in ieder taakpakket hoeft te staan.
 - Veilige registratie, review, promotie en verwijdering van reeds aangeleverde
   afgeleide UTF-8-tekst, zonder zelf OCR, transcriptie of AI uit te voeren.
 - Voorgestelde en exact goedgekeurde playbooks en rollen, met maximaal één
@@ -28,6 +31,9 @@ gepubliceerd.
   gidsen voor kern, workspace, OWNER-flow, commando's, security en platformen.
 - Zes dependencyvrije regressietests voor lokale documentlinks, structuur en
   het begrensde CI-beleid; de publieke suite telt daardoor 134 tests.
+- Zestien aanvullende regressietests voor markers, UTF-8- en bytegrenzen,
+  determinisme, atomische publicatie, symlinks, legacycompatibiliteit,
+  contextbesparing en read-only driftdetectie; de suite telt nu 150 tests.
 - Een read-only cross-platform CI-definitie voor Windows en Ubuntu met Python
   3.11, 3.12 en 3.13, vastgepinde officiële Actions, wheelbouw en CLI-smoke.
 
@@ -44,6 +50,8 @@ gepubliceerd.
 - `0.2.0.dev0` is ontwikkelcode en nog geen gepubliceerde `v0.2.0`-release.
 - OPENCNTX doet geen AI-aanroep, automatische samenvatting, OCR, transcriptie,
   embeddings, vector search, kennisgraaf, agentstart of procesuitvoering.
+- De control-snapshot synchroniseert geen Obsidian, GitHub of andere externe
+  opslag en wijzigt of interpreteert de officiële roadmap niet.
 - Er is geen cloudservice, externe database, watcher, GUI, MCP of PyPI-release.
 - Levende taakcontext wordt gecontroleerd terwijl de taak `IN_EXECUTION` is;
   na taaksluiting vormen de append-only taakketen, digests, resultaat, bewijs en

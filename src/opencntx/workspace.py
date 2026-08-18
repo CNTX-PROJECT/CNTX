@@ -61,9 +61,11 @@ ROADMAP_TEMPLATE = """# ROADMAP
 
 Geen opdracht is actief totdat de OWNER haar expliciet start.
 
+<!-- OPENCNTX:CONTROL:START -->
 ## Actuele opdracht
 
 Geen.
+<!-- OPENCNTX:CONTROL:END -->
 """
 
 CURRENT_TEMPLATE = f"""---
