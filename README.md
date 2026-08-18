@@ -1,5 +1,10 @@
 # OPENCNTX
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/brand/opencntx-wordmark-dark.svg">
+  <img src="assets/brand/opencntx-wordmark-light.svg" width="640" alt="OPENCNTX — OPEN in paars, CNTX in zwart of wit">
+</picture>
+
 OPENCNTX maakt voor één AI-taak een klein, expliciet en controleerbaar
 contextpakket. U kiest zelf de lokale tekstbronnen; OPENCNTX bundelt ze met
 paden, groottes en SHA-256-hashes. De tool werkt lokaal, zonder account,
@@ -139,6 +144,7 @@ Lees de volledige volgorde in [OWNER-flow en taakgates](docs/owner-flow.md).
   veilige omgang met context.
 - [Platformen en controles](docs/platforms.md) — Python-, Windows-, Ubuntu- en
   CI-status.
+- [Huisstijl](docs/brand.md) — officiële logo's, kleuren en gebruiksregels.
 
 ## Veiligheidsgrenzen
 

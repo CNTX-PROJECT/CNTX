@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentatie en support
+    url: https://github.com/CNTX-PROJECT/OPENCNTX/blob/main/SUPPORT.md
+    about: Kies eerst de juiste route voor gebruiksvragen, bugs en voorstellen.
+  - name: Kwetsbaarheid privé melden
+    url: https://github.com/CNTX-PROJECT/OPENCNTX/security/advisories/new
+    about: Plaats securitydetails nooit in een openbaar issue.

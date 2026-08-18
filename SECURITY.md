@@ -1,5 +1,18 @@
 # Security
 
+## Snel de juiste route kiezen
+
+- **Mogelijke kwetsbaarheid:** gebruik uitsluitend **Report a vulnerability**
+  onder het tabblad **Security** van deze GitHub-repository.
+- **Vraag, installatieprobleem of gewone bug:** volg [SUPPORT.md](SUPPORT.md) of
+  kies een passend issueformulier.
+- Plaats nooit wachtwoorden, tokens, persoonsgegevens, gevoelige context of
+  niet-openbare projectbestanden in een openbaar issue.
+
+De rest van dit document is de canonieke technische veiligheidsgrens van
+OPENCNTX. Een hash maakt verandering zichtbaar, maar bewijst niet dat inhoud
+waar, volledig, veilig of door de OWNER goedgekeurd is.
+
 OPENCNTX verwerkt lokale projectbestanden. Controleer altijd welke paden u opneemt en lees `CONTEXT.md` voordat u een pakket deelt. Het pakket kan immers letterlijk geselecteerde broninhoud bevatten.
 
 De tool heeft geen netwerkfunctionaliteit en vraagt geen account of API-key. `pack` past exclusions toe vóór bronlezing, weigert binaire of ontoegankelijke bronnen en blokkeert pad- en symlink-ontsnapping buiten de projectroot. Ingebouwde gevoelige uitsluitingen blijven actief naast de gebruikersconfiguratie.

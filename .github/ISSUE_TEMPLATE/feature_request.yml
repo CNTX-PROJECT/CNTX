@@ -1,0 +1,45 @@
+name: Functie voorstellen
+description: Beschrijf één probleem en gewenste uitkomst binnen de productgrens.
+title: "[Voorstel]: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Een voorstel is geen automatische toezegging. OPENCNTX blijft lokaal, expliciet, provider-neutraal en begrensd; deel geen gevoelige projectinhoud.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Welk probleem wilt u oplossen?
+      description: Beschrijf het gebruikersprobleem zonder al een technische oplossing te eisen.
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Gewenste uitkomst
+      description: Wat moet merkbaar eenvoudiger, veiliger of duidelijker worden?
+    validations:
+      required: true
+  - type: textarea
+    id: boundary
+    attributes:
+      label: Productgrens
+      description: Waarom past dit bij kleine, lokale en verifieerbare contextpakketten?
+    validations:
+      required: true
+  - type: textarea
+    id: privacy
+    attributes:
+      label: Privacy- en security-impact
+      description: Welke gegevens, rechten, externe diensten of nieuwe risico's zouden betrokken zijn?
+    validations:
+      required: true
+  - type: checkboxes
+    id: acknowledgement
+    attributes:
+      label: Bevestiging
+      options:
+        - label: Ik begrijp dat indiening geen goedkeuring, planning, merge of release belooft.
+          required: true

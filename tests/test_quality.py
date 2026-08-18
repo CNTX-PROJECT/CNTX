@@ -12,6 +12,7 @@ DOCS = ROOT / "docs"
 WORKFLOW = ROOT / ".github" / "workflows" / "ci.yml"
 
 GUIDES = {
+    "brand.md",
     "core.md",
     "workspace.md",
     "owner-flow.md",
@@ -131,9 +132,47 @@ class PublicQualityTests(unittest.TestCase):
     def test_readme_is_compact_and_links_the_docs(self) -> None:
         lines = README.read_text(encoding="utf-8").splitlines()
         self.assertLessEqual(len(lines), 180)
+        text = README.read_text(encoding="utf-8")
+        self.assertIn('srcset="assets/brand/opencntx-wordmark-dark.svg"', text)
+        self.assertIn('src="assets/brand/opencntx-wordmark-light.svg"', text)
         targets = {Path(target).as_posix() for target in _local_links(README)}
         required = {"docs/README.md"} | {f"docs/{name}" for name in GUIDES}
         self.assertTrue(required.issubset(targets))
+
+    def test_community_and_security_routes_are_bounded(self) -> None:
+        required = {
+            "CONTRIBUTING.md",
+            "CODE_OF_CONDUCT.md",
+            "SUPPORT.md",
+            ".github/ISSUE_TEMPLATE/bug_report.yml",
+            ".github/ISSUE_TEMPLATE/feature_request.yml",
+            ".github/ISSUE_TEMPLATE/config.yml",
+            ".github/pull_request_template.md",
+        }
+        self.assertTrue(all((ROOT / path).is_file() for path in required))
+
+        security = (ROOT / "SECURITY.md").read_text(encoding="utf-8")
+        support = (ROOT / "SUPPORT.md").read_text(encoding="utf-8")
+        issue_config = (ROOT / ".github/ISSUE_TEMPLATE/config.yml").read_text(
+            encoding="utf-8"
+        )
+        pull_request = (ROOT / ".github/pull_request_template.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("Report a vulnerability", security)
+        self.assertIn("SUPPORT.md", security)
+        self.assertIn("openbaar issue", support)
+        self.assertIn("blank_issues_enabled: false", issue_config)
+        self.assertIn("/security/advisories/new", issue_config)
+        self.assertNotIn("mailto:", issue_config)
+        for phrase in (
+            "Security- en privacygrenzen",
+            "Nieuwe of gewijzigde dependencies",
+            "Documentatie en changelog",
+            "render_brand.py --check",
+            "Nul automatische checks is geen groen bewijs",
+        ):
+            self.assertIn(phrase, pull_request)
 
     def test_workflow_uses_immutable_official_action_pins(self) -> None:
         text = WORKFLOW.read_text(encoding="utf-8")

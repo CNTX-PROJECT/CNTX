@@ -16,6 +16,8 @@ Gebruik de kortste route die bij uw vraag past:
   privacylabels en fail-closed bescherming.
 - [Platformen en controles](platforms.md) — zie ondersteunde Pythonversies,
   handmatige platformbewijzen en de huidige CI-status.
+- [Huisstijl](brand.md) — gebruik de officiële logo's, kleuren en afleidingen
+  reproduceerbaar en toegankelijk.
 
 ## Snelle keuze
 
@@ -27,6 +29,7 @@ Gebruik de kortste route die bij uw vraag past:
 | een exact CLI-pad vinden | [Commando's](commands.md) |
 | weten wat hashes en labels wel of niet bewijzen | [Security](security.md) |
 | Windows-, Ubuntu-, Python- of CI-status controleren | [Platformen](platforms.md) |
+| een logo, avatar of merkkleur gebruiken | [Huisstijl](brand.md) |
 
 ## Productgrens
 

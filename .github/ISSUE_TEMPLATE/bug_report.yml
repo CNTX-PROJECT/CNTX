@@ -1,0 +1,56 @@
+name: Bug melden
+description: Meld één reproduceerbaar probleem zonder gevoelige inhoud.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Deel nooit wachtwoorden, tokens, persoonsgegevens, private broncode of gevoelige context. Meld een mogelijke kwetsbaarheid uitsluitend via **Report a vulnerability** onder Security.
+  - type: input
+    id: version
+    attributes:
+      label: OPENCNTX-versie
+      description: Bijvoorbeeld v0.1.0 of 0.2.0.dev0 met commit-SHA.
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - Windows
+        - Ubuntu of andere Linux
+        - macOS
+        - Ander platform
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproductiestappen
+      description: Geef het kleinste veilige voorbeeld en de exacte commando's.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Verwacht gedrag
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Werkelijk gedrag
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Veiligheidscontrole
+      options:
+        - label: Ik heb geheimen, persoonsgegevens en niet-openbare projectinhoud verwijderd.
+          required: true
+        - label: Dit is geen kwetsbaarheidsmelding.
+          required: true
