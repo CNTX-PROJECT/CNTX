@@ -36,6 +36,10 @@ gepubliceerd.
   contextbesparing en read-only driftdetectie; de suite telt nu 150 tests.
 - Een read-only cross-platform CI-definitie voor Windows en Ubuntu met Python
   3.11, 3.12 en 3.13, vastgepinde officiële Actions, wheelbouw en CLI-smoke.
+- Een deterministische publieke huisstijl met veilige native SVG-bronnen,
+  gecontroleerde PNG-afleidingen, vaste kleuren en een SHA-256-manifest.
+- Een begrensde communitylaag met bijdrage-, gedrags- en supportroutes,
+  issueformulieren en een pull-requesttemplate.
 
 ### Gevalideerd
 

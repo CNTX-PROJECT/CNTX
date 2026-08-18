@@ -3,6 +3,10 @@
 [Documentatie-index](README.md) · [Workspace](workspace.md) ·
 [OWNER-flow](owner-flow.md)
 
+Gebruik [SUPPORT.md](../SUPPORT.md) voor gewone vragen en bugs. Meld een
+mogelijke kwetsbaarheid nooit via een openbaar issue; volg uitsluitend de
+private route in de canonieke [Security Policy](../SECURITY.md).
+
 Dit document is een leesbare samenvatting. De enige canonieke en volledige
 securitypolicy is [SECURITY.md](../SECURITY.md). Bij verschil is die rootpolicy
 altijd leidend.
