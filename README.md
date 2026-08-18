@@ -18,25 +18,26 @@ uitvoerderpakketten. Het start zelf geen AI, agent, proces, OCR of transcriptie.
 
 | Versie | Inhoud | Status |
 |---|---|---|
-| `v0.1.0` | `init`, `pack` en `verify` | Gepubliceerde kernrelease |
-| `0.2.0.dev0` op `main` | Kern plus lokale `workspace`-flow | Ontwikkelversie; nog geen `v0.2.0`-release |
+| `0.2.0` op `main` | Kern plus lokale `workspace`-flow | Actuele bronversie |
+| `v0.1.0` | `init`, `pack` en `verify` | Eerdere gepubliceerde kernrelease |
 
-OPENCNTX staat niet op PyPI. Python 3.11 of nieuwer is vereist.
+Een versie is pas een publieke release wanneer de overeenkomstige live tag en
+GitHub-release bestaan. OPENCNTX staat niet op PyPI. Python 3.11+ is vereist.
 
 ## Installeren
 
-Gepubliceerde kernrelease `v0.1.0`:
+Actuele `0.2.0`-bron vanaf live `main`:
 
 ```powershell
-git clone --branch v0.1.0 --depth 1 https://github.com/CNTX-PROJECT/OPENCNTX.git
+git clone --depth 1 https://github.com/CNTX-PROJECT/OPENCNTX.git
 cd OPENCNTX
 python -m pip install .
 ```
 
-Actuele ontwikkelbron `0.2.0.dev0`, inclusief `workspace`:
+Na publicatie vastgezet vanaf de live tag `v0.2.0`:
 
 ```powershell
-git clone --depth 1 https://github.com/CNTX-PROJECT/OPENCNTX.git
+git clone --branch v0.2.0 --depth 1 https://github.com/CNTX-PROJECT/OPENCNTX.git
 cd OPENCNTX
 python -m pip install .
 ```
@@ -84,12 +85,12 @@ Lees de volledige kernuitleg in [Kern: init, pack en verify](docs/core.md).
 
 ## Lokale projectwerkruimte
 
-De ontwikkelversie kan aangeleverde bestanden byte-exact bewaren en ordenen:
+De `0.2.0`-bron kan aangeleverde bestanden byte-exact bewaren en ordenen:
 
 ```powershell
 opencntx workspace init mijn-project
 opencntx workspace control refresh --root mijn-project
-opencntx workspace capture plan.pdf --root mijn-project --origin OWNER
+opencntx workspace capture README.md --root mijn-project --origin OWNER
 ```
 
 De workspace kan daarna onder meer:
@@ -167,7 +168,8 @@ een openbaar issue.
 
 ## Projectstatus
 
-De bron op `main` is `0.2.0.dev0` en nog niet uitgebracht als `v0.2.0`.
+De bron op `main` is `0.2.0`. Controleer op de live Releases-pagina of de
+overeenkomstige tag en GitHub-release al publiek zijn.
 De begrensde GitHub Actions-workflow is `CI_ACTIVE` en controleert pull requests
 en pushes naar `main` op Windows en Ubuntu met Python 3.11, 3.12 en 3.13.
 Alleen de live run op de exacte commit bewijst of de zes matrixjobs groen zijn.

@@ -3,7 +3,7 @@
 [Documentatie-index](README.md) · [OWNER-flow](owner-flow.md) ·
 [Commandoreferentie](commands.md) · [Security](security.md)
 
-De optionele workspace-laag zit in de ontwikkelbron `0.2.0.dev0`. Zij ordent
+De optionele workspace-laag zit in de `0.2.0`-bron. Zij ordent
 lokale projectinformatie zonder een bestand uit te voeren of inhoud als waar
 te aanvaarden.
 

@@ -3,6 +3,7 @@ from __future__ import annotations
 import os
 import re
 import tempfile
+import tomllib
 import unittest
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
@@ -251,6 +252,44 @@ class PublicQualityTests(unittest.TestCase):
                 Path(os.environ["RUNNER_TEMP"]).resolve(),
                 Path(tempfile.gettempdir()).resolve(),
             )
+
+    def test_release_surfaces_are_consistent(self) -> None:
+        with (ROOT / "pyproject.toml").open("rb") as project_file:
+            version = tomllib.load(project_file)["project"]["version"]
+
+        self.assertEqual(version, "0.2.0")
+        changelog = CHANGELOG.read_text(encoding="utf-8")
+        readme = README.read_text(encoding="utf-8")
+        workspace = (DOCS / "workspace.md").read_text(encoding="utf-8")
+        workflow = WORKFLOW.read_text(encoding="utf-8")
+
+        self.assertIn(f"## {version} - 2026-08-18", changelog)
+        self.assertIn(
+            "git clone --depth 1 https://github.com/CNTX-PROJECT/OPENCNTX.git",
+            readme,
+        )
+        self.assertIn(
+            "git clone --branch v0.2.0 --depth 1 "
+            "https://github.com/CNTX-PROJECT/OPENCNTX.git",
+            readme,
+        )
+        self.assertIn("`0.2.0`-bron", workspace)
+        self.assertIn('if installed != "0.2.0"', workflow)
+
+        release_surfaces = (
+            ROOT / "pyproject.toml",
+            ROOT / "src" / "opencntx" / "__init__.py",
+            WORKFLOW,
+            ROOT / "tests" / "test_cli.py",
+            CHANGELOG,
+            README,
+            DOCS / "workspace.md",
+        )
+        for surface in release_surfaces:
+            with self.subTest(surface=surface.relative_to(ROOT)):
+                self.assertNotIn(
+                    "0.2.0.dev0", surface.read_text(encoding="utf-8")
+                )
 
 
 if __name__ == "__main__":

@@ -2,10 +2,7 @@
 
 Alle belangrijke wijzigingen aan OPENCNTX worden in dit bestand vastgelegd.
 
-## Unreleased - doelversie 0.2.0
-
-Deze wijzigingen staan op de ontwikkelbranch en zijn nog niet als `v0.2.0`
-gepubliceerd.
+## 0.2.0 - 2026-08-18
 
 ### Toegevoegd
 
@@ -43,15 +40,16 @@ gepubliceerd.
 
 ### Gevalideerd
 
-- De volledige suite slaagt op Windows/Python 3.13 en Ubuntu/Python 3.12 met
-  ResourceWarnings als fouten.
+- De volledige releasekandidaat slaagt met exact 159 tests op Windows/Python
+  3.13 en Ubuntu/Python 3.12 met ResourceWarnings als fouten.
+- De zes live CI-matrixjobs gelden uitsluitend op de exacte kandidaat- of
+  mergecommit als bewijs.
 - Een private praktijktest bevestigde dat de taakcontext klein, vindbaar,
   herleidbaar en bruikbaar blijft en dat een fout fail-closed zonder retry of
   gedeeltelijke uitvoering stopt.
 
 ### Bekende beperkingen
 
-- `0.2.0.dev0` is ontwikkelcode en nog geen gepubliceerde `v0.2.0`-release.
 - OPENCNTX doet geen AI-aanroep, automatische samenvatting, OCR, transcriptie,
   embeddings, vector search, kennisgraaf, agentstart of procesuitvoering.
 - De control-snapshot synchroniseert geen Obsidian, GitHub of andere externe
