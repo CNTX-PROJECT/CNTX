@@ -36,6 +36,12 @@ from .core import (
     render_context,
     verify_package,
 )
+from .control import (
+    CONTROL_SNAPSHOT_PATH,
+    ControlState,
+    inspect_control,
+    refresh_control_snapshot,
+)
 from .workflow import (
     TASK_ID_PATTERN,
     TaskChain,
@@ -109,6 +115,7 @@ class NavigationRoute:
     approval_digest: str
     execution_digest: str
     catalog_digest: str
+    control: ControlState
     sources: dict[str, SourceEntry]
     chapters: dict[str, ChapterEntry]
     freshness: dict[str, str]
@@ -126,6 +133,7 @@ class NavigationRoute:
             self.approval_digest,
             self.execution_digest,
             self.catalog_digest,
+            self.control.fingerprint,
             self.selected_chapter_ids,
             self.selected_source_ids,
             tuple((item.layer, item.path) for item in self.files),
@@ -470,7 +478,13 @@ def _dependency_closure(
     return tuple(sorted(selected))
 
 
-def _prepare_route(root_path: Path, task_id: str, proposal_digest: str) -> NavigationRoute:
+def _prepare_route(
+    root_path: Path,
+    task_id: str,
+    proposal_digest: str,
+    *,
+    refresh_snapshot: bool = False,
+) -> NavigationRoute:
     root = validate_workspace(root_path)
     task_id = _validate_task_id(task_id)
     proposal_digest = _validate_digest(proposal_digest, label="Voorsteldigest")
@@ -589,7 +603,17 @@ def _prepare_route(root_path: Path, task_id: str, proposal_digest: str) -> Navig
                 code="context_source_restricted",
             )
 
-    route_files: list[RouteFile] = [RouteFile("HOT", path) for path in HOT_PATHS]
+    control = inspect_control(root)
+    if control.mode == "COMPACT_MARKED":
+        if refresh_snapshot:
+            refresh_control_snapshot(root, write_receipt=False)
+        control = inspect_control(root, require_snapshot=True)
+    hot_paths = (
+        ("CONTROL/OWNER.md", CONTROL_SNAPSHOT_PATH, "CONTROL/CURRENT.md")
+        if control.mode == "COMPACT_MARKED"
+        else HOT_PATHS
+    )
+    route_files: list[RouteFile] = [RouteFile("HOT", path) for path in hot_paths]
     route_files.append(RouteFile("HOT", f"TASKS/{chain.task_id}/TASK.md"))
     route_files.extend(RouteFile("WARM", path) for path in sorted(warm_inputs))
     for source_id in sorted(selected_source_ids):
@@ -615,6 +639,7 @@ def _prepare_route(root_path: Path, task_id: str, proposal_digest: str) -> Navig
         approval_digest=approval.record_digest,
         execution_digest=execution.record_digest,
         catalog_digest=catalog_digest,
+        control=control,
         sources=sources,
         chapters=chapters,
         freshness=freshness,
@@ -652,11 +677,20 @@ def _read_route(
             code="context_budget_exceeded",
         )
     paths = tuple(item.path for item in route.files)
+    exclude_patterns = (
+        tuple(
+            pattern
+            for pattern in DEFAULT_EXCLUDE_PATTERNS
+            if pattern != ".opencntx/**"
+        )
+        if route.control.mode == "COMPACT_MARKED"
+        else DEFAULT_EXCLUDE_PATTERNS
+    )
     config = ContextConfig(
         goal=route.goal,
         include=paths,
         required=paths,
-        exclude=DEFAULT_EXCLUDE_PATTERNS,
+        exclude=exclude_patterns,
         max_files=max_files,
         max_bytes=max_bytes,
     )
@@ -680,6 +714,8 @@ def _navigation(
     context_sources: tuple[Source, ...],
     max_files: int,
     max_bytes: int,
+    *,
+    include_control_metadata: bool = True,
 ) -> dict[str, Any]:
     layers = {item.path: item.layer for item in route.files}
     selected_chapters = [
@@ -703,7 +739,7 @@ def _navigation(
                 "source_id": source_id,
             }
         )
-    return {
+    navigation = {
         "format": NAVIGATION_FORMAT,
         "format_version": NAVIGATION_FORMAT_VERSION,
         "task": {
@@ -746,16 +782,48 @@ def _navigation(
             "dit is geen claim over het volledige project."
         ),
     }
+    if include_control_metadata:
+        navigation["control"] = {
+            "block_bytes": route.control.block_bytes,
+            "block_sha256": route.control.block_sha256,
+            "current_sha256": route.control.current_sha256,
+            "mode": route.control.mode,
+            "owner_sha256": route.control.owner_sha256,
+            "roadmap_body_loaded": route.control.mode == "LEGACY_FULL_ROADMAP",
+            "roadmap_sha256": route.control.roadmap_sha256,
+            "snapshot_path": (
+                CONTROL_SNAPSHOT_PATH
+                if route.control.mode == "COMPACT_MARKED"
+                else None
+            ),
+            "snapshot_sha256": route.control.snapshot_sha256,
+        }
+        if route.control.mode == "COMPACT_MARKED":
+            navigation["not_read"]["control"] = [
+                {
+                    "path": "CONTROL/ROADMAP.md",
+                    "reason": "FULL_DIGEST_PINNED_COMPACT_BLOCK_LOADED",
+                }
+            ]
+    return navigation
 
 
 def _package_bytes(
-    route: NavigationRoute, max_files: int, max_bytes: int
+    route: NavigationRoute,
+    max_files: int,
+    max_bytes: int,
+    *,
+    include_control_metadata: bool = True,
 ) -> tuple[bytes, bytes, dict[str, Any]]:
     context_sources, config, selection = _read_route(route, max_files, max_bytes)
     context_bytes = render_context(route.goal, context_sources).encode("utf-8")
     manifest = _manifest(config, selection, context_sources, context_bytes)
     manifest["navigation"] = _navigation(
-        route, context_sources, max_files=max_files, max_bytes=max_bytes
+        route,
+        context_sources,
+        max_files=max_files,
+        max_bytes=max_bytes,
+        include_control_metadata=include_control_metadata,
     )
     return context_bytes, _json_bytes(manifest), manifest
 
@@ -841,7 +909,9 @@ def build_context_package(
     try:
         max_files = _positive_budget(max_files, label="max-files")
         max_bytes = _positive_budget(max_bytes, label="max-bytes")
-        route = _prepare_route(root, task_id, proposal_digest)
+        route = _prepare_route(
+            root, task_id, proposal_digest, refresh_snapshot=True
+        )
         context_bytes, manifest_bytes, manifest = _package_bytes(
             route, max_files, max_bytes
         )
@@ -969,8 +1039,15 @@ def verify_context_package(
         errors.append(str(exc))
     try:
         route = _prepare_route(root, task_id, proposal_digest)
+        include_control_metadata = (
+            isinstance(navigation.get("control"), dict)
+            or route.control.mode == "COMPACT_MARKED"
+        )
         expected_context, expected_manifest, _ = _package_bytes(
-            route, max_files, max_bytes
+            route,
+            max_files,
+            max_bytes,
+            include_control_metadata=include_control_metadata,
         )
         if actual_context != expected_context:
             errors.append("CONTEXT.md wijkt af van de actuele taakroute")

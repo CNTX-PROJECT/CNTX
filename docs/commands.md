@@ -3,10 +3,10 @@
 [Documentatie-index](README.md) · [Kern](core.md) · [Workspace](workspace.md) ·
 [OWNER-flow](owner-flow.md)
 
-Deze compacte index bevat exact 41 gedocumenteerde CLI-paden: 37 uitvoerbare
-leaf-commando's en vier echte help-/oriëntatiepaden. De vier help-paden voeren
-geen producthandeling uit; ze tonen de actuele parserstructuur. Gebruik bij een
-uitvoercommando altijd `--help` voor de exacte argumenten en herhaalbare opties.
+Deze compacte basisindex bewaart de 41 bestaande CLI-paden: 37 uitvoerbare
+leaf-commando's en vier help-/oriëntatiepaden. De nieuwe compacte controlroute
+staat afzonderlijk onder de tabel, zodat de bestaande referentievolgorde stabiel
+blijft. Gebruik altijd `--help` voor de exacte argumenten en herhaalbare opties.
 
 | Nr. | CLI-pad | Functie |
 |---:|---|---|
@@ -52,6 +52,19 @@ uitvoercommando altijd `--help` voor de exacte argumenten en herhaalbare opties.
 | 40 | `opencntx workspace task cancel` | beëindig de taak expliciet als geannuleerd |
 | 41 | `opencntx workspace task supersede` | beëindig de taak ten gunste van een benoemde opvolger |
 
+## Compacte actuele roadmapsturing
+
+```powershell
+opencntx workspace control refresh --root mijn-project
+```
+
+`control refresh` valideert `OWNER.md`, de volledige `ROADMAP.md` en
+`CURRENT.md`. Bij exact één geldig markerblock publiceert het atomair
+`.opencntx/control-snapshot.md` en toont het de volledige roadmap-, block- en
+snapshotdigests. Zonder markers bevestigt het zichtbaar
+`LEGACY_FULL_ROADMAP`; het voegt nooit zelf markers toe. De snapshot is
+afgeleid, vervangbaar en verleent geen OWNER-bevoegdheid.
+
 ## Exacte opties vinden
 
 Voeg `--help` toe aan het volledige uitvoerpad:
@@ -59,6 +72,7 @@ Voeg `--help` toe aan het volledige uitvoerpad:
 ```powershell
 opencntx verify --help
 opencntx workspace capture --help
+opencntx workspace control refresh --help
 opencntx workspace context build --help
 opencntx workspace executor prepare --help
 opencntx workspace task accept-result --help

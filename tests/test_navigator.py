@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 import os
 from pathlib import Path
 import sqlite3
@@ -144,9 +145,23 @@ def ready_workspace(
     *,
     privacy: str = "PRIVATE",
     content: bytes = b"Exacte projectbron.\n",
+    legacy: bool = False,
+    roadmap_history: str = "",
 ) -> tuple[Path, str, str, str, object]:
     workspace = parent / "workspace"
     init_workspace(workspace)
+    roadmap = workspace / "CONTROL" / "ROADMAP.md"
+    if legacy:
+        text = roadmap.read_text(encoding="utf-8")
+        text = text.replace("<!-- OPENCNTX:CONTROL:START -->\n", "")
+        text = text.replace("<!-- OPENCNTX:CONTROL:END -->\n", "")
+        roadmap.write_text(text, encoding="utf-8", newline="\n")
+    if roadmap_history:
+        roadmap.write_text(
+            roadmap.read_text(encoding="utf-8") + roadmap_history,
+            encoding="utf-8",
+            newline="\n",
+        )
     source_id, record_path, original_path = add_source(
         workspace, "bron.txt", content, privacy=privacy
     )
@@ -196,12 +211,173 @@ class NavigatorTests(unittest.TestCase):
             navigation = manifest["navigation"]
             self.assertEqual(navigation["task"]["task_id"], TASK_ID)
             self.assertEqual(navigation["sources"][0]["source_id"], source_id)
+            self.assertEqual(navigation["control"]["mode"], "COMPACT_MARKED")
+            self.assertFalse(navigation["control"]["roadmap_body_loaded"])
+            self.assertEqual(
+                navigation["read"][1]["path"],
+                ".opencntx/control-snapshot.md",
+            )
+            self.assertEqual(
+                [
+                    item["path"]
+                    for item in navigation["read"]
+                    if item["path"].startswith(".opencntx/")
+                ],
+                [".opencntx/control-snapshot.md"],
+            )
+            self.assertEqual(
+                navigation["not_read"]["control"][0]["reason"],
+                "FULL_DIGEST_PINNED_COMPACT_BLOCK_LOADED",
+            )
             self.assertEqual(
                 [item["layer"] for item in navigation["read"]],
                 ["HOT", "HOT", "HOT", "HOT", "WARM", "COLD", "COLD"],
             )
             self.assertEqual(official_snapshot(workspace), before)
             self.assertIn("geen toestemming", run_cli("workspace", "context", "build", TASK_ID, "--proposal-digest", proposed.object_digest, "--max-files", "25", "--max-bytes", "100000", "--root", str(workspace), cwd=workspace).stdout)
+
+    def test_compact_mode_excludes_history_but_pins_full_roadmap(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            history = "\n## Historisch archief\n\nZEER-GROTE-OUDE-GESCHIEDENIS\n"
+            workspace, _, _, _, proposed = ready_workspace(
+                Path(temporary_directory), roadmap_history=history
+            )
+            roadmap = (workspace / "CONTROL" / "ROADMAP.md").read_bytes()
+            result = build_context_package(
+                workspace,
+                TASK_ID,
+                proposal_digest=proposed.object_digest,
+                max_files=25,
+                max_bytes=100_000,
+            )
+            context = (result.package_path / "CONTEXT.md").read_text(encoding="utf-8")
+            manifest = json.loads(
+                (result.package_path / "manifest.json").read_text(encoding="utf-8")
+            )
+            self.assertNotIn("ZEER-GROTE-OUDE-GESCHIEDENIS", context)
+            self.assertIn("<!-- OPENCNTX:CONTROL:START -->", context)
+            self.assertEqual(
+                manifest["navigation"]["control"]["roadmap_sha256"],
+                hashlib.sha256(roadmap).hexdigest(),
+            )
+            self.assertTrue(
+                verify_context_package(
+                    workspace, TASK_ID, proposal_digest=proposed.object_digest
+                ).ok
+            )
+
+    def test_legacy_mode_keeps_full_roadmap_and_old_hot_paths(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            history = "\n## Historisch archief\n\nLEGACY-GESCHIEDENIS\n"
+            workspace, _, _, _, proposed = ready_workspace(
+                Path(temporary_directory), legacy=True, roadmap_history=history
+            )
+            result = build_context_package(
+                workspace,
+                TASK_ID,
+                proposal_digest=proposed.object_digest,
+                max_files=25,
+                max_bytes=100_000,
+            )
+            context = (result.package_path / "CONTEXT.md").read_text(encoding="utf-8")
+            manifest = json.loads(
+                (result.package_path / "manifest.json").read_text(encoding="utf-8")
+            )
+            self.assertIn("LEGACY-GESCHIEDENIS", context)
+            self.assertEqual(
+                manifest["navigation"]["control"]["mode"],
+                "LEGACY_FULL_ROADMAP",
+            )
+            self.assertTrue(
+                manifest["navigation"]["control"]["roadmap_body_loaded"]
+            )
+            self.assertEqual(
+                [item["path"] for item in manifest["navigation"]["read"][:3]],
+                list(HOT_PATHS_FOR_TEST),
+            )
+            self.assertFalse(
+                (workspace / ".opencntx" / "control-snapshot.md").exists()
+            )
+
+    def test_pre_control_legacy_package_remains_verifiable(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            workspace, _, _, _, proposed = ready_workspace(
+                Path(temporary_directory), legacy=True
+            )
+            result = build_context_package(
+                workspace,
+                TASK_ID,
+                proposal_digest=proposed.object_digest,
+                max_files=25,
+                max_bytes=100_000,
+            )
+            manifest_path = result.package_path / "manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            del manifest["navigation"]["control"]
+            manifest_path.write_text(
+                json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+                newline="\n",
+            )
+            self.assertTrue(
+                verify_context_package(
+                    workspace, TASK_ID, proposal_digest=proposed.object_digest
+                ).ok
+            )
+
+    def test_compact_mode_fits_budget_that_rejects_same_legacy_history(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            parent = Path(temporary_directory)
+            history = "\n## Historisch\n\n" + ("oude-informatie\n" * 3_000)
+            compact, _, _, _, compact_task = ready_workspace(
+                parent / "compact", roadmap_history=history
+            )
+            legacy, _, _, _, legacy_task = ready_workspace(
+                parent / "legacy", legacy=True, roadmap_history=history
+            )
+
+            built = build_context_package(
+                compact,
+                TASK_ID,
+                proposal_digest=compact_task.object_digest,
+                max_files=25,
+                max_bytes=20_000,
+            )
+            self.assertEqual(built.status, "CONTEXT_BUILT")
+            with self.assertRaises(NavigatorError) as context:
+                build_context_package(
+                    legacy,
+                    TASK_ID,
+                    proposal_digest=legacy_task.object_digest,
+                    max_files=25,
+                    max_bytes=20_000,
+                )
+            self.assertEqual(context.exception.code, "context_budget_exceeded")
+
+    def test_control_drift_is_detected_without_refresh_during_verify(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            workspace, _, _, _, proposed = ready_workspace(Path(temporary_directory))
+            built = build_context_package(
+                workspace,
+                TASK_ID,
+                proposal_digest=proposed.object_digest,
+                max_files=25,
+                max_bytes=100_000,
+            )
+            snapshot = workspace / ".opencntx" / "control-snapshot.md"
+            snapshot_before = snapshot.read_bytes()
+            roadmap = workspace / "CONTROL" / "ROADMAP.md"
+            roadmap.write_text(
+                roadmap.read_text(encoding="utf-8") + "\nNieuwe geschiedenis.\n",
+                encoding="utf-8",
+                newline="\n",
+            )
+            report = verify_context_package(
+                workspace, TASK_ID, proposal_digest=proposed.object_digest
+            )
+            self.assertFalse(report.ok)
+            self.assertEqual(snapshot.read_bytes(), snapshot_before)
+            self.assertTrue(built.package_path.is_dir())
 
     def test_exact_control_inputs_and_non_control_content_are_required(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
@@ -333,6 +509,9 @@ class NavigatorTests(unittest.TestCase):
                     max_files=25, max_bytes=100_000,
                 )
             self.assertEqual(context.exception.code, "context_task_not_executing")
+            self.assertFalse(
+                (workspace / ".opencntx" / "control-snapshot.md").exists()
+            )
 
     def test_current_must_name_exact_task_and_revision(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:

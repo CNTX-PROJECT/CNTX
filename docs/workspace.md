@@ -18,6 +18,35 @@ hoofdstukken, taken, playbooks en rollen. Een bestaande complete werkruimte
 wordt niet herschreven. Een gedeeltelijke of conflicterende structuur wordt
 geweigerd.
 
+## Compacte actuele roadmapsturing
+
+Nieuwe werkruimtes markeren in `CONTROL/ROADMAP.md` exact één actuele sectie:
+
+```text
+<!-- OPENCNTX:CONTROL:START -->
+## Actuele opdracht
+
+Geen.
+<!-- OPENCNTX:CONTROL:END -->
+```
+
+Houd dit block klein en actueel; maximaal 16.384 UTF-8-bytes. Uitgebreide
+afgeronde geschiedenis kan buiten de markers blijven staan. Vernieuw de
+afgeleide weergave desgewenst expliciet:
+
+```powershell
+opencntx workspace control refresh --root mijn-project
+```
+
+De beheerde `.opencntx/control-snapshot.md` bevat het block byte-exact plus de
+SHA-256 van `OWNER.md`, de volledige `ROADMAP.md` en `CURRENT.md`. Contextbouw
+vernieuwt deze snapshot automatisch. Het officiële roadmapbestand wordt nooit
+automatisch gewijzigd. Werkruimtes zonder markers blijven zichtbaar in
+`LEGACY_FULL_ROADMAP` en laden zoals voorheen de volledige roadmap.
+
+Een halve, dubbele, geneste, omgekeerde of te grote markering stopt gesloten.
+OPENCNTX vat niets met AI samen en leidt geen goedkeuring uit roadmaptekst af.
+
 ## Eén bron vastleggen
 
 ```powershell
