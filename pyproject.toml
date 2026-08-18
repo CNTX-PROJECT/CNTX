@@ -29,6 +29,7 @@ Source = "https://github.com/CNTX-PROJECT/OPENCNTX"
 Issues = "https://github.com/CNTX-PROJECT/OPENCNTX/issues"
 Changelog = "https://github.com/CNTX-PROJECT/OPENCNTX/blob/main/CHANGELOG.md"
 Security = "https://github.com/CNTX-PROJECT/OPENCNTX/security/policy"
+Documentation = "https://github.com/CNTX-PROJECT/OPENCNTX/tree/main/docs"
 
 [project.scripts]
 opencntx = "opencntx.cli:main"

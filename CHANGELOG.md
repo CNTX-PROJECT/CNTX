@@ -24,6 +24,12 @@ gepubliceerd.
   lokaal uitvoerderpakket dat geen mens, proces, tool, AI of agent start.
 - Uitbreiding van de publieke suite naar 128 tests, inclusief één controle die
   package- en Pythonversie exact gelijk houdt.
+- Een compacte publieke documentatiestructuur met één index en taakgerichte
+  gidsen voor kern, workspace, OWNER-flow, commando's, security en platformen.
+- Zes dependencyvrije regressietests voor lokale documentlinks, structuur en
+  het begrensde CI-beleid; de publieke suite telt daardoor 134 tests.
+- Een read-only cross-platform CI-definitie voor Windows en Ubuntu met Python
+  3.11, 3.12 en 3.13, vastgepinde officiële Actions, wheelbouw en CLI-smoke.
 
 ### Gevalideerd
 
@@ -42,6 +48,9 @@ gepubliceerd.
 - Levende taakcontext wordt gecontroleerd terwijl de taak `IN_EXECUTION` is;
   na taaksluiting vormen de append-only taakketen, digests, resultaat, bewijs en
   uitvoerderstatus het historische afrondingsbewijs.
+- GitHub Actions staat nog uit. De workflow is daarom voorbereid maar blijft
+  `CI_DEFINED_INACTIVE` totdat een afzonderlijk goedgekeurde GitHub-instelling
+  haar activeert; nul workflowruns zijn geen groen CI-bewijs.
 
 ## 0.1.0 - 2026-08-16
 
