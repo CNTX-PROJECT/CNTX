@@ -1,9 +1,14 @@
 # Public roadmap
 
+[Start here](start-here.md) · [How it works](how-it-works.md) · [Workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
+
 This page reports completed public facts. It does not promise unapproved
 features or expose private project records.
 
-![OPENCNTX progressed from the three-command core through the workspace foundation to the current version 0.2 release](../assets/docs/roadmap.svg)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../assets/docs/roadmap-dark.svg">
+  <img src="../assets/docs/roadmap.svg" alt="OPENCNTX progressed from the three-command core through the workspace foundation to the current version 0.2 release">
+</picture>
 
 ## Completed foundation
 

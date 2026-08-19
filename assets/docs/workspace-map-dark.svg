@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="590" viewBox="0 0 1200 590" role="img" aria-labelledby="title desc">
+  <title id="title">Workspace map for dark screens</title>
+  <desc id="desc">Four equal cards organize control, captured sources, reviewed knowledge, and bounded work inside one local workspace.</desc>
+  <rect width="1200" height="590" fill="#0D1117"/>
+  <text x="600" y="75" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="700" fill="#FFFFFF">One local workspace, four clear areas</text>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="60" y="130" width="510" height="170" rx="24" fill="#17131F" stroke="#C084FC" stroke-width="4"/>
+    <rect x="630" y="130" width="510" height="170" rx="24" fill="#17131F" stroke="#C084FC" stroke-width="4"/>
+    <rect x="60" y="360" width="510" height="170" rx="24" fill="#17131F" stroke="#C084FC" stroke-width="4"/>
+    <rect x="630" y="360" width="510" height="170" rx="24" fill="#17131F" stroke="#C084FC" stroke-width="4"/>
+    <text x="315" y="196" text-anchor="middle" font-size="28" font-weight="700" fill="#C084FC">CONTROL</text>
+    <text x="315" y="246" text-anchor="middle" font-size="21" fill="#FFFFFF">OWNER, ROADMAP, CURRENT</text>
+    <text x="885" y="196" text-anchor="middle" font-size="28" font-weight="700" fill="#C084FC">SOURCES</text>
+    <text x="885" y="246" text-anchor="middle" font-size="21" fill="#FFFFFF">Exact supplied bytes and receipts</text>
+    <text x="315" y="426" text-anchor="middle" font-size="28" font-weight="700" fill="#C084FC">KNOWLEDGE</text>
+    <text x="315" y="476" text-anchor="middle" font-size="21" fill="#FFFFFF">Chapters, catalog, derived text</text>
+    <text x="885" y="426" text-anchor="middle" font-size="28" font-weight="700" fill="#C084FC">BOUNDED WORK</text>
+    <text x="885" y="476" text-anchor="middle" font-size="21" fill="#FFFFFF">Tasks, playbooks, roles, results</text>
+  </g>
+</svg>

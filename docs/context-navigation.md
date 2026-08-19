@@ -1,10 +1,15 @@
 # Context navigation
 
+[Start here](start-here.md) · [How it works](how-it-works.md) · [Workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
+
 The context navigator builds one deterministic package for one approved task.
 It follows explicit pins instead of searching or guessing across the whole
 workspace.
 
-![Task context is divided into hot control files, warm approved relations, and cold unrelated history](../assets/docs/context-selection.svg)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../assets/docs/context-selection-dark.svg">
+  <img src="../assets/docs/context-selection.svg" alt="Task context is divided into hot control files, warm approved relations, and cold unrelated history">
+</picture>
 
 ## Three context temperatures
 

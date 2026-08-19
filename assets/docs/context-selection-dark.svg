@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
+  <title id="title">Task-bound context selection for dark screens</title>
+  <desc id="desc">Three equal cards separate always-needed hot context, task-related warm context, and excluded cold history.</desc>
+  <rect width="1200" height="500" fill="#0D1117"/>
+  <text x="600" y="82" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="700" fill="#FFFFFF">Load only what the task proves it needs</text>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="60" y="160" width="320" height="280" rx="24" fill="#17131F" stroke="#C084FC" stroke-width="4"/>
+    <rect x="440" y="160" width="320" height="280" rx="24" fill="#17131F" stroke="#C084FC" stroke-width="4"/>
+    <rect x="820" y="160" width="320" height="280" rx="24" fill="#17131F" stroke="#C084FC" stroke-width="4"/>
+    <text x="220" y="235" text-anchor="middle" font-size="30" font-weight="700" fill="#C084FC">HOT</text>
+    <text x="220" y="292" text-anchor="middle" font-size="22" fill="#FFFFFF">Control and exact task</text>
+    <text x="220" y="330" text-anchor="middle" font-size="22" fill="#D1D5DB">Always required</text>
+    <text x="600" y="235" text-anchor="middle" font-size="30" font-weight="700" fill="#C084FC">WARM</text>
+    <text x="600" y="292" text-anchor="middle" font-size="22" fill="#FFFFFF">Pinned current knowledge</text>
+    <text x="600" y="330" text-anchor="middle" font-size="22" fill="#D1D5DB">Included by relation</text>
+    <text x="980" y="235" text-anchor="middle" font-size="30" font-weight="700" fill="#C084FC">COLD</text>
+    <text x="980" y="292" text-anchor="middle" font-size="22" fill="#FFFFFF">Unrelated project history</text>
+    <text x="980" y="330" text-anchor="middle" font-size="22" fill="#D1D5DB">Not loaded</text>
+  </g>
+</svg>

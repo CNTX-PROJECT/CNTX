@@ -1,5 +1,7 @@
 # Command reference
 
+[Start here](start-here.md) · [How it works](how-it-works.md) · [Workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
+
 This navigation table preserves the 41 documented CLI paths: four orientation
 help routes and 37 executable routes. It does not invent options or grant
 permission to run a workflow step. Use the exact nested `--help` output for

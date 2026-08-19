@@ -1,19 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
-  <title id="title">Local security boundary and explicit sharing</title>
-  <desc id="desc">OPENCNTX reads selected local text and writes local packages. It does not use the network. Only the user can move reviewed output across the boundary to an external AI tool.</desc>
-  <rect width="1200" height="520" rx="28" fill="#F7F5FB"/>
-  <rect x="50" y="65" width="760" height="390" rx="30" fill="#FFFFFF" stroke="#7C3AED" stroke-width="5"/>
-  <text x="90" y="115" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="800" fill="#6D28D9">LOCAL BOUNDARY</text>
-  <g font-family="Segoe UI, Arial, sans-serif" text-anchor="middle">
-    <rect x="110" y="170" width="220" height="160" rx="20" fill="#F7F5FB"/>
-    <text x="220" y="225" font-size="27" font-weight="700" fill="#0B0B0F">Selected files</text><text x="220" y="268" font-size="21" fill="#555563">UTF-8 text</text>
-    <rect x="430" y="145" width="270" height="210" rx="24" fill="#7C3AED"/>
-    <text x="565" y="218" font-size="34" font-weight="800" fill="#FFFFFF">OPENCNTX</text><text x="565" y="265" font-size="21" fill="#FFFFFF">No account</text><text x="565" y="300" font-size="21" fill="#FFFFFF">No API key · no network</text>
-    <rect x="900" y="170" width="240" height="160" rx="20" fill="#0B0B0F"/>
-    <text x="1020" y="220" font-size="28" font-weight="700" fill="#FFFFFF">External AI tool</text><text x="1020" y="263" font-size="21" fill="#FFFFFF">Only after your</text><text x="1020" y="295" font-size="21" fill="#FFFFFF">explicit choice</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
+  <title id="title">Local security boundary</title>
+  <desc id="desc">Three equal cards show local files, local OPENCNTX processing, and an external AI tool that receives data only after the user's separate sharing decision.</desc>
+  <rect width="1200" height="500" fill="#FFFFFF"/>
+  <text x="600" y="82" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="700" fill="#111318">Local until you choose to share</text>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="60" y="160" width="300" height="280" rx="24" fill="#F6F3FF" stroke="#7C3AED" stroke-width="4"/>
+    <rect x="450" y="160" width="300" height="280" rx="24" fill="#F6F3FF" stroke="#7C3AED" stroke-width="4"/>
+    <rect x="840" y="160" width="300" height="280" rx="24" fill="#F6F3FF" stroke="#7C3AED" stroke-width="4"/>
+    <text x="210" y="235" text-anchor="middle" font-size="28" font-weight="700" fill="#6D28D9">LOCAL FILES</text>
+    <text x="210" y="292" text-anchor="middle" font-size="21" fill="#111318">You select the input</text>
+    <text x="210" y="330" text-anchor="middle" font-size="21" fill="#4B5563">Nothing is uploaded</text>
+    <text x="600" y="235" text-anchor="middle" font-size="28" font-weight="700" fill="#6D28D9">OPENCNTX</text>
+    <text x="600" y="292" text-anchor="middle" font-size="21" fill="#111318">Builds and verifies locally</text>
+    <text x="600" y="330" text-anchor="middle" font-size="21" fill="#4B5563">You inspect the output</text>
+    <text x="990" y="235" text-anchor="middle" font-size="28" font-weight="700" fill="#6D28D9">EXTERNAL TOOL</text>
+    <text x="990" y="292" text-anchor="middle" font-size="21" fill="#111318">Receives only what you send</text>
+    <text x="990" y="330" text-anchor="middle" font-size="21" fill="#4B5563">Outside OPENCNTX control</text>
   </g>
-  <g fill="#7C3AED"><rect x="340" y="244" width="70" height="12"/><polygon points="410,226 440,250 410,274"/></g>
-  <g fill="#0B0B0F"><rect x="790" y="244" width="85" height="12"/><polygon points="875,226 905,250 875,274"/></g>
-  <text x="830" y="135" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#555563">your explicit share action</text>
-  <text x="600" y="490" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="21" fill="#555563">Hashes reveal change. They do not prove that content is true, safe, or approved.</text>
+  <line x1="370" y1="300" x2="432" y2="300" stroke="#7C3AED" stroke-width="6"/>
+  <polygon points="432,288 450,300 432,312" fill="#7C3AED"/>
+  <line x1="760" y1="300" x2="822" y2="300" stroke="#7C3AED" stroke-width="6" stroke-dasharray="12 10"/>
+  <polygon points="822,288 840,300 822,312" fill="#7C3AED"/>
+  <text x="800" y="275" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#4B5563">your decision</text>
 </svg>

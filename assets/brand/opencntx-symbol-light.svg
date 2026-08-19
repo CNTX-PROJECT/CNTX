@@ -1,10 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-labelledby="title description">
-  <title id="title">OPENCNTX compact mark for light backgrounds</title>
-  <desc id="description">A compact O and C text mark: purple O and near-black C.</desc>
-  <g id="compact-open" fill="#6D28D9" aria-label="O">
-    <ellipse cx="70" cy="128" rx="56" ry="76"/><ellipse cx="70" cy="128" rx="32" ry="50" fill="#F7F5FB"/>
+  <title id="title">OPENCNTX symbol for light screens</title>
+  <desc id="description">A centered purple rounded square containing a symmetric white context frame.</desc>
+  <g id="avatar-symbol" aria-label="OPENCNTX context frame" fill="#7C3AED">
+    <rect x="64" y="32" width="128" height="192"/>
+    <rect x="32" y="64" width="192" height="128"/>
+    <circle cx="64" cy="64" r="32"/>
+    <circle cx="192" cy="64" r="32"/>
+    <circle cx="64" cy="192" r="32"/>
+    <circle cx="192" cy="192" r="32"/>
   </g>
-  <g id="compact-cntx" fill="#0B0B0F" aria-label="C">
-    <ellipse cx="184" cy="128" rx="58" ry="76"/><ellipse cx="184" cy="128" rx="34" ry="50" fill="#F7F5FB"/><rect x="184" y="92" width="70" height="72" fill="#F7F5FB"/>
+  <g id="context-frame" aria-label="Context frame" fill="#FFFFFF">
+    <rect x="75" y="75" width="14" height="106"/>
+    <rect x="75" y="75" width="53" height="14"/>
+    <rect x="75" y="167" width="53" height="14"/>
+    <rect x="167" y="75" width="14" height="106"/>
+    <rect x="128" y="75" width="53" height="14"/>
+    <rect x="128" y="167" width="53" height="14"/>
   </g>
 </svg>

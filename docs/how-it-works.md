@@ -1,5 +1,7 @@
 # How OPENCNTX works
 
+[Start here](start-here.md) · [How it works](how-it-works.md) · [Workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
+
 OPENCNTX solves one practical problem: large or mixed project history makes it
 hard to give an AI tool only the information needed for the current task.
 
@@ -12,7 +14,10 @@ hard to give an AI tool only the information needed for the current task.
 5. You inspect and verify the package.
 6. You decide whether to share it.
 
-![Selected local files become a small reviewable package before any external sharing](../assets/docs/opencntx-overview.svg)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../assets/docs/opencntx-overview-dark.svg">
+  <img src="../assets/docs/opencntx-overview.svg" alt="Select local files, review and verify a small context package, then decide whether to share it">
+</picture>
 
 ## What “any model” means
 
@@ -58,7 +63,7 @@ boundary changes only when you deliberately move output elsewhere.
 
 ## Next pages
 
-- [Getting started](getting-started.md)
+- [Start here](start-here.md)
 - [Context packages](context-packets.md)
 - [Workspace](workspace.md)
 - [OWNER flow](owner-flow.md)

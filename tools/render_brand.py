@@ -23,19 +23,16 @@ SVG_PATHS = (
     "assets/brand/opencntx-wordmark-light.svg",
 )
 
-PNG_JOBS = (
+GENERATED_PNG_JOBS = (
     ("opencntx-symbol-light.svg", "opencntx-icon-32.png", 32, 32),
     ("opencntx-symbol-light.svg", "opencntx-icon-128.png", 128, 128),
     ("opencntx-avatar.svg", "opencntx-avatar-512.png", 512, 512),
-    (
-        "opencntx-social-preview.svg",
-        "opencntx-social-preview-1280x640.png",
-        1280,
-        640,
-    ),
 )
 
-PNG_PATHS = tuple(f"assets/brand/{job[1]}" for job in PNG_JOBS)
+STATIC_PNG_PATHS = ("assets/brand/opencntx-social-preview-1280x640.png",)
+PNG_PATHS = tuple(
+    f"assets/brand/{job[1]}" for job in GENERATED_PNG_JOBS
+) + STATIC_PNG_PATHS
 HASHED_PATHS = tuple(sorted(SVG_PATHS + PNG_PATHS))
 
 
@@ -246,7 +243,9 @@ def _manifest_bytes(png_root: Path | None = None) -> bytes:
     for relative in HASHED_PATHS:
         path = ROOT / relative
         if png_root is not None and relative.endswith(".png"):
-            path = png_root / Path(relative).name
+            generated = png_root / Path(relative).name
+            if generated.is_file():
+                path = generated
         data = path.read_bytes()
         if relative.endswith(".svg"):
             data = data.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
@@ -257,7 +256,7 @@ def _manifest_bytes(png_root: Path | None = None) -> bytes:
 
 def write_assets() -> None:
     BRAND.mkdir(parents=True, exist_ok=True)
-    for source, output, width, height in PNG_JOBS:
+    for source, output, width, height in GENERATED_PNG_JOBS:
         render(BRAND / source, BRAND / output, width, height)
     (BRAND / "SHA256SUMS").write_bytes(_manifest_bytes())
 
@@ -265,7 +264,7 @@ def write_assets() -> None:
 def check_assets() -> None:
     with tempfile.TemporaryDirectory(prefix="opencntx-brand-") as directory:
         target = Path(directory)
-        for source, output, width, height in PNG_JOBS:
+        for source, output, width, height in GENERATED_PNG_JOBS:
             generated = target / output
             render(BRAND / source, generated, width, height)
             expected = BRAND / output
@@ -278,7 +277,12 @@ def check_assets() -> None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Render deterministic OPENCNTX brand PNGs.")
+    parser = argparse.ArgumentParser(
+        description=(
+            "Render deterministic shape-only OPENCNTX PNGs and verify every "
+            "committed brand asset."
+        )
+    )
     mode = parser.add_mutually_exclusive_group(required=True)
     mode.add_argument("--write", action="store_true", help="write PNGs and SHA256SUMS")
     mode.add_argument("--check", action="store_true", help="verify committed derivatives")

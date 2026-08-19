@@ -1,5 +1,7 @@
 # Troubleshooting
 
+[Start here](start-here.md) · [How it works](how-it-works.md) · [Workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
+
 Start with the smallest failing command. Read its complete output and keep the
 first stable error message.
 
@@ -13,7 +15,7 @@ python -m pip show opencntx
 ```
 
 Activate the virtual environment where you installed the package, or reinstall
-from the approved tag using [Installation](installation.md).
+from the approved tag using [Start here](start-here.md).
 
 ## `init` refuses to continue
 

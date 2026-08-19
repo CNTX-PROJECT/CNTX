@@ -1,5 +1,7 @@
 # Glossary
 
+[Start here](start-here.md) · [How it works](how-it-works.md) · [Workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
+
 ## ARCHITECT
 
 The role that analyzes a goal, proposes bounded work, prepares context, and

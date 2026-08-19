@@ -1,5 +1,7 @@
 # Chapters and catalog
 
+[Start here](start-here.md) · [How it works](how-it-works.md) · [Workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
+
 Chapters turn captured sources into small reviewed knowledge units. The local
 catalog makes those units easy to find without replacing their official files.
 

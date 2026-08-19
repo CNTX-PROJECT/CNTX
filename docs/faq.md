@@ -1,5 +1,7 @@
 # Frequently asked questions
 
+[Start here](start-here.md) · [How it works](how-it-works.md) · [Workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
+
 ## Does OPENCNTX contain an AI model?
 
 No. It selects, stores, packages, and verifies local files. It does not call an
@@ -64,6 +66,6 @@ No. Install the stable release from the exact public Git tag.
 
 ## Where should I start?
 
-Use [Installation](installation.md), then [Getting started](getting-started.md).
+Use [Start here](start-here.md) for installation and your first package.
 
 [Documentation home](README.md)

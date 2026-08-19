@@ -1,5 +1,7 @@
 # Media and derived text
 
+[Start here](start-here.md) · [How it works](how-it-works.md) · [Workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
+
 OPENCNTX does not perform OCR, transcription, image analysis, document
 parsing, or video processing. It can safely register UTF-8 text that was
 already produced elsewhere from a captured source.
