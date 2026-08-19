@@ -24,6 +24,25 @@ The tool has no network functionality and requires no account or API key.
 `pack` applies exclusions before reading source content, rejects binary or
 unreadable input, and blocks path and symlink escape outside the project root.
 Built-in sensitive exclusions remain active alongside user configuration.
+They include common environment, key, local credential, SSH identity, package
+registry, Docker, AWS, and application-default credential paths.
+
+`pack --preview` runs the same selection, required-file, budget, UTF-8, and
+secret-policy plan without creating or changing `.opencntx/`. Its output lists
+paths, reasons, budgets, and safe finding metadata; it never prints matched
+source text. A successful preview is information, not approval, and `pack`
+always recalculates the plan from current bytes.
+
+The dependency-free local scanner blocks a deliberately small set of
+high-confidence credential structures before package publication and warns on
+broader credential-like text. It has false positives and false negatives. It
+does not prove that output is secret-free and does not replace inspection.
+
+A high-confidence block can be overridden only with a current exact finding ID
+from preview: `opencntx pack --allow-secret FINDING_ID_FROM_PREVIEW`. There is
+no wildcard, directory, configuration, environment, or global scan bypass.
+Each applied override is recorded as safe metadata in `manifest.json`; the
+matched value and snippet are never recorded there.
 
 Packages are written under `.opencntx/` by default. The supplied `.gitignore`
 keeps that directory out of normal Git tracking. This does not prevent manual

@@ -15,6 +15,16 @@ import tomllib
 from typing import Any
 from uuid import uuid4
 
+from .security import (
+    POLICY_VERSION,
+    SecretAssessment,
+    SecretFinding,
+    assess_findings,
+    finding_record,
+    format_finding,
+    scan_sources,
+)
+
 
 DEFAULT_EXCLUDE_PATTERNS = (
     ".git/**",
@@ -23,6 +33,13 @@ DEFAULT_EXCLUDE_PATTERNS = (
     "**/.env*",
     "**/*.key",
     "**/*.pem",
+    "**/.aws/credentials",
+    "**/.ssh/id_*",
+    "**/.netrc",
+    "**/.npmrc",
+    "**/.pypirc",
+    "**/.docker/config.json",
+    "**/application_default_credentials.json",
 )
 PACKAGE_DIRECTORY = Path(".opencntx") / "latest"
 MANIFEST_VERSION = 1
@@ -43,10 +60,18 @@ class ContextConfig:
 
 
 @dataclass(frozen=True)
+class IncludedPath:
+    path: str
+    include_pattern: str
+    required_by: tuple[str, ...]
+
+
+@dataclass(frozen=True)
 class Selection:
     files: tuple[tuple[str, Path], ...]
     excluded: tuple[dict[str, str], ...]
     ignored: tuple[dict[str, str], ...]
+    included: tuple[IncludedPath, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -59,6 +84,18 @@ class Source:
     @property
     def byte_count(self) -> int:
         return len(self.content)
+
+
+@dataclass(frozen=True)
+class PackPlan:
+    config: ContextConfig
+    selection: Selection
+    sources: tuple[Source, ...]
+    security: SecretAssessment
+
+    @property
+    def total_bytes(self) -> int:
+        return sum(source.byte_count for source in self.sources)
 
 
 @dataclass(frozen=True)
@@ -237,6 +274,7 @@ def discover_sources(
     """Expand includes deterministically and exclude paths before reading bytes."""
     root = project_root.resolve(strict=True)
     selected: dict[str, Path] = {}
+    include_reasons: dict[str, str] = {}
     excluded: dict[tuple[str, str], dict[str, str]] = {}
     ignored: dict[tuple[str, str], dict[str, str]] = {}
 
@@ -283,8 +321,21 @@ def discover_sources(
                 }
                 continue
             selected[relative_path] = resolved
+            include_reasons.setdefault(relative_path, pattern)
 
     ordered_files = tuple(sorted(selected.items()))
+    included = tuple(
+        IncludedPath(
+            path=path,
+            include_pattern=include_reasons[path],
+            required_by=tuple(
+                pattern
+                for pattern in config.required
+                if _matches_pattern(path, pattern)
+            ),
+        )
+        for path, _ in ordered_files
+    )
     if enforce_required:
         selected_paths = tuple(path for path, _ in ordered_files)
         for pattern in config.required:
@@ -294,6 +345,7 @@ def discover_sources(
                 )
     return Selection(
         files=ordered_files,
+        included=included,
         excluded=tuple(excluded[key] for key in sorted(excluded)),
         ignored=tuple(ignored[key] for key in sorted(ignored)),
     )
@@ -377,6 +429,88 @@ def read_sources(
     return tuple(sources)
 
 
+def plan_project(
+    project_root: Path,
+    *,
+    allowed_secret_ids: tuple[str, ...] = (),
+) -> PackPlan:
+    """Build the complete read-only plan shared by preview and pack."""
+    root = project_root.resolve(strict=True)
+    config = load_config(root)
+    selection = discover_sources(root, config, enforce_required=True)
+    sources = read_sources(root, selection, config)
+    findings = scan_sources(
+        (source.path, source.text, source.sha256) for source in sources
+    )
+    try:
+        security = assess_findings(findings, allowed_secret_ids)
+    except ValueError as exc:
+        raise OpenCntxError(str(exc)) from exc
+    return PackPlan(
+        config=config,
+        selection=selection,
+        sources=sources,
+        security=security,
+    )
+
+
+def format_pack_preview(plan: PackPlan) -> str:
+    """Render safe deterministic preview metadata without source snippets."""
+    lines = ["preview:", f"included ({len(plan.selection.included)}):"]
+    for included in plan.selection.included:
+        required_by = ",".join(included.required_by) if included.required_by else "-"
+        lines.append(
+            f"  {included.path} | include={included.include_pattern} "
+            f"| required={required_by}"
+        )
+
+    lines.append(f"excluded ({len(plan.selection.excluded)}):")
+    for excluded in plan.selection.excluded:
+        lines.append(
+            f"  {excluded['path']} | pattern={excluded['pattern']} "
+            f"| reason={excluded['reason']}"
+        )
+
+    lines.append(f"ignored ({len(plan.selection.ignored)}):")
+    for ignored in plan.selection.ignored:
+        subject = ignored.get("path", ignored.get("pattern", "-"))
+        pattern = ignored.get("pattern")
+        pattern_part = f" | pattern={pattern}" if pattern is not None else ""
+        lines.append(
+            f"  {subject}{pattern_part} | reason={ignored['reason']}"
+        )
+
+    lines.extend(
+        (
+            "budgets:",
+            f"  files={len(plan.sources)}/{plan.config.max_files}",
+            f"  bytes={plan.total_bytes}/{plan.config.max_bytes}",
+        )
+    )
+    for label, findings in (
+        ("warnings", plan.security.warnings),
+        ("blocked", plan.security.blocked),
+        ("overrides", plan.security.overrides),
+    ):
+        lines.append(f"{label} ({len(findings)}):")
+        lines.extend(f"  {format_finding(finding)}" for finding in findings)
+    lines.append(
+        "resultaat: PACK_ZOU_BLOKKEREN"
+        if plan.security.blocked
+        else "resultaat: PACK_ZOU_SLAGEN"
+    )
+    return "\n".join(lines)
+
+
+def _blocked_secret_error(findings: tuple[SecretFinding, ...]) -> OpenCntxError:
+    details = "; ".join(format_finding(finding) for finding in findings)
+    return OpenCntxError(
+        f"Secretbeleid blokkeert {len(findings)} hoog-vertrouwenfinding(s): "
+        f"{details}. Gebruik 'opencntx pack --preview' en alleen een exacte "
+        "--allow-secret finding-ID als u deze bytes bewust wilt opnemen."
+    )
+
+
 def _markdown_fence(text: str) -> str:
     longest = max((len(match.group(0)) for match in re.finditer(r"`+", text)), default=0)
     return "`" * max(3, longest + 1)
@@ -410,13 +544,28 @@ def render_context(goal: str, sources: tuple[Source, ...]) -> str:
     return "\n".join(lines).rstrip() + "\n"
 
 
+def _security_manifest(security: SecretAssessment) -> dict[str, Any]:
+    return {
+        "policy_version": POLICY_VERSION,
+        "warnings": [
+            finding_record(finding, disposition="warning")
+            for finding in security.warnings
+        ],
+        "overrides": [
+            finding_record(finding, disposition="overridden")
+            for finding in security.overrides
+        ],
+    }
+
+
 def _manifest(
     config: ContextConfig,
     selection: Selection,
     sources: tuple[Source, ...],
     context_bytes: bytes,
+    security: SecretAssessment | None = None,
 ) -> dict[str, Any]:
-    return {
+    manifest: dict[str, Any] = {
         "format": "opencntx-manifest",
         "format_version": MANIFEST_VERSION,
         "task": {"goal": config.goal},
@@ -443,6 +592,9 @@ def _manifest(
         "excluded": list(selection.excluded),
         "ignored": list(selection.ignored),
     }
+    if security is not None:
+        manifest["security"] = _security_manifest(security)
+    return manifest
 
 
 def _write_file(path: Path, content: bytes) -> None:
@@ -500,14 +652,24 @@ def _atomic_package_write(
             shutil.rmtree(temporary, ignore_errors=True)
 
 
-def pack_project(project_root: Path) -> tuple[Path, dict[str, Any]]:
+def pack_project(
+    project_root: Path,
+    *,
+    allowed_secret_ids: tuple[str, ...] = (),
+) -> tuple[Path, dict[str, Any]]:
     """Build the complete package in memory, then atomically publish it."""
     root = project_root.resolve(strict=True)
-    config = load_config(root)
-    selection = discover_sources(root, config, enforce_required=True)
-    sources = read_sources(root, selection, config)
-    context_bytes = render_context(config.goal, sources).encode("utf-8")
-    manifest = _manifest(config, selection, sources, context_bytes)
+    plan = plan_project(root, allowed_secret_ids=allowed_secret_ids)
+    if plan.security.blocked:
+        raise _blocked_secret_error(plan.security.blocked)
+    context_bytes = render_context(plan.config.goal, plan.sources).encode("utf-8")
+    manifest = _manifest(
+        plan.config,
+        plan.selection,
+        plan.sources,
+        context_bytes,
+        plan.security,
+    )
     manifest_bytes = (
         json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
     ).encode("utf-8")
@@ -568,6 +730,44 @@ def _expected_sources(manifest: dict[str, Any]) -> dict[str, dict[str, Any]]:
             raise OpenCntxError(f"manifest.json bevat een dubbel bronpad: {path}")
         expected[path] = item
     return expected
+
+
+def _manifest_security_errors(
+    manifest: dict[str, Any],
+    current_sources: dict[str, Source],
+) -> tuple[str, ...]:
+    if "security" not in manifest:
+        return ()
+    security = manifest.get("security")
+    if not isinstance(security, dict):
+        return ("manifest.json bevat ongeldige securitymetadata",)
+    if set(security) != {"policy_version", "warnings", "overrides"}:
+        return ("manifest.json bevat ongeldige securitymetadata",)
+    if security.get("policy_version") != POLICY_VERSION:
+        return ("manifest.json gebruikt een onbekende secretpolicyversie",)
+    warnings = security.get("warnings")
+    overrides = security.get("overrides")
+    if not isinstance(warnings, list) or not isinstance(overrides, list):
+        return ("manifest.json bevat ongeldige securitymetadata",)
+    if any(not isinstance(record, dict) for record in warnings + overrides):
+        return ("manifest.json bevat ongeldige securitymetadata",)
+    allowed_ids = tuple(record.get("finding_id") for record in overrides)
+    if any(not isinstance(finding_id, str) for finding_id in allowed_ids):
+        return ("manifest.json bevat ongeldige overridegegevens",)
+
+    findings = scan_sources(
+        (source.path, source.text, source.sha256)
+        for source in current_sources.values()
+    )
+    try:
+        assessment = assess_findings(findings, allowed_ids)
+    except (TypeError, ValueError):
+        return ("manifest.json bevat ongeldige overridegegevens",)
+    if assessment.blocked:
+        return ("manifest.json mist een vereiste secretblokkade of override",)
+    if security != _security_manifest(assessment):
+        return ("manifest.json securitymetadata wijkt af van de actuele bronnen",)
+    return ()
 
 
 def verify_package(package_path: Path) -> VerifyReport:
@@ -638,6 +838,8 @@ def verify_package(package_path: Path) -> VerifyReport:
         )
     if total_bytes > config.max_bytes:
         errors.append(f"Bytebudget is nu overschreden: {total_bytes} > {config.max_bytes}")
+
+    errors.extend(_manifest_security_errors(manifest, current_sources))
 
     for path in sorted(expected_paths & current_paths):
         source = current_sources.get(path)

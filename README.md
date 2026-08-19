@@ -58,14 +58,17 @@ opencntx init
 Open `opencntx.toml`. Set one clear goal and review the allowed file patterns
 before continuing.
 
-### 3. Build and inspect the package
+### 3. Preview, build, and inspect the package
 
 ```powershell
+opencntx pack --preview
 opencntx pack
 ```
 
-Read `.opencntx/latest/CONTEXT.md` yourself. Remove anything that does not
-belong in the task.
+Preview shows selected, required, excluded, and ignored paths, budgets, and
+safe secret-signal metadata without writing a package. Then read
+`.opencntx/latest/CONTEXT.md` yourself. Remove anything that does not belong in
+the task.
 
 ### 4. Verify the exact bytes
 
@@ -105,8 +108,9 @@ Read [Workspace](docs/workspace.md) for the complete project structure and
 ## Safety in one minute
 
 - OPENCNTX reads only selected local UTF-8 text inside the project boundary.
-- Common secret and key patterns are excluded by default, but you must still
-  inspect every output file.
+- Known credential paths are excluded before reading. A small local scanner
+  blocks narrow high-confidence signals and warns on broader signals, but it
+  cannot prove that output is secret-free. Inspect every output file.
 - Privacy labels classify content. They do not encrypt it or control access.
 - A non-zero exit code means the requested operation was not fully proven.
 - A hash proves byte identity, not truth, safety, completeness, or approval.
