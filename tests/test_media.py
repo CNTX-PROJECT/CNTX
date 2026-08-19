@@ -126,7 +126,7 @@ class MediaTests(unittest.TestCase):
 
             self.assertEqual(len(entries), 1)
             self.assertEqual(entries[0].status, "NOT_INVESTIGATED")
-            self.assertEqual(entries[0].statement, "INHOUD NIET ONDERZOCHT")
+            self.assertEqual(entries[0].statement, "CONTENT NOT INVESTIGATED")
             self.assertFalse((workspace / ".opencntx" / "derived").exists())
 
     def test_register_preserves_original_and_binds_exact_provenance(self) -> None:
@@ -249,7 +249,7 @@ class MediaTests(unittest.TestCase):
             self.assertRegex(review_digest, r"^[0-9a-f]{64}$")
             entry = media_status(workspace, captured.source_id, registered.derivation_id)[0]
             self.assertEqual(entry.status, "REVIEWED")
-            self.assertIn("NIET AUTOMATISCH FEIT", entry.statement)
+            self.assertIn("NOT AUTOMATICALLY FACT", entry.statement)
             review = read_json(
                 derivation_directory(workspace, captured.source_id, registered.derivation_id)
                 / "review.json"
@@ -631,7 +631,7 @@ class MediaTests(unittest.TestCase):
             )
             after_receipts = sorted((workspace / ".opencntx" / "receipts").glob("*.json"))
             self.assertEqual(verified.returncode, 0, verified.stderr)
-            self.assertIn("OK: mediaregistratie is exact", verified.stdout)
+            self.assertIn("OK: media registration is exact", verified.stdout)
             self.assertEqual(after_receipts, before_receipts)
 
 

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -18,6 +19,8 @@ from opencntx.catalog import rebuild_catalog  # noqa: E402
 from opencntx.navigator import build_context_package  # noqa: E402
 from opencntx.playbook import (  # noqa: E402
     DATA_AUTHORITY_STATEMENT,
+    LEGACY_OWNER_AUTHORITY_STATEMENT,
+    LEGACY_PLAYBOOK_HANDOFF,
     OWNER_AUTHORITY_STATEMENT,
     RESERVED_AUTHORITY_ACTIONS,
     PlaybookError,
@@ -32,6 +35,9 @@ from opencntx.playbook import (  # noqa: E402
     verify_executor,
     verify_playbook,
     verify_role,
+    _json_bytes,
+    _render_playbook,
+    _render_role,
 )
 from opencntx.workflow import (  # noqa: E402
     approve_task,
@@ -115,7 +121,7 @@ def register_definitions(workspace: Path, *, approve: bool = True):
 def set_current(workspace: Path, task_id: str = TASK_ID) -> None:
     path = workspace / "CONTROL" / "CURRENT.md"
     text = path.read_text(encoding="utf-8")
-    text = text.replace("- Actieve taak: geen", f"- Actieve taak: {task_id} revisie 1")
+    text = text.replace("- Active task: none", f"- Active task: {task_id} revision 1")
     path.write_text(text, encoding="utf-8", newline="\n")
 
 
@@ -192,6 +198,60 @@ def snapshot(path: Path) -> dict[str, bytes]:
 
 
 class PlaybookTests(unittest.TestCase):
+    def test_exact_legacy_definition_documents_remain_verifiable_and_read_only(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            workspace = Path(temporary_directory) / "workspace"
+            init_workspace(workspace)
+            playbook, role = register_definitions(workspace, approve=False)
+
+            fixtures = (
+                (playbook.definition_path, _render_playbook, "handoff", LEGACY_PLAYBOOK_HANDOFF),
+                (role.definition_path, _render_role, "owner_authority", LEGACY_OWNER_AUTHORITY_STATEMENT),
+            )
+            before: dict[Path, tuple[bytes, bytes]] = {}
+            for document_path, renderer, field, legacy_value in fixtures:
+                record_path = document_path.parent / "record.json"
+                record = json.loads(record_path.read_text(encoding="utf-8"))
+                record[field] = legacy_value
+                document = renderer(record, legacy=True)
+                record["document"] = {
+                    "bytes": len(document),
+                    "path": document_path.name,
+                    "sha256": hashlib.sha256(document).hexdigest(),
+                }
+                document_path.write_bytes(document)
+                record_path.write_bytes(_json_bytes(record))
+                before[document_path] = (document_path.read_bytes(), record_path.read_bytes())
+
+            self.assertTrue(verify_playbook(workspace, PLAYBOOK_ID, 1).ok)
+            self.assertTrue(verify_role(workspace, ROLE_ID, 1).ok)
+            for document_path, expected in before.items():
+                self.assertEqual(
+                    (document_path.read_bytes(), (document_path.parent / "record.json").read_bytes()),
+                    expected,
+                )
+
+    def test_mixed_current_record_and_legacy_document_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            workspace = Path(temporary_directory) / "workspace"
+            init_workspace(workspace)
+            playbook = register_definitions(workspace, approve=False)[0]
+            record_path = playbook.definition_path.parent / "record.json"
+            record = json.loads(record_path.read_text(encoding="utf-8"))
+            document = _render_playbook(record, legacy=True)
+            record["document"] = {
+                "bytes": len(document),
+                "path": playbook.definition_path.name,
+                "sha256": hashlib.sha256(document).hexdigest(),
+            }
+            playbook.definition_path.write_bytes(document)
+            record_path.write_bytes(_json_bytes(record))
+
+            report = verify_playbook(workspace, PLAYBOOK_ID, 1)
+
+            self.assertFalse(report.ok)
+            self.assertEqual(report.status, "STALE")
+
     def test_playbook_registration_is_proposed_immutable_and_human_readable(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
             workspace = Path(temporary_directory) / "workspace"
@@ -217,7 +277,7 @@ class PlaybookTests(unittest.TestCase):
             self.assertEqual(playbook_status(workspace, PLAYBOOK_ID, 1).status, "PROPOSED")
             self.assertTrue(verify_playbook(workspace, PLAYBOOK_ID, 1).ok)
             text = result.definition_path.read_text(encoding="utf-8")
-            self.assertIn("niet-uitvoerbare werkwijze", text)
+            self.assertIn("non-executing playbook", text)
             self.assertIn("`inspect-source`", text)
             self.assertFalse((result.definition_path.parent / "approval.json").exists())
             with self.assertRaises(PlaybookError):
@@ -423,8 +483,8 @@ class PlaybookTests(unittest.TestCase):
             self.assertTrue(RESERVED_AUTHORITY_ACTIONS.issubset(record["forbidden_actions"]))
             self.assertEqual(record["data_authority"], DATA_AUTHORITY_STATEMENT)
             text = prepared.assignment_path.read_text(encoding="utf-8")
-            self.assertIn("Dit pakket start niets", text)
-            self.assertIn("geen OWNER-bevoegdheid", text)
+            self.assertIn("This package starts nothing", text)
+            self.assertIn("no OWNER authority", text)
 
     def test_executor_requires_approved_definitions(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
@@ -722,7 +782,7 @@ class PlaybookTests(unittest.TestCase):
                 cwd=workspace,
             )
             self.assertEqual(approved.returncode, 0, approved.stderr)
-            self.assertIn("lokale verklaring", approved.stdout)
+            self.assertIn("local statement", approved.stdout)
             verified = run_cli(
                 "workspace",
                 "playbook",
@@ -735,7 +795,7 @@ class PlaybookTests(unittest.TestCase):
                 cwd=workspace,
             )
             self.assertEqual(verified.returncode, 0, verified.stderr)
-            self.assertIn("resultaat: OK", verified.stdout)
+            self.assertIn("result: OK", verified.stdout)
 
     def test_cli_executor_prepare_states_that_nothing_was_started(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
@@ -773,7 +833,7 @@ class PlaybookTests(unittest.TestCase):
             )
             self.assertEqual(result.returncode, 0, result.stderr)
             self.assertIn("EXECUTOR_PACKAGE_PREPARED", result.stdout)
-            self.assertIn("geen mens, proces, tool, model of agent gestart", result.stdout)
+            self.assertIn("No person, process, tool, model, or agent was started", result.stdout)
 
 
 if __name__ == "__main__":

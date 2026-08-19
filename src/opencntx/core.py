@@ -122,25 +122,25 @@ def _deduplicate(values: tuple[str, ...] | list[str]) -> tuple[str, ...]:
 
 def _normalize_pattern(value: str, label: str) -> str:
     if not isinstance(value, str) or not value.strip():
-        raise OpenCntxError(f"{label} bevat een leeg of ongeldig patroon.")
+        raise OpenCntxError(f"{label} contains an empty or invalid pattern.")
     pattern = value.strip().replace("\\", "/")
     while "//" in pattern:
         pattern = pattern.replace("//", "/")
     while pattern.startswith("./"):
         pattern = pattern[2:]
     if not pattern or "\x00" in pattern:
-        raise OpenCntxError(f"{label} bevat een leeg of ongeldig patroon.")
+        raise OpenCntxError(f"{label} contains an empty or invalid pattern.")
     if PurePosixPath(pattern).is_absolute() or PureWindowsPath(pattern).is_absolute():
-        raise OpenCntxError(f"{label} mag geen absoluut pad bevatten: {value}")
+        raise OpenCntxError(f"{label} must not contain an absolute path: {value}")
     if ".." in PurePosixPath(pattern).parts:
-        raise OpenCntxError(f"{label} mag de projectroot niet verlaten: {value}")
+        raise OpenCntxError(f"{label} must stay within the project root: {value}")
     return pattern
 
 
 def _normalize_relative_path(value: str, label: str) -> str:
     path = _normalize_pattern(value, label)
     if any(character in path for character in "*?["):
-        raise OpenCntxError(f"{label} bevat geen letterlijk relatief pad: {value}")
+        raise OpenCntxError(f"{label} is not a literal relative path: {value}")
     return path
 
 
@@ -152,16 +152,16 @@ def _string_list(
 ) -> tuple[str, ...]:
     value = table.get(key)
     if not isinstance(value, list) or any(not isinstance(item, str) for item in value):
-        raise OpenCntxError(f"context.{key} moet een lijst met paden zijn.")
+        raise OpenCntxError(f"context.{key} must be a list of paths.")
     if not allow_empty and not value:
-        raise OpenCntxError(f"context.{key} mag niet leeg zijn.")
+        raise OpenCntxError(f"context.{key} must not be empty.")
     return tuple(_normalize_pattern(item, f"context.{key}") for item in value)
 
 
 def _positive_integer(table: dict[str, Any], key: str) -> int:
     value = table.get(key)
     if isinstance(value, bool) or not isinstance(value, int) or value <= 0:
-        raise OpenCntxError(f"context.{key} moet een positief geheel getal zijn.")
+        raise OpenCntxError(f"context.{key} must be a positive integer.")
     return value
 
 
@@ -173,7 +173,7 @@ def _config_from_tables(
 ) -> ContextConfig:
     goal = task.get("goal")
     if not isinstance(goal, str) or not goal.strip():
-        raise OpenCntxError("task.goal moet een niet-lege tekst zijn.")
+        raise OpenCntxError("task.goal must be non-empty text.")
 
     include = _deduplicate(list(_string_list(context, "include", allow_empty=False)))
     required = _deduplicate(list(_string_list(context, "required", allow_empty=True)))
@@ -203,26 +203,26 @@ def load_config(project_root: Path) -> ContextConfig:
     try:
         resolved_config = config_path.resolve(strict=True)
     except FileNotFoundError as exc:
-        raise OpenCntxError("opencntx.toml ontbreekt; voer eerst 'opencntx init' uit.") from exc
+        raise OpenCntxError("opencntx.toml is missing; run 'opencntx init' first.") from exc
     if not resolved_config.is_relative_to(root):
-        raise OpenCntxError("opencntx.toml mag de projectroot niet verlaten.")
+        raise OpenCntxError("opencntx.toml must stay within the project root.")
     try:
         with resolved_config.open("rb") as config_file:
             data = tomllib.load(config_file)
     except tomllib.TOMLDecodeError as exc:
-        raise OpenCntxError(f"opencntx.toml bevat ongeldige TOML: {exc}") from exc
+        raise OpenCntxError(f"opencntx.toml contains invalid TOML: {exc}") from exc
     except OSError as exc:
-        raise OpenCntxError(f"opencntx.toml kan niet worden gelezen: {exc}") from exc
+        raise OpenCntxError(f"opencntx.toml cannot be read: {exc}") from exc
 
     if not isinstance(data, dict):
-        raise OpenCntxError("opencntx.toml heeft geen geldige tabelstructuur.")
+        raise OpenCntxError("opencntx.toml does not contain a valid table structure.")
     unknown_root = set(data) - {"task", "context"}
     if unknown_root:
-        raise OpenCntxError(f"Onbekende TOML-sectie of sleutel: {sorted(unknown_root)[0]}")
+        raise OpenCntxError(f"Unknown TOML section or key: {sorted(unknown_root)[0]}")
     task = data.get("task")
     context = data.get("context")
     if not isinstance(task, dict) or not isinstance(context, dict):
-        raise OpenCntxError("opencntx.toml vereist de tabellen [task] en [context].")
+        raise OpenCntxError("opencntx.toml requires the [task] and [context] tables.")
     unknown_task = set(task) - {"goal"}
     unknown_context = set(context) - {
         "include",
@@ -233,7 +233,7 @@ def load_config(project_root: Path) -> ContextConfig:
     }
     if unknown_task or unknown_context:
         unknown = sorted(unknown_task | unknown_context)[0]
-        raise OpenCntxError(f"Onbekende configuratiesleutel: {unknown}")
+        raise OpenCntxError(f"Unknown configuration key: {unknown}")
     return _config_from_tables(task, context, add_default_excludes=True)
 
 
@@ -261,7 +261,7 @@ def _expand(root: Path, pattern: str) -> list[Path]:
         return sorted(root.glob(pattern), key=lambda path: path.relative_to(root).as_posix())
     except (OSError, ValueError) as exc:
         raise OpenCntxError(
-            f"Include-patroon kan niet worden uitgebreid: {pattern}: {exc}"
+            f"Include pattern cannot be expanded: {pattern}: {exc}"
         ) from exc
 
 
@@ -281,15 +281,15 @@ def discover_sources(
     for pattern in config.include:
         matches = _expand(root, pattern)
         if not matches:
-            ignored[(pattern, "geen overeenkomst")] = {
+            ignored[(pattern, "no match")] = {
                 "pattern": pattern,
-                "reason": "include-patroon vond geen pad",
+                "reason": "include pattern matched no path",
             }
         for candidate in matches:
             try:
                 relative_path = candidate.relative_to(root).as_posix()
             except ValueError as exc:
-                raise OpenCntxError(f"Pad verlaat de projectroot: {candidate}") from exc
+                raise OpenCntxError(f"Path leaves the project root: {candidate}") from exc
             exclusion = _matching_exclusion(relative_path, config.exclude)
             if exclusion is not None:
                 if relative_path == ".opencntx" or relative_path.startswith(".opencntx/"):
@@ -297,27 +297,27 @@ def discover_sources(
                 excluded[(relative_path, exclusion)] = {
                     "path": relative_path,
                     "pattern": exclusion,
-                    "reason": "uitgesloten vóór lezen",
+                    "reason": "excluded before reading",
                 }
                 continue
             try:
                 resolved = candidate.resolve(strict=True)
             except OSError as exc:
                 raise OpenCntxError(
-                    f"Bronpad is ontbrekend of ontoegankelijk: {relative_path}: {exc}"
+                    f"Source path is missing or inaccessible: {relative_path}: {exc}"
                 ) from exc
             if not resolved.is_relative_to(root):
-                raise OpenCntxError(f"Bronpad verlaat via symlink de projectroot: {relative_path}")
+                raise OpenCntxError(f"Source path leaves the project root through a symlink: {relative_path}")
             if resolved.is_dir():
-                ignored[(relative_path, "map")] = {
+                ignored[(relative_path, "directory")] = {
                     "path": relative_path,
-                    "reason": "map is geen tekstbron",
+                    "reason": "directory is not a text source",
                 }
                 continue
             if not resolved.is_file():
-                ignored[(relative_path, "geen bestand")] = {
+                ignored[(relative_path, "not a file")] = {
                     "path": relative_path,
-                    "reason": "pad is geen regulier bestand",
+                    "reason": "path is not a regular file",
                 }
                 continue
             selected[relative_path] = resolved
@@ -341,7 +341,7 @@ def discover_sources(
         for pattern in config.required:
             if not any(_matches_pattern(path, pattern) for path in selected_paths):
                 raise OpenCntxError(
-                    f"Verplicht patroon levert geen opgenomen bestand op: {pattern}"
+                    f"Required pattern produces no included file: {pattern}"
                 )
     return Selection(
         files=ordered_files,
@@ -358,39 +358,39 @@ def _read_source(
     byte_limit: int | None = None,
 ) -> Source:
     root = project_root.resolve(strict=True)
-    safe_path = _normalize_relative_path(relative_path, "bronpad")
+    safe_path = _normalize_relative_path(relative_path, "source path")
     logical_path = root.joinpath(*PurePosixPath(safe_path).parts)
     try:
         resolved = logical_path.resolve(strict=True)
     except OSError as exc:
-        raise OpenCntxError(f"Bron is ontbrekend of ontoegankelijk: {safe_path}: {exc}") from exc
+        raise OpenCntxError(f"Source is missing or inaccessible: {safe_path}: {exc}") from exc
     if not resolved.is_relative_to(root):
-        raise OpenCntxError(f"Bron verlaat via symlink de projectroot: {safe_path}")
+        raise OpenCntxError(f"Source leaves the project root through a symlink: {safe_path}")
     try:
         declared_size = resolved.stat().st_size
         if byte_limit is not None and declared_size > byte_limit:
             raise OpenCntxError(
-                f"Bytebudget overschreden vóór lezen door: {safe_path}. "
-                "Verklein context.include, sluit het bestand uit of verhoog max_bytes."
+                f"Byte budget exceeded before reading: {safe_path}. "
+                "Reduce context.include, exclude the file, or increase max_bytes."
             )
         content = resolved.read_bytes()
         if byte_limit is not None and len(content) > byte_limit:
             raise OpenCntxError(
-                f"Bytebudget overschreden tijdens lezen door: {safe_path}. "
-                "Verklein context.include, sluit het bestand uit of verhoog max_bytes."
+                f"Byte budget exceeded while reading: {safe_path}. "
+                "Reduce context.include, exclude the file, or increase max_bytes."
             )
     except OpenCntxError:
         raise
     except OSError as exc:
-        raise OpenCntxError(f"Bron kan niet worden gelezen: {safe_path}: {exc}") from exc
+        raise OpenCntxError(f"Source cannot be read: {safe_path}: {exc}") from exc
     if b"\x00" in content or any(
         byte < 32 and byte not in (9, 10, 13) for byte in content
     ):
-        raise OpenCntxError(f"Binaire bron wordt geweigerd: {safe_path}")
+        raise OpenCntxError(f"Binary source is rejected: {safe_path}")
     try:
         text = content.decode("utf-8")
     except UnicodeDecodeError as exc:
-        raise OpenCntxError(f"Bron is geen geldige UTF-8-tekst: {safe_path}") from exc
+        raise OpenCntxError(f"Source is not valid UTF-8 text: {safe_path}") from exc
     return Source(
         path=safe_path,
         content=content,
@@ -405,11 +405,11 @@ def read_sources(
     config: ContextConfig,
 ) -> tuple[Source, ...]:
     if not selection.files:
-        raise OpenCntxError("Geen tekstbronnen geselecteerd; pas context.include aan.")
+        raise OpenCntxError("No text sources selected; adjust context.include.")
     if len(selection.files) > config.max_files:
         raise OpenCntxError(
-            f"Bestandsbudget overschreden: {len(selection.files)} > {config.max_files}. "
-            "Verklein context.include of verhoog max_files."
+            f"File budget exceeded: {len(selection.files)} > {config.max_files}. "
+            "Reduce context.include or increase max_files."
         )
     sources: list[Source] = []
     total_bytes = 0
@@ -422,8 +422,8 @@ def read_sources(
         total_bytes += source.byte_count
         if total_bytes > config.max_bytes:
             raise OpenCntxError(
-                f"Bytebudget overschreden: {total_bytes} > {config.max_bytes}. "
-                "Verklein context.include, sluit grote bestanden uit of verhoog max_bytes."
+                f"Byte budget exceeded: {total_bytes} > {config.max_bytes}. "
+                "Reduce context.include, exclude large files, or increase max_bytes."
             )
         sources.append(source)
     return tuple(sources)
@@ -495,9 +495,9 @@ def format_pack_preview(plan: PackPlan) -> str:
         lines.append(f"{label} ({len(findings)}):")
         lines.extend(f"  {format_finding(finding)}" for finding in findings)
     lines.append(
-        "resultaat: PACK_ZOU_BLOKKEREN"
+        "result: PACK_WOULD_BE_BLOCKED"
         if plan.security.blocked
-        else "resultaat: PACK_ZOU_SLAGEN"
+        else "result: PACK_WOULD_SUCCEED"
     )
     return "\n".join(lines)
 
@@ -505,9 +505,9 @@ def format_pack_preview(plan: PackPlan) -> str:
 def _blocked_secret_error(findings: tuple[SecretFinding, ...]) -> OpenCntxError:
     details = "; ".join(format_finding(finding) for finding in findings)
     return OpenCntxError(
-        f"Secretbeleid blokkeert {len(findings)} hoog-vertrouwenfinding(s): "
-        f"{details}. Gebruik 'opencntx pack --preview' en alleen een exacte "
-        "--allow-secret finding-ID als u deze bytes bewust wilt opnemen."
+        f"Secret policy blocks {len(findings)} high-confidence finding(s): "
+        f"{details}. Use 'opencntx pack --preview' and only an exact "
+        "--allow-secret finding ID when you deliberately want to include these bytes."
     )
 
 
@@ -516,15 +516,15 @@ def _markdown_fence(text: str) -> str:
     return "`" * max(3, longest + 1)
 
 
-def render_context(goal: str, sources: tuple[Source, ...]) -> str:
+def render_context(goal: str, sources: tuple[Source, ...], *, legacy: bool = False) -> str:
     lines = [
         "# OPENCNTX Context Package",
         "",
-        "## Taak",
+        "## Taak" if legacy else "## Task",
         "",
         goal,
         "",
-        "## Bronnen",
+        "## Bronnen" if legacy else "## Sources",
     ]
     for source in sources:
         fence = _markdown_fence(source.text)
@@ -612,18 +612,18 @@ def _atomic_package_write(
     root = project_root.resolve(strict=True)
     output_parent = root / ".opencntx"
     if output_parent.is_symlink():
-        raise OpenCntxError(".opencntx mag geen symlink zijn.")
+        raise OpenCntxError(".opencntx must not be a symlink.")
     try:
         output_parent.mkdir(exist_ok=True)
         resolved_parent = output_parent.resolve(strict=True)
     except OSError as exc:
-        raise OpenCntxError(f"Uitvoermap kan niet worden gemaakt: {exc}") from exc
+        raise OpenCntxError(f"Output directory cannot be created: {exc}") from exc
     if not resolved_parent.is_relative_to(root) or not resolved_parent.is_dir():
-        raise OpenCntxError("Uitvoermap moet binnen de projectroot liggen.")
+        raise OpenCntxError("Output directory must be inside the project root.")
 
     latest = output_parent / "latest"
     if latest.is_symlink():
-        raise OpenCntxError(".opencntx/latest mag geen symlink zijn.")
+        raise OpenCntxError(".opencntx/latest must not be a symlink.")
     temporary = Path(tempfile.mkdtemp(prefix=".building-", dir=output_parent))
     backup: Path | None = None
     try:
@@ -631,7 +631,7 @@ def _atomic_package_write(
         _write_file(temporary / "manifest.json", manifest_bytes)
         if latest.exists():
             if not latest.is_dir():
-                raise OpenCntxError(".opencntx/latest is geen pakketmap.")
+                raise OpenCntxError(".opencntx/latest is not a package directory.")
             backup = output_parent / f".previous-{uuid4().hex}"
             os.replace(latest, backup)
         try:
@@ -646,7 +646,7 @@ def _atomic_package_write(
     except OpenCntxError:
         raise
     except OSError as exc:
-        raise OpenCntxError(f"Pakket kon niet atomair worden geschreven: {exc}") from exc
+        raise OpenCntxError(f"Package could not be written atomically: {exc}") from exc
     finally:
         if temporary.exists():
             shutil.rmtree(temporary, ignore_errors=True)
@@ -681,28 +681,28 @@ def _load_manifest(package_path: Path) -> tuple[Path, Path, dict[str, Any], Cont
     try:
         package = package_path.resolve(strict=True)
     except OSError as exc:
-        raise OpenCntxError(f"Pakketmap ontbreekt of is ontoegankelijk: {package_path}") from exc
+        raise OpenCntxError(f"Package directory is missing or inaccessible: {package_path}") from exc
     if not package.is_dir() or package.parent.name != ".opencntx":
-        raise OpenCntxError("Pakketmap moet direct onder .opencntx staan.")
+        raise OpenCntxError("Package directory must be directly below .opencntx.")
     root = package.parent.parent.resolve(strict=True)
     manifest_path = package / "manifest.json"
     try:
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     except FileNotFoundError as exc:
-        raise OpenCntxError("manifest.json ontbreekt in het pakket.") from exc
+        raise OpenCntxError("manifest.json is missing from the package.") from exc
     except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
-        raise OpenCntxError(f"manifest.json is ongeldig of onleesbaar: {exc}") from exc
+        raise OpenCntxError(f"manifest.json is invalid or unreadable: {exc}") from exc
     if not isinstance(manifest, dict):
-        raise OpenCntxError("manifest.json heeft geen geldige objectstructuur.")
+        raise OpenCntxError("manifest.json does not contain a valid object structure.")
     if (
         manifest.get("format") != "opencntx-manifest"
         or manifest.get("format_version") != MANIFEST_VERSION
     ):
-        raise OpenCntxError("manifest.json gebruikt een onbekend formaat of versie.")
+        raise OpenCntxError("manifest.json uses an unknown format or version.")
     task = manifest.get("task")
     selection = manifest.get("selection")
     if not isinstance(task, dict) or not isinstance(selection, dict):
-        raise OpenCntxError("manifest.json mist taak- of selectiegegevens.")
+        raise OpenCntxError("manifest.json is missing task or selection data.")
     config = _config_from_tables(task, selection, add_default_excludes=False)
     return root, package, manifest, config
 
@@ -710,12 +710,12 @@ def _load_manifest(package_path: Path) -> tuple[Path, Path, dict[str, Any], Cont
 def _expected_sources(manifest: dict[str, Any]) -> dict[str, dict[str, Any]]:
     source_list = manifest.get("sources")
     if not isinstance(source_list, list):
-        raise OpenCntxError("manifest.json mist een geldige bronnenlijst.")
+        raise OpenCntxError("manifest.json is missing a valid source list.")
     expected: dict[str, dict[str, Any]] = {}
     for item in source_list:
         if not isinstance(item, dict):
-            raise OpenCntxError("manifest.json bevat een ongeldige bronregistratie.")
-        path = _normalize_relative_path(item.get("path"), "manifest-bronpad")
+            raise OpenCntxError("manifest.json contains an invalid source record.")
+        path = _normalize_relative_path(item.get("path"), "manifest source path")
         byte_count = item.get("bytes")
         digest = item.get("sha256")
         if (
@@ -725,9 +725,9 @@ def _expected_sources(manifest: dict[str, Any]) -> dict[str, dict[str, Any]]:
             or not isinstance(digest, str)
             or re.fullmatch(r"[0-9a-f]{64}", digest) is None
         ):
-            raise OpenCntxError(f"manifest.json bevat ongeldige metadata voor: {path}")
+            raise OpenCntxError(f"manifest.json contains invalid metadata for: {path}")
         if path in expected:
-            raise OpenCntxError(f"manifest.json bevat een dubbel bronpad: {path}")
+            raise OpenCntxError(f"manifest.json contains a duplicate source path: {path}")
         expected[path] = item
     return expected
 
@@ -740,20 +740,20 @@ def _manifest_security_errors(
         return ()
     security = manifest.get("security")
     if not isinstance(security, dict):
-        return ("manifest.json bevat ongeldige securitymetadata",)
+        return ("manifest.json contains invalid security metadata",)
     if set(security) != {"policy_version", "warnings", "overrides"}:
-        return ("manifest.json bevat ongeldige securitymetadata",)
+        return ("manifest.json contains invalid security metadata",)
     if security.get("policy_version") != POLICY_VERSION:
-        return ("manifest.json gebruikt een onbekende secretpolicyversie",)
+        return ("manifest.json uses an unknown secret policy version",)
     warnings = security.get("warnings")
     overrides = security.get("overrides")
     if not isinstance(warnings, list) or not isinstance(overrides, list):
-        return ("manifest.json bevat ongeldige securitymetadata",)
+        return ("manifest.json contains invalid security metadata",)
     if any(not isinstance(record, dict) for record in warnings + overrides):
-        return ("manifest.json bevat ongeldige securitymetadata",)
+        return ("manifest.json contains invalid security metadata",)
     allowed_ids = tuple(record.get("finding_id") for record in overrides)
     if any(not isinstance(finding_id, str) for finding_id in allowed_ids):
-        return ("manifest.json bevat ongeldige overridegegevens",)
+        return ("manifest.json contains invalid override data",)
 
     findings = scan_sources(
         (source.path, source.text, source.sha256)
@@ -762,11 +762,11 @@ def _manifest_security_errors(
     try:
         assessment = assess_findings(findings, allowed_ids)
     except (TypeError, ValueError):
-        return ("manifest.json bevat ongeldige overridegegevens",)
+        return ("manifest.json contains invalid override data",)
     if assessment.blocked:
-        return ("manifest.json mist een vereiste secretblokkade of override",)
+        return ("manifest.json is missing a required secret block or override",)
     if security != _security_manifest(assessment):
-        return ("manifest.json securitymetadata wijkt af van de actuele bronnen",)
+        return ("manifest.json security metadata differs from the current sources",)
     return ()
 
 
@@ -778,7 +778,7 @@ def verify_package(package_path: Path) -> VerifyReport:
 
     package_info = manifest.get("package")
     if not isinstance(package_info, dict):
-        raise OpenCntxError("manifest.json mist geldige pakketmetadata.")
+        raise OpenCntxError("manifest.json is missing valid package metadata.")
     expected_context_hash = package_info.get("context_sha256")
     if (
         isinstance(package_info.get("file_count"), bool)
@@ -789,14 +789,14 @@ def verify_package(package_path: Path) -> VerifyReport:
         or not isinstance(expected_context_hash, str)
         or re.fullmatch(r"[0-9a-f]{64}", expected_context_hash) is None
     ):
-        errors.append("manifest.json bevat intern inconsistente pakketmetadata")
+        errors.append("manifest.json contains internally inconsistent package metadata")
     try:
         context_bytes = (package / "CONTEXT.md").read_bytes()
         actual_context_hash = hashlib.sha256(context_bytes).hexdigest()
         if expected_context_hash != actual_context_hash:
-            errors.append("CONTEXT.md wijkt af van de manifest-hash")
+            errors.append("CONTEXT.md differs from the manifest hash")
     except OSError as exc:
-        errors.append(f"CONTEXT.md kan niet volledig worden gecontroleerd: {exc}")
+        errors.append(f"CONTEXT.md cannot be fully verified: {exc}")
 
     selection: Selection | None
     try:
@@ -809,7 +809,7 @@ def verify_package(package_path: Path) -> VerifyReport:
             for path in expected
             if root.joinpath(*PurePosixPath(path).parts).exists()
         }
-        errors.append(f"Bronselectie is onvolledig: {exc}")
+        errors.append(f"Source selection is incomplete: {exc}")
 
     expected_paths = set(expected)
     missing = sorted(expected_paths - current_paths)
@@ -834,10 +834,10 @@ def verify_package(package_path: Path) -> VerifyReport:
 
     if len(current_paths) > config.max_files:
         errors.append(
-            f"Bestandsbudget is nu overschreden: {len(current_paths)} > {config.max_files}"
+            f"File budget is now exceeded: {len(current_paths)} > {config.max_files}"
         )
     if total_bytes > config.max_bytes:
-        errors.append(f"Bytebudget is nu overschreden: {total_bytes} > {config.max_bytes}")
+        errors.append(f"Byte budget is now exceeded: {total_bytes} > {config.max_bytes}")
 
     errors.extend(_manifest_security_errors(manifest, current_sources))
 
@@ -873,5 +873,5 @@ def format_verify_report(report: VerifyReport) -> str:
         lines.extend(f"  {path}" for path in paths)
     lines.append(f"errors ({len(report.errors)}):")
     lines.extend(f"  {error}" for error in report.errors)
-    lines.append("resultaat: OK" if report.ok else "resultaat: DRIFT OF ONVOLLEDIG")
+    lines.append("result: OK" if report.ok else "result: DRIFT OR INCOMPLETE")
     return "\n".join(lines)

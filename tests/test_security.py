@@ -123,13 +123,13 @@ class SecretPolicyTests(unittest.TestCase):
         self.assertEqual(assessment.blocked, ())
         self.assertEqual(assessment.warnings, (warning,))
 
-        with self.assertRaisesRegex(ValueError, "maar één keer"):
+        with self.assertRaisesRegex(ValueError, "only once"):
             assess_findings((high,), (high.finding_id, high.finding_id))
-        with self.assertRaisesRegex(ValueError, "64 kleine hextekens"):
+        with self.assertRaisesRegex(ValueError, "64 lowercase hexadecimal"):
             assess_findings((high,), ("not-an-id",))
-        with self.assertRaisesRegex(ValueError, "Onbekende of verouderde"):
+        with self.assertRaisesRegex(ValueError, "Unknown or stale"):
             assess_findings((high,), (("0" * 64),))
-        with self.assertRaisesRegex(ValueError, "Alleen een hoog-vertrouwen"):
+        with self.assertRaisesRegex(ValueError, "Only a high-confidence block"):
             assess_findings((warning,), (warning.finding_id,))
 
 

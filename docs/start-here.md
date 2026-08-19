@@ -1,6 +1,6 @@
 # Start here
 
-[Start here](start-here.md) · [How it works](how-it-works.md) · [Workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
+[Start here](start-here.md) · [How it works](how-it-works.md) · [Advanced / Alpha workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
 
 This page covers installation and your first useful result in one continuous
 path. Start with a small test project that contains only files you are allowed
@@ -29,6 +29,7 @@ Open PowerShell:
 git clone --branch v0.2.0 --depth 1 https://github.com/CNTX-PROJECT/OPENCNTX.git
 cd OPENCNTX
 python -m pip install .
+opencntx --version
 opencntx --help
 ```
 
@@ -58,10 +59,10 @@ opencntx --help
 ## 3. Confirm the installed version
 
 ```powershell
-python -c "import opencntx; print(opencntx.__version__)"
+opencntx --version
 ```
 
-The Alpha release prints `0.2.0`.
+The Alpha release prints exactly `opencntx 0.2.0`.
 
 ## 4. Open a small project
 
@@ -105,7 +106,7 @@ Check the file and byte budgets. A local scanner also reports safe metadata for
 known secret signals without printing the matched value. Preview does not
 create or change `.opencntx/`.
 
-`PACK_ZOU_SLAGEN` means the same current bytes may be packed. It does not mean
+`PACK_WOULD_SUCCEED` means the same current bytes may be packed. It does not mean
 that the content is secret-free, correct, or approved.
 
 ## 7. Build the package
@@ -128,38 +129,36 @@ Open `.opencntx/latest/CONTEXT.md`. Confirm that:
 - the package is small enough to review;
 - the goal is still correct.
 
-## 8. Verify before use
+## 9. Verify before use
 
 ```powershell
-opencntx verify .opencntx/latest
+opencntx verify
 ```
 
 Exit code `0` means the package and recorded source bytes still match. It does
 not prove that the text is correct, safe, complete, or approved. A non-zero
 result requires inspection.
 
-## 9. Share only by choice
+Without a path, OPENCNTX checks exactly `.opencntx/latest` under the current
+directory. It never searches a parent directory. Use `opencntx verify PATH`
+when you deliberately want to verify another explicit package path.
+
+## 10. Share only by choice
 
 OPENCNTX never uploads the package. If you choose to use it with an AI tool,
 you provide `CONTEXT.md` or selected contents yourself.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="../assets/docs/core-flow-dark.svg">
-  <img src="../assets/docs/core-flow.svg" alt="Initialize, pack, inspect, verify, and only then decide whether to share">
+  <img src="../assets/docs/core-flow.svg" alt="Initialize, preview and pack, inspect, verify, and only then decide whether to share">
 </picture>
 
-## 10. Create a workspace when the project grows
+## Advanced / Alpha workspace
 
-The basic package flow is enough for one bounded task. For a longer project:
-
-```powershell
-opencntx workspace init my-project
-opencntx workspace control refresh --root my-project
-opencntx workspace capture README.md --root my-project --origin OWNER
-```
-
-Read [Workspace](workspace.md) before adding chapters, tasks, playbooks, roles,
-or executor packages.
+The complete core route ends above. If a longer project needs supplied source
+storage, chapters, task gates, playbooks, roles, or executor packages, continue
+with [Advanced / Alpha workspace](workspace.md). Those concepts are optional
+and are not prerequisites for a first package.
 
 ## Upgrade or remove OPENCNTX
 

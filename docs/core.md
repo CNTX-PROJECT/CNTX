@@ -1,13 +1,16 @@
 # Core commands: init, pack, and verify
 
-[Start here](start-here.md) · [How it works](how-it-works.md) · [Workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
+[Start here](start-here.md) · [How it works](how-it-works.md) · [Advanced / Alpha workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
 
 The core flow creates one bounded context package from local UTF-8 text. It is
 the shortest OPENCNTX path and does not require a workspace.
 
+Confirm the installed package with `opencntx --version`. Fixed CLI text is
+English and ASCII-safe; user content and paths remain UTF-8.
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="../assets/docs/core-flow-dark.svg">
-  <img src="../assets/docs/core-flow.svg" alt="Initialize, pack, inspect, verify, and only then decide whether to share">
+  <img src="../assets/docs/core-flow.svg" alt="Initialize, preview and pack, inspect, verify, and only then decide whether to share">
 </picture>
 
 ## 1. Create a configuration
@@ -57,8 +60,8 @@ secret-policy checks as `pack`. It lists included, required, excluded, and
 ignored paths with reasons, plus file and byte budgets. It does not create or
 change `.opencntx/`, source files, a manifest, or temporary publication state.
 
-A preview returns `PACK_ZOU_SLAGEN` with exit code `0` when the same current
-bytes may be packed. It returns `PACK_ZOU_BLOKKEREN` with exit code `2` for a
+A preview returns `PACK_WOULD_SUCCEED` with exit code `0` when the same current
+bytes may be packed. It returns `PACK_WOULD_BE_BLOCKED` with exit code `2` for a
 high-confidence secret signal or another invalid input. Lower-confidence
 signals are warnings and do not change a successful exit code.
 
@@ -113,7 +116,7 @@ approved.
 ## 5. Verify the package
 
 ```powershell
-opencntx verify .opencntx/latest
+opencntx verify
 ```
 
 Verification reports source state separately:
@@ -124,6 +127,9 @@ Verification reports source state separately:
 - `unexpected` — the package contains an unrecorded file or structure.
 
 Verification is read-only. It does not repair sources or rebuild the package.
+Without a path it checks exactly `.opencntx/latest` under the current
+directory and never searches upward. `opencntx verify PATH` preserves explicit
+path selection.
 
 ## Exit codes
 

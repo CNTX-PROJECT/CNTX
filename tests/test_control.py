@@ -20,6 +20,7 @@ from opencntx.control import (  # noqa: E402
     CONTROL_SNAPSHOT_HEADER,
     CONTROL_START,
     ControlError,
+    _render_snapshot,
     inspect_control,
     refresh_control_snapshot,
 )
@@ -81,7 +82,30 @@ class ControlTests(unittest.TestCase):
             self.assertTrue(first_bytes.startswith(CONTROL_SNAPSHOT_HEADER))
             self.assertIn(CONTROL_START, first_bytes)
             self.assertIn(CONTROL_END, first_bytes)
-            self.assertIn(b"verleent geen OWNER-bevoegdheid", first_bytes)
+            self.assertIn(b"grants no OWNER authority", first_bytes)
+
+    def test_exact_legacy_snapshot_is_accepted_read_only(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            workspace = self.make_workspace(Path(temporary_directory))
+            owner = (workspace / "CONTROL" / "OWNER.md").read_bytes()
+            roadmap = self.roadmap(workspace).read_bytes()
+            current = (workspace / "CONTROL" / "CURRENT.md").read_bytes()
+            start = roadmap.index(CONTROL_START)
+            end = roadmap.index(CONTROL_END) + len(CONTROL_END)
+            legacy = _render_snapshot(
+                owner=owner,
+                roadmap=roadmap,
+                current=current,
+                block=roadmap[start:end],
+                legacy=True,
+            )
+            self.snapshot(workspace).write_bytes(legacy)
+            before = self.snapshot(workspace).read_bytes()
+
+            state = inspect_control(workspace, require_snapshot=True)
+
+            self.assertEqual(state.snapshot_bytes, legacy)
+            self.assertEqual(self.snapshot(workspace).read_bytes(), before)
 
     def test_inspection_is_read_only_and_refresh_receipt_has_no_absolute_path(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
@@ -225,7 +249,7 @@ class ControlTests(unittest.TestCase):
             )
             self.assertEqual(compact.returncode, 0, compact.stderr)
             self.assertIn("CONTROL_SNAPSHOT_REFRESHED: COMPACT_MARKED", compact.stdout)
-            self.assertIn("Afgeleid bewijs", compact.stdout)
+            self.assertIn("Derived evidence", compact.stdout)
 
             self.roadmap(workspace).write_text(
                 "# ROADMAP\n\nGeen actieve opdracht.\n",

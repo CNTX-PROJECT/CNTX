@@ -147,7 +147,7 @@ def _extract_block(roadmap: bytes) -> bytes | None:
 
 
 def _render_snapshot(
-    *, owner: bytes, roadmap: bytes, current: bytes, block: bytes
+    *, owner: bytes, roadmap: bytes, current: bytes, block: bytes, legacy: bool = False
 ) -> bytes:
     block_text = block.decode("utf-8")
     metadata = [
@@ -165,9 +165,13 @@ def _render_snapshot(
         "",
         "# OPENCNTX control snapshot",
         "",
-        "> Afgeleid en vervangbaar. Dit document verleent geen OWNER-bevoegdheid.",
+        (
+            "> Afgeleid en vervangbaar. Dit document verleent geen OWNER-bevoegdheid."
+            if legacy
+            else "> Derived and replaceable. This document grants no OWNER authority."
+        ),
         "",
-        "## Actuele roadmapsturing",
+        "## Actuele roadmapsturing" if legacy else "## Current roadmap control",
         "",
     ]
     return ("\n".join(metadata) + block_text + "\n").encode("utf-8")
@@ -218,10 +222,29 @@ def inspect_control(project_root: Path, *, require_snapshot: bool = False) -> Co
                 "De beheerde control-snapshot kan niet worden gelezen.",
                 code="control_snapshot_unavailable",
             ) from exc
-        if actual != snapshot:
+        legacy_snapshot = _render_snapshot(
+            owner=owner,
+            roadmap=roadmap,
+            current=current,
+            block=block,
+            legacy=True,
+        )
+        if actual not in {snapshot, legacy_snapshot}:
             raise ControlError(
                 "De beheerde control-snapshot wijkt af van de officiële controlbytes.",
                 code="control_snapshot_stale",
+            )
+        if actual == legacy_snapshot:
+            state = ControlState(
+                root=root,
+                mode=state.mode,
+                owner_sha256=state.owner_sha256,
+                roadmap_sha256=state.roadmap_sha256,
+                current_sha256=state.current_sha256,
+                block_sha256=state.block_sha256,
+                block_bytes=state.block_bytes,
+                snapshot_sha256=_digest(actual),
+                snapshot_bytes=actual,
             )
     return state
 
@@ -288,18 +311,18 @@ def _write_receipt(
         "block_bytes": state.block_bytes if state else None,
         "block_sha256": state.block_sha256 if state else None,
         "created_at": _timestamp(created_at),
-        "error": f"Control refresh mislukt: {error.code}." if error else None,
+        "error": f"Control refresh failed: {error.code}." if error else None,
         "error_code": error.code if error else None,
         "format": CONTROL_RECEIPT_FORMAT,
         "format_version": CONTROL_RECEIPT_VERSION,
         "mode": state.mode if state else None,
         "next_action": (
-            "Gebruik de compacte snapshot in een goedgekeurde taakcontext."
+            "Use the compact snapshot in an approved task context."
             if status == "CONTROL_SNAPSHOT_REFRESHED"
             else (
-                "Voeg bewust één geldig markerblock toe om compact mode te activeren."
+                "Deliberately add one valid marker block to activate compact mode."
                 if status == "CONTROL_LEGACY_CONFIRMED"
-                else "Herstel de genoemde controlfout en vraag zo nodig een OWNER-beslissing."
+                else "Fix the reported control error and request an OWNER decision if needed."
             )
         ),
         "roadmap_sha256": state.roadmap_sha256 if state else None,

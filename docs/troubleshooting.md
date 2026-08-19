@@ -1,6 +1,6 @@
 # Troubleshooting
 
-[Start here](start-here.md) · [How it works](how-it-works.md) · [Workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
+[Start here](start-here.md) · [How it works](how-it-works.md) · [Advanced / Alpha workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
 
 Start with the smallest failing command. Read its complete output and keep the
 first stable error message.
@@ -10,7 +10,7 @@ first stable error message.
 Verify the installation environment:
 
 ```powershell
-python -c "import opencntx; print(opencntx.__version__)"
+opencntx --version
 python -m pip show opencntx
 ```
 
@@ -44,6 +44,17 @@ OPENCNTX does not perform extraction itself.
 The package no longer matches the current project files. Decide whether the
 old snapshot is still correct. If not, inspect the changed sources and rebuild
 the package.
+
+Running `opencntx verify` without a path checks only `.opencntx/latest` under
+the current directory. It never searches a parent directory. Use an explicit
+path when that default is not the intended package.
+
+## A Windows terminal cannot display a path character
+
+OPENCNTX keeps user paths and content as UTF-8. Fixed CLI text is ASCII-safe.
+On a narrow console, an unsupported character is displayed as an escape rather
+than causing a traceback. Use a UTF-8 terminal when you need the exact visible
+character; stored path and artifact bytes are not rewritten.
 
 ## A workspace command reports a wrong digest
 

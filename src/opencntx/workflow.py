@@ -866,52 +866,66 @@ def _new_event_value(
     return value
 
 
-def _task_view_bytes(chain: TaskChain) -> bytes:
+def _task_view_bytes(chain: TaskChain, *, legacy: bool = False) -> bytes:
     proposal = chain.events[0].payload
     latest = chain.events[-1]
     lines = [
-        f"# Taak {chain.task_id}",
+        f"# {'Taak' if legacy else 'Task'} {chain.task_id}",
         "",
-        "> Gegenereerde taakkaart uit de gevalideerde append-only events. De JSON-events",
-        "> zijn leidend; deze kaart verleent geen OWNER-bevoegdheid.",
+        (
+            "> Gegenereerde taakkaart uit de gevalideerde append-only events. De JSON-events"
+            if legacy
+            else "> Generated task card from validated append-only events. The JSON events"
+        ),
+        (
+            "> zijn leidend; deze kaart verleent geen OWNER-bevoegdheid."
+            if legacy
+            else "> are authoritative; this card grants no OWNER authority."
+        ),
         "",
-        "## Actuele staat",
+        "## Actuele staat" if legacy else "## Current state",
         "",
-        f"- Revisie: {chain.revision}",
+        f"- {'Revisie' if legacy else 'Revision'}: {chain.revision}",
         f"- Status: {chain.status}",
-        f"- Laatste actorrol: {latest.actor_role}",
-        f"- Laatste actor-ID: {_markdown_inline(latest.actor_id)}",
-        f"- Laatste eventdigest: `{latest.record_digest}`",
+        f"- {'Laatste actorrol' if legacy else 'Latest actor role'}: {latest.actor_role}",
+        f"- {'Laatste actor-ID' if legacy else 'Latest actor ID'}: {_markdown_inline(latest.actor_id)}",
+        f"- {'Laatste eventdigest' if legacy else 'Latest event digest'}: `{latest.record_digest}`",
         "",
-        "## Opdracht",
+        "## Opdracht" if legacy else "## Assignment",
         "",
-        f"- Titel: {_markdown_inline(proposal['title'])}",
-        f"- Doel: {_markdown_inline(proposal['goal'])}",
+        f"- {'Titel' if legacy else 'Title'}: {_markdown_inline(proposal['title'])}",
+        f"- {'Doel' if legacy else 'Goal'}: {_markdown_inline(proposal['goal'])}",
         f"- Definition of Done: {_markdown_inline(proposal['definition_of_done'])}",
-        f"- Uitvoerderrol: {_markdown_inline(proposal['executor_role'])}",
-        f"- Verwachte output: {_markdown_inline(proposal['expected_output'])}",
+        f"- {'Uitvoerderrol' if legacy else 'Executor role'}: {_markdown_inline(proposal['executor_role'])}",
+        f"- {'Verwachte output' if legacy else 'Expected output'}: {_markdown_inline(proposal['expected_output'])}",
         "",
-        "## Gepinde inputs",
+        "## Gepinde inputs" if legacy else "## Pinned inputs",
         "",
     ]
     for item in proposal["inputs"]:
         lines.append(
-            f"- Pad: {_markdown_inline(item['path'])} — {item['bytes']} bytes — "
+            f"- {'Pad' if legacy else 'Path'}: {_markdown_inline(item['path'])} "
+            f"{'—' if legacy else '-'} {item['bytes']} bytes {'—' if legacy else '-'} "
             f"SHA-256 `{item['sha256']}`"
         )
-    lines.extend(["", "## Toegestane acties", ""])
+    lines.extend(["", "## Toegestane acties" if legacy else "## Allowed actions", ""])
     lines.extend(f"- {_markdown_inline(item)}" for item in proposal["allowed_actions"])
-    lines.extend(["", "## Verboden acties", ""])
+    lines.extend(["", "## Verboden acties" if legacy else "## Forbidden actions", ""])
     lines.extend(f"- {_markdown_inline(item)}" for item in proposal["forbidden_actions"])
-    lines.extend(["", "## Acceptatiecriteria", ""])
+    lines.extend(["", "## Acceptatiecriteria" if legacy else "## Acceptance criteria", ""])
     lines.extend(f"- {_markdown_inline(item)}" for item in proposal["acceptance_criteria"])
-    lines.extend(["", "## Digestketen", "", f"- Voorstel: `{chain.proposal_digest}`"])
+    lines.extend([
+        "",
+        "## Digestketen" if legacy else "## Digest chain",
+        "",
+        f"- {'Voorstel' if legacy else 'Proposal'}: `{chain.proposal_digest}`",
+    ])
     labels = {
-        "owner-approval": "OWNER-goedkeuring",
-        "result": "Resultaat",
-        "architect-review": "ARCHITECT-controle",
-        "owner-acceptance": "OWNER-aanvaarding",
-        "closure": "Afronding",
+        "owner-approval": "OWNER-goedkeuring" if legacy else "OWNER approval",
+        "result": "Resultaat" if legacy else "Result",
+        "architect-review": "ARCHITECT-controle" if legacy else "ARCHITECT review",
+        "owner-acceptance": "OWNER-aanvaarding" if legacy else "OWNER acceptance",
+        "closure": "Afronding" if legacy else "Closure",
     }
     for event in chain.events[1:]:
         if event.event_type in labels:
@@ -920,35 +934,46 @@ def _task_view_bytes(chain: TaskChain) -> bytes:
         (event for event in chain.events if event.event_type == "result"), None
     )
     if result_event is not None:
-        lines.extend(["", "## Beperkingen en open vragen", ""])
+        lines.extend(["", "## Beperkingen en open vragen" if legacy else "## Limitations and open questions", ""])
         limitations = result_event.payload["limitations"]
         questions = result_event.payload["open_questions"]
         if limitations:
-            lines.append("- Beperkingen:")
+            lines.append("- Beperkingen:" if legacy else "- Limitations:")
             lines.extend(
                 f"  - {_markdown_inline(item)}" for item in limitations
             )
         else:
-            lines.append("- Beperkingen: geen opgegeven")
+            lines.append("- Beperkingen: geen opgegeven" if legacy else "- Limitations: none provided")
         if questions:
-            lines.append("- Open vragen:")
+            lines.append("- Open vragen:" if legacy else "- Open questions:")
             lines.extend(f"  - {_markdown_inline(item)}" for item in questions)
         else:
-            lines.append("- Open vragen: geen opgegeven")
+            lines.append("- Open vragen: geen opgegeven" if legacy else "- Open questions: none provided")
     attempts = [event for event in chain.events if event.event_type == "attempt"]
     if attempts:
-        lines.extend(["", "## Pogingen en blokkades", ""])
+        lines.extend(["", "## Pogingen en blokkades" if legacy else "## Attempts and blocks", ""])
         for attempt in attempts:
             payload = attempt.payload
             lines.append(
-                f"- Poging {payload['attempt_number']}: "
-                f"{_markdown_inline(payload['error_code'])} — "
-                f"signatuur {_markdown_inline(payload['error_signature'])} — "
-                f"nieuwe basis {_markdown_inline(payload['new_basis'])}"
+                f"- {'Poging' if legacy else 'Attempt'} {payload['attempt_number']}: "
+                f"{_markdown_inline(payload['error_code'])} {'—' if legacy else '-'} "
+                f"{'signatuur' if legacy else 'signature'} {_markdown_inline(payload['error_signature'])} "
+                f"{'—' if legacy else '-'} {'nieuwe basis' if legacy else 'new basis'} "
+                f"{_markdown_inline(payload['new_basis'])}"
             )
         if chain.status == "BLOCKED":
-            lines.append("- Blokkade: drie opeenvolgende gelijke foutsignaturen; OWNER-richting vereist.")
-    lines.extend(["", "## Volgende gate", "", f"- {_next_gate(chain.status)}", ""])
+            lines.append(
+                "- Blokkade: drie opeenvolgende gelijke foutsignaturen; OWNER-richting vereist."
+                if legacy
+                else "- Block: three consecutive identical error signatures; OWNER direction required."
+            )
+    lines.extend([
+        "",
+        "## Volgende gate" if legacy else "## Next gate",
+        "",
+        f"- {_next_gate(chain.status, legacy=legacy)}",
+        "",
+    ])
     body = "\n".join(lines).encode("utf-8")
     header = (
         "<!-- opencntx-task-view\n"
@@ -966,8 +991,21 @@ def _markdown_inline(value: object) -> str:
     return html.escape(value, quote=True).replace("`", "&#96;")
 
 
-def _next_gate(status: str) -> str:
-    return {
+def _next_gate(status: str, *, legacy: bool = False) -> str:
+    current = {
+        "AWAITING_OWNER_APPROVAL": "OWNER approval of exact task ID, revision, and proposal digest",
+        "APPROVED_FOR_EXECUTION": "ARCHITECT may register the approved execution",
+        "IN_EXECUTION": "EXECUTOR delivers exact result and evidence",
+        "RESULT_READY": "ARCHITECT reviews exact result and evidence",
+        "AWAITING_OWNER_ACCEPTANCE": "OWNER accepts or returns exact result and review",
+        "OWNER_ACCEPTED": "ARCHITECT may write the local closure evidence",
+        "CLOSED": "No continuation without a new explicit task",
+        "RETURNED": "New content requires a new explicit revision",
+        "BLOCKED": "OWNER direction required; no further attempt",
+        "CANCELLED": "No continuation without a new explicit task",
+        "SUPERSEDED": "Use only the explicitly identified newer task",
+    }
+    legacy_values = {
         "AWAITING_OWNER_APPROVAL": "OWNER-goedkeuring van exacte taak-ID, revisie en voorstel-digest",
         "APPROVED_FOR_EXECUTION": "ARCHITECT mag de goedgekeurde uitvoering registreren",
         "IN_EXECUTION": "UITVOERDER levert exact resultaat en bewijs",
@@ -979,7 +1017,8 @@ def _next_gate(status: str) -> str:
         "BLOCKED": "OWNER-richting vereist; geen verdere poging",
         "CANCELLED": "Geen vervolg zonder nieuwe expliciete taak",
         "SUPERSEDED": "Gebruik uitsluitend de expliciet aangewezen nieuwere taak",
-    }[status]
+    }
+    return (legacy_values if legacy else current)[status]
 
 
 def _view_is_managed(path: Path) -> bool:
@@ -1014,7 +1053,10 @@ def _ensure_managed_view(chain: TaskChain) -> None:
         actual = path.read_bytes()
     except OSError as exc:
         raise WorkflowError("TASK.md is niet leesbaar.", code="task_view_unmanaged") from exc
-    if actual != _task_view_bytes(chain):
+    if actual not in {
+        _task_view_bytes(chain),
+        _task_view_bytes(chain, legacy=True),
+    }:
         raise WorkflowError(
             "TASK.md hoort niet bij het laatste gevalideerde event; niets overschreven.",
             code="task_view_stale",
@@ -1089,10 +1131,9 @@ def _try_failure_receipt(
             "operation": operation,
             "task_id": safe_task_id,
             "error_code": error.code,
-            "error": str(error),
+            "error": f"Task command failed: {error.code}.",
             "next_action": (
-                "Controleer de gemelde fout en herhaal alleen met gecorrigeerde "
-                "of aantoonbaar nieuwe input."
+                "Check the reported error and retry only with corrected or demonstrably new input."
             ),
             "created_at": _timestamp(_utc_now()),
         }

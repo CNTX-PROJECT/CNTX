@@ -216,21 +216,21 @@ def assess_findings(
 ) -> SecretAssessment:
     requested = tuple(allowed_finding_ids)
     if len(requested) != len(set(requested)):
-        raise ValueError("Iedere secret-finding-ID mag maar één keer worden opgegeven.")
+        raise ValueError("Each secret finding ID may be specified only once.")
     for finding_id in requested:
         if re.fullmatch(r"[0-9a-f]{64}", finding_id) is None:
             raise ValueError(
-                f"Ongeldige secret-finding-ID; verwacht 64 kleine hextekens: {finding_id}"
+                f"Invalid secret finding ID; expected 64 lowercase hexadecimal characters: {finding_id}"
             )
 
     by_id = {finding.finding_id: finding for finding in findings}
     for finding_id in requested:
         finding = by_id.get(finding_id)
         if finding is None:
-            raise ValueError(f"Onbekende of verouderde secret-finding-ID: {finding_id}")
+            raise ValueError(f"Unknown or stale secret finding ID: {finding_id}")
         if finding.confidence != CONFIDENCE_HIGH:
             raise ValueError(
-                "Alleen een hoog-vertrouwenblokkade kan exact worden overschreven: "
+                "Only a high-confidence block can be overridden exactly: "
                 f"{finding_id}"
             )
 

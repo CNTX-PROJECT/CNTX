@@ -1,18 +1,18 @@
 # How OPENCNTX works
 
-[Start here](start-here.md) · [How it works](how-it-works.md) · [Workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
+[Start here](start-here.md) · [How it works](how-it-works.md) · [Advanced / Alpha workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
 
 OPENCNTX solves one practical problem: large or mixed project history makes it
 hard to give an AI tool only the information needed for the current task.
 
 ## The simple idea
 
-1. You state one goal.
-2. You choose allowed local files.
-3. OPENCNTX builds a bounded text package.
-4. It records hashes and budgets.
-5. You inspect and verify the package.
-6. You decide whether to share it.
+1. You initialize one narrow goal and allowed file set.
+2. You preview the exact selection and local secret decision.
+3. You pack a bounded text package.
+4. You inspect the generated `CONTEXT.md` yourself.
+5. You verify the recorded bytes.
+6. You decide whether to share anything.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="../assets/docs/opencntx-overview-dark.svg">
@@ -37,14 +37,15 @@ It does **not** mean that OPENCNTX:
 
 ### Core layer
 
-`init`, `pack`, and `verify` create and check one context package directly from
-a project directory.
+`init`, `pack --preview`, `pack`, inspection, and `verify` create and check one
+context package directly from a project directory.
 
-### Workspace layer
+### Advanced / Alpha workspace layer
 
-The optional workspace stores supplied sources, chapters, tasks, playbooks,
-roles, approvals, and evidence as readable local records. It can select a
-small context set for one approved task.
+The optional Advanced / Alpha workspace stores supplied sources, chapters,
+tasks, playbooks, roles, approvals, and evidence as readable local records. It
+can select a small context set for one approved task, but none of these
+concepts is required for the core route.
 
 ## Three kinds of evidence
 
@@ -65,7 +66,7 @@ boundary changes only when you deliberately move output elsewhere.
 
 - [Start here](start-here.md)
 - [Context packages](context-packets.md)
-- [Workspace](workspace.md)
+- [Advanced / Alpha workspace](workspace.md)
 - [OWNER flow](owner-flow.md)
 - [Security](security.md)
 

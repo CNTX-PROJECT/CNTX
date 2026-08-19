@@ -8,6 +8,7 @@ import os
 from pathlib import Path
 import sys
 
+from . import __version__
 from .catalog import create_chapter, rebuild_catalog
 from .core import (
     OpenCntxError,
@@ -72,7 +73,7 @@ from .workspace import (
 
 
 CONFIG_TEMPLATE = '''[task]
-goal = "Beschrijf de ene concrete taak"
+goal = "Describe the one concrete task"
 
 [context]
 include = ["README.md", "src/**/*.py"]
@@ -87,43 +88,51 @@ def build_parser() -> argparse.ArgumentParser:
     """Build the public CLI parser."""
     parser = argparse.ArgumentParser(
         prog="opencntx",
-        description=(
-            "Maak een klein, expliciet en controleerbaar contextpakket voor één AI-taak."
-        ),
+        description="Create a small, explicit, and verifiable context package for one task.",
         epilog=(
-            "Bestaande kerncommando's: {init,pack,verify}. "
-            "Optionele lokale opslag: workspace."
+            "Core route: init, pack --preview, pack, inspect CONTEXT.md, verify. "
+            "Advanced / Alpha: workspace."
         ),
+    )
+    parser.add_argument(
+        "--version",
+        action="version",
+        version=f"%(prog)s {__version__}",
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
     subparsers.add_parser(
         "init",
-        help="maak veilig een opencntx.toml-sjabloon in de huidige map",
+        help="safely create an opencntx.toml template in the current directory",
     )
     pack_parser = subparsers.add_parser(
         "pack",
-        help="maak atomair CONTEXT.md en manifest.json uit de gekozen bronnen",
+        help="atomically create CONTEXT.md and manifest.json from selected sources",
     )
     pack_parser.add_argument(
         "--preview",
         action="store_true",
-        help="toon dezelfde selectie en secretbeslissing zonder iets te schrijven",
+        help="show the exact selection and secret decision without writing anything",
     )
     pack_parser.add_argument(
         "--allow-secret",
         action="append",
         default=[],
         metavar="FINDING_ID",
-        help="overschrijf exact één actuele hoog-vertrouwenfinding; herhaalbaar",
+        help="override one exact current high-confidence finding; repeatable",
     )
     verify_parser = subparsers.add_parser(
         "verify",
-        help="controleer een pakket op gewijzigde, ontbrekende en nieuwe bronnen",
+        help="check a package for changed, missing, and unexpected sources",
     )
-    verify_parser.add_argument("package", help="pakketmap, bijvoorbeeld .opencntx/latest")
+    verify_parser.add_argument(
+        "package",
+        nargs="?",
+        default=".opencntx/latest",
+        help="package directory; default: .opencntx/latest",
+    )
     workspace_parser = subparsers.add_parser(
         "workspace",
-        help="lokale opslag, media, catalogus, taakgates en contextnavigatie",
+        help="Advanced / Alpha: local storage, media, catalog, task gates, and navigation",
     )
     workspace_subparsers = workspace_parser.add_subparsers(
         dest="workspace_command",
@@ -131,41 +140,41 @@ def build_parser() -> argparse.ArgumentParser:
     )
     workspace_init_parser = workspace_subparsers.add_parser(
         "init",
-        help="maak veilig de vaste projectwerkruimtestructuur",
+        help="safely create the fixed project workspace structure",
     )
     workspace_init_parser.add_argument(
         "project",
         nargs="?",
         default=".",
-        help="projectmap; standaard de huidige map",
+        help="project directory; default: current directory",
     )
     workspace_capture_parser = workspace_subparsers.add_parser(
         "capture",
-        help="bewaar één regulier lokaal bestand zonder het uit te voeren",
+        help="capture one regular local file without executing it",
     )
-    workspace_capture_parser.add_argument("source", help="het lokale bronbestand")
+    workspace_capture_parser.add_argument("source", help="local source file")
     workspace_capture_parser.add_argument(
         "--root",
         default=".",
-        help="projectwerkruimte; standaard de huidige map",
+        help="project workspace; default: current directory",
     )
     workspace_capture_parser.add_argument(
         "--privacy",
         choices=PRIVACY_LABELS,
         default="PRIVATE",
-        help="privacylabel; standaard PRIVATE",
+        help="privacy label; default: PRIVATE",
     )
     workspace_capture_parser.add_argument(
         "--origin",
-        help="korte herkomst in één regel",
+        help="short origin on one line",
     )
     workspace_capture_parser.add_argument(
         "--supersedes",
-        help="optionele bestaande source-ID die deze nieuwe bron vervangt",
+        help="optional existing source ID superseded by this new source",
     )
     workspace_control_parser = workspace_subparsers.add_parser(
         "control",
-        help="beheer de compacte, afgeleide actuele roadmapsturing",
+        help="manage the compact derived current roadmap control",
     )
     workspace_control_subparsers = workspace_control_parser.add_subparsers(
         dest="workspace_control_command",
@@ -173,16 +182,16 @@ def build_parser() -> argparse.ArgumentParser:
     )
     workspace_control_refresh_parser = workspace_control_subparsers.add_parser(
         "refresh",
-        help="vernieuw de control-snapshot zonder de officiële roadmap te wijzigen",
+        help="refresh the control snapshot without changing the official roadmap",
     )
     workspace_control_refresh_parser.add_argument(
         "--root",
         default=".",
-        help="projectwerkruimte; standaard de huidige map",
+        help="project workspace; default: current directory",
     )
     workspace_chapter_parser = workspace_subparsers.add_parser(
         "chapter",
-        help="maak een veilig, nog niet goedgekeurd hoofdstuksjabloon",
+        help="create a safe chapter template that is not yet approved",
     )
     workspace_chapter_subparsers = workspace_chapter_parser.add_subparsers(
         dest="workspace_chapter_command",
@@ -190,42 +199,42 @@ def build_parser() -> argparse.ArgumentParser:
     )
     workspace_chapter_create_parser = workspace_chapter_subparsers.add_parser(
         "create",
-        help="maak één nieuw DRAFT-hoofdstuk zonder iets te overschrijven",
+        help="create one new DRAFT chapter without overwriting anything",
     )
     workspace_chapter_create_parser.add_argument(
         "chapter_id",
-        help="stabiele hoofdstuk-ID, bijvoorbeeld CH-ELEKTRICITEIT",
+        help="stable chapter ID, for example CH-ELECTRICITY",
     )
     workspace_chapter_create_parser.add_argument(
         "--title",
         required=True,
-        help="korte leesbare hoofdstuktitel",
+        help="short readable chapter title",
     )
     workspace_chapter_create_parser.add_argument(
         "--scope",
-        default="UNKNOWN — door OWNER en ARCHITECT te bepalen.",
-        help="korte grens van het onderwerp",
+        default="UNKNOWN - to be determined by OWNER and ARCHITECT.",
+        help="short boundary of the subject",
     )
     workspace_chapter_create_parser.add_argument(
         "--source",
         action="append",
         default=[],
-        help="bestaande exacte source-ID; optie mag worden herhaald",
+        help="existing exact source ID; repeatable",
     )
     workspace_chapter_create_parser.add_argument(
         "--depends-on",
         action="append",
         default=[],
-        help="bestaande hoofdstuk-ID; optie mag worden herhaald",
+        help="existing chapter ID; repeatable",
     )
     workspace_chapter_create_parser.add_argument(
         "--root",
         default=".",
-        help="projectwerkruimte; standaard de huidige map",
+        help="project workspace; default: current directory",
     )
     workspace_catalog_parser = workspace_subparsers.add_parser(
         "catalog",
-        help="herbouw de menselijke index en lokale SQLite-catalogus",
+        help="rebuild the human index and local SQLite catalog",
     )
     workspace_catalog_subparsers = workspace_catalog_parser.add_subparsers(
         dest="workspace_catalog_command",
@@ -233,16 +242,16 @@ def build_parser() -> argparse.ArgumentParser:
     )
     workspace_catalog_rebuild_parser = workspace_catalog_subparsers.add_parser(
         "rebuild",
-        help="herbouw catalogus en index uit officiële werkruimtebestanden",
+        help="rebuild the catalog and index from official workspace files",
     )
     workspace_catalog_rebuild_parser.add_argument(
         "--root",
         default=".",
-        help="projectwerkruimte; standaard de huidige map",
+        help="project workspace; default: current directory",
     )
     workspace_media_parser = workspace_subparsers.add_parser(
         "media",
-        help="registreer en controleer tekst die veilig van media is afgeleid",
+        help="register and verify text safely derived from media",
     )
     workspace_media_subparsers = workspace_media_parser.add_subparsers(
         dest="workspace_media_command",
@@ -250,7 +259,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     media_register_parser = workspace_media_subparsers.add_parser(
         "register",
-        help="registreer aangeleverde UTF-8-tekst zonder OCR, AI of tool te starten",
+        help="register supplied UTF-8 text without starting OCR, AI, or another tool",
     )
     media_register_parser.add_argument("source_id")
     media_register_parser.add_argument("--text", required=True)
@@ -265,7 +274,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     media_review_parser = workspace_media_subparsers.add_parser(
         "review",
-        help="controleer exact één afleiding zonder haar als feit te aanvaarden",
+        help="review one exact derivation without accepting it as fact",
     )
     media_review_parser.add_argument("source_id")
     media_review_parser.add_argument("derivation_id")
@@ -277,7 +286,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     media_promote_parser = workspace_media_subparsers.add_parser(
         "promote",
-        help="promoveer gecontroleerde tekst bewust tot gewone CAPTURED bron",
+        help="deliberately promote reviewed text to a regular CAPTURED source",
     )
     media_promote_parser.add_argument("source_id")
     media_promote_parser.add_argument("derivation_id")
@@ -286,7 +295,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     media_status_parser = workspace_media_subparsers.add_parser(
         "status",
-        help="toon of media niet onderzocht, afgeleid, gecontroleerd of verwijderd zijn",
+        help="show whether media is unexamined, derived, reviewed, or removed",
     )
     media_status_parser.add_argument("source_id")
     media_status_parser.add_argument("derivation_id", nargs="?")
@@ -294,7 +303,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     media_verify_parser = workspace_media_subparsers.add_parser(
         "verify",
-        help="controleer originele, afgeleide en promotiebytes volledig read-only",
+        help="verify original, derived, and promotion bytes fully read-only",
     )
     media_verify_parser.add_argument("source_id")
     media_verify_parser.add_argument("derivation_id", nargs="?")
@@ -302,7 +311,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     media_remove_parser = workspace_media_subparsers.add_parser(
         "remove",
-        help="verwijder uitsluitend exact gepinde afgeleide tekst met tombstone",
+        help="remove only exactly pinned derived text and create a tombstone",
     )
     media_remove_parser.add_argument("source_id")
     media_remove_parser.add_argument("derivation_id")
@@ -312,7 +321,7 @@ def build_parser() -> argparse.ArgumentParser:
     media_remove_parser.add_argument("--root", default=".")
     workspace_playbook_parser = workspace_subparsers.add_parser(
         "playbook",
-        help="registreer en keur niet-uitvoerbare werkwijzerevisies goed",
+        help="register and approve non-executing playbook revisions",
     )
     workspace_playbook_subparsers = workspace_playbook_parser.add_subparsers(
         dest="workspace_playbook_command",
@@ -320,7 +329,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     playbook_register_parser = workspace_playbook_subparsers.add_parser(
         "register",
-        help="registreer één onveranderlijke voorgestelde playbookrevisie",
+        help="register one immutable proposed playbook revision",
     )
     playbook_register_parser.add_argument("playbook_id")
     playbook_register_parser.add_argument("--revision", required=True, type=int)
@@ -337,7 +346,7 @@ def build_parser() -> argparse.ArgumentParser:
     playbook_register_parser.add_argument("--root", default=".")
     playbook_approve_parser = workspace_playbook_subparsers.add_parser(
         "approve",
-        help="bind een lokale OWNER-goedkeuring aan exact één playbookrevisie",
+        help="bind a local OWNER approval to one exact playbook revision",
     )
     playbook_approve_parser.add_argument("playbook_id")
     playbook_approve_parser.add_argument("--revision", required=True, type=int)
@@ -345,8 +354,8 @@ def build_parser() -> argparse.ArgumentParser:
     playbook_approve_parser.add_argument("--owner", required=True)
     playbook_approve_parser.add_argument("--root", default=".")
     for command_name, help_text in (
-        ("status", "toon de berekende playbookstatus zonder te schrijven"),
-        ("verify", "controleer playbookbytes en approval volledig read-only"),
+        ("status", "show the computed playbook status without writing"),
+        ("verify", "verify playbook bytes and approval fully read-only"),
     ):
         command_parser = workspace_playbook_subparsers.add_parser(
             command_name, help=help_text
@@ -357,7 +366,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     workspace_role_parser = workspace_subparsers.add_parser(
         "role",
-        help="registreer begrensde rolrevisies zonder OWNER-bevoegdheid",
+        help="register bounded role revisions without OWNER authority",
     )
     workspace_role_subparsers = workspace_role_parser.add_subparsers(
         dest="workspace_role_command",
@@ -365,7 +374,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     role_register_parser = workspace_role_subparsers.add_parser(
         "register",
-        help="registreer één onveranderlijke voorgestelde rolrevisie",
+        help="register one immutable proposed role revision",
     )
     role_register_parser.add_argument("role_id")
     role_register_parser.add_argument("--revision", required=True, type=int)
@@ -381,7 +390,7 @@ def build_parser() -> argparse.ArgumentParser:
     role_register_parser.add_argument("--root", default=".")
     role_approve_parser = workspace_role_subparsers.add_parser(
         "approve",
-        help="bind een lokale OWNER-goedkeuring aan exact één rolrevisie",
+        help="bind a local OWNER approval to one exact role revision",
     )
     role_approve_parser.add_argument("role_id")
     role_approve_parser.add_argument("--revision", required=True, type=int)
@@ -389,8 +398,8 @@ def build_parser() -> argparse.ArgumentParser:
     role_approve_parser.add_argument("--owner", required=True)
     role_approve_parser.add_argument("--root", default=".")
     for command_name, help_text in (
-        ("status", "toon de berekende rolstatus zonder te schrijven"),
-        ("verify", "controleer rolbytes en approval volledig read-only"),
+        ("status", "show the computed role status without writing"),
+        ("verify", "verify role bytes and approval fully read-only"),
     ):
         command_parser = workspace_role_subparsers.add_parser(
             command_name, help=help_text
@@ -401,7 +410,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     workspace_executor_parser = workspace_subparsers.add_parser(
         "executor",
-        help="maak of controleer één niet-uitvoerend taakgebonden uitvoerderpakket",
+        help="create or verify one non-executing task-bound executor package",
     )
     workspace_executor_subparsers = workspace_executor_parser.add_subparsers(
         dest="workspace_executor_command",
@@ -409,7 +418,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     executor_prepare_parser = workspace_executor_subparsers.add_parser(
         "prepare",
-        help="bind taak, context, playbook en rol zonder een uitvoerder te starten",
+        help="bind task, context, playbook, and role without starting an executor",
     )
     executor_prepare_parser.add_argument("task_id")
     executor_prepare_parser.add_argument("--revision", required=True, type=int)
@@ -424,8 +433,8 @@ def build_parser() -> argparse.ArgumentParser:
     executor_prepare_parser.add_argument("--executor", required=True)
     executor_prepare_parser.add_argument("--root", default=".")
     for command_name, help_text in (
-        ("status", "toon de actuele uitvoerderpakketstatus zonder te schrijven"),
-        ("verify", "controleer alle taak-, context- en definitiebindingen read-only"),
+        ("status", "show the current executor package status without writing"),
+        ("verify", "verify all task, context, and definition bindings read-only"),
     ):
         command_parser = workspace_executor_subparsers.add_parser(
             command_name, help=help_text
@@ -435,7 +444,7 @@ def build_parser() -> argparse.ArgumentParser:
         command_parser.add_argument("--root", default=".")
     workspace_context_parser = workspace_subparsers.add_parser(
         "context",
-        help="bouw of controleer één taakgebonden heet-warm-koudpakket",
+        help="build or verify one task-bound hot-warm-cold package",
     )
     workspace_context_subparsers = workspace_context_parser.add_subparsers(
         dest="workspace_context_command",
@@ -443,7 +452,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     workspace_context_build_parser = workspace_context_subparsers.add_parser(
         "build",
-        help="maak lokaal context voor één goedgekeurde taak in uitvoering",
+        help="build local context for one approved task in execution",
     )
     workspace_context_build_parser.add_argument("task_id")
     workspace_context_build_parser.add_argument("--proposal-digest", required=True)
@@ -452,14 +461,14 @@ def build_parser() -> argparse.ArgumentParser:
     workspace_context_build_parser.add_argument("--root", default=".")
     workspace_context_verify_parser = workspace_context_subparsers.add_parser(
         "verify",
-        help="controleer pakketbytes en de volledige actuele taakroute read-only",
+        help="verify package bytes and the complete current task route read-only",
     )
     workspace_context_verify_parser.add_argument("task_id")
     workspace_context_verify_parser.add_argument("--proposal-digest", required=True)
     workspace_context_verify_parser.add_argument("--root", default=".")
     workspace_task_parser = workspace_subparsers.add_parser(
         "task",
-        help="registreer één begrensde taak met exacte OWNER-gates",
+        help="register one bounded task with exact OWNER gates",
     )
     workspace_task_subparsers = workspace_task_parser.add_subparsers(
         dest="workspace_task_command",
@@ -467,39 +476,39 @@ def build_parser() -> argparse.ArgumentParser:
     )
     task_propose_parser = workspace_task_subparsers.add_parser(
         "propose",
-        help="maak één taakvoorstel dat exact op OWNER-goedkeuring wacht",
+        help="create one task proposal that waits for exact OWNER approval",
     )
-    task_propose_parser.add_argument("task_id", help="taak-ID, bijvoorbeeld TASK-20260816-0001")
-    task_propose_parser.add_argument("--title", required=True, help="korte taaktitel")
-    task_propose_parser.add_argument("--goal", required=True, help="één begrensd doel")
+    task_propose_parser.add_argument("task_id", help="task ID, for example TASK-20260816-0001")
+    task_propose_parser.add_argument("--title", required=True, help="short task title")
+    task_propose_parser.add_argument("--goal", required=True, help="one bounded goal")
     task_propose_parser.add_argument(
         "--done", required=True, help="exacte Definition of Done"
     )
     task_propose_parser.add_argument(
-        "--executor-role", required=True, help="begrensde uitvoerderrol"
+        "--executor-role", required=True, help="bounded executor role"
     )
     task_propose_parser.add_argument(
-        "--input", action="append", required=True, help="officieel relatief inputpad; herhaalbaar"
+        "--input", action="append", required=True, help="official relative input path; repeatable"
     )
     task_propose_parser.add_argument(
-        "--allow", action="append", required=True, help="toegestane actie; herhaalbaar"
+        "--allow", action="append", required=True, help="allowed action; repeatable"
     )
     task_propose_parser.add_argument(
-        "--forbid", action="append", required=True, help="verboden actie; herhaalbaar"
+        "--forbid", action="append", required=True, help="forbidden action; repeatable"
     )
     task_propose_parser.add_argument(
-        "--expected-output", required=True, help="verwachte resultaatvorm"
+        "--expected-output", required=True, help="expected result form"
     )
     task_propose_parser.add_argument(
-        "--acceptance", action="append", required=True, help="acceptatiecriterium; herhaalbaar"
+        "--acceptance", action="append", required=True, help="acceptance criterion; repeatable"
     )
     task_propose_parser.add_argument(
-        "--architect", required=True, help="lokale ARCHITECT-actorverklaring"
+        "--architect", required=True, help="local ARCHITECT actor statement"
     )
-    task_propose_parser.add_argument("--root", default=".", help="projectwerkruimte")
+    task_propose_parser.add_argument("--root", default=".", help="project workspace")
 
     task_approve_parser = workspace_task_subparsers.add_parser(
-        "approve", help="registreer een exacte lokale OWNER-goedkeuring"
+        "approve", help="register an exact local OWNER approval"
     )
     task_approve_parser.add_argument("task_id")
     task_approve_parser.add_argument("--revision", required=True, type=int)
@@ -508,14 +517,14 @@ def build_parser() -> argparse.ArgumentParser:
     task_approve_parser.add_argument("--root", default=".")
 
     task_begin_parser = workspace_task_subparsers.add_parser(
-        "begin", help="registreer uitvoering zonder een proces of agent te starten"
+        "begin", help="register execution without starting a process or agent"
     )
     task_begin_parser.add_argument("task_id")
     task_begin_parser.add_argument("--architect", required=True)
     task_begin_parser.add_argument("--root", default=".")
 
     task_result_parser = workspace_task_subparsers.add_parser(
-        "submit-result", help="bewaar één resultaat en optioneel bewijs als bytes"
+        "submit-result", help="store one result and optional evidence as bytes"
     )
     task_result_parser.add_argument("task_id")
     task_result_parser.add_argument("--result", required=True)
@@ -526,7 +535,7 @@ def build_parser() -> argparse.ArgumentParser:
     task_result_parser.add_argument("--root", default=".")
 
     task_review_parser = workspace_task_subparsers.add_parser(
-        "review-result", help="bind ARCHITECT-controle aan het exacte resultaat"
+        "review-result", help="bind ARCHITECT review to the exact result"
     )
     task_review_parser.add_argument("task_id")
     task_review_parser.add_argument("--result-digest", required=True)
@@ -536,7 +545,7 @@ def build_parser() -> argparse.ArgumentParser:
     task_review_parser.add_argument("--root", default=".")
 
     task_accept_parser = workspace_task_subparsers.add_parser(
-        "accept-result", help="registreer exacte lokale OWNER-aanvaarding of retour"
+        "accept-result", help="register exact local OWNER acceptance or return"
     )
     task_accept_parser.add_argument("task_id")
     task_accept_parser.add_argument("--result-digest", required=True)
@@ -546,20 +555,20 @@ def build_parser() -> argparse.ArgumentParser:
     task_accept_parser.add_argument("--root", default=".")
 
     task_close_parser = workspace_task_subparsers.add_parser(
-        "close", help="schrijf alleen na OWNER-aanvaarding het afrondingsbewijs"
+        "close", help="write closure evidence only after OWNER acceptance"
     )
     task_close_parser.add_argument("task_id")
     task_close_parser.add_argument("--architect", required=True)
     task_close_parser.add_argument("--root", default=".")
 
     task_status_parser = workspace_task_subparsers.add_parser(
-        "status", help="controleer recordketen, inputs, artifacts en actuele gate"
+        "status", help="verify record chain, inputs, artifacts, and current gate"
     )
     task_status_parser.add_argument("task_id")
     task_status_parser.add_argument("--root", default=".")
 
     task_attempt_parser = workspace_task_subparsers.add_parser(
-        "record-attempt", help="registreer één handmatige foutpoging; nooit automatisch"
+        "record-attempt", help="register one manual failed attempt; never automatic"
     )
     task_attempt_parser.add_argument("task_id")
     task_attempt_parser.add_argument("--error-code", required=True)
@@ -569,7 +578,7 @@ def build_parser() -> argparse.ArgumentParser:
     task_attempt_parser.add_argument("--root", default=".")
 
     task_cancel_parser = workspace_task_subparsers.add_parser(
-        "cancel", help="beëindig een niet-terminale taak met een OWNER-verklaring"
+        "cancel", help="end a non-terminal task with an OWNER statement"
     )
     task_cancel_parser.add_argument("task_id")
     task_cancel_parser.add_argument("--reason", required=True)
@@ -577,7 +586,7 @@ def build_parser() -> argparse.ArgumentParser:
     task_cancel_parser.add_argument("--root", default=".")
 
     task_supersede_parser = workspace_task_subparsers.add_parser(
-        "supersede", help="wijs met een OWNER-verklaring een vervangende taak-ID aan"
+        "supersede", help="identify a replacement task ID with an OWNER statement"
     )
     task_supersede_parser.add_argument("task_id")
     task_supersede_parser.add_argument("--replacement-task-id", required=True)
@@ -595,31 +604,31 @@ def init_project(project_root: Path) -> int:
             config_file.write(CONFIG_TEMPLATE)
     except FileExistsError:
         print(
-            f"Fout: {destination.name} bestaat al; er is niets overschreven.",
+            f"Error: {destination.name} already exists; nothing was overwritten.",
             file=sys.stderr,
         )
         return 2
     except OSError as exc:
-        print(f"Fout: kon {destination} niet maken: {exc}", file=sys.stderr)
+        print(f"Error: could not create {destination}: {exc}", file=sys.stderr)
         return 2
 
-    print(f"Gemaakt: {destination}")
+    print(f"Created: {destination}")
     return 0
 
 
 def _print_task_result(root: Path, result: object) -> None:
     resolved_root = root.resolve(strict=True)
     task_path = result.task_path.relative_to(resolved_root).as_posix()
-    print(f"{result.status}: {result.task_id} revisie {result.revision}")
-    print(f"Taakstatus: {result.task_status}")
-    print(f"Objectdigest: {result.object_digest}")
-    print(f"Recorddigest: {result.record_digest}")
-    print(f"Taakkaart: {task_path}")
+    print(f"{result.status}: {result.task_id} revision {result.revision}")
+    print(f"Task status: {result.task_status}")
+    print(f"Object digest: {result.object_digest}")
+    print(f"Record digest: {result.record_digest}")
+    print(f"Task card: {task_path}")
     if result.receipt_path is not None:
         receipt = result.receipt_path.relative_to(resolved_root).as_posix()
-        print(f"Ontvangstbewijs: {receipt}")
+        print(f"Receipt: {receipt}")
     print(
-        "Actor-ID is een lokale verklaring, geen cryptografisch identiteitsbewijs."
+        "Actor ID is a local statement, not cryptographic identity evidence."
     )
 
 
@@ -627,12 +636,12 @@ def _print_media_result(root: Path, result: object) -> None:
     resolved_root = root.resolve(strict=True)
     receipt = result.receipt_path.relative_to(resolved_root).as_posix()
     print(f"{result.status}: {result.source_id} / {result.derivation_id}")
-    print(f"Afgeleide SHA-256: {result.content_sha256}")
+    print(f"Derived SHA-256: {result.content_sha256}")
     print(f"Record-SHA-256: {result.record_sha256}")
     if result.promoted_source_id is not None:
-        print(f"Gepromoveerde bron: {result.promoted_source_id}")
-    print(f"Ontvangstbewijs: {receipt}")
-    print("Afgeleide tekst is niet automatisch een feit of OWNER-goedgekeurde kennis.")
+        print(f"Promoted source: {result.promoted_source_id}")
+    print(f"Receipt: {receipt}")
+    print("Derived text is not automatically fact or OWNER-approved knowledge.")
 
 
 def _print_definition_result(root: Path, result: object) -> None:
@@ -641,32 +650,41 @@ def _print_definition_result(root: Path, result: object) -> None:
     receipt = result.receipt_path.relative_to(resolved_root).as_posix()
     print(
         f"{result.status}: {result.definition_type} {result.definition_id} "
-        f"revisie {result.revision}"
+        f"revision {result.revision}"
     )
-    print(f"Definitie-SHA-256: {result.definition_digest}")
+    print(f"Definition-SHA-256: {result.definition_digest}")
     print(f"Document-SHA-256: {result.document_digest}")
     print(f"Document: {definition}")
-    print(f"Ontvangstbewijs: {receipt}")
-    print("Actor-ID is een lokale verklaring, geen cryptografisch identiteitsbewijs.")
+    print(f"Receipt: {receipt}")
+    print("Actor ID is a local statement, not cryptographic identity evidence.")
 
 
 def _print_definition_status(result: object) -> None:
     print(
         f"{result.status}: {result.definition_type} {result.definition_id} "
-        f"revisie {result.revision}"
+        f"revision {result.revision}"
     )
     if result.definition_digest is not None:
-        print(f"Definitie-SHA-256: {result.definition_digest}")
+        print(f"Definition-SHA-256: {result.definition_digest}")
     if result.document_digest is not None:
         print(f"Document-SHA-256: {result.document_digest}")
     if result.approval_digest is not None:
         print(f"Approvalrecord-SHA-256: {result.approval_digest}")
     for error in result.errors:
-        print(f"Fout: {error}")
+        print(f"Error: {error}")
+
+
+def _configure_console_output() -> None:
+    """Escape unsupported user characters instead of crashing narrow consoles."""
+    for stream in (sys.stdout, sys.stderr):
+        reconfigure = getattr(stream, "reconfigure", None)
+        if callable(reconfigure):
+            reconfigure(errors="backslashreplace", newline="\n")
 
 
 def main(argv: Sequence[str] | None = None) -> int:
     """Run the OPENCNTX command-line interface."""
+    _configure_console_output()
     args = build_parser().parse_args(argv)
     if args.command == "init":
         return init_project(Path.cwd())
@@ -675,9 +693,9 @@ def main(argv: Sequence[str] | None = None) -> int:
             if args.workspace_command == "init":
                 result = init_workspace(Path(args.project))
                 if result.created:
-                    print(f"Gemaakt: projectwerkruimte {result.root}")
+                    print(f"Created: project workspace {result.root}")
                 else:
-                    print(f"Bestaat al: projectwerkruimte {result.root}; niets gewijzigd.")
+                    print(f"Already exists: project workspace {result.root}; nothing changed.")
                 return 0
             if args.workspace_command == "capture":
                 root = Path(args.root)
@@ -694,7 +712,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                     f"{result.status}: {result.source_id} "
                     f"({result.byte_count} bytes, SHA-256 {result.sha256})"
                 )
-                print(f"Ontvangstbewijs: {receipt}")
+                print(f"Receipt: {receipt}")
                 return 0
             if args.workspace_command == "control":
                 if args.workspace_control_command == "refresh":
@@ -707,7 +725,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                     print(f"Roadmap-SHA-256: {result.roadmap_sha256}")
                     if result.block_sha256 is not None:
                         print(
-                            f"Controlblock: {result.block_bytes} bytes, "
+                            f"Control block: {result.block_bytes} bytes, "
                             f"SHA-256 {result.block_sha256}"
                         )
                     if result.snapshot_sha256 is not None:
@@ -715,8 +733,8 @@ def main(argv: Sequence[str] | None = None) -> int:
                     if result.snapshot_path is not None:
                         snapshot = result.snapshot_path.relative_to(resolved_root).as_posix()
                         print(f"Snapshot: {snapshot}")
-                    print(f"Ontvangstbewijs: {receipt}")
-                    print("Afgeleid bewijs; dit verleent geen OWNER-bevoegdheid.")
+                    print(f"Receipt: {receipt}")
+                    print("Derived evidence; this grants no OWNER authority.")
                     return 0
                 return 2
             if args.workspace_command == "chapter":
@@ -733,8 +751,8 @@ def main(argv: Sequence[str] | None = None) -> int:
                     resolved_root = root.resolve(strict=True)
                     chapter = result.chapter_path.relative_to(resolved_root).as_posix()
                     print(f"{result.status}: {result.chapter_id}")
-                    print(f"Hoofdstuk: {chapter}")
-                    print("Status: DRAFT; dit verleent geen OWNER-goedkeuring.")
+                    print(f"Chapter: {chapter}")
+                    print("Status: DRAFT; this grants no OWNER approval.")
                     return 0
             if args.workspace_command == "catalog":
                 if args.workspace_catalog_command == "rebuild":
@@ -744,8 +762,8 @@ def main(argv: Sequence[str] | None = None) -> int:
                     receipt = result.receipt_path.relative_to(resolved_root).as_posix()
                     counts = result.freshness_counts
                     print(
-                        f"{result.status}: {result.chapter_count} hoofdstukken, "
-                        f"{result.source_count} bronnen"
+                        f"{result.status}: {result.chapter_count} chapters, "
+                        f"{result.source_count} sources"
                     )
                     print(
                         "Freshness: "
@@ -754,7 +772,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                         f"ARCHIVED={counts['ARCHIVED']}"
                     )
                     print(f"State-digest: {result.state_digest}")
-                    print(f"Ontvangstbewijs: {receipt}")
+                    print(f"Receipt: {receipt}")
                     return 0
             if args.workspace_command == "media":
                 root = Path(args.root)
@@ -799,13 +817,13 @@ def main(argv: Sequence[str] | None = None) -> int:
                         print(f"{entry.status}: {identity}")
                         print(entry.statement)
                         if entry.content_sha256 is not None:
-                            print(f"Afgeleide SHA-256: {entry.content_sha256}")
+                            print(f"Derived SHA-256: {entry.content_sha256}")
                         if entry.record_sha256 is not None:
                             print(f"Record-SHA-256: {entry.record_sha256}")
                         if entry.review_sha256 is not None:
                             print(f"Review-SHA-256: {entry.review_sha256}")
                         if entry.promoted_source_id is not None:
-                            print(f"Gepromoveerde bron: {entry.promoted_source_id}")
+                            print(f"Promoted source: {entry.promoted_source_id}")
                     return 0
                 if args.workspace_media_command == "verify":
                     report = verify_media(root, args.source_id, args.derivation_id)
@@ -920,9 +938,9 @@ def main(argv: Sequence[str] | None = None) -> int:
                     receipt = result.receipt_path.relative_to(resolved_root).as_posix()
                     print(f"{result.status}: {result.task_id} / {result.executor_id}")
                     print(f"Record-SHA-256: {result.record_digest}")
-                    print(f"Opdracht: {assignment}")
-                    print(f"Ontvangstbewijs: {receipt}")
-                    print("Er is geen mens, proces, tool, model of agent gestart.")
+                    print(f"Assignment: {assignment}")
+                    print(f"Receipt: {receipt}")
+                    print("No person, process, tool, model, or agent was started.")
                     return 0
                 if args.workspace_executor_command == "status":
                     result = executor_status(root, args.task_id, args.executor_id)
@@ -930,7 +948,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                     if result.record_digest is not None:
                         print(f"Record-SHA-256: {result.record_digest}")
                     for error in result.errors:
-                        print(f"Fout: {error}")
+                        print(f"Error: {error}")
                     return 0 if not result.errors else 1
                 if args.workspace_executor_command == "verify":
                     report = verify_executor(root, args.task_id, args.executor_id)
@@ -951,14 +969,14 @@ def main(argv: Sequence[str] | None = None) -> int:
                     package = result.package_path.relative_to(resolved_root).as_posix()
                     receipt = result.receipt_path.relative_to(resolved_root).as_posix()
                     print(
-                        f"{result.status}: {result.task_id} revisie {result.revision} "
-                        f"({result.file_count} bestanden, {result.total_bytes} bytes)"
+                        f"{result.status}: {result.task_id} revision {result.revision} "
+                        f"({result.file_count} files, {result.total_bytes} bytes)"
                     )
-                    print(f"Pakket: {package}")
+                    print(f"Package: {package}")
                     print(f"Context-SHA-256: {result.context_digest}")
                     print(f"Manifest-SHA-256: {result.manifest_digest}")
-                    print(f"Ontvangstbewijs: {receipt}")
-                    print("Lokaal gebouwd; dit geeft geen toestemming voor extern delen.")
+                    print(f"Receipt: {receipt}")
+                    print("Built locally; this does not grant permission for external sharing.")
                     return 0
                 if args.workspace_context_command == "verify":
                     report = verify_context_package(
@@ -1067,13 +1085,13 @@ def main(argv: Sequence[str] | None = None) -> int:
                 allowed_secret_ids=allowed_secret_ids,
             )
             print(
-                f"Gemaakt: {package_path} "
-                f"({manifest['package']['file_count']} bestanden, "
+                f"Created: {package_path} "
+                f"({manifest['package']['file_count']} files, "
                 f"{manifest['package']['total_bytes']} bytes)"
             )
             for finding in manifest["security"]["warnings"]:
                 print(
-                    "Waarschuwing secretbeleid: "
+                    "Secret policy warning: "
                     f"{finding['finding_id']} {finding['path']}:"
                     f"{finding['line']}:{finding['column']} "
                     f"{finding['rule_id']} {finding['confidence']}",
@@ -1086,6 +1104,11 @@ def main(argv: Sequence[str] | None = None) -> int:
             print(format_verify_report(report))
             return 0 if report.ok else 1
     except (OpenCntxError, WorkspaceError) as exc:
-        print(f"Fout: {exc}", file=sys.stderr)
+        detail = (
+            f"operation failed ({exc.code})"
+            if isinstance(exc, WorkspaceError)
+            else str(exc)
+        )
+        print(f"Error: {detail}", file=sys.stderr)
         return 2
     return 2

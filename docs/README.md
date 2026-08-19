@@ -1,6 +1,6 @@
 # OPENCNTX documentation
 
-[Start here](start-here.md) · [How it works](how-it-works.md) · [Workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
+[Start here](start-here.md) · [How it works](how-it-works.md) · [Advanced / Alpha workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
 
 Use this page as the complete index. You do not need to read everything. Pick
 the smallest route that matches your current goal.
@@ -25,11 +25,11 @@ the smallest route that matches your current goal.
 - [Core commands](core.md) — exact behavior of `init`, `pack`, and `verify`.
 - [Context packages](context-packets.md) — package files, budgets, hashes,
   inspection, and source drift.
-- [Command reference](commands.md) — all 41 documented CLI paths.
+- [Command reference](commands.md) — all 43 documented CLI paths.
 
-## Project workspace
+## Advanced / Alpha workspace
 
-- [Workspace](workspace.md) — directory structure, control snapshot, and exact
+- [Advanced / Alpha workspace](workspace.md) — directory structure, control snapshot, and exact
   source capture.
 - [Chapters and catalog](chapters-and-catalog.md) — reviewed revisions,
   dependencies, freshness, and the replaceable catalog.

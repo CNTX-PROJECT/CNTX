@@ -92,7 +92,7 @@ class MvpTests(unittest.TestCase):
             self.assertIn("changed (0):", verify_result.stdout)
             self.assertIn("missing (0):", verify_result.stdout)
             self.assertIn("unexpected (0):", verify_result.stdout)
-            self.assertIn("resultaat: OK", verify_result.stdout)
+            self.assertIn("result: OK", verify_result.stdout)
 
     def test_02_repeated_pack_is_deterministic(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
@@ -125,7 +125,7 @@ class MvpTests(unittest.TestCase):
             result = run_cli("pack", cwd=root)
 
             self.assertEqual(result.returncode, 2)
-            self.assertIn("Bytebudget overschreden", result.stderr)
+            self.assertIn("Byte budget exceeded", result.stderr)
             self.assertFalse((root / ".opencntx/latest").exists())
             self.assertEqual(list((root / ".opencntx").glob(".building-*")), [])
 
@@ -138,7 +138,7 @@ class MvpTests(unittest.TestCase):
             result = run_cli("pack", cwd=root)
 
             self.assertEqual(result.returncode, 2)
-            self.assertIn("Bestandsbudget overschreden", result.stderr)
+            self.assertIn("File budget exceeded", result.stderr)
             self.assertFalse((root / ".opencntx/latest").exists())
 
     def test_04_missing_required_file_is_clear_error(self) -> None:
@@ -154,7 +154,7 @@ class MvpTests(unittest.TestCase):
             result = run_cli("pack", cwd=root)
 
             self.assertEqual(result.returncode, 2)
-            self.assertIn("Verplicht patroon", result.stderr)
+            self.assertIn("Required pattern", result.stderr)
             self.assertIn("required.txt", result.stderr)
 
     def test_05_exclusions_and_sensitive_defaults_apply_before_reading(self) -> None:
@@ -196,14 +196,14 @@ class MvpTests(unittest.TestCase):
             binary_result = run_cli("pack", cwd=root)
 
             self.assertEqual(binary_result.returncode, 2)
-            self.assertIn("Binaire bron", binary_result.stderr)
+            self.assertIn("Binary source", binary_result.stderr)
 
         with tempfile.TemporaryDirectory() as temporary_directory:
             root = Path(temporary_directory)
             (root / "blocked.txt").write_text("tekst", encoding="utf-8")
             write_config(root, include=["blocked.txt"])
             with patch.object(Path, "read_bytes", side_effect=PermissionError("geen toegang")):
-                with self.assertRaisesRegex(OpenCntxError, "kan niet worden gelezen"):
+                with self.assertRaisesRegex(OpenCntxError, "cannot be read"):
                     pack_project(root)
 
     def test_07_path_traversal_and_symlink_escape_are_blocked(self) -> None:
@@ -218,7 +218,7 @@ class MvpTests(unittest.TestCase):
             traversal_result = run_cli("pack", cwd=root)
 
             self.assertEqual(traversal_result.returncode, 2)
-            self.assertIn("projectroot niet verlaten", traversal_result.stderr)
+            self.assertIn("project root", traversal_result.stderr)
 
             write_config(root, include=["link.txt"])
             link = root / "link.txt"
@@ -228,7 +228,7 @@ class MvpTests(unittest.TestCase):
                 return
             symlink_result = run_cli("pack", cwd=root)
             self.assertEqual(symlink_result.returncode, 2)
-            self.assertIn("symlink de projectroot", symlink_result.stderr)
+            self.assertIn("project root through a symlink", symlink_result.stderr)
 
     def test_08_verify_reports_all_drift_categories(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
@@ -249,7 +249,7 @@ class MvpTests(unittest.TestCase):
             self.assertRegex(verify_result.stdout, r"(?s)changed \(1\):.*a\.txt")
             self.assertRegex(verify_result.stdout, r"(?s)missing \(1\):.*b\.txt")
             self.assertRegex(verify_result.stdout, r"(?s)unexpected \(1\):.*new\.txt")
-            self.assertIn("resultaat: DRIFT OF ONVOLLEDIG", verify_result.stdout)
+            self.assertIn("result: DRIFT OR INCOMPLETE", verify_result.stdout)
 
     def test_09_windows_style_paths_work(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
@@ -295,7 +295,7 @@ class MvpTests(unittest.TestCase):
             result = run_cli("pack", cwd=root)
 
             self.assertEqual(result.returncode, 2)
-            self.assertIn("ongeldige TOML", result.stderr)
+            self.assertIn("invalid TOML", result.stderr)
 
     def test_tampered_context_makes_verify_nonzero_without_rewriting_it(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
@@ -310,7 +310,7 @@ class MvpTests(unittest.TestCase):
             result = run_cli("verify", ".opencntx/latest", cwd=root)
 
             self.assertEqual(result.returncode, 1)
-            self.assertIn("CONTEXT.md wijkt af", result.stdout)
+            self.assertIn("CONTEXT.md differs", result.stdout)
             self.assertEqual(context_path.read_bytes(), before)
 
     def test_preview_is_deterministic_and_never_writes_or_changes_a_package(self) -> None:
@@ -335,7 +335,7 @@ class MvpTests(unittest.TestCase):
             self.assertIn(".env | pattern=.env*", first.stdout)
             self.assertIn("missing*.md", first.stdout)
             self.assertIn("files=1/25", first.stdout)
-            self.assertIn("PACK_ZOU_SLAGEN", first.stdout)
+            self.assertIn("PACK_WOULD_SUCCEED", first.stdout)
 
             packed = run_cli("pack", cwd=root)
             self.assertEqual(packed.returncode, 0, packed.stderr)
@@ -380,11 +380,11 @@ class MvpTests(unittest.TestCase):
             pack = run_cli("pack", cwd=root)
 
             self.assertEqual(preview.returncode, 2)
-            self.assertIn("PACK_ZOU_BLOKKEREN", preview.stdout)
+            self.assertIn("PACK_WOULD_BE_BLOCKED", preview.stdout)
             self.assertIn("github-classic-token", preview.stdout)
             self.assertNotIn(secret_value, preview.stdout + preview.stderr)
             self.assertEqual(pack.returncode, 2)
-            self.assertIn("Secretbeleid blokkeert", pack.stderr)
+            self.assertIn("Secret policy blocks", pack.stderr)
             self.assertNotIn(secret_value, pack.stdout + pack.stderr)
             self.assertEqual(
                 {path.name: path.read_bytes() for path in package.iterdir()},
@@ -401,7 +401,7 @@ class MvpTests(unittest.TestCase):
             result = run_cli("pack", cwd=root)
 
             self.assertEqual(result.returncode, 0, result.stderr)
-            self.assertIn("Waarschuwing secretbeleid", result.stderr)
+            self.assertIn("Secret policy warning", result.stderr)
             self.assertNotIn(warning_value, result.stdout + result.stderr)
             manifest_text = (root / ".opencntx/latest/manifest.json").read_text(
                 encoding="utf-8"
@@ -443,7 +443,7 @@ class MvpTests(unittest.TestCase):
             )
             self.assertEqual(allowed_preview.returncode, 0, allowed_preview.stderr)
             self.assertIn("overrides (1)", allowed_preview.stdout)
-            self.assertIn("PACK_ZOU_SLAGEN", allowed_preview.stdout)
+            self.assertIn("PACK_WOULD_SUCCEED", allowed_preview.stdout)
             self.assertFalse((root / ".opencntx").exists())
 
             packed = run_cli("pack", "--allow-secret", finding_id, cwd=root)
@@ -470,7 +470,7 @@ class MvpTests(unittest.TestCase):
                 cwd=root,
             )
             self.assertEqual(duplicate.returncode, 2)
-            self.assertIn("maar één keer", duplicate.stderr)
+            self.assertIn("only once", duplicate.stderr)
 
             previous_package = {
                 path.name: path.read_bytes()
@@ -479,7 +479,7 @@ class MvpTests(unittest.TestCase):
             source.write_text(secret_value + "\nchanged\n", encoding="utf-8")
             stale = run_cli("pack", "--allow-secret", finding_id, cwd=root)
             self.assertEqual(stale.returncode, 2)
-            self.assertIn("Onbekende of verouderde", stale.stderr)
+            self.assertIn("Unknown or stale", stale.stderr)
             self.assertEqual(
                 {
                     path.name: path.read_bytes()
@@ -553,7 +553,7 @@ class MvpTests(unittest.TestCase):
             result = run_cli("verify", ".opencntx/latest", cwd=root)
 
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
-            self.assertIn("resultaat: OK", result.stdout)
+            self.assertIn("result: OK", result.stdout)
 
     def test_verify_detects_security_metadata_tampering_read_only(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
@@ -576,7 +576,7 @@ class MvpTests(unittest.TestCase):
             result = run_cli("verify", ".opencntx/latest", cwd=root)
 
             self.assertEqual(result.returncode, 1)
-            self.assertIn("securitymetadata wijkt af", result.stdout)
+            self.assertIn("security metadata differs", result.stdout)
             self.assertEqual(manifest_path.read_bytes(), before)
 
 

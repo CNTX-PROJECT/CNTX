@@ -16,6 +16,8 @@ sys.path.insert(0, str(SOURCE_ROOT))
 
 from opencntx.workflow import (  # noqa: E402
     WorkflowError,
+    _load_chain,
+    _task_view_bytes,
     accept_result,
     approve_task,
     begin_task,
@@ -99,6 +101,21 @@ def submit(workspace: Path, outside: Path):
 
 
 class WorkflowTests(unittest.TestCase):
+    def test_exact_legacy_task_card_remains_readable_and_read_only(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            workspace = Path(temporary_directory) / "workspace"
+            init_workspace(workspace)
+            proposed = propose(workspace)
+            chain = _load_chain(workspace, TASK_ID)
+            proposed.task_path.write_bytes(_task_view_bytes(chain, legacy=True))
+            before = proposed.task_path.read_bytes()
+
+            status = task_status(workspace, TASK_ID)
+
+            self.assertEqual(status.status, "TASK_STATUS_VALID")
+            self.assertEqual(status.task_status, "AWAITING_OWNER_APPROVAL")
+            self.assertEqual(proposed.task_path.read_bytes(), before)
+
     def test_proposal_is_append_only_digest_bound_and_human_readable(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
             workspace = Path(temporary_directory) / "workspace"
@@ -113,7 +130,7 @@ class WorkflowTests(unittest.TestCase):
             events = list((workspace / "TASKS" / TASK_ID / "events").iterdir())
             self.assertEqual([path.name for path in events], ["0001-proposal.json"])
             task_text = result.task_path.read_text(encoding="utf-8")
-            self.assertIn("Gegenereerde taakkaart", task_text)
+            self.assertIn("Generated task card", task_text)
             self.assertIn("Geen externe verzending", task_text)
             self.assertIn(result.object_digest, task_text)
             self.assertEqual(
@@ -183,7 +200,7 @@ class WorkflowTests(unittest.TestCase):
             self.assertEqual(task_status(workspace, TASK_ID).task_status, "CLOSED")
             task_view = closed.task_path.read_text(encoding="utf-8")
             self.assertIn("Alleen het gepinde plan is gelezen", task_view)
-            self.assertIn("Open vragen", task_view)
+            self.assertIn("Open questions", task_view)
             event_names = [
                 path.name
                 for path in sorted((workspace / "TASKS" / TASK_ID / "events").iterdir())
@@ -371,8 +388,8 @@ class WorkflowTests(unittest.TestCase):
             self.assertEqual(third.status, "TASK_BLOCKED")
             self.assertEqual(third.task_status, "BLOCKED")
             blocked_view = third.task_path.read_text(encoding="utf-8")
-            self.assertIn("Poging 3", blocked_view)
-            self.assertIn("OWNER-richting vereist", blocked_view)
+            self.assertIn("Attempt 3", blocked_view)
+            self.assertIn("OWNER direction required", blocked_view)
             with self.assertRaises(WorkflowError):
                 record_attempt(
                     workspace,
@@ -573,8 +590,8 @@ class WorkflowTests(unittest.TestCase):
             )
             self.assertEqual(proposed.returncode, 0, proposed.stderr)
             self.assertIn("TASK_PROPOSED", proposed.stdout)
-            self.assertIn("geen cryptografisch identiteitsbewijs", proposed.stdout)
-            digest_match = re.search(r"Objectdigest: ([0-9a-f]{64})", proposed.stdout)
+            self.assertIn("not cryptographic identity evidence", proposed.stdout)
+            digest_match = re.search(r"Object digest: ([0-9a-f]{64})", proposed.stdout)
             self.assertIsNotNone(digest_match)
 
             approved = run_cli(
@@ -632,7 +649,7 @@ class WorkflowTests(unittest.TestCase):
             )
             proposed = run_cli(*common_proposal, cwd=REPOSITORY_ROOT)
             proposal_digest = re.search(
-                r"Objectdigest: ([0-9a-f]{64})", proposed.stdout
+                r"Object digest: ([0-9a-f]{64})", proposed.stdout
             ).group(1)
             approved = run_cli(
                 "workspace", "task", "approve", TASK_ID,
@@ -657,7 +674,7 @@ class WorkflowTests(unittest.TestCase):
                 cwd=REPOSITORY_ROOT,
             )
             result_digest = re.search(
-                r"Objectdigest: ([0-9a-f]{64})", submitted.stdout
+                r"Object digest: ([0-9a-f]{64})", submitted.stdout
             ).group(1)
             reviewed = run_cli(
                 "workspace", "task", "review-result", TASK_ID,
@@ -667,7 +684,7 @@ class WorkflowTests(unittest.TestCase):
                 cwd=REPOSITORY_ROOT,
             )
             review_digest = re.search(
-                r"Objectdigest: ([0-9a-f]{64})", reviewed.stdout
+                r"Object digest: ([0-9a-f]{64})", reviewed.stdout
             ).group(1)
             accepted = run_cli(
                 "workspace", "task", "accept-result", TASK_ID,
@@ -697,7 +714,7 @@ class WorkflowTests(unittest.TestCase):
             ):
                 self.assertEqual(completed.returncode, 0, completed.stderr)
             self.assertIn("TASK_CLOSED", closed.stdout)
-            self.assertIn("Taakstatus: CLOSED", status.stdout)
+            self.assertIn("Task status: CLOSED", status.stdout)
             self.assertFalse((workspace / ".opencntx" / "agent").exists())
 
 

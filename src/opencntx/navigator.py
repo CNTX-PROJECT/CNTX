@@ -93,7 +93,9 @@ CATALOG_TABLE_COLUMNS = {
     "catalog_issues": ("issue_number", "code", "object_id", "message"),
 }
 CURRENT_TASK_PATTERN = re.compile(
-    r"^- Actieve taak: (TASK-\d{8}-\d{4}) revisie ([1-9]\d*)$", re.MULTILINE
+    r"^- (?:Active task|Actieve taak): (TASK-\d{8}-\d{4}) "
+    r"(?:revision|revisie) ([1-9]\d*)$",
+    re.MULTILINE,
 )
 
 
@@ -716,6 +718,7 @@ def _navigation(
     max_bytes: int,
     *,
     include_control_metadata: bool = True,
+    legacy: bool = False,
 ) -> dict[str, Any]:
     layers = {item.path: item.layer for item in route.files}
     selected_chapters = [
@@ -778,8 +781,15 @@ def _navigation(
         },
         "warnings": [],
         "scope_statement": (
-            "Alleen de genoemde goedgekeurde taakscope is onderzocht; "
-            "dit is geen claim over het volledige project."
+            (
+                "Alleen de genoemde goedgekeurde taakscope is onderzocht; "
+                "dit is geen claim over het volledige project."
+            )
+            if legacy
+            else (
+                "Only the stated approved task scope was examined; "
+                "this is not a claim about the complete project."
+            )
         ),
     }
     if include_control_metadata:
@@ -814,9 +824,10 @@ def _package_bytes(
     max_bytes: int,
     *,
     include_control_metadata: bool = True,
+    legacy: bool = False,
 ) -> tuple[bytes, bytes, dict[str, Any]]:
     context_sources, config, selection = _read_route(route, max_files, max_bytes)
-    context_bytes = render_context(route.goal, context_sources).encode("utf-8")
+    context_bytes = render_context(route.goal, context_sources, legacy=legacy).encode("utf-8")
     manifest = _manifest(config, selection, context_sources, context_bytes)
     manifest["navigation"] = _navigation(
         route,
@@ -824,6 +835,7 @@ def _package_bytes(
         max_files=max_files,
         max_bytes=max_bytes,
         include_control_metadata=include_control_metadata,
+        legacy=legacy,
     )
     return context_bytes, _json_bytes(manifest), manifest
 
@@ -855,17 +867,13 @@ def _try_failure_receipt(
         root = validate_workspace(project_root)
         now = _utc_now()
         attempt_id = f"CTX-{now.strftime('%Y%m%dT%H%M%S%fZ')}-{uuid4().hex[:8]}"
-        message = str(error)
-        try:
-            message = message.replace(str(root), "<workspace>")
-        except OSError:
-            pass
+        message = f"Context operation failed: {error.code}."
         if error.code == "catalog_rebuild_required":
-            next_action = "Voer workspace catalog rebuild uit en controleer opnieuw."
+            next_action = "Run workspace catalog rebuild and check again."
         elif error.code == "context_budget_exceeded":
             next_action = (
-                "Laat de OWNER de taakscope verkleinen of kies bewust ruimere "
-                "contextbudgetten."
+                "Ask the OWNER to reduce the task scope or deliberately choose larger "
+                "context budgets."
             )
         elif error.code in {
             "context_source_invalid",
@@ -873,9 +881,9 @@ def _try_failure_receipt(
             "context_source_restricted",
             "context_source_stale",
         }:
-            next_action = "Controleer de genoemde bron en vraag zo nodig een nieuwe OWNER-beslissing."
+            next_action = "Check the named source and request a new OWNER decision if needed."
         else:
-            next_action = "Herstel de genoemde gate of leg de blokkade voor aan de OWNER."
+            next_action = "Fix the named gate or present the block to the OWNER."
         _write_receipt(
             root,
             {
@@ -1049,12 +1057,28 @@ def verify_context_package(
             max_bytes,
             include_control_metadata=include_control_metadata,
         )
-        if actual_context != expected_context:
-            errors.append("CONTEXT.md wijkt af van de actuele taakroute")
-        if actual_manifest != expected_manifest:
-            errors.append("manifest.json wijkt af van de actuele taakroute")
-    except (NavigatorError, OpenCntxError, WorkspaceError) as exc:
+        legacy_context, legacy_manifest, _ = _package_bytes(
+            route,
+            max_files,
+            max_bytes,
+            include_control_metadata=include_control_metadata,
+            legacy=True,
+        )
+        current_matches = (
+            actual_context == expected_context and actual_manifest == expected_manifest
+        )
+        legacy_matches = (
+            actual_context == legacy_context and actual_manifest == legacy_manifest
+        )
+        if not current_matches and not legacy_matches:
+            if actual_context not in {expected_context, legacy_context}:
+                errors.append("CONTEXT.md differs from the current task route")
+            if actual_manifest not in {expected_manifest, legacy_manifest}:
+                errors.append("manifest.json differs from the current task route")
+    except OpenCntxError as exc:
         errors.append(str(exc))
+    except WorkspaceError as exc:
+        errors.append(f"{exc.code}: context verification failed")
     unique = tuple(sorted(set(errors)))
     return ContextVerifyReport(ok=not unique, task_id=task_id, errors=unique)
 
@@ -1063,5 +1087,5 @@ def format_context_verify_report(report: ContextVerifyReport) -> str:
     """Render the complete task-bound context verification result."""
     lines = [f"task: {report.task_id}", f"errors ({len(report.errors)}):"]
     lines.extend(f"  {error}" for error in report.errors)
-    lines.append("resultaat: OK" if report.ok else "resultaat: DRIFT OF ONVOLLEDIG")
+    lines.append("result: OK" if report.ok else "result: DRIFT OR INCOMPLETE")
     return "\n".join(lines)

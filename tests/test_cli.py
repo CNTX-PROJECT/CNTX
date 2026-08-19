@@ -43,8 +43,10 @@ class CliTests(unittest.TestCase):
         result = run_cli("--help", cwd=REPOSITORY_ROOT)
 
         self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertIn("{init,pack,verify}", result.stdout)
-        self.assertIn("controleerbaar contextpakket", result.stdout)
+        self.assertIn("{init,pack,verify,workspace}", result.stdout)
+        self.assertIn("explicit, and verifiable context package", result.stdout)
+        self.assertLess(result.stdout.index("init"), result.stdout.index("workspace"))
+        self.assertIn("Advanced / Alpha", result.stdout)
 
     def test_init_creates_expected_template(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
@@ -54,7 +56,7 @@ class CliTests(unittest.TestCase):
 
             self.assertEqual(result.returncode, 0, result.stderr)
             config = (project_root / "opencntx.toml").read_text(encoding="utf-8")
-            self.assertIn('[task]\ngoal = "Beschrijf de ene concrete taak"', config)
+            self.assertIn('[task]\ngoal = "Describe the one concrete task"', config)
             self.assertIn("max_files = 25", config)
             self.assertIn("max_bytes = 100000", config)
 
@@ -67,7 +69,7 @@ class CliTests(unittest.TestCase):
             result = run_cli("init", cwd=project_root)
 
             self.assertEqual(result.returncode, 2)
-            self.assertIn("niets overschreven", result.stderr)
+            self.assertIn("nothing was overwritten", result.stderr)
             self.assertEqual(config_path.read_text(encoding="utf-8"), "bewaar mij\n")
 
 
