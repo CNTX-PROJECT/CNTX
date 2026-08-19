@@ -44,8 +44,10 @@ For a valid task in `IN_EXECUTION`:
 
 ```powershell
 opencntx workspace context build TASK-EXAMPLE-0001 `
-  --root my-project `
-  --revision 1
+  --proposal-digest PROPOSAL_DIGEST_HERE `
+  --max-files 25 `
+  --max-bytes 100000 `
+  --root my-project
 ```
 
 Use the exact identifiers and digests required by the CLI output and task
@@ -67,8 +69,8 @@ Older workspaces without markers keep the legacy full-roadmap behavior.
 
 ```powershell
 opencntx workspace context verify TASK-EXAMPLE-0001 `
-  --root my-project `
-  --revision 1
+  --proposal-digest PROPOSAL_DIGEST_HERE `
+  --root my-project
 ```
 
 Live context verification is intended while the task remains `IN_EXECUTION`

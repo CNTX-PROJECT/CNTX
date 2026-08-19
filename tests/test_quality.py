@@ -1,7 +1,12 @@
 from __future__ import annotations
 
+import argparse
+import contextlib
+import io
 import os
 import re
+import shlex
+import sys
 import tempfile
 import tomllib
 import unittest
@@ -11,6 +16,13 @@ from xml.etree import ElementTree
 
 
 ROOT = Path(__file__).resolve().parents[1]
+SOURCE_ROOT = ROOT / "src"
+if str(SOURCE_ROOT) not in sys.path:
+    sys.path.insert(0, str(SOURCE_ROOT))
+
+from opencntx.cli import build_parser
+
+
 README = ROOT / "README.md"
 CHANGELOG = ROOT / "CHANGELOG.md"
 DOCS = ROOT / "docs"
@@ -75,53 +87,82 @@ EXPECTED_ACTION_USES = {
     "actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97",
 }
 
-EXPECTED_DOCUMENTED_COMMAND_PATHS = (
+ORIENTATION_COMMAND_PATHS = (
     "opencntx --help",
     "opencntx workspace --help",
     "opencntx workspace media --help",
     "opencntx workspace task --help",
-    "opencntx init",
-    "opencntx pack",
-    "opencntx verify",
-    "opencntx workspace init",
-    "opencntx workspace capture",
-    "opencntx workspace chapter create",
-    "opencntx workspace catalog rebuild",
-    "opencntx workspace media register",
-    "opencntx workspace media review",
-    "opencntx workspace media promote",
-    "opencntx workspace media status",
-    "opencntx workspace media verify",
-    "opencntx workspace media remove",
-    "opencntx workspace playbook register",
-    "opencntx workspace playbook approve",
-    "opencntx workspace playbook status",
-    "opencntx workspace playbook verify",
-    "opencntx workspace role register",
-    "opencntx workspace role approve",
-    "opencntx workspace role status",
-    "opencntx workspace role verify",
-    "opencntx workspace executor prepare",
-    "opencntx workspace executor status",
-    "opencntx workspace executor verify",
-    "opencntx workspace context build",
-    "opencntx workspace context verify",
-    "opencntx workspace task propose",
-    "opencntx workspace task approve",
-    "opencntx workspace task begin",
-    "opencntx workspace task submit-result",
-    "opencntx workspace task review-result",
-    "opencntx workspace task accept-result",
-    "opencntx workspace task close",
-    "opencntx workspace task status",
-    "opencntx workspace task record-attempt",
-    "opencntx workspace task cancel",
-    "opencntx workspace task supersede",
 )
 
 MARKDOWN_LINK = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
 WINDOWS_ABSOLUTE = re.compile(r"^[A-Za-z]:[\\/]")
 COMMAND_ROW = re.compile(r"^\|\s*\d+\s*\|\s*`([^`]+)`\s*\|", re.MULTILINE)
+SHELL_FENCE_LANGUAGES = {"", "bash", "powershell", "sh", "shell"}
+
+
+def _parser_leaf_command_paths(
+    parser: argparse.ArgumentParser,
+    prefix: tuple[str, ...] = ("opencntx",),
+) -> tuple[str, ...]:
+    subparser_actions = tuple(
+        action
+        for action in parser._actions
+        if isinstance(action, argparse._SubParsersAction)
+    )
+    if not subparser_actions:
+        return (" ".join(prefix),)
+
+    paths: list[str] = []
+    for action in subparser_actions:
+        for name, child_parser in action.choices.items():
+            paths.extend(_parser_leaf_command_paths(child_parser, (*prefix, name)))
+    return tuple(paths)
+
+
+def _public_shell_examples() -> tuple[tuple[Path, int, str], ...]:
+    markdown_files = (README, ROOT / "SECURITY.md", *sorted(DOCS.glob("*.md")))
+    examples: list[tuple[Path, int, str]] = []
+
+    for markdown_file in markdown_files:
+        lines = markdown_file.read_text(encoding="utf-8").splitlines()
+        in_fence = False
+        language = ""
+        block: list[str] = []
+        block_start = 0
+
+        for line_number, line in enumerate(lines, start=1):
+            if line.startswith("```"):
+                if not in_fence:
+                    in_fence = True
+                    language = line[3:].strip().lower()
+                    block = []
+                    block_start = line_number + 1
+                    continue
+
+                if language in SHELL_FENCE_LANGUAGES:
+                    index = 0
+                    while index < len(block):
+                        command = block[index].strip()
+                        command_line = block_start + index
+                        if command.startswith("opencntx "):
+                            while command.endswith(("`", "\\")):
+                                command = command[:-1].rstrip() + " "
+                                index += 1
+                                if index >= len(block):
+                                    break
+                                command += block[index].strip()
+                            examples.append((markdown_file, command_line, command))
+                        index += 1
+
+                in_fence = False
+                language = ""
+                block = []
+                continue
+
+            if in_fence:
+                block.append(line)
+
+    return tuple(examples)
 
 
 def _link_target(raw_target: str) -> str:
@@ -175,8 +216,37 @@ class PublicQualityTests(unittest.TestCase):
 
         command_text = (DOCS / "commands.md").read_text(encoding="utf-8")
         documented_paths = tuple(COMMAND_ROW.findall(command_text))
-        self.assertEqual(EXPECTED_DOCUMENTED_COMMAND_PATHS, documented_paths)
-        self.assertEqual(41, len(documented_paths))
+        executable_paths = _parser_leaf_command_paths(build_parser())
+        self.assertEqual(
+            ORIENTATION_COMMAND_PATHS + executable_paths,
+            documented_paths,
+        )
+        self.assertEqual(38, len(executable_paths))
+        self.assertEqual(42, len(documented_paths))
+
+    def test_public_shell_examples_are_accepted_by_the_real_parser(self) -> None:
+        parser = build_parser()
+        examples = _public_shell_examples()
+        self.assertTrue(examples)
+
+        for markdown_file, line_number, command in examples:
+            with self.subTest(
+                document=markdown_file.relative_to(ROOT),
+                line=line_number,
+                command=command,
+            ):
+                arguments = shlex.split(command, posix=True)
+                self.assertEqual("opencntx", arguments[0])
+                try:
+                    with contextlib.redirect_stdout(io.StringIO()):
+                        with contextlib.redirect_stderr(io.StringIO()):
+                            parser.parse_args(arguments[1:])
+                except SystemExit as exc:
+                    if exc.code != 0:
+                        self.fail(
+                            f"{markdown_file.relative_to(ROOT)}:{line_number}: "
+                            f"parser rejected {command!r} with exit code {exc.code}"
+                        )
 
     def test_readme_is_compact_and_links_the_docs(self) -> None:
         lines = README.read_text(encoding="utf-8").splitlines()
@@ -431,26 +501,37 @@ class PublicQualityTests(unittest.TestCase):
 
     def test_release_surfaces_are_consistent(self) -> None:
         with (ROOT / "pyproject.toml").open("rb") as project_file:
-            version = tomllib.load(project_file)["project"]["version"]
+            project = tomllib.load(project_file)["project"]
+        version = project["version"]
 
-        self.assertEqual(version, "0.2.0")
+        self.assertRegex(version, r"^\d+\.\d+\.\d+$")
+        self.assertIn("Development Status :: 3 - Alpha", project["classifiers"])
         changelog = CHANGELOG.read_text(encoding="utf-8")
         readme = README.read_text(encoding="utf-8")
+        start_here = (DOCS / "start-here.md").read_text(encoding="utf-8")
+        faq = (DOCS / "faq.md").read_text(encoding="utf-8")
+        roadmap = (DOCS / "roadmap.md").read_text(encoding="utf-8")
         workspace = (DOCS / "workspace.md").read_text(encoding="utf-8")
         workflow = WORKFLOW.read_text(encoding="utf-8")
 
-        self.assertIn(f"## {version} - 2026-08-18", changelog)
+        self.assertRegex(changelog, rf"(?m)^## {re.escape(version)} - \d{{4}}-\d{{2}}-\d{{2}}$")
         self.assertIn(
             "git clone --depth 1 https://github.com/CNTX-PROJECT/OPENCNTX.git",
             readme,
         )
         self.assertIn(
-            "git clone --branch v0.2.0 --depth 1 "
+            f"git clone --branch v{version} --depth 1 "
             "https://github.com/CNTX-PROJECT/OPENCNTX.git",
             readme,
         )
         self.assertIn("The optional workspace layer", workspace)
-        self.assertIn('if installed != "0.2.0"', workflow)
+        self.assertIn("if installed != opencntx.__version__", workflow)
+        self.assertNotRegex(workflow, r'installed\s*!=\s*["\']\d')
+
+        for public_surface in (readme, start_here, faq, roadmap):
+            with self.subTest(surface=public_surface[:40]):
+                self.assertIn("Alpha", public_surface)
+                self.assertNotRegex(public_surface, r"(?i)\bstable release\b")
 
         release_surfaces = (
             ROOT / "pyproject.toml",

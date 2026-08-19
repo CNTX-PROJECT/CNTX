@@ -28,9 +28,9 @@ OPENCNTX never sends them for you.
 
 ## Start in four steps
 
-OPENCNTX requires Python 3.11 or newer. The current stable release is `v0.2.0`.
+OPENCNTX requires Python 3.11 or newer. The current Alpha release is `v0.2.0`.
 
-### 1. Install the stable release
+### 1. Install the Alpha release
 
 ```powershell
 git clone --branch v0.2.0 --depth 1 https://github.com/CNTX-PROJECT/OPENCNTX.git

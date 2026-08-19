@@ -17,9 +17,9 @@ You need:
 Other operating systems may work, but the live CI matrix does not prove them.
 OPENCNTX needs no account, API key, database, cloud service, or AI provider.
 
-## 2. Install the stable release
+## 2. Install the Alpha release
 
-The current stable release is `v0.2.0`. OPENCNTX is not published on PyPI.
+The current Alpha release is `v0.2.0`. OPENCNTX is not published on PyPI.
 
 ### Windows
 
@@ -61,7 +61,7 @@ opencntx --help
 python -c "import opencntx; print(opencntx.__version__)"
 ```
 
-The stable release prints `0.2.0`.
+The Alpha release prints `0.2.0`.
 
 ## 4. Open a small project
 

@@ -42,8 +42,17 @@ broader allowed list.
 
 ```powershell
 opencntx workspace executor prepare TASK-EXAMPLE-0001 `
-  --root my-project `
-  --revision 1
+  --revision 1 `
+  --proposal-digest PROPOSAL_DIGEST_HERE `
+  --playbook-id PB-EXAMPLE-0001 `
+  --playbook-revision 1 `
+  --playbook-digest PLAYBOOK_DIGEST_HERE `
+  --role-id ROLE-EXAMPLE-0001 `
+  --role-revision 1 `
+  --role-digest ROLE_DIGEST_HERE `
+  --context-manifest-digest CONTEXT_MANIFEST_DIGEST_HERE `
+  --executor EXECUTOR-EXAMPLE-0001 `
+  --root my-project
 ```
 
 The exact command requires the task, context, playbook, and role digests shown

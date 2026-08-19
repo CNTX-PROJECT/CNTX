@@ -81,7 +81,7 @@ jobs:
           import opencntx
 
           installed = importlib.metadata.version("opencntx")
-          if installed != "0.2.0" or installed != opencntx.__version__:
+          if installed != opencntx.__version__:
               raise SystemExit(
                   f"metadata version {installed!r} differs from package "
                   f"version {opencntx.__version__!r}"
