@@ -1,9 +1,12 @@
-# Workspace
+# Advanced / Alpha workspace
 
-[Start here](start-here.md) · [How it works](how-it-works.md) · [Workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
+[Start here](start-here.md) · [How it works](how-it-works.md) · [Advanced / Alpha workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
 
-The optional workspace layer organizes a longer project without turning
-OPENCNTX into a cloud service, AI platform, or automatic agent system.
+The optional workspace layer is an **Advanced / Alpha** feature for longer
+projects. It is not required for the core `init → preview → pack → inspect →
+verify` route, and its Alpha surfaces may still evolve. It organizes work
+without turning OPENCNTX into a cloud service, AI platform, or automatic agent
+system.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="../assets/docs/workspace-map-dark.svg">

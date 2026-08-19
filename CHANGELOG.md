@@ -6,6 +6,11 @@ All notable OPENCNTX changes are recorded here.
 
 ### Added
 
+- Added `opencntx --version` from the existing single package-version source.
+- Added the safe `.opencntx/latest` default for `opencntx verify`, while
+  preserving explicit package paths and existing exit-code meanings.
+- Added Windows `cp1252` and UTF-8 terminal tests, Unicode-path coverage, and
+  exact read-only compatibility checks for known Dutch v0.2.0 artifacts.
 - Added `opencntx pack --preview` as a read-only view of included, required,
   excluded, and ignored paths, file and byte budgets, and safe secret-policy
   findings.
@@ -18,6 +23,11 @@ All notable OPENCNTX changes are recorded here.
 
 ### Changed
 
+- Made fixed CLI help, errors, warnings, results, templates, and generated
+  headings consistently English and ASCII-safe while preserving UTF-8 user
+  content and paths.
+- Put the complete `init → preview → pack → inspect → verify` route first and
+  labeled the optional workspace consistently as `Advanced / Alpha`.
 - Combined installation and first use into one ordered `Start here` guide.
 - Put the six most-used documentation routes in one fixed order on every
   guide and simplified the README into a calm landing page.

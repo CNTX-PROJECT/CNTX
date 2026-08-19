@@ -1,6 +1,6 @@
 # Context packages
 
-[Start here](start-here.md) · [How it works](how-it-works.md) · [Workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
+[Start here](start-here.md) · [How it works](how-it-works.md) · [Advanced / Alpha workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
 
 A context package is a small, reviewable snapshot for one task. It contains
 selected text plus enough metadata to detect later changes.
@@ -63,13 +63,15 @@ It does not prove:
 
 ## Drift and rebuilds
 
-If a source changes after packing, `verify` reports drift. Decide whether the
+If a source changes after packing, `opencntx verify` reports drift from the
+exact default `.opencntx/latest` under the current directory. An explicit
+`opencntx verify PATH` checks only that supplied path. Decide whether the
 old snapshot is still the correct task input. If not, review the new source and
 run `pack` again to create a new complete snapshot.
 
 ## Core packages and workspace context
 
-Core packages follow `opencntx.toml` patterns directly. Workspace context
+Core packages follow `opencntx.toml` patterns directly. Advanced / Alpha workspace context
 packages follow an approved task and its explicit relationships. They share
 the same principle—small, deterministic, reviewable context—but use different
 inputs and records.

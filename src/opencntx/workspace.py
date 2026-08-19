@@ -47,24 +47,24 @@ REQUIRED_FILES = (
 
 OWNER_TEMPLATE = """# OWNER
 
-## Bevoegdheid
+## Authority
 
-Alleen de OWNER verleent definitieve goedkeuring.
+Only the OWNER grants final approval.
 
 ## Privacy
 
-Nieuwe bronnen beginnen standaard als PRIVATE. Verlaag een privacylabel nooit
-automatisch.
+New sources start as PRIVATE by default. Never lower a privacy label
+automatically.
 """
 
 ROADMAP_TEMPLATE = """# ROADMAP
 
-Geen opdracht is actief totdat de OWNER haar expliciet start.
+No assignment is active until the OWNER starts it explicitly.
 
 <!-- OPENCNTX:CONTROL:START -->
-## Actuele opdracht
+## Current assignment
 
-Geen.
+None.
 <!-- OPENCNTX:CONTROL:END -->
 """
 
@@ -77,14 +77,14 @@ max_storage_bytes: {DEFAULT_MAX_STORAGE_BYTES}
 
 # CURRENT
 
-- Actieve taak: geen
-- Toegestane acties: geen
-- Volgende gate: OWNER-instructie
+- Active task: none
+- Allowed actions: none
+- Next gate: OWNER instruction
 """
 
-INDEX_TEMPLATE = """# Hoofdstukindex
+INDEX_TEMPLATE = """# Chapter index
 
-Nog geen hoofdstukken geregistreerd.
+No chapters registered yet.
 """
 
 
@@ -579,7 +579,7 @@ def _validate_origin(origin: str | None) -> str | None:
 
 def _safe_original_name(name: str) -> str:
     value = "".join(character if ord(character) >= 32 else "_" for character in name)
-    return value[:255] or "onbekend"
+    return value[:255] or "unknown"
 
 
 def _original_suffix(name: str) -> str:
@@ -757,7 +757,7 @@ def _try_failure_receipt(
             privacy=privacy,
             origin=origin,
             error_code=error.code,
-            error=f"Capture mislukt: {error.code}",
+            error=f"Capture failed: {error.code}",
         )
     except WorkspaceError:
         pass

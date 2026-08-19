@@ -1,6 +1,6 @@
 # Glossary
 
-[Start here](start-here.md) · [How it works](how-it-works.md) · [Workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
+[Start here](start-here.md) · [How it works](how-it-works.md) · [Advanced / Alpha workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
 
 ## ARCHITECT
 
@@ -82,7 +82,8 @@ Append-only events linked by sequence and previous-event digest.
 
 ## Workspace
 
-A local directory that separates control, sources, chapters, tasks,
-playbooks, roles, derived text, and replaceable indexes.
+An optional Advanced / Alpha local directory that separates control, sources,
+chapters, tasks, playbooks, roles, derived text, and replaceable indexes. It is
+not required for a core context package.
 
 [Documentation home](README.md)

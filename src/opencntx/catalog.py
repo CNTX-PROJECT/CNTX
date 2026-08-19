@@ -33,6 +33,10 @@ CATALOG_FORMAT = "opencntx-catalog"
 CATALOG_FORMAT_VERSION = 1
 CATALOG_RECEIPT_FORMAT = "opencntx-catalog-receipt"
 CATALOG_RECEIPT_VERSION = 1
+LEGACY_INDEX_TEMPLATE = """# Hoofdstukindex
+
+Nog geen hoofdstukken geregistreerd.
+"""
 
 CHAPTER_ID_PATTERN = re.compile(r"CH-[A-Z0-9]+(?:-[A-Z0-9]+)*\Z")
 KNOWLEDGE_STATUSES = ("DRAFT", "OWNER_ACCEPTED", "ARCHIVED")
@@ -47,6 +51,17 @@ MAX_CHAPTER_BYTES = 1024 * 1024
 HASH_CHUNK_SIZE = 1024 * 1024
 
 REQUIRED_SECTIONS = (
+    "Purpose and boundary",
+    "Current summary",
+    "Sources",
+    "Relationships and dependencies",
+    "Effective decisions",
+    "Open questions and assumptions",
+    "Active and blocked tasks",
+    "Latest OWNER approval",
+    "Freshness",
+)
+LEGACY_REQUIRED_SECTIONS = (
     "Doel en grens",
     "Huidige samenvatting",
     "Bronnen",
@@ -413,22 +428,24 @@ def _split_frontmatter(text: str) -> tuple[dict[str, Any], str]:
 
 
 def _validate_sections(body: str) -> int:
-    positions: list[int] = []
     body_lines = body.splitlines()
-    for section in REQUIRED_SECTIONS:
-        heading = f"## {section}"
-        matches = [index for index, line in enumerate(body_lines) if line == heading]
-        if len(matches) != 1:
-            raise CatalogError(
-                f"CHAPTER.md vereist exact één sectie '{section}'.",
-                code="chapter_sections_invalid",
-            )
-        positions.append(matches[0])
-    if positions != sorted(positions):
+    valid_positions: list[list[int]] = []
+    for sections in (REQUIRED_SECTIONS, LEGACY_REQUIRED_SECTIONS):
+        positions: list[int] = []
+        for section in sections:
+            heading = f"## {section}"
+            matches = [index for index, line in enumerate(body_lines) if line == heading]
+            if len(matches) != 1:
+                break
+            positions.append(matches[0])
+        if len(positions) == len(sections) and positions == sorted(positions):
+            valid_positions.append(positions)
+    if len(valid_positions) != 1:
         raise CatalogError(
-            "CHAPTER.md-secties staan niet in de vaste volgorde.",
+            "CHAPTER.md must contain exactly one complete current or legacy section set in the fixed order.",
             code="chapter_sections_invalid",
         )
+    positions = valid_positions[0]
     decisions_start = positions[4] + 1
     decisions_end = positions[5]
     return sum(
@@ -637,7 +654,7 @@ def _calculate_freshness(
                 CatalogIssue(
                     "owner_approval_missing",
                     chapter_id,
-                    "OWNER_ACCEPTED mist een OWNER-verwijzing.",
+                    "OWNER_ACCEPTED is missing an OWNER reference.",
                 )
             )
         for reference in chapter.source_refs:
@@ -648,7 +665,7 @@ def _calculate_freshness(
                     CatalogIssue(
                         "chapter_source_unknown",
                         chapter_id,
-                        f"Onbekende bron: {reference.source_id}.",
+                        f"Unknown source: {reference.source_id}.",
                     )
                 )
                 continue
@@ -658,7 +675,7 @@ def _calculate_freshness(
                     CatalogIssue(
                         "chapter_source_pin_stale",
                         chapter_id,
-                        f"Bronpin wijkt af: {reference.source_id}.",
+                        f"Source pin differs: {reference.source_id}.",
                     )
                 )
             if source.integrity != "EXACT":
@@ -667,7 +684,7 @@ def _calculate_freshness(
                     CatalogIssue(
                         f"source_{source.integrity.lower()}",
                         chapter_id,
-                        f"Bron is {source.integrity}: {reference.source_id}.",
+                        f"Source is {source.integrity}: {reference.source_id}.",
                     )
                 )
             if reference.source_id in superseded:
@@ -676,7 +693,7 @@ def _calculate_freshness(
                     CatalogIssue(
                         "chapter_source_superseded",
                         chapter_id,
-                        f"Bron is vervangen: {reference.source_id}.",
+                        f"Source is superseded: {reference.source_id}.",
                     )
                 )
         for dependency in chapter.dependency_ids:
@@ -686,7 +703,7 @@ def _calculate_freshness(
                     CatalogIssue(
                         "chapter_dependency_unknown",
                         chapter_id,
-                        f"Onbekende afhankelijkheid: {dependency}.",
+                        f"Unknown dependency: {dependency}.",
                     )
                 )
                 continue
@@ -781,28 +798,28 @@ def _render_index(
     for status in freshness.values():
         counts[status] += 1
     body_lines = [
-        "# Hoofdstukindex",
+        "# Chapter index",
         "",
-        "> Automatisch herbouwde landkaart. De officiële kennis staat in de bronrecords",
-        "> en CHAPTER.md-bestanden. Deze index verleent geen OWNER-bevoegdheid.",
+        "> Automatically rebuilt map. Official knowledge remains in source records",
+        "> and CHAPTER.md files. This index grants no OWNER authority.",
         "",
-        "## Overzicht",
+        "## Overview",
         "",
         f"- CURRENT: {counts['CURRENT']}",
         f"- STALE: {counts['STALE']}",
         f"- INCOMPLETE: {counts['INCOMPLETE']}",
         f"- ARCHIVED: {counts['ARCHIVED']}",
         "",
-        "## Hoofdstukken",
+        "## Chapters",
         "",
     ]
     if not chapters:
-        body_lines.append("Nog geen hoofdstukken geregistreerd.")
+        body_lines.append("No chapters registered yet.")
     else:
         body_lines.extend(
             [
-                "| ID | Titel | Reikwijdte | Kennisstatus | Revisie | Freshness | "
-                "Afhankelijkheden | Open besluiten | Pad | Digest |",
+                "| ID | Title | Scope | Knowledge status | Revision | Freshness | "
+                "Dependencies | Open decisions | Path | Digest |",
                 "| --- | --- | --- | --- | ---: | --- | --- | ---: | --- | --- |",
             ]
         )
@@ -853,7 +870,10 @@ def _index_is_managed(path: Path, catalog_path: Path) -> bool:
         raise CatalogError(
             "CHAPTERS/INDEX.md is niet leesbaar.", code="index_unavailable"
         ) from exc
-    if content == INDEX_TEMPLATE.encode("utf-8"):
+    if content in {
+        INDEX_TEMPLATE.encode("utf-8"),
+        LEGACY_INDEX_TEMPLATE.encode("utf-8"),
+    }:
         return True
     try:
         text = content.decode("utf-8")
@@ -1104,7 +1124,7 @@ def _write_catalog_receipt(
         "catalog_path": ".opencntx/catalog.sqlite" if status == "CATALOG_REBUILT" else None,
         "chapter_count": chapter_count,
         "error": (
-            f"Catalog rebuild mislukt: {error.code}." if error is not None else None
+            f"Catalog rebuild failed: {error.code}." if error is not None else None
         ),
         "error_code": error.code if error is not None else None,
         "format": CATALOG_RECEIPT_FORMAT,
@@ -1116,7 +1136,7 @@ def _write_catalog_receipt(
         "status": status,
         "workspace_state_digest": state_digest,
         "recovery_action": (
-            "Controleer de werkruimtefout en voer catalog rebuild opnieuw uit."
+            "Check the workspace error and run catalog rebuild again."
             if error is not None
             else None
         ),
@@ -1165,41 +1185,41 @@ def _chapter_template(
             "",
             f"# {title}",
             "",
-            "## Doel en grens",
+            "## Purpose and boundary",
             "",
             scope,
             "",
-            "## Huidige samenvatting",
+            "## Current summary",
             "",
-            "UNKNOWN — nog niet door de OWNER aanvaard.",
+            "UNKNOWN - not yet accepted by the OWNER.",
             "",
-            "## Bronnen",
+            "## Sources",
             "",
-            "Zie de exacte source_refs in de frontmatter.",
+            "See the exact source_refs in the frontmatter.",
             "",
-            "## Relaties en afhankelijkheden",
+            "## Relationships and dependencies",
             "",
-            "Zie dependency_ids in de frontmatter.",
+            "See dependency_ids in the frontmatter.",
             "",
-            "## Geldende besluiten",
+            "## Effective decisions",
             "",
-            "- Geen vastgelegd.",
+            "- None recorded.",
             "",
-            "## Open vragen en aannames",
+            "## Open questions and assumptions",
             "",
-            "- UNKNOWN — nog te analyseren.",
+            "- UNKNOWN - still to be analyzed.",
             "",
-            "## Actieve en geblokkeerde taken",
+            "## Active and blocked tasks",
             "",
-            "- Geen.",
+            "- None.",
             "",
-            "## Laatste OWNER-goedkeuring",
+            "## Latest OWNER approval",
             "",
-            "Geen.",
+            "None.",
             "",
             "## Freshness",
             "",
-            "INCOMPLETE — technisch berekend bij `workspace catalog rebuild`.",
+            "INCOMPLETE - technically calculated by `workspace catalog rebuild`.",
             "",
         ]
     )
@@ -1211,7 +1231,7 @@ def create_chapter(
     chapter_id: str,
     *,
     title: str,
-    scope: str = "UNKNOWN — door OWNER en ARCHITECT te bepalen.",
+    scope: str = "UNKNOWN - to be determined by OWNER and ARCHITECT.",
     source_ids: Iterable[str] = (),
     dependency_ids: Iterable[str] = (),
 ) -> ChapterCreateResult:

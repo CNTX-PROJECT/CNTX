@@ -115,13 +115,13 @@ DERIVATION_FILES = {
 }
 
 STATUS_STATEMENTS = {
-    "NOT_INVESTIGATED": "INHOUD NIET ONDERZOCHT",
-    "UNREVIEWED": "AFGELEIDE TEKST NIET GECONTROLEERD",
-    "REVIEWED": "AFGELEIDE TEKST GECONTROLEERD, NIET AUTOMATISCH FEIT",
-    "REJECTED": "AFGELEIDE TEKST AFGEWEZEN",
-    "PROMOTED": "AFGELEIDE TEKST GECONTROLEERD, NIET AUTOMATISCH FEIT",
-    "STALE": "AFGELEIDE TEKST VEROUDERD",
-    "REMOVED": "AFGELEIDE TEKST VERWIJDERD",
+    "NOT_INVESTIGATED": "CONTENT NOT INVESTIGATED",
+    "UNREVIEWED": "DERIVED TEXT NOT REVIEWED",
+    "REVIEWED": "DERIVED TEXT REVIEWED, NOT AUTOMATICALLY FACT",
+    "REJECTED": "DERIVED TEXT REJECTED",
+    "PROMOTED": "DERIVED TEXT REVIEWED, NOT AUTOMATICALLY FACT",
+    "STALE": "DERIVED TEXT STALE",
+    "REMOVED": "DERIVED TEXT REMOVED",
 }
 
 
@@ -1299,13 +1299,13 @@ def verify_media(
         return MediaVerifyReport(
             ok=False,
             entries=(),
-            issues=(f"{exc.code}: {exc}",),
+            issues=(f"{exc.code}: media verification failed",),
         )
     if any(entry.status == "STALE" for entry in entries):
         return MediaVerifyReport(
             ok=False,
             entries=entries,
-            issues=("media_stale: afgeleide of originele bytes wijken af",),
+            issues=("media_stale: derived or original bytes differ",),
         )
     return MediaVerifyReport(ok=True, entries=entries, issues=())
 
@@ -1316,5 +1316,5 @@ def format_media_verify_report(report: MediaVerifyReport) -> str:
             f"{entry.derivation_id or entry.source_id}={entry.status}"
             for entry in report.entries
         )
-        return f"OK: mediaregistratie is exact ({statuses})."
-    return "NIET OK:\n" + "\n".join(f"- {issue}" for issue in report.issues)
+        return f"OK: media registration is exact ({statuses})."
+    return "NOT OK:\n" + "\n".join(f"- {issue}" for issue in report.issues)

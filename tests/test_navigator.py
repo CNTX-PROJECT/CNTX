@@ -53,7 +53,7 @@ def run_cli(*arguments: str, cwd: Path) -> subprocess.CompletedProcess[str]:
 def set_current(workspace: Path, task_id: str = TASK_ID) -> None:
     path = workspace / "CONTROL" / "CURRENT.md"
     text = path.read_text(encoding="utf-8")
-    text = text.replace("- Actieve taak: geen", f"- Actieve taak: {task_id} revisie 1")
+    text = text.replace("- Active task: none", f"- Active task: {task_id} revision 1")
     path.write_text(text, encoding="utf-8", newline="\n")
 
 
@@ -234,7 +234,7 @@ class NavigatorTests(unittest.TestCase):
                 ["HOT", "HOT", "HOT", "HOT", "WARM", "COLD", "COLD"],
             )
             self.assertEqual(official_snapshot(workspace), before)
-            self.assertIn("geen toestemming", run_cli("workspace", "context", "build", TASK_ID, "--proposal-digest", proposed.object_digest, "--max-files", "25", "--max-bytes", "100000", "--root", str(workspace), cwd=workspace).stdout)
+            self.assertIn("does not grant permission", run_cli("workspace", "context", "build", TASK_ID, "--proposal-digest", proposed.object_digest, "--max-files", "25", "--max-bytes", "100000", "--root", str(workspace), cwd=workspace).stdout)
 
     def test_compact_mode_excludes_history_but_pins_full_roadmap(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
@@ -742,7 +742,7 @@ class NavigatorTests(unittest.TestCase):
             self.assertEqual(build.returncode, 0, build.stderr)
             self.assertIn("CONTEXT_BUILT", build.stdout)
             self.assertEqual(verify.returncode, 0, verify.stderr)
-            self.assertIn("resultaat: OK", verify.stdout)
+            self.assertIn("result: OK", verify.stdout)
 
             (workspace / "CONTROL" / "OWNER.md").write_text(
                 "gewijzigd\n", encoding="utf-8"
@@ -753,7 +753,7 @@ class NavigatorTests(unittest.TestCase):
                 "--root", str(workspace), cwd=workspace,
             )
             self.assertEqual(drift.returncode, 1, drift.stderr)
-            self.assertIn("DRIFT OF ONVOLLEDIG", drift.stdout)
+            self.assertIn("DRIFT OR INCOMPLETE", drift.stdout)
 
 
 if __name__ == "__main__":

@@ -78,9 +78,13 @@ DIAGRAMS = LIGHT_DIAGRAMS | DARK_DIAGRAMS
 
 PRIMARY_NAVIGATION = (
     "[Start here](start-here.md) · [How it works](how-it-works.md) · "
-    "[Workspace](workspace.md) · [Commands](commands.md) · "
+    "[Advanced / Alpha workspace](workspace.md) · [Commands](commands.md) · "
     "[Security](security.md) · [All docs](README.md)"
 )
+LEGACY_PRIMARY_NAVIGATION = PRIMARY_NAVIGATION.replace(
+    "[Advanced / Alpha workspace]", "[Workspace]"
+)
+PROTECTED_LEGACY_NAVIGATION_GUIDES = {"brand.md", "roadmap.md", "security.md"}
 
 EXPECTED_ACTION_USES = {
     "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
@@ -89,6 +93,7 @@ EXPECTED_ACTION_USES = {
 
 ORIENTATION_COMMAND_PATHS = (
     "opencntx --help",
+    "opencntx --version",
     "opencntx workspace --help",
     "opencntx workspace media --help",
     "opencntx workspace task --help",
@@ -222,7 +227,7 @@ class PublicQualityTests(unittest.TestCase):
             documented_paths,
         )
         self.assertEqual(38, len(executable_paths))
-        self.assertEqual(42, len(documented_paths))
+        self.assertEqual(43, len(documented_paths))
 
     def test_public_shell_examples_are_accepted_by_the_real_parser(self) -> None:
         parser = build_parser()
@@ -280,7 +285,12 @@ class PublicQualityTests(unittest.TestCase):
         for guide_name in GUIDES:
             with self.subTest(guide=guide_name):
                 lines = (DOCS / guide_name).read_text(encoding="utf-8").splitlines()
-                self.assertIn(PRIMARY_NAVIGATION, lines[:5])
+                expected_navigation = (
+                    LEGACY_PRIMARY_NAVIGATION
+                    if guide_name in PROTECTED_LEGACY_NAVIGATION_GUIDES
+                    else PRIMARY_NAVIGATION
+                )
+                self.assertIn(expected_navigation, lines[:5])
 
         readme_navigation = PRIMARY_NAVIGATION.replace(
             "](", "](docs/"

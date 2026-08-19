@@ -19,6 +19,8 @@ sys.path.insert(0, str(SOURCE_ROOT))
 
 from opencntx.catalog import (  # noqa: E402
     CatalogError,
+    LEGACY_REQUIRED_SECTIONS,
+    REQUIRED_SECTIONS,
     create_chapter,
     rebuild_catalog,
 )
@@ -202,7 +204,7 @@ class CatalogTests(unittest.TestCase):
                 encoding="utf-8"
             )
             self.assertIn(second.state_digest, index)
-            self.assertIn("Nog geen hoofdstukken", index)
+            self.assertIn("No chapters registered yet", index)
             receipt = read_json(second.receipt_path)
             self.assertEqual(receipt["status"], "CATALOG_REBUILT")
 
@@ -435,7 +437,7 @@ class CatalogTests(unittest.TestCase):
                 encoding="utf-8",
                 newline="\n",
             )
-            with self.assertRaisesRegex(CatalogError, "Freshness"):
+            with self.assertRaisesRegex(CatalogError, "complete current or legacy"):
                 rebuild_catalog(workspace)
 
     def test_manually_changed_generated_index_is_not_overwritten(self) -> None:
@@ -624,11 +626,33 @@ class CatalogTests(unittest.TestCase):
 
             self.assertEqual(chapter.returncode, 0, chapter.stderr)
             self.assertIn("CHAPTER_CREATED: CH-CLI", chapter.stdout)
-            self.assertIn("geen OWNER-goedkeuring", chapter.stdout)
+            self.assertIn("grants no OWNER approval", chapter.stdout)
             self.assertEqual(rebuilt.returncode, 0, rebuilt.stderr)
             self.assertIn("CATALOG_REBUILT", rebuilt.stdout)
             self.assertIn("INCOMPLETE=1", rebuilt.stdout)
             self.assertTrue((workspace / ".opencntx" / "catalog.sqlite").is_file())
+
+    def test_exact_legacy_chapter_headings_remain_valid_and_read_only(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            workspace = Path(temporary_directory)
+            init_workspace(workspace)
+            created = create_chapter(
+                workspace,
+                "CH-LEGACY",
+                title="Legacy chapter",
+                source_ids=[],
+            )
+            chapter = created.chapter_path
+            text = chapter.read_text(encoding="utf-8")
+            for current, legacy in zip(REQUIRED_SECTIONS, LEGACY_REQUIRED_SECTIONS):
+                text = text.replace(f"## {current}\n", f"## {legacy}\n")
+            chapter.write_text(text, encoding="utf-8", newline="\n")
+            before = chapter.read_bytes()
+
+            result = rebuild_catalog(workspace)
+
+            self.assertEqual(result.status, "CATALOG_REBUILT")
+            self.assertEqual(chapter.read_bytes(), before)
 
 
 if __name__ == "__main__":

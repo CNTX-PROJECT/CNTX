@@ -460,10 +460,10 @@ class WorkspaceTests(unittest.TestCase):
             )
 
             self.assertEqual(initialized.returncode, 0, initialized.stderr)
-            self.assertIn("Gemaakt: projectwerkruimte", initialized.stdout)
+            self.assertIn("Created: project workspace", initialized.stdout)
             self.assertEqual(captured.returncode, 0, captured.stderr)
             self.assertIn("CAPTURED: SRC-", captured.stdout)
-            self.assertIn("Ontvangstbewijs:", captured.stdout)
+            self.assertIn("Receipt:", captured.stdout)
             self.assertEqual(duplicate.returncode, 0, duplicate.stderr)
             self.assertIn("DUPLICATE: SRC-", duplicate.stdout)
 
@@ -481,7 +481,7 @@ class WorkspaceTests(unittest.TestCase):
             )
 
             self.assertEqual(failed.returncode, 2)
-            self.assertIn("Fout:", failed.stderr)
+            self.assertIn("Error:", failed.stderr)
             failure = read_json(receipts(workspace)[0])
             self.assertEqual(failure["status"], "NOT_CAPTURED")
             self.assertEqual(failure["error_code"], "source_not_file")

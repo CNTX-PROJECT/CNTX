@@ -1,6 +1,9 @@
 # Media and derived text
 
-[Start here](start-here.md) · [How it works](how-it-works.md) · [Workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
+[Start here](start-here.md) · [How it works](how-it-works.md) · [Advanced / Alpha workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
+
+> **Advanced / Alpha:** derived-media registration is an optional workspace
+> feature and is not part of the beginner core route.
 
 OPENCNTX does not perform OCR, transcription, image analysis, document
 parsing, or video processing. It can safely register UTF-8 text that was
@@ -60,7 +63,7 @@ Never automate removal through a watcher.
 
 ## Related pages
 
-- [Workspace](workspace.md)
+- [Advanced / Alpha workspace](workspace.md)
 - [Security](security.md)
 - [Command reference](commands.md)
 - [Glossary](glossary.md)

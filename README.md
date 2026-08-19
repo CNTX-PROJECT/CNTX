@@ -9,7 +9,7 @@
 
 **Small context. Clear evidence. Any model.**
 
-[Start here](docs/start-here.md) · [How it works](docs/how-it-works.md) · [Workspace](docs/workspace.md) · [Commands](docs/commands.md) · [Security](docs/security.md) · [All docs](docs/README.md)
+[Start here](docs/start-here.md) · [How it works](docs/how-it-works.md) · [Advanced / Alpha workspace](docs/workspace.md) · [Commands](docs/commands.md) · [Security](docs/security.md) · [All docs](docs/README.md)
 
 </div>
 
@@ -36,6 +36,7 @@ OPENCNTX requires Python 3.11 or newer. The current Alpha release is `v0.2.0`.
 git clone --branch v0.2.0 --depth 1 https://github.com/CNTX-PROJECT/OPENCNTX.git
 cd OPENCNTX
 python -m pip install .
+opencntx --version
 opencntx --help
 ```
 
@@ -73,37 +74,32 @@ the task.
 ### 4. Verify the exact bytes
 
 ```powershell
-opencntx verify .opencntx/latest
+opencntx verify
 ```
 
 A successful check proves that the recorded files still match. It does not
 prove that the content is true, complete, safe, or approved.
 
-The complete beginner route—including Windows, Ubuntu, removal, the first
-workspace, and common errors—is on [Start here](docs/start-here.md).
+The complete beginner route—including Windows, Ubuntu, removal, and common
+errors—is on [Start here](docs/start-here.md). An explicit package path remains
+available as `opencntx verify PATH`.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/docs/core-flow-dark.svg">
-  <img src="assets/docs/core-flow.svg" alt="Initialize, pack, inspect, verify, and only then decide whether to share">
+  <img src="assets/docs/core-flow.svg" alt="Initialize, preview and pack, inspect, verify, and only then decide whether to share">
 </picture>
 
-## Optional project workspace
+## Advanced / Alpha workspace
 
-The workspace layer keeps longer projects ordered. It stores supplied files
-byte-for-byte and separates sources, reviewed chapters, tasks, playbooks,
-roles, derived text, and bounded executor packages.
+The core route above is complete; workspace concepts are not required for a
+first context package. Longer projects can optionally use the existing Alpha
+workspace for supplied sources, chapters, tasks, playbooks, roles, derived
+text, and bounded executor packages. It remains advanced and may change within
+the public Alpha contract.
 
-```powershell
-opencntx workspace init my-project
-opencntx workspace control refresh --root my-project
-opencntx workspace capture README.md --root my-project --origin OWNER
-```
-
-The workspace can build a small task-bound context package. It does not start
-an AI, agent, shell process, OCR tool, transcription service, or external sync.
-
-Read [Workspace](docs/workspace.md) for the complete project structure and
-[OWNER flow](docs/owner-flow.md) for explicit proposal and result decisions.
+Read [Advanced / Alpha workspace](docs/workspace.md) only when that extra
+structure is useful. No workspace command starts an AI, agent, shell process,
+OCR tool, transcription service, or external sync.
 
 ## Safety in one minute
 

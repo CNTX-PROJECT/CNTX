@@ -1,8 +1,13 @@
 # Platforms and CI
 
-[Start here](start-here.md) · [How it works](how-it-works.md) · [Workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
+[Start here](start-here.md) · [How it works](how-it-works.md) · [Advanced / Alpha workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
 
 OPENCNTX requires Python 3.11 or newer and has no runtime dependencies.
+
+Fixed CLI text is ASCII-safe English. User content and paths remain UTF-8.
+Windows `cp1252` and UTF-8 console routes are tested so an unsupported display
+character is escaped safely instead of raising `UnicodeEncodeError`; stored
+source and artifact bytes are never changed by that display fallback.
 
 ## Supported Python versions
 
@@ -36,7 +41,7 @@ Each job:
 3. runs the complete test suite with `ResourceWarning` treated as an error;
 4. builds exactly one wheel;
 5. installs that wheel without dependencies;
-6. verifies package version and `opencntx --help`.
+6. verifies package version, `opencntx --version`, and `opencntx --help`.
 
 ## What counts as proof
 

@@ -1,6 +1,6 @@
 # Frequently asked questions
 
-[Start here](start-here.md) · [How it works](how-it-works.md) · [Workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
+[Start here](start-here.md) · [How it works](how-it-works.md) · [Advanced / Alpha workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
 
 ## Does OPENCNTX contain an AI model?
 
@@ -16,7 +16,19 @@ recommend a provider.
 ## Is OPENCNTX only for experienced developers?
 
 No. New users can follow the three-command core. Experienced users can use
-explicit patterns, budgets, workspaces, tasks, digests, and verification.
+explicit patterns and budgets. The workspace, tasks, playbooks, and roles are
+optional Advanced / Alpha surfaces.
+
+## What language does the CLI use?
+
+Fixed help, errors, warnings, results, templates, and generated headings use
+English. User content and paths remain UTF-8. Narrow Windows consoles escape
+an unsupported display character instead of changing stored bytes or crashing.
+
+## What does `opencntx verify` check without a path?
+
+It checks exactly `.opencntx/latest` under the current directory. It does not
+search parent directories. Supply `opencntx verify PATH` for an explicit path.
 
 ## Does it upload my files?
 
