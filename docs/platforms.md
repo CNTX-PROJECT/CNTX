@@ -61,6 +61,13 @@ CI proof.
 The `main` ruleset requires the exact six matrix check names and strict current
 commit status.
 
+Workspace transactions flush file bytes and then request a parent-directory
+flush. Ubuntu uses a directory file descriptor and `fsync`; Windows uses a
+directory handle and `FlushFileBuffers`. The transaction evidence records
+`SYNCED`, `UNSUPPORTED`, or `FAILED`. This supports tested process-crash
+recovery; it is not a promise against power loss, kernel, controller, hardware,
+network-share, or distributed-filesystem failure.
+
 ## Run tests locally
 
 ```powershell

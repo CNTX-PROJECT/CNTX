@@ -160,6 +160,9 @@ class MediaTests(unittest.TestCase):
             self.assertEqual(record_path.read_bytes(), source_record_before)
             self.assertTrue(result.receipt_path.is_file())
             self.assertEqual(media_status(workspace, captured.source_id)[0].status, "UNREVIEWED")
+            completed = workspace / ".opencntx" / "transactions" / "completed"
+            self.assertGreaterEqual(len(list(completed.iterdir())), 2)
+            self.assertEqual(list((workspace / ".opencntx" / "transactions" / "locks").rglob("*.lock")), [])
 
     def test_exact_duplicate_does_not_make_second_content_copy(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:

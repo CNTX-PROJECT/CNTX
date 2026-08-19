@@ -19,6 +19,13 @@ from .core import (
     verify_package,
 )
 from .control import refresh_control_snapshot
+from .integrity import (
+    IntegrityError,
+    doctor_workspace,
+    format_doctor_report,
+    format_recovery_plan,
+    recover_workspace,
+)
 from .navigator import (
     build_context_package,
     format_context_verify_report,
@@ -171,6 +178,39 @@ def build_parser() -> argparse.ArgumentParser:
     workspace_capture_parser.add_argument(
         "--supersedes",
         help="optional existing source ID superseded by this new source",
+    )
+    workspace_doctor_parser = workspace_subparsers.add_parser(
+        "doctor",
+        help="read-only diagnosis of active or incomplete writer transactions",
+    )
+    workspace_doctor_parser.add_argument(
+        "--root",
+        default=".",
+        help="project workspace; default: current directory",
+    )
+    workspace_recover_parser = workspace_subparsers.add_parser(
+        "recover",
+        help="preview or apply exact backup-first transaction recovery",
+    )
+    workspace_recover_parser.add_argument(
+        "--root",
+        default=".",
+        help="project workspace; default: current directory",
+    )
+    workspace_recover_parser.add_argument(
+        "--transaction",
+        required=True,
+        help="exact transaction ID reported by workspace doctor",
+    )
+    workspace_recover_parser.add_argument(
+        "--intent-sha256",
+        required=True,
+        help="exact intent SHA-256 reported by workspace doctor",
+    )
+    workspace_recover_parser.add_argument(
+        "--apply",
+        action="store_true",
+        help="apply the exact recovery after a read-only preview",
     )
     workspace_control_parser = workspace_subparsers.add_parser(
         "control",
@@ -714,6 +754,19 @@ def main(argv: Sequence[str] | None = None) -> int:
                 )
                 print(f"Receipt: {receipt}")
                 return 0
+            if args.workspace_command == "doctor":
+                report = doctor_workspace(Path(args.root))
+                print(format_doctor_report(report))
+                return 0 if report.ok else 1
+            if args.workspace_command == "recover":
+                plan = recover_workspace(
+                    Path(args.root),
+                    args.transaction,
+                    args.intent_sha256,
+                    apply=args.apply,
+                )
+                print(format_recovery_plan(plan, applied=args.apply))
+                return 0
             if args.workspace_command == "control":
                 if args.workspace_control_command == "refresh":
                     root = Path(args.root)
@@ -1103,10 +1156,10 @@ def main(argv: Sequence[str] | None = None) -> int:
             report = verify_package(Path(package_argument))
             print(format_verify_report(report))
             return 0 if report.ok else 1
-    except (OpenCntxError, WorkspaceError) as exc:
+    except (IntegrityError, OpenCntxError, WorkspaceError) as exc:
         detail = (
             f"operation failed ({exc.code})"
-            if isinstance(exc, WorkspaceError)
+            if isinstance(exc, (IntegrityError, WorkspaceError))
             else str(exc)
         )
         print(f"Error: {detail}", file=sys.stderr)

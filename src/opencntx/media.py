@@ -12,9 +12,11 @@ from pathlib import Path
 import re
 import shutil
 import tempfile
+from functools import wraps
 from typing import Any, BinaryIO, Sequence
 from uuid import uuid4
 
+from .integrity import writer_transaction
 from .workspace import (
     CHUNK_SIZE,
     SHA256_PATTERN,
@@ -106,6 +108,19 @@ REMOVAL_FIELDS = {
     "source_id",
     "source_sha256",
 }
+
+
+def _workspace_writer(operation: str):
+    def decorate(function):
+        @wraps(function)
+        def wrapped(project_root: Path, *args, **kwargs):
+            root = validate_workspace(project_root)
+            with writer_transaction(root, operation):
+                return function(root, *args, **kwargs)
+
+        return wrapped
+
+    return decorate
 DERIVATION_FILES = {
     "content.txt",
     "record.json",
@@ -743,6 +758,7 @@ def _copy_utf8(source: BinaryIO, destination: BinaryIO, maximum: int) -> tuple[i
     return byte_count, digest.hexdigest()
 
 
+@_workspace_writer("media-register")
 def register_derivation(
     project_root: Path,
     source_id: str,
@@ -945,6 +961,7 @@ def _one_derivation(root: Path, source_id: str, derivation_id: str) -> _Derivati
     return derivation
 
 
+@_workspace_writer("media-review")
 def review_derivation(
     project_root: Path,
     source_id: str,
@@ -1023,6 +1040,7 @@ def _rollback_capture(root: Path, result: object) -> None:
         pass
 
 
+@_workspace_writer("media-promote")
 def promote_derivation(
     project_root: Path,
     source_id: str,
@@ -1123,6 +1141,7 @@ def promote_derivation(
     )
 
 
+@_workspace_writer("media-remove")
 def remove_derivation(
     project_root: Path,
     source_id: str,

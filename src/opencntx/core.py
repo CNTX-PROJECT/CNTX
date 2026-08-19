@@ -15,6 +15,7 @@ import tomllib
 from typing import Any
 from uuid import uuid4
 
+from .integrity import Transaction, state_digest, writer_transaction
 from .security import (
     POLICY_VERSION,
     SecretAssessment,
@@ -608,6 +609,8 @@ def _atomic_package_write(
     project_root: Path,
     context_bytes: bytes,
     manifest_bytes: bytes,
+    *,
+    _transaction: Transaction | None = None,
 ) -> Path:
     root = project_root.resolve(strict=True)
     output_parent = root / ".opencntx"
@@ -629,6 +632,8 @@ def _atomic_package_write(
     try:
         _write_file(temporary / "CONTEXT.md", context_bytes)
         _write_file(temporary / "manifest.json", manifest_bytes)
+        if _transaction is not None:
+            _transaction.track_target(latest)
         if latest.exists():
             if not latest.is_dir():
                 raise OpenCntxError(".opencntx/latest is not a package directory.")
@@ -642,6 +647,9 @@ def _atomic_package_write(
             raise
         if backup is not None:
             shutil.rmtree(backup, ignore_errors=True)
+        if _transaction is not None:
+            _transaction.mark_target_published(latest)
+            _transaction.mark_published()
         return latest
     except OpenCntxError:
         raise
@@ -673,8 +681,49 @@ def pack_project(
     manifest_bytes = (
         json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
     ).encode("utf-8")
-    package_path = _atomic_package_write(root, context_bytes, manifest_bytes)
-    return package_path, manifest
+    plan_digest = hashlib.sha256(
+        json.dumps(
+            [{"path": source.path, "sha256": source.sha256} for source in plan.sources],
+            ensure_ascii=True,
+            separators=(",", ":"),
+            sort_keys=True,
+        ).encode("utf-8")
+    ).hexdigest()
+    package_state = state_digest((root / ".opencntx" / "latest",))
+    expected = hashlib.sha256(f"{plan_digest}:{package_state}".encode("ascii")).hexdigest()
+
+    def current_digest() -> str:
+        current = plan_project(root, allowed_secret_ids=allowed_secret_ids)
+        current_plan_digest = hashlib.sha256(
+            json.dumps(
+                [
+                    {"path": source.path, "sha256": source.sha256}
+                    for source in current.sources
+                ],
+                ensure_ascii=True,
+                separators=(",", ":"),
+                sort_keys=True,
+            ).encode("utf-8")
+        ).hexdigest()
+        current_package_state = state_digest((root / ".opencntx" / "latest",))
+        return hashlib.sha256(
+            f"{current_plan_digest}:{current_package_state}".encode("ascii")
+        ).hexdigest()
+
+    with writer_transaction(
+        root,
+        "core-pack",
+        expected_digest=expected,
+        current_digest=current_digest,
+    ) as transaction:
+        package_path = _atomic_package_write(
+            root,
+            context_bytes,
+            manifest_bytes,
+            _transaction=transaction,
+        )
+        transaction.mark_receipted(None)
+        return package_path, manifest
 
 
 def _load_manifest(package_path: Path) -> tuple[Path, Path, dict[str, Any], ContextConfig]:

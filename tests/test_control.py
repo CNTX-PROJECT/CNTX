@@ -122,6 +122,9 @@ class ControlTests(unittest.TestCase):
             self.assertEqual(receipt["mode"], "COMPACT_MARKED")
             self.assertEqual(receipt["snapshot_path"], ".opencntx/control-snapshot.md")
             self.assertNotIn(str(workspace), result.receipt_path.read_text(encoding="utf-8"))
+            completed = workspace / ".opencntx" / "transactions" / "completed"
+            self.assertEqual(len(list(completed.iterdir())), 1)
+            self.assertEqual(list((workspace / ".opencntx" / "transactions" / "locks").rglob("*.lock")), [])
 
     def test_exact_block_byte_limit_is_accepted_and_one_more_is_rejected(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:

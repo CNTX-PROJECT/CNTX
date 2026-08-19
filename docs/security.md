@@ -61,9 +61,16 @@ does not execute supplied content.
 
 Unsafe paths, invalid UTF-8, unknown schemas, wrong digests, stale relations,
 budget overflow, forbidden actions, or invalid state transitions stop the
-operation. Partial publication is avoided through atomic writes.
+operation. Official workspace writers additionally use local writer locks,
+state compare-and-swap, and transaction evidence. An interrupted transaction
+blocks later writers until read-only diagnosis and exact recovery.
 
 Do not ignore a non-zero exit code.
+
+Recovery never treats age or a process ID as permission to remove a lock. It
+refuses an active OS lock, requires the exact transaction ID and intent digest,
+backs up current known targets first, and stops on unknown data or unsafe links.
+It is local recovery, not distributed locking or an OWNER decision.
 
 ## Digests and approval
 

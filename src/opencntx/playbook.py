@@ -5,6 +5,7 @@ from __future__ import annotations
 from collections.abc import Sequence
 from dataclasses import dataclass
 from datetime import UTC, datetime
+from functools import wraps
 import hashlib
 import json
 import os
@@ -15,6 +16,7 @@ import stat
 from typing import Any
 from uuid import uuid4
 
+from .integrity import Transaction, state_digest, writer_transaction
 from .navigator import _load_package_manifest, verify_context_package
 from .workflow import _event, _load_chain, _verify_inputs
 from .workspace import WorkspaceError, validate_workspace
@@ -77,6 +79,19 @@ RESERVED_AUTHORITY_ACTIONS = frozenset(
         "task-supersede",
     }
 )
+
+
+def _workspace_writer(operation: str):
+    def decorate(function):
+        @wraps(function)
+        def wrapped(project_root: Path, *args, **kwargs):
+            root = validate_workspace(project_root)
+            with writer_transaction(root, operation):
+                return function(root, *args, **kwargs)
+
+        return wrapped
+
+    return decorate
 
 PLAYBOOK_FIELDS = {
     "allowed_actions",
@@ -933,6 +948,7 @@ def _register_definition(
     )
 
 
+@_workspace_writer("playbook-register")
 def register_playbook(
     project_root: Path,
     playbook_id: str,
@@ -969,6 +985,7 @@ def register_playbook(
     )
 
 
+@_workspace_writer("role-register")
 def register_role(
     project_root: Path,
     role_id: str,
@@ -1053,6 +1070,7 @@ def _approve_definition(
     )
 
 
+@_workspace_writer("playbook-approve")
 def approve_playbook(
     project_root: Path,
     playbook_id: str,
@@ -1071,6 +1089,7 @@ def approve_playbook(
     )
 
 
+@_workspace_writer("role-approve")
 def approve_role(
     project_root: Path,
     role_id: str,
@@ -1321,7 +1340,7 @@ def _assignment_parent(root: Path, task_id: str, *, create: bool) -> Path:
         raise PlaybookError("Uitvoerderpad kon niet veilig worden geopend.", code="executor_path_unsafe") from exc
 
 
-def prepare_executor(
+def _prepare_executor_unlocked(
     project_root: Path,
     task_id: str,
     *,
@@ -1335,6 +1354,7 @@ def prepare_executor(
     role_digest: str,
     context_manifest_digest: str,
     executor: str,
+    _transaction: Transaction | None = None,
 ) -> ExecutorPrepareResult:
     root = validate_workspace(project_root)
     task_id = _task_id(task_id)
@@ -1465,6 +1485,8 @@ def prepare_executor(
         temporary.mkdir(mode=0o700)
         _write_new(temporary / "ASSIGNMENT.md", document_bytes)
         _write_new(temporary / "record.json", _json_bytes(value))
+        if _transaction is not None:
+            _transaction.track_target(destination)
         os.replace(temporary, destination)
     except (PlaybookError, OSError) as exc:
         try:
@@ -1475,6 +1497,9 @@ def prepare_executor(
             raise
         raise PlaybookError("Uitvoerderpakket kon niet atomair worden gemaakt.", code="executor_write_failed") from exc
     assignment = _load_assignment(root, task_id, executor_id)
+    if _transaction is not None:
+        _transaction.mark_target_published(destination)
+        _transaction.mark_published()
     receipt = _write_receipt(
         root,
         "executor-prepare",
@@ -1485,6 +1510,8 @@ def prepare_executor(
             "task_id": task_id,
         },
     )
+    if _transaction is not None:
+        _transaction.mark_receipted(receipt)
     return ExecutorPrepareResult(
         status="EXECUTOR_PACKAGE_PREPARED",
         task_id=task_id,
@@ -1493,6 +1520,58 @@ def prepare_executor(
         assignment_path=assignment.directory / "ASSIGNMENT.md",
         receipt_path=receipt,
     )
+
+
+def prepare_executor(
+    project_root: Path,
+    task_id: str,
+    *,
+    revision: int,
+    proposal_digest: str,
+    playbook_id: str,
+    playbook_revision: int,
+    playbook_digest: str,
+    role_id: str,
+    role_revision: int,
+    role_digest: str,
+    context_manifest_digest: str,
+    executor: str,
+) -> ExecutorPrepareResult:
+    root = validate_workspace(project_root)
+    normalized_task_id = _task_id(task_id)
+    chain = _load_chain(root, normalized_task_id)
+    state_paths = (
+        chain.directory / "events",
+        root / ".opencntx" / "executors" / normalized_task_id,
+    )
+    expected_state = state_digest(state_paths)
+    if _TEST_BEFORE_EXECUTOR_LOCK is not None:
+        _TEST_BEFORE_EXECUTOR_LOCK()
+    with writer_transaction(
+        root,
+        "executor-prepare",
+        task_id=normalized_task_id,
+        expected_digest=expected_state,
+        current_digest=lambda: state_digest(state_paths),
+    ) as transaction:
+        return _prepare_executor_unlocked(
+            root,
+            normalized_task_id,
+            revision=revision,
+            proposal_digest=proposal_digest,
+            playbook_id=playbook_id,
+            playbook_revision=playbook_revision,
+            playbook_digest=playbook_digest,
+            role_id=role_id,
+            role_revision=role_revision,
+            role_digest=role_digest,
+            context_manifest_digest=context_manifest_digest,
+            executor=executor,
+            _transaction=transaction,
+        )
+
+
+_TEST_BEFORE_EXECUTOR_LOCK = None
 
 
 def _load_assignment(project_root: Path, task_id: str, executor_id: str) -> _Assignment:

@@ -485,6 +485,9 @@ class PlaybookTests(unittest.TestCase):
             text = prepared.assignment_path.read_text(encoding="utf-8")
             self.assertIn("This package starts nothing", text)
             self.assertIn("no OWNER authority", text)
+            completed = workspace / ".opencntx" / "transactions" / "completed"
+            self.assertTrue(any(completed.iterdir()))
+            self.assertEqual(list((workspace / ".opencntx" / "transactions" / "locks").rglob("*.lock")), [])
 
     def test_executor_requires_approved_definitions(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:

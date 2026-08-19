@@ -235,6 +235,9 @@ class NavigatorTests(unittest.TestCase):
             )
             self.assertEqual(official_snapshot(workspace), before)
             self.assertIn("does not grant permission", run_cli("workspace", "context", "build", TASK_ID, "--proposal-digest", proposed.object_digest, "--max-files", "25", "--max-bytes", "100000", "--root", str(workspace), cwd=workspace).stdout)
+            completed = workspace / ".opencntx" / "transactions" / "completed"
+            self.assertTrue(any(completed.iterdir()))
+            self.assertEqual(list((workspace / ".opencntx" / "transactions" / "locks").rglob("*.lock")), [])
 
     def test_compact_mode_excludes_history_but_pins_full_roadmap(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:

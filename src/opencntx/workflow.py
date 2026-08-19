@@ -17,6 +17,7 @@ from typing import Any, Sequence
 import unicodedata
 from uuid import uuid4
 
+from .integrity import Transaction, state_digest, writer_transaction
 from .workspace import SHA256_PATTERN, WorkspaceError, validate_workspace
 
 
@@ -1160,6 +1161,9 @@ def _failure_receipt(operation: str):
     return decorate
 
 
+_TEST_BEFORE_TASK_LOCK = None
+
+
 def _append_event(
     root: Path,
     chain: TaskChain,
@@ -1170,35 +1174,63 @@ def _append_event(
     payload: dict[str, Any],
     success_status: str,
 ) -> TaskResult:
-    _ensure_managed_view(chain)
-    value = _new_event_value(
-        chain,
+    expected_head = chain.events[-1].record_digest
+
+    def current_head() -> str:
+        event_paths = sorted((chain.directory / "events").glob("*.json"))
+        if not event_paths:
+            raise WorkflowError("Taakketen bevat geen events.", code="task_chain_invalid")
+        value = _read_json(event_paths[-1])
+        digest = value.get("record_digest")
+        if not isinstance(digest, str) or SHA256_PATTERN.fullmatch(digest) is None:
+            raise WorkflowError("Laatste task-head is ongeldig.", code="task_chain_invalid")
+        return digest
+
+    if _TEST_BEFORE_TASK_LOCK is not None:
+        _TEST_BEFORE_TASK_LOCK()
+    with writer_transaction(
+        root,
+        f"task-{event_type}",
+        workspace=False,
         task_id=chain.task_id,
-        event_type=event_type,
-        to_status=to_status,
-        actor_id=actor_id,
-        payload=payload,
-    )
-    path = chain.directory / "events" / _event_filename(value["event_number"], event_type)
-    _write_new(path, _json_bytes(value))
-    updated = _load_chain(root, chain.task_id)
-    _write_view(updated)
-    receipt = _write_receipt(root, updated, success_status)
-    latest = updated.events[-1]
-    return TaskResult(
-        status=success_status,
-        task_id=updated.task_id,
-        revision=updated.revision,
-        task_status=updated.status,
-        object_digest=latest.object_digest,
-        record_digest=latest.record_digest,
-        task_path=updated.directory / "TASK.md",
-        receipt_path=receipt,
-    )
+        expected_digest=expected_head,
+        current_digest=current_head,
+    ) as transaction:
+        _ensure_managed_view(chain)
+        value = _new_event_value(
+            chain,
+            task_id=chain.task_id,
+            event_type=event_type,
+            to_status=to_status,
+            actor_id=actor_id,
+            payload=payload,
+        )
+        path = chain.directory / "events" / _event_filename(value["event_number"], event_type)
+        transaction.track_target(path)
+        transaction.track_target(chain.directory / "TASK.md")
+        _write_new(path, _json_bytes(value))
+        transaction.mark_target_published(path)
+        updated = _load_chain(root, chain.task_id)
+        _write_view(updated)
+        transaction.mark_target_published(chain.directory / "TASK.md")
+        transaction.mark_published()
+        receipt = _write_receipt(root, updated, success_status)
+        transaction.mark_receipted(receipt)
+        latest = updated.events[-1]
+        return TaskResult(
+            status=success_status,
+            task_id=updated.task_id,
+            revision=updated.revision,
+            task_status=updated.status,
+            object_digest=latest.object_digest,
+            record_digest=latest.record_digest,
+            task_path=updated.directory / "TASK.md",
+            receipt_path=receipt,
+        )
 
 
 @_failure_receipt("propose")
-def propose_task(
+def _propose_task_unlocked(
     project_root: Path,
     task_id: str,
     *,
@@ -1212,6 +1244,7 @@ def propose_task(
     expected_output: str,
     acceptance_criteria: Sequence[str],
     architect: str,
+    _transaction: Transaction | None = None,
 ) -> TaskResult:
     root = validate_workspace(project_root)
     task_id = _task_id(task_id)
@@ -1269,6 +1302,8 @@ def propose_task(
             ),
         )
         _write_new(temporary / "TASK.md", _task_view_bytes(provisional))
+        if _transaction is not None:
+            _transaction.track_target(destination)
         os.replace(temporary, destination)
     except (WorkflowError, OSError) as exc:
         try:
@@ -1279,7 +1314,12 @@ def propose_task(
             raise
         raise WorkflowError("Taak kon niet atomair worden gemaakt.", code="task_write_failed") from exc
     chain = _load_chain(root, task_id)
+    if _transaction is not None:
+        _transaction.mark_target_published(destination)
+        _transaction.mark_published()
     receipt = _write_receipt(root, chain, "TASK_PROPOSED")
+    if _transaction is not None:
+        _transaction.mark_receipted(receipt)
     latest = chain.events[-1]
     return TaskResult(
         status="TASK_PROPOSED",
@@ -1291,6 +1331,46 @@ def propose_task(
         task_path=destination / "TASK.md",
         receipt_path=receipt,
     )
+
+
+def propose_task(
+    project_root: Path,
+    task_id: str,
+    *,
+    title: str,
+    goal: str,
+    definition_of_done: str,
+    executor_role: str,
+    input_paths: Sequence[str],
+    allowed_actions: Sequence[str],
+    forbidden_actions: Sequence[str],
+    expected_output: str,
+    acceptance_criteria: Sequence[str],
+    architect: str,
+) -> TaskResult:
+    root = validate_workspace(project_root)
+    expected = state_digest((root / "TASKS",))
+    with writer_transaction(
+        root,
+        "task-propose",
+        expected_digest=expected,
+        current_digest=lambda: state_digest((root / "TASKS",)),
+    ) as transaction:
+        return _propose_task_unlocked(
+            root,
+            task_id,
+            title=title,
+            goal=goal,
+            definition_of_done=definition_of_done,
+            executor_role=executor_role,
+            input_paths=input_paths,
+            allowed_actions=allowed_actions,
+            forbidden_actions=forbidden_actions,
+            expected_output=expected_output,
+            acceptance_criteria=acceptance_criteria,
+            architect=architect,
+            _transaction=transaction,
+        )
 
 
 @_failure_receipt("approve")

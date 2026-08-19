@@ -72,6 +72,50 @@ class CliTests(unittest.TestCase):
             self.assertIn("nothing was overwritten", result.stderr)
             self.assertEqual(config_path.read_text(encoding="utf-8"), "bewaar mij\n")
 
+    def test_workspace_doctor_is_read_only_on_a_new_workspace(self) -> None:
+        from opencntx.workspace import init_workspace
+
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            workspace = Path(temporary_directory) / "workspace"
+            init_workspace(workspace)
+            before = {
+                path.relative_to(workspace).as_posix(): path.read_bytes()
+                for path in workspace.rglob("*")
+                if path.is_file()
+            }
+            result = run_cli("workspace", "doctor", "--root", str(workspace), cwd=workspace)
+            after = {
+                path.relative_to(workspace).as_posix(): path.read_bytes()
+                for path in workspace.rglob("*")
+                if path.is_file()
+            }
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertIn("Workspace doctor: HEALTHY", result.stdout)
+            self.assertIn("Read-only inspection", result.stdout)
+            self.assertEqual(before, after)
+
+    def test_workspace_doctor_exit_codes_distinguish_findings_and_invalid_input(self) -> None:
+        from opencntx.workspace import init_workspace
+
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            workspace = Path(temporary_directory) / "workspace"
+            init_workspace(workspace)
+            active = workspace / ".opencntx" / "transactions" / "active"
+            active.mkdir(parents=True)
+            (active / "unknown-entry").mkdir()
+            finding = run_cli("workspace", "doctor", "--root", str(workspace), cwd=workspace)
+            invalid = run_cli(
+                "workspace",
+                "doctor",
+                "--root",
+                str(workspace / "missing"),
+                cwd=workspace,
+            )
+            self.assertEqual(finding.returncode, 1, finding.stderr)
+            self.assertIn("UNSAFE_UNKNOWN_STATE", finding.stdout)
+            self.assertEqual(invalid.returncode, 2)
+            self.assertIn("doctor_failed", invalid.stderr)
+
 
 if __name__ == "__main__":
     unittest.main()

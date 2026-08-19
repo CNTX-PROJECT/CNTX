@@ -109,6 +109,11 @@ workspace for supplied sources, chapters, tasks, playbooks, roles, derived
 text, and bounded executor packages. It remains advanced and may change within
 the public Alpha contract.
 
+Workspace writers are local single-writer transactions. `workspace doctor`
+diagnoses interrupted work read-only; `workspace recover` previews an exact,
+backup-first rollback and applies it only with the reported transaction ID and
+intent digest.
+
 Read [Advanced / Alpha workspace](docs/workspace.md) only when that extra
 structure is useful. No workspace command starts an AI, agent, shell process,
 OCR tool, transcription service, or external sync.

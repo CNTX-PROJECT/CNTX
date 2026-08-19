@@ -27,6 +27,12 @@ All notable OPENCNTX changes are recorded here.
   six existing Windows/Ubuntu and Python 3.11/3.12/3.13 CI jobs.
 - Added one exact-tag `pipx` install route and bounded release-artifact guidance
   without claiming PyPI publication or new release assets.
+- Added local workspace and task writer locks, exact compare-and-swap checks,
+  durable transaction journals, and real spawn-process conflict tests.
+- Added read-only `workspace doctor` diagnosis and exact intent-bound,
+  backup-first `workspace recover` preview/apply handling for interrupted work.
+- Added shared symlink, Windows reparse/junction, containment, file-flush, and
+  parent-directory-flush primitives without claiming hardware power-loss proof.
 
 ### Changed
 
@@ -52,6 +58,9 @@ All notable OPENCNTX changes are recorded here.
   removed the duplicated literal release version from the CI smoke test.
 - Expanded pre-read defaults for known local credential, SSH identity, package
   registry, Docker, AWS, and application-default credential paths.
+- Routed official workspace writers through the shared local integrity layer
+  while preserving existing domain formats, OWNER gates, and read-only legacy
+  verification.
 
 No runtime dependency, package version, release, publication, or product
 network boundary changed. CI uses a pinned build-only toolchain, emits no

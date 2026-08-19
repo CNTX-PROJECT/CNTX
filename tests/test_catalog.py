@@ -207,6 +207,9 @@ class CatalogTests(unittest.TestCase):
             self.assertIn("No chapters registered yet", index)
             receipt = read_json(second.receipt_path)
             self.assertEqual(receipt["status"], "CATALOG_REBUILT")
+            completed = workspace / ".opencntx" / "transactions" / "completed"
+            self.assertEqual(len(list(completed.iterdir())), 2)
+            self.assertEqual(list((workspace / ".opencntx" / "transactions" / "locks").rglob("*.lock")), [])
 
     def test_owner_accepted_exact_chapter_becomes_current(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:

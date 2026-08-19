@@ -187,6 +187,9 @@ class WorkspaceTests(unittest.TestCase):
             self.assertEqual(receipt["status"], "CAPTURED")
             self.assertEqual(receipt["source_id"], result.source_id)
             self.assertNotIn(str(source.parent), result.receipt_path.read_text(encoding="utf-8"))
+            completed = workspace / ".opencntx" / "transactions" / "completed"
+            self.assertEqual(len(list(completed.iterdir())), 1)
+            self.assertEqual(list((workspace / ".opencntx" / "transactions" / "locks").rglob("*.lock")), [])
 
     def test_capture_binary_is_byte_exact_and_never_interpreted(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:

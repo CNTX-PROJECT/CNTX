@@ -47,6 +47,11 @@ tasks, playbooks, roles, approvals, and evidence as readable local records. It
 can select a small context set for one approved task, but none of these
 concepts is required for the core route.
 
+Official workspace writers use local workspace/task locks and exact state
+comparisons. Each mutation leaves a transaction journal. A hard process crash
+therefore leaves the previous valid state or exact local evidence for read-only
+diagnosis and explicit backup-first recovery.
+
 ## Three kinds of evidence
 
 - **Bytes:** the exact stored or selected content.
