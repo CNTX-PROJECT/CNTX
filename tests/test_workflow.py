@@ -16,6 +16,7 @@ sys.path.insert(0, str(SOURCE_ROOT))
 
 from opencntx.workflow import (  # noqa: E402
     WorkflowError,
+    _append_event,
     _load_chain,
     _task_view_bytes,
     accept_result,
@@ -24,7 +25,6 @@ from opencntx.workflow import (  # noqa: E402
     cancel_task,
     close_task,
     propose_task,
-    record_attempt,
     review_result,
     submit_result,
     supersede_task,
@@ -80,6 +80,50 @@ def begin(workspace: Path):
     )
     started = begin_task(workspace, TASK_ID, architect="ARCHITECT")
     return proposed, started
+
+
+def record_attempt(
+    workspace: Path,
+    task_id: str,
+    *,
+    error_code: str,
+    error_signature: str,
+    new_basis: str,
+    executor: str,
+):
+    """Create one historical v1 text attempt for read-compatibility tests."""
+    chain = _load_chain(workspace, task_id)
+    attempts = [event for event in chain.events if event.event_type == "attempt"]
+    if (
+        attempts
+        and attempts[-1].payload["error_signature"] == error_signature
+        and attempts[-1].payload["new_basis"] == new_basis
+    ):
+        raise WorkflowError(
+            "Historical attempt has no changed text basis.",
+            code="task_attempt_unchanged",
+        )
+    consecutive = 1
+    for previous in reversed(attempts):
+        if previous.payload["error_signature"] != error_signature:
+            break
+        consecutive += 1
+    blocked = consecutive >= 3
+    return _append_event(
+        workspace,
+        chain,
+        event_type="attempt",
+        to_status="BLOCKED" if blocked else "IN_EXECUTION",
+        actor_id=executor,
+        payload={
+            "proposal_digest": chain.proposal_digest,
+            "attempt_number": len(attempts) + 1,
+            "error_code": error_code,
+            "error_signature": error_signature,
+            "new_basis": new_basis,
+        },
+        success_status="TASK_BLOCKED" if blocked else "TASK_ATTEMPT_RECORDED",
+    )
 
 
 def submit(workspace: Path, outside: Path):

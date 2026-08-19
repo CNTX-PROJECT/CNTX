@@ -64,6 +64,20 @@ by prior steps. At most one executor package exists per task revision.
 The package contains assignment metadata and allowed actions. It does not copy
 the full context bytes and does not launch execution.
 
+## Bind a failed attempt
+
+An objective failed-attempt record requires the exact executor ID and one
+action from this package. OPENCNTX verifies the package, task, approved
+definitions, original context-manifest bytes, and effective action before it
+writes evidence. The attempt stores the executor record digest and context
+manifest digest. The executor name and actor string are not a login, signature,
+cryptographic identity, or OWNER grant.
+
+Task progress changes the generated `TASK.md`, so a later attempt verifies the
+original immutable context package bytes named by the executor package instead
+of pretending that the pre-attempt live route is unchanged. Any change to the
+stored `CONTEXT.md` or `manifest.json` still fails closed.
+
 ## Status after task completion
 
 When the task leaves `IN_EXECUTION`, the package reports `TASK_FINISHED`. It

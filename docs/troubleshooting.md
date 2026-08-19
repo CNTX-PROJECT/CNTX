@@ -110,9 +110,23 @@ Confirm that:
 
 ## A task becomes `BLOCKED`
 
-Three equal failure signatures reached the anti-deadloop limit. Stop. Preserve
-the evidence and ask the OWNER for a new decision. Do not create an automatic
-retry loop.
+Read `workspace task status` and keep the reported primary block reason:
+
+- `SEMANTIC_REPEAT_LIMIT`: the same controller fingerprint occurred three
+  times, even if other failures appeared between them;
+- `TOTAL_ATTEMPT_LIMIT`: five total failed attempts were recorded;
+- `CUMULATIVE_ACTION_LIMIT`: the task reached 25 recorded actions;
+- `CUMULATIVE_TIME_LIMIT`: the task reached 1,800,000 recorded milliseconds.
+
+Stop and preserve the evidence. There is no retry, reset, or budget override.
+The OWNER may cancel the task or explicitly supersede it with one new task ID.
+Do not edit task events, artifacts, the executor package, or context manifest.
+
+If `record-attempt` reports `task_attempt_unchanged`, supply genuinely changed
+relevant input bytes or one unique new-evidence file. A different description,
+mtime, input order, result log, or a second copy of identical evidence is not a
+new basis. A historical task containing free-text legacy attempts remains
+readable but requires a new explicit task before objective attempt recording.
 
 ## Need more help?
 

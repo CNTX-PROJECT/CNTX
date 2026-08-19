@@ -72,6 +72,18 @@ refuses an active OS lock, requires the exact transaction ID and intent digest,
 backs up current known targets first, and stops on unknown data or unsafe links.
 It is local recovery, not distributed locking or an OWNER decision.
 
+Failed-attempt fingerprints are deterministic SHA-256 bindings over recorded
+facts. Free error wording is excluded, so rephrasing cannot reset the same
+semantic failure count. A caller still supplies the normalized error class,
+action count, and duration because OPENCNTX does not execute the external
+command. These records prove bytes, classification, arithmetic, and task state;
+they do not prove that the supplied real-world account is true.
+
+Attempt result and new-evidence files remain local task artifacts. Their
+content is not printed by status, but it may still contain sensitive material.
+Inspect it before any manual sharing and protect the workspace with operating-
+system permissions.
+
 ## Digests and approval
 
 A digest binds a decision to exact bytes. It does not authenticate a natural

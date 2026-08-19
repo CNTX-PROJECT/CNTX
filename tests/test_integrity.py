@@ -16,6 +16,7 @@ if str(SOURCE_ROOT) not in sys.path:
     sys.path.insert(0, str(SOURCE_ROOT))
 
 from opencntx.catalog import create_chapter, rebuild_catalog  # noqa: E402
+from opencntx.attempts import record_attempt  # noqa: E402
 from opencntx.integrity import (  # noqa: E402
     IntegrityError,
     doctor_workspace,
@@ -38,7 +39,6 @@ from opencntx.workflow import (  # noqa: E402
     approve_task,
     begin_task,
     propose_task,
-    record_attempt,
     task_status,
 )
 from opencntx.workspace import capture_source, init_workspace  # noqa: E402
@@ -74,7 +74,7 @@ def _approval_worker(root, proposal_digest, barrier, queue) -> None:
     )
 
 
-def _attempt_worker(root, barrier, queue) -> None:
+def _attempt_worker(root, executor_id, evidence, barrier, queue) -> None:
     import opencntx.workflow as workflow
 
     workflow._TEST_BEFORE_TASK_LOCK = barrier.wait
@@ -83,10 +83,16 @@ def _attempt_worker(root, barrier, queue) -> None:
         lambda: record_attempt(
             Path(root),
             TASK_ID,
-            error_code="bounded_failure",
-            error_signature="same-exact-signature",
-            new_basis="same changed input digest",
-            executor="EXECUTOR-1",
+            executor_id=executor_id,
+            action="inspect-source",
+            command_type="inspect-file",
+            target="CONTROL/ROADMAP.md",
+            input_paths=["CONTROL/ROADMAP.md"],
+            exit_status=2,
+            error_class="invalid-input",
+            actions_used=1,
+            duration_ms=10,
+            result_evidence_path=Path(evidence),
         ),
     )
 
@@ -673,10 +679,27 @@ class IntegrityTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temporary_directory:
             root = Path(temporary_directory) / "workspace"
             init_workspace(root)
-            proposed = _proposal(root)
-            approve_task(root, TASK_ID, revision=1, proposal_digest=proposed.object_digest, owner="OWNER")
-            begin_task(root, TASK_ID, architect="ARCHITECT")
-            results = _run_pair(_attempt_worker, (root,))
+            proposed, playbook, role, context = _executor_ready(root)
+            prepared = prepare_executor(
+                root,
+                TASK_ID,
+                revision=1,
+                proposal_digest=proposed.object_digest,
+                playbook_id=PLAYBOOK_ID,
+                playbook_revision=1,
+                playbook_digest=playbook.definition_digest,
+                role_id=ROLE_ID,
+                role_revision=1,
+                role_digest=role.definition_digest,
+                context_manifest_digest=context.manifest_digest,
+                executor="EXECUTOR-1",
+            )
+            evidence = root / "INBOX" / "attempt-result.txt"
+            evidence.write_text("same exact failed result\n", encoding="utf-8")
+            results = _run_pair(
+                _attempt_worker,
+                (root, prepared.executor_id, evidence),
+            )
             self.assertEqual(sum(status == "success" for status, _ in results), 1, results)
             self.assertEqual(sum(status == "error" for status, _ in results), 1, results)
 

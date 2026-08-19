@@ -33,8 +33,18 @@ All notable OPENCNTX changes are recorded here.
   backup-first `workspace recover` preview/apply handling for interrupted work.
 - Added shared symlink, Windows reparse/junction, containment, file-flush, and
   parent-directory-flush primitives without claiming hardware power-loss proof.
+- Added objective failed-attempt evidence bound to the exact executor package,
+  context manifest, allowed action, relevant input digests, and local result
+  evidence.
+- Added deterministic semantic fingerprints, digest-backed new-basis proof,
+  and fixed task-wide attempt, action, and duration limits without adding an
+  automatic retry controller.
 
 ### Changed
+
+- Replaced new free-text attempt signatures and new-basis claims with a closed,
+  controller-derived evidence contract while keeping historical text-attempt
+  records read-only verifiable.
 
 - Made fixed CLI help, errors, warnings, results, templates, and generated
   headings consistently English and ASCII-safe while preserving UTF-8 user

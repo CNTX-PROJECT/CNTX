@@ -17,6 +17,20 @@ from typing import Any, Sequence
 import unicodedata
 from uuid import uuid4
 
+from .attempts import (
+    BLOCK_PRIORITY,
+    MAX_CUMULATIVE_ACTIONS,
+    MAX_CUMULATIVE_DURATION_MS,
+    MAX_TOTAL_ATTEMPTS,
+    AttemptError,
+    normalize_actions_used,
+    normalize_command_type,
+    normalize_duration_ms,
+    normalize_error_class,
+    normalize_exit_status,
+    normalize_target,
+    validate_objective_attempt_sequence,
+)
 from .integrity import Transaction, state_digest, writer_transaction
 from .workspace import SHA256_PATTERN, WorkspaceError, validate_workspace
 
@@ -31,6 +45,8 @@ TASK_VIEW_VERSION = 1
 TASK_ID_PATTERN = re.compile(r"TASK-\d{8}-\d{4}\Z")
 ACTOR_ID_PATTERN = re.compile(r"[^\x00-\x1f\x7f]{1,120}\Z")
 ERROR_CODE_PATTERN = re.compile(r"[a-z][a-z0-9_]{0,63}\Z")
+ACTION_TOKEN_PATTERN = re.compile(r"[a-z][a-z0-9-]{0,63}\Z")
+EXECUTOR_ID_PATTERN = re.compile(r"EXEC-\d{8}-[0-9a-f]{12}\Z")
 EVENT_FILE_PATTERN = re.compile(r"(\d{4})-([a-z][a-z0-9-]*)\.json\Z")
 
 MAX_TEXT_LENGTH = 1000
@@ -80,6 +96,11 @@ EVENT_SPECS: dict[str, tuple[str | None, frozenset[str], str]] = {
     ),
     "closure": ("OWNER_ACCEPTED", frozenset({"CLOSED"}), "ARCHITECT"),
     "attempt": ("IN_EXECUTION", frozenset({"IN_EXECUTION", "BLOCKED"}), "EXECUTOR"),
+    "objective-attempt": (
+        "IN_EXECUTION",
+        frozenset({"IN_EXECUTION", "BLOCKED"}),
+        "EXECUTOR",
+    ),
     "cancellation": (None, frozenset({"CANCELLED"}), "OWNER"),
     "superseded": (None, frozenset({"SUPERSEDED"}), "OWNER"),
 }
@@ -139,6 +160,31 @@ PAYLOAD_KEYS: dict[str, set[str]] = {
         "error_code",
         "error_signature",
         "new_basis",
+    },
+    "objective-attempt": {
+        "actions_used",
+        "allowed_action",
+        "attempt_number",
+        "basis_digest",
+        "basis_status",
+        "block_reason",
+        "command_type",
+        "context_manifest_digest",
+        "cumulative_actions",
+        "cumulative_attempts",
+        "cumulative_duration_ms",
+        "duration_ms",
+        "error_class",
+        "error_fingerprint",
+        "executor_id",
+        "executor_record_digest",
+        "exit_status",
+        "inputs",
+        "new_evidence",
+        "proposal_digest",
+        "reached_limits",
+        "result_evidence",
+        "target",
     },
     "cancellation": {"proposal_digest", "reason"},
     "superseded": {"proposal_digest", "replacement_task_id", "reason"},
@@ -514,6 +560,94 @@ def _validate_payload(event_type: str, payload: object) -> dict[str, Any]:
         _short_text(payload["error_code"], field="Foutcode", maximum=64, pattern=ERROR_CODE_PATTERN)
         _short_text(payload["error_signature"], field="Foutsignatuur", maximum=256)
         _short_text(payload["new_basis"], field="Nieuwe basis")
+    elif event_type == "objective-attempt":
+        _validate_digest(payload["proposal_digest"], field="Voorsteldigest")
+        attempt_number = payload["attempt_number"]
+        if type(attempt_number) is not int or attempt_number < 1:
+            raise WorkflowError("Pogingnummer is ongeldig.", code="task_record_invalid")
+        _short_text(
+            payload["executor_id"],
+            field="Uitvoerder-ID",
+            maximum=40,
+            pattern=EXECUTOR_ID_PATTERN,
+        )
+        for field in (
+            "executor_record_digest",
+            "context_manifest_digest",
+            "error_fingerprint",
+            "basis_digest",
+        ):
+            _validate_digest(payload[field], field=field)
+        _short_text(
+            payload["allowed_action"],
+            field="Toegestane actie",
+            maximum=64,
+            pattern=ACTION_TOKEN_PATTERN,
+        )
+        try:
+            normalize_command_type(payload["command_type"])
+            normalize_target(payload["target"])
+            normalize_exit_status(payload["exit_status"])
+            normalize_error_class(payload["error_class"])
+            normalize_actions_used(payload["actions_used"])
+            normalize_duration_ms(payload["duration_ms"])
+        except AttemptError as exc:
+            raise WorkflowError(str(exc), code="task_record_invalid") from exc
+        inputs = payload["inputs"]
+        if not isinstance(inputs, list) or not inputs or len(inputs) > MAX_LIST_ITEMS:
+            raise WorkflowError("Poginginputs zijn ongeldig.", code="task_record_invalid")
+        input_paths: list[str] = []
+        for item in inputs:
+            _validate_artifact_record(item, label="Poginginput")
+            input_paths.append(item["path"])
+        if input_paths != sorted(input_paths) or len(set(input_paths)) != len(input_paths):
+            raise WorkflowError("Poginginputs zijn niet canoniek.", code="task_record_invalid")
+        result_evidence = _validate_artifact_record(
+            payload["result_evidence"], label="Pogingresultaatbewijs"
+        )
+        expected_result_path = f"artifacts/attempt-{attempt_number:04d}-result.bin"
+        if result_evidence["path"] != expected_result_path:
+            raise WorkflowError("Pogingresultaatpad is ongeldig.", code="task_record_invalid")
+        new_evidence = payload["new_evidence"]
+        if new_evidence is not None:
+            _validate_artifact_record(new_evidence, label="Nieuw pogingbewijs")
+            expected_new_path = (
+                f"artifacts/attempt-{attempt_number:04d}-new-evidence.bin"
+            )
+            if new_evidence["path"] != expected_new_path:
+                raise WorkflowError("Nieuw-bewijspad is ongeldig.", code="task_record_invalid")
+        if payload["basis_status"] not in {
+            "INITIAL",
+            "INPUT_DIGEST_CHANGED",
+            "NEW_EVIDENCE",
+        }:
+            raise WorkflowError("Pogingbasisstatus is ongeldig.", code="task_record_invalid")
+        for field, maximum in (
+            ("cumulative_attempts", MAX_TOTAL_ATTEMPTS),
+            (
+                "cumulative_actions",
+                MAX_CUMULATIVE_ACTIONS * MAX_TOTAL_ATTEMPTS,
+            ),
+            (
+                "cumulative_duration_ms",
+                MAX_CUMULATIVE_DURATION_MS * MAX_TOTAL_ATTEMPTS,
+            ),
+        ):
+            value = payload[field]
+            minimum = 0 if field == "cumulative_duration_ms" else 1
+            if type(value) is not int or value < minimum or value > maximum:
+                raise WorkflowError("Pogingbudget is ongeldig.", code="task_record_invalid")
+        reached = payload["reached_limits"]
+        if (
+            not isinstance(reached, list)
+            or any(item not in BLOCK_PRIORITY for item in reached)
+            or reached != [item for item in BLOCK_PRIORITY if item in reached]
+            or len(set(reached)) != len(reached)
+        ):
+            raise WorkflowError("Poginggrenzen zijn ongeldig.", code="task_record_invalid")
+        block_reason = payload["block_reason"]
+        if block_reason != (reached[0] if reached else None):
+            raise WorkflowError("Pogingblokkade is ongeldig.", code="task_record_invalid")
     elif event_type == "cancellation":
         _validate_digest(payload["proposal_digest"], field="Voorsteldigest")
         _short_text(payload["reason"], field="Reden")
@@ -653,6 +787,8 @@ def _validate_bindings(events: Sequence[TaskEvent]) -> None:
     consecutive_signature: str | None = None
     consecutive_count = 0
     previous_attempt_basis: str | None = None
+    objective_attempts: list[dict[str, Any]] = []
+    saw_legacy_attempt = False
     for index, event in enumerate(events[1:], start=1):
         payload = event.payload
         if "proposal_digest" in payload and payload["proposal_digest"] != proposal_digest:
@@ -696,6 +832,12 @@ def _validate_bindings(events: Sequence[TaskEvent]) -> None:
             if payload != expected:
                 raise WorkflowError("Sluitingsbewijs bindt niet alle vereiste digests.", code="task_binding_invalid")
         elif event.event_type == "attempt":
+            if objective_attempts:
+                raise WorkflowError(
+                    "Legacy- en objectieve pogingen mogen niet worden gemengd.",
+                    code="task_binding_invalid",
+                )
+            saw_legacy_attempt = True
             attempt_number += 1
             if payload["attempt_number"] != attempt_number:
                 raise WorkflowError("Pogingnummers zijn niet opeenvolgend.", code="task_binding_invalid")
@@ -714,6 +856,23 @@ def _validate_bindings(events: Sequence[TaskEvent]) -> None:
             expected = "BLOCKED" if consecutive_count >= 3 else "IN_EXECUTION"
             if event.to_status != expected:
                 raise WorkflowError("Pogingbewijs en blokkadestatus verschillen.", code="task_binding_invalid")
+        elif event.event_type == "objective-attempt":
+            if saw_legacy_attempt:
+                raise WorkflowError(
+                    "Legacy- en objectieve pogingen mogen niet worden gemengd.",
+                    code="task_binding_invalid",
+                )
+            objective_attempts.append(payload)
+            try:
+                validate_objective_attempt_sequence(objective_attempts)
+            except AttemptError as exc:
+                raise WorkflowError(str(exc), code="task_binding_invalid") from exc
+            expected = "BLOCKED" if payload["block_reason"] is not None else "IN_EXECUTION"
+            if event.to_status != expected:
+                raise WorkflowError(
+                    "Objectief pogingbewijs en blokkadestatus verschillen.",
+                    code="task_binding_invalid",
+                )
 
 
 def _find_before(events: Sequence[TaskEvent], index: int, event_type: str) -> TaskEvent:
@@ -777,10 +936,17 @@ def _validate_artifact_inventory(chain: TaskChain) -> None:
     if artifacts.is_symlink() or not artifacts.is_dir():
         raise WorkflowError("Taak mist een veilige artifacts-directory.", code="task_path_unsafe")
     expected: set[str] = set()
+    for event in chain.events:
+        if event.event_type != "objective-attempt":
+            continue
+        records = [event.payload["result_evidence"]]
+        if event.payload["new_evidence"] is not None:
+            records.append(event.payload["new_evidence"])
+        expected.update(Path(record["path"]).name for record in records)
     result = next((event for event in chain.events if event.event_type == "result"), None)
     if result is not None:
         records = [result.payload["result"], *result.payload["evidence"]]
-        expected = {Path(record["path"]).name for record in records}
+        expected.update(Path(record["path"]).name for record in records)
     try:
         children = list(artifacts.iterdir())
     except OSError as exc:
@@ -967,6 +1133,49 @@ def _task_view_bytes(chain: TaskChain, *, legacy: bool = False) -> bytes:
                 "- Blokkade: drie opeenvolgende gelijke foutsignaturen; OWNER-richting vereist."
                 if legacy
                 else "- Block: three consecutive identical error signatures; OWNER direction required."
+            )
+    objective_attempts = [
+        event for event in chain.events if event.event_type == "objective-attempt"
+    ]
+    if objective_attempts:
+        lines.extend(["", "## Objective attempts", ""])
+        for attempt in objective_attempts:
+            payload = attempt.payload
+            lines.extend(
+                [
+                    f"- Attempt {payload['attempt_number']}: fingerprint `{payload['error_fingerprint']}`",
+                    f"  - Command: `{_markdown_inline(payload['command_type'])}`",
+                    f"  - Target: `{_markdown_inline(payload['target'])}`",
+                    f"  - Exit status: {payload['exit_status']}",
+                    f"  - Error class: `{_markdown_inline(payload['error_class'])}`",
+                    f"  - Allowed action: `{_markdown_inline(payload['allowed_action'])}`",
+                    f"  - Executor record: `{payload['executor_record_digest']}`",
+                    f"  - Context manifest: `{payload['context_manifest_digest']}`",
+                    f"  - Basis: `{payload['basis_digest']}` ({payload['basis_status']})",
+                    f"  - Result evidence: `{payload['result_evidence']['sha256']}`",
+                    (
+                        "  - New evidence: none"
+                        if payload["new_evidence"] is None
+                        else f"  - New evidence: `{payload['new_evidence']['sha256']}`"
+                    ),
+                    (
+                        "  - Budget: "
+                        f"{payload['cumulative_attempts']}/{MAX_TOTAL_ATTEMPTS} attempts; "
+                        f"{payload['cumulative_actions']}/{MAX_CUMULATIVE_ACTIONS} actions; "
+                        f"{payload['cumulative_duration_ms']}/{MAX_CUMULATIVE_DURATION_MS} ms"
+                    ),
+                ]
+            )
+        latest_attempt = objective_attempts[-1].payload
+        if chain.status == "BLOCKED":
+            limits = ", ".join(latest_attempt["reached_limits"])
+            lines.extend(
+                [
+                    f"- Primary block reason: `{latest_attempt['block_reason']}`",
+                    f"- Reached limits: `{limits}`",
+                    "- No in-place reset or automatic retry is available.",
+                    "- OWNER direction may cancel or supersede this task with one explicit new task ID.",
+                ]
             )
     lines.extend([
         "",
@@ -1173,6 +1382,7 @@ def _append_event(
     actor_id: str,
     payload: dict[str, Any],
     success_status: str,
+    artifact_sources: Sequence[tuple[Path, dict[str, object]]] = (),
 ) -> TaskResult:
     expected_head = chain.events[-1].record_digest
 
@@ -1197,6 +1407,29 @@ def _append_event(
         current_digest=current_head,
     ) as transaction:
         _ensure_managed_view(chain)
+        if artifact_sources and event_type != "objective-attempt":
+            raise WorkflowError(
+                "Artifactpublicatie is niet toegestaan voor dit event.",
+                code="task_artifact_unsafe",
+            )
+        for source, expected_record in artifact_sources:
+            relative = _safe_relative(
+                expected_record.get("path"), field="Pogingartifactpad"
+            )
+            if relative.parts[0] != "artifacts" or len(relative.parts) != 2:
+                raise WorkflowError(
+                    "Pogingartifact valt buiten de taak.",
+                    code="task_artifact_unsafe",
+                )
+            destination = chain.directory / relative
+            transaction.track_target(destination)
+            actual_record = _copy_artifact(source, destination)
+            if actual_record != expected_record:
+                raise WorkflowError(
+                    "Pogingbewijs veranderde vóór publicatie.",
+                    code="task_artifact_changed",
+                )
+            transaction.mark_target_published(destination)
         value = _new_event_value(
             chain,
             task_id=chain.task_id,
@@ -1468,6 +1701,41 @@ def _copy_artifact(source_path: Path, destination: Path) -> dict[str, object]:
     }
 
 
+def _inspect_artifact(source_path: Path, destination_name: str) -> dict[str, object]:
+    if (
+        not destination_name
+        or "/" in destination_name
+        or "\\" in destination_name
+        or destination_name in {".", ".."}
+    ):
+        raise WorkflowError(
+            "Artifactdoel gebruikt geen veilige bestandsnaam.",
+            code="task_artifact_unsafe",
+        )
+    try:
+        if source_path.is_symlink():
+            raise WorkflowError(
+                "Symlink als resultaat of bewijs geweigerd.",
+                code="task_artifact_unsafe",
+            )
+        source = source_path.resolve(strict=True)
+    except OSError as exc:
+        raise WorkflowError(
+            "Resultaat of bewijs is niet beschikbaar.",
+            code="task_artifact_unavailable",
+        ) from exc
+    byte_count, sha256 = _hash_file(
+        source,
+        maximum=MAX_ARTIFACT_BYTES,
+        code="task_artifact_unavailable",
+    )
+    return {
+        "path": f"artifacts/{destination_name}",
+        "bytes": byte_count,
+        "sha256": sha256,
+    }
+
+
 @_failure_receipt("submit-result")
 def submit_result(
     project_root: Path,
@@ -1537,9 +1805,20 @@ def submit_result(
         raise
 
 
+def _artifact_records(chain: TaskChain) -> list[dict[str, Any]]:
+    records: list[dict[str, Any]] = []
+    for event in chain.events:
+        if event.event_type == "objective-attempt":
+            records.append(event.payload["result_evidence"])
+            if event.payload["new_evidence"] is not None:
+                records.append(event.payload["new_evidence"])
+        elif event.event_type == "result":
+            records.extend([event.payload["result"], *event.payload["evidence"]])
+    return records
+
+
 def _verify_artifacts(chain: TaskChain) -> None:
-    result = _event(chain, "result")
-    records = [result.payload["result"], *result.payload["evidence"]]
+    records = _artifact_records(chain)
     for record in records:
         if not isinstance(record, dict) or set(record) != {"path", "bytes", "sha256"}:
             raise WorkflowError("Artifactrecord is ongeldig.", code="task_record_invalid")
@@ -1550,6 +1829,37 @@ def _verify_artifacts(chain: TaskChain) -> None:
         byte_count, sha256 = _hash_file(path, maximum=MAX_ARTIFACT_BYTES, code="task_artifact_unavailable")
         if byte_count != record["bytes"] or sha256 != record["sha256"]:
             raise WorkflowError("Artifactbytes of digest zijn gewijzigd.", code="task_artifact_stale")
+
+
+def _verify_objective_attempt_authority(root: Path, chain: TaskChain) -> None:
+    from .playbook import PlaybookError, attempt_executor_binding
+
+    for event in chain.events:
+        if event.event_type != "objective-attempt":
+            continue
+        payload = event.payload
+        try:
+            binding = attempt_executor_binding(
+                root,
+                chain.task_id,
+                executor_id=payload["executor_id"],
+                allowed_action=payload["allowed_action"],
+                require_active=False,
+            )
+        except PlaybookError as exc:
+            raise WorkflowError(
+                "Objectief pogingbewijs bindt niet meer aan de uitvoerder.",
+                code="task_attempt_authority_stale",
+            ) from exc
+        if (
+            binding.record_digest != payload["executor_record_digest"]
+            or binding.context_manifest_digest != payload["context_manifest_digest"]
+            or binding.executor_statement != event.actor_id
+        ):
+            raise WorkflowError(
+                "Objectief pogingbewijs wijkt af van uitvoerder of context.",
+                code="task_attempt_authority_stale",
+            )
 
 
 @_failure_receipt("review-result")
@@ -1651,56 +1961,6 @@ def close_task(project_root: Path, task_id: str, *, architect: str) -> TaskResul
     )
 
 
-@_failure_receipt("record-attempt")
-def record_attempt(
-    project_root: Path,
-    task_id: str,
-    *,
-    error_code: str,
-    error_signature: str,
-    new_basis: str,
-    executor: str,
-) -> TaskResult:
-    root = validate_workspace(project_root)
-    chain = _load_chain(root, task_id)
-    _verify_inputs(root, chain)
-    code = _short_text(error_code, field="Foutcode", maximum=64, pattern=ERROR_CODE_PATTERN)
-    signature = _short_text(error_signature, field="Foutsignatuur", maximum=256)
-    basis = _short_text(new_basis, field="Nieuwe input of gewijzigde aanpak")
-    attempts = [event for event in chain.events if event.event_type == "attempt"]
-    if (
-        attempts
-        and attempts[-1].payload["error_signature"] == signature
-        and attempts[-1].payload["new_basis"] == basis
-    ):
-        raise WorkflowError(
-            "Dezelfde foutpoging vereist aantoonbaar nieuwe input of een gewijzigde aanpak.",
-            code="task_attempt_unchanged",
-        )
-    consecutive = 1
-    for previous in reversed(attempts):
-        if previous.payload["error_signature"] != signature:
-            break
-        consecutive += 1
-    to_status = "BLOCKED" if consecutive >= 3 else "IN_EXECUTION"
-    payload = {
-        "proposal_digest": chain.proposal_digest,
-        "attempt_number": len(attempts) + 1,
-        "error_code": code,
-        "error_signature": signature,
-        "new_basis": basis,
-    }
-    return _append_event(
-        root,
-        chain,
-        event_type="attempt",
-        to_status=to_status,
-        actor_id=executor,
-        payload=payload,
-        success_status="TASK_BLOCKED" if to_status == "BLOCKED" else "TASK_ATTEMPT_RECORDED",
-    )
-
-
 @_failure_receipt("cancel")
 def cancel_task(project_root: Path, task_id: str, *, reason: str, owner: str) -> TaskResult:
     root = validate_workspace(project_root)
@@ -1757,8 +2017,10 @@ def task_status(project_root: Path, task_id: str) -> TaskResult:
     chain = _load_chain(root, task_id)
     _ensure_managed_view(chain)
     _verify_inputs(root, chain)
-    if any(event.event_type == "result" for event in chain.events):
+    if _artifact_records(chain):
         _verify_artifacts(chain)
+    if any(event.event_type == "objective-attempt" for event in chain.events):
+        _verify_objective_attempt_authority(root, chain)
     latest = chain.events[-1]
     return TaskResult(
         status="TASK_STATUS_VALID",

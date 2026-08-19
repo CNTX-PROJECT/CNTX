@@ -9,6 +9,7 @@ from pathlib import Path
 import sys
 
 from . import __version__
+from .attempts import ERROR_CLASSES, record_attempt
 from .catalog import create_chapter, rebuild_catalog
 from .core import (
     OpenCntxError,
@@ -65,7 +66,6 @@ from .workflow import (
     cancel_task,
     close_task,
     propose_task,
-    record_attempt,
     review_result,
     submit_result,
     supersede_task,
@@ -608,13 +608,23 @@ def build_parser() -> argparse.ArgumentParser:
     task_status_parser.add_argument("--root", default=".")
 
     task_attempt_parser = workspace_task_subparsers.add_parser(
-        "record-attempt", help="register one manual failed attempt; never automatic"
+        "record-attempt",
+        help="record one objective failed attempt; never execute or retry it",
     )
     task_attempt_parser.add_argument("task_id")
-    task_attempt_parser.add_argument("--error-code", required=True)
-    task_attempt_parser.add_argument("--error-signature", required=True)
-    task_attempt_parser.add_argument("--new-basis", required=True)
-    task_attempt_parser.add_argument("--executor", required=True)
+    task_attempt_parser.add_argument("--executor-id", required=True)
+    task_attempt_parser.add_argument("--action", required=True)
+    task_attempt_parser.add_argument("--command-type", required=True)
+    task_attempt_parser.add_argument("--target", required=True)
+    task_attempt_parser.add_argument("--input", action="append", required=True)
+    task_attempt_parser.add_argument("--exit-status", required=True, type=int)
+    task_attempt_parser.add_argument(
+        "--error-class", required=True, choices=ERROR_CLASSES
+    )
+    task_attempt_parser.add_argument("--actions-used", required=True, type=int)
+    task_attempt_parser.add_argument("--duration-ms", required=True, type=int)
+    task_attempt_parser.add_argument("--result-evidence", required=True)
+    task_attempt_parser.add_argument("--new-evidence")
     task_attempt_parser.add_argument("--root", default=".")
 
     task_cancel_parser = workspace_task_subparsers.add_parser(
@@ -1103,10 +1113,21 @@ def main(argv: Sequence[str] | None = None) -> int:
                     result = record_attempt(
                         root,
                         args.task_id,
-                        error_code=args.error_code,
-                        error_signature=args.error_signature,
-                        new_basis=args.new_basis,
-                        executor=args.executor,
+                        executor_id=args.executor_id,
+                        action=args.action,
+                        command_type=args.command_type,
+                        target=args.target,
+                        input_paths=args.input,
+                        exit_status=args.exit_status,
+                        error_class=args.error_class,
+                        actions_used=args.actions_used,
+                        duration_ms=args.duration_ms,
+                        result_evidence_path=Path(args.result_evidence),
+                        new_evidence_path=(
+                            None
+                            if args.new_evidence is None
+                            else Path(args.new_evidence)
+                        ),
                     )
                 elif args.workspace_task_command == "cancel":
                     result = cancel_task(

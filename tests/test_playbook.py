@@ -40,10 +40,11 @@ from opencntx.playbook import (  # noqa: E402
     _render_role,
 )
 from opencntx.workflow import (  # noqa: E402
+    _append_event,
+    _load_chain,
     approve_task,
     begin_task,
     propose_task,
-    record_attempt,
     submit_result,
 )
 from opencntx.workspace import init_workspace  # noqa: E402
@@ -195,6 +196,27 @@ def snapshot(path: Path) -> dict[str, bytes]:
         for item in path.rglob("*")
         if item.is_file()
     }
+
+
+def append_legacy_attempt(workspace: Path, number: int):
+    """Append historical text-attempt evidence for one compatibility boundary."""
+    chain = _load_chain(workspace, TASK_ID)
+    blocked = number >= 3
+    return _append_event(
+        workspace,
+        chain,
+        event_type="attempt",
+        to_status="BLOCKED" if blocked else "IN_EXECUTION",
+        actor_id="UITVOERDER-1",
+        payload={
+            "proposal_digest": chain.proposal_digest,
+            "attempt_number": number,
+            "error_code": "zelfde_fout",
+            "error_signature": "zelfde blokkade",
+            "new_basis": f"nieuwe basis {number}",
+        },
+        success_status="TASK_BLOCKED" if blocked else "TASK_ATTEMPT_RECORDED",
+    )
 
 
 class PlaybookTests(unittest.TestCase):
@@ -708,14 +730,7 @@ class PlaybookTests(unittest.TestCase):
                 Path(temporary_directory)
             )
             for number in range(1, 4):
-                record_attempt(
-                    workspace,
-                    TASK_ID,
-                    error_code="zelfde_fout",
-                    error_signature="zelfde blokkade",
-                    new_basis=f"nieuwe basis {number}",
-                    executor="UITVOERDER-1",
-                )
+                append_legacy_attempt(workspace, number)
             with self.assertRaisesRegex(PlaybookError, "niet exact in IN_EXECUTION"):
                 prepare_executor(
                     workspace,

@@ -513,6 +513,41 @@ class PublicQualityTests(unittest.TestCase):
                 Path(tempfile.gettempdir()).resolve(),
             )
 
+    def test_objective_attempt_guidance_keeps_evidence_and_authority_bounded(self) -> None:
+        commands = (DOCS / "commands.md").read_text(encoding="utf-8")
+        owner_flow = (DOCS / "owner-flow.md").read_text(encoding="utf-8")
+        playbooks = (DOCS / "playbooks-and-roles.md").read_text(encoding="utf-8")
+        security = (DOCS / "security.md").read_text(encoding="utf-8")
+        troubleshooting = (DOCS / "troubleshooting.md").read_text(encoding="utf-8")
+        for option in (
+            "--executor-id",
+            "--action",
+            "--command-type",
+            "--target",
+            "--input",
+            "--exit-status",
+            "--error-class",
+            "--actions-used",
+            "--duration-ms",
+            "--result-evidence",
+        ):
+            self.assertIn(option, commands)
+        self.assertNotIn("--error-signature", commands)
+        self.assertNotIn("--new-basis", commands)
+        for limit in (
+            "SEMANTIC_REPEAT_LIMIT",
+            "TOTAL_ATTEMPT_LIMIT",
+            "CUMULATIVE_ACTION_LIMIT",
+            "CUMULATIVE_TIME_LIMIT",
+        ):
+            self.assertIn(limit, troubleshooting)
+        self.assertIn(
+            "OPENCNTX does not run the external command",
+            " ".join(owner_flow.split()),
+        )
+        self.assertIn("not a login", playbooks)
+        self.assertIn("do not prove", security)
+
     def test_release_surfaces_are_consistent(self) -> None:
         with (ROOT / "pyproject.toml").open("rb") as project_file:
             project = tomllib.load(project_file)["project"]

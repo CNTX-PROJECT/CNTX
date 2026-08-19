@@ -114,10 +114,21 @@ status as historical proof. Do not expect live `IN_EXECUTION` context status.
 ## Fail-closed and anti-deadloop behavior
 
 - A wrong digest, state, revision, or input stops the operation.
-- One failed attempt records one stable signature.
+- One failed attempt records controller-derived facts and copied local evidence.
+- Its fingerprint uses command type, target, relevant input digests, exit
+  status, and one fixed error class; changing prose does not change it.
+- A later attempt needs changed relevant input bytes or uniquely new evidence.
 - OPENCNTX does not retry automatically.
-- After three equal failure signatures, the task becomes visibly `BLOCKED`.
-- Further work requires a new human decision, not a silent loop.
+- Three equal fingerprints anywhere in the task, five total attempts, 25
+  cumulative actions, or 30 cumulative minutes make the task visibly
+  `BLOCKED`.
+- A block has no in-place reset. The OWNER may cancel it or explicitly
+  supersede it with one new task ID.
+
+Recorded action and duration values are local statements because OPENCNTX does
+not run the external command. Their validation, digest binding, totals, and
+block decision are reproducible; their real-world truth is not automatically
+attested.
 
 ## Related pages
 
