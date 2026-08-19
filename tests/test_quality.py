@@ -57,6 +57,7 @@ GUIDES = {
     "owner-flow.md",
     "playbooks-and-roles.md",
     "roadmap.md",
+    "release-artifacts.md",
     "security.md",
     "start-here.md",
     "platforms.md",
@@ -488,10 +489,13 @@ class PublicQualityTests(unittest.TestCase):
             '"3.13"',
             "PYTHONDONTWRITEBYTECODE",
             "PYTHONUTF8",
+            "python -m pip install --disable-pip-version-check build==1.3.0 setuptools==80.9.0",
             "python -W error::ResourceWarning -m unittest discover -s tests",
-            "python -m pip wheel . --no-deps --wheel-dir dist",
-            '"--no-deps"',
-            'subprocess.run(["opencntx", "--help"], check=True)',
+            '"tools/release_artifacts.py"',
+            '"build"',
+            '"smoke"',
+            '"--expected-commit"',
+            '"--expected-tree"',
         ):
             self.assertIn(value, text)
 
@@ -523,6 +527,9 @@ class PublicQualityTests(unittest.TestCase):
         roadmap = (DOCS / "roadmap.md").read_text(encoding="utf-8")
         workspace = (DOCS / "workspace.md").read_text(encoding="utf-8")
         workflow = WORKFLOW.read_text(encoding="utf-8")
+        release_tool = (ROOT / "tools" / "release_artifacts.py").read_text(
+            encoding="utf-8"
+        )
 
         self.assertRegex(changelog, rf"(?m)^## {re.escape(version)} - \d{{4}}-\d{{2}}-\d{{2}}$")
         self.assertIn(
@@ -535,8 +542,9 @@ class PublicQualityTests(unittest.TestCase):
             readme,
         )
         self.assertIn("The optional workspace layer", workspace)
-        self.assertIn("if installed != opencntx.__version__", workflow)
-        self.assertNotRegex(workflow, r'installed\s*!=\s*["\']\d')
+        self.assertIn("installed --version output differs", release_tool)
+        self.assertIn("expected_version", release_tool)
+        self.assertNotRegex(workflow, r'expected_version\s*=\s*["\']\d')
 
         for public_surface in (readme, start_here, faq, roadmap):
             with self.subTest(surface=public_surface[:40]):

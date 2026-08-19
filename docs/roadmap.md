@@ -42,6 +42,15 @@ features or expose private project records.
 - added strict `main` protection and immutable release evidence;
 - published security, community, documentation, and brand surfaces.
 
+### Verifiable release preparation
+
+- added clean, independent wheel and sdist candidate builds;
+- separated byte-identical wheel proof from content-identical sdist proof;
+- added exact SHA-256 and unsigned build-record verification;
+- exercised install, core smoke, and uninstall on all six existing CI jobs;
+- documented one pinned `pipx` route and kept publication behind a separate
+  explicit decision.
+
 ## Current state
 
 - Current release: `v0.2.0`
@@ -50,6 +59,7 @@ features or expose private project records.
 - Runtime dependencies: none
 - CI: `CI_ACTIVE`
 - Product focus: local, explicit, bounded, verifiable context
+- Distribution: exact Git tag; no PyPI package or attached wheel/sdist assets
 
 ## Future work
 

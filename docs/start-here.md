@@ -14,12 +14,28 @@ You need:
 - Git;
 - Windows or Ubuntu for a fully tested path.
 
+For the shortest isolated install route, install `pipx` from its official
+instructions first. `pipx` is an installation tool, not an OPENCNTX runtime
+dependency.
+
 Other operating systems may work, but the live CI matrix does not prove them.
 OPENCNTX needs no account, API key, database, cloud service, or AI provider.
 
 ## 2. Install the Alpha release
 
 The current Alpha release is `v0.2.0`. OPENCNTX is not published on PyPI.
+
+With `pipx` and Git available, install the exact tag in one command:
+
+```powershell
+pipx install "git+https://github.com/CNTX-PROJECT/OPENCNTX.git@v0.2.0"
+opencntx --version
+opencntx --help
+```
+
+Do not remove `@v0.2.0` or replace it with `main`. The pin is what binds the
+installation to the named release. The following source-checkout routes remain
+available when `pipx` is not the intended environment.
 
 ### Windows
 
@@ -171,8 +187,19 @@ To remove the package from the active Python environment:
 python -m pip uninstall opencntx
 ```
 
+If you used the isolated `pipx` route instead:
+
+```powershell
+pipx uninstall opencntx
+```
+
 This does not remove your projects, workspaces, or context packages. Delete
 those separately only after reviewing the exact target.
+
+OPENCNTX currently has no PyPI package and the `v0.2.0` GitHub Release has no
+wheel or sdist assets. Contributors can read [Release artifacts](release-artifacts.md)
+for local candidate builds, checksums, reproducibility limits, and the separate
+future publication gate.
 
 ## If something fails
 
