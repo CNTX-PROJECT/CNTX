@@ -218,6 +218,9 @@ class WorkflowTests(unittest.TestCase):
                 ],
             )
             self.assertIn(closed.object_digest, closed.task_path.read_text(encoding="utf-8"))
+            completed = workspace / ".opencntx" / "transactions" / "completed"
+            self.assertGreaterEqual(len(list(completed.iterdir())), 7)
+            self.assertEqual(list((workspace / ".opencntx" / "transactions" / "locks").rglob("*.lock")), [])
 
     def test_changed_input_invalidates_old_owner_approval(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:

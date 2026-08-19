@@ -93,6 +93,9 @@ class MvpTests(unittest.TestCase):
             self.assertIn("missing (0):", verify_result.stdout)
             self.assertIn("unexpected (0):", verify_result.stdout)
             self.assertIn("result: OK", verify_result.stdout)
+            completed = root / ".opencntx" / "transactions" / "completed"
+            self.assertTrue(any(completed.iterdir()))
+            self.assertEqual(list((root / ".opencntx" / "transactions" / "locks").rglob("*.lock")), [])
 
     def test_02_repeated_pack_is_deterministic(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:

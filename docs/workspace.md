@@ -71,6 +71,35 @@ The capture flow:
 
 New sources default to `PRIVATE`. Labels are classification, not encryption.
 
+## Diagnose and recover interrupted writes
+
+Every official writer uses a local transaction. A workspace-level lock protects
+shared source, catalog, control, definition, media, and package state. A task
+lock protects an exact append-only task chain. Task-bound shared operations take
+the workspace lock before the task lock; writers do not wait, steal stale locks,
+or retry automatically.
+
+Read current transaction health without changing the workspace:
+
+```powershell
+opencntx workspace doctor --root my-project
+```
+
+Healthy completed transactions are retained as small evidence records. An
+active writer is reported as `ACTIVE`. A crashed writer leaves
+`RECOVERY_REQUIRED` with the exact transaction ID and intent SHA-256.
+
+Preview exact recovery first:
+
+```powershell
+opencntx workspace recover --root my-project --transaction TXN-ID --intent-sha256 SHA256
+```
+
+Only the same command with `--apply` changes state. It refuses an active writer
+or changed/unknown state, creates and verifies a retained backup, rolls the
+known targets back to their previous exact state, and writes a recovery receipt.
+Recovery does not grant task, result, publication, or OWNER authority.
+
 ## What comes next
 
 Captured sources do not automatically become accepted knowledge or task

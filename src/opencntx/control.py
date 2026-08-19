@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Any
 from uuid import uuid4
 
+from .integrity import writer_transaction
 from .workspace import WorkspaceError, validate_workspace
 
 
@@ -343,7 +344,7 @@ def _write_receipt(
     return path
 
 
-def refresh_control_snapshot(
+def _refresh_control_snapshot_unlocked(
     project_root: Path, *, write_receipt: bool = True
 ) -> ControlRefreshResult:
     """Refresh the managed snapshot, or explicitly confirm legacy mode."""
@@ -406,3 +407,11 @@ def refresh_control_snapshot(
         except WorkspaceError:
             pass
         raise
+
+
+def refresh_control_snapshot(
+    project_root: Path, *, write_receipt: bool = True
+) -> ControlRefreshResult:
+    root = validate_workspace(project_root)
+    with writer_transaction(root, "control-refresh"):
+        return _refresh_control_snapshot_unlocked(root, write_receipt=write_receipt)

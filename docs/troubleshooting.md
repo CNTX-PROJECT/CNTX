@@ -76,6 +76,22 @@ Do not copy a digest from an older revision. Run the relevant read-only status
 or verify command, inspect the current official record, and use the exact value
 required by the next approved step.
 
+## A workspace writer is locked or requires recovery
+
+Do not delete `.opencntx` lock, temporary, previous, or transaction files by
+hand. First run:
+
+```powershell
+opencntx workspace doctor --root my-project
+```
+
+`ACTIVE` means a real writer still holds the local OS lock. Wait for that
+bounded operation to finish. `RECOVERY_REQUIRED` supplies an exact transaction
+ID and intent SHA-256. Use those values with `workspace recover` without
+`--apply` first, inspect the preview, and apply only the exact reported plan.
+Unknown state remains fail-closed and needs manual investigation; recovery does
+not delete it.
+
 ## A chapter is `STALE` or `INCOMPLETE`
 
 Check its source pins and dependencies. Create or accept the required revision,

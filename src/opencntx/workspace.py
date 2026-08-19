@@ -13,6 +13,8 @@ import shutil
 from typing import Any, BinaryIO
 from uuid import uuid4
 
+from .integrity import Transaction, state_digest, writer_transaction
+
 
 WORKSPACE_FORMAT = "opencntx-workspace"
 WORKSPACE_FORMAT_VERSION = 1
@@ -807,13 +809,14 @@ def _safe_month_directory(root: Path, captured_at: datetime) -> Path:
     return current
 
 
-def capture_source(
+def _capture_source_unlocked(
     project_root: Path,
     source_path: Path,
     *,
     privacy: str = "PRIVATE",
     origin: str | None = None,
     supersedes: str | None = None,
+    _transaction: Transaction | None = None,
 ) -> CaptureResult:
     """Capture one regular local file without executing or interpreting it."""
     captured_at = _utc_now()
@@ -992,6 +995,8 @@ def capture_source(
             "supersedes": supersedes,
         }
         _write_new_file(temporary / "record.json", _json_bytes(record))
+        if _transaction is not None:
+            _transaction.track_target(final_directory)
         try:
             os.replace(temporary, final_directory)
         except OSError as exc:
@@ -1000,6 +1005,9 @@ def capture_source(
                 code="source_publish_failed",
             ) from exc
         temporary = None
+        if _transaction is not None:
+            _transaction.mark_target_published(final_directory)
+            _transaction.mark_published()
         try:
             receipt = _write_receipt(
                 root,
@@ -1013,6 +1021,8 @@ def capture_source(
                 byte_count=byte_count,
                 sha256=digest,
             )
+            if _transaction is not None:
+                _transaction.mark_receipted(receipt)
         except WorkspaceError:
             shutil.rmtree(final_directory, ignore_errors=True)
             final_directory = None
@@ -1055,3 +1065,35 @@ def capture_source(
     finally:
         if temporary is not None and temporary.exists():
             shutil.rmtree(temporary, ignore_errors=True)
+
+
+_TEST_BEFORE_CAPTURE_LOCK = None
+
+
+def capture_source(
+    project_root: Path,
+    source_path: Path,
+    *,
+    privacy: str = "PRIVATE",
+    origin: str | None = None,
+    supersedes: str | None = None,
+) -> CaptureResult:
+    """Capture one source under a workspace-wide lock and source-inventory CAS."""
+    root = validate_workspace(project_root)
+    expected = state_digest((root / "SOURCES",))
+    if _TEST_BEFORE_CAPTURE_LOCK is not None:
+        _TEST_BEFORE_CAPTURE_LOCK()
+    with writer_transaction(
+        root,
+        "capture",
+        expected_digest=expected,
+        current_digest=lambda: state_digest((root / "SOURCES",)),
+    ) as transaction:
+        return _capture_source_unlocked(
+            root,
+            source_path,
+            privacy=privacy,
+            origin=origin,
+            supersedes=supersedes,
+            _transaction=transaction,
+        )

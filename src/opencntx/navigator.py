@@ -13,6 +13,7 @@ import sqlite3
 from typing import Any, Sequence
 from uuid import uuid4
 
+from .integrity import Transaction, state_digest, writer_transaction
 from .catalog import (
     CATALOG_FORMAT,
     CATALOG_FORMAT_VERSION,
@@ -904,13 +905,14 @@ def _try_failure_receipt(
         pass
 
 
-def build_context_package(
+def _build_context_package_unlocked(
     project_root: Path,
     task_id: str,
     *,
     proposal_digest: str,
     max_files: int,
     max_bytes: int,
+    _transaction: Transaction | None = None,
 ) -> ContextBuildResult:
     """Build one deterministic package for an approved task in execution."""
     root = project_root
@@ -929,7 +931,12 @@ def build_context_package(
                 "Taak- of catalogusstaat veranderde tijdens contextbouw.",
                 code="context_state_changed",
             )
-        package_path = _atomic_package_write(route.root, context_bytes, manifest_bytes)
+        package_path = _atomic_package_write(
+            route.root,
+            context_bytes,
+            manifest_bytes,
+            _transaction=_transaction,
+        )
         now = _utc_now()
         attempt_id = f"CTX-{now.strftime('%Y%m%dT%H%M%S%fZ')}-{uuid4().hex[:8]}"
         receipt_path = _write_receipt(
@@ -950,6 +957,8 @@ def build_context_package(
                 "total_bytes": manifest["package"]["total_bytes"],
             },
         )
+        if _transaction is not None:
+            _transaction.mark_receipted(receipt_path)
         return ContextBuildResult(
             status="CONTEXT_BUILT",
             task_id=route.chain.task_id,
@@ -969,6 +978,42 @@ def build_context_package(
         wrapped = NavigatorError(str(exc), code=getattr(exc, "code", "context_build_failed"))
         _try_failure_receipt(root, task_id, "build", wrapped)
         raise wrapped from exc
+
+
+def build_context_package(
+    project_root: Path,
+    task_id: str,
+    *,
+    proposal_digest: str,
+    max_files: int,
+    max_bytes: int,
+) -> ContextBuildResult:
+    """Build one task-bound package under workspace and task writer locks."""
+    root = validate_workspace(project_root)
+    normalized_task_id = _validate_task_id(task_id)
+    chain = _load_chain(root, normalized_task_id)
+    state_paths = (chain.directory / "events", root / ".opencntx" / "latest")
+    expected_state = state_digest(state_paths)
+    if _TEST_BEFORE_CONTEXT_LOCK is not None:
+        _TEST_BEFORE_CONTEXT_LOCK()
+    with writer_transaction(
+        root,
+        "context-build",
+        task_id=normalized_task_id,
+        expected_digest=expected_state,
+        current_digest=lambda: state_digest(state_paths),
+    ) as transaction:
+        return _build_context_package_unlocked(
+            root,
+            normalized_task_id,
+            proposal_digest=proposal_digest,
+            max_files=max_files,
+            max_bytes=max_bytes,
+            _transaction=transaction,
+        )
+
+
+_TEST_BEFORE_CONTEXT_LOCK = None
 
 
 def _load_package_manifest(root: Path) -> tuple[Path, dict[str, Any], bytes, bytes]:

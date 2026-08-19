@@ -15,6 +15,7 @@ import tomllib
 from typing import Any, Iterable
 from uuid import uuid4
 
+from .integrity import IntegrityError, Transaction, state_digest, writer_transaction
 from .workspace import (
     INDEX_TEMPLATE,
     PRIVACY_LABELS,
@@ -1226,7 +1227,7 @@ def _chapter_template(
     return "\n".join(lines).encode("utf-8")
 
 
-def create_chapter(
+def _create_chapter_unlocked(
     project_root: Path,
     chapter_id: str,
     *,
@@ -1234,6 +1235,7 @@ def create_chapter(
     scope: str = "UNKNOWN - to be determined by OWNER and ARCHITECT.",
     source_ids: Iterable[str] = (),
     dependency_ids: Iterable[str] = (),
+    _transaction: Transaction | None = None,
 ) -> ChapterCreateResult:
     """Create one safe DRAFT chapter without changing index or catalog."""
     root = validate_workspace(project_root)
@@ -1301,7 +1303,11 @@ def create_chapter(
                 sorted(dependencies),
             ),
         )
+        if _transaction is not None:
+            _transaction.track_target(final_directory)
         os.replace(temporary, final_directory)
+        if _transaction is not None:
+            _transaction.mark_published()
     except CatalogError:
         raise
     except OSError as exc:
@@ -1319,7 +1325,39 @@ def create_chapter(
     )
 
 
-def rebuild_catalog(project_root: Path) -> CatalogResult:
+def create_chapter(
+    project_root: Path,
+    chapter_id: str,
+    *,
+    title: str,
+    scope: str = "UNKNOWN - to be determined by OWNER and ARCHITECT.",
+    source_ids: Iterable[str] = (),
+    dependency_ids: Iterable[str] = (),
+) -> ChapterCreateResult:
+    root = validate_workspace(project_root)
+    expected = state_digest((root / "SOURCES", root / "CHAPTERS"))
+    with writer_transaction(
+        root,
+        "chapter-create",
+        expected_digest=expected,
+        current_digest=lambda: state_digest((root / "SOURCES", root / "CHAPTERS")),
+    ) as transaction:
+        return _create_chapter_unlocked(
+            root,
+            chapter_id,
+            title=title,
+            scope=scope,
+            source_ids=source_ids,
+            dependency_ids=dependency_ids,
+            _transaction=transaction,
+        )
+
+
+def _rebuild_catalog_unlocked(
+    project_root: Path,
+    *,
+    _transaction: Transaction | None = None,
+) -> CatalogResult:
     """Rebuild INDEX.md and catalog.sqlite from official workspace files."""
     generated_at = _utc_now()
     attempt_id = f"CAT-{generated_at.strftime('%Y%m%dT%H%M%S%fZ')}-{uuid4().hex[:8]}"
@@ -1371,16 +1409,25 @@ def rebuild_catalog(project_root: Path) -> CatalogResult:
             temporary_index,
             index_bytes,
         )
+        if _transaction is not None:
+            _transaction.track_target(catalog_path)
+            _transaction.track_target(index_path)
         try:
             os.replace(temporary_database, catalog_path)
             temporary_database = None
+            if _transaction is not None:
+                _transaction.mark_target_published(catalog_path)
             os.replace(temporary_index, index_path)
             temporary_index = None
+            if _transaction is not None:
+                _transaction.mark_target_published(index_path)
         except OSError as exc:
             raise CatalogError(
                 "Catalogusoutputs konden niet volledig worden gepubliceerd.",
                 code="catalog_publish_failed",
             ) from exc
+        if _transaction is not None:
+            _transaction.mark_published()
         receipt_path = _write_catalog_receipt(
             root,
             attempt_id=attempt_id,
@@ -1391,6 +1438,8 @@ def rebuild_catalog(project_root: Path) -> CatalogResult:
             chapter_count=chapter_count,
             freshness_counts=counts,
         )
+        if _transaction is not None:
+            _transaction.mark_receipted(receipt_path)
         return CatalogResult(
             status="CATALOG_REBUILT",
             state_digest=digest,
@@ -1426,3 +1475,28 @@ def rebuild_catalog(project_root: Path) -> CatalogResult:
                     temporary.unlink(missing_ok=True)
                 except OSError:
                     pass
+
+
+def rebuild_catalog(project_root: Path) -> CatalogResult:
+    """Rebuild both catalog outputs under one workspace transaction."""
+    root = validate_workspace(project_root)
+    inputs = (root / "SOURCES", root / "CHAPTERS")
+    try:
+        expected = state_digest(inputs)
+    except IntegrityError as exc:
+        raise CatalogError(
+            "Catalogusinput bevat een symlink of ander onveilig pad.",
+            code="catalog_managed_path_symlink",
+        ) from exc
+    if _TEST_BEFORE_CATALOG_LOCK is not None:
+        _TEST_BEFORE_CATALOG_LOCK()
+    with writer_transaction(
+        root,
+        "catalog-rebuild",
+        expected_digest=expected,
+        current_digest=lambda: state_digest(inputs),
+    ) as transaction:
+        return _rebuild_catalog_unlocked(root, _transaction=transaction)
+
+
+_TEST_BEFORE_CATALOG_LOCK = None

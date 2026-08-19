@@ -51,6 +51,16 @@ features or expose private project records.
 - documented one pinned `pipx` route and kept publication behind a separate
   explicit decision.
 
+### Local workspace transaction integrity
+
+- added local single-writer workspace and task locks with exact state CAS;
+- added durable transaction intent, phase, completion, and recovery evidence;
+- added read-only interrupted-state diagnosis and explicit backup-first
+  recovery bound to transaction ID and intent SHA-256;
+- added real multiprocess conflict and forced-process-crash tests;
+- centralized symlink, junction/reparse, containment, and directory-flush
+  handling without adding a runtime dependency.
+
 ## Current state
 
 - Current release: `v0.2.0`

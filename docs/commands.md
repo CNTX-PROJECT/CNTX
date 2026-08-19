@@ -2,8 +2,8 @@
 
 [Start here](start-here.md) · [How it works](how-it-works.md) · [Advanced / Alpha workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
 
-This navigation table documents 43 public CLI paths: five orientation and
-version routes plus all 38 executable routes from the real parser. It does not invent options or grant
+This navigation table documents 45 public CLI paths: five orientation and
+version routes plus all 40 executable routes from the real parser. It does not invent options or grant
 permission to run a workflow step. Use the exact nested `--help` output for
 required arguments and repeatable options.
 
@@ -19,39 +19,41 @@ required arguments and repeatable options.
 | 8 | `opencntx verify` | verify a core package and its source drift |
 | 9 | `opencntx workspace init` | create a new local project workspace |
 | 10 | `opencntx workspace capture` | store one supplied source byte-for-byte |
-| 11 | `opencntx workspace control refresh` | refresh the derived current-roadmap snapshot |
-| 12 | `opencntx workspace chapter create` | create one new draft chapter with source pins |
-| 13 | `opencntx workspace catalog rebuild` | rebuild the derived local catalog and index |
-| 14 | `opencntx workspace media register` | register supplied derived UTF-8 text |
-| 15 | `opencntx workspace media review` | record review of one exact derived text object |
-| 16 | `opencntx workspace media promote` | capture accepted derived text with provenance |
-| 17 | `opencntx workspace media status` | report current derivation state read-only |
-| 18 | `opencntx workspace media verify` | verify source, record, review, and text bindings |
-| 19 | `opencntx workspace media remove` | remove exact active derived bytes with a tombstone |
-| 20 | `opencntx workspace playbook register` | register a proposed playbook revision |
-| 21 | `opencntx workspace playbook approve` | approve one exact playbook definition |
-| 22 | `opencntx workspace playbook status` | report playbook state read-only |
-| 23 | `opencntx workspace playbook verify` | verify playbook records and definition digests |
-| 24 | `opencntx workspace role register` | register a proposed role revision |
-| 25 | `opencntx workspace role approve` | approve one exact role definition |
-| 26 | `opencntx workspace role status` | report role state read-only |
-| 27 | `opencntx workspace role verify` | verify role records and definition digests |
-| 28 | `opencntx workspace executor prepare` | bind task, context, playbook, and role |
-| 29 | `opencntx workspace executor status` | report executor package state read-only |
-| 30 | `opencntx workspace executor verify` | verify assignment and permission bindings |
-| 31 | `opencntx workspace context build` | build one deterministic task-bound package |
-| 32 | `opencntx workspace context verify` | verify live task and context bindings read-only |
-| 33 | `opencntx workspace task propose` | append one exact task proposal |
-| 34 | `opencntx workspace task approve` | append exact OWNER proposal approval |
-| 35 | `opencntx workspace task begin` | move one approved task into execution |
-| 36 | `opencntx workspace task submit-result` | append one result and evidence binding |
-| 37 | `opencntx workspace task review-result` | append an ARCHITECT review |
-| 38 | `opencntx workspace task accept-result` | append the exact OWNER result decision |
-| 39 | `opencntx workspace task close` | close an accepted task |
-| 40 | `opencntx workspace task status` | report current task state read-only |
-| 41 | `opencntx workspace task record-attempt` | append one stable failure signature |
-| 42 | `opencntx workspace task cancel` | terminate a task explicitly as cancelled |
-| 43 | `opencntx workspace task supersede` | terminate a task in favor of a named successor |
+| 11 | `opencntx workspace doctor` | diagnose active or interrupted writer transactions read-only |
+| 12 | `opencntx workspace recover` | preview or apply one exact backup-first recovery |
+| 13 | `opencntx workspace control refresh` | refresh the derived current-roadmap snapshot |
+| 14 | `opencntx workspace chapter create` | create one new draft chapter with source pins |
+| 15 | `opencntx workspace catalog rebuild` | rebuild the derived local catalog and index |
+| 16 | `opencntx workspace media register` | register supplied derived UTF-8 text |
+| 17 | `opencntx workspace media review` | record review of one exact derived text object |
+| 18 | `opencntx workspace media promote` | capture accepted derived text with provenance |
+| 19 | `opencntx workspace media status` | report current derivation state read-only |
+| 20 | `opencntx workspace media verify` | verify source, record, review, and text bindings |
+| 21 | `opencntx workspace media remove` | remove exact active derived bytes with a tombstone |
+| 22 | `opencntx workspace playbook register` | register a proposed playbook revision |
+| 23 | `opencntx workspace playbook approve` | approve one exact playbook definition |
+| 24 | `opencntx workspace playbook status` | report playbook state read-only |
+| 25 | `opencntx workspace playbook verify` | verify playbook records and definition digests |
+| 26 | `opencntx workspace role register` | register a proposed role revision |
+| 27 | `opencntx workspace role approve` | approve one exact role definition |
+| 28 | `opencntx workspace role status` | report role state read-only |
+| 29 | `opencntx workspace role verify` | verify role records and definition digests |
+| 30 | `opencntx workspace executor prepare` | bind task, context, playbook, and role |
+| 31 | `opencntx workspace executor status` | report executor package state read-only |
+| 32 | `opencntx workspace executor verify` | verify assignment and permission bindings |
+| 33 | `opencntx workspace context build` | build one deterministic task-bound package |
+| 34 | `opencntx workspace context verify` | verify live task and context bindings read-only |
+| 35 | `opencntx workspace task propose` | append one exact task proposal |
+| 36 | `opencntx workspace task approve` | append exact OWNER proposal approval |
+| 37 | `opencntx workspace task begin` | move one approved task into execution |
+| 38 | `opencntx workspace task submit-result` | append one result and evidence binding |
+| 39 | `opencntx workspace task review-result` | append an ARCHITECT review |
+| 40 | `opencntx workspace task accept-result` | append the exact OWNER result decision |
+| 41 | `opencntx workspace task close` | close an accepted task |
+| 42 | `opencntx workspace task status` | report current task state read-only |
+| 43 | `opencntx workspace task record-attempt` | append one stable failure signature |
+| 44 | `opencntx workspace task cancel` | terminate a task explicitly as cancelled |
+| 45 | `opencntx workspace task supersede` | terminate a task in favor of a named successor |
 
 ## Core pack options
 
@@ -104,6 +106,31 @@ opencntx workspace control refresh --root my-project
 
 The snapshot is derived. It does not edit, interpret, approve, or synchronize
 the official roadmap.
+
+## Advanced / Alpha: transaction diagnosis and recovery
+
+Diagnose without writing, creating a lock, or repairing anything:
+
+```powershell
+opencntx workspace doctor --root my-project
+```
+
+If doctor reports `RECOVERY_REQUIRED`, copy its exact transaction ID and intent
+SHA-256 into a preview:
+
+```powershell
+opencntx workspace recover --root my-project --transaction TXN-ID --intent-sha256 SHA256
+```
+
+The preview changes nothing. Apply only after inspecting the exact action:
+
+```powershell
+opencntx workspace recover --root my-project --transaction TXN-ID --intent-sha256 SHA256 --apply
+```
+
+Apply refuses an active writer, changed intent, unsafe link, unknown transaction
+data, or changed target. It creates and verifies a retained local backup before
+rolling the named transaction back and writes a recovery receipt.
 
 ## Find exact options
 
