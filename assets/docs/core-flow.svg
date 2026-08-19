@@ -1,24 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
-  <title id="title">The five-step OPENCNTX core flow</title>
-  <desc id="desc">Initialize a configuration, pack selected local text, inspect the result, verify the package, and only then share it.</desc>
-  <rect width="1200" height="360" rx="28" fill="#F7F5FB"/>
-  <g font-family="Segoe UI, Arial, sans-serif" text-anchor="middle">
-    <g fill="#FFFFFF" stroke="#7C3AED" stroke-width="4">
-      <rect x="40" y="100" width="180" height="130" rx="20"/><rect x="270" y="100" width="180" height="130" rx="20"/>
-      <rect x="500" y="100" width="180" height="130" rx="20"/><rect x="730" y="100" width="180" height="130" rx="20"/>
-      <rect x="960" y="100" width="180" height="130" rx="20"/>
-    </g>
-    <g fill="#0B0B0F">
-      <text x="130" y="155" font-size="28" font-weight="700">1 · init</text><text x="130" y="195" font-size="21">Set the goal</text>
-      <text x="360" y="155" font-size="28" font-weight="700">2 · pack</text><text x="360" y="195" font-size="21">Build locally</text>
-      <text x="590" y="155" font-size="28" font-weight="700">3 · inspect</text><text x="590" y="195" font-size="21">Read CONTEXT.md</text>
-      <text x="820" y="155" font-size="28" font-weight="700">4 · verify</text><text x="820" y="195" font-size="21">Detect drift</text>
-      <text x="1050" y="155" font-size="28" font-weight="700">5 · share</text><text x="1050" y="195" font-size="21">Your decision</text>
-    </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="450" viewBox="0 0 1200 450" role="img" aria-labelledby="title desc">
+  <title id="title">Core package flow</title>
+  <desc id="desc">Five equal steps show initialization, packing, human review, verification, and optional sharing.</desc>
+  <rect width="1200" height="450" fill="#FFFFFF"/>
+  <text x="600" y="75" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="700" fill="#111318">The complete core flow</text>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="60" y="150" width="180" height="240" rx="22" fill="#F6F3FF" stroke="#7C3AED" stroke-width="4"/>
+    <rect x="285" y="150" width="180" height="240" rx="22" fill="#F6F3FF" stroke="#7C3AED" stroke-width="4"/>
+    <rect x="510" y="150" width="180" height="240" rx="22" fill="#F6F3FF" stroke="#7C3AED" stroke-width="4"/>
+    <rect x="735" y="150" width="180" height="240" rx="22" fill="#F6F3FF" stroke="#7C3AED" stroke-width="4"/>
+    <rect x="960" y="150" width="180" height="240" rx="22" fill="#F6F3FF" stroke="#7C3AED" stroke-width="4"/>
+    <text x="150" y="218" text-anchor="middle" font-size="26" font-weight="700" fill="#6D28D9">1. Init</text>
+    <text x="375" y="218" text-anchor="middle" font-size="26" font-weight="700" fill="#6D28D9">2. Pack</text>
+    <text x="600" y="218" text-anchor="middle" font-size="26" font-weight="700" fill="#6D28D9">3. Inspect</text>
+    <text x="825" y="218" text-anchor="middle" font-size="26" font-weight="700" fill="#6D28D9">4. Verify</text>
+    <text x="1050" y="218" text-anchor="middle" font-size="26" font-weight="700" fill="#6D28D9">5. Share</text>
+    <text x="150" y="278" text-anchor="middle" font-size="20" fill="#111318">Create config</text>
+    <text x="375" y="278" text-anchor="middle" font-size="20" fill="#111318">Build package</text>
+    <text x="600" y="278" text-anchor="middle" font-size="20" fill="#111318">Read all output</text>
+    <text x="825" y="278" text-anchor="middle" font-size="20" fill="#111318">Check drift</text>
+    <text x="1050" y="278" text-anchor="middle" font-size="20" fill="#111318">Your decision</text>
   </g>
-  <g fill="#7C3AED">
-    <polygon points="235,150 260,165 235,180"/><polygon points="465,150 490,165 465,180"/>
-    <polygon points="695,150 720,165 695,180"/><polygon points="925,150 950,165 925,180"/>
+  <g stroke="#7C3AED" stroke-width="6" fill="#7C3AED">
+    <line x1="246" y1="270" x2="267" y2="270"/><polygon points="267,258 285,270 267,282"/>
+    <line x1="471" y1="270" x2="492" y2="270"/><polygon points="492,258 510,270 492,282"/>
+    <line x1="696" y1="270" x2="717" y2="270"/><polygon points="717,258 735,270 717,282"/>
+    <line x1="921" y1="270" x2="942" y2="270"/><polygon points="942,258 960,270 942,282"/>
   </g>
-  <text x="600" y="300" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="23" fill="#555563">A failed check stops the flow. OPENCNTX never silently cuts or uploads context.</text>
 </svg>

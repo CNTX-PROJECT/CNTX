@@ -1,9 +1,14 @@
 # Workspace
 
+[Start here](start-here.md) · [How it works](how-it-works.md) · [Workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
+
 The optional workspace layer organizes a longer project without turning
 OPENCNTX into a cloud service, AI platform, or automatic agent system.
 
-![The workspace separates control, sources, chapters, tasks, playbooks, roles, derived text, and replaceable indexes](../assets/docs/workspace-map.svg)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../assets/docs/workspace-map-dark.svg">
+  <img src="../assets/docs/workspace-map.svg" alt="The workspace separates control, sources, knowledge, and bounded work">
+</picture>
 
 ## Create a workspace
 

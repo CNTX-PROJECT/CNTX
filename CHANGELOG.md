@@ -6,13 +6,15 @@ All notable OPENCNTX changes are recorded here.
 
 ### Changed
 
-- Reorganized the public documentation into separate task-focused English
-  pages for beginners, workspace users, project owners, and technical readers.
-- Replaced the original network-style brand with a simple modern text system:
-  purple `OPEN`, near-black `CNTX` on light surfaces, and white `CNTX` on dark
-  surfaces.
-- Added accessible diagrams for the core flow, workspace, OWNER flow, context
-  selection, security boundary, and public roadmap.
+- Combined installation and first use into one ordered `Start here` guide.
+- Put the six most-used documentation routes in one fixed order on every
+  guide and simplified the README into a calm landing page.
+- Replaced hand-built wordmark letters with centered standard sans-serif text
+  and one symmetric context-frame avatar symbol.
+- Added matching light- and dark-screen variants for all seven documentation
+  diagrams, with equal cards, margins, spacing, baselines, and arrow anchors.
+- Clarified the exact, dependency-free boundary between deterministic
+  shape-only PNGs and the hash-pinned standard-font social preview export.
 
 No product code, command, schema, dependency, workflow, package version, or
 runtime behavior changed in this documentation and brand update.

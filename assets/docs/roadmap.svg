@@ -1,15 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-labelledby="title desc">
-  <title id="title">OPENCNTX public roadmap</title>
-  <desc id="desc">Version 0.1 introduced the three-command core. The workspace foundation added storage, chapters, tasks, navigation, media, playbooks, and roles. Version 0.2 released the complete current public foundation. Future work requires an explicit proposal.</desc>
-  <rect width="1200" height="420" rx="28" fill="#F7F5FB"/>
-  <rect x="100" y="200" width="1000" height="10" fill="#7C3AED"/>
-  <g font-family="Segoe UI, Arial, sans-serif" text-anchor="middle">
-    <g fill="#7C3AED"><circle cx="180" cy="205" r="28"/><circle cx="500" cy="205" r="28"/><circle cx="820" cy="205" r="28"/></g>
-    <circle cx="1060" cy="205" r="28" fill="#FFFFFF" stroke="#7C3AED" stroke-width="5"/>
-    <text x="180" y="105" font-size="30" font-weight="800" fill="#0B0B0F">v0.1.0</text><text x="180" y="145" font-size="21" fill="#555563">init · pack · verify</text>
-    <text x="500" y="290" font-size="30" font-weight="800" fill="#0B0B0F">Workspace</text><text x="500" y="325" font-size="21" fill="#555563">local project structure</text>
-    <text x="820" y="105" font-size="30" font-weight="800" fill="#0B0B0F">v0.2.0</text><text x="820" y="145" font-size="21" fill="#555563">current public release</text>
-    <text x="1060" y="290" font-size="30" font-weight="800" fill="#0B0B0F">Next</text><text x="1060" y="325" font-size="21" fill="#555563">only after approval</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="450" viewBox="0 0 1200 450" role="img" aria-labelledby="title desc">
+  <title id="title">Completed OPENCNTX roadmap</title>
+  <desc id="desc">Four equal milestones show the runnable core, version 0.1, workspace foundation, and version 0.2.</desc>
+  <rect width="1200" height="450" fill="#FFFFFF"/>
+  <text x="600" y="75" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="700" fill="#111318">Completed public milestones</text>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="60" y="150" width="240" height="240" rx="24" fill="#F6F3FF" stroke="#7C3AED" stroke-width="4"/>
+    <rect x="340" y="150" width="240" height="240" rx="24" fill="#F6F3FF" stroke="#7C3AED" stroke-width="4"/>
+    <rect x="620" y="150" width="240" height="240" rx="24" fill="#F6F3FF" stroke="#7C3AED" stroke-width="4"/>
+    <rect x="900" y="150" width="240" height="240" rx="24" fill="#F6F3FF" stroke="#7C3AED" stroke-width="4"/>
+    <text x="180" y="218" text-anchor="middle" font-size="27" font-weight="700" fill="#6D28D9">CORE</text>
+    <text x="180" y="270" text-anchor="middle" font-size="20" fill="#111318">init · pack · verify</text>
+    <text x="460" y="218" text-anchor="middle" font-size="27" font-weight="700" fill="#6D28D9">v0.1.0</text>
+    <text x="460" y="270" text-anchor="middle" font-size="20" fill="#111318">Public core release</text>
+    <text x="740" y="218" text-anchor="middle" font-size="27" font-weight="700" fill="#6D28D9">WORKSPACE</text>
+    <text x="740" y="270" text-anchor="middle" font-size="20" fill="#111318">Bounded project flow</text>
+    <text x="1020" y="218" text-anchor="middle" font-size="27" font-weight="700" fill="#6D28D9">v0.2.0</text>
+    <text x="1020" y="270" text-anchor="middle" font-size="20" fill="#111318">Current public release</text>
   </g>
-  <text x="600" y="385" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="21" fill="#555563">The public roadmap reports completed facts. It does not promise unapproved features.</text>
+  <g stroke="#7C3AED" stroke-width="6" fill="#7C3AED">
+    <line x1="306" y1="320" x2="322" y2="320"/><polygon points="322,308 340,320 322,332"/>
+    <line x1="586" y1="320" x2="602" y2="320"/><polygon points="602,308 620,320 602,332"/>
+    <line x1="866" y1="320" x2="882" y2="320"/><polygon points="882,308 900,320 882,332"/>
+  </g>
 </svg>

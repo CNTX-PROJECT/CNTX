@@ -32,34 +32,35 @@ PNG_DIMENSIONS = {
 }
 
 PALETTE = {
-    "#F7F5FB",
-    "#0B0B0F",
     "#FFFFFF",
+    "#0D1117",
+    "#111318",
     "#7C3AED",
-    "#A855F7",
     "#6D28D9",
     "#C084FC",
 }
 
-ALLOWED_ELEMENTS = {
-    "svg",
-    "g",
-    "title",
-    "desc",
-    "rect",
-    "polygon",
-    "circle",
-    "ellipse",
-}
+ALLOWED_ELEMENTS = {"svg", "g", "title", "desc", "rect", "circle", "text"}
 ALLOWED_ATTRIBUTES = {
     "svg": {"width", "height", "viewBox", "role", "aria-labelledby"},
     "g": {"id", "fill", "aria-label"},
     "title": {"id"},
     "desc": {"id"},
     "rect": {"x", "y", "width", "height", "fill"},
-    "polygon": {"points", "fill"},
     "circle": {"cx", "cy", "r", "fill"},
-    "ellipse": {"cx", "cy", "rx", "ry", "fill"},
+    "text": {
+        "id",
+        "x",
+        "y",
+        "fill",
+        "font-family",
+        "font-size",
+        "font-weight",
+        "letter-spacing",
+        "text-anchor",
+        "textLength",
+        "lengthAdjust",
+    },
 }
 
 
@@ -81,6 +82,12 @@ def _luminance(color: str) -> float:
 def _contrast(first: str, second: str) -> float:
     high, low = sorted((_luminance(first), _luminance(second)), reverse=True)
     return (high + 0.05) / (low + 0.05)
+
+
+def _shape_left(element: ElementTree.Element) -> float:
+    if "x" in element.attrib:
+        return float(element.attrib["x"])
+    return float(element.attrib["cx"]) - float(element.attrib["r"])
 
 
 def _png(path: Path):
@@ -114,7 +121,6 @@ class BrandTests(unittest.TestCase):
     def test_svg_profile_dimensions_and_accessibility_are_exact(self) -> None:
         forbidden = (
             b"<script",
-            b"<text",
             b"<use",
             b"<image",
             b"<filter",
@@ -125,7 +131,6 @@ class BrandTests(unittest.TestCase):
             b"<foreignObject",
             b"href=",
             b"url(",
-            b"font",
             b"style=",
         )
         for name, dimensions in SVG_DIMENSIONS.items():
@@ -158,10 +163,10 @@ class BrandTests(unittest.TestCase):
                     if fill:
                         self.assertIn(fill, PALETTE)
 
-    def test_wordmark_owner_color_rule_is_exact(self) -> None:
+    def test_wordmarks_use_standard_text_and_exact_owner_colors(self) -> None:
         expected = {
-            "opencntx-wordmark-light.svg": ("#6D28D9", "#0B0B0F"),
-            "opencntx-wordmark-dark.svg": ("#C084FC", "#FFFFFF"),
+            "opencntx-wordmark-light.svg": ("#FFFFFF", "#6D28D9", "#111318"),
+            "opencntx-wordmark-dark.svg": ("#0D1117", "#C084FC", "#FFFFFF"),
         }
         for name, colors in expected.items():
             root = ElementTree.parse(BRAND / name).getroot()
@@ -170,75 +175,108 @@ class BrandTests(unittest.TestCase):
                 for element in root
                 if _local_name(element.tag) == "g"
             }
+            background = next(
+                element for element in root if _local_name(element.tag) == "rect"
+            )
+            self.assertEqual(colors[0], background.attrib["fill"])
             self.assertEqual("OPEN", groups["word-open"].attrib["aria-label"])
             self.assertEqual("CNTX", groups["word-cntx"].attrib["aria-label"])
-            self.assertEqual(colors[0], groups["word-open"].attrib["fill"])
-            self.assertEqual(colors[1], groups["word-cntx"].attrib["fill"])
+            self.assertEqual(colors[1], groups["word-open"].attrib["fill"])
+            self.assertEqual(colors[2], groups["word-cntx"].attrib["fill"])
+            text = [
+                element
+                for element in root.iter()
+                if _local_name(element.tag) == "text"
+            ]
+            self.assertEqual(["OPEN", "CNTX"], [element.text for element in text])
+            for element in text:
+                self.assertEqual(
+                    "Arial, Helvetica, sans-serif", element.attrib["font-family"]
+                )
 
-    def test_primary_brand_is_simple_text_without_legacy_network_art(self) -> None:
+    def test_wordmark_and_social_geometry_is_centered(self) -> None:
+        for name in ("opencntx-wordmark-light.svg", "opencntx-wordmark-dark.svg"):
+            root = ElementTree.parse(BRAND / name).getroot()
+            groups = {element.attrib.get("id"): element for element in root}
+            symbol_shapes = list(groups["avatar-symbol"])
+            left = min(_shape_left(shape) for shape in symbol_shapes)
+            open_text = list(groups["word-open"])[0]
+            cntx_text = list(groups["word-cntx"])[0]
+            right = float(cntx_text.attrib["x"]) + float(cntx_text.attrib["textLength"])
+            self.assertEqual(110.0, left)
+            self.assertEqual(690.0, right)
+            self.assertEqual(left, 800.0 - right)
+            self.assertEqual(260.0, float(open_text.attrib["x"]))
+
+        social = ElementTree.parse(BRAND / "opencntx-social-preview.svg").getroot()
+        tagline = next(
+            element
+            for element in social.iter()
+            if element.attrib.get("id") == "tagline"
+        )
+        self.assertEqual("640", tagline.attrib["x"])
+        self.assertEqual("middle", tagline.attrib["text-anchor"])
+        self.assertEqual("Small context. Clear evidence. Any model.", tagline.text)
+
+    def test_avatar_is_theme_neutral_symmetric_and_contains_no_text(self) -> None:
         for name in (
             "opencntx-avatar.svg",
-            "opencntx-social-preview.svg",
-            "opencntx-wordmark-dark.svg",
-            "opencntx-wordmark-light.svg",
+            "opencntx-symbol-light.svg",
+            "opencntx-symbol-dark.svg",
         ):
             with self.subTest(name=name):
-                data = (BRAND / name).read_bytes()
-                for legacy in (b'id="boundary"', b'id="network"', b'id="nodes"'):
-                    self.assertNotIn(legacy, data)
-                self.assertIn(b'id="word-open"', data)
-                self.assertIn(b'id="word-cntx"', data)
+                root = ElementTree.parse(BRAND / name).getroot()
+                self.assertFalse(
+                    any(_local_name(element.tag) == "text" for element in root.iter())
+                )
+                groups = {element.attrib.get("id"): element for element in root}
+                self.assertEqual("#7C3AED", groups["avatar-symbol"].attrib["fill"])
+                self.assertEqual("#FFFFFF", groups["context-frame"].attrib["fill"])
 
-        for name in ("opencntx-avatar.svg", "opencntx-social-preview.svg"):
-            root = ElementTree.parse(BRAND / name).getroot()
-            groups = {
-                element.attrib.get("id"): element
-                for element in root
-                if _local_name(element.tag) == "g"
-            }
-            self.assertEqual("#6D28D9", groups["word-open"].attrib["fill"])
-            self.assertEqual("#0B0B0F", groups["word-cntx"].attrib["fill"])
-
-        social = (BRAND / "opencntx-social-preview.svg").read_text(
-            encoding="utf-8"
-        )
-        self.assertIn("SMALL CONTEXT. CLEAR EVIDENCE. ANY MODEL.", social)
+        light = (BRAND / "opencntx-symbol-light.svg").read_text(encoding="utf-8")
+        dark = (BRAND / "opencntx-symbol-dark.svg").read_text(encoding="utf-8")
+        for phrase in (
+            "<title id=\"title\">OPENCNTX symbol for light screens</title>",
+            "<title id=\"title\">OPENCNTX symbol for dark screens</title>",
+        ):
+            light = light.replace(phrase, "<title id=\"title\">SYMBOL</title>")
+            dark = dark.replace(phrase, "<title id=\"title\">SYMBOL</title>")
+        self.assertEqual(light, dark)
 
     def test_text_and_graphic_contrasts_meet_the_contract(self) -> None:
         text_pairs = (
-            ("#0B0B0F", "#F7F5FB"),
-            ("#6D28D9", "#F7F5FB"),
-            ("#FFFFFF", "#0B0B0F"),
-            ("#C084FC", "#0B0B0F"),
-        )
-        graphic_pairs = (
-            ("#7C3AED", "#F7F5FB"),
-            ("#A855F7", "#0B0B0F"),
+            ("#111318", "#FFFFFF"),
+            ("#6D28D9", "#FFFFFF"),
+            ("#FFFFFF", "#0D1117"),
+            ("#C084FC", "#0D1117"),
         )
         for foreground, background in text_pairs:
             self.assertGreaterEqual(_contrast(foreground, background), 4.5)
-        for foreground, background in graphic_pairs:
-            self.assertGreaterEqual(_contrast(foreground, background), 3.0)
+        self.assertGreaterEqual(_contrast("#7C3AED", "#FFFFFF"), 3.0)
 
-    def test_png_dimensions_chunks_and_transparency_are_exact(self) -> None:
+    def test_png_dimensions_profiles_and_transparency_are_exact(self) -> None:
         for name, dimensions in PNG_DIMENSIONS.items():
             with self.subTest(name=name):
                 chunks, actual, profile, raw = _png(BRAND / name)
-                self.assertEqual([b"IHDR", b"IDAT", b"IEND"], chunks)
+                self.assertEqual(b"IHDR", chunks[0])
+                self.assertEqual(b"IEND", chunks[-1])
+                self.assertIn(b"IDAT", chunks)
                 self.assertEqual(dimensions, actual)
                 self.assertEqual((8, 6, 0, 0, 0), profile)
                 stride = dimensions[0] * 4 + 1
                 self.assertEqual(stride * dimensions[1], len(raw))
-                self.assertTrue(all(raw[row * stride] == 0 for row in range(dimensions[1])))
+                self.assertTrue(
+                    all(raw[row * stride] == 0 for row in range(dimensions[1]))
+                )
                 alpha = []
                 for row in range(dimensions[1]):
                     pixels = raw[row * stride + 1 : (row + 1) * stride]
                     alpha.extend(pixels[3::4])
-                if "icon" in name:
+                if "social-preview" in name:
+                    self.assertEqual({255}, set(alpha))
+                else:
                     self.assertEqual(0, min(alpha))
                     self.assertEqual(255, max(alpha))
-                else:
-                    self.assertEqual({255}, set(alpha))
 
     def test_hash_manifest_is_sorted_complete_and_current(self) -> None:
         manifest = (BRAND / "SHA256SUMS").read_bytes()
@@ -255,10 +293,9 @@ class BrandTests(unittest.TestCase):
             data = (ROOT / relative).read_bytes()
             if relative.endswith(".svg"):
                 data = data.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
-            actual = hashlib.sha256(data).hexdigest()
-            self.assertEqual(digest, actual, relative)
+            self.assertEqual(digest, hashlib.sha256(data).hexdigest(), relative)
 
-    def test_standard_library_renderer_reproduces_derivatives(self) -> None:
+    def test_standard_library_renderer_checks_all_assets(self) -> None:
         environment = os.environ.copy()
         environment["PYTHONDONTWRITEBYTECODE"] = "1"
         environment["PYTHONUTF8"] = "1"

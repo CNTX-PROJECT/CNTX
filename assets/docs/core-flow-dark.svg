@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="450" viewBox="0 0 1200 450" role="img" aria-labelledby="title desc">
+  <title id="title">Core package flow for dark screens</title>
+  <desc id="desc">Five equal steps show initialization, packing, human review, verification, and optional sharing.</desc>
+  <rect width="1200" height="450" fill="#0D1117"/>
+  <text x="600" y="75" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="700" fill="#FFFFFF">The complete core flow</text>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="60" y="150" width="180" height="240" rx="22" fill="#17131F" stroke="#C084FC" stroke-width="4"/>
+    <rect x="285" y="150" width="180" height="240" rx="22" fill="#17131F" stroke="#C084FC" stroke-width="4"/>
+    <rect x="510" y="150" width="180" height="240" rx="22" fill="#17131F" stroke="#C084FC" stroke-width="4"/>
+    <rect x="735" y="150" width="180" height="240" rx="22" fill="#17131F" stroke="#C084FC" stroke-width="4"/>
+    <rect x="960" y="150" width="180" height="240" rx="22" fill="#17131F" stroke="#C084FC" stroke-width="4"/>
+    <text x="150" y="218" text-anchor="middle" font-size="26" font-weight="700" fill="#C084FC">1. Init</text>
+    <text x="375" y="218" text-anchor="middle" font-size="26" font-weight="700" fill="#C084FC">2. Pack</text>
+    <text x="600" y="218" text-anchor="middle" font-size="26" font-weight="700" fill="#C084FC">3. Inspect</text>
+    <text x="825" y="218" text-anchor="middle" font-size="26" font-weight="700" fill="#C084FC">4. Verify</text>
+    <text x="1050" y="218" text-anchor="middle" font-size="26" font-weight="700" fill="#C084FC">5. Share</text>
+    <text x="150" y="278" text-anchor="middle" font-size="20" fill="#FFFFFF">Create config</text>
+    <text x="375" y="278" text-anchor="middle" font-size="20" fill="#FFFFFF">Build package</text>
+    <text x="600" y="278" text-anchor="middle" font-size="20" fill="#FFFFFF">Read all output</text>
+    <text x="825" y="278" text-anchor="middle" font-size="20" fill="#FFFFFF">Check drift</text>
+    <text x="1050" y="278" text-anchor="middle" font-size="20" fill="#FFFFFF">Your decision</text>
+  </g>
+  <g stroke="#C084FC" stroke-width="6" fill="#C084FC">
+    <line x1="246" y1="270" x2="267" y2="270"/><polygon points="267,258 285,270 267,282"/>
+    <line x1="471" y1="270" x2="492" y2="270"/><polygon points="492,258 510,270 492,282"/>
+    <line x1="696" y1="270" x2="717" y2="270"/><polygon points="717,258 735,270 717,282"/>
+    <line x1="921" y1="270" x2="942" y2="270"/><polygon points="942,258 960,270 942,282"/>
+  </g>
+</svg>

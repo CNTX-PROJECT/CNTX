@@ -1,5 +1,7 @@
 # Playbooks and roles
 
+[Start here](start-here.md) · [How it works](how-it-works.md) · [Workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
+
 Playbooks and roles describe a bounded method and a bounded set of actions.
 They do not start a person, process, tool, model, or agent.
 

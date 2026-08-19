@@ -1,9 +1,14 @@
 # Core commands: init, pack, and verify
 
+[Start here](start-here.md) · [How it works](how-it-works.md) · [Workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
+
 The core flow creates one bounded context package from local UTF-8 text. It is
 the shortest OPENCNTX path and does not require a workspace.
 
-![The core flow has five steps: initialize, pack, inspect, verify, and share by choice](../assets/docs/core-flow.svg)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../assets/docs/core-flow-dark.svg">
+  <img src="../assets/docs/core-flow.svg" alt="Initialize, pack, inspect, verify, and only then decide whether to share">
+</picture>
 
 ## 1. Create a configuration
 
@@ -103,7 +108,7 @@ Treat every non-zero code as a stop until you understand the output.
 
 ## Related pages
 
-- [Getting started](getting-started.md)
+- [Start here](start-here.md)
 - [Context packages](context-packets.md)
 - [Command reference](commands.md)
 - [Security](security.md)

@@ -7,6 +7,7 @@ import tomllib
 import unittest
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
+from xml.etree import ElementTree
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -38,21 +39,20 @@ GUIDES = {
     "core.md",
     "commands.md",
     "faq.md",
-    "getting-started.md",
     "glossary.md",
     "how-it-works.md",
-    "installation.md",
     "media.md",
     "owner-flow.md",
     "playbooks-and-roles.md",
     "roadmap.md",
     "security.md",
+    "start-here.md",
     "platforms.md",
     "troubleshooting.md",
     "workspace.md",
 }
 
-DIAGRAMS = {
+LIGHT_DIAGRAMS = {
     "context-selection.svg",
     "core-flow.svg",
     "opencntx-overview.svg",
@@ -61,6 +61,14 @@ DIAGRAMS = {
     "security-boundary.svg",
     "workspace-map.svg",
 }
+DARK_DIAGRAMS = {name.replace(".svg", "-dark.svg") for name in LIGHT_DIAGRAMS}
+DIAGRAMS = LIGHT_DIAGRAMS | DARK_DIAGRAMS
+
+PRIMARY_NAVIGATION = (
+    "[Start here](start-here.md) · [How it works](how-it-works.md) · "
+    "[Workspace](workspace.md) · [Commands](commands.md) · "
+    "[Security](security.md) · [All docs](README.md)"
+)
 
 EXPECTED_ACTION_USES = {
     "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
@@ -176,9 +184,38 @@ class PublicQualityTests(unittest.TestCase):
         text = README.read_text(encoding="utf-8")
         self.assertIn('srcset="assets/brand/opencntx-wordmark-dark.svg"', text)
         self.assertIn('src="assets/brand/opencntx-wordmark-light.svg"', text)
+        self.assertIn('<div align="center">', text)
+        self.assertIn("[Start here](docs/start-here.md)", text)
         targets = {Path(target).as_posix() for target in _local_links(README)}
-        required = {"docs/README.md"} | {f"docs/{name}" for name in GUIDES}
+        required = {
+            "docs/start-here.md",
+            "docs/how-it-works.md",
+            "docs/workspace.md",
+            "docs/commands.md",
+            "docs/security.md",
+            "docs/README.md",
+        }
         self.assertTrue(required.issubset(targets))
+
+    def test_one_start_page_and_fixed_primary_navigation(self) -> None:
+        self.assertTrue((DOCS / "start-here.md").is_file())
+        self.assertFalse((DOCS / "installation.md").exists())
+        self.assertFalse((DOCS / "getting-started.md").exists())
+        for markdown in (README, CHANGELOG, ROOT / "SUPPORT.md", *DOCS.glob("*.md")):
+            with self.subTest(markdown=markdown.relative_to(ROOT)):
+                text = markdown.read_text(encoding="utf-8")
+                self.assertNotIn("installation.md", text)
+                self.assertNotIn("getting-started.md", text)
+
+        for guide_name in GUIDES:
+            with self.subTest(guide=guide_name):
+                lines = (DOCS / guide_name).read_text(encoding="utf-8").splitlines()
+                self.assertIn(PRIMARY_NAVIGATION, lines[:5])
+
+        readme_navigation = PRIMARY_NAVIGATION.replace(
+            "](", "](docs/"
+        ).replace("](docs/README.md)", "](docs/README.md)")
+        self.assertIn(readme_navigation, README.read_text(encoding="utf-8"))
 
     def test_community_and_security_routes_are_bounded(self) -> None:
         required = {
@@ -274,6 +311,63 @@ class PublicQualityTests(unittest.TestCase):
                 self.assertIn(b'aria-labelledby="title desc"', data)
                 self.assertIn(b'<title id="title">', data)
                 self.assertIn(b'<desc id="desc">', data)
+
+        for light_name in sorted(LIGHT_DIAGRAMS):
+            dark_name = light_name.replace(".svg", "-dark.svg")
+            with self.subTest(pair=light_name):
+                light = ElementTree.parse(diagram_root / light_name).getroot()
+                dark = ElementTree.parse(diagram_root / dark_name).getroot()
+                self.assertEqual("1200", light.attrib["width"])
+                self.assertEqual(light.attrib["viewBox"], dark.attrib["viewBox"])
+                self.assertEqual("#FFFFFF", list(light)[2].attrib["fill"])
+                self.assertEqual("#0D1117", list(dark)[2].attrib["fill"])
+
+                def geometry(root):
+                    result = []
+                    for element in root.iter():
+                        name = element.tag.rsplit("}", 1)[-1]
+                        if name == "title":
+                            continue
+                        attrs = tuple(
+                            sorted(
+                                (key, value)
+                                for key, value in element.attrib.items()
+                                if key not in {"fill", "stroke"}
+                            )
+                        )
+                        result.append((name, attrs, (element.text or "").strip()))
+                    return result
+
+                self.assertEqual(geometry(light), geometry(dark))
+
+                cards = [
+                    element
+                    for element in light.iter()
+                    if element.tag.rsplit("}", 1)[-1] == "rect"
+                    and element.attrib.get("stroke-width") == "4"
+                ]
+                widths = {float(card.attrib["width"]) for card in cards}
+                heights = {float(card.attrib["height"]) for card in cards}
+                self.assertEqual(1, len(widths))
+                self.assertEqual(1, len(heights))
+                x_values = sorted({float(card.attrib["x"]) for card in cards})
+                width = widths.pop()
+                self.assertEqual(60.0, x_values[0])
+                self.assertEqual(1140.0, x_values[-1] + width)
+                if len(x_values) > 2:
+                    gaps = {
+                        x_values[index + 1] - x_values[index] - width
+                        for index in range(len(x_values) - 1)
+                    }
+                    self.assertEqual(1, len(gaps))
+
+        public_markdown = "\n".join(
+            path.read_text(encoding="utf-8") for path in (README, *DOCS.glob("*.md"))
+        )
+        for light_name in LIGHT_DIAGRAMS:
+            dark_name = light_name.replace(".svg", "-dark.svg")
+            self.assertIn(light_name, public_markdown)
+            self.assertIn(dark_name, public_markdown)
 
     def test_workflow_uses_immutable_official_action_pins(self) -> None:
         text = WORKFLOW.read_text(encoding="utf-8")

@@ -1,9 +1,14 @@
 # OWNER flow
 
+[Start here](start-here.md) · [How it works](how-it-works.md) · [Workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
+
 The workspace can record one task from goal to accepted result without letting
 the tool approve its own work.
 
-![The OWNER states the goal, the ARCHITECT analyzes and reviews, and a bounded executor works only after exact approval](../assets/docs/owner-flow.svg)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../assets/docs/owner-flow-dark.svg">
+  <img src="../assets/docs/owner-flow.svg" alt="The OWNER states the goal, the ARCHITECT proposes and reviews, and a bounded executor works only after exact approval">
+</picture>
 
 ## Roles in plain language
 

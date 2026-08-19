@@ -1,5 +1,7 @@
 # Platforms and CI
 
+[Start here](start-here.md) · [How it works](how-it-works.md) · [Workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
+
 OPENCNTX requires Python 3.11 or newer and has no runtime dependencies.
 
 ## Supported Python versions
@@ -62,7 +64,7 @@ PYTHONDONTWRITEBYTECODE=1 python3 tools/render_brand.py --check
 
 ## Related pages
 
-- [Installation](installation.md)
+- [Start here](start-here.md)
 - [Troubleshooting](troubleshooting.md)
 - [Public roadmap](roadmap.md)
 - [Contribution guide](../CONTRIBUTING.md)

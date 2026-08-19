@@ -1,9 +1,14 @@
 # Security in plain language
 
+[Start here](start-here.md) · [How it works](how-it-works.md) · [Workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
+
 OPENCNTX helps you control context. It does not make context automatically
 safe. You remain responsible for what you select, store, and share.
 
-![OPENCNTX stays inside a local boundary until you explicitly share reviewed output](../assets/docs/security-boundary.svg)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../assets/docs/security-boundary-dark.svg">
+  <img src="../assets/docs/security-boundary.svg" alt="OPENCNTX stays inside a local boundary until you explicitly share reviewed output">
+</picture>
 
 ## Local trust boundary
 

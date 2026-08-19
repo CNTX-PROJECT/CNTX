@@ -1,24 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
-  <title id="title">OWNER, ARCHITECT, and bounded executor flow</title>
-  <desc id="desc">The OWNER states a goal. The ARCHITECT analyzes and proposes. The OWNER approves the exact proposal. A bounded executor produces a result. The ARCHITECT reviews it. The OWNER accepts or returns it before closure.</desc>
-  <rect width="1200" height="500" rx="28" fill="#F7F5FB"/>
-  <g font-family="Segoe UI, Arial, sans-serif" text-anchor="middle">
-    <g fill="#FFFFFF" stroke="#7C3AED" stroke-width="4">
-      <rect x="45" y="105" width="160" height="120" rx="18"/><rect x="235" y="105" width="160" height="120" rx="18"/>
-      <rect x="425" y="105" width="160" height="120" rx="18"/><rect x="615" y="105" width="160" height="120" rx="18"/>
-      <rect x="805" y="105" width="160" height="120" rx="18"/><rect x="995" y="105" width="160" height="120" rx="18"/>
-    </g>
-    <g fill="#0B0B0F" font-size="22">
-      <text x="125" y="150" font-weight="700">OWNER</text><text x="125" y="185">states goal</text>
-      <text x="315" y="150" font-weight="700">ARCHITECT</text><text x="315" y="185">analyzes</text>
-      <text x="505" y="150" font-weight="700">OWNER</text><text x="505" y="185">approves</text>
-      <text x="695" y="150" font-weight="700">EXECUTOR</text><text x="695" y="185">works in scope</text>
-      <text x="885" y="150" font-weight="700">ARCHITECT</text><text x="885" y="185">reviews</text>
-      <text x="1075" y="150" font-weight="700">OWNER</text><text x="1075" y="185">accepts</text>
-    </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="450" viewBox="0 0 1200 450" role="img" aria-labelledby="title desc">
+  <title id="title">OWNER approval flow</title>
+  <desc id="desc">Six equal steps show the OWNER goal, ARCHITECT proposal, OWNER approval, bounded work, review, and OWNER acceptance.</desc>
+  <rect width="1200" height="450" fill="#FFFFFF"/>
+  <text x="600" y="75" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="700" fill="#111318">Every authority change is explicit</text>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="60" y="150" width="160" height="240" rx="22" fill="#F6F3FF" stroke="#7C3AED" stroke-width="4"/>
+    <rect x="244" y="150" width="160" height="240" rx="22" fill="#F6F3FF" stroke="#7C3AED" stroke-width="4"/>
+    <rect x="428" y="150" width="160" height="240" rx="22" fill="#F6F3FF" stroke="#7C3AED" stroke-width="4"/>
+    <rect x="612" y="150" width="160" height="240" rx="22" fill="#F6F3FF" stroke="#7C3AED" stroke-width="4"/>
+    <rect x="796" y="150" width="160" height="240" rx="22" fill="#F6F3FF" stroke="#7C3AED" stroke-width="4"/>
+    <rect x="980" y="150" width="160" height="240" rx="22" fill="#F6F3FF" stroke="#7C3AED" stroke-width="4"/>
+    <text x="140" y="215" text-anchor="middle" font-size="23" font-weight="700" fill="#6D28D9">OWNER</text><text x="140" y="255" text-anchor="middle" font-size="19" fill="#111318">Goal</text>
+    <text x="324" y="215" text-anchor="middle" font-size="23" font-weight="700" fill="#6D28D9">ARCHITECT</text><text x="324" y="255" text-anchor="middle" font-size="19" fill="#111318">Proposal</text>
+    <text x="508" y="215" text-anchor="middle" font-size="23" font-weight="700" fill="#6D28D9">OWNER</text><text x="508" y="255" text-anchor="middle" font-size="19" fill="#111318">Approval</text>
+    <text x="692" y="215" text-anchor="middle" font-size="23" font-weight="700" fill="#6D28D9">EXECUTOR</text><text x="692" y="255" text-anchor="middle" font-size="19" fill="#111318">Bounded work</text>
+    <text x="876" y="215" text-anchor="middle" font-size="23" font-weight="700" fill="#6D28D9">ARCHITECT</text><text x="876" y="255" text-anchor="middle" font-size="19" fill="#111318">Review</text>
+    <text x="1060" y="215" text-anchor="middle" font-size="23" font-weight="700" fill="#6D28D9">OWNER</text><text x="1060" y="255" text-anchor="middle" font-size="19" fill="#111318">Decision</text>
   </g>
-  <g fill="#7C3AED"><polygon points="212,150 228,165 212,180"/><polygon points="402,150 418,165 402,180"/><polygon points="592,150 608,165 592,180"/><polygon points="782,150 798,165 782,180"/><polygon points="972,150 988,165 972,180"/></g>
-  <rect x="210" y="300" width="780" height="100" rx="20" fill="#0B0B0F"/>
-  <text x="600" y="342" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" fill="#FFFFFF">Every gate pins the exact object and digest</text>
-  <text x="600" y="375" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#FFFFFF">No self-approval · no silent expansion · no automatic retry loop</text>
+  <g stroke="#7C3AED" stroke-width="5" fill="#7C3AED">
+    <line x1="224" y1="320" x2="232" y2="320"/><polygon points="232,310 244,320 232,330"/>
+    <line x1="408" y1="320" x2="416" y2="320"/><polygon points="416,310 428,320 416,330"/>
+    <line x1="592" y1="320" x2="600" y2="320"/><polygon points="600,310 612,320 600,330"/>
+    <line x1="776" y1="320" x2="784" y2="320"/><polygon points="784,310 796,320 784,330"/>
+    <line x1="960" y1="320" x2="968" y2="320"/><polygon points="968,310 980,320 968,330"/>
+  </g>
 </svg>

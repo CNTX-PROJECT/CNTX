@@ -24,15 +24,18 @@ platforms you used; zero automated checks is not green evidence.
 
 ## Brand changes
 
-Edit only the official SVG source, review it visually, and then regenerate the
-committed PNG derivatives and manifest:
+Edit only an official source inside the approved scope and review it visually.
+Then regenerate the shape-only PNG derivatives and refresh the manifest:
 
 ```powershell
 python tools/render_brand.py --write
 python tools/render_brand.py --check
 ```
 
-Do not edit generated PNG files or `SHA256SUMS` by hand.
+The standard-font social preview PNG is a separately reviewed export because
+system fonts can rasterize differently on Windows and Ubuntu. Replace it only
+with explicitly reviewed bytes, then run `--write` to pin its new hash. Do not
+edit generated avatar/icon PNGs or `SHA256SUMS` by hand.
 
 ## Pull request boundaries
 

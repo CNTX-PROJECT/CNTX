@@ -1,17 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="160" viewBox="0 0 800 160" role="img" aria-labelledby="title description">
-  <title id="title">OPENCNTX wordmark for dark backgrounds</title>
-  <desc id="description">A simple modern wordmark with OPEN in purple and CNTX in white.</desc>
-  <rect x="0" y="0" width="800" height="160" fill="#0B0B0F"/>
-  <g id="word-open" fill="#C084FC" aria-label="OPEN">
-    <ellipse cx="70" cy="80" rx="42" ry="48"/><ellipse cx="70" cy="80" rx="25" ry="31" fill="#0B0B0F"/>
-    <rect x="132" y="32" width="17" height="96"/><rect x="149" y="32" width="48" height="17"/><rect x="149" y="73" width="48" height="17"/><rect x="180" y="49" width="17" height="24"/>
-    <rect x="222" y="32" width="17" height="96"/><rect x="239" y="32" width="54" height="17"/><rect x="239" y="72" width="47" height="17"/><rect x="239" y="111" width="54" height="17"/>
-    <rect x="318" y="32" width="17" height="96"/><rect x="382" y="32" width="17" height="96"/><polygon points="335,32 351,32 382,108 382,128 366,128 335,52"/>
+  <title id="title">OPENCNTX wordmark for dark screens</title>
+  <desc id="description">Centered OPENCNTX wordmark with a purple context-frame symbol, light-purple OPEN, and white CNTX.</desc>
+  <rect x="0" y="0" width="800" height="160" fill="#0D1117"/>
+  <g id="avatar-symbol" aria-label="OPENCNTX context frame" fill="#7C3AED">
+    <rect x="136" y="28" width="68" height="104"/>
+    <rect x="110" y="54" width="120" height="52"/>
+    <circle cx="136" cy="54" r="26"/>
+    <circle cx="204" cy="54" r="26"/>
+    <circle cx="136" cy="106" r="26"/>
+    <circle cx="204" cy="106" r="26"/>
   </g>
-  <g id="word-cntx" fill="#FFFFFF" aria-label="CNTX">
-    <ellipse cx="478" cy="80" rx="44" ry="48"/><ellipse cx="478" cy="80" rx="27" ry="31" fill="#0B0B0F"/><rect x="479" y="56" width="49" height="48" fill="#0B0B0F"/>
-    <rect x="548" y="32" width="17" height="96"/><rect x="612" y="32" width="17" height="96"/><polygon points="565,32 581,32 612,108 612,128 596,128 565,52"/>
-    <rect x="654" y="32" width="70" height="17"/><rect x="681" y="49" width="17" height="79"/>
-    <polygon points="730,32 750,32 790,112 790,128 770,128 730,48"/><polygon points="770,32 790,32 750,128 730,128 730,112"/>
+  <g id="context-frame" aria-label="Context frame" fill="#FFFFFF">
+    <rect x="142" y="52" width="10" height="56"/>
+    <rect x="142" y="52" width="28" height="10"/>
+    <rect x="142" y="98" width="28" height="10"/>
+    <rect x="188" y="52" width="10" height="56"/>
+    <rect x="170" y="52" width="28" height="10"/>
+    <rect x="170" y="98" width="28" height="10"/>
+  </g>
+  <g id="word-open" aria-label="OPEN" fill="#C084FC">
+    <text x="260" y="111" font-family="Arial, Helvetica, sans-serif" font-size="88" font-weight="700" letter-spacing="0" textLength="210" lengthAdjust="spacingAndGlyphs">OPEN</text>
+  </g>
+  <g id="word-cntx" aria-label="CNTX" fill="#FFFFFF">
+    <text x="460" y="111" font-family="Arial, Helvetica, sans-serif" font-size="88" font-weight="700" letter-spacing="0" textLength="230" lengthAdjust="spacingAndGlyphs">CNTX</text>
   </g>
 </svg>

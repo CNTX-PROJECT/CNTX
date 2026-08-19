@@ -1,5 +1,7 @@
 # Context packages
 
+[Start here](start-here.md) · [How it works](how-it-works.md) · [Workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
+
 A context package is a small, reviewable snapshot for one task. It contains
 selected text plus enough metadata to detect later changes.
 
