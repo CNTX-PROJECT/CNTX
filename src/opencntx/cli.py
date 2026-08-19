@@ -11,8 +11,10 @@ import sys
 from .catalog import create_chapter, rebuild_catalog
 from .core import (
     OpenCntxError,
+    format_pack_preview,
     format_verify_report,
     pack_project,
+    plan_project,
     verify_package,
 )
 from .control import refresh_control_snapshot
@@ -98,9 +100,21 @@ def build_parser() -> argparse.ArgumentParser:
         "init",
         help="maak veilig een opencntx.toml-sjabloon in de huidige map",
     )
-    subparsers.add_parser(
+    pack_parser = subparsers.add_parser(
         "pack",
         help="maak atomair CONTEXT.md en manifest.json uit de gekozen bronnen",
+    )
+    pack_parser.add_argument(
+        "--preview",
+        action="store_true",
+        help="toon dezelfde selectie en secretbeslissing zonder iets te schrijven",
+    )
+    pack_parser.add_argument(
+        "--allow-secret",
+        action="append",
+        default=[],
+        metavar="FINDING_ID",
+        help="overschrijf exact één actuele hoog-vertrouwenfinding; herhaalbaar",
     )
     verify_parser = subparsers.add_parser(
         "verify",
@@ -1040,12 +1054,31 @@ def main(argv: Sequence[str] | None = None) -> int:
                 _print_task_result(root, result)
                 return 0
         if args.command == "pack":
-            package_path, manifest = pack_project(Path.cwd())
+            allowed_secret_ids = tuple(args.allow_secret)
+            if args.preview:
+                plan = plan_project(
+                    Path.cwd(),
+                    allowed_secret_ids=allowed_secret_ids,
+                )
+                print(format_pack_preview(plan))
+                return 2 if plan.security.blocked else 0
+            package_path, manifest = pack_project(
+                Path.cwd(),
+                allowed_secret_ids=allowed_secret_ids,
+            )
             print(
                 f"Gemaakt: {package_path} "
                 f"({manifest['package']['file_count']} bestanden, "
                 f"{manifest['package']['total_bytes']} bytes)"
             )
+            for finding in manifest["security"]["warnings"]:
+                print(
+                    "Waarschuwing secretbeleid: "
+                    f"{finding['finding_id']} {finding['path']}:"
+                    f"{finding['line']}:{finding['column']} "
+                    f"{finding['rule_id']} {finding['confidence']}",
+                    file=sys.stderr,
+                )
             return 0
         if args.command == "verify":
             package_argument = args.package.replace("\\", os.sep)

@@ -19,8 +19,28 @@ The boundary changes when you copy or submit the output to another tool.
 
 ## Context may contain sensitive text
 
-Default exclusions include common Git, generated output, environment, and key
-patterns. They reduce risk; they do not replace inspection.
+Default exclusions include common Git, generated output, environment, key,
+SSH identity, local credential, package registry, Docker, AWS, and
+application-default credential paths. They are applied before source content
+is read. They reduce risk; they do not replace inspection.
+
+`opencntx pack --preview` shows which paths would be included, required,
+excluded, or ignored and why. It also shows file and byte budgets. Preview
+writes no package, manifest, receipt, temporary publication state, or source.
+
+A small dependency-free local scanner checks only the already selected,
+bounded UTF-8 text. Narrow high-confidence credential structures block pack
+before publication. Broader credential-like text produces a warning. Safe
+diagnostics contain finding metadata, never the matched value or snippet.
+
+An apparent false positive can be overridden only by supplying its exact
+current finding ID to `pack --allow-secret`. The ID changes with the source
+bytes. There is no wildcard or permanent bypass, and an applied override is
+visible as safe metadata in the manifest.
+
+This scanner recognizes only known signals. It can miss secrets and can warn
+on harmless examples. A green preview is not a guarantee that content is
+secret-free.
 
 Never place passwords, tokens, private keys, personal data, production secrets,
 or content you are not allowed to share in a package or public issue.

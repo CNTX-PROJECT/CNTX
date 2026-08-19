@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import os
 from pathlib import Path
+import re
 import subprocess
 import sys
 import tempfile
@@ -311,6 +312,272 @@ class MvpTests(unittest.TestCase):
             self.assertEqual(result.returncode, 1)
             self.assertIn("CONTEXT.md wijkt af", result.stdout)
             self.assertEqual(context_path.read_bytes(), before)
+
+    def test_preview_is_deterministic_and_never_writes_or_changes_a_package(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = Path(temporary_directory)
+            (root / "a.txt").write_text("preview source\n", encoding="utf-8")
+            (root / ".env").write_text("EXCLUDED=value\n", encoding="utf-8")
+            write_config(
+                root,
+                include=["*.txt", ".env", "missing*.md"],
+                required=["a.txt"],
+            )
+
+            first = run_cli("pack", "--preview", cwd=root)
+            second = run_cli("pack", "--preview", cwd=root)
+
+            self.assertEqual(first.returncode, 0, first.stderr)
+            self.assertEqual(second.returncode, 0, second.stderr)
+            self.assertEqual(first.stdout, second.stdout)
+            self.assertFalse((root / ".opencntx").exists())
+            self.assertIn("a.txt | include=*.txt | required=a.txt", first.stdout)
+            self.assertIn(".env | pattern=.env*", first.stdout)
+            self.assertIn("missing*.md", first.stdout)
+            self.assertIn("files=1/25", first.stdout)
+            self.assertIn("PACK_ZOU_SLAGEN", first.stdout)
+
+            packed = run_cli("pack", cwd=root)
+            self.assertEqual(packed.returncode, 0, packed.stderr)
+            package = root / ".opencntx" / "latest"
+            before = {
+                path.name: (path.read_bytes(), path.stat().st_mtime_ns)
+                for path in package.iterdir()
+            }
+            source_before = ((root / "a.txt").read_bytes(), (root / "a.txt").stat().st_mtime_ns)
+
+            preview = run_cli("pack", "--preview", cwd=root)
+
+            self.assertEqual(preview.returncode, 0, preview.stderr)
+            self.assertEqual(
+                {
+                    path.name: (path.read_bytes(), path.stat().st_mtime_ns)
+                    for path in package.iterdir()
+                },
+                before,
+            )
+            self.assertEqual(
+                ((root / "a.txt").read_bytes(), (root / "a.txt").stat().st_mtime_ns),
+                source_before,
+            )
+
+    def test_high_confidence_secret_blocks_safely_before_publication(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = Path(temporary_directory)
+            (root / "safe.txt").write_text("safe\n", encoding="utf-8")
+            write_config(root, include=["safe.txt"])
+            self.assertEqual(run_cli("pack", cwd=root).returncode, 0)
+            package = root / ".opencntx" / "latest"
+            package_before = {
+                path.name: path.read_bytes() for path in package.iterdir()
+            }
+
+            secret_value = "gh" + "p_" + ("Z" * 36)
+            (root / "secret.txt").write_text(secret_value + "\n", encoding="utf-8")
+            write_config(root, include=["secret.txt"], required=["secret.txt"])
+
+            preview = run_cli("pack", "--preview", cwd=root)
+            pack = run_cli("pack", cwd=root)
+
+            self.assertEqual(preview.returncode, 2)
+            self.assertIn("PACK_ZOU_BLOKKEREN", preview.stdout)
+            self.assertIn("github-classic-token", preview.stdout)
+            self.assertNotIn(secret_value, preview.stdout + preview.stderr)
+            self.assertEqual(pack.returncode, 2)
+            self.assertIn("Secretbeleid blokkeert", pack.stderr)
+            self.assertNotIn(secret_value, pack.stdout + pack.stderr)
+            self.assertEqual(
+                {path.name: path.read_bytes() for path in package.iterdir()},
+                package_before,
+            )
+
+    def test_warning_does_not_block_and_is_safely_manifested(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = Path(temporary_directory)
+            warning_value = "client_secret=synthetic-value"
+            (root / "warning.txt").write_text(warning_value + "\n", encoding="utf-8")
+            write_config(root, include=["warning.txt"])
+
+            result = run_cli("pack", cwd=root)
+
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertIn("Waarschuwing secretbeleid", result.stderr)
+            self.assertNotIn(warning_value, result.stdout + result.stderr)
+            manifest_text = (root / ".opencntx/latest/manifest.json").read_text(
+                encoding="utf-8"
+            )
+            manifest = json.loads(manifest_text)
+            self.assertEqual(manifest["security"]["policy_version"], 1)
+            self.assertEqual(len(manifest["security"]["warnings"]), 1)
+            self.assertEqual(manifest["security"]["overrides"], [])
+            self.assertEqual(
+                manifest["security"]["warnings"][0]["rule_id"],
+                "credential-like-assignment",
+            )
+            self.assertNotIn(warning_value, manifest_text)
+            self.assertEqual(
+                run_cli("verify", ".opencntx/latest", cwd=root).returncode,
+                0,
+            )
+
+    def test_exact_override_is_manifested_and_source_drift_invalidates_it(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = Path(temporary_directory)
+            secret_value = "-----BEGIN " + "PRIVATE KEY-----"
+            source = root / "private.txt"
+            source.write_text(secret_value + "\n", encoding="utf-8")
+            write_config(root, include=["private.txt"])
+
+            preview = run_cli("pack", "--preview", cwd=root)
+            finding_ids = re.findall(r"\b[0-9a-f]{64}\b", preview.stdout)
+            self.assertEqual(preview.returncode, 2)
+            self.assertEqual(len(finding_ids), 1)
+            finding_id = finding_ids[0]
+
+            allowed_preview = run_cli(
+                "pack",
+                "--preview",
+                "--allow-secret",
+                finding_id,
+                cwd=root,
+            )
+            self.assertEqual(allowed_preview.returncode, 0, allowed_preview.stderr)
+            self.assertIn("overrides (1)", allowed_preview.stdout)
+            self.assertIn("PACK_ZOU_SLAGEN", allowed_preview.stdout)
+            self.assertFalse((root / ".opencntx").exists())
+
+            packed = run_cli("pack", "--allow-secret", finding_id, cwd=root)
+            self.assertEqual(packed.returncode, 0, packed.stderr)
+            manifest_path = root / ".opencntx/latest/manifest.json"
+            manifest_text = manifest_path.read_text(encoding="utf-8")
+            manifest = json.loads(manifest_text)
+            self.assertEqual(
+                [item["finding_id"] for item in manifest["security"]["overrides"]],
+                [finding_id],
+            )
+            self.assertNotIn(secret_value, manifest_text)
+            self.assertEqual(
+                run_cli("verify", ".opencntx/latest", cwd=root).returncode,
+                0,
+            )
+
+            duplicate = run_cli(
+                "pack",
+                "--allow-secret",
+                finding_id,
+                "--allow-secret",
+                finding_id,
+                cwd=root,
+            )
+            self.assertEqual(duplicate.returncode, 2)
+            self.assertIn("maar één keer", duplicate.stderr)
+
+            previous_package = {
+                path.name: path.read_bytes()
+                for path in (root / ".opencntx/latest").iterdir()
+            }
+            source.write_text(secret_value + "\nchanged\n", encoding="utf-8")
+            stale = run_cli("pack", "--allow-secret", finding_id, cwd=root)
+            self.assertEqual(stale.returncode, 2)
+            self.assertIn("Onbekende of verouderde", stale.stderr)
+            self.assertEqual(
+                {
+                    path.name: path.read_bytes()
+                    for path in (root / ".opencntx/latest").iterdir()
+                },
+                previous_package,
+            )
+
+    def test_known_credential_paths_are_excluded_before_reading(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = Path(temporary_directory)
+            (root / ".aws").mkdir()
+            (root / ".ssh").mkdir()
+            (root / ".docker").mkdir()
+            blocked_paths = (
+                root / ".aws" / "credentials",
+                root / ".ssh" / "id_demo",
+                root / ".npmrc",
+                root / ".docker" / "config.json",
+                root / "application_default_credentials.json",
+            )
+            for path in blocked_paths:
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_bytes(b"unreadable\x00credential")
+            (root / "safe.txt").write_text("safe\n", encoding="utf-8")
+            write_config(
+                root,
+                include=[
+                    "safe.txt",
+                    ".aws/credentials",
+                    ".ssh/id_demo",
+                    ".npmrc",
+                    ".docker/config.json",
+                    "application_default_credentials.json",
+                ],
+            )
+
+            result = run_cli("pack", cwd=root)
+
+            self.assertEqual(result.returncode, 0, result.stderr)
+            manifest = json.loads(
+                (root / ".opencntx/latest/manifest.json").read_text(encoding="utf-8")
+            )
+            self.assertEqual([item["path"] for item in manifest["sources"]], ["safe.txt"])
+            self.assertEqual(
+                {item["path"] for item in manifest["excluded"]},
+                {
+                    ".aws/credentials",
+                    ".ssh/id_demo",
+                    ".npmrc",
+                    ".docker/config.json",
+                    "application_default_credentials.json",
+                },
+            )
+
+    def test_legacy_manifest_without_security_remains_verifiable(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = Path(temporary_directory)
+            (root / "source.txt").write_text("legacy-safe\n", encoding="utf-8")
+            write_config(root, include=["source.txt"])
+            self.assertEqual(run_cli("pack", cwd=root).returncode, 0)
+            manifest_path = root / ".opencntx/latest/manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            del manifest["security"]
+            manifest_path.write_text(
+                json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+                newline="\n",
+            )
+
+            result = run_cli("verify", ".opencntx/latest", cwd=root)
+
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertIn("resultaat: OK", result.stdout)
+
+    def test_verify_detects_security_metadata_tampering_read_only(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = Path(temporary_directory)
+            (root / "warning.txt").write_text(
+                "password=synthetic-value\n", encoding="utf-8"
+            )
+            write_config(root, include=["warning.txt"])
+            self.assertEqual(run_cli("pack", cwd=root).returncode, 0)
+            manifest_path = root / ".opencntx/latest/manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest["security"]["warnings"] = []
+            manifest_path.write_text(
+                json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+                newline="\n",
+            )
+            before = manifest_path.read_bytes()
+
+            result = run_cli("verify", ".opencntx/latest", cwd=root)
+
+            self.assertEqual(result.returncode, 1)
+            self.assertIn("securitymetadata wijkt af", result.stdout)
+            self.assertEqual(manifest_path.read_bytes(), before)
 
 
 if __name__ == "__main__":

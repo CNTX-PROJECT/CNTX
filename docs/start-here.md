@@ -94,7 +94,21 @@ max_files = 25
 max_bytes = 100000
 ```
 
-## 6. Build the package
+## 6. Preview the package
+
+```powershell
+opencntx pack --preview
+```
+
+Read the included, required, excluded, and ignored paths and their reasons.
+Check the file and byte budgets. A local scanner also reports safe metadata for
+known secret signals without printing the matched value. Preview does not
+create or change `.opencntx/`.
+
+`PACK_ZOU_SLAGEN` means the same current bytes may be packed. It does not mean
+that the content is secret-free, correct, or approved.
+
+## 7. Build the package
 
 ```powershell
 opencntx pack
@@ -105,7 +119,7 @@ Successful output appears under `.opencntx/latest/`:
 - `CONTEXT.md` contains the selected text;
 - `manifest.json` records paths, sizes, and SHA-256 hashes.
 
-## 7. Inspect every included byte
+## 8. Inspect every included byte
 
 Open `.opencntx/latest/CONTEXT.md`. Confirm that:
 

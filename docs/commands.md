@@ -52,6 +52,24 @@ required arguments and repeatable options.
 | 41 | `opencntx workspace task cancel` | terminate a task explicitly as cancelled |
 | 42 | `opencntx workspace task supersede` | terminate a task in favor of a named successor |
 
+## Core pack options
+
+Run the complete read-only selection, budget, and local secret-policy plan:
+
+```powershell
+opencntx pack --preview
+```
+
+Override only one exact current high-confidence finding reported by preview:
+
+```powershell
+opencntx pack --allow-secret FINDING_ID_FROM_PREVIEW
+```
+
+Repeat `--allow-secret` only when preview reports multiple exact findings that
+you have separately reviewed. Unknown, duplicate, warning-only, or stale IDs
+fail. Preview writes nothing and never grants persistent permission.
+
 ## Compact current roadmap control
 
 Refresh a supported marked current block with:
@@ -78,7 +96,7 @@ opencntx workspace playbook register --help
 |---:|---|
 | `0` | The requested operation completed and its checks passed |
 | `1` | A read-only verification or status check found drift or invalid bindings |
-| `2` | Arguments, input, configuration, paths, budgets, or stored structure were invalid |
+| `2` | Arguments, input, configuration, paths, budgets, secret policy, or stored structure were invalid |
 
 Treat every non-zero exit as a stop until you understand the reported result.
 The core contract is explained in [Core commands](core.md#exit-codes).

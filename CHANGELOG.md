@@ -4,6 +4,18 @@ All notable OPENCNTX changes are recorded here.
 
 ## Unreleased
 
+### Added
+
+- Added `opencntx pack --preview` as a read-only view of included, required,
+  excluded, and ignored paths, file and byte budgets, and safe secret-policy
+  findings.
+- Added a dependency-free local secret-signal policy that blocks narrow
+  high-confidence credential structures before publication and warns on
+  broader credential-like text.
+- Added exact source-bound `--allow-secret` overrides with safe additive
+  evidence in version-1 manifests, while retaining support for existing
+  manifests without security metadata.
+
 ### Changed
 
 - Combined installation and first use into one ordered `Start here` guide.
@@ -21,10 +33,12 @@ All notable OPENCNTX changes are recorded here.
   automated parser checks for the reference and shell examples.
 - Aligned the public `v0.2.0` wording with the package's Alpha classifier and
   removed the duplicated literal release version from the CI smoke test.
+- Expanded pre-read defaults for known local credential, SSH identity, package
+  registry, Docker, AWS, and application-default credential paths.
 
-No product code, command, schema, dependency, package version, or runtime
-behavior changed. The CI smoke test still compares installed metadata with the
-package version, but no longer duplicates that version as a workflow literal.
+No dependency, package version, workflow, release, or network boundary changed.
+The CI smoke test still compares installed metadata with the package version,
+without duplicating that version as a workflow literal.
 
 ## 0.2.0 - 2026-08-18
 

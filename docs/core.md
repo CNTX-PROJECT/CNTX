@@ -46,7 +46,26 @@ max_bytes = 100000
 
 Built-in sensitive exclusions remain active even when your own list is short.
 
-## 2. Build the package
+## 2. Preview the package
+
+```powershell
+opencntx pack --preview
+```
+
+Preview performs the same bounded selection, reading, budget, and local
+secret-policy checks as `pack`. It lists included, required, excluded, and
+ignored paths with reasons, plus file and byte budgets. It does not create or
+change `.opencntx/`, source files, a manifest, or temporary publication state.
+
+A preview returns `PACK_ZOU_SLAGEN` with exit code `0` when the same current
+bytes may be packed. It returns `PACK_ZOU_BLOKKEREN` with exit code `2` for a
+high-confidence secret signal or another invalid input. Lower-confidence
+signals are warnings and do not change a successful exit code.
+
+Finding output contains only a deterministic ID, relative path, rule,
+confidence, line, and column. It never contains the matched value or snippet.
+
+## 3. Build the package
 
 ```powershell
 opencntx pack
@@ -59,21 +78,39 @@ The command:
 3. applies exclusions before reading content;
 4. rejects binary, unreadable, unsafe, or escaping paths;
 5. enforces file and byte budgets;
-6. writes a complete package atomically.
+6. scans selected UTF-8 text locally for bounded secret signals;
+7. blocks unapproved high-confidence findings before publication;
+8. writes a complete package atomically.
 
 The default output is `.opencntx/latest/`.
 
-## 3. Inspect the output
+### Exact override
+
+If preview reports a high-confidence false positive, override only that exact
+current finding:
+
+```powershell
+opencntx pack --allow-secret FINDING_ID_FROM_PREVIEW
+```
+
+The ID is bound to the rule, relative path, location, policy version, and full
+source-file digest. Source drift invalidates it. Unknown, duplicate,
+warning-only, or stale IDs fail. There is no global scan-disable option.
+
+## 4. Inspect the output
 
 Read both files:
 
 - `CONTEXT.md` — the task goal and selected source text;
 - `manifest.json` — package metadata, paths, sizes, and SHA-256 hashes.
 
-The manifest is evidence about bytes. It is not a statement that the content
-is true, complete, safe, or approved.
+New manifests include an optional `security` section with safe warning and
+override metadata. Existing valid version-1 manifests without that section
+remain supported. The manifest is evidence about bytes and decisions. It is
+not a statement that the content is true, complete, secret-free, safe, or
+approved.
 
-## 4. Verify the package
+## 5. Verify the package
 
 ```powershell
 opencntx verify .opencntx/latest
@@ -94,7 +131,7 @@ Verification is read-only. It does not repair sources or rebuild the package.
 |---:|---|
 | `0` | The requested operation completed and its checks passed |
 | `1` | The request was valid but verification found drift |
-| `2` | Input, configuration, path, budget, or package structure was invalid |
+| `2` | Input, configuration, path, budget, secret policy, or package structure was invalid |
 
 Treat every non-zero code as a stop until you understand the output.
 
