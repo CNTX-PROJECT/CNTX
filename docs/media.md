@@ -15,7 +15,8 @@ replace the original.
 ## Register supplied derived text
 
 ```powershell
-opencntx workspace media register SRC-EXAMPLE-0001 transcript.txt `
+opencntx workspace media register SRC-EXAMPLE-0001 `
+  --text transcript.txt `
   --root my-project `
   --kind TRANSCRIPT `
   --producer-class HUMAN `

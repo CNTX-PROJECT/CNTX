@@ -47,13 +47,19 @@ from the [command reference](commands.md).
 
 ```powershell
 opencntx workspace task propose TASK-EXAMPLE-0001 `
-  --root my-project `
-  --revision 1 `
   --title "Review one source" `
   --goal "Compare the source with the accepted chapter" `
+  --done "Write one bounded review with cited source evidence" `
+  --executor-role "DOCUMENT_REVIEWER" `
   --input CONTROL/OWNER.md `
   --input CONTROL/ROADMAP.md `
-  --input CONTROL/CURRENT.md
+  --input CONTROL/CURRENT.md `
+  --allow "read approved task inputs" `
+  --forbid "modify sources or grant approval" `
+  --expected-output "one Markdown review" `
+  --acceptance "every finding cites an approved input" `
+  --architect ARCHITECT `
+  --root my-project
 ```
 
 Add only the exact allowed inputs required by the real task. The proposal pins

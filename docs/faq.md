@@ -62,7 +62,7 @@ separate prevents the tool or executor from approving its own work.
 
 ## Is OPENCNTX on PyPI?
 
-No. Install the stable release from the exact public Git tag.
+No. Install the current Alpha release from the exact public Git tag.
 
 ## Where should I start?
 

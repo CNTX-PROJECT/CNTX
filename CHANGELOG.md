@@ -15,9 +15,16 @@ All notable OPENCNTX changes are recorded here.
   diagrams, with equal cards, margins, spacing, baselines, and arrow anchors.
 - Clarified the exact, dependency-free boundary between deterministic
   shape-only PNGs and the hash-pinned standard-font social preview export.
+- Corrected six public command examples so the real parser accepts every
+  published PowerShell and Bash `opencntx` invocation.
+- Made the command reference follow all 38 executable parser routes and added
+  automated parser checks for the reference and shell examples.
+- Aligned the public `v0.2.0` wording with the package's Alpha classifier and
+  removed the duplicated literal release version from the CI smoke test.
 
-No product code, command, schema, dependency, workflow, package version, or
-runtime behavior changed in this documentation and brand update.
+No product code, command, schema, dependency, package version, or runtime
+behavior changed. The CI smoke test still compares installed metadata with the
+package version, but no longer duplicates that version as a workflow literal.
 
 ## 0.2.0 - 2026-08-18
 

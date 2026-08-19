@@ -7,14 +7,15 @@ catalog makes those units easy to find without replacing their official files.
 
 ## Create a draft chapter
 
-Use the exact source ID and digest returned by capture:
+Use the exact source ID returned by capture. The workspace resolves and pins
+the stored source and record digests itself:
 
 ```powershell
 opencntx workspace chapter create CH-PROJECT-OVERVIEW `
   --root my-project `
   --title "Project overview" `
-  --source SRC-EXAMPLE-0001 `
-  --source-sha256 <SOURCE-SHA-256>
+  --scope "One bounded project overview" `
+  --source SRC-EXAMPLE-0001
 ```
 
 This creates a new `DRAFT` chapter template. It never overwrites an existing
