@@ -1,0 +1,129 @@
+# Release artifacts
+
+[Start here](start-here.md) · [How it works](how-it-works.md) · [Advanced / Alpha workspace](workspace.md) · [Commands](commands.md) · [Security](security.md) · [All docs](README.md)
+
+This page explains how OPENCNTX prepares and verifies wheel and source
+distribution candidates. It does not announce a package-index publication or
+grant authority to publish anything.
+
+## Current public distribution
+
+The current Alpha release is `v0.2.0`. Install it from the exact public Git
+tag as described in [Start here](start-here.md).
+
+- OPENCNTX is not published on PyPI.
+- The existing `v0.2.0` GitHub Release has no wheel, sdist, checksum, or build
+  record attached to it.
+- The current `main` branch contains later changes while the package metadata
+  still says `0.2.0`.
+
+For that reason, builds from current `main` are unpublished candidates. They
+must not be uploaded or represented as another `0.2.0` release.
+
+## Candidate output
+
+The local release helper emits exactly four temporary files:
+
+1. one wheel;
+2. one `.tar.gz` source distribution;
+3. `SHA256SUMS` for those two artifacts;
+4. `BUILD-RECORD.json`.
+
+The build record binds the source commit, source tree, source timestamp,
+Python version, pinned build frontend and backend, artifact names, sizes, and hashes. It is
+an unsigned technical record. It is not a cryptographic attestation and does
+not prove publisher identity, safety, approval, or publication origin.
+
+## Build twice from a clean commit
+
+Contributor builds require a clean checkout and the pinned build frontend.
+The output directory must be absent or empty.
+
+PowerShell:
+
+```powershell
+python -m pip install --disable-pip-version-check build==1.3.0 setuptools==80.9.0
+$commit = git rev-parse HEAD
+$tree = git rev-parse 'HEAD^{tree}'
+python tools/release_artifacts.py build --repository . --output dist --expected-commit $commit --expected-tree $tree
+python tools/release_artifacts.py verify --directory dist --expected-version 0.2.0 --expected-commit $commit --expected-tree $tree
+```
+
+Ubuntu:
+
+```bash
+python3 -m pip install --disable-pip-version-check build==1.3.0 setuptools==80.9.0
+commit=$(git rev-parse HEAD)
+tree=$(git rev-parse 'HEAD^{tree}')
+python3 tools/release_artifacts.py build --repository . --output dist --expected-commit "$commit" --expected-tree "$tree"
+python3 tools/release_artifacts.py verify --directory dist --expected-version 0.2.0 --expected-commit "$commit" --expected-tree "$tree"
+```
+
+The helper exports the exact Git tree to two independent temporary source
+directories and runs the normal PEP 517 build in each. It refuses a dirty
+worktree, a mismatched commit or tree, unsafe archive members, ambiguous
+metadata, missing files, unexpected output, or a checksum mismatch.
+
+Nothing in this command uploads an artifact or contacts a package index. The
+build frontend may install its declared build requirements through normal
+Python packaging behavior if they are not already present.
+
+## Reproducibility claims
+
+The verification separates three facts:
+
+- the two wheels must be byte-identical;
+- the two sdists must contain identical paths and file bytes;
+- raw sdist byte identity is reported separately.
+
+Tar and gzip metadata can make two logically equal sdists differ as raw
+compressed bytes. OPENCNTX does not call all artifacts byte-reproducible unless
+both files actually meet that stronger test.
+
+## Installation and removal smoke
+
+Each of the six Windows/Ubuntu and Python 3.11/3.12/3.13 CI jobs builds twice,
+then tests both the wheel and sdist from an isolated environment. Each artifact
+must support:
+
+- installation without runtime dependencies;
+- `opencntx --version` and `opencntx --help`;
+- `init`, `pack --preview`, `pack`, and `verify` outside the checkout;
+- uninstall with no remaining distribution metadata or console entrypoint.
+
+Run the same bounded smoke for one local candidate:
+
+```powershell
+python tools/release_artifacts.py smoke --artifact dist\opencntx-0.2.0-py3-none-any.whl --expected-version 0.2.0
+```
+
+This tests a local candidate. It is not proof that an external package-index
+installation works.
+
+## Future release gate
+
+A future release needs a separate exact decision and fresh evidence. Before
+publication, the release owner must:
+
+1. choose a new package version;
+2. bind package version, exact tag, commit, tree, and artifact version;
+3. build from the exact clean tag;
+4. verify checksums, the build record, both installation routes, uninstall,
+   and all six CI jobs;
+5. check the package-index namespace again at that time;
+6. approve the exact GitHub Release and/or package-index mutation separately;
+7. verify the bytes downloaded from the real publication channel.
+
+A PyPI 404 at one moment is not ownership or reservation evidence. This
+repository contains no PyPI token, trusted-publishing configuration, OIDC
+permission, or publication command.
+
+## Related pages
+
+- [Start here](start-here.md)
+- [Platforms and CI](platforms.md)
+- [Troubleshooting](troubleshooting.md)
+- [Security](security.md)
+- [Contribution guide](../CONTRIBUTING.md)
+
+[Documentation home](README.md)

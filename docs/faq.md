@@ -74,7 +74,15 @@ separate prevents the tool or executor from approving its own work.
 
 ## Is OPENCNTX on PyPI?
 
-No. Install the current Alpha release from the exact public Git tag.
+No. Install the current Alpha release from the exact public Git tag. A current
+404 response from a package index is not proof that a name is owned or reserved.
+
+## Are wheel or sdist release assets available?
+
+Not for the existing `v0.2.0` release. Current-main builds are temporary local
+candidates and must not be presented as another `0.2.0` release. See
+[Release artifacts](release-artifacts.md) for checksums, build records,
+reproducibility limits, and the separate future publication gate.
 
 ## Where should I start?
 

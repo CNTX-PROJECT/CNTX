@@ -38,10 +38,19 @@ Each job:
 
 1. checks out the exact commit;
 2. sets up the selected Python version;
-3. runs the complete test suite with `ResourceWarning` treated as an error;
-4. builds exactly one wheel;
-5. installs that wheel without dependencies;
-6. verifies package version, `opencntx --version`, and `opencntx --help`.
+3. installs the pinned `build==1.3.0` and `setuptools==80.9.0` build toolchain;
+4. runs the complete test suite with `ResourceWarning` treated as an error;
+5. exports the exact clean Git tree twice and builds one wheel and one sdist
+   from each independent source directory;
+6. requires byte-identical wheels and content-identical sdists, while reporting
+   raw sdist byte identity separately;
+7. verifies metadata, safe archive paths, SHA-256 checksums, and the unsigned
+   build record;
+8. installs, exercises, and uninstalls both selected artifacts outside the
+   checkout.
+
+The six job names and matrix positions are unchanged. CI does not upload the
+temporary candidates or publish them to a release or package index.
 
 ## What counts as proof
 
@@ -71,6 +80,7 @@ PYTHONDONTWRITEBYTECODE=1 python3 tools/render_brand.py --check
 
 - [Start here](start-here.md)
 - [Troubleshooting](troubleshooting.md)
+- [Release artifacts](release-artifacts.md)
 - [Public roadmap](roadmap.md)
 - [Contribution guide](../CONTRIBUTING.md)
 

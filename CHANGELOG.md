@@ -20,6 +20,13 @@ All notable OPENCNTX changes are recorded here.
 - Added exact source-bound `--allow-secret` overrides with safe additive
   evidence in version-1 manifests, while retaining support for existing
   manifests without security metadata.
+- Added a dependency-free release-candidate verifier for safe wheel/sdist
+  metadata, SHA-256 checksums, an unsigned build record, and honest independent
+  rebuild comparisons.
+- Added isolated wheel and sdist install, core smoke, and uninstall proof to all
+  six existing Windows/Ubuntu and Python 3.11/3.12/3.13 CI jobs.
+- Added one exact-tag `pipx` install route and bounded release-artifact guidance
+  without claiming PyPI publication or new release assets.
 
 ### Changed
 
@@ -46,9 +53,10 @@ All notable OPENCNTX changes are recorded here.
 - Expanded pre-read defaults for known local credential, SSH identity, package
   registry, Docker, AWS, and application-default credential paths.
 
-No dependency, package version, workflow, release, or network boundary changed.
-The CI smoke test still compares installed metadata with the package version,
-without duplicating that version as a workflow literal.
+No runtime dependency, package version, release, publication, or product
+network boundary changed. CI uses a pinned build-only toolchain, emits no
+uploaded artifact, and compares artifact and installed metadata with the
+single package version instead of duplicating that version in the workflow.
 
 ## 0.2.0 - 2026-08-18
 

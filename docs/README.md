@@ -51,6 +51,8 @@ the smallest route that matches your current goal.
   handling.
 - [Platforms and CI](platforms.md) — supported Python versions and live test
   evidence.
+- [Release artifacts](release-artifacts.md) — clean candidate builds,
+  checksums, reproducibility limits, installation smoke, and publication gate.
 - [Public roadmap](roadmap.md) — completed milestones without unapproved
   promises.
 - [Glossary](glossary.md) — fixed meanings of project terms.

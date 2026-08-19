@@ -17,6 +17,20 @@ python -m pip show opencntx
 Activate the virtual environment where you installed the package, or reinstall
 from the approved tag using [Start here](start-here.md).
 
+If `pipx` installed the exact tag, inspect its isolated environment with
+`pipx list`. Remove only that tool environment with `pipx uninstall opencntx`.
+
+## A local candidate build refuses to start
+
+The release helper requires a clean worktree, an exact expected commit and
+tree, and an absent or empty output directory. Do not bypass those checks.
+Inspect `git status`, verify the intended source, and choose a new empty output
+directory. The helper never publishes or uploads the result.
+
+If wheel reproduction, sdist content comparison, metadata, archive safety, or
+checksums fail, preserve the first stable error and stop. Do not rename or
+manually repair an artifact. See [Release artifacts](release-artifacts.md).
+
 ## `init` refuses to continue
 
 An `opencntx.toml` probably already exists. OPENCNTX does not overwrite it.

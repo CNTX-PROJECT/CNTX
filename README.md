@@ -32,6 +32,17 @@ OPENCNTX requires Python 3.11 or newer. The current Alpha release is `v0.2.0`.
 
 ### 1. Install the Alpha release
 
+With `pipx` and Git already installed, one pinned command creates an isolated
+tool environment:
+
+```powershell
+pipx install "git+https://github.com/CNTX-PROJECT/OPENCNTX.git@v0.2.0"
+opencntx --version
+opencntx --help
+```
+
+The source-checkout route remains available:
+
 ```powershell
 git clone --branch v0.2.0 --depth 1 https://github.com/CNTX-PROJECT/OPENCNTX.git
 cd OPENCNTX
@@ -82,7 +93,8 @@ prove that the content is true, complete, safe, or approved.
 
 The complete beginner route—including Windows, Ubuntu, removal, and common
 errors—is on [Start here](docs/start-here.md). An explicit package path remains
-available as `opencntx verify PATH`.
+available as `opencntx verify PATH`. Build and checksum details for contributors
+are on [Release artifacts](docs/release-artifacts.md).
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/docs/core-flow-dark.svg">
@@ -128,6 +140,11 @@ route, never in a public issue.
 | CI | `CI_ACTIVE`, six required matrix jobs |
 | Runtime dependencies | none |
 | License | [Apache-2.0](LICENSE) |
+
+OPENCNTX is not published on PyPI, and the existing `v0.2.0` release has no
+wheel or sdist assets. Current-main builds are unpublished candidates because
+`main` contains changes after that tag. See [Release artifacts](docs/release-artifacts.md)
+for the exact boundary.
 
 Only a successful live CI run on the exact commit proves those six jobs. See
 the [changelog](CHANGELOG.md), [support routes](SUPPORT.md), and

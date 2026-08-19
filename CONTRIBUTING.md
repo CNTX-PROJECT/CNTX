@@ -16,11 +16,17 @@ Thank you for helping improve a small, local, provider-neutral context tool.
 $env:PYTHONDONTWRITEBYTECODE="1"
 python -W error::ResourceWarning -m unittest discover -s tests
 python tools/render_brand.py --check
-python -m pip wheel . --no-deps --wheel-dir dist
+python -m pip install --disable-pip-version-check build==1.3.0 setuptools==80.9.0
+$commit = git rev-parse HEAD
+$tree = git rev-parse 'HEAD^{tree}'
+python tools/release_artifacts.py build --repository . --output dist --expected-commit $commit --expected-tree $tree
 ```
 
 The complete suite must remain green. Explain the actual commands and
-platforms you used; zero automated checks is not green evidence.
+platforms you used; zero automated checks is not green evidence. The candidate
+build requires a clean worktree and an absent or empty `dist` directory. It
+creates local unpublished files only. Read [Release artifacts](docs/release-artifacts.md)
+before making any reproducibility or provenance claim.
 
 ## Brand changes
 
