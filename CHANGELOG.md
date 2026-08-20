@@ -4,6 +4,8 @@ All notable OPENCNTX changes are recorded here.
 
 ## Unreleased
 
+## 0.3.0 - 2026-08-20
+
 ### Added
 
 - Added `opencntx --version` from the existing single package-version source.
@@ -96,10 +98,12 @@ All notable OPENCNTX changes are recorded here.
   CLI error without a Python traceback, and made byte-budget failures report
   the exact required and allowed byte counts.
 
-No runtime dependency, package version, release, publication, or product
-network boundary changed. CI uses pinned build- and quality-only toolchains,
-emits no uploaded artifact, and compares artifact and installed metadata with
-the single package version instead of duplicating that version in the workflow.
+The package remains Alpha with no runtime dependency or product network-boundary
+change. Distribution is limited to an exact Git tag and GitHub Release with the
+verified release assets; there is no PyPI or TestPyPI publication. CI uses pinned
+build- and quality-only toolchains and compares artifact and installed metadata
+with the single package version instead of duplicating that version in the
+workflow.
 
 ## 0.2.0 - 2026-08-18
 

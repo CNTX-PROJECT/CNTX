@@ -8,24 +8,26 @@ grant authority to publish anything.
 
 ## Current public distribution
 
-The current Alpha release is `v0.2.0`. Install it from the exact public Git
-tag as described in [Start here](start-here.md).
+The package line is `v0.3.0` and remains Alpha. It becomes a public release only
+when both the live `v0.3.0` tag and the `OPENCNTX v0.3.0` GitHub Release exist.
+After that point, install it from the exact public Git tag as described in
+[Start here](start-here.md):
+`pipx install "git+https://github.com/CNTX-PROJECT/OPENCNTX.git@v0.3.0"`.
 
-- OPENCNTX is not published on PyPI.
-- The existing `v0.2.0` GitHub Release has no wheel, sdist, checksum, or build
-  record attached to it.
-- The current `main` branch contains later changes while the package metadata
-  still says `0.2.0`.
+- OPENCNTX is not published on PyPI or TestPyPI.
+- The historical `v0.2.0` GitHub Release has no wheel, sdist, checksum, or
+  build record attached to it.
+- The v0.3.0 GitHub Release must contain exactly the four files named below.
 
-For that reason, builds from current `main` are unpublished candidates. They
-must not be uploaded or represented as another `0.2.0` release.
+Until the live v0.3.0 tag and Release both exist, all v0.3.0 builds are
+unpublished candidates and must not be presented as public release assets.
 
 ## Candidate output
 
-The local release helper emits exactly four temporary files:
+The local release helper emits exactly four candidate files:
 
-1. one wheel;
-2. one `.tar.gz` source distribution;
+1. `opencntx-0.3.0-py3-none-any.whl`;
+2. `opencntx-0.3.0.tar.gz`;
 3. `SHA256SUMS` for those two artifacts;
 4. `BUILD-RECORD.json`.
 
@@ -46,7 +48,7 @@ python -m pip install --disable-pip-version-check build==1.3.0 setuptools==80.9.
 $commit = git rev-parse HEAD
 $tree = git rev-parse 'HEAD^{tree}'
 python tools/release_artifacts.py build --repository . --output dist --expected-commit $commit --expected-tree $tree
-python tools/release_artifacts.py verify --directory dist --expected-version 0.2.0 --expected-commit $commit --expected-tree $tree
+python tools/release_artifacts.py verify --directory dist --expected-version 0.3.0 --expected-commit $commit --expected-tree $tree
 ```
 
 Ubuntu:
@@ -56,7 +58,7 @@ python3 -m pip install --disable-pip-version-check build==1.3.0 setuptools==80.9
 commit=$(git rev-parse HEAD)
 tree=$(git rev-parse 'HEAD^{tree}')
 python3 tools/release_artifacts.py build --repository . --output dist --expected-commit "$commit" --expected-tree "$tree"
-python3 tools/release_artifacts.py verify --directory dist --expected-version 0.2.0 --expected-commit "$commit" --expected-tree "$tree"
+python3 tools/release_artifacts.py verify --directory dist --expected-version 0.3.0 --expected-commit "$commit" --expected-tree "$tree"
 ```
 
 The helper exports the exact Git tree to two independent temporary source
@@ -91,10 +93,11 @@ must support:
 - `init`, `pack --preview`, `pack`, and `verify` outside the checkout;
 - uninstall with no remaining distribution metadata or console entrypoint.
 
-Run the same bounded smoke for one local candidate:
+Run the same bounded smoke for both local candidates:
 
 ```powershell
-python tools/release_artifacts.py smoke --artifact dist\opencntx-0.2.0-py3-none-any.whl --expected-version 0.2.0
+python tools/release_artifacts.py smoke --artifact dist\opencntx-0.3.0-py3-none-any.whl --expected-version 0.3.0
+python tools/release_artifacts.py smoke --artifact dist\opencntx-0.3.0.tar.gz --expected-version 0.3.0
 ```
 
 This tests a local candidate. It is not proof that an external package-index
