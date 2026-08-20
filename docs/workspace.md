@@ -20,8 +20,6 @@ opencntx workspace init my-project
 ```
 
 The command creates a new directory and refuses to overwrite a non-empty one.
-Use `--force-empty-existing` only for an existing directory that is truly
-empty.
 
 ```text
 my-project/
@@ -36,7 +34,13 @@ my-project/
 ├── PLAYBOOKS/
 ├── ROLES/
 └── .opencntx/
+    └── lifecycle/
+        └── state.json
 ```
+
+New local workspace files are created with private owner permissions where the
+operating system exposes that control. Existing compatible version-1
+workspaces remain readable without a lifecycle sidecar.
 
 ## Refresh the compact control snapshot
 
@@ -143,11 +147,31 @@ context. The normal order is:
 - A source hash does not grant OWNER approval.
 - No workspace command starts an AI, agent, OCR tool, or external sync.
 
+## Audit and maintain the local lifecycle
+
+`workspace lifecycle status` is a read-only inventory of observed operating-
+system permissions, privacy-label counts, storage categories, compatibility,
+and migration state. It reports source aliases and digests, never original
+capture paths or content.
+
+Migration only registers unchanged compatible version-1 records in a new
+sidecar. Cleanup is never automatic: it accepts only named replaceable or
+completed local artifacts, requires a previewed digest-bound plan, and creates
+a verified checkpoint outside the workspace before removing anything. Restore
+requires that checkpoint's exact SHA-256. Both operations use the existing
+single-writer transaction and compare-and-swap boundary.
+
+Permission results describe only what OPENCNTX could observe. They do not add
+encryption, authentication, team identities, or backup policy. See [Privacy,
+storage, and format lifecycle](privacy-storage-lifecycle.md) for the exact
+profiles, targets, and stop conditions.
+
 ## Related pages
 
 - [Chapters and catalog](chapters-and-catalog.md)
 - [Context navigation](context-navigation.md)
 - [Media and derived text](media.md)
+- [Privacy, storage, and format lifecycle](privacy-storage-lifecycle.md)
 - [OWNER flow](owner-flow.md)
 - [Security](security.md)
 

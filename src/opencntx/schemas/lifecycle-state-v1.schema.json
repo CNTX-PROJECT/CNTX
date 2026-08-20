@@ -1,0 +1,18 @@
+{
+  "$id": "https://opencntx.org/schemas/lifecycle-state-v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "format", "format_version", "inventory_sha256", "record_count",
+    "schema_bundle_sha256", "trust_statement"
+  ],
+  "properties": {
+    "format": {"const": "opencntx-lifecycle-state"},
+    "format_version": {"const": 1},
+    "inventory_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "record_count": {"type": "integer", "minimum": 0},
+    "schema_bundle_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "trust_statement": {"const": "local-observation-not-access-control"}
+  },
+  "additionalProperties": false
+}

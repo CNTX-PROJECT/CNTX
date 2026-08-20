@@ -1,0 +1,15 @@
+{
+  "$id": "https://opencntx.org/schemas/lifecycle-plan-v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["format", "format_version", "operation", "plan_sha256", "schema_bundle_sha256"],
+  "properties": {
+    "format": {"const": "opencntx-lifecycle-plan"},
+    "format_version": {"const": 1},
+    "operation": {"enum": ["ALREADY_CURRENT", "REGISTER_UNCHANGED_V1", "CLEANUP_EXPLICIT_TARGETS"]},
+    "plan_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "schema_bundle_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "targets": {"type": "array", "items": {"type": "object"}}
+  },
+  "additionalProperties": true
+}

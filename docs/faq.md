@@ -45,6 +45,24 @@ ownership, or approval.
 No. They are local classifications. Use operating-system permissions and
 appropriate storage protection.
 
+## Does a safe permission result make the workspace secure?
+
+No. It reports owner-only access observed through POSIX mode bits or a Windows
+ACL at that moment. It is not encryption, authentication, backup protection, or
+a guarantee against administrators and later changes.
+
+## Does OPENCNTX clean old files automatically?
+
+No. Cleanup accepts only a fixed named allowlist, an exact reviewed plan and
+digest, and a verified checkpoint outside the workspace. Age and storage
+pressure never authorize deletion.
+
+## Does lifecycle migration rewrite my existing records?
+
+No. The supported migration registers unchanged compatible version-1 records
+in a sidecar. Unknown future formats stop instead of being guessed or
+downgraded.
+
 ## Can it read PDF, Office, image, audio, or video files?
 
 The core accepts UTF-8 text. The media layer can register derived UTF-8 text

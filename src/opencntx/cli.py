@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 from collections.abc import Sequence
+import json
 import os
 from pathlib import Path
 import sys
@@ -26,6 +27,20 @@ from .integrity import (
     format_doctor_report,
     format_recovery_plan,
     recover_workspace,
+)
+from .lifecycle import (
+    TRUST_PROFILES,
+    apply_cleanup,
+    apply_migration,
+    format_cleanup_plan,
+    format_lifecycle_status,
+    format_migration_plan,
+    lifecycle_status,
+    plan_cleanup,
+    plan_migration,
+    require_disk_capacity,
+    restore_cleanup,
+    write_plan,
 )
 from .navigator import (
     build_context_package,
@@ -212,6 +227,54 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="apply the exact recovery after a read-only preview",
     )
+    workspace_lifecycle_parser = workspace_subparsers.add_parser(
+        "lifecycle",
+        help="audit local trust, storage, cleanup, schemas, and migration",
+    )
+    workspace_lifecycle_subparsers = workspace_lifecycle_parser.add_subparsers(
+        dest="workspace_lifecycle_command",
+        required=True,
+    )
+    lifecycle_status_parser = workspace_lifecycle_subparsers.add_parser(
+        "status",
+        help="show read-only trust, privacy, permission, and storage evidence",
+    )
+    lifecycle_status_parser.add_argument(
+        "--trust-profile",
+        choices=TRUST_PROFILES,
+        default="single-user-local",
+    )
+    lifecycle_status_parser.add_argument("--json", action="store_true")
+    lifecycle_status_parser.add_argument("--root", default=".")
+    lifecycle_migrate_parser = workspace_lifecycle_subparsers.add_parser(
+        "migrate",
+        help="preview or apply exact registration of unchanged compatible v1 records",
+    )
+    lifecycle_migrate_mode = lifecycle_migrate_parser.add_mutually_exclusive_group(required=True)
+    lifecycle_migrate_mode.add_argument("--dry-run", action="store_true")
+    lifecycle_migrate_mode.add_argument("--apply", action="store_true")
+    lifecycle_migrate_parser.add_argument("--plan")
+    lifecycle_migrate_parser.add_argument("--plan-sha256")
+    lifecycle_migrate_parser.add_argument("--json", action="store_true")
+    lifecycle_migrate_parser.add_argument("--root", default=".")
+    lifecycle_cleanup_parser = workspace_lifecycle_subparsers.add_parser(
+        "cleanup",
+        help="preview or apply explicit allowlisted cleanup with an external checkpoint",
+    )
+    lifecycle_cleanup_parser.add_argument("--target", action="append", default=[])
+    lifecycle_cleanup_parser.add_argument("--checkpoint")
+    lifecycle_cleanup_parser.add_argument("--write-plan")
+    lifecycle_cleanup_parser.add_argument("--apply", action="store_true")
+    lifecycle_cleanup_parser.add_argument("--plan")
+    lifecycle_cleanup_parser.add_argument("--plan-sha256")
+    lifecycle_cleanup_parser.add_argument("--root", default=".")
+    lifecycle_restore_parser = workspace_lifecycle_subparsers.add_parser(
+        "restore",
+        help="restore exact bytes from one verified external lifecycle checkpoint",
+    )
+    lifecycle_restore_parser.add_argument("--checkpoint", required=True)
+    lifecycle_restore_parser.add_argument("--checkpoint-sha256", required=True)
+    lifecycle_restore_parser.add_argument("--root", default=".")
     workspace_control_parser = workspace_subparsers.add_parser(
         "control",
         help="manage the compact derived current roadmap control",
@@ -650,6 +713,7 @@ def init_project(project_root: Path) -> int:
     """Create the initial configuration without overwriting user data."""
     destination = project_root / "opencntx.toml"
     try:
+        require_disk_capacity(project_root, len(CONFIG_TEMPLATE.encode("utf-8")) + 4096, "core-init")
         with destination.open("x", encoding="utf-8", newline="\n") as config_file:
             config_file.write(CONFIG_TEMPLATE)
     except FileExistsError:
@@ -657,6 +721,9 @@ def init_project(project_root: Path) -> int:
             f"Error: {destination.name} already exists; nothing was overwritten.",
             file=sys.stderr,
         )
+        return 2
+    except WorkspaceError as exc:
+        print(f"Error: operation failed ({exc.code})", file=sys.stderr)
         return 2
     except OSError as exc:
         print(f"Error: could not create {destination}: {exc}", file=sys.stderr)
@@ -777,6 +844,62 @@ def main(argv: Sequence[str] | None = None) -> int:
                 )
                 print(format_recovery_plan(plan, applied=args.apply))
                 return 0
+            if args.workspace_command == "lifecycle":
+                root = Path(args.root)
+                if args.workspace_lifecycle_command == "status":
+                    report = lifecycle_status(root, args.trust_profile)
+                    if args.json:
+                        print(json.dumps(report, ensure_ascii=True, indent=2, sort_keys=True))
+                    else:
+                        print(format_lifecycle_status(report))
+                    return 0
+                if args.workspace_lifecycle_command == "migrate":
+                    if args.dry_run:
+                        plan = plan_migration(root)
+                        if args.json:
+                            print(json.dumps(plan, ensure_ascii=True, indent=2, sort_keys=True))
+                        else:
+                            print(format_migration_plan(plan))
+                        return 0
+                    if not args.plan or not args.plan_sha256:
+                        raise WorkspaceError(
+                            "Migration apply requires --plan and --plan-sha256.",
+                            code="lifecycle_plan_required",
+                        )
+                    result = apply_migration(root, Path(args.plan), args.plan_sha256)
+                    print(f"Lifecycle migration: {result['status']}")
+                    print(f"Plan-SHA-256: {result['plan_sha256']}")
+                    return 0
+                if args.workspace_lifecycle_command == "cleanup":
+                    if args.apply:
+                        if args.target or args.checkpoint or args.write_plan or not args.plan or not args.plan_sha256:
+                            raise WorkspaceError(
+                                "Cleanup apply requires only --plan and --plan-sha256.",
+                                code="lifecycle_plan_required",
+                            )
+                        result = apply_cleanup(root, Path(args.plan), args.plan_sha256)
+                        print(f"Lifecycle cleanup: {result['status']}")
+                        print(f"Checkpoint: {result['checkpoint']}")
+                        print(f"Checkpoint-SHA-256: {result['checkpoint_sha256']}")
+                        print(f"Directory flush: {result['directory_flush']}")
+                        return 0
+                    if not args.target or not args.checkpoint or args.plan or args.plan_sha256:
+                        raise WorkspaceError(
+                            "Cleanup preview requires --target and --checkpoint.",
+                            code="lifecycle_cleanup_target_invalid",
+                        )
+                    plan = plan_cleanup(root, args.target, Path(args.checkpoint))
+                    if args.write_plan:
+                        write_plan(Path(args.write_plan), plan, workspace_root=root)
+                    print(format_cleanup_plan(plan))
+                    return 0
+                if args.workspace_lifecycle_command == "restore":
+                    result = restore_cleanup(root, Path(args.checkpoint), args.checkpoint_sha256)
+                    print(f"Lifecycle restore: {result['status']}")
+                    print(f"Targets: {result['target_count']}")
+                    print(f"Checkpoint-SHA-256: {result['checkpoint_sha256']}")
+                    return 0
+                return 2
             if args.workspace_command == "control":
                 if args.workspace_control_command == "refresh":
                     root = Path(args.root)
@@ -1163,6 +1286,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                 f"({manifest['package']['file_count']} files, "
                 f"{manifest['package']['total_bytes']} bytes)"
             )
+            print("Built locally; this does not grant permission for external sharing.")
             for finding in manifest["security"]["warnings"]:
                 print(
                     "Secret policy warning: "

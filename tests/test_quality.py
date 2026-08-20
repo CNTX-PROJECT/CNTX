@@ -56,6 +56,7 @@ GUIDES = {
     "media.md",
     "owner-flow.md",
     "playbooks-and-roles.md",
+    "privacy-storage-lifecycle.md",
     "roadmap.md",
     "release-artifacts.md",
     "security.md",
@@ -227,8 +228,8 @@ class PublicQualityTests(unittest.TestCase):
             ORIENTATION_COMMAND_PATHS + executable_paths,
             documented_paths,
         )
-        self.assertEqual(40, len(executable_paths))
-        self.assertEqual(45, len(documented_paths))
+        self.assertEqual(44, len(executable_paths))
+        self.assertEqual(49, len(documented_paths))
 
     def test_public_shell_examples_are_accepted_by_the_real_parser(self) -> None:
         parser = build_parser()

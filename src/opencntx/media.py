@@ -817,17 +817,27 @@ def register_derivation(
             code="media_source_budget_exceeded",
         )
 
+    from .lifecycle import require_disk_capacity
+
+    require_disk_capacity(
+        root,
+        initial_stat.st_size * 2 + 24 * 1024,
+        "media-register",
+    )
+
     opencntx = root / ".opencntx"
     staging = opencntx / f".media-register-{uuid4().hex}"
     final_directory: Path | None = None
     published = False
     created_source_directory: Path | None = None
     try:
-        staging.mkdir()
+        staging.mkdir(mode=0o700)
         with resolved.open("rb") as source, (staging / "content.txt").open("xb") as output:
             content_bytes, content_sha256 = _copy_utf8(
                 source, output, config.max_source_bytes
             )
+        if os.name != "nt":
+            os.chmod(staging / "content.txt", 0o600)
         final_stat = resolved.stat()
         if _source_identity(initial_stat) != _source_identity(final_stat):
             raise MediaError(

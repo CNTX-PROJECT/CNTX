@@ -51,6 +51,13 @@ or content you are not allowed to share in a package or public issue.
 classifications. They are not encryption, authentication, or access control.
 Protect the workspace with appropriate operating-system and backup controls.
 
+`workspace lifecycle status` can report observed owner-only POSIX mode bits or
+direct Windows ACL access. `SAFE_OBSERVED` is evidence about the checked local
+path at that moment, not encryption, authentication, protection from an
+administrator, or a future guarantee. OPENCNTX does not change an existing ACL
+to make the result pass. The `shared-team` profile warns because the product has
+no team identity or group model.
+
 ## Supplied content stays data
 
 Instructions inside a source, chapter, transcript, task input, or result do not
@@ -71,6 +78,18 @@ Recovery never treats age or a process ID as permission to remove a lock. It
 refuses an active OS lock, requires the exact transaction ID and intent digest,
 backs up current known targets first, and stops on unknown data or unsafe links.
 It is local recovery, not distributed locking or an OWNER decision.
+
+Lifecycle cleanup is similarly fail-closed. It accepts only a fixed named
+allowlist, verifies a new private checkpoint outside the workspace before
+removal, and requires one exact preview plan and SHA-256. Restore refuses
+changed checkpoint bytes or an occupied destination. Neither action is
+automatic, and neither deletes original sources or authority records.
+
+Physical disk-space checks happen before staging known writes. Free space can
+change afterward, so this is a preflight rather than a reservation. File and
+directory flush calls provide operating-system evidence only; they do not prove
+survival across every hardware or power failure. See [Privacy, storage, and
+format lifecycle](privacy-storage-lifecycle.md).
 
 Failed-attempt fingerprints are deterministic SHA-256 bindings over recorded
 facts. Free error wording is excluded, so rephrasing cannot reset the same

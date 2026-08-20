@@ -39,6 +39,13 @@ All notable OPENCNTX changes are recorded here.
 - Added deterministic semantic fingerprints, digest-backed new-basis proof,
   and fixed task-wide attempt, action, and duration limits without adding an
   automatic retry controller.
+- Added read-only lifecycle status for observed local permissions, privacy-safe
+  source aliases, storage categories, and packaged format compatibility.
+- Added owner-private creation defaults and physical disk-space preflights for
+  bounded workspace, package, media, migration, cleanup, and restore writes.
+- Added unchanged version-1 lifecycle registration plus explicit allowlisted
+  cleanup with digest-bound plans, verified external checkpoints, exact
+  restore, concurrency checks, and rollback on injected failure.
 
 ### Changed
 

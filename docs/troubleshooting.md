@@ -47,6 +47,13 @@ Do not increase the budget automatically. Narrow the task, remove unrelated
 include patterns, or add a deliberate exclusion. The package must fit as a
 complete set.
 
+## A disk-space preflight fails
+
+The operation stopped before publishing its target because physical free space
+was below the bounded estimate. Free space on the target volume, reduce only
+unrelated data, and rerun the same approved operation. Do not bypass the check
+or confuse the configured content budget with physical storage capacity.
+
 ## A file is rejected as binary or invalid UTF-8
 
 The core accepts local UTF-8 text only. Convert the file outside OPENCNTX after
@@ -91,6 +98,18 @@ ID and intent SHA-256. Use those values with `workspace recover` without
 `--apply` first, inspect the preview, and apply only the exact reported plan.
 Unknown state remains fail-closed and needs manual investigation; recovery does
 not delete it.
+
+## Lifecycle migration or cleanup refuses a plan
+
+Recreate the read-only preview and compare its digest. A changed workspace,
+changed plan file, wrong SHA-256, unknown record version, unsafe path, active
+writer, or changed cleanup target intentionally makes an old plan stale.
+
+For cleanup, the checkpoint must be new or empty, outside the workspace, and
+observed as private. Never edit a checkpoint manifest or manually delete a
+target after preview. If cleanup succeeded, use its reported checkpoint
+SHA-256 with `workspace lifecycle restore` only while every destination is
+still absent. See [Privacy, storage, and format lifecycle](privacy-storage-lifecycle.md).
 
 ## A chapter is `STALE` or `INCOMPLETE`
 

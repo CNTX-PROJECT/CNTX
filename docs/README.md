@@ -25,7 +25,7 @@ the smallest route that matches your current goal.
 - [Core commands](core.md) — exact behavior of `init`, `pack`, and `verify`.
 - [Context packages](context-packets.md) — package files, budgets, hashes,
   inspection, and source drift.
-- [Command reference](commands.md) — all 43 documented CLI paths.
+- [Command reference](commands.md) — all 49 documented CLI paths.
 
 ## Advanced / Alpha workspace
 
@@ -37,6 +37,8 @@ the smallest route that matches your current goal.
   context.
 - [Media and derived text](media.md) — safely register UTF-8 text that another
   tool already produced.
+- [Privacy, storage, and format lifecycle](privacy-storage-lifecycle.md) —
+  audit local trust, storage, compatibility, migration, and explicit cleanup.
 
 ## Approval and bounded work
 

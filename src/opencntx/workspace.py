@@ -142,6 +142,8 @@ def _write_new_file(path: Path, content: bytes) -> None:
         output.write(content)
         output.flush()
         os.fsync(output.fileno())
+    if os.name != "nt":
+        os.chmod(path, 0o600)
 
 
 def _json_bytes(value: dict[str, Any]) -> bytes:
@@ -242,7 +244,7 @@ def validate_workspace(project_root: Path) -> Path:
 
 def _build_staging_workspace(staging: Path) -> None:
     for relative in REQUIRED_DIRECTORIES:
-        (staging / relative).mkdir(parents=True, exist_ok=False)
+        (staging / relative).mkdir(mode=0o700, parents=True, exist_ok=False)
     templates = {
         Path("CONTROL") / "OWNER.md": OWNER_TEMPLATE,
         Path("CONTROL") / "ROADMAP.md": ROADMAP_TEMPLATE,
@@ -251,10 +253,22 @@ def _build_staging_workspace(staging: Path) -> None:
     }
     for relative, text in templates.items():
         _write_new_file(staging / relative, text.encode("utf-8"))
+    from .lifecycle import initialize_lifecycle_state
+
+    initialize_lifecycle_state(staging)
 
 
 def init_workspace(project_root: Path) -> WorkspaceInitResult:
     """Create the fixed workspace structure without overwriting existing paths."""
+    from .lifecycle import require_disk_capacity
+
+    requested = project_root.absolute()
+    probe = requested if requested.exists() else requested.parent
+    template_bytes = sum(
+        len(value.encode("utf-8"))
+        for value in (OWNER_TEMPLATE, ROADMAP_TEMPLATE, CURRENT_TEMPLATE, INDEX_TEMPLATE)
+    )
+    require_disk_capacity(probe, template_bytes * 2 + 16 * 1024, "workspace-init")
     root, root_created = _resolve_root(project_root, create=True)
     fully_present, partly_present = _managed_path_state(root)
     if fully_present:
@@ -277,7 +291,7 @@ def init_workspace(project_root: Path) -> WorkspaceInitResult:
     moved: list[tuple[Path, Path]] = []
     created_opencntx = False
     try:
-        staging.mkdir()
+        staging.mkdir(mode=0o700)
         _build_staging_workspace(staging)
         for relative in VISIBLE_DIRECTORIES:
             source = staging / relative
@@ -285,12 +299,13 @@ def init_workspace(project_root: Path) -> WorkspaceInitResult:
             os.replace(source, destination)
             moved.append((destination, source))
         if not opencntx.exists():
-            opencntx.mkdir()
+            opencntx.mkdir(mode=0o700)
             created_opencntx = True
-        receipts_source = staging / ".opencntx" / "receipts"
-        receipts_destination = opencntx / "receipts"
-        os.replace(receipts_source, receipts_destination)
-        moved.append((receipts_destination, receipts_source))
+        for name in ("receipts", "lifecycle"):
+            source = staging / ".opencntx" / name
+            destination = opencntx / name
+            os.replace(source, destination)
+            moved.append((destination, source))
         shutil.rmtree(staging, ignore_errors=True)
         validate_workspace(root)
         return WorkspaceInitResult(root=root, created=True)
@@ -873,6 +888,14 @@ def _capture_source_unlocked(
                 code="source_budget_exceeded",
             )
 
+        from .lifecycle import require_disk_capacity
+
+        require_disk_capacity(
+            root,
+            initial_stat.st_size * 2 + 16 * 1024,
+            "workspace-capture",
+        )
+
         opencntx = root / ".opencntx"
         if opencntx.is_symlink() or not opencntx.is_dir():
             raise WorkspaceError(
@@ -880,12 +903,14 @@ def _capture_source_unlocked(
                 code="managed_path_invalid",
             )
         temporary = opencntx / f".capture-{uuid4().hex}"
-        temporary.mkdir()
+        temporary.mkdir(mode=0o700)
         original_filename = f"original{_original_suffix(original_name)}"
         temporary_original = temporary / original_filename
         try:
             with resolved_source.open("rb") as source, temporary_original.open("xb") as output:
                 byte_count, digest = _copy_and_hash(source, output)
+            if os.name != "nt":
+                os.chmod(temporary_original, 0o600)
             final_stat = resolved_source.stat()
         except OSError as exc:
             raise WorkspaceError(
