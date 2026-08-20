@@ -31,7 +31,8 @@ from .attempts import (
     normalize_target,
     validate_objective_attempt_sequence,
 )
-from .integrity import Transaction, state_digest, writer_transaction
+from .integrity import Transaction, state_digest, write_new_bytes, writer_transaction
+from .primitives import utc_now as _utc_now
 from .workspace import SHA256_PATTERN, WorkspaceError, validate_workspace
 
 
@@ -234,10 +235,6 @@ class TaskResult:
     receipt_path: Path | None
 
 
-def _utc_now() -> datetime:
-    return datetime.now(timezone.utc)
-
-
 def _timestamp(value: datetime) -> str:
     return value.isoformat(timespec="seconds").replace("+00:00", "Z")
 
@@ -413,11 +410,7 @@ def _input_record(root: Path, relative_text: str) -> dict[str, object]:
 
 def _write_new(path: Path, content: bytes) -> None:
     try:
-        descriptor = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
-        with os.fdopen(descriptor, "wb") as handle:
-            handle.write(content)
-            handle.flush()
-            os.fsync(handle.fileno())
+        write_new_bytes(path, content, mode=0o600, private=True)
     except FileExistsError as exc:
         raise WorkflowError(
             f"Bestaand taakbewijs wordt niet overschreven: {path.name}",

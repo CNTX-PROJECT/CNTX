@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import codecs
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import datetime
 import hashlib
 import json
 import os
@@ -17,11 +17,17 @@ from typing import Any, BinaryIO, Sequence
 from uuid import uuid4
 
 from .integrity import writer_transaction
+from .primitives import (
+    sha256_bytes,
+    timestamp_microseconds as _timestamp,
+    utc_now as _utc_now,
+)
 from .workspace import (
     CHUNK_SIZE,
     SHA256_PATTERN,
     SOURCE_ID_PATTERN,
     StoredSource,
+    WorkspaceConfig,
     WorkspaceError,
     _derived_storage_bytes,
     _hash_file,
@@ -193,12 +199,20 @@ class _Derivation:
     status: str
 
 
-def _utc_now() -> datetime:
-    return datetime.now(timezone.utc)
-
-
-def _timestamp(value: datetime) -> str:
-    return value.isoformat(timespec="microseconds").replace("+00:00", "Z")
+@dataclass(frozen=True)
+class _RegistrationPlan:
+    root: Path
+    source_id: str
+    exact_source: _ExactSource
+    config: WorkspaceConfig
+    kind: str
+    producer_class: str
+    producer: str
+    locators: tuple[str, ...]
+    existing: dict[str, _Derivation]
+    supersedes: str | None
+    resolved_text: Path
+    initial_stat: os.stat_result
 
 
 def _json_bytes(value: object) -> bytes:
@@ -758,8 +772,7 @@ def _copy_utf8(source: BinaryIO, destination: BinaryIO, maximum: int) -> tuple[i
     return byte_count, digest.hexdigest()
 
 
-@_workspace_writer("media-register")
-def register_derivation(
+def _prepare_registration_plan(
     project_root: Path,
     source_id: str,
     text_path: Path,
@@ -767,10 +780,9 @@ def register_derivation(
     kind: str,
     producer_class: str,
     producer: str,
-    locators: Sequence[str] = (),
-    supersedes_derivation_id: str | None = None,
-) -> MediaMutationResult:
-    """Atomically register supplied UTF-8 text without running a media tool."""
+    locators: Sequence[str],
+    supersedes_derivation_id: str | None,
+) -> _RegistrationPlan:
     root = validate_workspace(project_root)
     normalized_source_id = _source_id(source_id)
     exact_source = _exact_source(root, normalized_source_id, allow_quarantined=False)
@@ -780,10 +792,15 @@ def register_derivation(
     if normalized_kind not in KINDS:
         raise MediaError("Onbekende afleidingssoort.", code="media_kind_invalid")
     if normalized_class not in PRODUCER_CLASSES:
-        raise MediaError("Onbekende producer-class.", code="media_producer_class_invalid")
+        raise MediaError(
+            "Onbekende producer-class.",
+            code="media_producer_class_invalid",
+        )
     normalized_producer = _short_text(producer, field="producer")
     normalized_locators = _text_list(
-        list(locators), field="locators", maximum=MAX_LOCATORS
+        list(locators),
+        field="locators",
+        maximum=MAX_LOCATORS,
     )
     existing = _load_derivations(root, normalized_source_id)
     supersedes: str | None = None
@@ -805,8 +822,13 @@ def register_derivation(
         resolved = requested.resolve(strict=True)
         initial_stat = resolved.stat()
     except OSError as exc:
-        raise MediaError("Afgeleide tekst is niet toegankelijk.", code="media_text_unavailable") from exc
-    if resolved.is_relative_to(root / "SOURCES") or resolved.is_relative_to(root / ".opencntx"):
+        raise MediaError(
+            "Afgeleide tekst is niet toegankelijk.",
+            code="media_text_unavailable",
+        ) from exc
+    if resolved.is_relative_to(root / "SOURCES") or resolved.is_relative_to(
+        root / ".opencntx"
+    ):
         raise MediaError(
             "Beheerde bron- of afleidingsopslag kan niet als invoer worden gebruikt.",
             code="media_text_managed_path",
@@ -819,113 +841,172 @@ def register_derivation(
 
     from .lifecycle import require_disk_capacity
 
-    require_disk_capacity(
-        root,
-        initial_stat.st_size * 2 + 24 * 1024,
-        "media-register",
+    require_disk_capacity(root, initial_stat.st_size * 2 + 24 * 1024, "media-register")
+    return _RegistrationPlan(
+        root=root,
+        source_id=normalized_source_id,
+        exact_source=exact_source,
+        config=config,
+        kind=normalized_kind,
+        producer_class=normalized_class,
+        producer=normalized_producer,
+        locators=normalized_locators,
+        existing=existing,
+        supersedes=supersedes,
+        resolved_text=resolved,
+        initial_stat=initial_stat,
     )
 
-    opencntx = root / ".opencntx"
-    staging = opencntx / f".media-register-{uuid4().hex}"
-    final_directory: Path | None = None
-    published = False
-    created_source_directory: Path | None = None
+
+def _stage_derivation(plan: _RegistrationPlan) -> tuple[Path, int, str]:
+    staging = plan.root / ".opencntx" / f".media-register-{uuid4().hex}"
     try:
         staging.mkdir(mode=0o700)
-        with resolved.open("rb") as source, (staging / "content.txt").open("xb") as output:
+        with plan.resolved_text.open("rb") as source, (staging / "content.txt").open(
+            "xb"
+        ) as output:
             content_bytes, content_sha256 = _copy_utf8(
-                source, output, config.max_source_bytes
+                source,
+                output,
+                plan.config.max_source_bytes,
             )
         if os.name != "nt":
             os.chmod(staging / "content.txt", 0o600)
-        final_stat = resolved.stat()
-        if _source_identity(initial_stat) != _source_identity(final_stat):
+        final_stat = plan.resolved_text.stat()
+        if _source_identity(plan.initial_stat) != _source_identity(final_stat):
             raise MediaError(
                 "Afgeleide tekst wijzigde tijdens het lezen.",
                 code="media_text_changed",
             )
-
-        for derivation in existing.values():
-            record = derivation.record
-            if (
-                record["content_sha256"] == content_sha256
-                and record["content_bytes"] == content_bytes
-                and record["kind"] == normalized_kind
-                and record["producer_class"] == normalized_class
-                and record["producer"] == normalized_producer
-                and tuple(record["locators"]) == normalized_locators
-                and record["supersedes_derivation_id"] == supersedes
-                and derivation.status != "REMOVED"
-            ):
-                shutil.rmtree(staging)
-                receipt = _write_receipt(
-                    root,
-                    operation="REGISTER",
-                    status="DUPLICATE_DERIVATION",
-                    source_id=normalized_source_id,
-                    derivation_id=record["derivation_id"],
-                    content_sha256=content_sha256,
-                    record_sha256=derivation.record_sha256,
-                )
-                return MediaMutationResult(
-                    operation="REGISTER",
-                    status="DUPLICATE_DERIVATION",
-                    source_id=normalized_source_id,
-                    derivation_id=record["derivation_id"],
-                    content_sha256=content_sha256,
-                    record_sha256=derivation.record_sha256,
-                    receipt_path=receipt,
-                )
-
-        source_total = sum(item.byte_count for item in _stored_sources(root).values())
-        total = source_total + _derived_storage_bytes(root) + content_bytes
-        if total > config.max_storage_bytes:
+        return staging, content_bytes, content_sha256
+    except BaseException as exc:
+        if staging.exists():
+            shutil.rmtree(staging, ignore_errors=True)
+        if isinstance(exc, OSError):
             raise MediaError(
-                f"Totaal opslagbudget wordt overschreden: {total} > {config.max_storage_bytes} bytes.",
-                code="media_storage_budget_exceeded",
-            )
-        created_at = _utc_now()
-        derivation_id = _new_derivation_id(created_at, existing)
-        record = {
-            "content_bytes": content_bytes,
-            "content_sha256": content_sha256,
-            "created_at": _timestamp(created_at),
-            "derivation_id": derivation_id,
-            "format": DERIVATION_FORMAT,
-            "format_version": DERIVATION_FORMAT_VERSION,
-            "kind": normalized_kind,
-            "locators": list(normalized_locators),
-            "privacy": exact_source.stored.privacy,
-            "producer": normalized_producer,
-            "producer_class": normalized_class,
-            "source_bytes": exact_source.stored.byte_count,
-            "source_id": normalized_source_id,
-            "source_record_sha256": exact_source.record_sha256,
-            "source_sha256": exact_source.stored.sha256,
-            "supersedes_derivation_id": supersedes,
-        }
-        record_bytes = _json_bytes(record)
-        record_sha256 = hashlib.sha256(record_bytes).hexdigest()
-        _write_new(staging / "record.json", record_bytes)
+                f"Afleiding kon niet atomair worden geregistreerd: {exc}",
+                code="media_register_failed",
+            ) from exc
+        raise
 
-        derived_root = _derived_root(root, create=True)
-        source_directory = derived_root / normalized_source_id
+
+def _duplicate_derivation(
+    plan: _RegistrationPlan,
+    staging: Path,
+    content_bytes: int,
+    content_sha256: str,
+) -> MediaMutationResult | None:
+    for derivation in plan.existing.values():
+        record = derivation.record
+        identical = (
+            record["content_sha256"] == content_sha256
+            and record["content_bytes"] == content_bytes
+            and record["kind"] == plan.kind
+            and record["producer_class"] == plan.producer_class
+            and record["producer"] == plan.producer
+            and tuple(record["locators"]) == plan.locators
+            and record["supersedes_derivation_id"] == plan.supersedes
+            and derivation.status != "REMOVED"
+        )
+        if not identical:
+            continue
+        shutil.rmtree(staging)
+        receipt = _write_receipt(
+            plan.root,
+            operation="REGISTER",
+            status="DUPLICATE_DERIVATION",
+            source_id=plan.source_id,
+            derivation_id=record["derivation_id"],
+            content_sha256=content_sha256,
+            record_sha256=derivation.record_sha256,
+        )
+        return MediaMutationResult(
+            operation="REGISTER",
+            status="DUPLICATE_DERIVATION",
+            source_id=plan.source_id,
+            derivation_id=record["derivation_id"],
+            content_sha256=content_sha256,
+            record_sha256=derivation.record_sha256,
+            receipt_path=receipt,
+        )
+    return None
+
+
+def _build_derivation_record(
+    plan: _RegistrationPlan,
+    staging: Path,
+    content_bytes: int,
+    content_sha256: str,
+) -> tuple[str, str]:
+    source_total = sum(item.byte_count for item in _stored_sources(plan.root).values())
+    total = source_total + _derived_storage_bytes(plan.root) + content_bytes
+    if total > plan.config.max_storage_bytes:
+        raise MediaError(
+            f"Totaal opslagbudget wordt overschreden: {total} > "
+            f"{plan.config.max_storage_bytes} bytes.",
+            code="media_storage_budget_exceeded",
+        )
+    created_at = _utc_now()
+    derivation_id = _new_derivation_id(created_at, plan.existing)
+    record = {
+        "content_bytes": content_bytes,
+        "content_sha256": content_sha256,
+        "created_at": _timestamp(created_at),
+        "derivation_id": derivation_id,
+        "format": DERIVATION_FORMAT,
+        "format_version": DERIVATION_FORMAT_VERSION,
+        "kind": plan.kind,
+        "locators": list(plan.locators),
+        "privacy": plan.exact_source.stored.privacy,
+        "producer": plan.producer,
+        "producer_class": plan.producer_class,
+        "source_bytes": plan.exact_source.stored.byte_count,
+        "source_id": plan.source_id,
+        "source_record_sha256": plan.exact_source.record_sha256,
+        "source_sha256": plan.exact_source.stored.sha256,
+        "supersedes_derivation_id": plan.supersedes,
+    }
+    record_bytes = _json_bytes(record)
+    record_sha256 = sha256_bytes(record_bytes)
+    _write_new(staging / "record.json", record_bytes)
+    return derivation_id, record_sha256
+
+
+def _publish_derivation(
+    plan: _RegistrationPlan,
+    staging: Path,
+    derivation_id: str,
+    content_sha256: str,
+    record_sha256: str,
+) -> MediaMutationResult:
+    final_directory: Path | None = None
+    published = False
+    created_source_directory: Path | None = None
+    try:
+        derived_root = _derived_root(plan.root, create=True)
+        source_directory = derived_root / plan.source_id
         if source_directory.exists():
             if source_directory.is_symlink() or not source_directory.is_dir():
-                raise MediaError("Bronafleidingsmap is onveilig.", code="media_storage_invalid")
+                raise MediaError(
+                    "Bronafleidingsmap is onveilig.",
+                    code="media_storage_invalid",
+                )
         else:
             source_directory.mkdir()
             created_source_directory = source_directory
         final_directory = source_directory / derivation_id
         if final_directory.exists() or final_directory.is_symlink():
-            raise MediaError("Derivation-ID bestaat onverwacht al.", code="media_id_conflict")
+            raise MediaError(
+                "Derivation-ID bestaat onverwacht al.",
+                code="media_id_conflict",
+            )
         os.replace(staging, final_directory)
         published = True
         receipt = _write_receipt(
-            root,
+            plan.root,
             operation="REGISTER",
             status="REGISTERED",
-            source_id=normalized_source_id,
+            source_id=plan.source_id,
             derivation_id=derivation_id,
             content_sha256=content_sha256,
             record_sha256=record_sha256,
@@ -933,7 +1014,7 @@ def register_derivation(
         return MediaMutationResult(
             operation="REGISTER",
             status="REGISTERED",
-            source_id=normalized_source_id,
+            source_id=plan.source_id,
             derivation_id=derivation_id,
             content_sha256=content_sha256,
             record_sha256=record_sha256,
@@ -953,10 +1034,57 @@ def register_derivation(
                 code="media_register_failed",
             ) from exc
         raise
+
+
+@_workspace_writer("media-register")
+def register_derivation(
+    project_root: Path,
+    source_id: str,
+    text_path: Path,
+    *,
+    kind: str,
+    producer_class: str,
+    producer: str,
+    locators: Sequence[str] = (),
+    supersedes_derivation_id: str | None = None,
+) -> MediaMutationResult:
+    """Atomically register supplied UTF-8 text without running a media tool."""
+    plan = _prepare_registration_plan(
+        project_root,
+        source_id,
+        text_path,
+        kind=kind,
+        producer_class=producer_class,
+        producer=producer,
+        locators=locators,
+        supersedes_derivation_id=supersedes_derivation_id,
+    )
+    staging, content_bytes, content_sha256 = _stage_derivation(plan)
+    try:
+        duplicate = _duplicate_derivation(
+            plan,
+            staging,
+            content_bytes,
+            content_sha256,
+        )
+        if duplicate is not None:
+            return duplicate
+        derivation_id, record_sha256 = _build_derivation_record(
+            plan,
+            staging,
+            content_bytes,
+            content_sha256,
+        )
+        return _publish_derivation(
+            plan,
+            staging,
+            derivation_id,
+            content_sha256,
+            record_sha256,
+        )
     finally:
         if staging.exists():
             shutil.rmtree(staging, ignore_errors=True)
-
 
 def _one_derivation(root: Path, source_id: str, derivation_id: str) -> _Derivation:
     normalized_source_id = _source_id(source_id)

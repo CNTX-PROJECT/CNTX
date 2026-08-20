@@ -1,0 +1,28 @@
+{
+  "format": "opencntx-quality-baseline",
+  "format_version": 1,
+  "basis_head": "f213627c58a33344d84a7da1649f74d773e0d230",
+  "basis_tree": "0740c39c9cea7852fe9136ee979ec577c40ed803",
+  "branch_coverage_percent": 75,
+  "cli_coverage_percent": 37,
+  "cli_lines": 1312,
+  "error_code_count": 273,
+  "error_code_set_sha256": "3d1c5a72da044f193f2e73ecab92247a85b2eb558d35f5d7470196741ad86493",
+  "functions_over_180_lines": 4,
+  "mypy_errors_in_initial_safety_list": 11,
+  "ruff_findings": 162,
+  "safety_module_coverage": {
+    "windows": {
+      "core.py": {"covered": 453, "total": 667},
+      "integrity.py": {"covered": 795, "total": 1002},
+      "lifecycle.py": {"covered": 854, "total": 1173},
+      "workspace.py": {"covered": 575, "total": 722}
+    },
+    "posix": {
+      "core.py": {"covered": 453, "total": 667},
+      "integrity.py": {"covered": 778, "total": 1002},
+      "lifecycle.py": {"covered": 792, "total": 1173},
+      "workspace.py": {"covered": 577, "total": 722}
+    }
+  }
+}

@@ -121,7 +121,7 @@ def _deduplicate(values: tuple[str, ...] | list[str]) -> tuple[str, ...]:
     return tuple(dict.fromkeys(values))
 
 
-def _normalize_pattern(value: str, label: str) -> str:
+def _normalize_pattern(value: object, label: str) -> str:
     if not isinstance(value, str) or not value.strip():
         raise OpenCntxError(f"{label} contains an empty or invalid pattern.")
     pattern = value.strip().replace("\\", "/")
@@ -138,7 +138,7 @@ def _normalize_pattern(value: str, label: str) -> str:
     return pattern
 
 
-def _normalize_relative_path(value: str, label: str) -> str:
+def _normalize_relative_path(value: object, label: str) -> str:
     path = _normalize_pattern(value, label)
     if any(character in path for character in "*?["):
         raise OpenCntxError(f"{label} is not a literal relative path: {value}")
@@ -898,11 +898,14 @@ def verify_package(package_path: Path) -> VerifyReport:
     errors.extend(_manifest_security_errors(manifest, current_sources))
 
     for path in sorted(expected_paths & current_paths):
-        source = current_sources.get(path)
-        if source is None:
+        current_source = current_sources.get(path)
+        if current_source is None:
             continue
         record = expected[path]
-        if source.byte_count != record["bytes"] or source.sha256 != record["sha256"]:
+        if (
+            current_source.byte_count != record["bytes"]
+            or current_source.sha256 != record["sha256"]
+        ):
             changed.append(path)
         else:
             unchanged.append(path)

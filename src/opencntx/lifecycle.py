@@ -13,10 +13,17 @@ from pathlib import Path, PurePosixPath
 import re
 import shutil
 import stat
-from typing import Any, Iterable, Sequence
+from typing import Any, Iterable, Sequence, cast
 from uuid import uuid4
 
-from .integrity import IntegrityError, safe_managed_path, sync_directory, writer_transaction
+from .integrity import (
+    IntegrityError,
+    safe_managed_path,
+    sync_directory,
+    write_new_bytes,
+    writer_transaction,
+)
+from .primitives import sha256_bytes as _sha256
 from .workspace import (
     PRIVACY_LABELS,
     WorkspaceError,
@@ -81,10 +88,6 @@ def _pretty(value: object) -> bytes:
     return (json.dumps(value, ensure_ascii=True, indent=2, sort_keys=True) + "\n").encode("ascii")
 
 
-def _sha256(content: bytes) -> str:
-    return hashlib.sha256(content).hexdigest()
-
-
 def _is_reparse(path: Path) -> bool:
     try:
         attributes = getattr(path.lstat(), "st_file_attributes", 0)
@@ -124,13 +127,13 @@ def _write_new(path: Path, content: bytes, *, private: bool = True) -> str:
         path.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
         if os.name != "nt":
             os.chmod(path.parent, 0o700)
-        with path.open("xb") as output:
-            output.write(content)
-            output.flush()
-            os.fsync(output.fileno())
-        if private and os.name != "nt":
-            os.chmod(path, 0o600)
-        result = sync_directory(path.parent)
+        result = write_new_bytes(
+            path,
+            content,
+            mode=0o600 if private else 0o666,
+            private=private,
+            sync_parent=True,
+        )
     except OSError as exc:
         raise LifecycleError("Lifecycle evidence could not be written safely.", code="lifecycle_write_failed") from exc
     if result == "FAILED":
@@ -255,7 +258,7 @@ class _ACE_HEADER(ctypes.Structure):
 
 def _windows_sid(text: str) -> ctypes.c_void_p:
     pointer = ctypes.c_void_p()
-    convert = ctypes.windll.advapi32.ConvertStringSidToSidW
+    convert = vars(ctypes)["windll"].advapi32.ConvertStringSidToSidW
     convert.argtypes = [ctypes.c_wchar_p, ctypes.POINTER(ctypes.c_void_p)]
     convert.restype = ctypes.c_int
     if not convert(text, ctypes.byref(pointer)):
@@ -268,7 +271,8 @@ def _audit_windows(path: Path, *, private: bool) -> PermissionAudit:
     dacl = ctypes.c_void_p()
     broad: list[tuple[str, ctypes.c_void_p]] = []
     try:
-        get_security = ctypes.windll.advapi32.GetNamedSecurityInfoW
+        advapi32 = vars(ctypes)["windll"].advapi32
+        get_security = advapi32.GetNamedSecurityInfoW
         get_security.argtypes = [
             ctypes.c_wchar_p, ctypes.c_uint32, ctypes.c_uint32, ctypes.c_void_p,
             ctypes.c_void_p, ctypes.POINTER(ctypes.c_void_p), ctypes.c_void_p,
@@ -278,7 +282,7 @@ def _audit_windows(path: Path, *, private: bool) -> PermissionAudit:
         result = get_security(str(path), 1, 0x00000004, None, None, ctypes.byref(dacl), None, ctypes.byref(descriptor))
         if result != 0 or not dacl.value:
             return PermissionAudit("UNSUPPORTED", "windows", (f"GetNamedSecurityInfoW={result}", "No reliable DACL result."))
-        get_control = ctypes.windll.advapi32.GetSecurityDescriptorControl
+        get_control = advapi32.GetSecurityDescriptorControl
         get_control.argtypes = [ctypes.c_void_p, ctypes.POINTER(ctypes.c_ushort), ctypes.POINTER(ctypes.c_uint32)]
         get_control.restype = ctypes.c_int
         descriptor_control = ctypes.c_ushort()
@@ -291,10 +295,10 @@ def _audit_windows(path: Path, *, private: bool) -> PermissionAudit:
             ("Authenticated Users", _windows_sid("S-1-5-11")),
             ("Builtin Users", _windows_sid("S-1-5-32-545")),
         ]
-        compare = ctypes.windll.advapi32.EqualSid
+        compare = advapi32.EqualSid
         compare.argtypes = [ctypes.c_void_p, ctypes.c_void_p]
         compare.restype = ctypes.c_int
-        get_ace = ctypes.windll.advapi32.GetAce
+        get_ace = advapi32.GetAce
         get_ace.argtypes = [ctypes.c_void_p, ctypes.c_uint32, ctypes.POINTER(ctypes.c_void_p)]
         get_ace.restype = ctypes.c_int
         acl = ctypes.cast(dacl, ctypes.POINTER(_ACL)).contents
@@ -315,7 +319,7 @@ def _audit_windows(path: Path, *, private: bool) -> PermissionAudit:
                 if header.AceType in (0x01, 0x06):
                     unknown = True
                 continue
-            address = int(ace_pointer.value)
+            address = cast(int, ace_pointer.value)
             mask = ctypes.c_uint32.from_address(address + 4).value
             sid = ctypes.c_void_p(address + 8)
             for label, broad_sid in broad:
@@ -878,13 +882,17 @@ def _cleanup_target(root: Path, target: str) -> tuple[str, Path]:
         manifest, _ = _read_json(path / "manifest.json", label="recovery backup manifest")
         if manifest.get("format") != "opencntx-recovery-backup" or manifest.get("backup_id") != recovery_id:
             raise LifecycleError("Recovery backup manifest is invalid.", code="lifecycle_cleanup_blocked")
-        transaction_id = manifest.get("transaction_id")
+        recovery_transaction_id = manifest.get("transaction_id")
         intent_sha256 = manifest.get("intent_sha256")
-        if not isinstance(transaction_id, str) or TRANSACTION_ID_RE.fullmatch(transaction_id) is None or SHA256_RE.fullmatch(str(intent_sha256)) is None:
+        if (
+            not isinstance(recovery_transaction_id, str)
+            or TRANSACTION_ID_RE.fullmatch(recovery_transaction_id) is None
+            or SHA256_RE.fullmatch(str(intent_sha256)) is None
+        ):
             raise LifecycleError("Recovery backup binding is invalid.", code="lifecycle_cleanup_blocked")
         completed = safe_managed_path(
             root,
-            f".opencntx/transactions/completed/{transaction_id}-recovered",
+            f".opencntx/transactions/completed/{recovery_transaction_id}-recovered",
             must_exist=True,
             kind="directory",
         )
@@ -892,7 +900,10 @@ def _cleanup_target(root: Path, target: str) -> tuple[str, Path]:
             completed / "intent.json",
             label="recovered transaction intent",
         )
-        if completed_intent.get("transaction_id") != transaction_id or _sha256(completed_intent_bytes) != intent_sha256:
+        if (
+            completed_intent.get("transaction_id") != recovery_transaction_id
+            or _sha256(completed_intent_bytes) != intent_sha256
+        ):
             raise LifecycleError("Recovery backup has no exact completed transaction binding.", code="lifecycle_cleanup_blocked")
         bound = False
         receipt_root = root / ".opencntx" / "receipts"
@@ -901,7 +912,7 @@ def _cleanup_target(root: Path, target: str) -> tuple[str, Path]:
             if (
                 value.get("format") == "opencntx-recovery-receipt"
                 and value.get("backup_path") == path.relative_to(root).as_posix()
-                and value.get("transaction_id") == transaction_id
+                and value.get("transaction_id") == recovery_transaction_id
                 and value.get("intent_sha256") == intent_sha256
             ):
                 bound = True

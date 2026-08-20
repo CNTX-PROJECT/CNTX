@@ -4,9 +4,8 @@ from __future__ import annotations
 
 from collections.abc import Sequence
 from dataclasses import dataclass
-from datetime import UTC, datetime
+from datetime import datetime
 from functools import wraps
-import hashlib
 import json
 import os
 from pathlib import Path
@@ -16,8 +15,14 @@ import stat
 from typing import Any
 from uuid import uuid4
 
-from .integrity import Transaction, state_digest, writer_transaction
+from .integrity import Transaction, state_digest, write_new_bytes, writer_transaction
 from .navigator import _load_package_manifest, verify_context_package
+from .primitives import (
+    pretty_json_bytes as _json_bytes,
+    sha256_bytes as _sha256,
+    timestamp_microseconds as _timestamp,
+    utc_now as _utc_now,
+)
 from .workflow import _event, _load_chain, _verify_inputs
 from .workspace import WorkspaceError, validate_workspace
 
@@ -294,30 +299,11 @@ class _Assignment:
     document_bytes: bytes
 
 
-def _utc_now() -> datetime:
-    return datetime.now(UTC)
-
-
-def _timestamp(value: datetime) -> str:
-    return value.isoformat(timespec="microseconds").replace("+00:00", "Z")
-
-
 def _canonical(value: object) -> bytes:
     return (
         json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
         .encode("utf-8")
     )
-
-
-def _json_bytes(value: object) -> bytes:
-    return (
-        json.dumps(value, ensure_ascii=False, sort_keys=True, indent=2).encode("utf-8")
-        + b"\n"
-    )
-
-
-def _sha256(value: bytes) -> str:
-    return hashlib.sha256(value).hexdigest()
 
 
 def _strict_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
@@ -445,11 +431,7 @@ def _revision_name(revision: int) -> str:
 
 def _write_new(path: Path, content: bytes) -> None:
     try:
-        descriptor = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
-        with os.fdopen(descriptor, "wb") as output:
-            output.write(content)
-            output.flush()
-            os.fsync(output.fileno())
+        write_new_bytes(path, content, mode=0o600, private=True)
     except FileExistsError as exc:
         raise PlaybookError("Bestaand bestand wordt niet overschreven.", code="definition_exists") from exc
     except OSError as exc:
