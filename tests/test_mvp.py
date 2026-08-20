@@ -1,16 +1,20 @@
 from __future__ import annotations
 
+import io
 import json
 import os
-from pathlib import Path
 import re
 import subprocess
 import sys
 import tempfile
 import unittest
+from contextlib import redirect_stderr
+from pathlib import Path
 from unittest.mock import patch
 
+from opencntx.cli import main as cli_main
 from opencntx.core import OpenCntxError, pack_project
+from opencntx.integrity import IntegrityError
 
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
@@ -129,8 +133,29 @@ class MvpTests(unittest.TestCase):
 
             self.assertEqual(result.returncode, 2)
             self.assertIn("Byte budget exceeded", result.stderr)
+            self.assertIn("required=8 bytes; allowed=3 bytes", result.stderr)
             self.assertFalse((root / ".opencntx/latest").exists())
             self.assertEqual(list((root / ".opencntx").glob(".building-*")), [])
+            self.assertEqual(list((root / ".opencntx/transactions/active").glob("*")), [])
+            self.assertEqual(list((root / ".opencntx/transactions/locks").rglob("*.lock")), [])
+
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = Path(temporary_directory)
+            (root / "a.txt").write_text("abc", encoding="utf-8")
+            (root / "b.txt").write_text("defg", encoding="utf-8")
+            write_config(root, include=["*.txt"], max_bytes=5)
+
+            preview = run_cli("pack", "--preview", cwd=root)
+            packed = run_cli("pack", cwd=root)
+
+            for result in (preview, packed):
+                self.assertEqual(result.returncode, 2)
+                self.assertIn("required=7 bytes; allowed=5 bytes", result.stderr)
+                self.assertNotIn("Traceback", result.stderr)
+            self.assertFalse((root / ".opencntx/latest").exists())
+            self.assertEqual(list((root / ".opencntx").glob(".building-*")), [])
+            self.assertEqual(list((root / ".opencntx/transactions/active").glob("*")), [])
+            self.assertEqual(list((root / ".opencntx/transactions/locks").rglob("*.lock")), [])
 
         with tempfile.TemporaryDirectory() as temporary_directory:
             root = Path(temporary_directory)
@@ -143,6 +168,58 @@ class MvpTests(unittest.TestCase):
             self.assertEqual(result.returncode, 2)
             self.assertIn("File budget exceeded", result.stderr)
             self.assertFalse((root / ".opencntx/latest").exists())
+
+    def test_integrity_access_error_is_short_and_has_no_traceback(self) -> None:
+        stderr = io.StringIO()
+        with (
+            patch(
+                "opencntx.cli.dispatch_core",
+                side_effect=IntegrityError(
+                    "Transaction state path is inaccessible.",
+                    code="managed_path_unsafe",
+                ),
+            ),
+            redirect_stderr(stderr),
+        ):
+            returncode = cli_main(["pack"])
+
+        self.assertEqual(returncode, 2)
+        self.assertEqual(
+            stderr.getvalue(),
+            "Error: operation failed (managed_path_unsafe)\n",
+        )
+        self.assertNotIn("Traceback", stderr.getvalue())
+
+    def test_integrity_access_error_preserves_existing_package(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = Path(temporary_directory)
+            (root / "source.txt").write_text("stable bytes\n", encoding="utf-8")
+            write_config(root, include=["source.txt"], required=["source.txt"])
+            package, _ = pack_project(root)
+            package_before = {
+                path.name: path.read_bytes() for path in package.iterdir()
+            }
+
+            with (
+                patch(
+                    "opencntx.core.state_digest",
+                    side_effect=IntegrityError(
+                        "Transaction state path is inaccessible.",
+                        code="managed_path_unsafe",
+                    ),
+                ),
+                self.assertRaisesRegex(IntegrityError, "state path is inaccessible") as error,
+            ):
+                pack_project(root)
+
+            self.assertEqual(error.exception.code, "managed_path_unsafe")
+            self.assertEqual(
+                {path.name: path.read_bytes() for path in package.iterdir()},
+                package_before,
+            )
+            self.assertEqual(list((root / ".opencntx").glob(".building-*")), [])
+            self.assertEqual(list((root / ".opencntx/transactions/active").iterdir()), [])
+            self.assertEqual(list((root / ".opencntx/transactions/locks").rglob("*.lock")), [])
 
     def test_04_missing_required_file_is_clear_error(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:

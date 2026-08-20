@@ -15,10 +15,11 @@ SOURCE_ROOT = REPOSITORY_ROOT / "src"
 if str(SOURCE_ROOT) not in sys.path:
     sys.path.insert(0, str(SOURCE_ROOT))
 
-from opencntx.catalog import create_chapter, rebuild_catalog  # noqa: E402
 from opencntx.attempts import record_attempt  # noqa: E402
+from opencntx.catalog import create_chapter, rebuild_catalog  # noqa: E402
 from opencntx.integrity import (  # noqa: E402
     IntegrityError,
+    _create_integrity_directory,
     doctor_workspace,
     recover_workspace,
     safe_managed_path,
@@ -790,6 +791,44 @@ class IntegrityTests(unittest.TestCase):
                 self.skipTest("Symlink creation is unavailable on this platform.")
             with self.assertRaisesRegex(IntegrityError, "link or reparse"):
                 safe_managed_path(root, "INBOX/owner-link", must_exist=True)
+
+    def test_integrity_directory_creation_preserves_platform_contract(self) -> None:
+        directory = Path("synthetic-integrity-directory")
+        resolved = Path("synthetic-integrity-directory-resolved")
+        scan = mock.MagicMock()
+        scan.__enter__.return_value = iter(())
+        with (
+            mock.patch.object(Path, "mkdir") as mkdir,
+            mock.patch.object(Path, "resolve", return_value=resolved),
+            mock.patch.object(Path, "is_dir", return_value=True),
+            mock.patch("opencntx.integrity.os.scandir", return_value=scan),
+            mock.patch("opencntx.integrity.os.name", "nt"),
+        ):
+            _create_integrity_directory(directory)
+        mkdir.assert_called_once_with()
+
+        scan = mock.MagicMock()
+        scan.__enter__.return_value = iter(())
+        with (
+            mock.patch.object(Path, "mkdir") as mkdir,
+            mock.patch.object(Path, "resolve", return_value=resolved),
+            mock.patch.object(Path, "is_dir", return_value=True),
+            mock.patch("opencntx.integrity.os.scandir", return_value=scan),
+            mock.patch("opencntx.integrity.os.name", "posix"),
+        ):
+            _create_integrity_directory(directory)
+        mkdir.assert_called_once_with(mode=0o700)
+
+    def test_state_digest_normalizes_inaccessible_paths(self) -> None:
+        with (
+            mock.patch(
+                "opencntx.integrity._path_digest",
+                side_effect=PermissionError(5, "Access is denied"),
+            ),
+            self.assertRaisesRegex(IntegrityError, "state path is inaccessible") as error,
+        ):
+            state_digest((Path("inaccessible"),))
+        self.assertEqual(error.exception.code, "managed_path_unsafe")
 
     def test_directory_sync_capability_matrix_is_explicit(self) -> None:
         path = Path("capability-test")

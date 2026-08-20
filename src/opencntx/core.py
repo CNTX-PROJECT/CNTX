@@ -356,7 +356,8 @@ def _read_source(
     project_root: Path,
     relative_path: str,
     *,
-    byte_limit: int | None = None,
+    byte_budget: int | None = None,
+    consumed_bytes: int = 0,
 ) -> Source:
     root = project_root.resolve(strict=True)
     safe_path = _normalize_relative_path(relative_path, "source path")
@@ -369,15 +370,19 @@ def _read_source(
         raise OpenCntxError(f"Source leaves the project root through a symlink: {safe_path}")
     try:
         declared_size = resolved.stat().st_size
-        if byte_limit is not None and declared_size > byte_limit:
+        required_bytes = consumed_bytes + declared_size
+        if byte_budget is not None and required_bytes > byte_budget:
             raise OpenCntxError(
-                f"Byte budget exceeded before reading: {safe_path}. "
+                f"Byte budget exceeded before reading: {safe_path} "
+                f"(required={required_bytes} bytes; allowed={byte_budget} bytes). "
                 "Reduce context.include, exclude the file, or increase max_bytes."
             )
         content = resolved.read_bytes()
-        if byte_limit is not None and len(content) > byte_limit:
+        required_bytes = consumed_bytes + len(content)
+        if byte_budget is not None and required_bytes > byte_budget:
             raise OpenCntxError(
-                f"Byte budget exceeded while reading: {safe_path}. "
+                f"Byte budget exceeded while reading: {safe_path} "
+                f"(required={required_bytes} bytes; allowed={byte_budget} bytes). "
                 "Reduce context.include, exclude the file, or increase max_bytes."
             )
     except OpenCntxError:
@@ -418,7 +423,8 @@ def read_sources(
         source = _read_source(
             project_root,
             relative_path,
-            byte_limit=config.max_bytes - total_bytes,
+            byte_budget=config.max_bytes,
+            consumed_bytes=total_bytes,
         )
         total_bytes += source.byte_count
         if total_bytes > config.max_bytes:
@@ -879,7 +885,8 @@ def verify_package(package_path: Path) -> VerifyReport:
             source = _read_source(
                 root,
                 path,
-                byte_limit=max(config.max_bytes - total_bytes, 0),
+                byte_budget=config.max_bytes,
+                consumed_bytes=total_bytes,
             )
             current_sources[path] = source
             total_bytes += source.byte_count

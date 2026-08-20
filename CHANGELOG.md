@@ -87,6 +87,15 @@ All notable OPENCNTX changes are recorded here.
   while preserving existing domain formats, OWNER gates, and read-only legacy
   verification.
 
+### Fixed
+
+- Kept POSIX integrity directories owner-private while allowing new Windows
+  integrity directories to inherit the usable parent ACL, avoiding a protected
+  `0o700` DACL that can lock out a later local launch context.
+- Converted inaccessible transaction-state paths into one stable fail-closed
+  CLI error without a Python traceback, and made byte-budget failures report
+  the exact required and allowed byte counts.
+
 No runtime dependency, package version, release, publication, or product
 network boundary changed. CI uses pinned build- and quality-only toolchains,
 emits no uploaded artifact, and compares artifact and installed metadata with
