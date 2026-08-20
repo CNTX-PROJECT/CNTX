@@ -8,6 +8,7 @@ import sys
 import tempfile
 import tomllib
 import unittest
+import json
 
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
@@ -31,6 +32,39 @@ def run_cli(*arguments: str, cwd: Path) -> subprocess.CompletedProcess[str]:
 
 
 class CliTests(unittest.TestCase):
+    def test_workspace_lifecycle_help_status_and_dry_run_are_bounded(self) -> None:
+        from opencntx.workspace import init_workspace
+
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            workspace = Path(temporary_directory) / "workspace"
+            init_workspace(workspace)
+            help_result = run_cli("workspace", "lifecycle", "--help", cwd=workspace)
+            status = run_cli(
+                "workspace", "lifecycle", "status", "--json",
+                "--trust-profile", "shared-team", "--root", str(workspace),
+                cwd=workspace,
+            )
+            before = {
+                path.relative_to(workspace).as_posix(): path.read_bytes()
+                for path in workspace.rglob("*") if path.is_file()
+            }
+            migration = run_cli(
+                "workspace", "lifecycle", "migrate", "--dry-run", "--json",
+                "--root", str(workspace), cwd=workspace,
+            )
+            after = {
+                path.relative_to(workspace).as_posix(): path.read_bytes()
+                for path in workspace.rglob("*") if path.is_file()
+            }
+
+            self.assertEqual(help_result.returncode, 0, help_result.stderr)
+            self.assertIn("{status,migrate,cleanup,restore}", help_result.stdout)
+            self.assertEqual(status.returncode, 0, status.stderr)
+            self.assertEqual(json.loads(status.stdout)["trust_status"], "UNSUPPORTED_FOR_AUTHORIZATION")
+            self.assertEqual(migration.returncode, 0, migration.stderr)
+            self.assertEqual(json.loads(migration.stdout)["operation"], "ALREADY_CURRENT")
+            self.assertEqual(before, after)
+
     def test_package_versions_match(self) -> None:
         with (REPOSITORY_ROOT / "pyproject.toml").open("rb") as project_file:
             project_version = tomllib.load(project_file)["project"]["version"]

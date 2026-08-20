@@ -114,6 +114,11 @@ diagnoses interrupted work read-only; `workspace recover` previews an exact,
 backup-first rollback and applies it only with the reported transaction ID and
 intent digest.
 
+`workspace lifecycle status` audits observed local permissions, privacy labels,
+storage, and format compatibility without exposing source paths or content.
+Migration and cleanup remain explicit digest-bound operations with external
+checkpoints. Read [Privacy, storage, and format lifecycle](docs/privacy-storage-lifecycle.md).
+
 Read [Advanced / Alpha workspace](docs/workspace.md) only when that extra
 structure is useful. No workspace command starts an AI, agent, shell process,
 OCR tool, transcription service, or external sync.
@@ -125,6 +130,8 @@ OCR tool, transcription service, or external sync.
   blocks narrow high-confidence signals and warns on broader signals, but it
   cannot prove that output is secret-free. Inspect every output file.
 - Privacy labels classify content. They do not encrypt it or control access.
+- Permission checks report observed local access; they do not create identities
+  or replace operating-system and backup protection.
 - A non-zero exit code means the requested operation was not fully proven.
 - A hash proves byte identity, not truth, safety, completeness, or approval.
 - Sharing is always your separate decision.

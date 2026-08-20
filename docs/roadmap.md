@@ -74,6 +74,19 @@ features or expose private project records.
 - kept historical text attempts readable and kept execution, retry, truth
   attestation, and cryptographic identity outside the product claim.
 
+### Privacy, storage, and format lifecycle
+
+- added read-only trust, permission, privacy, storage, and compatibility
+  evidence without printing original source paths or content;
+- added owner-private creation defaults and physical disk-space preflights for
+  bounded local writes;
+- packaged versioned schemas and a compatibility matrix while keeping existing
+  version-1 records unchanged and unknown future formats fail-closed;
+- added explicit allowlisted cleanup with a verified external checkpoint,
+  digest-bound restore, writer locking, compare-and-swap, and failure rollback;
+- kept encryption, team identities, distributed locking, automatic cleanup,
+  publication, and release changes outside the product claim.
+
 ## Current state
 
 - Current release: `v0.2.0`

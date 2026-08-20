@@ -1,0 +1,8 @@
+{
+  "format": "opencntx-lifecycle-state",
+  "format_version": 1,
+  "inventory_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "record_count": 0,
+  "schema_bundle_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "trust_statement": "local-observation-not-access-control"
+}

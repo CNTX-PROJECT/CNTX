@@ -1,0 +1,14 @@
+{
+  "bytes": 8,
+  "captured_at": "2026-01-01T00:00:00.000000Z",
+  "format": "opencntx-source",
+  "format_version": 1,
+  "origin": "TEST-FIXTURE",
+  "original_name": "fixture.txt",
+  "privacy": "PRIVATE",
+  "sha256": "e80b71cd14d3cbd65f4173abcbfcf01a545dbca32a72d575108b553a648cc96f",
+  "source_id": "SRC-20260101-000000000001",
+  "status": "CAPTURED",
+  "stored_path": "SOURCES/2026/01/SRC-20260101-000000000001/original.txt",
+  "supersedes": null
+}

@@ -8,6 +8,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest import mock
 
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
@@ -118,6 +119,19 @@ def set_budgets(workspace: Path, *, source_bytes: int, storage_bytes: int) -> No
 
 
 class MediaTests(unittest.TestCase):
+    def test_registration_disk_preflight_blocks_before_derived_content_publication(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            workspace, captured, text_path = setup_media(Path(temporary_directory))
+            no_space = mock.Mock(total=100, used=100, free=0)
+
+            with mock.patch("opencntx.lifecycle.shutil.disk_usage", return_value=no_space):
+                with self.assertRaises(WorkspaceError) as context:
+                    register_default(workspace, captured, text_path)
+
+            self.assertEqual(context.exception.code, "disk_space_insufficient")
+            self.assertFalse((workspace / ".opencntx" / "derived").exists())
+            self.assertEqual(list((workspace / ".opencntx").glob(".media-register-*")), [])
+
     def test_status_is_explicit_when_media_was_not_investigated(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
             workspace, captured, _ = setup_media(Path(temporary_directory))

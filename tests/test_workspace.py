@@ -70,6 +70,7 @@ class WorkspaceTests(unittest.TestCase):
                 "ROLES",
                 ".opencntx",
                 ".opencntx/receipts",
+                ".opencntx/lifecycle",
             }
             actual_directories = {
                 path.relative_to(workspace).as_posix()
@@ -82,6 +83,7 @@ class WorkspaceTests(unittest.TestCase):
                 "CONTROL/ROADMAP.md",
                 "CONTROL/CURRENT.md",
                 "CHAPTERS/INDEX.md",
+                ".opencntx/lifecycle/state.json",
             }
             actual_files = {
                 path.relative_to(workspace).as_posix()
@@ -104,6 +106,28 @@ class WorkspaceTests(unittest.TestCase):
                 if path.is_file()
             }
             self.assertEqual(after, before)
+
+    def test_init_and_capture_disk_preflight_fail_before_content_publication(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            parent = Path(temporary_directory)
+            missing = parent / "missing-workspace"
+            no_space = mock.Mock(total=100, used=100, free=0)
+            with mock.patch("opencntx.lifecycle.shutil.disk_usage", return_value=no_space):
+                with self.assertRaises(WorkspaceError) as init_error:
+                    init_workspace(missing)
+            self.assertEqual(init_error.exception.code, "disk_space_insufficient")
+            self.assertFalse(missing.exists())
+
+            workspace = parent / "workspace"
+            init_workspace(workspace)
+            source = parent / "source.bin"
+            source.write_bytes(b"disk-preflight")
+            with mock.patch("opencntx.lifecycle.shutil.disk_usage", return_value=no_space):
+                with self.assertRaises(WorkspaceError) as capture_error:
+                    capture_source(workspace, source)
+            self.assertEqual(capture_error.exception.code, "disk_space_insufficient")
+            self.assertEqual(list((workspace / "SOURCES").rglob("original*")), [])
+            self.assertEqual(list((workspace / ".opencntx").glob(".capture-*")), [])
 
     def test_init_preserves_existing_package_state(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:

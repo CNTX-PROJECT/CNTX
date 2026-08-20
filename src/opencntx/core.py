@@ -681,6 +681,13 @@ def pack_project(
     manifest_bytes = (
         json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
     ).encode("utf-8")
+    from .lifecycle import require_disk_capacity
+
+    require_disk_capacity(
+        root,
+        (len(context_bytes) + len(manifest_bytes)) * 2 + 16 * 1024,
+        "core-pack",
+    )
     plan_digest = hashlib.sha256(
         json.dumps(
             [{"path": source.path, "sha256": source.sha256} for source in plan.sources],
