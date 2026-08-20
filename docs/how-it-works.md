@@ -52,6 +52,13 @@ comparisons. Each mutation leaves a transaction journal. A hard process crash
 therefore leaves the previous valid state or exact local evidence for read-only
 diagnosis and explicit backup-first recovery.
 
+Failed execution attempts are also recorded as local evidence, not as prose
+claims. OPENCNTX derives a stable fingerprint from the command type, target,
+relevant input digests, exit status, and one fixed error class. It binds that
+record to the exact executor package, context manifest, allowed action, and
+copied result evidence. Fixed task-wide limits stop repeated or alternating
+failure loops; OPENCNTX never executes or retries the command itself.
+
 ## Three kinds of evidence
 
 - **Bytes:** the exact stored or selected content.

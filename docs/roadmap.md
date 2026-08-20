@@ -61,6 +61,19 @@ features or expose private project records.
 - centralized symlink, junction/reparse, containment, and directory-flush
   handling without adding a runtime dependency.
 
+### Objective attempt and deadloop evidence
+
+- replaced new free-text failure signatures with deterministic fingerprints
+  from command, target, input-digest, exit-status, and error-class facts;
+- bound attempts to one verified executor package, context manifest, allowed
+  action, and copied local evidence;
+- required digest-backed changed input or unique new evidence for a later
+  attempt;
+- added fixed semantic-repeat, total-attempt, cumulative-action, and
+  cumulative-duration blocks with read-only status explanations;
+- kept historical text attempts readable and kept execution, retry, truth
+  attestation, and cryptographic identity outside the product claim.
+
 ## Current state
 
 - Current release: `v0.2.0`

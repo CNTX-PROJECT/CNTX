@@ -100,6 +100,27 @@ or changed/unknown state, creates and verifies a retained backup, rolls the
 known targets back to their previous exact state, and writes a recovery receipt.
 Recovery does not grant task, result, publication, or OWNER authority.
 
+## Record objective failed attempts
+
+After context and one executor package are prepared, a failed external action
+can be recorded with `workspace task record-attempt`. The command never runs or
+retries that action. It requires:
+
+- the exact executor ID and one effective allowed action;
+- one command type and canonical workspace-relative target;
+- one or more relevant workspace input files, hashed by OPENCNTX;
+- an exit status and fixed normalized error class;
+- bounded recorded action and duration values;
+- one local result-evidence file;
+- changed relevant input bytes or unique new evidence after the first attempt.
+
+OPENCNTX copies evidence under the task, derives the fingerprint and basis
+digest, sums all task-wide budgets, and publishes evidence plus event under the
+existing task transaction. Three equal fingerprints, five total attempts, 25
+actions, or 30 minutes block the task. Status explains the exact reason without
+printing evidence contents. These are reproducible local records, not an
+automatic truth check or cryptographic identity proof.
+
 ## What comes next
 
 Captured sources do not automatically become accepted knowledge or task

@@ -258,6 +258,16 @@ class ExecutorVerifyReport:
 
 
 @dataclass(frozen=True)
+class AttemptExecutorBinding:
+    task_id: str
+    executor_id: str
+    executor_statement: str
+    record_digest: str
+    context_manifest_digest: str
+    allowed_action: str
+
+
+@dataclass(frozen=True)
 class _Definition:
     root: Path
     definition_type: str
@@ -1787,22 +1797,41 @@ def _verify_assignment_live(assignment: _Assignment) -> str:
     expected_forbidden.update(RESERVED_AUTHORITY_ACTIONS)
     if expected_forbidden != set(record["forbidden_actions"]):
         raise PlaybookError("Effectieve verboden acties wijken af.", code="executor_action_stale")
-    if chain.status != "IN_EXECUTION":
+    attempt_progress = any(
+        event.event_type == "objective-attempt" for event in chain.events
+    )
+    if chain.status != "IN_EXECUTION" and not attempt_progress:
         return "TASK_FINISHED"
     context = record["context"]
-    binding = _context_binding(
-        assignment.root,
-        assignment.task_id,
-        task["proposal_digest"],
-        context.get("manifest_digest"),
-        {
-            playbook_record["document_path"]: playbook.document_digest,
-            role_record["document_path"]: role.document_digest,
-        },
-    )
+    if attempt_progress:
+        try:
+            _, _, context_bytes, manifest_bytes = _load_package_manifest(
+                assignment.root
+            )
+        except WorkspaceError as exc:
+            raise PlaybookError(
+                "Taakcontext is niet veilig controleerbaar.",
+                code="executor_context_stale",
+            ) from exc
+        binding = {
+            "context_digest": _sha256(context_bytes),
+            "manifest_digest": _sha256(manifest_bytes),
+            "package_path": ".opencntx/latest",
+        }
+    else:
+        binding = _context_binding(
+            assignment.root,
+            assignment.task_id,
+            task["proposal_digest"],
+            context.get("manifest_digest"),
+            {
+                playbook_record["document_path"]: playbook.document_digest,
+                role_record["document_path"]: role.document_digest,
+            },
+        )
     if binding != context:
         raise PlaybookError("Contextbinding wijkt af.", code="executor_context_stale")
-    return "READY"
+    return "READY" if chain.status == "IN_EXECUTION" else "TASK_FINISHED"
 
 
 def verify_executor(
@@ -1837,6 +1866,42 @@ def executor_status(project_root: Path, task_id: str, executor_id: str) -> Execu
         executor_id=report.executor_id,
         record_digest=record_digest,
         errors=report.errors,
+    )
+
+
+def attempt_executor_binding(
+    project_root: Path,
+    task_id: str,
+    *,
+    executor_id: str,
+    allowed_action: str,
+    require_active: bool = True,
+) -> AttemptExecutorBinding:
+    """Return one verified live executor binding for objective attempt evidence."""
+    normalized_task = _task_id(task_id)
+    normalized_executor = _executor_id(executor_id)
+    action = _action(allowed_action, field="Pogingactie")
+    assignment = _load_assignment(project_root, normalized_task, normalized_executor)
+    status = _verify_assignment_live(assignment)
+    allowed_statuses = {"READY"} if require_active else {"READY", "TASK_FINISHED"}
+    if status not in allowed_statuses:
+        raise PlaybookError(
+            "Uitvoerderpakket is niet exact actief voor deze poging.",
+            code="executor_task_status_invalid",
+        )
+    record = assignment.record
+    if action not in record["allowed_actions"] or action in record["forbidden_actions"]:
+        raise PlaybookError(
+            "Pogingactie valt buiten het effectieve uitvoerdercontract.",
+            code="executor_action_out_of_scope",
+        )
+    return AttemptExecutorBinding(
+        task_id=normalized_task,
+        executor_id=normalized_executor,
+        executor_statement=record["executor_statement"],
+        record_digest=record["record_digest"],
+        context_manifest_digest=record["context"]["manifest_digest"],
+        allowed_action=action,
     )
 
 

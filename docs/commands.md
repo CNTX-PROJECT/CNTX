@@ -51,7 +51,7 @@ required arguments and repeatable options.
 | 40 | `opencntx workspace task accept-result` | append the exact OWNER result decision |
 | 41 | `opencntx workspace task close` | close an accepted task |
 | 42 | `opencntx workspace task status` | report current task state read-only |
-| 43 | `opencntx workspace task record-attempt` | append one stable failure signature |
+| 43 | `opencntx workspace task record-attempt` | append one objective failed-attempt record |
 | 44 | `opencntx workspace task cancel` | terminate a task explicitly as cancelled |
 | 45 | `opencntx workspace task supersede` | terminate a task in favor of a named successor |
 
@@ -131,6 +131,40 @@ opencntx workspace recover --root my-project --transaction TXN-ID --intent-sha25
 Apply refuses an active writer, changed intent, unsafe link, unknown transaction
 data, or changed target. It creates and verifies a retained local backup before
 rolling the named transaction back and writes a recovery receipt.
+
+## Advanced / Alpha: objective failed-attempt evidence
+
+Record facts about one failed external action without executing or retrying it:
+
+```powershell
+opencntx workspace task record-attempt TASK-EXAMPLE-0001 `
+  --executor-id EXEC-20260820-0123456789ab `
+  --action inspect-source `
+  --command-type inspect-file `
+  --target SOURCES/attempt-input.txt `
+  --input SOURCES/attempt-input.txt `
+  --exit-status 2 `
+  --error-class invalid-input `
+  --actions-used 1 `
+  --duration-ms 250 `
+  --result-evidence attempt-result.txt `
+  --root my-project
+```
+
+Repeat `--input` for every relevant regular workspace file. After the first
+attempt, use genuinely changed input bytes or add
+`--new-evidence NEW-EVIDENCE-FILE`. A new filename, changed wording, mtime,
+argument order, or identical evidence bytes is not a new basis.
+
+The fixed error classes are `invalid-input`, `missing-input`,
+`permission-denied`, `not-found`, `timeout`, `conflict`,
+`resource-exhausted`, `dependency-failure`, `tool-failure`, and `unexpected`.
+Status reports digests and budgets but never prints the evidence contents.
+
+Three equal task-wide fingerprints, five total attempts, 25 cumulative actions,
+or 1,800,000 cumulative milliseconds block the task. No option resets or
+widens these limits. The OWNER may cancel the blocked task or supersede it with
+one explicit new task ID.
 
 ## Find exact options
 
