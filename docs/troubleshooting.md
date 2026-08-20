@@ -45,7 +45,17 @@ case can matter on Linux.
 
 Do not increase the budget automatically. Narrow the task, remove unrelated
 include patterns, or add a deliberate exclusion. The package must fit as a
-complete set.
+complete set. A byte-budget error reports both the bytes required by that
+complete selection and the configured allowed bytes.
+
+## A state path is inaccessible
+
+`managed_path_unsafe` can mean OPENCNTX could not safely inspect its local
+`.opencntx` state. The operation stops before publication and does not treat
+the unreadable path as absent. Check the project parent directory and its
+normal Windows ACL or POSIX permissions. Do not blindly use `takeown`, grant
+broad access, delete transaction evidence, or replace the state directory;
+preserve the first error and investigate the exact path first.
 
 ## A disk-space preflight fails
 

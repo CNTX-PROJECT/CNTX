@@ -127,6 +127,16 @@ def _relative_parts(relative: str | Path) -> tuple[str, ...]:
     return pure.parts
 
 
+def _path_present(path: Path) -> bool:
+    try:
+        return path.exists() or path.is_symlink()
+    except OSError as exc:
+        raise IntegrityError(
+            "Managed state path is inaccessible.",
+            code="managed_path_unsafe",
+        ) from exc
+
+
 def safe_managed_path(
     root: Path,
     relative: str | Path,
@@ -145,7 +155,7 @@ def safe_managed_path(
     current = resolved_root
     for index, part in enumerate(parts):
         current = current / part
-        exists = current.exists() or current.is_symlink()
+        exists = _path_present(current)
         if not exists:
             if must_exist or index < len(parts) - 1:
                 raise IntegrityError("Managed path is missing.", code="managed_path_unsafe")
@@ -158,7 +168,7 @@ def safe_managed_path(
             raise IntegrityError("Managed path cannot be resolved safely.", code="managed_path_unsafe") from exc
         if not resolved.is_relative_to(resolved_root):
             raise IntegrityError("Managed path leaves the workspace.", code="managed_path_unsafe")
-    if current.exists():
+    if _path_present(current):
         if kind == "file" and not current.is_file():
             raise IntegrityError("Managed path is not a normal file.", code="managed_path_unsafe")
         if kind == "directory" and not current.is_dir():
@@ -247,6 +257,30 @@ def _write_new(path: Path, content: bytes) -> str:
     return result
 
 
+def _create_integrity_directory(path: Path) -> None:
+    """Create one private POSIX or inherited-ACL Windows integrity directory."""
+    try:
+        if os.name == "nt":
+            path.mkdir()
+        else:
+            path.mkdir(mode=0o700)
+        resolved = path.resolve(strict=True)
+        if not resolved.is_dir():
+            raise IntegrityError(
+                "Integrity directory is not a normal directory.",
+                code="managed_path_unsafe",
+            )
+        with os.scandir(resolved) as entries:
+            next(entries, None)
+    except IntegrityError:
+        raise
+    except OSError as exc:
+        raise IntegrityError(
+            "Integrity directory is inaccessible.",
+            code="managed_path_unsafe",
+        ) from exc
+
+
 def _path_digest(path: Path) -> str:
     if not path.exists() and not path.is_symlink():
         return "ABSENT"
@@ -279,10 +313,18 @@ def _path_digest(path: Path) -> str:
 
 
 def state_digest(paths: Sequence[Path]) -> str:
-    value = [
-        {"path": path.as_posix(), "sha256": _path_digest(path)}
-        for path in paths
-    ]
+    try:
+        value = [
+            {"path": path.as_posix(), "sha256": _path_digest(path)}
+            for path in paths
+        ]
+    except IntegrityError:
+        raise
+    except OSError as exc:
+        raise IntegrityError(
+            "Transaction state path is inaccessible.",
+            code="managed_path_unsafe",
+        ) from exc
     return _sha256(_json_bytes(value))
 
 
@@ -439,8 +481,8 @@ def _held() -> dict[str, tuple[_FileLock, int]]:
 def _layout(root: Path, *, create: bool) -> dict[str, Path]:
     resolved = root.resolve(strict=True)
     candidate = resolved / ".opencntx"
-    if not candidate.exists() and create:
-        candidate.mkdir(mode=0o700)
+    if not _path_present(candidate) and create:
+        _create_integrity_directory(candidate)
         result = sync_directory(resolved)
         if result == "FAILED":
             raise IntegrityError("Integrity root flush failed.", code="transaction_durability_failed")
@@ -458,11 +500,11 @@ def _layout(root: Path, *, create: bool) -> dict[str, Path]:
     if create:
         for key in ("transactions", "locks", "task_locks", "active", "completed", "recovery", "backups"):
             path = paths[key]
-            if path.exists() or path.is_symlink():
+            if _path_present(path):
                 if path.is_symlink() or _is_reparse(path) or not path.is_dir():
                     raise IntegrityError("Integrity path is unsafe.", code="managed_path_unsafe")
             else:
-                path.mkdir(mode=0o700)
+                _create_integrity_directory(path)
                 result = sync_directory(path.parent)
                 if result == "FAILED":
                     raise IntegrityError("Integrity directory flush failed.", code="transaction_durability_failed")
@@ -704,8 +746,8 @@ def writer_transaction(
         now = _now()
         transaction_id = f"TXN-{_stamp(now)}-{uuid4().hex[:12]}"
         directory = layout["active"] / transaction_id
-        directory.mkdir(mode=0o700)
-        (directory / "phases").mkdir(mode=0o700)
+        _create_integrity_directory(directory)
+        _create_integrity_directory(directory / "phases")
         intent = {
             "created_at": _timestamp(now),
             "expected_digest": expected_digest,
@@ -1013,10 +1055,10 @@ def recover_workspace(
                 raise IntegrityError("Writer lock digest changed.", code="recovery_target_mismatch")
             stale_locks.append(_FileLock.open_stale(lock_path))
 
-        backup.mkdir(mode=0o700)
+        _create_integrity_directory(backup)
         shutil.copytree(active, backup / "transaction")
         current_root = backup / "current"
-        current_root.mkdir(mode=0o700)
+        _create_integrity_directory(current_root)
         for item in targets:
             target = safe_managed_path(root, item["path"])
             current_backup = current_root / f"{item['index']:04d}"

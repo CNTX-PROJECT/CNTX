@@ -23,6 +23,12 @@ source and artifact bytes are never changed by that display fallback.
 The code may work elsewhere, but the project does not claim live CI proof for
 an operating system outside this matrix.
 
+New integrity directories use owner-private mode `0700` on POSIX. On Windows,
+they inherit the parent directory's ACL so the same local project remains
+usable across normal launch contexts. That inheritance is not an owner-only
+guarantee: inspect and protect the parent directory with operating-system
+controls appropriate to the data.
+
 ## Active CI matrix
 
 Status label: `CI_ACTIVE`
