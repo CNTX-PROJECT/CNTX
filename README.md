@@ -28,15 +28,17 @@ OPENCNTX never sends them for you.
 
 ## Start in four steps
 
-OPENCNTX requires Python 3.11 or newer. The current Alpha release is `v0.2.0`.
+OPENCNTX requires Python 3.11 or newer. The package line is `v0.3.0` and
+remains Alpha. It is public only when both the live `v0.3.0` tag and the
+`OPENCNTX v0.3.0` GitHub Release are present.
 
-### 1. Install the Alpha release
+### 1. Install the Alpha release after publication
 
 With `pipx` and Git already installed, one pinned command creates an isolated
 tool environment:
 
 ```powershell
-pipx install "git+https://github.com/CNTX-PROJECT/OPENCNTX.git@v0.2.0"
+pipx install "git+https://github.com/CNTX-PROJECT/OPENCNTX.git@v0.3.0"
 opencntx --version
 opencntx --help
 ```
@@ -44,7 +46,7 @@ opencntx --help
 The source-checkout route remains available:
 
 ```powershell
-git clone --branch v0.2.0 --depth 1 https://github.com/CNTX-PROJECT/OPENCNTX.git
+git clone --branch v0.3.0 --depth 1 https://github.com/CNTX-PROJECT/OPENCNTX.git
 cd OPENCNTX
 python -m pip install .
 opencntx --version
@@ -145,18 +147,20 @@ route, never in a public issue.
 
 | Item | Current public state |
 |---|---|
-| Release | [`v0.2.0`](https://github.com/CNTX-PROJECT/OPENCNTX/releases/tag/v0.2.0) |
-| Package version | `0.2.0` |
+| Release line | `v0.3.0` Alpha; public only after the live tag and GitHub Release exist |
+| Package version | `0.3.0` |
 | Python | 3.11, 3.12, and 3.13 |
 | Tested systems | Windows and Ubuntu |
 | CI | `CI_ACTIVE`, six required matrix jobs |
 | Runtime dependencies | none |
 | License | [Apache-2.0](LICENSE) |
 
-OPENCNTX is not published on PyPI, and the existing `v0.2.0` release has no
-wheel or sdist assets. Current-main builds are unpublished candidates because
-`main` contains changes after that tag. See [Release artifacts](docs/release-artifacts.md)
-for the exact boundary.
+The `v0.3.0` GitHub Release is complete only when it is live with exactly
+`opencntx-0.3.0-py3-none-any.whl`, `opencntx-0.3.0.tar.gz`, `SHA256SUMS`, and
+`BUILD-RECORD.json`. Until the live tag and Release both exist, all v0.3.0
+builds are unpublished candidates. OPENCNTX is not published on PyPI or
+TestPyPI. See [Release artifacts](docs/release-artifacts.md) for the exact
+boundary.
 
 Only a successful live CI run on the exact commit proves those six jobs. See
 the [changelog](CHANGELOG.md), [support routes](SUPPORT.md), and

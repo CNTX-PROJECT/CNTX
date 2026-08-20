@@ -7,7 +7,7 @@ features or expose private project records.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="../assets/docs/roadmap-dark.svg">
-  <img src="../assets/docs/roadmap.svg" alt="OPENCNTX progressed from the three-command core through the workspace foundation to the current version 0.2 release">
+  <img src="../assets/docs/roadmap.svg" alt="OPENCNTX progressed from the three-command core through the workspace foundation to the current v0.3 Alpha line">
 </picture>
 
 ## Completed foundation
@@ -98,15 +98,31 @@ features or expose private project records.
 - kept the same six Windows/Ubuntu CI checks, no runtime dependency, and no
   publication, upload, product expansion, or security-audit claim.
 
+### v0.3.0 Alpha line
+
+- versioned the integrated post-v0.2.0 work as package `0.3.0` while retaining
+  the `Development Status :: 3 - Alpha` maturity;
+- kept Python `>=3.11`, zero runtime dependencies, and the existing local,
+  provider-neutral product boundary;
+- defined the exact-tag installation route
+  `pipx install "git+https://github.com/CNTX-PROJECT/OPENCNTX.git@v0.3.0"`
+  and exactly four GitHub Release assets: `opencntx-0.3.0-py3-none-any.whl`,
+  `opencntx-0.3.0.tar.gz`, `SHA256SUMS`, and `BUILD-RECORD.json`;
+- treats v0.3.0 as publicly released only when both the live `v0.3.0` tag and
+  the `OPENCNTX v0.3.0` GitHub Release actually exist.
+
 ## Current state
 
-- Current release: `v0.2.0`
-- Package version: `0.2.0`
+- Current package line: `v0.3.0`
+- Package version: `0.3.0`
 - Maturity: Alpha
 - Runtime dependencies: none
 - CI: `CI_ACTIVE`
 - Product focus: local, explicit, bounded, verifiable context
-- Distribution: exact Git tag; no PyPI package or attached wheel/sdist assets
+- Public release condition: both the live `v0.3.0` tag and the matching GitHub
+  Release must exist
+- Distribution after publication: exact Git tag plus GitHub Release with the
+  four exact assets named above; no PyPI or TestPyPI package
 
 ## Future work
 

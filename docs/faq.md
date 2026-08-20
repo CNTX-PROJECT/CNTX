@@ -92,15 +92,22 @@ separate prevents the tool or executor from approving its own work.
 
 ## Is OPENCNTX on PyPI?
 
-No. Install the current Alpha release from the exact public Git tag. A current
-404 response from a package index is not proof that a name is owned or reserved.
+No. The `v0.3.0` line remains Alpha and is installable from its exact Git tag
+only after both that live tag and the `OPENCNTX v0.3.0` GitHub Release exist.
+The exact isolated route is
+`pipx install "git+https://github.com/CNTX-PROJECT/OPENCNTX.git@v0.3.0"`.
+A current 404 response from a package index is not proof that a name is owned
+or reserved.
 
 ## Are wheel or sdist release assets available?
 
-Not for the existing `v0.2.0` release. Current-main builds are temporary local
-candidates and must not be presented as another `0.2.0` release. See
-[Release artifacts](release-artifacts.md) for checksums, build records,
-reproducibility limits, and the separate future publication gate.
+The historical `v0.2.0` Release has none. The `v0.3.0` Release is complete only
+when it is live with exactly `opencntx-0.3.0-py3-none-any.whl`,
+`opencntx-0.3.0.tar.gz`, `SHA256SUMS`, and `BUILD-RECORD.json`. Until its live
+tag and GitHub Release both exist, these are unpublished candidates rather
+than public release assets. See [Release artifacts](release-artifacts.md) for
+checksums, build records, reproducibility limits, and the separate publication
+gate.
 
 ## Where should I start?
 
