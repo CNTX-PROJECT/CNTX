@@ -4,14 +4,16 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from datetime import datetime, timezone
-import hashlib
-import json
 import os
 from pathlib import Path
-from typing import Any
 from uuid import uuid4
 
 from .integrity import writer_transaction
+from .primitives import (
+    pretty_json_bytes as _json_bytes,
+    sha256_bytes as _digest,
+    timestamp_microseconds as _timestamp,
+)
 from .workspace import WorkspaceError, validate_workspace
 
 
@@ -65,20 +67,6 @@ class ControlRefreshResult:
     block_bytes: int | None
     snapshot_path: Path | None
     receipt_path: Path | None
-
-
-def _digest(content: bytes) -> str:
-    return hashlib.sha256(content).hexdigest()
-
-
-def _timestamp(value: datetime) -> str:
-    return value.isoformat(timespec="microseconds").replace("+00:00", "Z")
-
-
-def _json_bytes(value: dict[str, Any]) -> bytes:
-    return (json.dumps(value, ensure_ascii=False, indent=2, sort_keys=True) + "\n").encode(
-        "utf-8"
-    )
 
 
 def _read_control_file(root: Path, relative: str) -> bytes:

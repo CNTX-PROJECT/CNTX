@@ -491,7 +491,19 @@ class PublicQualityTests(unittest.TestCase):
             "PYTHONDONTWRITEBYTECODE",
             "PYTHONUTF8",
             "python -m pip install --disable-pip-version-check build==1.3.0 setuptools==80.9.0",
+            "python -m pip install --disable-pip-version-check -r requirements-quality.txt",
+            "python -m pip check",
+            'environment.write("PIP_NO_INDEX=1\\n")',
+            'environment.write(f"PIP_FIND_LINKS={wheelhouse}\\n")',
             "python -W error::ResourceWarning -m unittest discover -s tests",
+            "COVERAGE_FILE: ${{ runner.temp }}/opencntx-coverage-data",
+            "python -W error::ResourceWarning -m coverage run --branch --source=opencntx -m unittest discover -s tests",
+            'python -m coverage json -o "${{ runner.temp }}/opencntx-coverage.json"',
+            "python tools/quality_gate.py metrics",
+            'python tools/quality_gate.py coverage "${{ runner.temp }}/opencntx-coverage.json"',
+            "python tools/quality_gate.py lint",
+            "python tools/quality_gate.py types",
+            "timeout-minutes: 8",
             '"tools/release_artifacts.py"',
             '"build"',
             '"smoke"',
@@ -499,6 +511,22 @@ class PublicQualityTests(unittest.TestCase):
             '"--expected-tree"',
         ):
             self.assertIn(value, text)
+
+        quality_requirements = (ROOT / "requirements-quality.txt").read_text(
+            encoding="utf-8"
+        )
+        self.assertEqual(
+            {
+                "coverage==7.15.4",
+                "hypothesis==6.165.10",
+                "mypy==2.3.1",
+                "ruff==0.16.3",
+            },
+            set(quality_requirements.splitlines()),
+        )
+        with (ROOT / "pyproject.toml").open("rb") as project_file:
+            project = tomllib.load(project_file)["project"]
+        self.assertNotIn("dependencies", project)
 
     def test_public_ci_status_is_active_and_unambiguous(self) -> None:
         status_documents = (README, CHANGELOG, DOCS / "platforms.md")

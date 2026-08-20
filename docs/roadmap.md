@@ -87,6 +87,17 @@ features or expose private project records.
 - kept encryption, team identities, distributed locking, automatic cleanup,
   publication, and release changes outside the product claim.
 
+### Behavior-preserving internal simplification
+
+- retained `opencntx.cli` as the stable facade while separating six internal
+  command families and reducing every function to at most 180 lines;
+- centralized only byte-equivalent low-level helpers and kept domain errors,
+  formats, OWNER gates, paths, output, and exit behavior unchanged;
+- added exact CLI goldens, deterministic properties, selected typing, and
+  branch-coverage ratchets with pinned development-only tools;
+- kept the same six Windows/Ubuntu CI checks, no runtime dependency, and no
+  publication, upload, product expansion, or security-audit claim.
+
 ## Current state
 
 - Current release: `v0.2.0`

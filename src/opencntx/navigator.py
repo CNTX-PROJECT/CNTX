@@ -3,8 +3,6 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import datetime, timezone
-import hashlib
 import json
 import os
 from pathlib import Path, PurePosixPath
@@ -14,6 +12,11 @@ from typing import Any, Sequence
 from uuid import uuid4
 
 from .integrity import Transaction, state_digest, writer_transaction
+from .primitives import (
+    sha256_bytes as _digest_bytes,
+    timestamp_microseconds as _timestamp,
+    utc_now as _utc_now,
+)
 from .catalog import (
     CATALOG_FORMAT,
     CATALOG_FORMAT_VERSION,
@@ -164,23 +167,11 @@ class ContextVerifyReport:
     errors: tuple[str, ...]
 
 
-def _utc_now() -> datetime:
-    return datetime.now(timezone.utc)
-
-
-def _timestamp(value: datetime) -> str:
-    return value.isoformat(timespec="microseconds").replace("+00:00", "Z")
-
-
 def _json_bytes(value: object) -> bytes:
     return (
         json.dumps(value, ensure_ascii=False, allow_nan=False, indent=2, sort_keys=True)
         + "\n"
     ).encode("utf-8")
-
-
-def _digest_bytes(value: bytes) -> str:
-    return hashlib.sha256(value).hexdigest()
 
 
 def _validate_task_id(value: object) -> str:

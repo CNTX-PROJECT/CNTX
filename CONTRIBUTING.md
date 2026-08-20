@@ -15,6 +15,10 @@ Thank you for helping improve a small, local, provider-neutral context tool.
 ```powershell
 $env:PYTHONDONTWRITEBYTECODE="1"
 python -W error::ResourceWarning -m unittest discover -s tests
+python -m pip install --disable-pip-version-check -r requirements-quality.txt
+python -m coverage run --branch --source=opencntx -m unittest discover -s tests
+python -m coverage json -o coverage.json
+python tools/quality_gate.py all --coverage-report coverage.json
 python tools/render_brand.py --check
 python -m pip install --disable-pip-version-check build==1.3.0 setuptools==80.9.0
 $commit = git rev-parse HEAD
@@ -27,6 +31,11 @@ platforms you used; zero automated checks is not green evidence. The candidate
 build requires a clean worktree and an absent or empty `dist` directory. It
 creates local unpublished files only. Read [Release artifacts](docs/release-artifacts.md)
 before making any reproducibility or provenance claim.
+
+The pinned quality packages are development tools only. The quality route
+checks behavior goldens, bounded properties, lint/format ratchets, a selected
+type boundary, branch coverage, and package hygiene. It is not a vulnerability
+scan, security audit, privacy proof, or penetration test.
 
 ## Brand changes
 

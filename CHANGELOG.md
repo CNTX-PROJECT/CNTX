@@ -49,6 +49,14 @@ All notable OPENCNTX changes are recorded here.
 
 ### Changed
 
+- Split the stable CLI facade into six internal command families, decomposed
+  the four functions that exceeded 180 lines, and centralized only
+  byte-equivalent time, JSON, SHA-256, and write primitives without changing
+  public commands, outputs, formats, error codes, or runtime dependencies.
+- Added exact CLI goldens, deterministic path/pattern/manifest properties, a
+  pinned development-only Ruff/Mypy/coverage/Hypothesis toolchain, and bounded
+  quality ratchets inside the existing six CI jobs. These are lightweight
+  static and package-hygiene checks, not a security audit or penetration test.
 - Replaced new free-text attempt signatures and new-basis claims with a closed,
   controller-derived evidence contract while keeping historical text-attempt
   records read-only verifiable.
@@ -80,9 +88,9 @@ All notable OPENCNTX changes are recorded here.
   verification.
 
 No runtime dependency, package version, release, publication, or product
-network boundary changed. CI uses a pinned build-only toolchain, emits no
-uploaded artifact, and compares artifact and installed metadata with the
-single package version instead of duplicating that version in the workflow.
+network boundary changed. CI uses pinned build- and quality-only toolchains,
+emits no uploaded artifact, and compares artifact and installed metadata with
+the single package version instead of duplicating that version in the workflow.
 
 ## 0.2.0 - 2026-08-18
 

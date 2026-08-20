@@ -17,6 +17,8 @@ import threading
 from typing import Any, Callable, Iterator, Sequence
 from uuid import uuid4
 
+from .primitives import sha256_bytes as _sha256, timestamp_microseconds as _timestamp
+
 
 TRANSACTION_FORMAT = "opencntx-transaction"
 TRANSACTION_VERSION = 1
@@ -82,10 +84,6 @@ def _now() -> datetime:
     return datetime.now(UTC)
 
 
-def _timestamp(value: datetime) -> str:
-    return value.isoformat(timespec="microseconds").replace("+00:00", "Z")
-
-
 def _stamp(value: datetime) -> str:
     return value.strftime("%Y%m%dT%H%M%S%fZ")
 
@@ -94,10 +92,6 @@ def _json_bytes(value: object) -> bytes:
     return (json.dumps(value, ensure_ascii=True, indent=2, sort_keys=True) + "\n").encode(
         "utf-8"
     )
-
-
-def _sha256(value: bytes) -> str:
-    return hashlib.sha256(value).hexdigest()
 
 
 def _read_json(path: Path, *, label: str) -> tuple[dict[str, Any], bytes]:
@@ -124,6 +118,7 @@ def _relative_parts(relative: str | Path) -> tuple[str, ...]:
     pure = PurePosixPath(text)
     if (
         not text
+        or not pure.parts
         or pure.is_absolute()
         or any(part in {"", ".", ".."} for part in pure.parts)
         or ":" in pure.parts[0]
@@ -187,7 +182,8 @@ def sync_directory(path: Path) -> str:
             if descriptor is not None:
                 os.close(descriptor)
 
-    create_file = ctypes.windll.kernel32.CreateFileW
+    kernel32 = vars(ctypes)["windll"].kernel32
+    create_file = kernel32.CreateFileW
     create_file.argtypes = [
         ctypes.c_wchar_p,
         ctypes.c_uint32,
@@ -198,10 +194,10 @@ def sync_directory(path: Path) -> str:
         ctypes.c_void_p,
     ]
     create_file.restype = ctypes.c_void_p
-    flush = ctypes.windll.kernel32.FlushFileBuffers
+    flush = kernel32.FlushFileBuffers
     flush.argtypes = [ctypes.c_void_p]
     flush.restype = ctypes.c_int
-    close = ctypes.windll.kernel32.CloseHandle
+    close = kernel32.CloseHandle
     close.argtypes = [ctypes.c_void_p]
     close.restype = ctypes.c_int
     handle = create_file(
@@ -222,13 +218,28 @@ def sync_directory(path: Path) -> str:
         close(handle)
 
 
+def write_new_bytes(
+    path: Path,
+    content: bytes,
+    *,
+    mode: int = 0o666,
+    private: bool = False,
+    sync_parent: bool = False,
+) -> str:
+    """Write exact bytes to one absent file and optionally flush its parent."""
+    descriptor = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, mode)
+    with os.fdopen(descriptor, "wb") as output:
+        output.write(content)
+        output.flush()
+        os.fsync(output.fileno())
+    if private and os.name != "nt":
+        os.chmod(path, 0o600)
+    return sync_directory(path.parent) if sync_parent else "NOT_REQUESTED"
+
+
 def _write_new(path: Path, content: bytes) -> str:
     try:
-        with path.open("xb") as output:
-            output.write(content)
-            output.flush()
-            os.fsync(output.fileno())
-        result = sync_directory(path.parent)
+        result = write_new_bytes(path, content, sync_parent=True)
     except OSError as exc:
         raise IntegrityError("Transaction evidence could not be written.", code="transaction_write_failed") from exc
     if result == "FAILED":
@@ -290,14 +301,16 @@ class _FileLock:
             import msvcrt
 
             try:
-                msvcrt.locking(handle.fileno(), msvcrt.LK_NBLCK, 1)
+                vars(msvcrt)["locking"](handle.fileno(), vars(msvcrt)["LK_NBLCK"], 1)
             except OSError as exc:
                 raise IntegrityError("Another writer is active.", code="transaction_locked") from exc
         else:
             import fcntl
 
             try:
-                fcntl.flock(handle.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+                vars(fcntl)["flock"](
+                    handle.fileno(), vars(fcntl)["LOCK_EX"] | vars(fcntl)["LOCK_NB"]
+                )
             except OSError as exc:
                 raise IntegrityError("Another writer is active.", code="transaction_locked") from exc
 
@@ -307,11 +320,11 @@ class _FileLock:
         if os.name == "nt":
             import msvcrt
 
-            msvcrt.locking(handle.fileno(), msvcrt.LK_UNLCK, 1)
+            vars(msvcrt)["locking"](handle.fileno(), vars(msvcrt)["LK_UNLCK"], 1)
         else:
             import fcntl
 
-            fcntl.flock(handle.fileno(), fcntl.LOCK_UN)
+            vars(fcntl)["flock"](handle.fileno(), vars(fcntl)["LOCK_UN"])
 
     @classmethod
     def create(cls, path: Path, metadata: dict[str, Any]) -> _FileLock:
@@ -1006,13 +1019,13 @@ def recover_workspace(
         current_root.mkdir(mode=0o700)
         for item in targets:
             target = safe_managed_path(root, item["path"])
-            current = current_root / f"{item['index']:04d}"
+            current_backup = current_root / f"{item['index']:04d}"
             if target.exists():
                 if target.is_dir():
-                    shutil.copytree(target, current)
+                    shutil.copytree(target, current_backup)
                 else:
-                    shutil.copy2(target, current)
-                if _path_digest(current) != _path_digest(target):
+                    shutil.copy2(target, current_backup)
+                if _path_digest(current_backup) != _path_digest(target):
                     raise IntegrityError("Recovery backup verification failed.", code="transaction_backup_failed")
         manifest = {
             "backup_id": recovery_id,

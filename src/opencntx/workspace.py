@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import datetime
 import hashlib
 import json
 import os
@@ -13,7 +13,12 @@ import shutil
 from typing import Any, BinaryIO
 from uuid import uuid4
 
-from .integrity import Transaction, state_digest, writer_transaction
+from .integrity import Transaction, state_digest, write_new_bytes, writer_transaction
+from .primitives import (
+    pretty_json_bytes as _json_bytes,
+    timestamp_microseconds as _timestamp,
+    utc_now as _utc_now,
+)
 
 
 WORKSPACE_FORMAT = "opencntx-workspace"
@@ -129,27 +134,24 @@ class StoredSource:
     record_path: Path
 
 
-def _utc_now() -> datetime:
-    return datetime.now(timezone.utc)
-
-
-def _timestamp(value: datetime) -> str:
-    return value.isoformat(timespec="microseconds").replace("+00:00", "Z")
+@dataclass(frozen=True)
+class _CapturePlan:
+    root: Path
+    config: WorkspaceConfig
+    stored: dict[str, StoredSource]
+    captured_at: datetime
+    attempt_id: str
+    original_name: str
+    original_filename: str
+    privacy: str
+    origin: str | None
+    supersedes: str | None
+    resolved_source: Path
+    initial_stat: os.stat_result
 
 
 def _write_new_file(path: Path, content: bytes) -> None:
-    with path.open("xb") as output:
-        output.write(content)
-        output.flush()
-        os.fsync(output.fileno())
-    if os.name != "nt":
-        os.chmod(path, 0o600)
-
-
-def _json_bytes(value: dict[str, Any]) -> bytes:
-    return (json.dumps(value, ensure_ascii=False, indent=2, sort_keys=True) + "\n").encode(
-        "utf-8"
-    )
+    write_new_bytes(path, content, mode=0o600, private=True)
 
 
 def _resolve_root(project_root: Path, *, create: bool) -> tuple[Path, bool]:
@@ -824,6 +826,283 @@ def _safe_month_directory(root: Path, captured_at: datetime) -> Path:
     return current
 
 
+def _prepare_capture_plan(
+    root: Path,
+    source_path: Path,
+    *,
+    config: WorkspaceConfig,
+    stored: dict[str, StoredSource],
+    captured_at: datetime,
+    attempt_id: str,
+    original_name: str,
+    privacy: str,
+    origin: str | None,
+    supersedes: str | None,
+) -> _CapturePlan:
+    if supersedes is not None:
+        if SOURCE_ID_PATTERN.fullmatch(supersedes) is None or supersedes not in stored:
+            raise WorkspaceError(
+                f"Onbekende supersedes-bron: {supersedes}",
+                code="supersedes_invalid",
+            )
+
+    requested_source = source_path.absolute()
+    if requested_source.is_symlink():
+        raise WorkspaceError(
+            "Het bronbestand mag geen symlink zijn.",
+            code="source_symlink",
+        )
+    if not requested_source.is_file():
+        raise WorkspaceError(
+            "De bron moet één bestaand regulier bestand zijn.",
+            code="source_not_file",
+        )
+    try:
+        resolved_source = requested_source.resolve(strict=True)
+        initial_stat = resolved_source.stat()
+    except OSError as exc:
+        raise WorkspaceError(
+            f"Het bronbestand is niet toegankelijk: {exc}",
+            code="source_unavailable",
+        ) from exc
+    if resolved_source.is_relative_to(root / "SOURCES") or resolved_source.is_relative_to(
+        root / ".opencntx"
+    ):
+        raise WorkspaceError(
+            "Een beheerde bron of interne OPENCNTX-staat kan niet opnieuw worden gecaptured.",
+            code="source_managed_path",
+        )
+    if initial_stat.st_size > config.max_source_bytes:
+        raise WorkspaceError(
+            f"Bronbudget overschreden: {initial_stat.st_size} > {config.max_source_bytes} bytes.",
+            code="source_budget_exceeded",
+        )
+
+    from .lifecycle import require_disk_capacity
+
+    require_disk_capacity(
+        root,
+        initial_stat.st_size * 2 + 16 * 1024,
+        "workspace-capture",
+    )
+    return _CapturePlan(
+        root=root,
+        config=config,
+        stored=stored,
+        captured_at=captured_at,
+        attempt_id=attempt_id,
+        original_name=original_name,
+        original_filename=f"original{_original_suffix(original_name)}",
+        privacy=privacy,
+        origin=origin,
+        supersedes=supersedes,
+        resolved_source=resolved_source,
+        initial_stat=initial_stat,
+    )
+
+
+def _stage_capture(plan: _CapturePlan) -> tuple[Path, int, str]:
+    opencntx = plan.root / ".opencntx"
+    if opencntx.is_symlink() or not opencntx.is_dir():
+        raise WorkspaceError(
+            ".opencntx moet een veilige gewone map zijn.",
+            code="managed_path_invalid",
+        )
+    temporary = opencntx / f".capture-{uuid4().hex}"
+    try:
+        temporary.mkdir(mode=0o700)
+        temporary_original = temporary / plan.original_filename
+        try:
+            with plan.resolved_source.open("rb") as source, temporary_original.open(
+                "xb"
+            ) as output:
+                byte_count, digest = _copy_and_hash(source, output)
+            if os.name != "nt":
+                os.chmod(temporary_original, 0o600)
+            final_stat = plan.resolved_source.stat()
+        except OSError as exc:
+            raise WorkspaceError(
+                f"Het bronbestand kon niet volledig worden gecaptured: {exc}",
+                code="source_read_failed",
+            ) from exc
+        changed = (
+            _source_identity(plan.initial_stat) != _source_identity(final_stat)
+            or byte_count != plan.initial_stat.st_size
+        )
+        if changed:
+            raise WorkspaceError(
+                "Het bronbestand veranderde tijdens capture; er is niets opgeslagen.",
+                code="source_changed",
+            )
+        verified_bytes, verified_digest = _hash_file(temporary_original)
+        if verified_bytes != byte_count or verified_digest != digest:
+            raise WorkspaceError(
+                "De tijdelijke bronkopie wijkt af na schrijven; er is niets opgeslagen.",
+                code="temporary_verify_failed",
+            )
+        return temporary, byte_count, digest
+    except BaseException:
+        if temporary.exists():
+            shutil.rmtree(temporary, ignore_errors=True)
+        raise
+
+
+def _duplicate_capture(
+    plan: _CapturePlan,
+    temporary: Path,
+    byte_count: int,
+    digest: str,
+) -> CaptureResult | None:
+    duplicate = next(
+        (
+            item
+            for item in plan.stored.values()
+            if item.byte_count == byte_count and item.sha256 == digest
+        ),
+        None,
+    )
+    if duplicate is None:
+        return None
+    duplicate_bytes, duplicate_digest = _hash_file(duplicate.original_path)
+    if duplicate_bytes != duplicate.byte_count or duplicate_digest != duplicate.sha256:
+        raise WorkspaceError(
+            "De bestaande identieke bron wijkt af van haar registratie; "
+            "capture is gestopt voor controle.",
+            code="stored_source_drift",
+        )
+    if duplicate.privacy != plan.privacy:
+        raise WorkspaceError(
+            "Een identieke bron bestaat al met een ander privacylabel; "
+            "de bestaande classificatie is niet gewijzigd.",
+            code="duplicate_privacy_conflict",
+        )
+    if plan.supersedes is not None:
+        raise WorkspaceError(
+            "Een identieke bron kan niet als nieuwe vervangende versie worden opgeslagen.",
+            code="supersedes_duplicate",
+        )
+    shutil.rmtree(temporary, ignore_errors=True)
+    receipt = _write_receipt(
+        plan.root,
+        attempt_id=plan.attempt_id,
+        captured_at=plan.captured_at,
+        status="DUPLICATE",
+        original_name=plan.original_name,
+        privacy=plan.privacy,
+        origin=plan.origin,
+        source_id=duplicate.source_id,
+        byte_count=byte_count,
+        sha256=digest,
+    )
+    return CaptureResult(
+        status="DUPLICATE",
+        source_id=duplicate.source_id,
+        byte_count=byte_count,
+        sha256=digest,
+        receipt_path=receipt,
+    )
+
+
+def _publish_capture(
+    plan: _CapturePlan,
+    temporary: Path,
+    byte_count: int,
+    digest: str,
+    transaction: Transaction | None,
+) -> CaptureResult:
+    current_total = sum(item.byte_count for item in plan.stored.values())
+    current_total += _derived_storage_bytes(plan.root)
+    if current_total + byte_count > plan.config.max_storage_bytes:
+        raise WorkspaceError(
+            "Totaal opslagbudget wordt overschreden: "
+            f"{current_total + byte_count} > {plan.config.max_storage_bytes} bytes.",
+            code="storage_budget_exceeded",
+        )
+
+    source_id = _new_source_id(plan.captured_at, plan.stored)
+    month_directory = _safe_month_directory(plan.root, plan.captured_at)
+    final_directory = month_directory / source_id
+    if final_directory.exists() or final_directory.is_symlink():
+        raise WorkspaceError(
+            f"Doelbron bestaat onverwacht al: {source_id}",
+            code="source_id_conflict",
+        )
+    stored_path = (
+        Path("SOURCES")
+        / plan.captured_at.strftime("%Y")
+        / plan.captured_at.strftime("%m")
+        / source_id
+        / plan.original_filename
+    ).as_posix()
+    record = {
+        "bytes": byte_count,
+        "captured_at": _timestamp(plan.captured_at),
+        "format": SOURCE_RECORD_FORMAT,
+        "format_version": SOURCE_RECORD_VERSION,
+        "origin": plan.origin,
+        "original_name": plan.original_name,
+        "privacy": plan.privacy,
+        "sha256": digest,
+        "source_id": source_id,
+        "status": "CAPTURED",
+        "stored_path": stored_path,
+        "supersedes": plan.supersedes,
+    }
+    _write_new_file(temporary / "record.json", _json_bytes(record))
+    if transaction is not None:
+        transaction.track_target(final_directory)
+    try:
+        os.replace(temporary, final_directory)
+    except OSError as exc:
+        raise WorkspaceError(
+            f"De bron kon niet atomair zichtbaar worden gemaakt: {exc}",
+            code="source_publish_failed",
+        ) from exc
+    if transaction is not None:
+        transaction.mark_target_published(final_directory)
+        transaction.mark_published()
+    try:
+        receipt = _write_receipt(
+            plan.root,
+            attempt_id=plan.attempt_id,
+            captured_at=plan.captured_at,
+            status="CAPTURED",
+            original_name=plan.original_name,
+            privacy=plan.privacy,
+            origin=plan.origin,
+            source_id=source_id,
+            byte_count=byte_count,
+            sha256=digest,
+        )
+        if transaction is not None:
+            transaction.mark_receipted(receipt)
+    except WorkspaceError:
+        shutil.rmtree(final_directory, ignore_errors=True)
+        raise
+    return CaptureResult(
+        status="CAPTURED",
+        source_id=source_id,
+        byte_count=byte_count,
+        sha256=digest,
+        receipt_path=receipt,
+    )
+
+
+def _execute_capture(
+    plan: _CapturePlan,
+    transaction: Transaction | None,
+) -> CaptureResult:
+    temporary, byte_count, digest = _stage_capture(plan)
+    try:
+        duplicate = _duplicate_capture(plan, temporary, byte_count, digest)
+        if duplicate is not None:
+            return duplicate
+        return _publish_capture(plan, temporary, byte_count, digest, transaction)
+    finally:
+        if temporary.exists():
+            shutil.rmtree(temporary, ignore_errors=True)
+
+
 def _capture_source_unlocked(
     project_root: Path,
     source_path: Path,
@@ -840,225 +1119,25 @@ def _capture_source_unlocked(
     root: Path | None = None
     normalized_privacy = privacy.strip().upper() or "PRIVATE"
     normalized_origin: str | None = origin
-    temporary: Path | None = None
-    final_directory: Path | None = None
     try:
         root = validate_workspace(project_root)
         config = load_workspace_config(root)
         normalized_privacy = _validate_privacy(privacy)
         normalized_origin = _validate_origin(origin)
         stored = _stored_sources(root)
-
-        if supersedes is not None:
-            if SOURCE_ID_PATTERN.fullmatch(supersedes) is None or supersedes not in stored:
-                raise WorkspaceError(
-                    f"Onbekende supersedes-bron: {supersedes}",
-                    code="supersedes_invalid",
-                )
-
-        requested_source = source_path.absolute()
-        if requested_source.is_symlink():
-            raise WorkspaceError(
-                "Het bronbestand mag geen symlink zijn.",
-                code="source_symlink",
-            )
-        if not requested_source.is_file():
-            raise WorkspaceError(
-                "De bron moet één bestaand regulier bestand zijn.",
-                code="source_not_file",
-            )
-        try:
-            resolved_source = requested_source.resolve(strict=True)
-            initial_stat = resolved_source.stat()
-        except OSError as exc:
-            raise WorkspaceError(
-                f"Het bronbestand is niet toegankelijk: {exc}",
-                code="source_unavailable",
-            ) from exc
-        if resolved_source.is_relative_to(root / "SOURCES") or resolved_source.is_relative_to(
-            root / ".opencntx"
-        ):
-            raise WorkspaceError(
-                "Een beheerde bron of interne OPENCNTX-staat kan niet opnieuw worden gecaptured.",
-                code="source_managed_path",
-            )
-        if initial_stat.st_size > config.max_source_bytes:
-            raise WorkspaceError(
-                f"Bronbudget overschreden: {initial_stat.st_size} > {config.max_source_bytes} bytes.",
-                code="source_budget_exceeded",
-            )
-
-        from .lifecycle import require_disk_capacity
-
-        require_disk_capacity(
+        plan = _prepare_capture_plan(
             root,
-            initial_stat.st_size * 2 + 16 * 1024,
-            "workspace-capture",
+            source_path,
+            config=config,
+            stored=stored,
+            captured_at=captured_at,
+            attempt_id=attempt_id,
+            original_name=original_name,
+            privacy=normalized_privacy,
+            origin=normalized_origin,
+            supersedes=supersedes,
         )
-
-        opencntx = root / ".opencntx"
-        if opencntx.is_symlink() or not opencntx.is_dir():
-            raise WorkspaceError(
-                ".opencntx moet een veilige gewone map zijn.",
-                code="managed_path_invalid",
-            )
-        temporary = opencntx / f".capture-{uuid4().hex}"
-        temporary.mkdir(mode=0o700)
-        original_filename = f"original{_original_suffix(original_name)}"
-        temporary_original = temporary / original_filename
-        try:
-            with resolved_source.open("rb") as source, temporary_original.open("xb") as output:
-                byte_count, digest = _copy_and_hash(source, output)
-            if os.name != "nt":
-                os.chmod(temporary_original, 0o600)
-            final_stat = resolved_source.stat()
-        except OSError as exc:
-            raise WorkspaceError(
-                f"Het bronbestand kon niet volledig worden gecaptured: {exc}",
-                code="source_read_failed",
-            ) from exc
-        if _source_identity(initial_stat) != _source_identity(final_stat) or byte_count != initial_stat.st_size:
-            raise WorkspaceError(
-                "Het bronbestand veranderde tijdens capture; er is niets opgeslagen.",
-                code="source_changed",
-            )
-        verified_bytes, verified_digest = _hash_file(temporary_original)
-        if verified_bytes != byte_count or verified_digest != digest:
-            raise WorkspaceError(
-                "De tijdelijke bronkopie wijkt af na schrijven; er is niets opgeslagen.",
-                code="temporary_verify_failed",
-            )
-
-        duplicate = next(
-            (
-                item
-                for item in stored.values()
-                if item.byte_count == byte_count and item.sha256 == digest
-            ),
-            None,
-        )
-        if duplicate is not None:
-            duplicate_bytes, duplicate_digest = _hash_file(duplicate.original_path)
-            if (
-                duplicate_bytes != duplicate.byte_count
-                or duplicate_digest != duplicate.sha256
-            ):
-                raise WorkspaceError(
-                    "De bestaande identieke bron wijkt af van haar registratie; "
-                    "capture is gestopt voor controle.",
-                    code="stored_source_drift",
-                )
-            if duplicate.privacy != normalized_privacy:
-                raise WorkspaceError(
-                    "Een identieke bron bestaat al met een ander privacylabel; "
-                    "de bestaande classificatie is niet gewijzigd.",
-                    code="duplicate_privacy_conflict",
-                )
-            if supersedes is not None:
-                raise WorkspaceError(
-                    "Een identieke bron kan niet als nieuwe vervangende versie worden opgeslagen.",
-                    code="supersedes_duplicate",
-                )
-            shutil.rmtree(temporary, ignore_errors=True)
-            temporary = None
-            receipt = _write_receipt(
-                root,
-                attempt_id=attempt_id,
-                captured_at=captured_at,
-                status="DUPLICATE",
-                original_name=original_name,
-                privacy=normalized_privacy,
-                origin=normalized_origin,
-                source_id=duplicate.source_id,
-                byte_count=byte_count,
-                sha256=digest,
-            )
-            return CaptureResult(
-                status="DUPLICATE",
-                source_id=duplicate.source_id,
-                byte_count=byte_count,
-                sha256=digest,
-                receipt_path=receipt,
-            )
-
-        current_total = sum(item.byte_count for item in stored.values())
-        current_total += _derived_storage_bytes(root)
-        if current_total + byte_count > config.max_storage_bytes:
-            raise WorkspaceError(
-                "Totaal opslagbudget wordt overschreden: "
-                f"{current_total + byte_count} > {config.max_storage_bytes} bytes.",
-                code="storage_budget_exceeded",
-            )
-
-        source_id = _new_source_id(captured_at, stored)
-        month_directory = _safe_month_directory(root, captured_at)
-        final_directory = month_directory / source_id
-        if final_directory.exists() or final_directory.is_symlink():
-            raise WorkspaceError(
-                f"Doelbron bestaat onverwacht al: {source_id}",
-                code="source_id_conflict",
-            )
-        stored_path = (
-            Path("SOURCES")
-            / captured_at.strftime("%Y")
-            / captured_at.strftime("%m")
-            / source_id
-            / original_filename
-        ).as_posix()
-        record = {
-            "bytes": byte_count,
-            "captured_at": _timestamp(captured_at),
-            "format": SOURCE_RECORD_FORMAT,
-            "format_version": SOURCE_RECORD_VERSION,
-            "origin": normalized_origin,
-            "original_name": original_name,
-            "privacy": normalized_privacy,
-            "sha256": digest,
-            "source_id": source_id,
-            "status": "CAPTURED",
-            "stored_path": stored_path,
-            "supersedes": supersedes,
-        }
-        _write_new_file(temporary / "record.json", _json_bytes(record))
-        if _transaction is not None:
-            _transaction.track_target(final_directory)
-        try:
-            os.replace(temporary, final_directory)
-        except OSError as exc:
-            raise WorkspaceError(
-                f"De bron kon niet atomair zichtbaar worden gemaakt: {exc}",
-                code="source_publish_failed",
-            ) from exc
-        temporary = None
-        if _transaction is not None:
-            _transaction.mark_target_published(final_directory)
-            _transaction.mark_published()
-        try:
-            receipt = _write_receipt(
-                root,
-                attempt_id=attempt_id,
-                captured_at=captured_at,
-                status="CAPTURED",
-                original_name=original_name,
-                privacy=normalized_privacy,
-                origin=normalized_origin,
-                source_id=source_id,
-                byte_count=byte_count,
-                sha256=digest,
-            )
-            if _transaction is not None:
-                _transaction.mark_receipted(receipt)
-        except WorkspaceError:
-            shutil.rmtree(final_directory, ignore_errors=True)
-            final_directory = None
-            raise
-        return CaptureResult(
-            status="CAPTURED",
-            source_id=source_id,
-            byte_count=byte_count,
-            sha256=digest,
-            receipt_path=receipt,
-        )
+        return _execute_capture(plan, _transaction)
     except WorkspaceError as exc:
         if root is not None:
             _try_failure_receipt(
@@ -1087,10 +1166,6 @@ def _capture_source_unlocked(
                 error=error,
             )
         raise error from exc
-    finally:
-        if temporary is not None and temporary.exists():
-            shutil.rmtree(temporary, ignore_errors=True)
-
 
 _TEST_BEFORE_CAPTURE_LOCK = None
 

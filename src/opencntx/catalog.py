@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import datetime
 import hashlib
 import json
 import os
@@ -15,7 +15,18 @@ import tomllib
 from typing import Any, Iterable
 from uuid import uuid4
 
-from .integrity import IntegrityError, Transaction, state_digest, writer_transaction
+from .integrity import (
+    IntegrityError,
+    Transaction,
+    state_digest,
+    write_new_bytes,
+    writer_transaction,
+)
+from .primitives import (
+    pretty_json_bytes as _json_bytes,
+    timestamp_microseconds as _timestamp,
+    utc_now as _utc_now,
+)
 from .workspace import (
     INDEX_TEMPLATE,
     PRIVACY_LABELS,
@@ -167,25 +178,8 @@ class CatalogResult:
     receipt_path: Path
 
 
-def _utc_now() -> datetime:
-    return datetime.now(timezone.utc)
-
-
-def _timestamp(value: datetime) -> str:
-    return value.isoformat(timespec="microseconds").replace("+00:00", "Z")
-
-
-def _json_bytes(value: dict[str, Any]) -> bytes:
-    return (json.dumps(value, ensure_ascii=False, indent=2, sort_keys=True) + "\n").encode(
-        "utf-8"
-    )
-
-
 def _write_new_file(path: Path, content: bytes) -> None:
-    with path.open("xb") as output:
-        output.write(content)
-        output.flush()
-        os.fsync(output.fileno())
+    write_new_bytes(path, content)
 
 
 def _write_atomic(path: Path, content: bytes) -> None:
